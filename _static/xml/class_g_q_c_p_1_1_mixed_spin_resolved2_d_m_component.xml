@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::MixedSpinResolved2DMComponent</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_square_rank_four_tensor" prot="public" virt="non-virtual">GQCP::SquareRankFourTensor&lt; _Scalar &gt;</basecompoundref>
+    <includes refid="_mixed_spin_resolved2_d_m_component_8hpp" local="no">MixedSpinResolved2DMComponent.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad3ef74b2b6b6a3126a475dacd47aec75" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::Self =  MixedSpinResolved2DMComponent&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::numberOfOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of orbitals that are related to this 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="61" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::trace</definition>
+        <argsstring>() const</argsstring>
+        <name>trace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The trace of the 2-DM, i.e. d(p,p,q,q). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="71" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="71" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad3ef74b2b6b6a3126a475dacd47aec75" kindref="member">Self</ref></type>
+        <definition>Self GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::transformed</definition>
+        <argsstring>(const UTransformationComponent&lt; Scalar &gt; &amp;T, const Spin sigma) const</argsstring>
+        <name>transformed</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis transformation for the spin component sigma, and return the resulting 2-DM.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-transformed 2-DM.</para>
+</simplesect>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="104" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="104" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ace9e92100a3e1219efb8bd2d20b5f20c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::transform</definition>
+        <argsstring>(const UTransformationComponent&lt; Scalar &gt; &amp;T, const Spin sigma)</argsstring>
+        <name>transform</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place apply the basis transformation for the spin component sigma.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="144" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="144" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad3ef74b2b6b6a3126a475dacd47aec75" kindref="member">Self</ref></type>
+        <definition>Self GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::rotated</definition>
+        <argsstring>(const JacobiRotation &amp;jacobi_rotation, const Spin sigma) const</argsstring>
+        <name>rotated</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis rotation for the spin component sigma, and return the resulting two-electron integrals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-rotated two-electron operator.</para>
+</simplesect>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="161" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="161" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a566ad63ad8fcf9d3216962a334834b9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;::rotate</definition>
+        <argsstring>(const JacobiRotation &amp;jacobi_rotation, const Spin sigma)</argsstring>
+        <name>rotate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place apply the basis rotation for the spin component sigma, and return the resulting two-electron integrals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="176" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="176" bodyend="180"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>One of the mixed (i.e. alpha-beta or beta-alpha) spin components of a spin-resolved 2-DM.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a density matrix element: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp" bodystart="36" bodyend="181"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_tensor_1a27c1c038c06c561f87d788f96d80a7db" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1afaef2cb55ae37ca6174f956614e32411" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1adf256320409b3cb071a75f236c342d77" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Base</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa3537155a1ab4f7207232610ddeae5f9" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a65b3e312701a619764a36cb9e5b77247" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a7f3fc273d404b00111e250639592e310" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1afbf2116f91e93cce546be34cfbe362c6" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ab0aac5a7270d58bb2739787076f320cf" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a4f661c1441222dccb0b170cdcc04a744" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>FromBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a3d43828d2fa60cdb902529d56a34c21c" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>FromFile</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0fbb66c2ec178b7c21441ef6aaf3362d" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>hasEqualDimensionsAs</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1aedf5e3a286be6c44e3209f722cd42d14" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>isApprox</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>numberOfElements</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a43265946ffddd810e5380feb8806edc2" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>operator=</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a6a4c62ac97e943c971985487edde42c9" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>pairWiseReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1afaab91c4c43e216d1e0c1d7c2d45a746" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>pairWiseStrictReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>print</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a52e4cca8048c3e51977fa460f5715d76" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Rank</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ad617715dde3cdf405c91fc7e2ab4bba5" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>reshape</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a566ad63ad8fcf9d3216962a334834b9d" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad3ef74b2b6b6a3126a475dacd47aec75" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a69d281a8471cddd9cfacb64a15330769" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa7d76da72a02cda047036cfdee4dd398" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ad7a0f38bc13a432d0b0bc8f1e757550f" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a7aa129b102b42f24a27d967dc05e9190" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>trace</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ace9e92100a3e1219efb8bd2d20b5f20c" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" prot="public" virt="non-virtual"><scope>GQCP::MixedSpinResolved2DMComponent</scope><name>Zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::McMurchieDavidsonCoefficient</compoundname>
+    <includes refid="_mc_murchie_davidson_coefficient_8hpp" local="no">McMurchieDavidsonCoefficient.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a4c404911ec521a7db38561d6436f9b1d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::K</definition>
+        <argsstring></argsstring>
+        <name>K</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="32" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1ab1b5b6a539f3189c328abf91d595ba92" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::L</definition>
+        <argsstring></argsstring>
+        <name>L</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="33" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1ab9b2a6ad6f24a6d2d9cf86396734e6bf" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::alpha</definition>
+        <argsstring></argsstring>
+        <name>alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a383d5e09585bcadb6a86acdead3af7c0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::beta</definition>
+        <argsstring></argsstring>
+        <name>beta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1af44d0e549766b8b9ec145282078d67ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::McMurchieDavidsonCoefficient::McMurchieDavidsonCoefficient</definition>
+        <argsstring>(const double K, const double alpha, const double L, const double beta)</argsstring>
+        <name>McMurchieDavidsonCoefficient</name>
+        <param>
+          <type>const double</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>alpha</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>L</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one of the components of the center of the left Cartesian GTO </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Gaussian exponent of the left Cartesian GTO </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>L</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one of the components of the center of the left Cartesian GTO </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Gaussian exponent of the right Cartesian GTO </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/McMurchieDavidsonCoefficient.cpp" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1aaa4db462c959066380ea4a9b201ce1f8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::operator()</definition>
+        <argsstring>(const int i, const int j, const int t) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Cartesian exponent of the left Cartesian GTO </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Cartesian exponent of the right Cartesian GTO </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the degree of the Hermite Gaussian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the value for the McMurchie-Davidson expansion coefficient E^{i,j}_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="60" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/McMurchieDavidsonCoefficient.cpp" bodystart="53" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a6e45664e3ffca2c50c94ae6e46d2ef44" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::centerOfMass</definition>
+        <argsstring>() const</argsstring>
+        <name>centerOfMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the center of mass of the Gaussian overlap distribution </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="68" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/McMurchieDavidsonCoefficient.cpp" bodystart="88" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1add58479b11276f84af4e77433214e11b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::distance</definition>
+        <argsstring>() const</argsstring>
+        <name>distance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(one component of) the distance vector between the left and right Cartesian Gaussian (left - right) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="73" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a93a17b44635c47cab7d157daf9f946ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::reducedExponent</definition>
+        <argsstring>() const</argsstring>
+        <name>reducedExponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the reduced exponent of the Gaussian overlap distribution </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="78" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/McMurchieDavidsonCoefficient.cpp" bodystart="97" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a08f173bdd06c961321fcb9e6a1c6ea87" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::McMurchieDavidsonCoefficient::totalExponent</definition>
+        <argsstring>() const</argsstring>
+        <name>totalExponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the total exponent of the Gaussian overlap distribution </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="83" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An implementation of the McMurchie-Davidson expansion coefficients through recurrence relations. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::McMurchieDavidsonCoefficient</label>
+        <link refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/McMurchieDavidsonCoefficient.hpp" bodystart="30" bodyend="84"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1ab9b2a6ad6f24a6d2d9cf86396734e6bf" prot="private" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a383d5e09585bcadb6a86acdead3af7c0" prot="private" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a6e45664e3ffca2c50c94ae6e46d2ef44" prot="public" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>centerOfMass</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1add58479b11276f84af4e77433214e11b" prot="public" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>distance</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a4c404911ec521a7db38561d6436f9b1d" prot="private" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>K</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1ab1b5b6a539f3189c328abf91d595ba92" prot="private" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>L</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1af44d0e549766b8b9ec145282078d67ca" prot="public" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>McMurchieDavidsonCoefficient</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1aaa4db462c959066380ea4a9b201ce1f8" prot="public" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a93a17b44635c47cab7d157daf9f946ea" prot="public" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>reducedExponent</name></member>
+      <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a08f173bdd06c961321fcb9e6a1c6ea87" prot="public" virt="non-virtual"><scope>GQCP::McMurchieDavidsonCoefficient</scope><name>totalExponent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,89 @@
+\hypertarget{class_g_q_c_p_1_1_subspace_update}{}\doxysection{G\+Q\+CP\+::Subspace\+Update Class Reference}
+\label{class_g_q_c_p_1_1_subspace_update}\index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
+
+
+{\ttfamily \#include $<$Subspace\+Update.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Subspace\+Update\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{class_g_q_c_p_1_1_subspace_update__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Subspace\+Update\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{class_g_q_c_p_1_1_subspace_update__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_subspace_update_ae143e2928335bd1fa0c895fcad26f2f7}{Subspace\+Update}} (const size\+\_\+t maximum\+\_\+subspace\+\_\+dimension=15, const double threshold=1.\+0e-\/03)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_update_a1af3f62a92fa892cb28acd7b2bbc0bb7}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_update_acf11b3134f5b1a2d059bfa2f3bcc5bf7}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A step that adds projected correction vectors to the subspace (if their norm is large enough) and collapses the subspace if it becomes too large. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_subspace_update_ae143e2928335bd1fa0c895fcad26f2f7}\label{class_g_q_c_p_1_1_subspace_update_ae143e2928335bd1fa0c895fcad26f2f7}} 
+\index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}!SubspaceUpdate@{SubspaceUpdate}}
+\index{SubspaceUpdate@{SubspaceUpdate}!GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
+\doxysubsubsection{\texorpdfstring{SubspaceUpdate()}{SubspaceUpdate()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Subspace\+Update\+::\+Subspace\+Update (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 15},  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/03} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em maximum\+\_\+subspace\+\_\+dimension} & the maximum dimension of the subspace before collapsing \\
+\hline
+{\em threshold} & the threshold on the norm used for determining if a new projected correction vector should be added to the subspace \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_subspace_update_a1af3f62a92fa892cb28acd7b2bbc0bb7}\label{class_g_q_c_p_1_1_subspace_update_a1af3f62a92fa892cb28acd7b2bbc0bb7}} 
+\index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}!description@{description}}
+\index{description@{description}!GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Subspace\+Update\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_subspace_update_acf11b3134f5b1a2d059bfa2f3bcc5bf7}\label{class_g_q_c_p_1_1_subspace_update_acf11b3134f5b1a2d059bfa2f3bcc5bf7}} 
+\index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}!execute@{execute}}
+\index{execute@{execute}!GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Subspace\+Update\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Add projected correction vectors to the subspace (if their norm is large enough) and collapse the subspace becomes too large. The new subspace vectors (after a collapse) are linear combinations of current subspace vectors, with coefficients found in the lowest eigenvectors of the subspace matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_subspace_update_8hpp}{Subspace\+Update.\+hpp}}\end{DoxyCompactItemize}

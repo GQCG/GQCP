@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_c90afff34619ae5a03fb92233acd80aa" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization</compoundname>
+    <innerfile refid="_e_r_jacobi_localizer_8hpp">ERJacobiLocalizer.hpp</innerfile>
+    <innerfile refid="_e_r_newton_localizer_8hpp">ERNewtonLocalizer.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/"/>
+  </compounddef>
+</doxygen>

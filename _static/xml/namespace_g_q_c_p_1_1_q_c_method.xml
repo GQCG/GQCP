@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1_q_c_method" kind="namespace" language="C++">
+    <compoundname>GQCP::QCMethod</compoundname>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g" prot="public">GQCP::QCMethod::AP1roG</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d" prot="public">GQCP::QCMethod::CCD</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d" prot="public">GQCP::QCMethod::CCSD</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i" prot="public">GQCP::QCMethod::CI</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f" prot="public">GQCP::QCMethod::GHF</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f" prot="public">GQCP::QCMethod::RHF</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f" prot="public">GQCP::QCMethod::UHF</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" prot="public">GQCP::QCMethod::vAP1roG</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" line="27" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_u_jacobi_rotation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::UJacobiRotation</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; JacobiRotation, UJacobiRotation &gt;</basecompoundref>
+    <includes refid="_u_jacobi_rotation_8hpp" local="no">UJacobiRotation.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_jacobi_rotation_1a2cd243c399d1b6033411e34a955a0228" prot="public" static="no">
+        <type>typename <ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>, <ref refid="class_g_q_c_p_1_1_u_jacobi_rotation" kindref="compound">UJacobiRotation</ref> &gt;::<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
+        <definition>using GQCP::UJacobiRotation::ComponentType =  typename SpinResolvedBase&lt;JacobiRotation, UJacobiRotation&gt;::Of</definition>
+        <argsstring></argsstring>
+        <name>ComponentType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UJacobiRotation.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UJacobiRotation.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that encapsulates an alpha- and a beta- Jacobirotation. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; JacobiRotation, UJacobiRotation &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UJacobiRotation</label>
+        <link refid="class_g_q_c_p_1_1_u_jacobi_rotation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; JacobiRotation, UJacobiRotation &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UJacobiRotation</label>
+        <link refid="class_g_q_c_p_1_1_u_jacobi_rotation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UJacobiRotation.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UJacobiRotation.hpp" bodystart="32" bodyend="44"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_u_jacobi_rotation_1a2cd243c399d1b6033411e34a955a0228" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>ComponentType</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>FromEqual</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>Of</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac2ecb42d733bb8ddf78fdb011855dcdc" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" virt="non-virtual"><scope>GQCP::UJacobiRotation</scope><name>SpinResolvedBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

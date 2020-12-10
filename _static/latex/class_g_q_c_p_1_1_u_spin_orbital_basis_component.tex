@@ -1,0 +1,158 @@
+\hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{}\doxysection{G\+Q\+CP\+::U\+Spin\+Orbital\+Basis\+Component$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component}\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+
+
+{\ttfamily \#include $<$U\+Spin\+Orbital\+Basis\+Component.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::U\+Spin\+Orbital\+Basis\+Component$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_u_spin_orbital_basis_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::U\+Spin\+Orbital\+Basis\+Component$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_u_spin_orbital_basis_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}} = \+\_\+\+Expansion\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a58bc52d98579ab9fd20a3d91fe378d0a}{Shell}} = \+\_\+\+Shell
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a1315d68af1b9070e681c9db115aa5f05}{Primitive}} = typename Shell\+::\+Primitive
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a18d47fd373ffc69e051330c4cea4932c}{Basis\+Function}} = typename Shell\+::\+Basis\+Function
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename F\+Q\+One\+Electron\+Operator $>$ }\\auto \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afd7f1a205bb2a86132f7a05be3bdc4e4}{quantize}} (const F\+Q\+One\+Electron\+Operator \&fq\+\_\+one\+\_\+op) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ typename F\+Q\+One\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}} $>$, typename F\+Q\+One\+Electron\+Operator\+::\+Vectorizer $>$
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_aac847d885bbbf1022ecfd180db378dee}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a18d47fd373ffc69e051330c4cea4932c}{Basis\+Function}} \&)$>$ \&selector) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afe68e72762a5b22ab6319679a62e506f}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a58bc52d98579ab9fd20a3d91fe378d0a}{Shell}} \&)$>$ \&selector) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Expansion\+Scalar, typename \+\_\+\+Shell$>$\newline
+class G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$}
+
+A type specifically designed as one of the spin-\/components of a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}}.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Expansion\+Scalar} & The scalar type used to represent an expansion coefficient of the spin-\/orbitals in the underlying scalar orbitals\+: real or complex. \\
+\hline
+{\em \+\_\+\+Shell} & The type of shell the underlying scalar basis contains. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a18d47fd373ffc69e051330c4cea4932c}\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a18d47fd373ffc69e051330c4cea4932c}} 
+\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}!BasisFunction@{BasisFunction}}
+\index{BasisFunction@{BasisFunction}!GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{BasisFunction}{BasisFunction}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a18d47fd373ffc69e051330c4cea4932c}{Basis\+Function}} =  typename Shell\+::\+Basis\+Function}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}} 
+\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}!ExpansionScalar@{ExpansionScalar}}
+\index{ExpansionScalar@{ExpansionScalar}!GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{ExpansionScalar}{ExpansionScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}} =  \+\_\+\+Expansion\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a1315d68af1b9070e681c9db115aa5f05}\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a1315d68af1b9070e681c9db115aa5f05}} 
+\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a1315d68af1b9070e681c9db115aa5f05}{Primitive}} =  typename Shell\+::\+Primitive}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a58bc52d98579ab9fd20a3d91fe378d0a}\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a58bc52d98579ab9fd20a3d91fe378d0a}} 
+\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a58bc52d98579ab9fd20a3d91fe378d0a}{Shell}} =  \+\_\+\+Shell}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component_aac847d885bbbf1022ecfd180db378dee}\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component_aac847d885bbbf1022ecfd180db378dee}} 
+\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
+\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a18d47fd373ffc69e051330c4cea4932c}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+M\+A\+RK\+: Mulliken partitioning Partition this set of spin-\/orbitals related to one of the components of an unrestricted spin-\/orbital basis according to the Mulliken partitioning scheme.
+
+
+\begin{DoxyParams}{Parameters}
+{\em selector} & A function that returns true for basis functions that should be included the Mulliken partitioning.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}} for the A\+Os selected by the supplied selector function. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afe68e72762a5b22ab6319679a62e506f}\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afe68e72762a5b22ab6319679a62e506f}} 
+\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
+\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a58bc52d98579ab9fd20a3d91fe378d0a}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Partition this set of spin-\/orbitals related to one of the components of an unrestricted spin-\/orbital basis according to the Mulliken partitioning scheme.
+
+
+\begin{DoxyParams}{Parameters}
+{\em selector} & A function that returns true for shells that should be included the Mulliken partitioning.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}} for the A\+Os selected by the supplied selector function. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afd7f1a205bb2a86132f7a05be3bdc4e4}\label{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afd7f1a205bb2a86132f7a05be3bdc4e4}} 
+\index{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
+\index{quantize@{quantize}!GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::USpinOrbitalBasisComponent$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+template$<$typename F\+Q\+One\+Electron\+Operator $>$ \\
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{G\+Q\+C\+P\+::\+U\+Spin\+Orbital\+Basis\+Component}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const F\+Q\+One\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename F\+Q\+One\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_afc84f78752d6a9136f36fa7be24f07cb}{Expansion\+Scalar}}$>$, typename F\+Q\+One\+Electron\+Operator\+::\+Vectorizer$>$ \hspace{0.3cm}{\ttfamily [inline]}}
+
+Quantize a first-\/quantized one-\/electron operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & The first-\/quantized one-\/electron operator.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em F\+Q\+One\+Electron\+Operator} & The type of the first-\/quantized one-\/electron operator.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The second-\/quantized operator corresponding to the given first-\/quantized operator, i.\+e. expressed in/projected onto this spin-\/orbital basis. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Spinor\+Basis/\mbox{\hyperlink{_u_spin_orbital_basis_component_8hpp}{U\+Spin\+Orbital\+Basis\+Component.\+hpp}}\end{DoxyCompactItemize}

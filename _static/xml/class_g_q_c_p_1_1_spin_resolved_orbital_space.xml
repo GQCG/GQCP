@@ -1,0 +1,516 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_spin_resolved_orbital_space" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SpinResolvedOrbitalSpace</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; OrbitalSpace, SpinResolvedOrbitalSpace &gt;</basecompoundref>
+    <includes refid="_spin_resolved_orbital_space_8hpp" local="no">SpinResolvedOrbitalSpace.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved_orbital_space_1a5f6f2be79322c947910549f0ced62d0b" prot="public" static="no">
+        <type>typename <ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>, <ref refid="class_g_q_c_p_1_1_spin_resolved_orbital_space" kindref="compound">SpinResolvedOrbitalSpace</ref> &gt;::<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
+        <definition>using GQCP::SpinResolvedOrbitalSpace::ComponentType =  typename SpinResolvedBase&lt;OrbitalSpace, SpinResolvedOrbitalSpace&gt;::Of</definition>
+        <argsstring></argsstring>
+        <name>ComponentType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_orbital_space_1afe920782f696cce21b3b2918db5ed938" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::SpinResolvedOrbitalSpace::createMixedRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType row_type, const Spin row_spin, const OccupationType column_type, const Spin column_spin, const MatrixX&lt; Scalar &gt; &amp;M) const</argsstring>
+        <name>createMixedRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>row_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>row_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>column_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>column_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; Scalar &gt; &amp;</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense representation of the matrix slice. Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the elements of the implicit matrix.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the rows. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>row_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the rows. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>column_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the columns. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>column_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the columns. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dense representation of the matrix slice.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An implicit matrix slice, according to the given occupation types and spin components. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" line="65" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" bodystart="65" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_orbital_space_1ac6adc455d4bd91256df096af03ae6ebc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::SpinResolvedOrbitalSpace::createMixedRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType axis1_type, const Spin axis1_spin, const OccupationType axis2_type, const Spin axis2_spin, const OccupationType axis3_type, const Spin axis3_spin, const OccupationType axis4_type, const Spin axis4_spin, const Tensor&lt; Scalar, 4 &gt; &amp;T) const</argsstring>
+        <name>createMixedRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis1_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis1_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis2_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis2_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis3_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis3_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis4_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis4_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; Scalar, 4 &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice. Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the elements of the implicit tensor.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the first tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis1_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the first tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the second tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the second tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the third tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the third tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the fourth tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the fourth tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dense representation of the tensor slice.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An implicit rank-four tensor slice, according to the given occupation types and spin components. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" line="109" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" bodystart="109" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_orbital_space_1a1c14f617030b7d4e148812a7a547dbda" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::SpinResolvedOrbitalSpace::initializeMixedRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType row_type, const Spin row_spin, const OccupationType column_type, const Spin column_spin) const</argsstring>
+        <name>initializeMixedRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>row_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>row_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>column_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>column_spin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types. Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the elements of the implicit matrix.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the rows. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>row_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the rows. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>column_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the columns. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>column_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the columns.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A zero-initialized implicit matrix slice, according to the given occupation types and spin components. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" line="164" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" bodystart="164" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_orbital_space_1ae7293e9688e9b4080c67664eb2252bba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::SpinResolvedOrbitalSpace::initializeMixedRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType axis1_type, const Spin axis1_spin, const OccupationType axis2_type, const Spin axis2_spin, const OccupationType axis3_type, const Spin axis3_spin, const OccupationType axis4_type, const Spin axis4_spin) const</argsstring>
+        <name>initializeMixedRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis1_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis1_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis2_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis2_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis3_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis3_spin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis4_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>axis4_spin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice. Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the elements of the implicit tensor.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the first tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis1_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the first tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the second tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the second tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the third tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the third tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor occupation type for the fourth tensor axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_spin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component for the fourth tensor axis.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A zero-initialized implicit mixed spin rank-four tensor slice, according to the given occupation types and spin components. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" line="209" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" bodystart="209" bodyend="252"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that encapsulates alpha and beta Orbital Spaces. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::SpinResolvedOrbitalSpace</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_orbital_space"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; OrbitalSpace, SpinResolvedOrbitalSpace &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SpinResolvedOrbitalSpace</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_orbital_space"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; OrbitalSpace, SpinResolvedOrbitalSpace &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp" bodystart="32" bodyend="253"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1a5f6f2be79322c947910549f0ced62d0b" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>ComponentType</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1afe920782f696cce21b3b2918db5ed938" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>createMixedRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1ac6adc455d4bd91256df096af03ae6ebc" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>createMixedRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>FromEqual</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1a1c14f617030b7d4e148812a7a547dbda" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>initializeMixedRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1ae7293e9688e9b4080c67664eb2252bba" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>initializeMixedRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>Of</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac2ecb42d733bb8ddf78fdb011855dcdc" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedOrbitalSpace</scope><name>SpinResolvedBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

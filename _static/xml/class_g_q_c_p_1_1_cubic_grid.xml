@@ -1,0 +1,661 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_cubic_grid" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::CubicGrid</compoundname>
+    <includes refid="_cubic_grid_8hpp" local="no">CubicGrid.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_cubic_grid_1a046b2285ecf60c4f7ebff802c916453e" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::CubicGrid::m_origin</definition>
+        <argsstring></argsstring>
+        <name>m_origin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="40" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_cubic_grid_1aa58d827a366eb9f39631292dafe9435a" prot="private" static="no" mutable="no">
+        <type>std::array&lt; size_t, 3 &gt;</type>
+        <definition>std::array&lt;size_t, 3&gt; GQCP::CubicGrid::numbers_of_steps</definition>
+        <argsstring></argsstring>
+        <name>numbers_of_steps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="41" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_cubic_grid_1a6fec9289090bb20dfe24d2274b4d4dbe" prot="private" static="no" mutable="no">
+        <type>std::array&lt; double, 3 &gt;</type>
+        <definition>std::array&lt;double, 3&gt; GQCP::CubicGrid::step_sizes</definition>
+        <argsstring></argsstring>
+        <name>step_sizes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="42" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a314da2efa765caa2fd1d9ab63a7fd99b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::CubicGrid::CubicGrid</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;origin, const std::array&lt; size_t, 3 &gt; &amp;numbers_of_steps, const std::array&lt; double, 3 &gt; &amp;step_sizes)</argsstring>
+        <name>CubicGrid</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; size_t, 3 &gt; &amp;</type>
+          <declname>numbers_of_steps</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; double, 3 &gt; &amp;</type>
+          <declname>step_sizes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>origin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the origin of the grid </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numbers_of_steps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of steps in the x, y, z-directions </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>step_sizes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the step sizes in the x, y, z-directions </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a44df571249948a19a2b7b22751b469fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Valued</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; Valued &gt;</type>
+        <definition>Field&lt;Valued&gt; GQCP::CubicGrid::evaluate</definition>
+        <argsstring>(const ScalarFunction&lt; Valued, double, 3 &gt; &amp;scalar_function) const</argsstring>
+        <name>evaluate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction</ref>&lt; Valued, double, 3 &gt; &amp;</type>
+          <declname>scalar_function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Evaluate a scalar function on every point of this grid.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar functions whose values should be evaluated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a field with the calculated evaluations </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="101" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="101" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a744c8c47067699932684fd052843d592" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T GQCP::CubicGrid::integrate</definition>
+        <argsstring>(const Field&lt; T &gt; &amp;field) const</argsstring>
+        <name>integrate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Integrate a <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref> over this grid.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the field that should be integrated, i.e. provided as the integrand</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the value of the integral </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="122" column="7" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="122" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1ace375c620c4f97646710110da215a589" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::CubicGrid::forEach</definition>
+        <argsstring>(const std::function&lt; void(const size_t, const size_t, const size_t)&gt; &amp;callback) const</argsstring>
+        <name>forEach</name>
+        <param>
+          <type>const std::function&lt; void(const size_t, const size_t, const size_t)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Loop over the points of this grid by index number.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="138" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="261" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a8fcb7cf1dbd542f59e314a075c003cb0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::CubicGrid::forEach</definition>
+        <argsstring>(const std::function&lt; void(const Vector&lt; double, 3 &gt; &amp;)&gt; &amp;callback) const</argsstring>
+        <name>forEach</name>
+        <param>
+          <type>const std::function&lt; void(const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Loop over the points of this grid by position (relative to the origin of this grid).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the function you would like to apply to each incoming position vector </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="145" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="278" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a068787c38bbf15233da1646dfef0783d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::CubicGrid::numberOfPoints</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfPoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of points that are in this grid </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="150" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="291" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a2af48865ce71ab8e1ef8b4b0f98dc36b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::CubicGrid::origin</definition>
+        <argsstring>() const</argsstring>
+        <name>origin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the origin of this grid </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="155" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a49ac5ed5fe5a762b348b48aece9e2ded" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt; double, 3 &gt; GQCP::CubicGrid::position</definition>
+        <argsstring>(const size_t i, const size_t j, const size_t k) const</argsstring>
+        <name>position</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of steps taken in the x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of steps taken in the y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of steps taken in the z-direction</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the position vector associated to the given indices </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="164" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="304" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1ab50f3b1f20f597e28ad08fb647db77a1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &gt;</type>
+        <definition>std::vector&lt; Vector&lt; double, 3 &gt; &gt; GQCP::CubicGrid::points</definition>
+        <argsstring>() const</argsstring>
+        <name>points</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a vector of the points that are described by this grid </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="169" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="317" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a66ed917d2494c7c22a0dfb0fccae424a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::CubicGrid::numbersOfSteps</definition>
+        <argsstring>(const size_t axis) const</argsstring>
+        <name>numbersOfSteps</name>
+        <param>
+          <type>const size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>0, 1, 2 representing the x-, y-, or z-axis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the number of steps that can be taken in the direction of the specified axis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="176" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="176" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1aa04cb0468c81f2e17b5902e05081a4bb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::array&lt; size_t, 3 &gt; &amp;</type>
+        <definition>const std::array&lt;size_t, 3&gt;&amp; GQCP::CubicGrid::numbersOfSteps</definition>
+        <argsstring>() const</argsstring>
+        <name>numbersOfSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of steps in the x, y, z-directions </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="181" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="181" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a67e977bcd41cf81cd6697f6e07c99f63" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::CubicGrid::stepSize</definition>
+        <argsstring>(const size_t axis) const</argsstring>
+        <name>stepSize</name>
+        <param>
+          <type>const size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>0, 1, 2 representing the x-, y-, or z-axis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the step size that is taken in the direction of the specified axis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="188" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="188" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1aeb87cb69a5d0ae882fe10147f0894e70" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::array&lt; double, 3 &gt; &amp;</type>
+        <definition>const std::array&lt;double, 3&gt;&amp; GQCP::CubicGrid::stepSizes</definition>
+        <argsstring>() const</argsstring>
+        <name>stepSizes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the step sizes in the x, y, z-directions </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="193" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="193" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a1c6b2b73b0818e017800e21f347b1c3b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::CubicGrid::totalVolume</definition>
+        <argsstring>() const</argsstring>
+        <name>totalVolume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the total volume that is contained in this grid </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="198" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="198" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1aa0c7b1914b566432553d564139be2deb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::CubicGrid::writeToCubeFile</definition>
+        <argsstring>(const Field&lt; double &gt; &amp;scalar_field, const std::string &amp;filename, const Molecule &amp;molecule) const</argsstring>
+        <name>writeToCubeFile</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; double &gt; &amp;</type>
+          <declname>scalar_field</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Write a field&apos;s values to a GAUSSIAN Cube file (<ulink url="http://paulbourke.net/dataformats/cube/">http://paulbourke.net/dataformats/cube/</ulink>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar_field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar field that should be written to the cubefile </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the cubefile that has to be generated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the molecule that should be placed in the cubefile </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="207" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="338" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a9ec68e917323ae9619289d4b105884e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::CubicGrid::voxelVolume</definition>
+        <argsstring>() const</argsstring>
+        <name>voxelVolume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the volume of one voxel in this grid </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="212" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="391" bodyend="394"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a8b6866c5b1234aad9335218be9a81f41" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref></type>
+        <definition>CubicGrid GQCP::CubicGrid::Centered</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;point, const size_t number_of_steps, const double step_size)</argsstring>
+        <name>Centered</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>number_of_steps</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>step_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a cubic ground that is centered around the given point. Equal numbers of steps and step sizes are taken in the x-, y- and z-directions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the point around which the grid should be centered </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>number_of_steps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of steps that should be taken in the x-, y- and z-directions </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>step_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the size of the steps that should be taken in the x-, y- and z-directions </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="65" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="54" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a73ea4b85450f128003338edf17a31ea3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref></type>
+        <definition>CubicGrid GQCP::CubicGrid::ReadCubeFile</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>ReadCubeFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Parse a GAUSSIAN Cube file (<ulink url="http://paulbourke.net/dataformats/cube/">http://paulbourke.net/dataformats/cube/</ulink>). The values for the contained scalar field are ignored.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the cubefile</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The Cube file is assumed to have grid axes oriented along the x-, y-, and z-axes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="74" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="76" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a405cda8f9d056f5d1dc1f8b3fb2c5218" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref></type>
+        <definition>CubicGrid GQCP::CubicGrid::ReadRegularGridFile</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>ReadRegularGridFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Parse an .rgrid-file and create the <ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref> that is contained in it. The values for the scalar field or vector field are ignored.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the .igrid-file</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>A regular grid (.rgrid) file is a headerless file and contains the following data:<itemizedlist>
+<listitem><para>Each row relates to one grid point, where the fastest changing values are z &gt; y &gt; x.</para>
+</listitem><listitem><para>Column specification:<itemizedlist>
+<listitem><para>Column 1: The index from 1 to the number of grid points</para>
+</listitem><listitem><para>Columns 2-4: The position of the grid point: x, y, and z</para>
+</listitem><listitem><para>Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="88" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="144" bodyend="249"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A grid type whose points are on a regular cubic lattice. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::CubicGrid</label>
+        <link refid="class_g_q_c_p_1_1_cubic_grid"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" bodystart="38" bodyend="213"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a8b6866c5b1234aad9335218be9a81f41" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>Centered</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a314da2efa765caa2fd1d9ab63a7fd99b" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>CubicGrid</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a44df571249948a19a2b7b22751b469fc" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>evaluate</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1ace375c620c4f97646710110da215a589" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>forEach</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a8fcb7cf1dbd542f59e314a075c003cb0" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>forEach</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a744c8c47067699932684fd052843d592" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>integrate</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a046b2285ecf60c4f7ebff802c916453e" prot="private" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>m_origin</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a068787c38bbf15233da1646dfef0783d" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>numberOfPoints</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1aa58d827a366eb9f39631292dafe9435a" prot="private" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>numbers_of_steps</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a66ed917d2494c7c22a0dfb0fccae424a" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>numbersOfSteps</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1aa04cb0468c81f2e17b5902e05081a4bb" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>numbersOfSteps</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a2af48865ce71ab8e1ef8b4b0f98dc36b" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>origin</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1ab50f3b1f20f597e28ad08fb647db77a1" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>points</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a49ac5ed5fe5a762b348b48aece9e2ded" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>position</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a73ea4b85450f128003338edf17a31ea3" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>ReadCubeFile</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a405cda8f9d056f5d1dc1f8b3fb2c5218" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>ReadRegularGridFile</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a6fec9289090bb20dfe24d2274b4d4dbe" prot="private" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>step_sizes</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a67e977bcd41cf81cd6697f6e07c99f63" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>stepSize</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1aeb87cb69a5d0ae882fe10147f0894e70" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>stepSizes</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a1c6b2b73b0818e017800e21f347b1c3b" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>totalVolume</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a9ec68e917323ae9619289d4b105884e6" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>voxelVolume</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1aa0c7b1914b566432553d564139be2deb" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>writeToCubeFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

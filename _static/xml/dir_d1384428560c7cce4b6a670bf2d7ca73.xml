@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_d1384428560c7cce4b6a670bf2d7ca73" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCModel/HF</compoundname>
+    <innerfile refid="_q_c_model_2_h_f_2_g_h_f_8hpp">GHF.hpp</innerfile>
+    <innerfile refid="_q_c_model_2_h_f_2_r_h_f_8hpp">RHF.hpp</innerfile>
+    <innerfile refid="_q_c_model_2_h_f_2_u_h_f_8hpp">UHF.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/"/>
+  </compounddef>
+</doxygen>

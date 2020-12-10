@@ -1,0 +1,1216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::QCModel::RHF</compoundname>
+    <includes refid="_q_c_model_2_h_f_2_r_h_f_8hpp" local="no">RHF.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::QCModel::RHF&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a37419b0d868f0712f78de4bd27e46d96" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::N_P</definition>
+        <argsstring></argsstring>
+        <name>N_P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="49" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aa7f348bc7b0ac7e342fcffc90ca76a13" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::orbital_energies</definition>
+        <argsstring></argsstring>
+        <name>orbital_energies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="51" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad76d8e49344b8b5fa7d9b3bf4b5e9330" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>RTransformation&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::C</definition>
+        <argsstring></argsstring>
+        <name>C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="54" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a84e4b3c89ab347b1c2b09c0873fc41da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCModel::RHF&lt; _Scalar &gt;::RHF</definition>
+        <argsstring>(const size_t N_P, const VectorX&lt; double &gt; &amp;orbital_energies, const RTransformation&lt; double &gt; &amp;C)</argsstring>
+        <name>RHF</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>orbital_energies</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; double &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The standard member-wise constructor</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation that expresses the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MOs in terms of the atomic spinors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_energies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MO energies </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="69" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="69" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a1383beff6bf900d017b7a0ad846a0c9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCModel::RHF&lt; _Scalar &gt;::RHF</definition>
+        <argsstring>()</argsstring>
+        <name>RHF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Default constructor setting everything to zero </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="78" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a89649bd02764ba547142edeb4021fdc8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>Orbital1DM&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateOrthonormalBasis1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateOrthonormalBasis1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The 1-DM expressed in an orthonormal spinor basis related to these optimal <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="360" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="360" bodyend="365"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5267a344a0fea282ccfa8e2c85c43a9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>Orbital2DM&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateOrthonormalBasis2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateOrthonormalBasis2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The 2-DM expressed in an orthonormal spinor basis related to these optimal <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="371" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="371" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aa9e3d319ae0b4efefd0630cfab01dae8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::excitationEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>excitationEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A matrix containing all the possible excitation energies of the wavefunction model.</para>
+</simplesect>
+<simplesect kind="note"><para>The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="384" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="384" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a0ab5458cac7f9a10dacfa483de63a4b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>Orbital1DM&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateScalarBasis1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateScalarBasis1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> 1-DM in the scalar/AO basis related to these optimal <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="411" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="411" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a9566e792c5f2aad1ee24942db75277ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateSingletAStabilityMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;rsq_hamiltonian) const</argsstring>
+        <name>calculateSingletAStabilityMatrix</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>rsq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the <computeroutput>singlet A</computeroutput> stability matrix from the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> stability conditions.</para>
+<para><simplesect kind="note"><para>The formula for the <computeroutput>singlet A</computeroutput> matrix is as follows: A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ + 2 * (AI|JB) - (AB|JI).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rsq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;restricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The singlet-A stability matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="428" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="428" bodyend="471"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a93604fd8521127d8cad743dfdb1418e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateSingletBStabilityMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;rsq_hamiltonian) const</argsstring>
+        <name>calculateSingletBStabilityMatrix</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>rsq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the <computeroutput>singlet B</computeroutput> stability matrix from the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> stability conditions.</para>
+<para><simplesect kind="note"><para>The formula for the <computeroutput>singlet B</computeroutput> matrix is as follows: B_IAJB = 2 * (AI|BJ) - (AJ|BI).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rsq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;restricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The singlet-B stability matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="484" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="484" bodyend="516"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a6f1aa940dc74c3b4d0b916ebea37f232" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateTripletAStabilityMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;rsq_hamiltonian) const</argsstring>
+        <name>calculateTripletAStabilityMatrix</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>rsq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the <computeroutput>triplet A</computeroutput> stability matrix from the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> stability conditions.</para>
+<para><simplesect kind="note"><para>The formula for the <computeroutput>triplet A</computeroutput> matrix is as follows: A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ - (AB|JI).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rsq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;restricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the triplet-A stability matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="529" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="529" bodyend="572"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a9668fbeb685c66f4d0e0baf3cb7d7caf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateTripletBStabilityMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;rsq_hamiltonian) const</argsstring>
+        <name>calculateTripletBStabilityMatrix</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>rsq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the <computeroutput>triplet B</computeroutput> stability matrix from the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> stability conditions.</para>
+<para><simplesect kind="note"><para>The formula for the <computeroutput>triplet B</computeroutput> matrix is as follows: B_IAJB = - (AJ|BI).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rsq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;restricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The triplet-B stability matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="585" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="585" bodyend="617"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a606d28fc55294723abb8b0cc9999f079" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>RHFStabilityMatrices&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>RHFStabilityMatrices&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateStabilityMatrices</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;rsq_hamiltonian) const</argsstring>
+        <name>calculateStabilityMatrices</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>rsq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> stability matrices and return them.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rsq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;restricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> stability matrices. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="627" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="627" bodyend="630"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const RTransformation&lt;Scalar&gt;&amp; GQCP::QCModel::RHF&lt; _Scalar &gt;::expansion</definition>
+        <argsstring>() const</argsstring>
+        <name>expansion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The transformation that expresses the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> MOs in terms of the underlying AOs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="636" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="636" bodyend="636"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::homoIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>homoIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electrons</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the (spatial orbital, not spin-orbital) index of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> HOMO in an implicit orbital space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="643" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="643" bodyend="643"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::lumoIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>lumoIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electrons</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the (spatial orbital, not spin-orbital) index of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> LUMO in an implicit orbital space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="651" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="651" bodyend="651"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::numberOfElectronPairs</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfElectronPairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of electron pairs that these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> model parameters describe </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="656" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="656" bodyend="656"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::numberOfElectrons</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfElectrons</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the total number of electrons that these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> model parameters describe </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="661" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="661" bodyend="661"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a99ec917c56a86b39b21e64a5296dfec3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::numberOfElectrons</definition>
+        <argsstring>(const Spin sigma) const</argsstring>
+        <name>numberOfElectrons</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spin of the electrons (alpha or beta)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the number of sigma-electrons that these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> model parameters describe </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="668" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="668" bodyend="668"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::numberOfSpatialOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfSpatialOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of spatial orbitals that these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> model parameters describe </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="673" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="673" bodyend="673"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a272ad0b15b221c485a93eb3f6d5f95e1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::occupiedOrbitalEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>occupiedOrbitalEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The orbital energies belonging to the occupied orbitals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="678" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="678" bodyend="692"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a3fccaa3e895acd05ab044dc13aeedb53" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+        <definition>const VectorX&lt;double&gt;&amp; GQCP::QCModel::RHF&lt; _Scalar &gt;::orbitalEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>orbitalEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>all the spatial orbital energies </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="698" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="698" bodyend="698"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1abab62b713a8a4196e53ca7d0767721f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::QCModel::RHF&lt; _Scalar &gt;::orbitalEnergy</definition>
+        <argsstring>(const size_t i) const</argsstring>
+        <name>orbitalEnergy</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the orbital</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the i-th orbital energy </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="705" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="705" bodyend="705"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+        <definition>OrbitalSpace GQCP::QCModel::RHF&lt; _Scalar &gt;::orbitalSpace</definition>
+        <argsstring>() const</argsstring>
+        <name>orbitalSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the implicit occupied-virtual orbital space that is associated to these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="710" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="710" bodyend="710"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a6d5567781b825611f493d0adb8c07c7b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::spinOrbitalEnergiesBlocked</definition>
+        <argsstring>() const</argsstring>
+        <name>spinOrbitalEnergiesBlocked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="715" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="715" bodyend="724"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a328e1105a61b617e902ffc4376e230f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::spinOrbitalEnergiesInterleaved</definition>
+        <argsstring>() const</argsstring>
+        <name>spinOrbitalEnergiesInterleaved</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>all the spin-orbital energies, with the alpha and beta-spinorbital energies interleaved </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="730" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="730" bodyend="741"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5f7583c9cd9b3ad35def604d08b686ec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::virtualOrbitalEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>virtualOrbitalEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The orbital energies belonging to the virtual orbitals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="747" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="747" bodyend="761"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad6d4795860638caa2a89c613c9b0d839" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateElectronicEnergy</definition>
+        <argsstring>(const Orbital1DM&lt; Scalar &gt; &amp;D, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;H_core, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;F)</argsstring>
+        <name>calculateElectronicEnergy</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>H_core</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>F</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> density matrix in a scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>H_core</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the core Hamiltonian expressed in the same scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>F</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Fock matrix in the same scalar basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> electronic energy </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="94" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="94" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25b1a7fed931bb3d2d3ca484a4c08113" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static SquareMatrix&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateError</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;F, const Orbital1DM&lt; Scalar &gt; &amp;D, const SquareMatrix&lt; Scalar &gt; &amp;S)</argsstring>
+        <name>calculateError</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>F</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Fock matrix expressed in a scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> density matrix in the same scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the overlap matrix of that scalar basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> error matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="120" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="120" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5180203a16f4c24b55ceb9418dcd783a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref></type>
+        <definition>static Scalar GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateOrbitalHessianElement</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j)</argsstring>
+        <name>calculateOrbitalHessianElement</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first virtual orbital index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first occupied orbital index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second virtual orbital index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second occupied orbital index</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an element of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> orbital Hessian </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="135" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="135" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8449e4ff511bccc0ccba03003dfb751e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateOrbitalHessianTensor</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
+        <name>calculateOrbitalHessianTensor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> orbital Hessian as a <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>, i.e. an object with a suitable operator() implemented </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="171" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="171" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5be5ab69528f74147bd132ab4ccc8dcd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static Orbital1DM&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateOrthonormalBasis1DM</definition>
+        <argsstring>(const size_t K, const size_t N)</argsstring>
+        <name>calculateOrthonormalBasis1DM</name>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> 1-DM expressed in an orthonormal spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of spatial orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total number of electrons.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> 1-DM expressed in an orthonormal spin-orbital basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="203" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="203" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a64d5b4d64cea2c88cd9208e8c2ab24cd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static Orbital2DM&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateOrthonormalBasis2DM</definition>
+        <argsstring>(const size_t K, const size_t N)</argsstring>
+        <name>calculateOrthonormalBasis2DM</name>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> 2-DM expressed in an orthonormal spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of spatial orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total number of electrons.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> 2-DM expressed in an orthonormal spin-orbital basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="231" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="231" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a84eb07d7a5e372777ce0e5236d2ec427" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static Orbital1DM&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateScalarBasis1DM</definition>
+        <argsstring>(const RTransformation&lt; Scalar &gt; &amp;C, const size_t N)</argsstring>
+        <name>calculateScalarBasis1DM</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electrons</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> 1-DM expressed in the underlying scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="273" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="273" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ScalarRSQOneElectronOperator&lt;Scalar&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateScalarBasisFockMatrix</definition>
+        <argsstring>(const Orbital1DM&lt; Scalar &gt; &amp;D, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian)</argsstring>
+        <name>calculateScalarBasisFockMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> density matrix in a scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in the same scalar basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> Fock matrix expressed in the scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="291" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="291" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::homoIndex</definition>
+        <argsstring>(const size_t N)</argsstring>
+        <name>homoIndex</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electrons</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the (spatial orbital, not spin-orbital) index of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> HOMO in an implicit orbital space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="315" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="315" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t GQCP::QCModel::RHF&lt; _Scalar &gt;::lumoIndex</definition>
+        <argsstring>(const size_t K, const size_t N)</argsstring>
+        <name>lumoIndex</name>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electrons</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the (spatial orbital, not spin-orbital) index of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> LUMO in an implicit orbital space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="331" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="331" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5ff28a68b31046759b783da1725872e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+        <definition>static OrbitalSpace GQCP::QCModel::RHF&lt; _Scalar &gt;::orbitalSpace</definition>
+        <argsstring>(const size_t K, const size_t N_P)</argsstring>
+        <name>orbitalSpace</name>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electrons</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="347" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="347" bodyend="350"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The restricted Hartree-Fock wave function model.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::QCModel::RHF&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="42" bodyend="762"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad76d8e49344b8b5fa7d9b3bf4b5e9330" prot="private" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad6d4795860638caa2a89c613c9b0d839" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateElectronicEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25b1a7fed931bb3d2d3ca484a4c08113" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateError</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5180203a16f4c24b55ceb9418dcd783a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateOrbitalHessianElement</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8449e4ff511bccc0ccba03003dfb751e" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateOrbitalHessianTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5be5ab69528f74147bd132ab4ccc8dcd" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateOrthonormalBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a89649bd02764ba547142edeb4021fdc8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateOrthonormalBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a64d5b4d64cea2c88cd9208e8c2ab24cd" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateOrthonormalBasis2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5267a344a0fea282ccfa8e2c85c43a9e" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateOrthonormalBasis2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a84eb07d7a5e372777ce0e5236d2ec427" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateScalarBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a0ab5458cac7f9a10dacfa483de63a4b4" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateScalarBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateScalarBasisFockMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a9566e792c5f2aad1ee24942db75277ed" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateSingletAStabilityMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a93604fd8521127d8cad743dfdb1418e4" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateSingletBStabilityMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a606d28fc55294723abb8b0cc9999f079" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateStabilityMatrices</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a6f1aa940dc74c3b4d0b916ebea37f232" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateTripletAStabilityMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a9668fbeb685c66f4d0e0baf3cb7d7caf" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateTripletBStabilityMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aa9e3d319ae0b4efefd0630cfab01dae8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>excitationEnergies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>expansion</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>homoIndex</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>homoIndex</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>lumoIndex</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>lumoIndex</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a37419b0d868f0712f78de4bd27e46d96" prot="private" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>N_P</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>numberOfElectronPairs</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>numberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a99ec917c56a86b39b21e64a5296dfec3" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>numberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>numberOfSpatialOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a272ad0b15b221c485a93eb3f6d5f95e1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>occupiedOrbitalEnergies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aa7f348bc7b0ac7e342fcffc90ca76a13" prot="private" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>orbital_energies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a3fccaa3e895acd05ab044dc13aeedb53" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>orbitalEnergies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1abab62b713a8a4196e53ca7d0767721f7" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>orbitalEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5ff28a68b31046759b783da1725872e7" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>orbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>orbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a84e4b3c89ab347b1c2b09c0873fc41da" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>RHF</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a1383beff6bf900d017b7a0ad846a0c9e" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>RHF</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a6d5567781b825611f493d0adb8c07c7b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>spinOrbitalEnergiesBlocked</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a328e1105a61b617e902ffc4376e230f0" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>spinOrbitalEnergiesInterleaved</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5f7583c9cd9b3ad35def604d08b686ec" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>virtualOrbitalEnergies</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

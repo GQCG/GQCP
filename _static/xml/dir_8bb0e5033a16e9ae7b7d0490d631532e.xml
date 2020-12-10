@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_8bb0e5033a16e9ae7b7d0490d631532e" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Utilities</compoundname>
+    <innerfile refid="aliases_8hpp">aliases.hpp</innerfile>
+    <innerfile refid="_c_r_t_p_8hpp">CRTP.hpp</innerfile>
+    <innerfile refid="_eigen_8hpp">Eigen.hpp</innerfile>
+    <innerfile refid="literals_8hpp">literals.hpp</innerfile>
+    <innerfile refid="memory_8hpp">memory.hpp</innerfile>
+    <innerfile refid="miscellaneous_8hpp">miscellaneous.hpp</innerfile>
+    <innerfile refid="type__traits_8hpp">type_traits.hpp</innerfile>
+    <innerfile refid="units_8hpp">units.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/"/>
+  </compounddef>
+</doxygen>

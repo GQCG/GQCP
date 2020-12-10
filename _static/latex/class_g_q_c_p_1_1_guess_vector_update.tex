@@ -1,0 +1,71 @@
+\hypertarget{class_g_q_c_p_1_1_guess_vector_update}{}\doxysection{G\+Q\+CP\+::Guess\+Vector\+Update Class Reference}
+\label{class_g_q_c_p_1_1_guess_vector_update}\index{GQCP::GuessVectorUpdate@{GQCP::GuessVectorUpdate}}
+
+
+{\ttfamily \#include $<$Guess\+Vector\+Update.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Guess\+Vector\+Update\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{class_g_q_c_p_1_1_guess_vector_update__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Guess\+Vector\+Update\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{class_g_q_c_p_1_1_guess_vector_update__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_guess_vector_update_a587095aac1b169167816445427e96607}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_guess_vector_update_a7a851040ae4141bf75a5c04e3b8c4789}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A step that calculates new guesses for the eigenvectors from the diagonalized subspace matrix. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_guess_vector_update_a587095aac1b169167816445427e96607}\label{class_g_q_c_p_1_1_guess_vector_update_a587095aac1b169167816445427e96607}} 
+\index{GQCP::GuessVectorUpdate@{GQCP::GuessVectorUpdate}!description@{description}}
+\index{description@{description}!GQCP::GuessVectorUpdate@{GQCP::GuessVectorUpdate}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Guess\+Vector\+Update\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_guess_vector_update_a7a851040ae4141bf75a5c04e3b8c4789}\label{class_g_q_c_p_1_1_guess_vector_update_a7a851040ae4141bf75a5c04e3b8c4789}} 
+\index{GQCP::GuessVectorUpdate@{GQCP::GuessVectorUpdate}!execute@{execute}}
+\index{execute@{execute}!GQCP::GuessVectorUpdate@{GQCP::GuessVectorUpdate}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Guess\+Vector\+Update\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_guess_vector_update_8hpp}{Guess\+Vector\+Update.\+hpp}}\end{DoxyCompactItemize}

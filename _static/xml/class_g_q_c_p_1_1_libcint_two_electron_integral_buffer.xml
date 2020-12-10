@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::LibcintTwoElectronIntegralBuffer</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</basecompoundref>
+    <includes refid="_libcint_two_electron_integral_buffer_8hpp" local="no">LibcintTwoElectronIntegralBuffer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _IntegralScalar</type>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>_N</declname>
+        <defname>_N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1ad3442f331beb8aa62d57836a9fcde386" prot="public" static="no">
+        <type>_IntegralScalar</type>
+        <definition>using GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::IntegralScalar =  _IntegralScalar</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="36" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a99b8e84bef3df72e75462e2b05fa9412" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <initializer>= _N</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="37" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a156a091dec16a95a3509e67da8258861" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1ad3442f331beb8aa62d57836a9fcde386" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>std::vector&lt;IntegralScalar&gt; GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="41" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1aaf02885ed952c22d0f0b5ef38bc6ed01" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::result</definition>
+        <argsstring></argsstring>
+        <name>result</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="43" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a6f58edc57ccb04ced4effa43af77817c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::LibcintTwoElectronIntegralBuffer</definition>
+        <argsstring>(const std::vector&lt; IntegralScalar &gt; &amp;buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4, const int result)</argsstring>
+        <name>LibcintTwoElectronIntegralBuffer</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1ad3442f331beb8aa62d57836a9fcde386" kindref="member">IntegralScalar</ref> &gt; &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>nbf1</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>nbf2</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>nbf3</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>nbf4</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the libcint integral data, already put inside a vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nbf1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of basis functions in the first shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nbf2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of basis functions in the second shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nbf3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of basis functions in the third shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nbf4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of basis functions in the fourth shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the result of the libcint_function call </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a57c6600cc78f886464837fc72738e4fe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::areIntegralsAllZero</definition>
+        <argsstring>() const override</argsstring>
+        <name>areIntegralsAllZero</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a6ea199f70814102a3a10b76dbd850f90">areIntegralsAllZero</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>if all the values of the calculated integrals are zero </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="72" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a779a754af0aa9056900119bebf5933da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1ad3442f331beb8aa62d57836a9fcde386" kindref="member">IntegralScalar</ref></type>
+        <definition>IntegralScalar GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::value</definition>
+        <argsstring>(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const override</argsstring>
+        <name>value</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1aae389b8ee9a545e84ebdd11a7b81c95a">value</reimplements>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>f1</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>f2</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>f3</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>f4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the component of the operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the basis function within shell 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the basis function within shell 2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the basis function within shell 3 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the basis function within shell 4</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a value from this integral buffer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="83" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="83" bodyend="85"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A buffer for storing libcint two-electron integrals</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_IntegralScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of an integral </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of components the operator has </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp" bodystart="34" bodyend="86"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a57c6600cc78f886464837fc72738e4fe" prot="public" virt="virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>areIntegralsAllZero</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a4e42a8e19af34651297c35f3f831b68e" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>BaseTwoElectronIntegralBuffer</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a156a091dec16a95a3509e67da8258861" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>buffer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a49186ba77e06ac8eb8ebf1c1b6a2c233" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>emplace</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1ad3442f331beb8aa62d57836a9fcde386" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a6f58edc57ccb04ced4effa43af77817c" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>LibcintTwoElectronIntegralBuffer</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a99b8e84bef3df72e75462e2b05fa9412" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>N</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a615942a3f0224d81cdfb450d5d23cc57" prot="protected" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>nbf1</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1aca60e3eec09bcbb6dd0f9dc006a3f25d" prot="protected" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>nbf2</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a33d523d07d2a881590c6b3e6dec594d3" prot="protected" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>nbf3</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a075cccc8cee214ab6ae28e5a829c662d" prot="protected" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>nbf4</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a3c9eb6b74fbe82f8c52c291d00e6034d" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>numberOfBasisFunctionsInShell1</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1ab4b43ca3690a603bb0203ee3c857d0d3" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>numberOfBasisFunctionsInShell2</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a1dd7e6deac4a235035512a189eb8df6d" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>numberOfBasisFunctionsInShell3</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a6f5c3c17d16f9d8361b9e334a68948be" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>numberOfBasisFunctionsInShell4</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1aaf02885ed952c22d0f0b5ef38bc6ed01" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>result</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a779a754af0aa9056900119bebf5933da" prot="public" virt="virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>value</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1af23191ae46d5db152f43738ad146e165" prot="public" virt="virtual"><scope>GQCP::LibcintTwoElectronIntegralBuffer</scope><name>~BaseTwoElectronIntegralBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

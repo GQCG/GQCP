@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1_eigenproblem_solver" kind="namespace" language="C++">
+    <compoundname>GQCP::EigenproblemSolver</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_eigenproblem_solver_1a9a2501282b66266fa06c568c92bbfee2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &gt;</type>
+        <definition>Algorithm&lt;EigenproblemEnvironment&gt; GQCP::EigenproblemSolver::Dense</definition>
+        <argsstring>()</argsstring>
+        <name>Dense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>an algorithm that can diagonalize a dense matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp" line="32" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp" bodystart="32" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_eigenproblem_solver_1a3b583fefca6c8e3bef88ae692f3b9b41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &gt;</type>
+        <definition>IterativeAlgorithm&lt;EigenproblemEnvironment&gt; GQCP::EigenproblemSolver::Davidson</definition>
+        <argsstring>(const size_t number_of_requested_eigenpairs=1, const size_t maximum_subspace_dimension=15, const double convergence_threshold=1.0e-08, double correction_threshold=1.0e-12, const size_t maximum_number_of_iterations=128, const double inclusion_threshold=1.0e-03)</argsstring>
+        <name>Davidson</name>
+        <param>
+          <type>const size_t</type>
+          <declname>number_of_requested_eigenpairs</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_subspace_dimension</declname>
+          <defval>15</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>correction_threshold</declname>
+          <defval>1.0e-12</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>inclusion_threshold</declname>
+          <defval>1.0e-03</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>number_of_requested_eigenpairs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of solutions the Davidson solver should find </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum dimension of the subspace before collapsing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convergence_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold that is used in determining the norm on the residuals, which determines convergence </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>correction_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold used in solving the (approximated) residue correction equation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations the algorithm may perform </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inclusion_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold on the norm used for determining if a new projected correction vector should be added to the subspace</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an iterative algorithm that can find the lowest n eigenvectors of a matrix using Davidson&apos;s algorithm </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp" line="48" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp" bodystart="48" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp" line="26" column="1"/>
+  </compounddef>
+</doxygen>

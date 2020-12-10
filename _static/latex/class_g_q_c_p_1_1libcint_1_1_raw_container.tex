@@ -1,0 +1,145 @@
+\hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container}{}\doxysection{G\+Q\+CP\+::libcint\+::Raw\+Container Class Reference}
+\label{class_g_q_c_p_1_1libcint_1_1_raw_container}\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+
+
+{\ttfamily \#include $<$Libcint\+Interfacer.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::libcint\+::Raw\+Container\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_g_q_c_p_1_1libcint_1_1_raw_container__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a0c166064cf5c7a6081097fef06855795}{Raw\+Container}} (const size\+\_\+t natm, const size\+\_\+t nbf, const size\+\_\+t nsh)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a93b0c05d09caa6c0465bf6830d55a86b}{$\sim$\+Raw\+Container}} ()
+\item 
+const int $\ast$ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a1cf520067c6239ab963bd40f775c4539}{atm\+Data}} () const
+\item 
+const int $\ast$ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a98882bce153e0775eacadb6cbdd3f2e8}{bas\+Data}} () const
+\item 
+const double $\ast$ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a879cbfec32cda6f56dbeab7f1e6018f0}{env\+Data}} () const
+\item 
+int \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a624c001d1a870c14fe2368fb98d2927b}{number\+Of\+Atoms}} () const
+\item 
+int \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_aeb5441c826159782cfbe71f119c70f18}{number\+Of\+Basis\+Functions}} () const
+\item 
+int \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_aaba9c0adb8f657706abee6c266fa1054}{number\+Of\+Shells}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a0af106fa7a5fef4e88dbdc8d0f68fd3b}{G\+Q\+C\+P\+::\+Libcint\+Interfacer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A wrapper that owns raw libcint \textquotesingle{}atm\textquotesingle{}, \textquotesingle{}bas\textquotesingle{} and \textquotesingle{}env\textquotesingle{} arrays
+
+\begin{DoxyNote}{Note}
+The members are named after the libcint variables. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_a0c166064cf5c7a6081097fef06855795}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_a0c166064cf5c7a6081097fef06855795}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!RawContainer@{RawContainer}}
+\index{RawContainer@{RawContainer}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{RawContainer()}{RawContainer()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::\+Raw\+Container (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{natm,  }\item[{const size\+\_\+t}]{nbf,  }\item[{const size\+\_\+t}]{nsh }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allocate memory for the raw libcint arrays
+
+
+\begin{DoxyParams}{Parameters}
+{\em natm} & the number of atoms \\
+\hline
+{\em nbf} & the number of basis functions \\
+\hline
+{\em nsh} & the number of shells \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_a93b0c05d09caa6c0465bf6830d55a86b}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_a93b0c05d09caa6c0465bf6830d55a86b}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!````~RawContainer@{$\sim$RawContainer}}
+\index{````~RawContainer@{$\sim$RawContainer}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{$\sim$RawContainer()}{~RawContainer()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::$\sim$\+Raw\+Container (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Deallocate the memory used by the raw libcint arrays 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_a1cf520067c6239ab963bd40f775c4539}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_a1cf520067c6239ab963bd40f775c4539}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!atmData@{atmData}}
+\index{atmData@{atmData}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{atmData()}{atmData()}}
+{\footnotesize\ttfamily const int$\ast$ G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::atm\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+(a pointer to) the atomic data in this libcint container 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_a98882bce153e0775eacadb6cbdd3f2e8}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_a98882bce153e0775eacadb6cbdd3f2e8}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!basData@{basData}}
+\index{basData@{basData}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{basData()}{basData()}}
+{\footnotesize\ttfamily const int$\ast$ G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::bas\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+(a pointer to) the basis data in this libcint container 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_a879cbfec32cda6f56dbeab7f1e6018f0}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_a879cbfec32cda6f56dbeab7f1e6018f0}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!envData@{envData}}
+\index{envData@{envData}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{envData()}{envData()}}
+{\footnotesize\ttfamily const double$\ast$ G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::env\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+(a pointer to) the environment data in this libcint container 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_a624c001d1a870c14fe2368fb98d2927b}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_a624c001d1a870c14fe2368fb98d2927b}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!numberOfAtoms@{numberOfAtoms}}
+\index{numberOfAtoms@{numberOfAtoms}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{numberOfAtoms()}{numberOfAtoms()}}
+{\footnotesize\ttfamily int G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::number\+Of\+Atoms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of atoms in this libcint container 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_aeb5441c826159782cfbe71f119c70f18}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_aeb5441c826159782cfbe71f119c70f18}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!numberOfBasisFunctions@{numberOfBasisFunctions}}
+\index{numberOfBasisFunctions@{numberOfBasisFunctions}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{numberOfBasisFunctions()}{numberOfBasisFunctions()}}
+{\footnotesize\ttfamily int G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::number\+Of\+Basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of basis functions in this libcint container 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_aaba9c0adb8f657706abee6c266fa1054}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_aaba9c0adb8f657706abee6c266fa1054}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!numberOfShells@{numberOfShells}}
+\index{numberOfShells@{numberOfShells}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{numberOfShells()}{numberOfShells()}}
+{\footnotesize\ttfamily int G\+Q\+C\+P\+::libcint\+::\+Raw\+Container\+::number\+Of\+Shells (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of shells in this libcint container 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1libcint_1_1_raw_container_a0af106fa7a5fef4e88dbdc8d0f68fd3b}\label{class_g_q_c_p_1_1libcint_1_1_raw_container_a0af106fa7a5fef4e88dbdc8d0f68fd3b}} 
+\index{GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!GQCP::libcint::RawContainer@{GQCP::libcint::RawContainer}}
+\doxysubsubsection{\texorpdfstring{GQCP::LibcintInterfacer}{GQCP::LibcintInterfacer}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer}{G\+Q\+C\+P\+::\+Libcint\+Interfacer}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libcint_interfacer_8hpp}{Libcint\+Interfacer.\+hpp}}\end{DoxyCompactItemize}

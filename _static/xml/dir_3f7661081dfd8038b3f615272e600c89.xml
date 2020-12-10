@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_3f7661081dfd8038b3f615272e600c89" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Molecule</compoundname>
+    <innerfile refid="elements_8hpp">elements.hpp</innerfile>
+    <innerfile refid="_molecule_8hpp">Molecule.hpp</innerfile>
+    <innerfile refid="_nuclear_framework_8hpp">NuclearFramework.hpp</innerfile>
+    <innerfile refid="_nucleus_8hpp">Nucleus.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/"/>
+  </compounddef>
+</doxygen>

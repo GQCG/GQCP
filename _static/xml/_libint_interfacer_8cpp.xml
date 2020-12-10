@@ -1,0 +1,716 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_libint_interfacer_8cpp" kind="file" language="C++">
+    <compoundname>LibintInterfacer.cpp</compoundname>
+    <includes refid="_libint_interfacer_8hpp" local="yes">Basis/Integrals/Interfaces/LibintInterfacer.hpp</includes>
+    <includes refid="_cartesian_g_t_o_8hpp" local="yes">Mathematical/Functions/CartesianGTO.hpp</includes>
+    <includes local="no">boost/math/constants/constants.hpp</includes>
+    <includes local="no">boost/math/special_functions/factorials.hpp</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">sstream</includes>
+    <incdepgraph>
+      <node id="19">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="37">
+        <label>Operator/FirstQuantized/AngularMomentumOperator.hpp</label>
+        <link refid="_angular_momentum_operator_8hpp"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>iomanip</label>
+      </node>
+      <node id="29">
+        <label>functional</label>
+      </node>
+      <node id="58">
+        <label>boost/math/special_functions/factorials.hpp</label>
+      </node>
+      <node id="41">
+        <label>Operator/FirstQuantized/BaseFQOperator.hpp</label>
+        <link refid="_base_f_q_operator_8hpp"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>boost/math/constants/constants.hpp</label>
+      </node>
+      <node id="25">
+        <label>boost/lexical_cast.hpp</label>
+      </node>
+      <node id="49">
+        <label>Operator/FirstQuantized/LinearMomentumOperator.hpp</label>
+        <link refid="_linear_momentum_operator_8hpp"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Molecule/Molecule.hpp</label>
+        <link refid="_molecule_8hpp"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Mathematical/Functions/ScalarFunction.hpp</label>
+        <link refid="_scalar_function_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Mathematical/Functions/CartesianGTO.hpp</label>
+        <link refid="_cartesian_g_t_o_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>boost/format.hpp</label>
+      </node>
+      <node id="47">
+        <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
+        <link refid="_electronic_spin__z_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
+        <link refid="_electronic_density_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>numeric</label>
+      </node>
+      <node id="33">
+        <label>Molecule/NuclearFramework.hpp</label>
+        <link refid="_nuclear_framework_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
+        <link refid="_nuclear_repulsion_operator_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>string</label>
+      </node>
+      <node id="48">
+        <label>Operator/FirstQuantized/KineticOperator.hpp</label>
+        <link refid="_kinetic_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Molecule/Nucleus.hpp</label>
+        <link refid="_nucleus_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>Operator/FirstQuantized/NuclearAttractionOperator.hpp</label>
+        <link refid="_nuclear_attraction_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>boost/preprocessor.hpp</label>
+      </node>
+      <node id="20">
+        <label>fstream</label>
+      </node>
+      <node id="27">
+        <label>Molecule/elements.hpp</label>
+        <link refid="elements_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
+        <link refid="_base_nuclear_operator_8hpp"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</label>
+        <link refid="_base_reference_dependent_operator_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp</label>
+        <link refid="_libint_interfacer_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Utilities/CRTP.hpp</label>
+        <link refid="_c_r_t_p_8hpp"/>
+      </node>
+      <node id="36">
+        <label>Operator/FirstQuantized/Operator.hpp</label>
+        <link refid="_operator_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="9">
+        <label>Mathematical/Functions/LinearCombination.hpp</label>
+        <link refid="_linear_combination_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
+        <link refid="_electronic_spin_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
+        <link refid="_overlap_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Mathematical/Representation/Matrix.hpp</label>
+        <link refid="_matrix_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>Mathematical/Representation/DenseVectorizer.hpp</label>
+        <link refid="_dense_vectorizer_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+      <node id="14">
+        <label>Utilities/aliases.hpp</label>
+        <link refid="aliases_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>array</label>
+      </node>
+      <node id="59">
+        <label>sstream</label>
+      </node>
+      <node id="45">
+        <label>Operator/FirstQuantized/ElectronicDipoleOperator.hpp</label>
+        <link refid="_electronic_dipole_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>cstdlib</label>
+      </node>
+      <node id="21">
+        <label>iostream</label>
+      </node>
+      <node id="39">
+        <label>cstddef</label>
+      </node>
+      <node id="56">
+        <label>libint2.hpp</label>
+      </node>
+      <node id="5">
+        <label>Mathematical/Functions/CartesianExponents.hpp</label>
+        <link refid="_cartesian_exponents_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Basis/Integrals/Interfaces/LibintInterfacer.hpp</label>
+        <link refid="_libint_interfacer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_traits</label>
+      </node>
+      <node id="43">
+        <label>Operator/FirstQuantized/CoulombRepulsionOperator.hpp</label>
+        <link refid="_coulomb_repulsion_operator_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>Operator/FirstQuantized/NuclearDipoleOperator.hpp</label>
+        <link refid="_nuclear_dipole_operator_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>complex</label>
+      </node>
+      <node id="34">
+        <label>algorithm</label>
+      </node>
+      <node id="31">
+        <label>Basis/ScalarBasis/ShellSet.hpp</label>
+        <link refid="_shell_set_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
+      </node>
+      <node id="35">
+        <label>initializer_list</label>
+      </node>
+      <node id="3">
+        <label>Basis/ScalarBasis/GTOShell.hpp</label>
+        <link refid="_g_t_o_shell_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
+        <link refid="_vector_space_arithmetic_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>GQCG-GQCP.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2017-2020<sp/><sp/>the<sp/>GQCG<sp/>developers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>along<sp/>with<sp/>GQCG-GQCP.<sp/><sp/>If<sp/>not,<sp/>see<sp/>&lt;http://www.gnu.org/licenses/&gt;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_libint_interfacer_8hpp" kindref="compound">Basis/Integrals/Interfaces/LibintInterfacer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_cartesian_g_t_o_8hpp" kindref="compound">Mathematical/Functions/CartesianGTO.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/math/constants/constants.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/math/special_functions/factorials.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/><sp/>PRIVATE<sp/>METHODS<sp/>-<sp/>SINGLETON</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">LibintInterfacer::LibintInterfacer()<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>up<sp/>the<sp/>libint2<sp/>environment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::initialize();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>By<sp/>default,<sp/>libint2<sp/>changes<sp/>the<sp/>contraction<sp/>coefficients<sp/>in<sp/>a<sp/>shell<sp/>to<sp/>correspond<sp/>to<sp/>a<sp/>normalized<sp/>basis<sp/>function:<sp/>undo<sp/>this<sp/>behavior</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note:<sp/>libint2<sp/>uses<sp/>normalization<sp/>factors<sp/>such<sp/>that<sp/>the<sp/>axis-aligned<sp/>(i.e.<sp/>{2,0,0}<sp/>or<sp/>{0,3,0})<sp/>Cartesian<sp/>functions<sp/>are<sp/>normalized</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::Shell::do_enforce_unit_normalization(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">LibintInterfacer::~LibintInterfacer()<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Finish<sp/>the<sp/>libint2<sp/>environment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::finalize();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS<sp/>-<sp/>SINGLETON</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">LibintInterfacer&amp;<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1a8a24a71b6a4c013badc0a484966b4e22" kindref="member">LibintInterfacer::get</ref>()<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>need<sp/>to<sp/>return<sp/>by<sp/>reference<sp/>since<sp/>we<sp/>deleted<sp/>the<sp/>relevant<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>LibintInterfacer<sp/>singleton_instance;<sp/><sp/></highlight><highlight class="comment">//<sp/>instantiated<sp/>on<sp/>first<sp/>use<sp/>and<sp/>guaranteed<sp/>to<sp/>be<sp/>destroyed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>singleton_instance;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS<sp/>-<sp/>INTERFACING<sp/>(GQCP<sp/>TO<sp/>LIBINT)</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">libint2::Atom<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">LibintInterfacer::interface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nucleus&amp;<sp/>nucleus)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::Atom<sp/>libint_atom<sp/>{</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(nucleus.charge()),<sp/>nucleus.position().x(),<sp/>nucleus.position().y(),<sp/>nucleus.position().z()};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint_atom;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">std::vector&lt;libint2::Atom&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">LibintInterfacer::interface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Nucleus&gt;&amp;<sp/>nuclei)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;libint2::Atom&gt;<sp/>libint_vector;<sp/><sp/></highlight><highlight class="comment">//<sp/>start<sp/>with<sp/>an<sp/>empty<sp/>vector,<sp/>we&apos;re<sp/>doing<sp/>push_backs<sp/>later</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>libint_vector.reserve(nuclei.size());</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>nucleus<sp/>:<sp/>nuclei)<sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint_vector.push_back(this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">interface</ref>(nucleus));</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint_vector;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">libint2::Shell<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">LibintInterfacer::interface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GTOShell&amp;<sp/>shell)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Part<sp/>1:<sp/>exponents</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>libint_alpha<sp/>=<sp/>shell.gaussianExponents();<sp/><sp/></highlight><highlight class="comment">//<sp/>libint::Shell::real_t<sp/>is<sp/>double,<sp/>so<sp/>no<sp/>need<sp/>to<sp/>use<sp/>real_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Part<sp/>2:<sp/>contractions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_l<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(shell.angularMomentum());</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>libint_pure<sp/>=<sp/>shell.isPure();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>libint_coeff<sp/>=<sp/>shell.contractionCoefficients();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::Shell::Contraction<sp/>libint_contraction<sp/>{libint_l,<sp/>libint_pure,<sp/>libint_coeff};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Part<sp/>3:<sp/>origin</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>position<sp/>=<sp/>shell.nucleus().position();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>3&gt;<sp/>libint_O<sp/>{position.x(),<sp/>position.y(),<sp/>position.z()};</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Upon<sp/>construction,<sp/>libint2<sp/>renorm()alizes<sp/>the<sp/>contraction<sp/>coefficients,<sp/>so<sp/>we<sp/>want<sp/>to<sp/>undo<sp/>this</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::Shell<sp/>libint_shell<sp/>{libint_alpha,<sp/>{libint_contraction},<sp/>libint_O};</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1ad39caadc6d5320df459e9d451c4b0b1c" kindref="member">undoRenorm</ref>(libint_shell);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint_shell;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal">libint2::BasisSet<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">LibintInterfacer::interface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shellset)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::BasisSet<sp/>libint_basisset;<sp/><sp/></highlight><highlight class="comment">//<sp/>start<sp/>with<sp/>an<sp/>empty<sp/>vector,<sp/>we&apos;re<sp/>doing<sp/>push_backs<sp/>later</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>libint_basisset.reserve(shellset.numberOfShells());</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>shell<sp/>:<sp/>shellset.asVector())<sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint_basisset.push_back(this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">interface</ref>(shell));</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>At<sp/>this<sp/>point<sp/>in<sp/>the<sp/>code,<sp/>the<sp/>libint2::BasisSet<sp/>is<sp/>&apos;uninitialized&apos;,<sp/>i.e.<sp/>its<sp/>private<sp/>member<sp/>_nbf<sp/>is<sp/>-1,<sp/>etc.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Therefore,<sp/>we<sp/>are<sp/>using<sp/>a<sp/>hack<sp/>to<sp/>force<sp/>the<sp/>private<sp/>libint2::BasisSet::init()<sp/>being<sp/>called</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;bool&gt;<sp/>pure_flags(libint_basisset.size());<sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>an<sp/>array<sp/>with<sp/>the<sp/>given<sp/>size</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>libint_basisset.size();<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pure_flags[i]<sp/>=<sp/>libint_basisset[i].contr[0].pure;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>libint2::BasisSet<sp/>that<sp/>was<sp/>created<sp/>can<sp/>never<sp/>have<sp/>more<sp/>than<sp/>one<sp/>libint2::Shell::Contraction<sp/>(we<sp/>split<sp/>SP-shells)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Call<sp/>libint2::BasisSet::init()<sp/>through<sp/>set_pure,<sp/>and<sp/>re-set<sp/>the<sp/>&apos;pure&apos;<sp/>flags</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>libint_basisset.set_pure(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>libint_basisset.size();<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint_basisset[i].contr[0].pure<sp/>=<sp/>pure_flags[i];</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint_basisset;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS<sp/>-<sp/>INTERFACING<sp/>(LIBINT<sp/>TO<sp/>GQCP)</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal">std::vector&lt;GTOShell&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">LibintInterfacer::interface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>libint2::Shell&amp;<sp/>libint_shell,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Nucleus&gt;&amp;<sp/>nuclei,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>undo_renorm)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>asked<sp/>for,<sp/>undo<sp/>Libint2&apos;s<sp/>default<sp/>renorm()alization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_shell_copy<sp/>=<sp/>libint_shell;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(undo_renorm)<sp/>{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1ad39caadc6d5320df459e9d451c4b0b1c" kindref="member">undoRenorm</ref>(libint_shell_copy);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Construct<sp/>the<sp/>corresponding<sp/>GQCP::Shells</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>exponents<sp/>=<sp/>libint_shell_copy.alpha;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GTOShell&gt;<sp/>shells;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>shells.reserve(this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1aab35d169c5fdc188a826f4c5538aff83" kindref="member">numberOfShells</ref>(libint_shell_copy));</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>libint_contraction<sp/>:<sp/>libint_shell_copy.contr)<sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Angular<sp/>momentum<sp/>and<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>l<sp/>=<sp/>libint_contraction.l;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>coefficients<sp/>=<sp/>libint_contraction.coeff;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Libint2<sp/>only<sp/>stores<sp/>the<sp/>origin<sp/>of<sp/>the<sp/>shell,<sp/>so<sp/>we<sp/>have<sp/>to<sp/>find<sp/>the<sp/>nucleus<sp/>corresponding<sp/>to<sp/>the<sp/>copied<sp/>shell&apos;s<sp/>origin</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Map&lt;const<sp/>Eigen::Matrix&lt;double,<sp/>3,<sp/>1&gt;&gt;<sp/>libint_origin_map(libint_shell_copy.O.data());<sp/><sp/></highlight><highlight class="comment">//<sp/>convert<sp/>raw<sp/>array<sp/>data<sp/>to<sp/>Eigen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Nucleus<sp/>corresponding_nucleus;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>nuclei.size();<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Nucleus<sp/>nucleus<sp/>=<sp/>nuclei[i];</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nucleus.position().isApprox(libint_origin_map,<sp/>1.0e-06))<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>tolerant<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>corresponding_nucleus<sp/>=<sp/>nucleus;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>==<sp/>(nuclei.size()<sp/>-<sp/>1))<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>we<sp/>haven&apos;t<sp/>broken<sp/>out<sp/>of<sp/>the<sp/>loop<sp/>after<sp/>exhausting<sp/>the<sp/>possible<sp/>nuclei</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;LibintInterfacer::interface(libint2::Shell,<sp/>std::vector&lt;Nucleus&gt;):<sp/>No<sp/>given<sp/>nucleus<sp/>matches<sp/>the<sp/>center<sp/>of<sp/>the<sp/>libint2::Shell&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Other<sp/>flags</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>pure<sp/>=<sp/>libint_contraction.pure;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shells.emplace_back(l,<sp/>corresponding_nucleus,<sp/>exponents,<sp/>coefficients,<sp/>pure,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>shells;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal">std::vector&lt;GTOShell&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">LibintInterfacer::interface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>libint2::BasisSet&amp;<sp/>libint_basisset,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Nucleus&gt;&amp;<sp/>nuclei)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GTOShell&gt;<sp/>shells;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>shells.reserve(this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1aab35d169c5fdc188a826f4c5538aff83" kindref="member">numberOfShells</ref>(libint_basisset));</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>libint_shell<sp/>:<sp/>libint_basisset)<sp/>{</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>shell<sp/>:<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1ab167b72e70548e5f2dd14e34d6fb1780" kindref="member">interface</ref>(libint_shell,<sp/>nuclei))<sp/>{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shells.push_back(shell);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>shells;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="253"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS<sp/>-<sp/>OTHER<sp/>LIBINT2-RELATED<sp/>FUNCTIONS</highlight></codeline>
+<codeline lineno="254"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal">libint2::Engine<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ac404e0944449e3e4698bdba35067290e" kindref="member">LibintInterfacer::createEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint2::Engine(libint2::Operator::coulomb,<sp/>max_nprim,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_l));</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal">libint2::Engine<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ac404e0944449e3e4698bdba35067290e" kindref="member">LibintInterfacer::createEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ElectronicDipoleOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint2::Engine(libint2::Operator::emultipole1,<sp/>max_nprim,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_l));</highlight></codeline>
+<codeline lineno="283"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal">libint2::Engine<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ac404e0944449e3e4698bdba35067290e" kindref="member">LibintInterfacer::createEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>KineticOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint2::Engine(libint2::Operator::kinetic,<sp/>max_nprim,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_l));</highlight></codeline>
+<codeline lineno="298"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal">libint2::Engine<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ac404e0944449e3e4698bdba35067290e" kindref="member">LibintInterfacer::createEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint2::Engine(libint2::Operator::nuclear,<sp/>max_nprim,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_l));</highlight></codeline>
+<codeline lineno="313"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal">libint2::Engine<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ac404e0944449e3e4698bdba35067290e" kindref="member">LibintInterfacer::createEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OverlapOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint2::Engine(libint2::Operator::overlap,<sp/>max_nprim,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_l));</highlight></codeline>
+<codeline lineno="328"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1aab35d169c5fdc188a826f4c5538aff83" kindref="member">LibintInterfacer::numberOfShells</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>libint2::Shell&amp;<sp/>libint_shell)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>libint_shell.ncontr();</highlight></codeline>
+<codeline lineno="338"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1aab35d169c5fdc188a826f4c5538aff83" kindref="member">LibintInterfacer::numberOfShells</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>libint2::BasisSet&amp;<sp/>libint_basisset)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>nsh<sp/>{};<sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>shells</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>libint_shell<sp/>:<sp/>libint_basisset)<sp/>{</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nsh<sp/>+=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_libint_interfacer_1aab35d169c5fdc188a826f4c5538aff83" kindref="member">numberOfShells</ref>(libint_shell);</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nsh;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1ad39caadc6d5320df459e9d451c4b0b1c" kindref="member">LibintInterfacer::undoRenorm</ref>(libint2::Shell&amp;<sp/>libint_shell)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Instead<sp/>of<sp/>multiplying<sp/>(what<sp/>libint2<sp/>does),<sp/>divide<sp/>each<sp/>contraction<sp/>coefficient<sp/>by<sp/>the<sp/>normalization<sp/>factor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>contraction<sp/>:<sp/>libint_shell.contr)<sp/>{</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>!=<sp/>libint_shell.nprim();<sp/>p++)<sp/>{</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref><sp/>=<sp/>libint_shell.alpha[p];</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>l<sp/>=<sp/>contraction.l;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>N<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1aee5504defedb8cf4ad5ed6fc3bc4c357" kindref="member">CartesianGTO::calculateNormalizationFactor</ref>(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref>,<sp/>CartesianExponents(l,<sp/>0,<sp/>0));</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"></highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>contraction.coeff[p]<sp/>/=<sp/>N;</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="376"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp"/>
+  </compounddef>
+</doxygen>

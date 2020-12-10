@@ -1,0 +1,174 @@
+\hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4}{}\doxysection{G\+Q\+CP\+::Matrix\+Representation\+Evaluation\+Container$<$ VectorX$<$ double $>$ $>$ Class Reference}
+\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4}\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+
+
+{\ttfamily \#include $<$Matrix\+Representation\+Evaluation\+Container.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Matrix\+Representation\+Evaluation\+Container$<$ VectorX$<$ double $>$ $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_abcfb71cab89dccbd47a1bfccbdf687db}{Matrix\+Representation\+Evaluation\+Container}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a38a191a4167e3a5288a799f1132ab22a}{coefficient\+\_\+vector}}, const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&diagonal)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_ac68f61732057bb294ff1d649c992dc63}{Matrix\+Representation\+Evaluation\+Container}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a38a191a4167e3a5288a799f1132ab22a}{coefficient\+\_\+vector}})
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_af7e5c1c19f7f17f604bfc533d90c2406}{add\+Columnwise}} (const size\+\_\+t column, const double value)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_af83773de24395d781276fbe9cce0c26d}{add\+Rowwise}} (const size\+\_\+t row, const double value)
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a7771ae712db69a4284ec195e9e790a73}{evaluation}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_aa76e7688ef3d54f2baa22c24454d2810}{increment}} ()
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a244d7f40edae178802ecfb1da248492c}{is\+Finished}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a04cbe57b9c24400112d9c7f8b7fc523f}{index}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a5b0748483f5e946255e799aad091f63f}{end}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a5894a96c251b56d525b514e5be25ecf2}{matvec}}
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a38a191a4167e3a5288a799f1132ab22a}{coefficient\+\_\+vector}}
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a29a1f861c7ce7760b52de4eeda0d3b7f}{sequential\+\_\+double}} = 0
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_ae1e2a7d224bccac734cf3d09fd4298d4}{nonsequential\+\_\+double}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Vector template specialization is required because of matvec evaluations are stored in a vector additions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_abcfb71cab89dccbd47a1bfccbdf687db}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_abcfb71cab89dccbd47a1bfccbdf687db}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}}
+\index{MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixRepresentationEvaluationContainer()}{MatrixRepresentationEvaluationContainer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{Matrix\+Representation\+Evaluation\+Container}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{coefficient\+\_\+vector,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{diagonal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dimension} & the dimensions of the matrix (equal to that of the fock space) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_ac68f61732057bb294ff1d649c992dc63}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_ac68f61732057bb294ff1d649c992dc63}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}}
+\index{MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixRepresentationEvaluationContainer()}{MatrixRepresentationEvaluationContainer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{Matrix\+Representation\+Evaluation\+Container}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{coefficient\+\_\+vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_af7e5c1c19f7f17f604bfc533d90c2406}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_af7e5c1c19f7f17f604bfc533d90c2406}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!addColumnwise@{addColumnwise}}
+\index{addColumnwise@{addColumnwise}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{addColumnwise()}{addColumnwise()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::add\+Columnwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{column,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & column index of the matrix \\
+\hline
+{\em value} & the value which is added to a given position in the matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_af83773de24395d781276fbe9cce0c26d}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_af83773de24395d781276fbe9cce0c26d}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!addRowwise@{addRowwise}}
+\index{addRowwise@{addRowwise}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{addRowwise()}{addRowwise()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::add\+Rowwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & row index of the matrix \\
+\hline
+{\em value} & the value which is added to a given position in the matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a7771ae712db69a4284ec195e9e790a73}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a7771ae712db69a4284ec195e9e790a73}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!evaluation@{evaluation}}
+\index{evaluation@{evaluation}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{evaluation()}{evaluation()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::evaluation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the evaluation that is stored 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_aa76e7688ef3d54f2baa22c24454d2810}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_aa76e7688ef3d54f2baa22c24454d2810}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!increment@{increment}}
+\index{increment@{increment}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{increment()}{increment()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Move to the next index in the iteration, this is accompanied by an addition to the matvec and reset of the sequential double \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a244d7f40edae178802ecfb1da248492c}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a244d7f40edae178802ecfb1da248492c}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!isFinished@{isFinished}}
+\index{isFinished@{isFinished}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{isFinished()}{isFinished()}}
+{\footnotesize\ttfamily bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::is\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Tests if the iteration is finished, if true the index is reset to 0 If false the nonsequential\+\_\+double is updated to the value of the current iteration
+
+\begin{DoxyReturn}{Returns}
+true if the iteration is finished 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a38a191a4167e3a5288a799f1132ab22a}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a38a191a4167e3a5288a799f1132ab22a}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!coefficient\_vector@{coefficient\_vector}}
+\index{coefficient\_vector@{coefficient\_vector}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{coefficient\_vector}{coefficient\_vector}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::coefficient\+\_\+vector}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a5b0748483f5e946255e799aad091f63f}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a5b0748483f5e946255e799aad091f63f}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!end@{end}}
+\index{end@{end}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{end}{end}}
+{\footnotesize\ttfamily size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::end}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a04cbe57b9c24400112d9c7f8b7fc523f}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a04cbe57b9c24400112d9c7f8b7fc523f}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!index@{index}}
+\index{index@{index}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::index = 0}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a5894a96c251b56d525b514e5be25ecf2}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a5894a96c251b56d525b514e5be25ecf2}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!matvec@{matvec}}
+\index{matvec@{matvec}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{matvec}{matvec}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::matvec}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_ae1e2a7d224bccac734cf3d09fd4298d4}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_ae1e2a7d224bccac734cf3d09fd4298d4}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!nonsequential\_double@{nonsequential\_double}}
+\index{nonsequential\_double@{nonsequential\_double}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{nonsequential\_double}{nonsequential\_double}}
+{\footnotesize\ttfamily double \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::nonsequential\+\_\+double = 0}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a29a1f861c7ce7760b52de4eeda0d3b7f}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_a29a1f861c7ce7760b52de4eeda0d3b7f}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}!sequential\_double@{sequential\_double}}
+\index{sequential\_double@{sequential\_double}!GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ VectorX$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{sequential\_double}{sequential\_double}}
+{\footnotesize\ttfamily double \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ $>$\+::sequential\+\_\+double = 0}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_matrix_representation_evaluation_container_8hpp}{Matrix\+Representation\+Evaluation\+Container.\+hpp}}\end{DoxyCompactItemize}

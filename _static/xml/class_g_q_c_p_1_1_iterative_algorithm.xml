@@ -1,0 +1,384 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_iterative_algorithm" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::IterativeAlgorithm</compoundname>
+    <includes refid="_iterative_algorithm_8hpp" local="no">IterativeAlgorithm.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Environment</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" prot="public" static="no">
+        <type>_Environment</type>
+        <definition>using GQCP::IterativeAlgorithm&lt; _Environment &gt;::Environment =  _Environment</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_iterative_algorithm_1a2a029b9ea2b0d22ef7c9daaf194f61b6" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::IterativeAlgorithm&lt; _Environment &gt;::maximum_number_of_iterations</definition>
+        <argsstring></argsstring>
+        <name>maximum_number_of_iterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="44" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_iterative_algorithm_1a1bd8edcbccf27db8b93ac6def6835560" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::IterativeAlgorithm&lt; _Environment &gt;::iteration</definition>
+        <argsstring></argsstring>
+        <name>iteration</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="45" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_iterative_algorithm_1a004b7bf9fcdeffdc8fe165525a5e68d5" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_step_collection" kindref="compound">StepCollection</ref>&lt; <ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref> &gt;</type>
+        <definition>StepCollection&lt;Environment&gt; GQCP::IterativeAlgorithm&lt; _Environment &gt;::steps</definition>
+        <argsstring></argsstring>
+        <name>steps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="47" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_iterative_algorithm_1aa81b907cb09d902e04598bb20ce13808" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_convergence_criterion" kindref="compound">ConvergenceCriterion</ref>&lt; <ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref> &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;ConvergenceCriterion&lt;Environment&gt; &gt; GQCP::IterativeAlgorithm&lt; _Environment &gt;::convergence_criterion</definition>
+        <argsstring></argsstring>
+        <name>convergence_criterion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="48" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1afa032f15f52a6296be5b02d8d4079fb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Criterion</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>GQCP::IterativeAlgorithm&lt; _Environment &gt;::IterativeAlgorithm</definition>
+        <argsstring>(const StepCollection&lt; Environment &gt; &amp;steps, const Criterion &amp;convergence_criterion, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>IterativeAlgorithm</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_step_collection" kindref="compound">StepCollection</ref>&lt; <ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref> &gt; &amp;</type>
+          <declname>steps</declname>
+        </param>
+        <param>
+          <type>const Criterion &amp;</type>
+          <declname>convergence_criterion</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the members of the iterative algorithm</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Criterion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the convergence criterion that is used</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>steps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the collection of algorithm steps that is performed in-between convergence checks </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convergence_criterion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the convergence criterion that must be fulfilled in order for the algorithm to have converged </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations the algorithm may perform </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="66" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1a83d469ddf0d942cb38f2161a7922c6b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::IterativeAlgorithm&lt; _Environment &gt;::description</definition>
+        <argsstring>() const</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this iterative algorithm. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="80" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="80" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1a356f37e3d7fa7de9f7ac27a98d63e5f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_step" kindref="compound">Step</ref>&lt;<ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref>&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; <ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref>, typename Z::Environment &gt;::value, void &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value, void&gt; GQCP::IterativeAlgorithm&lt; _Environment &gt;::insert</definition>
+        <argsstring>(const Z &amp;step, const size_t index)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const Z &amp;</type>
+          <declname>step</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Insert an algorithm step at the given index.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>step</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the step that should be inserted into this algorithm </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index that the given step should be performed at in this algorithm </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="99" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1ae459d4c90d11df0f1b4ea67db7b2e293" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::IterativeAlgorithm&lt; _Environment &gt;::maximumNumberOfIterations</definition>
+        <argsstring>() const</argsstring>
+        <name>maximumNumberOfIterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the maximum number of iterations the algorithm may perform </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="105" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1a687cac45fb0d820001960019dcd2b331" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::IterativeAlgorithm&lt; _Environment &gt;::numberOfIterations</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfIterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of iterations that have been performed </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="110" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1a10999981761f1e11f253f314a34fd063" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::IterativeAlgorithm&lt; _Environment &gt;::perform</definition>
+        <argsstring>(Environment &amp;environment)</argsstring>
+        <name>perform</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Perform the iteration steps until convergence is achieved</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that this algorithm is associated to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="118" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="118" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1a20ca757a5e8a98f552b0f4c40ceb840e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::IterativeAlgorithm&lt; _Environment &gt;::remove</definition>
+        <argsstring>(const size_t index)</argsstring>
+        <name>remove</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Remove the algorithm step at the given index.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the step in this algorithm that should be removed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="142" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="142" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_algorithm_1ac92f77d72edff57a7bf169c6a555f1b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_step" kindref="compound">Step</ref>&lt;<ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref>&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; <ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref>, typename Z::Environment &gt;::value, void &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value, void&gt; GQCP::IterativeAlgorithm&lt; _Environment &gt;::replace</definition>
+        <argsstring>(const Z &amp;step, const size_t index)</argsstring>
+        <name>replace</name>
+        <param>
+          <type>const Z &amp;</type>
+          <declname>step</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Replace an algorithm step at the given index.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>step</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the step that should be inserted into this algorithm </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the step that should be replaced </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="152" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="152" bodyend="152"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An algorithm that performs iterations. In every iteration, convergence is checked and a set of iteration steps is performed.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_Environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of environment that this algorithm is associated to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::IterativeAlgorithm&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_iterative_algorithm"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp" bodystart="38" bodyend="153"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1aa81b907cb09d902e04598bb20ce13808" prot="private" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>convergence_criterion</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a83d469ddf0d942cb38f2161a7922c6b2" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a356f37e3d7fa7de9f7ac27a98d63e5f5" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>insert</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a1bd8edcbccf27db8b93ac6def6835560" prot="private" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>iteration</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1afa032f15f52a6296be5b02d8d4079fb0" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>IterativeAlgorithm</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a2a029b9ea2b0d22ef7c9daaf194f61b6" prot="private" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>maximum_number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1ae459d4c90d11df0f1b4ea67db7b2e293" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>maximumNumberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a687cac45fb0d820001960019dcd2b331" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>numberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a10999981761f1e11f253f314a34fd063" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>perform</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a20ca757a5e8a98f552b0f4c40ceb840e" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>remove</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1ac92f77d72edff57a7bf169c6a555f1b2" prot="public" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>replace</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_algorithm_1a004b7bf9fcdeffdc8fe165525a5e68d5" prot="private" virt="non-virtual"><scope>GQCP::IterativeAlgorithm</scope><name>steps</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

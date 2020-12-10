@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_t_8einsum-example" kind="example">
+    <compoundname>T.einsum</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Contract this tensor with a matrix, using a NumPy &apos;einsum&apos;-like API.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>contraction_string</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string used to specify the wanted contraction, e.g. &quot;ijkl,jk-&gt;il&quot; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand side of the contraction, a matrix in this case.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of axes that should be contracted over.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+(&quot;ijkl,jk-&gt;il&quot;, M) will contract the j and k axes of the second tensor with those of the first tensor, resulting in a rank 2 tensor with axes i and l.</para>
+<para><simplesect kind="return"><para>The result of the tensor contraction. <programlisting filename="T.einsum"></programlisting> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

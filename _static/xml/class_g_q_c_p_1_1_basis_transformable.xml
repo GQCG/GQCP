@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_basis_transformable" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BasisTransformable</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable" prot="public" virt="non-virtual">GQCP::DoublySpinResolvedBasisTransformable&lt; Type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable" prot="public" virt="non-virtual">GQCP::SpinResolvedBasisTransformable&lt; Type &gt;</derivedcompoundref>
+    <includes refid="_basis_transformable_8hpp" local="no">BasisTransformable.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Type</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt; Type &gt;::<ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref></type>
+        <definition>using GQCP::BasisTransformable&lt; Type &gt;::Transformation =  typename BasisTransformableTraits&lt;Type&gt;::Transformation</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>Type</type>
+        <definition>virtual Type GQCP::BasisTransformable&lt; Type &gt;::transformed</definition>
+        <argsstring>(const Transformation &amp;T) const =0</argsstring>
+        <name>transformed</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a537698d7d018a1c0ff31509bc227bfa8">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a537698d7d018a1c0ff31509bc227bfa8">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a537698d7d018a1c0ff31509bc227bfa8">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable_1a740a28fb79d7744d3645efc0ac44f927">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable_1a740a28fb79d7744d3645efc0ac44f927">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable_1a740a28fb79d7744d3645efc0ac44f927">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable_1a740a28fb79d7744d3645efc0ac44f927">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable_1a740a28fb79d7744d3645efc0ac44f927">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable_1a740a28fb79d7744d3645efc0ac44f927">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ada0b12379e30e62f52101ccd6ea8b4ec">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ada0b12379e30e62f52101ccd6ea8b4ec">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ada0b12379e30e62f52101ccd6ea8b4ec">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a42ddb132b31bc893a31de4b17e950531">transformed</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a42ddb132b31bc893a31de4b17e950531">transformed</reimplementedby>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis transformation and return the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-transformed object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" line="67" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void GQCP::BasisTransformable&lt; Type &gt;::transform</definition>
+        <argsstring>(const Transformation &amp;T)</argsstring>
+        <name>transform</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place apply the basis transformation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" line="79" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" bodystart="79" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>Type</type>
+        <definition>virtual Type GQCP::BasisTransformable&lt; Type &gt;::rotated</definition>
+        <argsstring>(const Transformation &amp;U) const</argsstring>
+        <name>rotated</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref> &amp;</type>
+          <declname>U</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis rotation and return the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-rotated object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" line="91" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" bodystart="91" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::BasisTransformable&lt; Type &gt;::rotate</definition>
+        <argsstring>(const Transformation &amp;U)</argsstring>
+        <name>rotate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref> &amp;</type>
+          <declname>U</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place apply the basis rotation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis rotation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" line="107" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" bodystart="107" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An (abstract) interface for types that may be transformed from one orbital basis to another.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type that should be basis-transformable. It is given as a template argument, enabling <ref refid="class_g_q_c_p_1_1_c_r_t_p" kindref="compound">CRTP</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::SpinResolvedBasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::DoublySpinResolvedBasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" line="50" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" bodystart="50" bodyend="110"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformable</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual"><scope>GQCP::BasisTransformable</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::BasisTransformable</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformable</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual"><scope>GQCP::BasisTransformable</scope><name>transformed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,729 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_integral_engine" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::IntegralEngine</compoundname>
+    <includes refid="_integral_engine_8hpp" local="no">IntegralEngine.hpp</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" kindref="compound">PrimitiveAngularMomentumIntegralEngine</ref> &gt;</type>
+        <definition>OneElectronIntegralEngine&lt; PrimitiveAngularMomentumIntegralEngine &gt; GQCP::IntegralEngine::InHouse</definition>
+        <argsstring>(const AngularMomentumOperator &amp;op)</argsstring>
+        <name>InHouse</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the angular momentum operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the angular momentum operator</para>
+</simplesect>
+<simplesect kind="note"><para>This integral engine can only calculate integrals over Cartesian d-shells.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the angular momentum operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the angular momentum operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="56" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a0c5398d866b5389d2aeda6c7dc4fa73e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kindref="compound">PrimitiveDipoleIntegralEngine</ref> &gt;</type>
+        <definition>OneElectronIntegralEngine&lt; PrimitiveDipoleIntegralEngine &gt; GQCP::IntegralEngine::InHouse</definition>
+        <argsstring>(const ElectronicDipoleOperator &amp;op)</argsstring>
+        <name>InHouse</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the electronic dipole operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the electronic dipole operator</para>
+</simplesect>
+<simplesect kind="note"><para>This integral engine can only calculate integrals over Cartesian d-shells.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the electronic dipole operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the electronic dipole operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="65" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="44" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a02e67b528f91182a18363e54f8bb9e7b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_kinetic_energy_integral_engine" kindref="compound">PrimitiveKineticEnergyIntegralEngine</ref> &gt;</type>
+        <definition>OneElectronIntegralEngine&lt; PrimitiveKineticEnergyIntegralEngine &gt; GQCP::IntegralEngine::InHouse</definition>
+        <argsstring>(const KineticOperator &amp;op)</argsstring>
+        <name>InHouse</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the kinetic energy operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the kinetic energy operator</para>
+</simplesect>
+<simplesect kind="note"><para>This integral engine can only calculate integrals over Cartesian d-shells.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the kinetic energy operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the kinetic energy operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="74" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="55" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1afe460aeb2126e9478975b5460278b736" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" kindref="compound">PrimitiveLinearMomentumIntegralEngine</ref> &gt;</type>
+        <definition>OneElectronIntegralEngine&lt; PrimitiveLinearMomentumIntegralEngine &gt; GQCP::IntegralEngine::InHouse</definition>
+        <argsstring>(const LinearMomentumOperator &amp;op)</argsstring>
+        <name>InHouse</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the linear momentum operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the linear momentum operator</para>
+</simplesect>
+<simplesect kind="note"><para>This integral engine can only calculate integrals over Cartesian d-shells.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the linear momentum operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the linear momentum operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="83" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a78fcbd80fa9e2d6aba24cdff168a8994" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kindref="compound">PrimitiveOverlapIntegralEngine</ref> &gt;</type>
+        <definition>OneElectronIntegralEngine&lt; PrimitiveOverlapIntegralEngine &gt; GQCP::IntegralEngine::InHouse</definition>
+        <argsstring>(const OverlapOperator &amp;op)</argsstring>
+        <name>InHouse</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the overlap operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the overlap operator</para>
+</simplesect>
+<simplesect kind="note"><para>This integral engine can only calculate integrals over Cartesian d-shells.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the overlap operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the overlap operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="92" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libint</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintTwoElectronIntegralEngine&lt; CoulombRepulsionOperator::NumberOfComponents &gt;</argsstring>
+        <name>Libint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_nprim</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Coulomb repulsion operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_nprim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of primitives per contracted Gaussian shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum angular momentum of Gaussian shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="106" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="94" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a94b57de64ef4887b9eac7167c57d3315" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libint</definition>
+        <argsstring>(const ElectronicDipoleOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; ElectronicDipoleOperator::NumberOfComponents &gt;</argsstring>
+        <name>Libint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_nprim</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the electronic electric dipole operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_nprim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of primitives per contracted Gaussian shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum angular momentum of Gaussian shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the electronic electric dipole operator using the Libint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="115" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="107" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a696f240f9a5d091a4adffb5ebfba6c6a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libint</definition>
+        <argsstring>(const NuclearAttractionOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; NuclearAttractionOperator::NumberOfComponents &gt;</argsstring>
+        <name>Libint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_nprim</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nuclear attraction operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_nprim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of primitives per contracted Gaussian shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum angular momentum of Gaussian shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="124" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="133" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a9651e5879fb084b570946bcf63d87f0f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libint</definition>
+        <argsstring>(const KineticOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; KineticOperator::NumberOfComponents &gt;</argsstring>
+        <name>Libint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_nprim</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the kinetic operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_nprim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of primitives per contracted Gaussian shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum angular momentum of Gaussian shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the kinetic operator using the Libint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="133" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="120" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1afec59610cce637a4604d1fcf0b5be052" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libint</definition>
+        <argsstring>(const OverlapOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; OverlapOperator::NumberOfComponents &gt;</argsstring>
+        <name>Libint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_nprim</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the overlap operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_nprim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of primitives per contracted Gaussian shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum angular momentum of Gaussian shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the overlap operator using the Libint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="142" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="146" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libcint</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintTwoElectronIntegralEngine&lt; GTOShell, CoulombRepulsionOperator::NumberOfComponents, double &gt;</argsstring>
+        <name>Libcint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Coulomb repulsion operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its calculate() calls</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libcint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="155" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="162" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1ab92646915ae593df997ae85294158bff" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libcint</definition>
+        <argsstring>(const ElectronicDipoleOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, ElectronicDipoleOperator::NumberOfComponents, double &gt;</argsstring>
+        <name>Libcint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the electron electronic dipole operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its calculate() calls</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the electron electronic dipole operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="163" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="173" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a504b4863082626055f8555ab4f8658bd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libcint</definition>
+        <argsstring>(const NuclearAttractionOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, NuclearAttractionOperator::NumberOfComponents, double &gt;</argsstring>
+        <name>Libcint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nuclear attraction operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its calculate() calls</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libcint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="171" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="197" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a3793b759cb20f072c69adff0e026022b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libcint</definition>
+        <argsstring>(const KineticOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, KineticOperator::NumberOfComponents, double &gt;</argsstring>
+        <name>Libcint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the kinetic operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its calculate() calls</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the kinetic operator using the Libcint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="179" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="185" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a81fbbe96aeaf4d240de12b98d3ef741d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::IntegralEngine::Libcint</definition>
+        <argsstring>(const OverlapOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, OverlapOperator::NumberOfComponents, double &gt;</argsstring>
+        <name>Libcint</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the overlap operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its calculate() calls</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a one-electron integral engine that can calculate integrals over the overlap operator using the Libcint integral library backend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="187" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="209" bodyend="212"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that creates integral engines, like a factory class. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::IntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_integral_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="41" bodyend="188"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a0c5398d866b5389d2aeda6c7dc4fa73e" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a02e67b528f91182a18363e54f8bb9e7b" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1afe460aeb2126e9478975b5460278b736" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a78fcbd80fa9e2d6aba24cdff168a8994" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1ab92646915ae593df997ae85294158bff" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a504b4863082626055f8555ab4f8658bd" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a3793b759cb20f072c69adff0e026022b" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a81fbbe96aeaf4d240de12b98d3ef741d" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a94b57de64ef4887b9eac7167c57d3315" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a696f240f9a5d091a4adffb5ebfba6c6a" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a9651e5879fb084b570946bcf63d87f0f" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libint</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1afec59610cce637a4604d1fcf0b5be052" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

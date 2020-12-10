@@ -1,0 +1,252 @@
+\hypertarget{class_g_q_c_p_1_1_eigenproblem_environment}{}\doxysection{G\+Q\+CP\+::Eigenproblem\+Environment Class Reference}
+\label{class_g_q_c_p_1_1_eigenproblem_environment}\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+
+
+{\ttfamily \#include $<$Eigenproblem\+Environment.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Eigenproblem\+Environment\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_eigenproblem_environment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a96dc32cc61ac22b8ac47c00a4bbd74d6}{Eigenproblem\+Environment}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a6e9de708b823833fafb9dc28166d6330}{A}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a0a8554d33e44f8fa685d18b7c8f576fa}{Eigenproblem\+Environment}} (const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ae4dda051e342f95f315adcf6b18e7994}{matrix\+\_\+vector\+\_\+product\+\_\+function}}, const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a3233157c546a171ffcedbe69daf5a879}{diagonal}}, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab740d3b3b985b35723cca53b245ebf57}{V}})
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aaed7d0d86cb7215a5b66726c5f5d8c32}{eigenpairs}} (const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a9a00e480db0ed01175c3053cbd15dea4}{Dense}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a6e9de708b823833fafb9dc28166d6330}{A}})
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a76476649d006a70c33fcc635a7df9afd}{Iterative}} (const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ae4dda051e342f95f315adcf6b18e7994}{matrix\+\_\+vector\+\_\+product\+\_\+function}}, const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a3233157c546a171ffcedbe69daf5a879}{diagonal}}, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab740d3b3b985b35723cca53b245ebf57}{V}})
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a7514933b744fcabbf9ff38cebf5b1ba2}{Iterative}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a6e9de708b823833fafb9dc28166d6330}{A}}, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab740d3b3b985b35723cca53b245ebf57}{V}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ae4dda051e342f95f315adcf6b18e7994}{matrix\+\_\+vector\+\_\+product\+\_\+function}}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a6e9de708b823833fafb9dc28166d6330}{A}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a3233157c546a171ffcedbe69daf5a879}{diagonal}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab8f5d80a487653a0236476e28a6ac180}{dimension}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a526ffc032bf183aa27f0f0b2019a6fb9}{eigenvalues}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d3e7c5fe4d25f768dff3c8f43c6998}{eigenvectors}}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a63caf0f05cf5a7d544e365a0de417bfd}{S}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a07ab07c4480b21d8a1737279aff740ee}{Lambda}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_abfccded2245679c282d7b1fdc74e2738}{Z}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab740d3b3b985b35723cca53b245ebf57}{V}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a069bdb041859ac96cb5ec59d373c4d6d}{VA}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a264178ee8ece1d4c254559cb3c390eb9}{X}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a080de2c68709a283effcceb0015761c1}{R}}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_af13bee65769bcb800cd79fd81612f117}{Delta}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An environment used to solve eigenvalue problems for self-\/adjoint matrices. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a96dc32cc61ac22b8ac47c00a4bbd74d6}\label{class_g_q_c_p_1_1_eigenproblem_environment_a96dc32cc61ac22b8ac47c00a4bbd74d6}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!EigenproblemEnvironment@{EigenproblemEnvironment}}
+\index{EigenproblemEnvironment@{EigenproblemEnvironment}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{EigenproblemEnvironment()}{EigenproblemEnvironment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+Eigenproblem\+Environment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & the matrix whose eigenvalue problem should be solved \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a0a8554d33e44f8fa685d18b7c8f576fa}\label{class_g_q_c_p_1_1_eigenproblem_environment_a0a8554d33e44f8fa685d18b7c8f576fa}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!EigenproblemEnvironment@{EigenproblemEnvironment}}
+\index{EigenproblemEnvironment@{EigenproblemEnvironment}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{EigenproblemEnvironment()}{EigenproblemEnvironment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+Eigenproblem\+Environment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ double $>$ \&}]{matrix\+\_\+vector\+\_\+product\+\_\+function,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{diagonal,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&}]{V }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix\+\_\+vector\+\_\+product} & a vector function that returns the matrix-\/vector product (i.\+e. the matrix-\/vector product representation of the matrix) \\
+\hline
+{\em diagonal} & the diagonal of the matrix whose eigenvalue problem should be solved \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a9a00e480db0ed01175c3053cbd15dea4}\label{class_g_q_c_p_1_1_eigenproblem_environment_a9a00e480db0ed01175c3053cbd15dea4}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!Dense@{Dense}}
+\index{Dense@{Dense}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{Dense()}{Dense()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+Dense (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & the matrix whose eigenvalue problem should be solved\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an environment that can be used to solve the dense eigenvalue problem for the given square matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_aaed7d0d86cb7215a5b66726c5f5d8c32}\label{class_g_q_c_p_1_1_eigenproblem_environment_aaed7d0d86cb7215a5b66726c5f5d8c32}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!eigenpairs@{eigenpairs}}
+\index{eigenpairs@{eigenpairs}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{eigenpairs()}{eigenpairs()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair}}$<$double$>$ $>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::eigenpairs (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+\_\+of\+\_\+requested\+\_\+eigenpairs} & the number of eigenpairs you would like to retrieve\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the eigenvalues and eigenvectors as a vector of eigenpairs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a7514933b744fcabbf9ff38cebf5b1ba2}\label{class_g_q_c_p_1_1_eigenproblem_environment_a7514933b744fcabbf9ff38cebf5b1ba2}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!Iterative@{Iterative}}
+\index{Iterative@{Iterative}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{Iterative()}{Iterative()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+Iterative (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&}]{A,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&}]{V }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & the matrix whose eigenvalue problem should be solved \\
+\hline
+{\em V} & a matrix of initial guess vectors (each column of the matrix is an initial guess vector)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an environment that can be used to solve the eigenvalue problem for the matrix that is represented by the given matrix-\/vector product 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a76476649d006a70c33fcc635a7df9afd}\label{class_g_q_c_p_1_1_eigenproblem_environment_a76476649d006a70c33fcc635a7df9afd}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!Iterative@{Iterative}}
+\index{Iterative@{Iterative}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{Iterative()}{Iterative()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+Iterative (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ double $>$ \&}]{matrix\+\_\+vector\+\_\+product\+\_\+function,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{diagonal,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&}]{V }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix\+\_\+vector\+\_\+product} & a vector function that returns the matrix-\/vector product (i.\+e. the matrix-\/vector product representation of the matrix) \\
+\hline
+{\em diagonal} & the diagonal of the matrix whose eigenvalue problem should be solved \\
+\hline
+{\em V} & a matrix of initial guess vectors (each column of the matrix is an initial guess vector)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an environment that can be used to solve the eigenvalue problem for the matrix that is represented by the given matrix-\/vector product 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a6e9de708b823833fafb9dc28166d6330}\label{class_g_q_c_p_1_1_eigenproblem_environment_a6e9de708b823833fafb9dc28166d6330}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!A@{A}}
+\index{A@{A}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::A}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_af13bee65769bcb800cd79fd81612f117}\label{class_g_q_c_p_1_1_eigenproblem_environment_af13bee65769bcb800cd79fd81612f117}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!Delta@{Delta}}
+\index{Delta@{Delta}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{Delta}{Delta}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+Delta}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a3233157c546a171ffcedbe69daf5a879}\label{class_g_q_c_p_1_1_eigenproblem_environment_a3233157c546a171ffcedbe69daf5a879}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{diagonal}{diagonal}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::diagonal}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_ab8f5d80a487653a0236476e28a6ac180}\label{class_g_q_c_p_1_1_eigenproblem_environment_ab8f5d80a487653a0236476e28a6ac180}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!dimension@{dimension}}
+\index{dimension@{dimension}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::dimension}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a526ffc032bf183aa27f0f0b2019a6fb9}\label{class_g_q_c_p_1_1_eigenproblem_environment_a526ffc032bf183aa27f0f0b2019a6fb9}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!eigenvalues@{eigenvalues}}
+\index{eigenvalues@{eigenvalues}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{eigenvalues}{eigenvalues}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::eigenvalues}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_aa5d3e7c5fe4d25f768dff3c8f43c6998}\label{class_g_q_c_p_1_1_eigenproblem_environment_aa5d3e7c5fe4d25f768dff3c8f43c6998}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!eigenvectors@{eigenvectors}}
+\index{eigenvectors@{eigenvectors}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{eigenvectors}{eigenvectors}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::eigenvectors}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a07ab07c4480b21d8a1737279aff740ee}\label{class_g_q_c_p_1_1_eigenproblem_environment_a07ab07c4480b21d8a1737279aff740ee}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!Lambda@{Lambda}}
+\index{Lambda@{Lambda}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{Lambda}{Lambda}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+Lambda}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_ae4dda051e342f95f315adcf6b18e7994}\label{class_g_q_c_p_1_1_eigenproblem_environment_ae4dda051e342f95f315adcf6b18e7994}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!matrix\_vector\_product\_function@{matrix\_vector\_product\_function}}
+\index{matrix\_vector\_product\_function@{matrix\_vector\_product\_function}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{matrix\_vector\_product\_function}{matrix\_vector\_product\_function}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::matrix\+\_\+vector\+\_\+product\+\_\+function}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a080de2c68709a283effcceb0015761c1}\label{class_g_q_c_p_1_1_eigenproblem_environment_a080de2c68709a283effcceb0015761c1}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!R@{R}}
+\index{R@{R}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::R}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a63caf0f05cf5a7d544e365a0de417bfd}\label{class_g_q_c_p_1_1_eigenproblem_environment_a63caf0f05cf5a7d544e365a0de417bfd}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!S@{S}}
+\index{S@{S}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{S}{S}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::S}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_ab740d3b3b985b35723cca53b245ebf57}\label{class_g_q_c_p_1_1_eigenproblem_environment_ab740d3b3b985b35723cca53b245ebf57}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!V@{V}}
+\index{V@{V}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{V}{V}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::V}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a069bdb041859ac96cb5ec59d373c4d6d}\label{class_g_q_c_p_1_1_eigenproblem_environment_a069bdb041859ac96cb5ec59d373c4d6d}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!VA@{VA}}
+\index{VA@{VA}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{VA}{VA}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::\+VA}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_a264178ee8ece1d4c254559cb3c390eb9}\label{class_g_q_c_p_1_1_eigenproblem_environment_a264178ee8ece1d4c254559cb3c390eb9}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!X@{X}}
+\index{X@{X}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{X}{X}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::X}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_eigenproblem_environment_abfccded2245679c282d7b1fdc74e2738}\label{class_g_q_c_p_1_1_eigenproblem_environment_abfccded2245679c282d7b1fdc74e2738}} 
+\index{GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}!Z@{Z}}
+\index{Z@{Z}!GQCP::EigenproblemEnvironment@{GQCP::EigenproblemEnvironment}}
+\doxysubsubsection{\texorpdfstring{Z}{Z}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Environment\+::Z}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Eigenproblem\+Environment.\+hpp}}\end{DoxyCompactItemize}

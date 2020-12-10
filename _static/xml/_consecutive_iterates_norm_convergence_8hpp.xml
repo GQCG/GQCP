@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_consecutive_iterates_norm_convergence_8hpp" kind="file" language="C++">
+    <compoundname>ConsecutiveIteratesNormConvergence.hpp</compoundname>
+    <includes refid="_convergence_criterion_8hpp" local="yes">Mathematical/Algorithm/ConvergenceCriterion.hpp</includes>
+    <includes local="no">deque</includes>
+    <includes local="no">functional</includes>
+    <includes local="no">type_traits</includes>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
+    <includedby refid="_minimizer_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</includedby>
+    <includedby refid="_non_linear_equation_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</includedby>
+    <includedby refid="_c_c_d_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</includedby>
+    <includedby refid="_c_c_s_d_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</includedby>
+    <includedby refid="_g_h_f_s_c_f_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFSolver.hpp</includedby>
+    <includedby refid="_r_h_f_s_c_f_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</includedby>
+    <includedby refid="_u_h_f_s_c_f_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>Mathematical/Algorithm/ConvergenceCriterion.hpp</label>
+        <link refid="_convergence_criterion_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>functional</label>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp</label>
+        <link refid="_consecutive_iterates_norm_convergence_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>deque</label>
+      </node>
+      <node id="6">
+        <label>type_traits</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="9">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFSolver.hpp</label>
+        <link refid="_g_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
+        <link refid="_c_c_s_d_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</label>
+        <link refid="_c_c_d_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp</label>
+        <link refid="_consecutive_iterates_norm_convergence_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
+        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</label>
+        <link refid="_minimizer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
+        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</label>
+        <link refid="_non_linear_equation_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
+        <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="4">
+        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
+        <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence" prot="public">GQCP::ConsecutiveIteratesNormConvergence</innerclass>
+    <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>GQCG-GQCP.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2017-2020<sp/><sp/>the<sp/>GQCG<sp/>developers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>along<sp/>with<sp/>GQCG-GQCP.<sp/><sp/>If<sp/>not,<sp/>see<sp/>&lt;http://www.gnu.org/licenses/&gt;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_convergence_criterion_8hpp" kindref="compound">Mathematical/Algorithm/ConvergenceCriterion.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;deque&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type_traits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Iterate,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Environment&gt;</highlight></codeline>
+<codeline lineno="38" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence" kindref="compound">ConsecutiveIteratesNormConvergence</ref>:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_convergence_criterion" kindref="compound">ConvergenceCriterion</ref>&lt;_Environment&gt;<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a89ec3d0f315128d7abb0d7a39a6b2f1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a89ec3d0f315128d7abb0d7a39a6b2f1e" kindref="member">Iterate</ref><sp/>=<sp/>_Iterate;</highlight></codeline>
+<codeline lineno="43" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a467bffa868b422a79cb56d6d3c0180c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a467bffa868b422a79cb56d6d3c0180c1" kindref="member">Scalar</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Iterate::Scalar;</highlight></codeline>
+<codeline lineno="44" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref><sp/>=<sp/>_Environment;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>static_assert(std::is_same&lt;Scalar,<sp/>typename<sp/>Environment::Scalar&gt;::value,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>scalar<sp/>types<sp/>of<sp/>the<sp/>iterate<sp/>and<sp/>environment<sp/>must<sp/>match.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>m_threshold;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>threshold<sp/>that<sp/>is<sp/>used<sp/>in<sp/>comparing<sp/>the<sp/>iterates</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>iterate_description;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>description<sp/>of<sp/>the<sp/>the<sp/>iterates<sp/>that<sp/>are<sp/>compared</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>std::function&lt;std::deque&lt;Iterate&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref>&amp;)&gt;<sp/>extractor;<sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>function<sp/>that<sp/>can<sp/>extract<sp/>the<sp/>correct<sp/>iterates<sp/>from<sp/>the<sp/>environment,<sp/>as<sp/>it&apos;s<sp/>not<sp/>mandatory<sp/>to<sp/>check<sp/>convergence<sp/>on<sp/>the<sp/>variables,<sp/>but<sp/>any<sp/>iterate<sp/>(whose<sp/>.norm()<sp/>can<sp/>be<sp/>calculated)<sp/>can<sp/>in<sp/>principle<sp/>be<sp/>used</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a9d2d34a40f6f284a9f0b91c068e499db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a9d2d34a40f6f284a9f0b91c068e499db" kindref="member">ConsecutiveIteratesNormConvergence</ref>(</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" kindref="member">threshold</ref><sp/>=<sp/>1.0e-08,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;std::deque&lt;Iterate&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref>&amp;)&gt;<sp/>extractor<sp/>=<sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref>&amp;<sp/>environment)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>environment.variables;<sp/>},<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>iterate_description<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;a<sp/>general<sp/>iterate&quot;</highlight><highlight class="normal">)<sp/>:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_threshold<sp/>{<ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" kindref="member">threshold</ref>},</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extractor<sp/>{extractor},</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterate_description<sp/>{iterate_description}<sp/>{}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>PUBLIC<sp/>OVERRIDDEN<sp/>METHODS</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9" kindref="member">description</ref>()</highlight><highlight class="keyword"><sp/>const<sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(boost::format(</highlight><highlight class="stringliteral">&quot;A<sp/>convergence<sp/>criterion<sp/>that<sp/>checks<sp/>if<sp/>the<sp/>norm<sp/>of<sp/>the<sp/>difference<sp/>of<sp/>two<sp/>iterates<sp/>(%s)<sp/>is<sp/>converged,<sp/>with<sp/>a<sp/>tolerance<sp/>of<sp/>%.2e.&quot;</highlight><highlight class="normal">)<sp/>%<sp/>this-&gt;iterate_description<sp/>%<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" kindref="member">threshold</ref>()).str();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a0be253e3c3a65055a4e2bdba68c34e54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a0be253e3c3a65055a4e2bdba68c34e54" kindref="member">isFulfilled</ref>(<ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref>&amp;<sp/>environment)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>iterates<sp/>=<sp/>this-&gt;extractor(environment);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iterates.size()<sp/>&lt;<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/><sp/></highlight><highlight class="comment">//<sp/>we<sp/>can&apos;t<sp/>calculate<sp/>convergence</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>two<sp/>most<sp/>recent<sp/>density<sp/>matrices<sp/>and<sp/>compare<sp/>the<sp/>norm<sp/>of<sp/>their<sp/>difference</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>second_to_last_it<sp/>=<sp/>iterates.end()<sp/>-<sp/>2;<sp/><sp/></highlight><highlight class="comment">//<sp/>&apos;it&apos;<sp/>for<sp/>&apos;iterator&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>previous<sp/>=<sp/>*second_to_last_it;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dereference<sp/>the<sp/>iterator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>current<sp/>=<sp/>iterates.back();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((current<sp/>-<sp/>previous).norm()<sp/>&lt;=<sp/>this-&gt;m_threshold);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" kindref="member">threshold</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_threshold;<sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"/>
+  </compounddef>
+</doxygen>

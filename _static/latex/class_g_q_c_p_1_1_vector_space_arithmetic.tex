@@ -1,0 +1,148 @@
+\hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic}{}\doxysection{G\+Q\+CP\+::Vector\+Space\+Arithmetic$<$ T, Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_vector_space_arithmetic}\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+
+
+{\ttfamily \#include $<$Vector\+Space\+Arithmetic.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Vector\+Space\+Arithmetic$<$ T, Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_g_q_c_p_1_1_vector_space_arithmetic__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Vector\+Space\+Arithmetic$<$ T, Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_g_q_c_p_1_1_vector_space_arithmetic__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual T \& \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a241d8217aa2b2f34384a4439a968d555}{operator+=}} (const T \&rhs)=0
+\item 
+virtual T \& \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a1ea665b4c39561433d116ee4b6c1d911}{operator$\ast$=}} (const Scalar \&a)=0
+\item 
+T \& \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a63a0cb54302a2d2f1d54af66e7527c4f}{operator-\/=}} (const T \&rhs)
+\item 
+T \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a6b0d86c96ce2b6aaed10dc6d70a493bc}{operator-\/}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a0a2a6d21024113554f979791e559e3ae}{operator+}} (T lhs, const T \&rhs)
+\item 
+T \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a8c6ac2a457099f1f6070bc96b9700dfc}{operator-\/}} (T lhs, const T \&rhs)
+\item 
+T \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a8e3087bdbccdfe1867cf641004f1583f}{operator$\ast$}} (const Scalar \&a, T rhs)
+\item 
+T \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_ac0337d29a7eb98d1c3231a5a62fca84a}{operator$\ast$}} (T lhs, const Scalar \&a)
+\item 
+T \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a19f7c84ce690c4e61c836248af518fb7}{operator/}} (T lhs, const Scalar \&a)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Vector\+Space\+Arithmetic$<$ T, Scalar $>$}
+
+An (abstract) interface for types that support vector space arithmetic, i.\+e. linear combinations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The type for which vector space arithmetic should be implemented. It is given as a template argument, enabling \mbox{\hyperlink{class_g_q_c_p_1_1_c_r_t_p}{C\+R\+TP}}. \\
+\hline
+{\em Scalar} & The scalar type (real or complex) of the scalar multiplication. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a1ea665b4c39561433d116ee4b6c1d911}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a1ea665b4c39561433d116ee4b6c1d911}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+virtual T\& \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic}{G\+Q\+C\+P\+::\+Vector\+Space\+Arithmetic}}$<$ T, Scalar $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const Scalar \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Scalar multiplication-\/assignment, to be implemented in derived classes. 
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a10ae1614bffaae6a0bdf8755b8840d72}{G\+Q\+C\+P\+::\+T2\+Amplitudes$<$ \+\_\+\+Scalar $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a10ae1614bffaae6a0bdf8755b8840d72}{G\+Q\+C\+P\+::\+T2\+Amplitudes$<$ Scalar $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes_ae54c6b87b0924981ce657f83f3c8d8fb}{G\+Q\+C\+P\+::\+T1\+Amplitudes$<$ \+\_\+\+Scalar $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes_ae54c6b87b0924981ce657f83f3c8d8fb}{G\+Q\+C\+P\+::\+T1\+Amplitudes$<$ Scalar $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator_ad2641d7ed0bb28069712ad51522ac228}{G\+Q\+C\+P\+::\+U\+S\+Q\+Two\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_aebf277a6623597c7dd2b196c1907ddbe}{G\+Q\+C\+P\+::\+Spin\+Resolved1\+D\+M$<$ \+\_\+\+Scalar $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_a8dd5c13f6d98c0835dd1db46fcbf412a}{G\+Q\+C\+P\+::\+U\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination_ac99cb8ad362edfa97cfc0e70fbb67396}{G\+Q\+C\+P\+::\+Linear\+Combination$<$ \+\_\+\+Coefficient\+Scalar, \+\_\+\+Function $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a241d8217aa2b2f34384a4439a968d555}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a241d8217aa2b2f34384a4439a968d555}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+virtual T\& \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic}{G\+Q\+C\+P\+::\+Vector\+Space\+Arithmetic}}$<$ T, Scalar $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const T \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Addition-\/assignment, to be implemented in derived classes. 
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aceccc95a7c3c82a13ad6cb09cf77ed82}{G\+Q\+C\+P\+::\+T2\+Amplitudes$<$ Scalar $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes_a7d5903cbb3231a6c53e29cc0b2770360}{G\+Q\+C\+P\+::\+T1\+Amplitudes$<$ Scalar $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a6b0d86c96ce2b6aaed10dc6d70a493bc}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a6b0d86c96ce2b6aaed10dc6d70a493bc}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+T \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic}{G\+Q\+C\+P\+::\+Vector\+Space\+Arithmetic}}$<$ T, Scalar $>$\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Negation, canonically implemented as scalar multiplication by (-\/1.\+0). \mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a63a0cb54302a2d2f1d54af66e7527c4f}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a63a0cb54302a2d2f1d54af66e7527c4f}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+T\& \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic}{G\+Q\+C\+P\+::\+Vector\+Space\+Arithmetic}}$<$ T, Scalar $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const T \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Subtraction-\/assignment, canonically implemented using addition-\/assignment with the negation. 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a8e3087bdbccdfe1867cf641004f1583f}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a8e3087bdbccdfe1867cf641004f1583f}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+T operator$\ast$ (\begin{DoxyParamCaption}\item[{const Scalar \&}]{a,  }\item[{T}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Scalar multiplication, canonically implemented using scalar multiplication-\/assignment. \mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_ac0337d29a7eb98d1c3231a5a62fca84a}\label{class_g_q_c_p_1_1_vector_space_arithmetic_ac0337d29a7eb98d1c3231a5a62fca84a}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+T operator$\ast$ (\begin{DoxyParamCaption}\item[{T}]{lhs,  }\item[{const Scalar \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+The commutative version of the previous scalar multiplication. \mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a0a2a6d21024113554f979791e559e3ae}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a0a2a6d21024113554f979791e559e3ae}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+T operator+ (\begin{DoxyParamCaption}\item[{T}]{lhs,  }\item[{const T \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Addition, canonically implemented using addition-\/assignment. \mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a8c6ac2a457099f1f6070bc96b9700dfc}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a8c6ac2a457099f1f6070bc96b9700dfc}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/}{operator-}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+T operator-\/ (\begin{DoxyParamCaption}\item[{T}]{lhs,  }\item[{const T \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Subtraction, canonically implemented using subtraction-\/assignment. \mbox{\Hypertarget{class_g_q_c_p_1_1_vector_space_arithmetic_a19f7c84ce690c4e61c836248af518fb7}\label{class_g_q_c_p_1_1_vector_space_arithmetic_a19f7c84ce690c4e61c836248af518fb7}} 
+\index{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$@{GQCP::VectorSpaceArithmetic$<$ T, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator/}{operator/}}
+{\footnotesize\ttfamily template$<$typename T , typename Scalar $>$ \\
+T operator/ (\begin{DoxyParamCaption}\item[{T}]{lhs,  }\item[{const Scalar \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Scalar division, canonically implemented using scalar multiplication-\/assignment. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Functions/\mbox{\hyperlink{_vector_space_arithmetic_8hpp}{Vector\+Space\+Arithmetic.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::GHFFockMatrixCalculation</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_g_h_f_fock_matrix_calculation_8hpp" local="no">GHFFockMatrixCalculation.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a6a943c8afb7debf31ea485de534b4dab" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::GHFFockMatrixCalculation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1afa097f28c4ca39a588ed20264b528035" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment" kindref="compound">GHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a6a943c8afb7debf31ea485de534b4dab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::GHFFockMatrixCalculation&lt; _Scalar &gt;::Environment =  GHFSCFEnvironment&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a403f07618f9898875bc0e9abd8c0e9b0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::GHFFockMatrixCalculation&lt; _Scalar &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="51" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="51" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a3d1a38e9b8f836c00d7af37efaa0013f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::GHFFockMatrixCalculation&lt; _Scalar &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1afa097f28c4ca39a588ed20264b528035" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the current GHF Fock matrix (expressed in the scalar/AO basis) and place it in the environment.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="61" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="61" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that calculates the current Fock matrix (expressed in the scalar/AO basis) from the current density matrix.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent the expansion coefficient/elements of the transformation matrix: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::GHFFockMatrixCalculation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::GHFFockMatrixCalculation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="36" bodyend="66"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a403f07618f9898875bc0e9abd8c0e9b0" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFFockMatrixCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1afa097f28c4ca39a588ed20264b528035" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixCalculation</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a3d1a38e9b8f836c00d7af37efaa0013f" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFFockMatrixCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a6a943c8afb7debf31ea485de534b4dab" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixCalculation</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::GHFFockMatrixCalculation</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

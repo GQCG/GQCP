@@ -1,0 +1,253 @@
+\hypertarget{class_g_q_c_p_1_1_nuclear_framework}{}\doxysection{G\+Q\+CP\+::Nuclear\+Framework Class Reference}
+\label{class_g_q_c_p_1_1_nuclear_framework}\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+
+
+{\ttfamily \#include $<$Nuclear\+Framework.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Nuclear\+Framework\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_nuclear_framework__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a50006d54362ff68dd763b8b68066931e}{Nuclear\+Framework}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei)
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_ae94fb8b1bdb904cb833b2a06b2a5b345}{calculate\+Internuclear\+Distance\+Between}} (const size\+\_\+t index1, const size\+\_\+t index2) const
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a2ff042c7c8ae8d14ec07e8234491228d}{description}} () const
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_ae9ef2e5d439ff7b7be8cd3c72137bc66}{nuclei\+As\+Vector}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a6cbb29c6b5f00a9a4ff734f8eb94941b}{number\+Of\+Nuclei}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_adae13b11b7b8594945ad319aac75e28b}{total\+Nucleic\+Charge}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a89a96e491ecefe6f8bf7fe98789def70}{H\+Chain}} (const size\+\_\+t n, const double spacing, const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} axis=Cartesian\+Direction\+::z)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a9540bf1ce1e2008ad531230408f079b5}{H2\+Chain}} (const size\+\_\+t n, const double a, const double b, const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} axis=Cartesian\+Direction\+::z)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a4cf243ffb033679896693a6aa13095d2}{H\+Ring\+From\+Distance}} (const size\+\_\+t n, const double distance)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a9b01585de8dbb6f92092dc8b727a444b}{H\+Ring\+From\+Radius}} (const size\+\_\+t n, const double radius)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a1bfaf0cc27def18c7921123a1a81c0a1}{Read\+X\+YZ}} (const std\+::string \&xyz\+\_\+filename)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_acb65a286f6605e901492eeab91beaad6}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&nuclear\+\_\+framework)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A collection of nuclei at fixed positions in space.
+
+The unit of length is chosen to be the atomic unit (a.\+u.) bohr. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a50006d54362ff68dd763b8b68066931e}\label{class_g_q_c_p_1_1_nuclear_framework_a50006d54362ff68dd763b8b68066931e}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!NuclearFramework@{NuclearFramework}}
+\index{NuclearFramework@{NuclearFramework}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{NuclearFramework()}{NuclearFramework()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Nuclear\+Framework\+::\+Nuclear\+Framework (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuclei} & the nuclei of the nuclear framework \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_ae94fb8b1bdb904cb833b2a06b2a5b345}\label{class_g_q_c_p_1_1_nuclear_framework_ae94fb8b1bdb904cb833b2a06b2a5b345}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!calculateInternuclearDistanceBetween@{calculateInternuclearDistanceBetween}}
+\index{calculateInternuclearDistanceBetween@{calculateInternuclearDistanceBetween}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{calculateInternuclearDistanceBetween()}{calculateInternuclearDistanceBetween()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Nuclear\+Framework\+::calculate\+Internuclear\+Distance\+Between (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{index1,  }\item[{const size\+\_\+t}]{index2 }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em index1} & the index of the first nucleus \\
+\hline
+{\em index2} & the index of the second nucleus\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance between the two nuclei at index1 and index2 in bohr 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a2ff042c7c8ae8d14ec07e8234491228d}\label{class_g_q_c_p_1_1_nuclear_framework_a2ff042c7c8ae8d14ec07e8234491228d}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!description@{description}}
+\index{description@{description}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Nuclear\+Framework\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this framework. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a9540bf1ce1e2008ad531230408f079b5}\label{class_g_q_c_p_1_1_nuclear_framework_a9540bf1ce1e2008ad531230408f079b5}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!H2Chain@{H2Chain}}
+\index{H2Chain@{H2Chain}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{H2Chain()}{H2Chain()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} G\+Q\+C\+P\+::\+Nuclear\+Framework\+::\+H2\+Chain (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{a,  }\item[{const double}]{b,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{axis = {\ttfamily CartesianDirection\+:\+:z} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of H2-\/molecules \\
+\hline
+{\em a} & the internuclear distance in bohr \\
+\hline
+{\em b} & the intermolecular distance in bohr \\
+\hline
+{\em axis} & the Cartesian axis on which the H2-\/chain should be placed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a H2-\/chain with the specified internuclear and intermolecular distances
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of H2-\/molecules \\
+\hline
+{\em a} & the internuclear distance in bohr \\
+\hline
+{\em b} & the intermolecular distance in bohr\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a H2-\/chain with the specified internuclear and intermolecular distances 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a89a96e491ecefe6f8bf7fe98789def70}\label{class_g_q_c_p_1_1_nuclear_framework_a89a96e491ecefe6f8bf7fe98789def70}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!HChain@{HChain}}
+\index{HChain@{HChain}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{HChain()}{HChain()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} G\+Q\+C\+P\+::\+Nuclear\+Framework\+::\+H\+Chain (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{spacing,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{axis = {\ttfamily CartesianDirection\+:\+:z} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of H nuclei \\
+\hline
+{\em spacing} & the internuclear spacing in bohr \\
+\hline
+{\em axis} & the Cartesian axis on which the H-\/chain should be placed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a H-\/chain with equal internuclear spacing
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of H nuclei \\
+\hline
+{\em spacing} & the internuclear spacing in bohr\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a H-\/chain with equal internuclear spacing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a4cf243ffb033679896693a6aa13095d2}\label{class_g_q_c_p_1_1_nuclear_framework_a4cf243ffb033679896693a6aa13095d2}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!HRingFromDistance@{HRingFromDistance}}
+\index{HRingFromDistance@{HRingFromDistance}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{HRingFromDistance()}{HRingFromDistance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} G\+Q\+C\+P\+::\+Nuclear\+Framework\+::\+H\+Ring\+From\+Distance (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of hydrogens \\
+\hline
+{\em distance} & the distance (in bohr) between neighbouring hydrogen atoms\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a regular H-\/ring where neighbouring hydrogens are separated by the given distance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a9b01585de8dbb6f92092dc8b727a444b}\label{class_g_q_c_p_1_1_nuclear_framework_a9b01585de8dbb6f92092dc8b727a444b}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!HRingFromRadius@{HRingFromRadius}}
+\index{HRingFromRadius@{HRingFromRadius}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{HRingFromRadius()}{HRingFromRadius()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} G\+Q\+C\+P\+::\+Nuclear\+Framework\+::\+H\+Ring\+From\+Radius (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{radius }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of hydrogens \\
+\hline
+{\em radius} & the radius (in bohr) of the circumscribed circle\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a regular H-\/ring whose hydrogens are on the circle with the given radius 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_ae9ef2e5d439ff7b7be8cd3c72137bc66}\label{class_g_q_c_p_1_1_nuclear_framework_ae9ef2e5d439ff7b7be8cd3c72137bc66}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!nucleiAsVector@{nucleiAsVector}}
+\index{nucleiAsVector@{nucleiAsVector}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{nucleiAsVector()}{nucleiAsVector()}}
+{\footnotesize\ttfamily const std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}}$>$\& G\+Q\+C\+P\+::\+Nuclear\+Framework\+::nuclei\+As\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nuclei in this nuclear framework as a std\+::vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a6cbb29c6b5f00a9a4ff734f8eb94941b}\label{class_g_q_c_p_1_1_nuclear_framework_a6cbb29c6b5f00a9a4ff734f8eb94941b}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!numberOfNuclei@{numberOfNuclei}}
+\index{numberOfNuclei@{numberOfNuclei}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{numberOfNuclei()}{numberOfNuclei()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Nuclear\+Framework\+::number\+Of\+Nuclei (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of nuclei in this nuclear framework 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_a1bfaf0cc27def18c7921123a1a81c0a1}\label{class_g_q_c_p_1_1_nuclear_framework_a1bfaf0cc27def18c7921123a1a81c0a1}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!ReadXYZ@{ReadXYZ}}
+\index{ReadXYZ@{ReadXYZ}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{ReadXYZ()}{ReadXYZ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} G\+Q\+C\+P\+::\+Nuclear\+Framework\+::\+Read\+X\+YZ (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{xyz\+\_\+filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Construct a nuclear framework based on the content of a given .xyz-\/file. In an .xyz-\/file, the nuclear coordinates are in Angstrom
+
+
+\begin{DoxyParams}{Parameters}
+{\em xyz\+\_\+filename} & the .xyz-\/file that contains the nuclear coordinates in Angstrom \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_adae13b11b7b8594945ad319aac75e28b}\label{class_g_q_c_p_1_1_nuclear_framework_adae13b11b7b8594945ad319aac75e28b}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!totalNucleicCharge@{totalNucleicCharge}}
+\index{totalNucleicCharge@{totalNucleicCharge}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{totalNucleicCharge()}{totalNucleicCharge()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Nuclear\+Framework\+::total\+Nucleic\+Charge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the sum of all the charges of the nuclei 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nuclear_framework_acb65a286f6605e901492eeab91beaad6}\label{class_g_q_c_p_1_1_nuclear_framework_acb65a286f6605e901492eeab91beaad6}} 
+\index{GQCP::NuclearFramework@{GQCP::NuclearFramework}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!GQCP::NuclearFramework@{GQCP::NuclearFramework}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & the output stream which the nuclear framework should be concatenated to \\
+\hline
+{\em nuclear\+\_\+framework} & the nuclear framework that should be concatenated to the output stream\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the updated output stream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Molecule/\mbox{\hyperlink{_nuclear_framework_8hpp}{Nuclear\+Framework.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Molecule/\mbox{\hyperlink{_nuclear_framework_8cpp}{Nuclear\+Framework.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_9aa0c11a544b6d3157e2ad5a8a14999b" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized</compoundname>
+    <innerfile refid="_angular_momentum_operator_8cpp">AngularMomentumOperator.cpp</innerfile>
+    <innerfile refid="_base_nuclear_operator_8cpp">BaseNuclearOperator.cpp</innerfile>
+    <innerfile refid="_base_reference_dependent_operator_8cpp">BaseReferenceDependentOperator.cpp</innerfile>
+    <innerfile refid="_electronic_dipole_operator_8cpp">ElectronicDipoleOperator.cpp</innerfile>
+    <innerfile refid="_electronic_spin_operator_8cpp">ElectronicSpinOperator.cpp</innerfile>
+    <innerfile refid="_linear_momentum_operator_8cpp">LinearMomentumOperator.cpp</innerfile>
+    <innerfile refid="_nuclear_dipole_operator_8cpp">NuclearDipoleOperator.cpp</innerfile>
+    <innerfile refid="_nuclear_repulsion_operator_8cpp">NuclearRepulsionOperator.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,139 @@
+\hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{}\doxysection{G\+Q\+CP\+::Libcint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}\index{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+
+
+{\ttfamily \#include $<$Libcint\+Two\+Electron\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Libcint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_libcint_two_electron_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Libcint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_libcint_two_electron_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} = \+\_\+\+Shell
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_abe498205d4d709c3c6bab9a3bd277e65}{Integral\+Scalar}} = \+\_\+\+Integral\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a287c6be774a5da1bd961168a173f9c99}{Libcint\+Two\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&op, const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} $>$ \&shell\+\_\+set)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer}{Base\+Two\+Electron\+Integral\+Buffer}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine_a87e94dce0cbb9f885900ae0564d94e59}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}{N}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a3fe3d85618e88bb2db9feef4762f5031}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&shell1, const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&shell2, const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&shell3, const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&shell4) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}{N}} = \+\_\+N
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Shell, size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+\+N, \+\_\+\+Integral\+Scalar $>$}
+
+An two-\/electron integral engine that uses libcint as its backend
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Shell} & the type of shell the integral engine is able to handle \\
+\hline
+{\em \+\_\+N} & the number of components the operator has \\
+\hline
+{\em \+\_\+\+Integral\+Scalar} & the scalar representation of an integral\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+\+\_\+\+Shell is a template parameter because that enables compile-\/time checking of correct arguments. See also the notes in \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_engine}{Libcint\+One\+Electron\+Integral\+Engine}}. The libcint optimizer struct should also be kept in the engine during the shell-\/quartet loop, because it should only be initialized once, having access to all the data inside the libcint Raw\+Container. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_abe498205d4d709c3c6bab9a3bd277e65}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_abe498205d4d709c3c6bab9a3bd277e65}} 
+\index{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine_a87e94dce0cbb9f885900ae0564d94e59}{Integral\+Scalar}} =  \+\_\+\+Integral\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}} 
+\index{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} =  \+\_\+\+Shell}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a287c6be774a5da1bd961168a173f9c99}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a287c6be774a5da1bd961168a173f9c99}} 
+\index{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!LibcintTwoElectronIntegralEngine@{LibcintTwoElectronIntegralEngine}}
+\index{LibcintTwoElectronIntegralEngine@{LibcintTwoElectronIntegralEngine}!GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{LibcintTwoElectronIntegralEngine()}{LibcintTwoElectronIntegralEngine()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{Libcint\+Two\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} $>$ \&}]{shell\+\_\+set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the Coulomb repulsion operator \\
+\hline
+{\em shell\+\_\+set} & the \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} whose information should be converted to a Raw\+Container, which will serve as some kind of \textquotesingle{}global\textquotesingle{} data for the libcint engine to use in all its \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a3fe3d85618e88bb2db9feef4762f5031}{calculate()}} calls \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a3fe3d85618e88bb2db9feef4762f5031}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a3fe3d85618e88bb2db9feef4762f5031}} 
+\index{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer}{Base\+Two\+Electron\+Integral\+Buffer}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine_a87e94dce0cbb9f885900ae0564d94e59}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}{N}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&}]{shell1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&}]{shell2,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&}]{shell3,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}} \&}]{shell4 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em shell1} & the first shell \\
+\hline
+{\em shell2} & the second shell \\
+\hline
+{\em shell3} & the third shell \\
+\hline
+{\em shell4} & the fourth shell\\
+\hline
+\end{DoxyParams}
+This method is not marked const to allow the Engine\textquotesingle{}s internals to be changed 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine_a2b36d7ebbf6ee7aa876b6f15df77c18b}{G\+Q\+C\+P\+::\+Base\+Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+\+N, \+\_\+\+Integral\+Scalar $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}} 
+\index{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!N@{N}}
+\index{N@{N}!GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::LibcintTwoElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::N = \+\_\+N\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libcint_two_electron_integral_engine_8hpp}{Libcint\+Two\+Electron\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

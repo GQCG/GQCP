@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ConsecutiveIteratesNormConvergence</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_convergence_criterion" prot="public" virt="non-virtual">GQCP::ConvergenceCriterion&lt; _Environment &gt;</basecompoundref>
+    <includes refid="_consecutive_iterates_norm_convergence_8hpp" local="no">ConsecutiveIteratesNormConvergence.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Iterate</type>
+      </param>
+      <param>
+        <type>typename _Environment</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a89ec3d0f315128d7abb0d7a39a6b2f1e" prot="public" static="no">
+        <type>_Iterate</type>
+        <definition>using GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::Iterate =  _Iterate</definition>
+        <argsstring></argsstring>
+        <name>Iterate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a467bffa868b422a79cb56d6d3c0180c1" prot="public" static="no">
+        <type>typename Iterate::Scalar</type>
+        <definition>using GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::Scalar =  typename Iterate::Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" prot="public" static="no">
+        <type>_Environment</type>
+        <definition>using GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::Environment =  _Environment</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1af1f488250794ba9beefbbcfe7134d339" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::m_threshold</definition>
+        <argsstring></argsstring>
+        <name>m_threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="49" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ae8414a5c66a420443f81b2e134c8a2a4" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::iterate_description</definition>
+        <argsstring></argsstring>
+        <name>iterate_description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="51" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a02c85f52343be514fc9effbbed153507" prot="private" static="no" mutable="no">
+        <type>std::function&lt; std::deque&lt; <ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a89ec3d0f315128d7abb0d7a39a6b2f1e" kindref="member">Iterate</ref> &gt;const <ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref> &amp;)&gt;</type>
+        <definition>std::function&lt;std::deque&lt;Iterate&gt;const Environment&amp;)&gt; GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::extractor</definition>
+        <argsstring></argsstring>
+        <name>extractor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="53" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a9d2d34a40f6f284a9f0b91c068e499db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::ConsecutiveIteratesNormConvergence</definition>
+        <argsstring>(const double threshold=1.0e-08, const std::function&lt; std::deque&lt; Iterate &gt;(const Environment &amp;)&gt; extractor=[](const Environment &amp;environment) { return environment.variables;}, const std::string &amp;iterate_description=&quot;a general iterate&quot;)</argsstring>
+        <name>ConsecutiveIteratesNormConvergence</name>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const std::function&lt; std::deque&lt; <ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a89ec3d0f315128d7abb0d7a39a6b2f1e" kindref="member">Iterate</ref> &gt;(const <ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref> &amp;)&gt;</type>
+          <declname>extractor</declname>
+          <defval>[](const <ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref> &amp;environment) { return environment.variables;}</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>iterate_description</declname>
+          <defval>&quot;a general iterate&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold that is used in comparing the iterates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extractor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a function that can extract the correct iterates from the environment. The default is to check the environment on a property called &apos;variables&apos; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iterate_description</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the description of the the iterates that are compared </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="66" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="66" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_convergence_criterion_1a5d2993454005779f8a6376c63aec430c">description</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="80" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="80" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a0be253e3c3a65055a4e2bdba68c34e54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::isFulfilled</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>isFulfilled</name>
+        <reimplements refid="class_g_q_c_p_1_1_convergence_criterion_1a84503e9b2b4bdd01188f21be512bc281">isFulfilled</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if the difference of the two most recent iterates has a zero norm, within the tolerance </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="90" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="90" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;::threshold</definition>
+        <argsstring>() const</argsstring>
+        <name>threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the threshold that is used in comparing the iterates </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="110" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="110" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A convergence criterion that checks if the norm of the difference of two iterates is converged.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Iterate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the iterative variables </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the calculation environment </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="39" bodyend="111"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a9d2d34a40f6f284a9f0b91c068e499db" prot="public" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>ConsecutiveIteratesNormConvergence</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9" prot="public" virt="virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" prot="public" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a02c85f52343be514fc9effbbed153507" prot="private" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>extractor</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a0be253e3c3a65055a4e2bdba68c34e54" prot="public" virt="virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>isFulfilled</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a89ec3d0f315128d7abb0d7a39a6b2f1e" prot="public" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>Iterate</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ae8414a5c66a420443f81b2e134c8a2a4" prot="private" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>iterate_description</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1af1f488250794ba9beefbbcfe7134d339" prot="private" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>m_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a467bffa868b422a79cb56d6d3c0180c1" prot="public" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" prot="public" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_convergence_criterion_1a4594ec2c922fcc9aafb6734e68fa158d" prot="public" virt="virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>~ConvergenceCriterion</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

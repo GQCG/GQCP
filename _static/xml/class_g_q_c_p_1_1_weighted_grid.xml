@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_weighted_grid" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::WeightedGrid</compoundname>
+    <includes refid="_weighted_grid_8hpp" local="no">WeightedGrid.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_weighted_grid_1aeafebaa4052f5356216875ab2eab70ea" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a91a4a76c7877bfb4db770b73fdd0fc0b" kindref="member">ArrayX</ref>&lt; double &gt;</type>
+        <definition>ArrayX&lt;double&gt; GQCP::WeightedGrid::m_weights</definition>
+        <argsstring></argsstring>
+        <name>m_weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_weighted_grid_1aba5f4b3a82bc1d080b6a27087334ee8c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &gt;</type>
+        <definition>std::vector&lt;Vector&lt;double, 3&gt; &gt; GQCP::WeightedGrid::m_points</definition>
+        <argsstring></argsstring>
+        <name>m_points</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="37" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1a26bf2007ddb831b2080e279ac2ace2a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::WeightedGrid::WeightedGrid</definition>
+        <argsstring>(const std::vector&lt; Vector&lt; double, 3 &gt;&gt; &amp;points, const ArrayX&lt; double &gt; &amp;weights)</argsstring>
+        <name>WeightedGrid</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;&gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a91a4a76c7877bfb4db770b73fdd0fc0b" kindref="member">ArrayX</ref>&lt; double &gt; &amp;</type>
+          <declname>weights</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A memberwise constructor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>points</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the grid points </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a 1-D array containing the weights for each of the grid points </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/WeightedGrid.cpp" bodystart="38" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1a18b9f61904e889479af50412896d4d26" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T GQCP::WeightedGrid::integrate</definition>
+        <argsstring>(const Field&lt; T &gt; &amp;field) const</argsstring>
+        <name>integrate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Integrate a <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref> over this grid.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the field that should be integrated, i.e. provided as the integrand</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the value of the integral </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="87" column="7" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="87" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1acc56dd9229272143cfdac3b7fc06a0a5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::WeightedGrid::numberOfPoints</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfPoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of grid points/weights </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="102" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1ae9119bf9620f3c38b2b52d6e98304f72" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::WeightedGrid::point</definition>
+        <argsstring>(const size_t index) const</argsstring>
+        <name>point</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access one of the grid&apos;s points.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the grid point</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a read-only grid point, corresponding to the given index </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="111" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1a523ad38f4ca986b43f0a22657778553e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &gt; &amp;</type>
+        <definition>const std::vector&lt;Vector&lt;double, 3&gt; &gt;&amp; GQCP::WeightedGrid::points</definition>
+        <argsstring>() const</argsstring>
+        <name>points</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the grid points </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="116" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1a86485e11cf5d337ace574c9e552dec13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::WeightedGrid::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size of the grid, i.e. the number of grid points/weights </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="121" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::WeightedGrid::weight</definition>
+        <argsstring>(const size_t index) const</argsstring>
+        <name>weight</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access one of the grid&apos;s weights.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the weight</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a read-only grid weight, corresponding to the given index </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="130" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1ac1fe01b1fb3bc3afc747e6f8982f6173" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a91a4a76c7877bfb4db770b73fdd0fc0b" kindref="member">ArrayX</ref>&lt; double &gt; &amp;</type>
+        <definition>const ArrayX&lt;double&gt;&amp; GQCP::WeightedGrid::weights</definition>
+        <argsstring>() const</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a 1-D array containing the weights for each of the grid points </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="135" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="135" bodyend="135"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1a6cbb6a86a514e3f977c64513778cdc4f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_weighted_grid" kindref="compound">WeightedGrid</ref></type>
+        <definition>WeightedGrid GQCP::WeightedGrid::FromCubicGrid</definition>
+        <argsstring>(const CubicGrid &amp;cubic_grid)</argsstring>
+        <name>FromCubicGrid</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref> &amp;</type>
+          <declname>cubic_grid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert a cubic grid into a weighted grid, where the weights are all equal to the <ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref>&apos;s voxel volume.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cubic_grid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the cubic grid </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="59" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/WeightedGrid.cpp" bodystart="57" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_weighted_grid_1a7ad25e7126c94337fa7be78d1a7423fb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_weighted_grid" kindref="compound">WeightedGrid</ref></type>
+        <definition>WeightedGrid GQCP::WeightedGrid::ReadIntegrationGridFile</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>ReadIntegrationGridFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Parse an .igrid-file and create the <ref refid="class_g_q_c_p_1_1_weighted_grid" kindref="compound">WeightedGrid</ref> that is contained in it. The values for the scalar field or vector field are discarded.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the .igrid-file</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>An integration grid (.igrid) file is a headerless file and contains the following data:<itemizedlist>
+<listitem><para>Each row relates to one grid point.</para>
+</listitem><listitem><para>Column specification:<itemizedlist>
+<listitem><para>Column 1: The index from 1 to the number of grid points</para>
+</listitem><listitem><para>Columns 2-4: The position of the grid point: x, y, and z</para>
+</listitem><listitem><para>Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field</para>
+</listitem><listitem><para>Column 5, 6 or 8: The integration weight associated to the grid point </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="74" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/WeightedGrid.cpp" bodystart="80" bodyend="120"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A collection of points in 3D-space, with each point associated to a weight. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::WeightedGrid</label>
+        <link refid="class_g_q_c_p_1_1_weighted_grid"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp" bodystart="33" bodyend="136"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1a6cbb6a86a514e3f977c64513778cdc4f" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>FromCubicGrid</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1a18b9f61904e889479af50412896d4d26" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>integrate</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1aba5f4b3a82bc1d080b6a27087334ee8c" prot="private" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>m_points</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1aeafebaa4052f5356216875ab2eab70ea" prot="private" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>m_weights</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1acc56dd9229272143cfdac3b7fc06a0a5" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>numberOfPoints</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1ae9119bf9620f3c38b2b52d6e98304f72" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>point</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1a523ad38f4ca986b43f0a22657778553e" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>points</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1a7ad25e7126c94337fa7be78d1a7423fb" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>ReadIntegrationGridFile</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1a86485e11cf5d337ace574c9e552dec13" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>size</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>weight</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1a26bf2007ddb831b2080e279ac2ace2a9" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>WeightedGrid</name></member>
+      <member refid="class_g_q_c_p_1_1_weighted_grid_1ac1fe01b1fb3bc3afc747e6f8982f6173" prot="public" virt="non-virtual"><scope>GQCP::WeightedGrid</scope><name>weights</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

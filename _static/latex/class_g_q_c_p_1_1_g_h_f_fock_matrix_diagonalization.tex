@@ -1,0 +1,102 @@
+\hypertarget{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization}{}\doxysection{G\+Q\+CP\+::G\+H\+F\+Fock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization}\index{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$G\+H\+F\+Fock\+Matrix\+Diagonalization.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::G\+H\+F\+Fock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::G\+H\+F\+Fock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_ac6ee2940ba147e66c4e5c586ce7f8d63}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a216fa4b4c5cb131ab6758c5a0494dc1e}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_s_c_f_environment}{G\+H\+F\+S\+C\+F\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_ac6ee2940ba147e66c4e5c586ce7f8d63}{Scalar}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a3748982c7d710b59a519e363b63fe0f9}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_aa2e4b05d4f68557fb3351a7cae4f1bb4}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a216fa4b4c5cb131ab6758c5a0494dc1e}{Environment}} \&environment) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+G\+H\+F\+Fock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$}
+
+An iteration step that solves the generalized eigenvalue problem for the current scalar/\+AO basis Fock matrix for the coefficient matrix.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type used to represent the expansion coefficient/elements of the transformation matrix\+: real or complex. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a216fa4b4c5cb131ab6758c5a0494dc1e}\label{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a216fa4b4c5cb131ab6758c5a0494dc1e}} 
+\index{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization}{G\+Q\+C\+P\+::\+G\+H\+F\+Fock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a216fa4b4c5cb131ab6758c5a0494dc1e}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_s_c_f_environment}{G\+H\+F\+S\+C\+F\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_ac6ee2940ba147e66c4e5c586ce7f8d63}{Scalar}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_ac6ee2940ba147e66c4e5c586ce7f8d63}\label{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_ac6ee2940ba147e66c4e5c586ce7f8d63}} 
+\index{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization}{G\+Q\+C\+P\+::\+G\+H\+F\+Fock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_ac6ee2940ba147e66c4e5c586ce7f8d63}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a3748982c7d710b59a519e363b63fe0f9}\label{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a3748982c7d710b59a519e363b63fe0f9}} 
+\index{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}!description@{description}}
+\index{description@{description}!GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization}{G\+Q\+C\+P\+::\+G\+H\+F\+Fock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_aa2e4b05d4f68557fb3351a7cae4f1bb4}\label{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_aa2e4b05d4f68557fb3351a7cae4f1bb4}} 
+\index{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}!execute@{execute}}
+\index{execute@{execute}!GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::GHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization}{G\+Q\+C\+P\+::\+G\+H\+F\+Fock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_a216fa4b4c5cb131ab6758c5a0494dc1e}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Solve the generalized eigenvalue problem for the most recent scalar/\+AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+H\+F/\+G\+H\+F/\mbox{\hyperlink{_g_h_f_fock_matrix_diagonalization_8hpp}{G\+H\+F\+Fock\+Matrix\+Diagonalization.\+hpp}}\end{DoxyCompactItemize}

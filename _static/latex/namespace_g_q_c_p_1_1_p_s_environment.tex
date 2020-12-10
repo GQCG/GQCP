@@ -1,0 +1,50 @@
+\hypertarget{namespace_g_q_c_p_1_1_p_s_environment}{}\doxysection{G\+Q\+CP\+::P\+S\+Environment Namespace Reference}
+\label{namespace_g_q_c_p_1_1_p_s_environment}\index{GQCP::PSEnvironment@{GQCP::PSEnvironment}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{Non\+Linear\+Equation\+Environment}}$<$ Scalar $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_p_s_environment_ab7ade7744238001d644f02702f8d7309}{A\+P1roG}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ Scalar $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}} \&G\+\_\+initial)
+\item 
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{Non\+Linear\+Equation\+Environment}}$<$ Scalar $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_p_s_environment_a84c4e68c10aeadbb0062b6de6c9f94b1}{A\+P1roG}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ Scalar $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t N\+\_\+P)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_p_s_environment_ab7ade7744238001d644f02702f8d7309}\label{namespace_g_q_c_p_1_1_p_s_environment_ab7ade7744238001d644f02702f8d7309}} 
+\index{GQCP::PSEnvironment@{GQCP::PSEnvironment}!AP1roG@{AP1roG}}
+\index{AP1roG@{AP1roG}!GQCP::PSEnvironment@{GQCP::PSEnvironment}}
+\doxysubsubsection{\texorpdfstring{AP1roG()}{AP1roG()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{Non\+Linear\+Equation\+Environment}}$<$Scalar$>$ G\+Q\+C\+P\+::\+P\+S\+Environment\+::\+A\+P1roG (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ Scalar $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}} \&}]{G\+\_\+initial }\end{DoxyParamCaption})}
+
+Create a non-\/linear equation environment with the A\+P1roG geminal coefficients as an initial guess.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the second-\/quantized Hamiltonian, expressed in an orthonormal spinor basis \\
+\hline
+{\em G\+\_\+initial} & the initial guess for the A\+P1roG geminal coefficients\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an environment suitable for A\+P1roG calculations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_p_s_environment_a84c4e68c10aeadbb0062b6de6c9f94b1}\label{namespace_g_q_c_p_1_1_p_s_environment_a84c4e68c10aeadbb0062b6de6c9f94b1}} 
+\index{GQCP::PSEnvironment@{GQCP::PSEnvironment}!AP1roG@{AP1roG}}
+\index{AP1roG@{AP1roG}!GQCP::PSEnvironment@{GQCP::PSEnvironment}}
+\doxysubsubsection{\texorpdfstring{AP1roG()}{AP1roG()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{Non\+Linear\+Equation\+Environment}}$<$Scalar$>$ G\+Q\+C\+P\+::\+P\+S\+Environment\+::\+A\+P1roG (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ Scalar $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const size\+\_\+t}]{N\+\_\+P }\end{DoxyParamCaption})}
+
+Create a non-\/linear equation environment with a zero initial guess for the A\+P1roG geminal coefficients.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the second-\/quantized Hamiltonian, expressed in an orthonormal spinor basis \\
+\hline
+{\em N\+\_\+P} & the number of electron pairs\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an environment suitable for A\+P1roG calculations 
+\end{DoxyReturn}

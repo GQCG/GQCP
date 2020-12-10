@@ -1,0 +1,153 @@
+\hypertarget{class_g_q_c_p_1_1_s_q_operator_storage}{}\doxysection{G\+Q\+CP\+::S\+Q\+Operator\+Storage$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_s_q_operator_storage}\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+
+
+{\ttfamily \#include $<$S\+Q\+Operator\+Storage.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::S\+Q\+Operator\+Storage$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_s_q_operator_storage__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::S\+Q\+Operator\+Storage$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_s_q_operator_storage__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa40b1e7828e835d102b1f687c8666b5b}{Matrix\+Representation}} = \+\_\+\+Matrix\+Representation
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}} = \+\_\+\+Derived\+Operator
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aed84bbd66250ca1444ff8ae9a3ae7492}{Vectorizer}} = \+\_\+\+Vectorizer
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a7bdaff688770ec8194aeaef02fae1340}{Scalar\+Final\+Operator}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}} $>$\+::Scalar\+Operator
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a95a0c4cf331f89f073323bd8aaa60a6e}{operator+=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}} \&rhs) override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8fe948ec5f11fde630a6076b6d280563}{operator$\ast$=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}} \&a) override
+\item 
+{\footnotesize template$<$typename Z  = Vectorizer$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a7bdaff688770ec8194aeaef02fae1340}{Scalar\+Final\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_af5e51d0f8a0ac96f0c138e44e9614ad4}{dot}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}} $>$ \&v) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Representation, typename \+\_\+\+Vectorizer, typename \+\_\+\+Derived\+Operator$>$\newline
+class G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$}
+
+A type that takes care of storing the matrix elements of one-\/ and two-\/electron operators and their components, which adds functionality for vector space arithmetic out of the box.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Representation} & The type used to represent the set of parameters/matrix elements/integrals for one component of a second-\/quantized operator. \\
+\hline
+{\em \+\_\+\+Vectorizer} & The type of the vectorizer that relates a one-\/dimensional storage of matrix representations to the tensor structure of the second-\/quantized operators. This allows for a distinction between scalar operators (such as the kinetic energy or Coulomb operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). \\
+\hline
+{\em \+\_\+\+Derived\+Operator} & The type of the operator that derives from this class, enabling \mbox{\hyperlink{class_g_q_c_p_1_1_c_r_t_p}{C\+R\+TP}} and compile-\/time polymorphism. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}\label{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!DerivedOperator@{DerivedOperator}}
+\index{DerivedOperator@{DerivedOperator}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{DerivedOperator}{DerivedOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}} =  \+\_\+\+Derived\+Operator}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}\label{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!FinalOperator@{FinalOperator}}
+\index{FinalOperator@{FinalOperator}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{FinalOperator}{FinalOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_aa40b1e7828e835d102b1f687c8666b5b}\label{class_g_q_c_p_1_1_s_q_operator_storage_aa40b1e7828e835d102b1f687c8666b5b}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!MatrixRepresentation@{MatrixRepresentation}}
+\index{MatrixRepresentation@{MatrixRepresentation}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixRepresentation}{MatrixRepresentation}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa40b1e7828e835d102b1f687c8666b5b}{Matrix\+Representation}} =  \+\_\+\+Matrix\+Representation}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}\label{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aa8811fdc967a2f0a034ee1798073e434}{Derived\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_a7bdaff688770ec8194aeaef02fae1340}\label{class_g_q_c_p_1_1_s_q_operator_storage_a7bdaff688770ec8194aeaef02fae1340}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!ScalarFinalOperator@{ScalarFinalOperator}}
+\index{ScalarFinalOperator@{ScalarFinalOperator}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarFinalOperator}{ScalarFinalOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a7bdaff688770ec8194aeaef02fae1340}{Scalar\+Final\+Operator}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}}$>$\+::Scalar\+Operator}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_aed84bbd66250ca1444ff8ae9a3ae7492}\label{class_g_q_c_p_1_1_s_q_operator_storage_aed84bbd66250ca1444ff8ae9a3ae7492}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!Vectorizer@{Vectorizer}}
+\index{Vectorizer@{Vectorizer}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Vectorizer}{Vectorizer}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_aed84bbd66250ca1444ff8ae9a3ae7492}{Vectorizer}} =  \+\_\+\+Vectorizer}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_af5e51d0f8a0ac96f0c138e44e9614ad4}\label{class_g_q_c_p_1_1_s_q_operator_storage_af5e51d0f8a0ac96f0c138e44e9614ad4}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!dot@{dot}}
+\index{dot@{dot}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+template$<$typename Z  = Vectorizer$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a7bdaff688770ec8194aeaef02fae1340}{Scalar\+Final\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}} $>$ \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the scalar one-\/electron operator that is the result of the vector dot product between this operator and the given vector. Note that this method is only available for vector-\/like one-\/electron operators.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector with which this operator should be dot-\/multiplied.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector dot product between this operator and the given vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_a8fe948ec5f11fde630a6076b6d280563}\label{class_g_q_c_p_1_1_s_q_operator_storage_a8fe948ec5f11fde630a6076b6d280563}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a8527f05563619416e863b54a0daa3f9a}{Scalar}} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Scalar multiplication-\/assignment. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_operator_storage_a95a0c4cf331f89f073323bd8aaa60a6e}\label{class_g_q_c_p_1_1_s_q_operator_storage_a95a0c4cf331f89f073323bd8aaa60a6e}} 
+\index{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SQOperatorStorage$<$ \_MatrixRepresentation, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Representation , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{G\+Q\+C\+P\+::\+S\+Q\+Operator\+Storage}}$<$ \+\_\+\+Matrix\+Representation, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_a6ee4af5c3c3b6b4801fdd3bb1af52526}{Final\+Operator}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Addition-\/assignment. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+Second\+Quantized/\mbox{\hyperlink{_s_q_operator_storage_8hpp}{S\+Q\+Operator\+Storage.\+hpp}}\end{DoxyCompactItemize}

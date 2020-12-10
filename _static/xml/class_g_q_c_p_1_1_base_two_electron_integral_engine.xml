@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_two_electron_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseTwoElectronIntegralEngine</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine" prot="public" virt="non-virtual">GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</derivedcompoundref>
+    <includes refid="_base_two_electron_integral_engine_8hpp" local="no">BaseTwoElectronIntegralEngine.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>_N</declname>
+        <defname>_N</defname>
+      </param>
+      <param>
+        <type>typename _IntegralScalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2750514840a71482b824e1c6f611b093" prot="public" static="no">
+        <type>_Shell</type>
+        <definition>using GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::Shell =  _Shell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a87e94dce0cbb9f885900ae0564d94e59" prot="public" static="no">
+        <type>_IntegralScalar</type>
+        <definition>using GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::IntegralScalar =  _IntegralScalar</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a0f87e45918a8b79b2fe1a94c9b735488" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <initializer>= _N</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" line="41" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_two_electron_integral_engine_1ae5e5b288c06cc335f171292ca652eca2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::~BaseTwoElectronIntegralEngine</definition>
+        <argsstring>()=default</argsstring>
+        <name>~BaseTwoElectronIntegralEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" line="46" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2b36d7ebbf6ee7aa876b6f15df77c18b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" kindref="compound">BaseTwoElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a87e94dce0cbb9f885900ae0564d94e59" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a0f87e45918a8b79b2fe1a94c9b735488" kindref="member">N</ref> &gt; &gt;</type>
+        <definition>virtual std::shared_ptr&lt;BaseTwoElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
+        <argsstring>(const Shell &amp;shell1, const Shell &amp;shell2, const Shell &amp;shell3, const Shell &amp;shell4)=0</argsstring>
+        <name>calculate</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a2e36ffbf6a9acd7743f04b4ec7f81749">calculate</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3fe3d85618e88bb2db9feef4762f5031">calculate</reimplementedby>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2750514840a71482b824e1c6f611b093" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2750514840a71482b824e1c6f611b093" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell2</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2750514840a71482b824e1c6f611b093" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell3</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2750514840a71482b824e1c6f611b093" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate all the integrals over the given shells <simplesect kind="note"><para>This method is not marked const to allow the Engine&apos;s internals to be changed</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shell1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the third shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fourth shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a buffer containing the calculated integrals </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" line="62" column="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base class to implement two-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2b36d7ebbf6ee7aa876b6f15df77c18b" kindref="member">calculate()</ref> call</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of shell the integral engine is able to handle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of components the operator has </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_IntegralScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of an integral</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+_Shell is a template parameter because that enables compile-time checking of correct arguments </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
+      <node id="2">
+        <label>GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp" bodystart="37" bodyend="63"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2b36d7ebbf6ee7aa876b6f15df77c18b" prot="public" virt="pure-virtual"><scope>GQCP::BaseTwoElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a87e94dce0cbb9f885900ae0564d94e59" prot="public" virt="non-virtual"><scope>GQCP::BaseTwoElectronIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a0f87e45918a8b79b2fe1a94c9b735488" prot="public" virt="non-virtual"><scope>GQCP::BaseTwoElectronIntegralEngine</scope><name>N</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2750514840a71482b824e1c6f611b093" prot="public" virt="non-virtual"><scope>GQCP::BaseTwoElectronIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1ae5e5b288c06cc335f171292ca652eca2" prot="public" virt="virtual"><scope>GQCP::BaseTwoElectronIntegralEngine</scope><name>~BaseTwoElectronIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

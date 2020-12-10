@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_6c4af46cc71c81a187b7586915ea7074" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions</compoundname>
+    <innerfile refid="_cartesian_direction_8hpp">CartesianDirection.hpp</innerfile>
+    <innerfile refid="_cartesian_exponents_8hpp">CartesianExponents.hpp</innerfile>
+    <innerfile refid="_cartesian_g_t_o_8hpp">CartesianGTO.hpp</innerfile>
+    <innerfile refid="_linear_combination_8hpp">LinearCombination.hpp</innerfile>
+    <innerfile refid="_scalar_function_8hpp">ScalarFunction.hpp</innerfile>
+    <innerfile refid="_vector_space_arithmetic_8hpp">VectorSpaceArithmetic.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/"/>
+  </compounddef>
+</doxygen>

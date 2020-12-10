@@ -1,0 +1,131 @@
+\hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_engine}{}\doxysection{G\+Q\+CP\+::Base\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_base_one_electron_integral_engine}\index{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+
+
+{\ttfamily \#include $<$Base\+One\+Electron\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Base\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_base_one_electron_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Base\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_base_one_electron_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} = \+\_\+\+Shell
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}{Integral\+Scalar}} = \+\_\+\+Integral\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a6407e262533511ae121091ed645d5951}{$\sim$\+Base\+One\+Electron\+Integral\+Engine}} ()=default
+\item 
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a038d65de177b191cf901b58810bd0542}{N}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} \&shell1, const \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} \&shell2)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a038d65de177b191cf901b58810bd0542}{N}} = \+\_\+N
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Shell, size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+\+N, \+\_\+\+Integral\+Scalar $>$}
+
+A base class to implement one-\/electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}{calculate()}} call
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Shell} & the type of shell the integral engine is able to handle \\
+\hline
+{\em \+\_\+N} & the number of components the operator has \\
+\hline
+{\em \+\_\+\+Integral\+Scalar} & the scalar representation of an integral\\
+\hline
+\end{DoxyTemplParams}
+\+\_\+\+Shell is a template parameter because that enables compile-\/time checking of correct arguments 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}\label{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}} 
+\index{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}{Integral\+Scalar}} =  \+\_\+\+Integral\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}\label{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}} 
+\index{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} =  \+\_\+\+Shell}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_engine_a6407e262533511ae121091ed645d5951}\label{class_g_q_c_p_1_1_base_one_electron_integral_engine_a6407e262533511ae121091ed645d5951}} 
+\index{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!````~BaseOneElectronIntegralEngine@{$\sim$BaseOneElectronIntegralEngine}}
+\index{````~BaseOneElectronIntegralEngine@{$\sim$BaseOneElectronIntegralEngine}!GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseOneElectronIntegralEngine()}{~BaseOneElectronIntegralEngine()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::$\sim$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{Base\+One\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}\label{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}} 
+\index{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+virtual std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a038d65de177b191cf901b58810bd0542}{N}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} \&}]{shell1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} \&}]{shell2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Calculate all the integrals over the given shells \begin{DoxyNote}{Note}
+This method is not marked const to allow the Engine\textquotesingle{}s internals to be changed
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em shell1} & the first shell \\
+\hline
+{\em shell2} & the second shell\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a buffer containing the calculated integrals 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ae4d0cafa515f1537853318284e813a93}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a23dd8c30d8a8f48fa616cab87ec3463d}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+N $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_engine_a038d65de177b191cf901b58810bd0542}\label{class_g_q_c_p_1_1_base_one_electron_integral_engine_a038d65de177b191cf901b58810bd0542}} 
+\index{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}!N@{N}}
+\index{N@{N}!GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$@{GQCP::BaseOneElectronIntegralEngine$<$ \_Shell, \_N, \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::N = \+\_\+N\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_base_one_electron_integral_engine_8hpp}{Base\+One\+Electron\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

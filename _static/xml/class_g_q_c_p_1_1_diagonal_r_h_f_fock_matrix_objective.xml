@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::DiagonalRHFFockMatrixObjective</compoundname>
+    <includes refid="_diagonal_r_h_f_fock_matrix_objective_8hpp" local="no">DiagonalRHFFockMatrixObjective.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aa0b5cbdb243f13461631f8fe044c0ca6" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" line="36" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aec1aaf6215f80138f3eed7074fb2d2a6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::precision</definition>
+        <argsstring></argsstring>
+        <name>precision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" line="40" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1a58d4529387c3590ce1d2df83912496c5" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aa0b5cbdb243f13461631f8fe044c0ca6" kindref="member">Scalar</ref> &gt;</type>
+        <definition>RSQHamiltonian&lt;Scalar&gt; GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::sq_hamiltonian</definition>
+        <argsstring></argsstring>
+        <name>sq_hamiltonian</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" line="41" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1a2834db1b7e827c6b439f806a166f9d0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::DiagonalRHFFockMatrixObjective</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const double precision=1.0e-08)</argsstring>
+        <name>DiagonalRHFFockMatrixObjective</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aa0b5cbdb243f13461631f8fe044c0ca6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>precision</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in a scalar basis </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" bodystart="52" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1affeffb9f7ef2675be28117fed2183dc9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::isSatisfiedWith</definition>
+        <argsstring>(const QCModel::RHF&lt; Scalar &gt; &amp;rhf_parameters) const</argsstring>
+        <name>isSatisfiedWith</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aa0b5cbdb243f13461631f8fe044c0ca6" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>rhf_parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhf_parameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the RHF model parameters that are considered to be optimized</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if this objective is satisfied with the given optimized model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" line="66" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" bodystart="66" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters represent the canonical RHF coefficients.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of scalar used for the expansion coefficients </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp" bodystart="33" bodyend="78"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1a2834db1b7e827c6b439f806a166f9d0d" prot="public" virt="non-virtual"><scope>GQCP::DiagonalRHFFockMatrixObjective</scope><name>DiagonalRHFFockMatrixObjective</name></member>
+      <member refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1affeffb9f7ef2675be28117fed2183dc9" prot="public" virt="non-virtual"><scope>GQCP::DiagonalRHFFockMatrixObjective</scope><name>isSatisfiedWith</name></member>
+      <member refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aec1aaf6215f80138f3eed7074fb2d2a6" prot="private" virt="non-virtual"><scope>GQCP::DiagonalRHFFockMatrixObjective</scope><name>precision</name></member>
+      <member refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aa0b5cbdb243f13461631f8fe044c0ca6" prot="public" virt="non-virtual"><scope>GQCP::DiagonalRHFFockMatrixObjective</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1a58d4529387c3590ce1d2df83912496c5" prot="private" virt="non-virtual"><scope>GQCP::DiagonalRHFFockMatrixObjective</scope><name>sq_hamiltonian</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,118 @@
+\hypertarget{class_g_q_c_p_1_1_r_h_f_s_c_f_solver}{}\doxysection{G\+Q\+CP\+::R\+H\+F\+S\+C\+F\+Solver$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_r_h_f_s_c_f_solver}\index{GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$R\+H\+F\+S\+C\+F\+Solver.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::R\+H\+F\+S\+C\+F\+Solver$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{class_g_q_c_p_1_1_r_h_f_s_c_f_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_ac435feb4e5b40ce050377e5423ab1017}{Density\+Damped}} (const double \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}, const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_a9dc00e9fe26b41554f5a8e35e32c1948}{D\+I\+IS}} (const size\+\_\+t minimum\+\_\+subspace\+\_\+dimension=6, const size\+\_\+t maximum\+\_\+subspace\+\_\+dimension=6, const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aac28fd47780a448947f1b924be6d5e46}{Plain}} (const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+R\+H\+F\+S\+C\+F\+Solver$<$ \+\_\+\+Scalar $>$}
+
+A factory class that can construct R\+HF S\+CF solvers in an easy way.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type that is used for the coefficient matrix/expansion coefficients \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}\label{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}} 
+\index{GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver}{G\+Q\+C\+P\+::\+R\+H\+F\+S\+C\+F\+Solver}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_ac435feb4e5b40ce050377e5423ab1017}\label{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_ac435feb4e5b40ce050377e5423ab1017}} 
+\index{GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}!DensityDamped@{DensityDamped}}
+\index{DensityDamped@{DensityDamped}!GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{DensityDamped()}{DensityDamped()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver}{G\+Q\+C\+P\+::\+R\+H\+F\+S\+C\+F\+Solver}}$<$ \+\_\+\+Scalar $>$\+::Density\+Damped (\begin{DoxyParamCaption}\item[{const double}]{alpha,  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & the damping factor \\
+\hline
+{\em threshold} & the threshold that is used in comparing the density matrices \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a density-\/damped R\+HF S\+CF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_a9dc00e9fe26b41554f5a8e35e32c1948}\label{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_a9dc00e9fe26b41554f5a8e35e32c1948}} 
+\index{GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}!DIIS@{DIIS}}
+\index{DIIS@{DIIS}!GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{DIIS()}{DIIS()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver}{G\+Q\+C\+P\+::\+R\+H\+F\+S\+C\+F\+Solver}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{minimum\+\_\+subspace\+\_\+dimension = {\ttfamily 6},  }\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 6},  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em minimum\+\_\+subspace\+\_\+dimension} & the minimum number of Fock matrices that have to be in the subspace before enabling \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} \\
+\hline
+{\em maximum\+\_\+subspace\+\_\+dimension} & the maximum number of Fock matrices that can be handled by \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} \\
+\hline
+{\em threshold} & the threshold that is used in comparing the density matrices \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} R\+HF S\+CF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aac28fd47780a448947f1b924be6d5e46}\label{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aac28fd47780a448947f1b924be6d5e46}} 
+\index{GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}!Plain@{Plain}}
+\index{Plain@{Plain}!GQCP::RHFSCFSolver$<$ \_Scalar $>$@{GQCP::RHFSCFSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Plain()}{Plain()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver}{G\+Q\+C\+P\+::\+R\+H\+F\+S\+C\+F\+Solver}}$<$ \+\_\+\+Scalar $>$\+::Plain (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & the threshold that is used in comparing the density matrices \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a plain R\+HF S\+CF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+H\+F/\+R\+H\+F/\mbox{\hyperlink{_r_h_f_s_c_f_solver_8hpp}{R\+H\+F\+S\+C\+F\+Solver.\+hpp}}\end{DoxyCompactItemize}

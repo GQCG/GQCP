@@ -1,0 +1,301 @@
+\hypertarget{class_g_q_c_p_1_1_integral_calculator}{}\doxysection{G\+Q\+CP\+::Integral\+Calculator Class Reference}
+\label{class_g_q_c_p_1_1_integral_calculator}\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+
+
+{\ttfamily \#include $<$Integral\+Calculator.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Integral\+Calculator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{class_g_q_c_p_1_1_integral_calculator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Shell , size\+\_\+t N, typename Integral\+Scalar $>$ }\\static auto \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{calculate}} (\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{Base\+One\+Electron\+Integral\+Engine}}$<$ Shell, N, Integral\+Scalar $>$ \&engine, const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&left\+\_\+shell\+\_\+set, const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&right\+\_\+shell\+\_\+set) -\/$>$ std\+::array$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ Integral\+Scalar $>$, N $>$
+\item 
+{\footnotesize template$<$typename Shell , size\+\_\+t N, typename Integral\+Scalar $>$ }\\static auto \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_aab8c12c103101dad574031123584203a}{calculate}} (\mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine}{Base\+Two\+Electron\+Integral\+Engine}}$<$ Shell, N, Integral\+Scalar $>$ \&engine, const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&left\+\_\+shell\+\_\+set, const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&right\+\_\+shell\+\_\+set) -\/$>$ std\+::array$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ Integral\+Scalar, 4 $>$, N $>$
+\item 
+{\footnotesize template$<$typename F\+Q\+One\+Electron\+Operator $>$ }\\static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a22ede51fbb3db63443ccfc14bee0a049}{calculate\+Libint\+Integrals}} (const F\+Q\+One\+Electron\+Operator \&fq\+\_\+one\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&left\+\_\+scalar\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&right\+\_\+scalar\+\_\+basis)
+\item 
+{\footnotesize template$<$typename F\+Q\+One\+Electron\+Operator $>$ }\\static \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a7bd1eea9e12d51c8212b2d5fdaa0df40}{calculate\+Libint\+Integrals}} (const F\+Q\+One\+Electron\+Operator \&fq\+\_\+one\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&scalar\+\_\+basis)
+\item 
+static std\+::array$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double $>$, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad0b15cb4f0dd307f1a946792384673f2}{calculate\+Libint\+Integrals}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&fq\+\_\+one\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&left\+\_\+scalar\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&right\+\_\+scalar\+\_\+basis)
+\item 
+static std\+::array$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a5bf2580e445a1a802155e0ba352a5a4e}{calculate\+Libint\+Integrals}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&fq\+\_\+one\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&scalar\+\_\+basis)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a10887381671314dd68e323e62a83226f}{calculate\+Libint\+Integrals}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&fq\+\_\+two\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&scalar\+\_\+basis)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ double, 4 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a7ca1915303a249a751dc46fb4552617f}{calculate\+Libint\+Integrals}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&fq\+\_\+two\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&left\+\_\+scalar\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&right\+\_\+scalar\+\_\+basis)
+\item 
+{\footnotesize template$<$typename F\+Q\+One\+Electron\+Operator $>$ }\\static \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_aac73e6f31105eac4c38cd187178f9519}{calculate\+Libcint\+Integrals}} (const F\+Q\+One\+Electron\+Operator \&fq\+\_\+one\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&scalar\+\_\+basis)
+\item 
+static std\+::array$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a96408c2f33740b4790122c63f2ecc965}{calculate\+Libcint\+Integrals}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&fq\+\_\+one\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&scalar\+\_\+basis)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ae24e36b858b4c464ce16b8483df25dda}{calculate\+Libcint\+Integrals}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&fq\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&scalar\+\_\+basis)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that calculates integrals over Shell\+Sets\+: it loops over all shells in the given Shell\+Sets. It just has two static member functions, for cleaner interface calls. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}\label{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Shell , size\+\_\+t N, typename Integral\+Scalar $>$ \\
+static auto G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{Base\+One\+Electron\+Integral\+Engine}}$<$ Shell, N, Integral\+Scalar $>$ \&}]{engine,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&}]{left\+\_\+shell\+\_\+set,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&}]{right\+\_\+shell\+\_\+set }\end{DoxyParamCaption}) -\/$>$ std\+::array$<$\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$Integral\+Scalar$>$, N$>$ \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate all one-\/electron integrals over the basis functions inside the given shell sets.
+
+
+\begin{DoxyParams}{Parameters}
+{\em engine} & the engine that can calculate one-\/electron integrals over shells (not const because we allow for non-\/const Engine\+::calculate() calls) \\
+\hline
+{\em left\+\_\+shell\+\_\+set} & the set of shells that should appear on the left of the operator \\
+\hline
+{\em right\+\_\+shell\+\_\+set} & the set of shells that should appear on the right of the operator\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Shell} & the type of shell the integral engine is able to handle \\
+\hline
+{\em N} & the number of components the operator has \\
+\hline
+{\em Integral\+Scalar} & the scalar representation of an integral \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_aab8c12c103101dad574031123584203a}\label{class_g_q_c_p_1_1_integral_calculator_aab8c12c103101dad574031123584203a}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Shell , size\+\_\+t N, typename Integral\+Scalar $>$ \\
+static auto G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine}{Base\+Two\+Electron\+Integral\+Engine}}$<$ Shell, N, Integral\+Scalar $>$ \&}]{engine,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&}]{left\+\_\+shell\+\_\+set,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ Shell $>$ \&}]{right\+\_\+shell\+\_\+set }\end{DoxyParamCaption}) -\/$>$ std\+::array$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$Integral\+Scalar, 4$>$, N$>$ \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate all two-\/electron integrals over the basis functions inside the given shell sets.
+
+
+\begin{DoxyParams}{Parameters}
+{\em engine} & the engine that can calculate two-\/electron integrals over shells \\
+\hline
+{\em left\+\_\+shell\+\_\+set} & the set of shells that should appear on the left of the operator \\
+\hline
+{\em right\+\_\+shell\+\_\+set} & the set of shells that should appear on the right of the operator\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Shell} & the type of shell the integral engine is able to handle \\
+\hline
+{\em N} & the number of components the operator has \\
+\hline
+{\em Integral\+Scalar} & the scalar representation of an integral \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_ae24e36b858b4c464ce16b8483df25dda}\label{class_g_q_c_p_1_1_integral_calculator_ae24e36b858b4c464ce16b8483df25dda}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibcintIntegrals@{calculateLibcintIntegrals}}
+\index{calculateLibcintIntegrals@{calculateLibcintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibcintIntegrals()}{calculateLibcintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$double$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libcint\+Integrals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{fq\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the Coulomb repulsion energy integrals, within a given scalar basis, using Libcint.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+op} & the first-\/quantized operator \\
+\hline
+{\em scalar\+\_\+basis} & the scalar basis that contains the shells over which the integrals should be calculated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Only use this function for all-\/\+Cartesian Shell\+Sets.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_a96408c2f33740b4790122c63f2ecc965}\label{class_g_q_c_p_1_1_integral_calculator_a96408c2f33740b4790122c63f2ecc965}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibcintIntegrals@{calculateLibcintIntegrals}}
+\index{calculateLibcintIntegrals@{calculateLibcintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibcintIntegrals()}{calculateLibcintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily static std\+::array$<$\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$, 3$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libcint\+Integrals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{fq\+\_\+one\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given electronic dipole operator, within a given scalar basis, using libcint.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & the electronic dipole operator \\
+\hline
+{\em scalar\+\_\+basis} & the scalar basis that contains the shells over which the integrals should be calculated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Only use this function for all-\/\+Cartesian Shell\+Sets.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_aac73e6f31105eac4c38cd187178f9519}\label{class_g_q_c_p_1_1_integral_calculator_aac73e6f31105eac4c38cd187178f9519}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibcintIntegrals@{calculateLibcintIntegrals}}
+\index{calculateLibcintIntegrals@{calculateLibcintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibcintIntegrals()}{calculateLibcintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename F\+Q\+One\+Electron\+Operator $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libcint\+Integrals (\begin{DoxyParamCaption}\item[{const F\+Q\+One\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given (first-\/quantized) one-\/electron operator, within a given scalar basis, using libcint.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & the first-\/quantized one-\/electron operator \\
+\hline
+{\em scalar\+\_\+basis} & the scalar basis that contains the shells over which the integrals should be calculated\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em F\+Q\+One\+Electron\+Operator} & the type of the first-\/quantized one-\/electron operator\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+Only use this function for all-\/\+Cartesian Shell\+Sets.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+the matrix representation of the overlap operator in this AO basis, using the libcint integral engine 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_a7ca1915303a249a751dc46fb4552617f}\label{class_g_q_c_p_1_1_integral_calculator_a7ca1915303a249a751dc46fb4552617f}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibintIntegrals@{calculateLibintIntegrals}}
+\index{calculateLibintIntegrals@{calculateLibintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibintIntegrals()}{calculateLibintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$double, 4$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libint\+Integrals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{fq\+\_\+two\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{left\+\_\+scalar\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{right\+\_\+scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given (first-\/quantized) two-\/electron operator, over a left and right scalar basis, using Libint2.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+two\+\_\+op} & the first-\/quantized operator \\
+\hline
+{\em left\+\_\+scalar\+\_\+basis} & the scalar basis that contains the shells that should appear to the left of the operator \\
+\hline
+{\em right\+\_\+scalar\+\_\+basis} & the scalar basis that contains the shells that should appear to the right of the operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the matrix representation (integrals) of the given first-\/quantized operator in this scalar basis 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_a10887381671314dd68e323e62a83226f}\label{class_g_q_c_p_1_1_integral_calculator_a10887381671314dd68e323e62a83226f}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibintIntegrals@{calculateLibintIntegrals}}
+\index{calculateLibintIntegrals@{calculateLibintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibintIntegrals()}{calculateLibintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$double$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libint\+Integrals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{fq\+\_\+two\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given (first-\/quantized) two-\/electron operator, within a given scalar basis, using Libint2.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+two\+\_\+op} & the first-\/quantized operator \\
+\hline
+{\em scalar\+\_\+basis} & the scalar basis that contains the shells over which the integrals should be calculated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the matrix representation (integrals) of the given first-\/quantized operator in this scalar basis 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_ad0b15cb4f0dd307f1a946792384673f2}\label{class_g_q_c_p_1_1_integral_calculator_ad0b15cb4f0dd307f1a946792384673f2}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibintIntegrals@{calculateLibintIntegrals}}
+\index{calculateLibintIntegrals@{calculateLibintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibintIntegrals()}{calculateLibintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily static std\+::array$<$\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$double$>$, 3$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libint\+Integrals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{fq\+\_\+one\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{left\+\_\+scalar\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{right\+\_\+scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given (first-\/quantized) one-\/electron operator, over a left and right scalar basis, using Libint2.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & the first-\/quantized one-\/electron operator \\
+\hline
+{\em left\+\_\+scalar\+\_\+basis} & the scalar basis that contains the shells that should appear to the left of the operator \\
+\hline
+{\em right\+\_\+scalar\+\_\+basis} & the scalar basis that contains the shells that should appear to the right of the operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the matrix representation (integrals) of the given first-\/quantized operator in this scalar basis 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_a5bf2580e445a1a802155e0ba352a5a4e}\label{class_g_q_c_p_1_1_integral_calculator_a5bf2580e445a1a802155e0ba352a5a4e}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibintIntegrals@{calculateLibintIntegrals}}
+\index{calculateLibintIntegrals@{calculateLibintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibintIntegrals()}{calculateLibintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily static std\+::array$<$\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$, 3$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libint\+Integrals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{fq\+\_\+one\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given (first-\/quantized) one-\/electron operator, within a given scalar basis, using Libint2.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & the first-\/quantized one-\/electron operator \\
+\hline
+{\em scalar\+\_\+basis} & the scalar basis that contains the shells over which the integrals should be calculated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the matrix representation (integrals) of the given first-\/quantized operator in this scalar basis 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_a22ede51fbb3db63443ccfc14bee0a049}\label{class_g_q_c_p_1_1_integral_calculator_a22ede51fbb3db63443ccfc14bee0a049}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibintIntegrals@{calculateLibintIntegrals}}
+\index{calculateLibintIntegrals@{calculateLibintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibintIntegrals()}{calculateLibintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename F\+Q\+One\+Electron\+Operator $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$double$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libint\+Integrals (\begin{DoxyParamCaption}\item[{const F\+Q\+One\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{left\+\_\+scalar\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{right\+\_\+scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given (first-\/quantized) one-\/electron operator, over a left and right scalar basis, using Libint2.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & the first-\/quantized one-\/electron operator \\
+\hline
+{\em left\+\_\+scalar\+\_\+basis} & the scalar basis that contains the shells that appear to the left of the operator \\
+\hline
+{\em right\+\_\+scalar\+\_\+basis} & the scalar basis that contains the shell sets that appear to the right of the operator over which the integrals should be calculated\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em F\+Q\+One\+Electron\+Operator} & the type of the first-\/quantized one-\/electron operator\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the matrix representation (integrals) of the given first-\/quantized operator in this scalar basis 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_calculator_a7bd1eea9e12d51c8212b2d5fdaa0df40}\label{class_g_q_c_p_1_1_integral_calculator_a7bd1eea9e12d51c8212b2d5fdaa0df40}} 
+\index{GQCP::IntegralCalculator@{GQCP::IntegralCalculator}!calculateLibintIntegrals@{calculateLibintIntegrals}}
+\index{calculateLibintIntegrals@{calculateLibintIntegrals}!GQCP::IntegralCalculator@{GQCP::IntegralCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLibintIntegrals()}{calculateLibintIntegrals()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename F\+Q\+One\+Electron\+Operator $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$ G\+Q\+C\+P\+::\+Integral\+Calculator\+::calculate\+Libint\+Integrals (\begin{DoxyParamCaption}\item[{const F\+Q\+One\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the integrals over the given (first-\/quantized) one-\/electron operator, within a given scalar basis, using Libint2.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & the first-\/quantized one-\/electron operator \\
+\hline
+{\em scalar\+\_\+basis} & the scalar basis that contains the shells over which the integrals should be calculated\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em F\+Q\+One\+Electron\+Operator} & the type of the first-\/quantized one-\/electron operator\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the matrix representation (integrals) of the given first-\/quantized operator in this scalar basis 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_integral_calculator_8hpp}{Integral\+Calculator.\+hpp}}\end{DoxyCompactItemize}

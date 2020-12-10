@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_fa8552c11c546e886dd0ab624ab9fd09" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson</compoundname>
+    <innerfile refid="_correction_vector_calculation_8hpp">CorrectionVectorCalculation.hpp</innerfile>
+    <innerfile refid="_davidson_solver_8hpp">DavidsonSolver.hpp</innerfile>
+    <innerfile refid="_guess_vector_update_8hpp">GuessVectorUpdate.hpp</innerfile>
+    <innerfile refid="_matrix_vector_product_calculation_8hpp">MatrixVectorProductCalculation.hpp</innerfile>
+    <innerfile refid="_residual_vector_calculation_8hpp">ResidualVectorCalculation.hpp</innerfile>
+    <innerfile refid="_residual_vector_convergence_8hpp">ResidualVectorConvergence.hpp</innerfile>
+    <innerfile refid="_subspace_matrix_calculation_8hpp">SubspaceMatrixCalculation.hpp</innerfile>
+    <innerfile refid="_subspace_matrix_diagonalization_8hpp">SubspaceMatrixDiagonalization.hpp</innerfile>
+    <innerfile refid="_subspace_update_8hpp">SubspaceUpdate.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/"/>
+  </compounddef>
+</doxygen>

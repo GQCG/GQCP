@@ -1,0 +1,527 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_g_t_o_shell" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::GTOShell</compoundname>
+    <includes refid="_g_t_o_shell_8hpp" local="no">GTOShell.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref></type>
+        <definition>using GQCP::GTOShell::Primitive =  CartesianGTO</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_t_o_shell_1a1ac10edf713233c0b91fffe522d2c016" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" kindref="member">Primitive</ref> &gt;</type>
+        <definition>using GQCP::GTOShell::BasisFunction =  LinearCombination&lt;double, Primitive&gt;</definition>
+        <argsstring></argsstring>
+        <name>BasisFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_shell_1aa81ba815852b3576719f12a51d2bf43d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool GQCP::GTOShell::pure</definition>
+        <argsstring></argsstring>
+        <name>pure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="34" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_shell_1a3e4e58650d10b6204d1f6fb861096b78" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool GQCP::GTOShell::embedded_normalization_factors_of_primitives</definition>
+        <argsstring></argsstring>
+        <name>embedded_normalization_factors_of_primitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="35" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_shell_1a49c642d1c0b954950f5a5bee4e0ec876" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool GQCP::GTOShell::normalized</definition>
+        <argsstring></argsstring>
+        <name>normalized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="36" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_shell_1a4fdcf10add2a1be939adea176066ba8d" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::GTOShell::l</definition>
+        <argsstring></argsstring>
+        <name>l</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="37" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_shell_1ae0a8c4185ae68d7f6670860a92d1d4ce" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref></type>
+        <definition>Nucleus GQCP::GTOShell::m_nucleus</definition>
+        <argsstring></argsstring>
+        <name>m_nucleus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="38" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_shell_1a712930ee574c6d821a9c8b63e0a622e3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; GQCP::GTOShell::gaussian_exponents</definition>
+        <argsstring></argsstring>
+        <name>gaussian_exponents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="39" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_shell_1ac23e1f9e908ef4925dc1d75ca3c0d608" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; GQCP::GTOShell::contraction_coefficients</definition>
+        <argsstring></argsstring>
+        <name>contraction_coefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="40" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a2292c8cc28d1ce4c67feeafd59419fdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GTOShell::GTOShell</definition>
+        <argsstring>(const size_t l, const Nucleus &amp;nucleus, const std::vector&lt; double &gt; &amp;gaussian_exponents, const std::vector&lt; double &gt; &amp;contraction_coefficients, const bool pure=true, const bool are_embedded_normalization_factors_of_primitives=false, const bool is_normalized=false)</argsstring>
+        <name>GTOShell</name>
+        <param>
+          <type>const size_t</type>
+          <declname>l</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;</type>
+          <declname>nucleus</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>gaussian_exponents</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>contraction_coefficients</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>pure</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>are_embedded_normalization_factors_of_primitives</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>is_normalized</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the angular momentum of the shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nucleus</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nucleus on which the shell is centered </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gaussian_exponents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Gaussian exponents, which are shared for every contraction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>contraction_coefficients</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the contraction coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pure</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether the shell is considered to be spherical or not </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>are_embedded_normalization_factors_of_primitives</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the normalization factors of the primitives are embedded in the contraction coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_normalized</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the total normalization factor is already embedded in the contraction coefficients </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="42" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1ad5f78828a70e65cdd0ef90d2d25b4c9b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::GTOShell::operator==</definition>
+        <argsstring>(const GTOShell &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the operator ==</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if this shell is considered equal to the other </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>A functor to compare two doubles with respect to a tolerance</para>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="68" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="66" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a419bc8549c549852e547bb6d0082b4e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::GTOShell::angularMomentum</definition>
+        <argsstring>() const</argsstring>
+        <name>angularMomentum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the angular momentum of the shell </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="76" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a21b058e3e2a3c7a16a67424a99441dea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::GTOShell::areEmbeddedNormalizationFactorsOfPrimitives</definition>
+        <argsstring>() const</argsstring>
+        <name>areEmbeddedNormalizationFactorsOfPrimitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>if the normalization factors of the primitives are embedded in the contraction coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="81" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a0db42a0151f6bb8e795bcda50e382f04" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell_1a1ac10edf713233c0b91fffe522d2c016" kindref="member">BasisFunction</ref> &gt;</type>
+        <definition>std::vector&lt; GTOShell::BasisFunction &gt; GQCP::GTOShell::basisFunctions</definition>
+        <argsstring>() const</argsstring>
+        <name>basisFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the basis functions that correspond to this shell</para>
+</simplesect>
+<simplesect kind="note"><para>The basis functions are ordered lexicographically. This means x &lt; y &lt; z. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="88" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="104" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a0864f2be6548735b5159279cec91040e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; double &gt; &amp;</type>
+        <definition>const std::vector&lt;double&gt;&amp; GQCP::GTOShell::contractionCoefficients</definition>
+        <argsstring>() const</argsstring>
+        <name>contractionCoefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the contraction coefficients for this shell </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="93" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1ac945f289cce4138b4873d430dfd618cf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::GTOShell::contractionSize</definition>
+        <argsstring>() const</argsstring>
+        <name>contractionSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size of the contraction in the shell, i.e. the number of primitives contracted in this shell </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="98" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a0aecb2b5033d5a0b9e98675653c12247" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::GTOShell::embedNormalizationFactor</definition>
+        <argsstring>()</argsstring>
+        <name>embedNormalizationFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="103" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="145" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a47ebbf9f1aac815702d5938ca6f9e365" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::GTOShell::embedNormalizationFactorsOfPrimitives</definition>
+        <argsstring>()</argsstring>
+        <name>embedNormalizationFactorsOfPrimitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.</para>
+<para><simplesect kind="note"><para>The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="110" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="178" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1af257cc213dd0b96d9a6066a89965bb80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; double &gt; &amp;</type>
+        <definition>const std::vector&lt;double&gt;&amp; GQCP::GTOShell::gaussianExponents</definition>
+        <argsstring>() const</argsstring>
+        <name>gaussianExponents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the Gaussian exponents (i.e. for the exponential) for this shell, shared for every contraction </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="115" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a8c0d37e6c7b8c7319fe798dead778e9a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &gt;</type>
+        <definition>std::vector&lt; CartesianExponents &gt; GQCP::GTOShell::generateCartesianExponents</definition>
+        <argsstring>() const</argsstring>
+        <name>generateCartesianExponents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a list of the Cartesian exponents that have this shell&apos;s angular momentum (in lexicographical ordering). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="120" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="193" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1aa95304b56426c18130e6c9acd631d504" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::GTOShell::isNormalized</definition>
+        <argsstring>() const</argsstring>
+        <name>isNormalized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>if the total normalization factor is already embedded in the contraction coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="125" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a23910e5dc46191232064db59d842bb03" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::GTOShell::isPure</definition>
+        <argsstring>() const</argsstring>
+        <name>isPure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if the GTO shell is spherical, false if it is Cartesian </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="130" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a2dda3f01e7039d0fc6389a0e0fe9cc24" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;</type>
+        <definition>const Nucleus&amp; GQCP::GTOShell::nucleus</definition>
+        <argsstring>() const</argsstring>
+        <name>nucleus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The nucleus on which the shell is centered. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="135" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a0e0e16ddc671dcbe8a9fa94ec0a92aa3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::GTOShell::numberOfBasisFunctions</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfBasisFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of basis functions that are in this shell </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="140" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="216" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1aaf323771b52c1629c145f556ac0b5df8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::GTOShell::unEmbedNormalizationFactorsOfPrimitives</definition>
+        <argsstring>()</argsstring>
+        <name>unEmbedNormalizationFactorsOfPrimitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.</para>
+<para><simplesect kind="note"><para>The the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="147" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="231" bodyend="240"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::GTOShell</label>
+        <link refid="class_g_q_c_p_1_1_g_t_o_shell"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="32" bodyend="148"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a419bc8549c549852e547bb6d0082b4e2" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>angularMomentum</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a21b058e3e2a3c7a16a67424a99441dea" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>areEmbeddedNormalizationFactorsOfPrimitives</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a1ac10edf713233c0b91fffe522d2c016" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>BasisFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a0db42a0151f6bb8e795bcda50e382f04" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>basisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1ac23e1f9e908ef4925dc1d75ca3c0d608" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>contraction_coefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a0864f2be6548735b5159279cec91040e" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>contractionCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1ac945f289cce4138b4873d430dfd618cf" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>contractionSize</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a3e4e58650d10b6204d1f6fb861096b78" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>embedded_normalization_factors_of_primitives</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a0aecb2b5033d5a0b9e98675653c12247" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>embedNormalizationFactor</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a47ebbf9f1aac815702d5938ca6f9e365" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>embedNormalizationFactorsOfPrimitives</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a712930ee574c6d821a9c8b63e0a622e3" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>gaussian_exponents</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1af257cc213dd0b96d9a6066a89965bb80" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>gaussianExponents</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a8c0d37e6c7b8c7319fe798dead778e9a" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>generateCartesianExponents</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a2292c8cc28d1ce4c67feeafd59419fdc" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>GTOShell</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1aa95304b56426c18130e6c9acd631d504" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>isNormalized</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a23910e5dc46191232064db59d842bb03" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>isPure</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a4fdcf10add2a1be939adea176066ba8d" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>l</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1ae0a8c4185ae68d7f6670860a92d1d4ce" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>m_nucleus</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a49c642d1c0b954950f5a5bee4e0ec876" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>normalized</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a2dda3f01e7039d0fc6389a0e0fe9cc24" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>nucleus</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a0e0e16ddc671dcbe8a9fa94ec0a92aa3" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>numberOfBasisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1ad5f78828a70e65cdd0ef90d2d25b4c9b" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>operator==</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>Primitive</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1aa81ba815852b3576719f12a51d2bf43d" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>pure</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1aaf323771b52c1629c145f556ac0b5df8" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>unEmbedNormalizationFactorsOfPrimitives</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

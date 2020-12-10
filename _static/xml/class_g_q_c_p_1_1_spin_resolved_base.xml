@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_spin_resolved_base" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SpinResolvedBase</compoundname>
+    <includes refid="_spin_resolved_base_8hpp" local="no">SpinResolvedBase.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Of</type>
+      </param>
+      <param>
+        <type>typename _Derived</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" static="no">
+        <type>_Of</type>
+        <definition>using GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::Of =  _Of</definition>
+        <argsstring></argsstring>
+        <name>Of</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" static="no">
+        <type>_Derived</type>
+        <definition>using GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::Derived =  _Derived</definition>
+        <argsstring></argsstring>
+        <name>Derived</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved_base_1ac2ecb42d733bb8ddf78fdb011855dcdc" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref>, <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" kindref="member">Derived</ref> &gt;</type>
+        <definition>using GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::Self =  SpinResolvedBase&lt;Of, Derived&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_spin_resolved_base_1a98c23922046112f5125834a5339449f6" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
+        <definition>Of GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::m_alpha</definition>
+        <argsstring></argsstring>
+        <name>m_alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="51" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_spin_resolved_base_1a3ee39f03838c02817ae4cd023006c822" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
+        <definition>Of GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::m_beta</definition>
+        <argsstring></argsstring>
+        <name>m_beta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="54" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::SpinResolvedBase</definition>
+        <argsstring>(const Of &amp;alpha, const Of &amp;beta)</argsstring>
+        <name>SpinResolvedBase</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+          <declname>alpha</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a spin-resolved instance from its alpha and beta objects.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The alpha-object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The beta-object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="68" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="68" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::SpinResolvedBase</definition>
+        <argsstring>(const std::vector&lt; Of &gt; &amp;both)</argsstring>
+        <name>SpinResolvedBase</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &gt; &amp;</type>
+          <declname>both</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a spin-resolved instance from a vector containing its alpha and beta objects.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>both</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing both alpha and beta objects (in that order). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="78" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::SpinResolvedBase</definition>
+        <argsstring>(const std::array&lt; Of, 2 &gt; &amp;both)</argsstring>
+        <name>SpinResolvedBase</name>
+        <param>
+          <type>const std::array&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref>, 2 &gt; &amp;</type>
+          <declname>both</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a spin-resolved instance from an array containing its alpha and beta objects.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>both</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array containing both alpha and beta objects (in that order). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="92" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="92" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::SpinResolvedBase</definition>
+        <argsstring>(const std::initializer_list&lt; Of &gt; &amp;both)</argsstring>
+        <name>SpinResolvedBase</name>
+        <param>
+          <type>const std::initializer_list&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &gt; &amp;</type>
+          <declname>both</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a spin-resolved instance from an initializer list containing its alpha and beta objects.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>both</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An initializer list containing both alpha and beta objects (in that order). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="101" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="101" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+        <definition>const Of&amp; GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::alpha</definition>
+        <argsstring>() const</argsstring>
+        <name>alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the alpha object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="128" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="128" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+        <definition>Of&amp; GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::alpha</definition>
+        <argsstring>()</argsstring>
+        <name>alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the alpha object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="133" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+        <definition>const Of&amp; GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::beta</definition>
+        <argsstring>() const</argsstring>
+        <name>beta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the beta object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="138" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+        <definition>Of&amp; GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::beta</definition>
+        <argsstring>()</argsstring>
+        <name>beta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the beta object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="143" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="143" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+        <definition>const Of&amp; GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::component</definition>
+        <argsstring>(const Spin sigma) const</argsstring>
+        <name>component</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access the alpha or beta component of this spin-resolved instance.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha or beta.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A read-only reference to the alpha or beta object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="152" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="152" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+        <definition>Of&amp; GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::component</definition>
+        <argsstring>(const Spin sigma)</argsstring>
+        <name>component</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access the alpha or beta component of this spin-resolved type.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha or beta.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A writable reference to the alpha or beta object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="174" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="174" bodyend="174"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" kindref="member">Derived</ref></type>
+        <definition>static Derived GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;::FromEqual</definition>
+        <argsstring>(const Of &amp;equal)</argsstring>
+        <name>FromEqual</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
+          <declname>equal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a derived (spin-resolved) instance, from equal alpha and beta representations.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>equal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equal representation for both the alpha and beta objects.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The derived (spin-resolved) type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="116" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="116" bodyend="118"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A utility type encapsulating an alpha- and beta-type. In contrast to <computeroutput><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref></computeroutput>, this type is to be used as a base class/interface for types that are spin-resolved.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_Of</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the alpha- and beta-objects. The name &apos;Of&apos; is chosen for a natural reading <computeroutput><ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt;_Of, _Derived&gt;</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Derived</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type that derives from this type, given as a template argument, enabling <ref refid="class_g_q_c_p_1_1_c_r_t_p" kindref="compound">CRTP</ref> and compile-time polymorphism. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="37" bodyend="175"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>FromEqual</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a98c23922046112f5125834a5339449f6" prot="private" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>m_alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a3ee39f03838c02817ae4cd023006c822" prot="private" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>m_beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>Of</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac2ecb42d733bb8ddf78fdb011855dcdc" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>SpinResolvedBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

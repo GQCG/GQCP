@@ -1,0 +1,144 @@
+\hypertarget{class_g_q_c_p_1_1_simple1_d_m}{}\doxysection{G\+Q\+CP\+::Simple1\+DM$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_simple1_d_m}\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+
+
+{\ttfamily \#include $<$Simple1\+D\+M.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Simple1\+DM$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_simple1_d_m__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Simple1\+DM$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_simple1_d_m__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} = \+\_\+\+Derived\+DM
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a758c8b8f0d87ca20b2e212140b8e201f}{Self}} = \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{Simple1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_density_matrix_traits}{Density\+Matrix\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}{Transformation}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a4119731fc8031d5bcaecba3db59297bb}{number\+Of\+Orbitals}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}{Transformation}} \&T) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a6acb767fddd8829ddfd34a3dc5980d2e}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&jacobi\+\_\+rotation) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Derived\+DM$>$\newline
+class G\+Q\+C\+P\+::\+Simple1\+D\+M$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+D\+M $>$}
+
+A one-\/electron density matrix that is described by a single matrix.
+
+This class is used as a base class for {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}} and {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g1_d_m}{G1\+DM}}}, since they are both expressed using a single matrix, as opposed to {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}}, which uses separate alpha-\/ and beta-\/ matrices. The word \textquotesingle{}simple\textquotesingle{} is used here as an antonym for \textquotesingle{}compound\textquotesingle{}.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type used for a density matrix element\+: real or complex. \\
+\hline
+{\em \+\_\+\+Derived\+DM} & The type of the density matrix that derives from this class, enabling \mbox{\hyperlink{class_g_q_c_p_1_1_c_r_t_p}{C\+R\+TP}} and compile-\/time polymorphism. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}\label{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!DerivedDM@{DerivedDM}}
+\index{DerivedDM@{DerivedDM}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{DerivedDM}{DerivedDM}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} =  \+\_\+\+Derived\+DM}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}\label{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} =  \+\_\+\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a758c8b8f0d87ca20b2e212140b8e201f}\label{class_g_q_c_p_1_1_simple1_d_m_a758c8b8f0d87ca20b2e212140b8e201f}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!Self@{Self}}
+\index{Self@{Self}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{Self}{Self}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a758c8b8f0d87ca20b2e212140b8e201f}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{Simple1\+DM}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}\label{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}{Transformation}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_density_matrix_traits}{Density\+Matrix\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}{Transformation}}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a4119731fc8031d5bcaecba3db59297bb}\label{class_g_q_c_p_1_1_simple1_d_m_a4119731fc8031d5bcaecba3db59297bb}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!numberOfOrbitals@{numberOfOrbitals}}
+\index{numberOfOrbitals@{numberOfOrbitals}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfOrbitals()}{numberOfOrbitals()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::number\+Of\+Orbitals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a6acb767fddd8829ddfd34a3dc5980d2e}\label{class_g_q_c_p_1_1_simple1_d_m_a6acb767fddd8829ddfd34a3dc5980d2e}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!rotated@{rotated}}
+\index{rotated@{rotated}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{rotated()}{rotated()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::rotated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&}]{jacobi\+\_\+rotation }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the Jacobi rotation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em jacobi\+\_\+rotation} & The Jacobi rotation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Jacobi-\/transformed object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}\label{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!transformed@{transformed}}
+\index{transformed@{transformed}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{transformed()}{transformed()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the basis transformation and return the resulting 1-\/DM.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The basis transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The basis-\/transformed 1-\/DM. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Density\+Matrix/\mbox{\hyperlink{_simple1_d_m_8hpp}{Simple1\+D\+M.\+hpp}}\end{DoxyCompactItemize}

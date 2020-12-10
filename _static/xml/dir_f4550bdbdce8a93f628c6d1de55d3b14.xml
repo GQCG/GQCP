@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_f4550bdbdce8a93f628c6d1de55d3b14" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals</compoundname>
+    <innerfile refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp">AP1roG.hpp</innerfile>
+    <innerfile refid="_a_p1ro_g_geminal_coefficients_8hpp">AP1roGGeminalCoefficients.hpp</innerfile>
+    <innerfile refid="_a_p_i_g_geminal_coefficients_8hpp">APIGGeminalCoefficients.hpp</innerfile>
+    <innerfile refid="_geminal_coefficients_interface_8hpp">GeminalCoefficientsInterface.hpp</innerfile>
+    <innerfile refid="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp">vAP1roG.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/"/>
+  </compounddef>
+</doxygen>

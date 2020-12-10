@@ -1,0 +1,101 @@
+\hypertarget{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine}{}\doxysection{G\+Q\+CP\+::Primitive\+Cartesian\+Operator\+Integral\+Engine Class Reference}
+\label{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine}\index{GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}}
+
+
+{\ttfamily \#include $<$Primitive\+Cartesian\+Operator\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Primitive\+Cartesian\+Operator\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Primitive\+Cartesian\+Operator\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a5ae4f80cc95067e1919a1d7336d46d42}{Primitive\+Cartesian\+Operator\+Integral\+Engine}} (const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a7d77d8c96bbaf6ecf9e4b4873b06a264}{component}}=Cartesian\+Direction\+::x)
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a14f348eef8b2b49487a42b887b407334}{$\sim$\+Primitive\+Cartesian\+Operator\+Integral\+Engine}} ()=0
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_abc3fd20e83b16565852112d4594c7ba8}{prepare\+State\+For\+Component}} (const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a7d77d8c96bbaf6ecf9e4b4873b06a264}{component}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a7d77d8c96bbaf6ecf9e4b4873b06a264}{component}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A base class for integral engines over a Cartesian operator, i.\+e. an operator with three vector components (x, y, z). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a5ae4f80cc95067e1919a1d7336d46d42}\label{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a5ae4f80cc95067e1919a1d7336d46d42}} 
+\index{GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}!PrimitiveCartesianOperatorIntegralEngine@{PrimitiveCartesianOperatorIntegralEngine}}
+\index{PrimitiveCartesianOperatorIntegralEngine@{PrimitiveCartesianOperatorIntegralEngine}!GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{PrimitiveCartesianOperatorIntegralEngine()}{PrimitiveCartesianOperatorIntegralEngine()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Primitive\+Cartesian\+Operator\+Integral\+Engine\+::\+Primitive\+Cartesian\+Operator\+Integral\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{component = {\ttfamily CartesianDirection\+:\+:x} }\end{DoxyParamCaption})}
+
+Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine}{Primitive\+Cartesian\+Operator\+Integral\+Engine}} from its members.
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & the initial component of the Cartesian operator this engine should calculate integrals over\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The primitive engine\textquotesingle{}s state may be changed through the prepare\+State\+For\+Component method. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a14f348eef8b2b49487a42b887b407334}\label{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a14f348eef8b2b49487a42b887b407334}} 
+\index{GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}!````~PrimitiveCartesianOperatorIntegralEngine@{$\sim$PrimitiveCartesianOperatorIntegralEngine}}
+\index{````~PrimitiveCartesianOperatorIntegralEngine@{$\sim$PrimitiveCartesianOperatorIntegralEngine}!GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{$\sim$PrimitiveCartesianOperatorIntegralEngine()}{~PrimitiveCartesianOperatorIntegralEngine()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Primitive\+Cartesian\+Operator\+Integral\+Engine\+::$\sim$\+Primitive\+Cartesian\+Operator\+Integral\+Engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+A pure virtual destructor in order to make this class abstract.
+
+A pure virtual destructor should have an empty body. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_abc3fd20e83b16565852112d4594c7ba8}\label{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_abc3fd20e83b16565852112d4594c7ba8}} 
+\index{GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}!prepareStateForComponent@{prepareStateForComponent}}
+\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{prepareStateForComponent()}{prepareStateForComponent()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Primitive\+Cartesian\+Operator\+Integral\+Engine\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})}
+
+Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & the index of the component of the operator \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a7d77d8c96bbaf6ecf9e4b4873b06a264}\label{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a7d77d8c96bbaf6ecf9e4b4873b06a264}} 
+\index{GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}!component@{component}}
+\index{component@{component}!GQCP::PrimitiveCartesianOperatorIntegralEngine@{GQCP::PrimitiveCartesianOperatorIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{component}{component}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} G\+Q\+C\+P\+::\+Primitive\+Cartesian\+Operator\+Integral\+Engine\+::component\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_cartesian_operator_integral_engine_8hpp}{Primitive\+Cartesian\+Operator\+Integral\+Engine.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_cartesian_operator_integral_engine_8cpp}{Primitive\+Cartesian\+Operator\+Integral\+Engine.\+cpp}}\end{DoxyCompactItemize}

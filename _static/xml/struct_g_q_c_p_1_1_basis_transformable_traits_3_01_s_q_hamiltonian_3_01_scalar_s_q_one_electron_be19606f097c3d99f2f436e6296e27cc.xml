@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::BasisTransformableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</compoundname>
+    <includes refid="_s_q_hamiltonian_8hpp" local="no">SQHamiltonian.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename ScalarSQOneElectronOperator</type>
+      </param>
+      <param>
+        <type>typename ScalarSQTwoElectronOperator</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc_1a4e48bd0a1d67d7a010a3524bac709f9c" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; ScalarSQOneElectronOperator &gt;::<ref refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc_1a4e48bd0a1d67d7a010a3524bac709f9c" kindref="member">Transformation</ref></type>
+        <definition>using GQCP::BasisTransformableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;::Transformation =  typename OperatorTraits&lt;ScalarSQOneElectronOperator&gt;::Transformation</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="782" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="782" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_basis_transformable" kindref="compound">BasisTransformable</ref></computeroutput>. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BasisTransformableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="779" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="779" bodyend="783"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc_1a4e48bd0a1d67d7a010a3524bac709f9c" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</scope><name>Transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

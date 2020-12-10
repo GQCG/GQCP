@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::JacobiRotatableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</compoundname>
+    <includes refid="_spin_resolved2_d_m_8hpp" local="no">SpinResolved2DM.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4_1a89cd42daba7ed9fe5ca586978a7b0e90" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_jacobi_rotation" kindref="compound">UJacobiRotation</ref></type>
+        <definition>using GQCP::JacobiRotatableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;::JacobiRotationType =  UJacobiRotation</definition>
+        <argsstring></argsstring>
+        <name>JacobiRotationType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="140" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_jacobi_rotatable" kindref="compound">JacobiRotatable</ref></computeroutput>. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::JacobiRotatableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="137" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="137" bodyend="141"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4_1a89cd42daba7ed9fe5ca586978a7b0e90" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</scope><name>JacobiRotationType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1_q_c_model" kind="namespace" language="C++">
+    <compoundname>GQCP::QCModel</compoundname>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" prot="public">GQCP::QCModel::AP1roG</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" prot="public">GQCP::QCModel::CCD</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d" prot="public">GQCP::QCModel::CCSD</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f" prot="public">GQCP::QCModel::GHF</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" prot="public">GQCP::QCModel::RHF</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" prot="public">GQCP::QCModel::UHF</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g" prot="public">GQCP::QCModel::vAP1roG</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="27" column="1"/>
+  </compounddef>
+</doxygen>

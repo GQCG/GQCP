@@ -1,0 +1,143 @@
+\hypertarget{class_g_q_c_p_1_1_one_electron_integral_engine}{}\doxysection{G\+Q\+CP\+::One\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_one_electron_integral_engine}\index{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+
+
+{\ttfamily \#include $<$One\+Electron\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::One\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_one_electron_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::One\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_one_electron_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a73f5ac982a764301fc88ded6f35d7abc}{Primitive\+Integral\+Engine}} = \+\_\+\+Primitive\+Integral\+Engine
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}{Shell}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a3d835dc7e567158ae8ed14f2e89bf742}{Integral\+Scalar}} = typename \+\_\+\+Primitive\+Integral\+Engine\+::\+Integral\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_add86ed808aeab5fd10dd12beca8c2564}{One\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a73f5ac982a764301fc88ded6f35d7abc}{Primitive\+Integral\+Engine}} \&primitive\+\_\+engine)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a3d835dc7e567158ae8ed14f2e89bf742}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a1bac3c2b4884506c6b3f3dbad3e00cc1}{N}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ae4d0cafa515f1537853318284e813a93}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}{Shell}} \&shell1, const \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}{Shell}} \&shell2) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a1bac3c2b4884506c6b3f3dbad3e00cc1}{N}} = \+\_\+\+Primitive\+Integral\+Engine\+::\+Components
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Primitive\+Integral\+Engine$>$\newline
+class G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$}
+
+An integral engine that can calculate one-\/electron integrals over shells.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Primitive\+Integral\+Engine} & the type of integral engine that is used for calculating integrals over primitives \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_one_electron_integral_engine_a3d835dc7e567158ae8ed14f2e89bf742}\label{class_g_q_c_p_1_1_one_electron_integral_engine_a3d835dc7e567158ae8ed14f2e89bf742}} 
+\index{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a3d835dc7e567158ae8ed14f2e89bf742}{Integral\+Scalar}} =  typename \+\_\+\+Primitive\+Integral\+Engine\+::\+Integral\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_one_electron_integral_engine_a73f5ac982a764301fc88ded6f35d7abc}\label{class_g_q_c_p_1_1_one_electron_integral_engine_a73f5ac982a764301fc88ded6f35d7abc}} 
+\index{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!PrimitiveIntegralEngine@{PrimitiveIntegralEngine}}
+\index{PrimitiveIntegralEngine@{PrimitiveIntegralEngine}!GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{PrimitiveIntegralEngine}{PrimitiveIntegralEngine}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a73f5ac982a764301fc88ded6f35d7abc}{Primitive\+Integral\+Engine}} =  \+\_\+\+Primitive\+Integral\+Engine}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}\label{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}} 
+\index{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}{Shell}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_one_electron_integral_engine_add86ed808aeab5fd10dd12beca8c2564}\label{class_g_q_c_p_1_1_one_electron_integral_engine_add86ed808aeab5fd10dd12beca8c2564}} 
+\index{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!OneElectronIntegralEngine@{OneElectronIntegralEngine}}
+\index{OneElectronIntegralEngine@{OneElectronIntegralEngine}!GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{OneElectronIntegralEngine()}{OneElectronIntegralEngine()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a73f5ac982a764301fc88ded6f35d7abc}{Primitive\+Integral\+Engine}} \&}]{primitive\+\_\+engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em primitive\+\_\+engine} & the integral engine that is used for calculating integrals over primitives \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_one_electron_integral_engine_ae4d0cafa515f1537853318284e813a93}\label{class_g_q_c_p_1_1_one_electron_integral_engine_ae4d0cafa515f1537853318284e813a93}} 
+\index{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a3d835dc7e567158ae8ed14f2e89bf742}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_a1bac3c2b4884506c6b3f3dbad3e00cc1}{N}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}{Shell}} \&}]{shell1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ab7bc4e39ef38970b668e1fd0dc5348c2}{Shell}} \&}]{shell2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate all the overlap integrals over the given shells.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shell1} & the first shell \\
+\hline
+{\em shell2} & the second shell\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This method is not marked const to allow the Engine\textquotesingle{}s internals to be changed
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+a buffer containing the calculated integrals 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine$<$ G\+T\+O\+Shell, \+\_\+\+Primitive\+Integral\+Engine\+::\+Components, \+\_\+\+Primitive\+Integral\+Engine\+::\+Integral\+Scalar $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_one_electron_integral_engine_a1bac3c2b4884506c6b3f3dbad3e00cc1}\label{class_g_q_c_p_1_1_one_electron_integral_engine_a1bac3c2b4884506c6b3f3dbad3e00cc1}} 
+\index{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!N@{N}}
+\index{N@{N}!GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::OneElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::N = \+\_\+\+Primitive\+Integral\+Engine\+::\+Components\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_one_electron_integral_engine_8hpp}{One\+Electron\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

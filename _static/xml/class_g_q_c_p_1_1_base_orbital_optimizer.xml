@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_orbital_optimizer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseOrbitalOptimizer</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" prot="public" virt="non-virtual">GQCP::JacobiOrbitalOptimizer</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::NewtonOrbitalOptimizer</derivedcompoundref>
+    <includes refid="_base_orbital_optimizer_8hpp" local="no">BaseOrbitalOptimizer.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool GQCP::BaseOrbitalOptimizer::is_converged</definition>
+        <argsstring></argsstring>
+        <name>is_converged</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="34" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::BaseOrbitalOptimizer::convergence_threshold</definition>
+        <argsstring></argsstring>
+        <name>convergence_threshold</name>
+        <initializer>= 1.0e-08</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::BaseOrbitalOptimizer::maximum_number_of_iterations</definition>
+        <argsstring></argsstring>
+        <name>maximum_number_of_iterations</name>
+        <initializer>= 128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::BaseOrbitalOptimizer::number_of_iterations</definition>
+        <argsstring></argsstring>
+        <name>number_of_iterations</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="37" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::BaseOrbitalOptimizer::BaseOrbitalOptimizer</definition>
+        <argsstring>(const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>BaseOrbitalOptimizer</name>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::BaseOrbitalOptimizer::~BaseOrbitalOptimizer</definition>
+        <argsstring>()=default</argsstring>
+        <name>~BaseOrbitalOptimizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="51" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_orbital_optimizer_1af32721cfe32694b37fd050a608d5a374" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; double &gt;</type>
+        <definition>virtual RTransformation&lt;double&gt; GQCP::BaseOrbitalOptimizer::calculateNewRotationMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const =0</argsstring>
+        <name>calculateNewRotationMatrix</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a7dff6c1818ec2325b7dcf5bdf9451832">calculateNewRotationMatrix</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac7e61168011a697ef30a239b899e06c5">calculateNewRotationMatrix</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="61" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a02599e35214b1c257efb3193c536abf2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool GQCP::BaseOrbitalOptimizer::checkForConvergence</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const =0</argsstring>
+        <name>checkForConvergence</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a613899349c56b102563b2fe8dff886a6">checkForConvergence</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ab0623fc9be4cf9c68821c2ea6d012acd">checkForConvergence</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if the algorithm is considered to be converged </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="68" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a33b25e7711aaa563cc0f4722152fb2b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void GQCP::BaseOrbitalOptimizer::prepareConvergenceChecking</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian)=0</argsstring>
+        <name>prepareConvergenceChecking</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a4ae385438afc93d40d1cbadfa031a48f">prepareConvergenceChecking</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b">prepareConvergenceChecking</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="73" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::BaseOrbitalOptimizer::numberOfIterations</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfIterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of iterations that this optimizer has performed </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="81" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::BaseOrbitalOptimizer::optimize</definition>
+        <argsstring>(RSpinOrbitalBasis&lt; double, GTOShell &gt; &amp;spinor_basis, RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>spinor_basis</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Optimize the Hamiltonian by subsequently<itemizedlist>
+<listitem><para>checking for convergence (see <ref refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a02599e35214b1c257efb3193c536abf2" kindref="member">checkForConvergence()</ref>)</para>
+</listitem><listitem><para>rotating the Hamiltonian (and spinor basis) with a newly found rotation matrix (see <ref refid="class_g_q_c_p_1_1_base_orbital_optimizer_1af32721cfe32694b37fd050a608d5a374" kindref="member">calculateNewRotationMatrix()</ref>)</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial spinor basis that contains the spinors to be optimized </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial (guess for the) Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="91" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp" bodystart="51" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The base class for orbital optimizers. Due to the generality of the nature of the orbital optimization problem, the main algorithm (see solve()) is implemented inside this base class </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>GQCP::NewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::QCMethodNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="6">
+        <label>GQCP::ERNewtonLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_newton_localizer"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::AP1roGJacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::JacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::ERJacobiLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_jacobi_localizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp" bodystart="32" bodyend="92"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" virt="non-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1af32721cfe32694b37fd050a608d5a374" prot="public" virt="pure-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>calculateNewRotationMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a02599e35214b1c257efb3193c536abf2" prot="public" virt="pure-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>checkForConvergence</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" virt="non-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>convergence_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>is_converged</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>maximum_number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>numberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a33b25e7711aaa563cc0f4722152fb2b5" prot="public" virt="pure-virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>prepareConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::BaseOrbitalOptimizer</scope><name>~BaseOrbitalOptimizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

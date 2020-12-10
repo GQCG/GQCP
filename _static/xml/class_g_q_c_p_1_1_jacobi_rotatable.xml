@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_jacobi_rotatable" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::JacobiRotatable</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::DoublySpinResolvedJacobiRotatable&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::SpinResolvedJacobiRotatable&lt; T &gt;</derivedcompoundref>
+    <includes refid="_jacobi_rotatable_8hpp" local="no">JacobiRotatable.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt; T &gt;::<ref refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" kindref="member">JacobiRotationType</ref></type>
+        <definition>using GQCP::JacobiRotatable&lt; T &gt;::JacobiRotationType =  typename JacobiRotatableTraits&lt;T&gt;::JacobiRotationType</definition>
+        <argsstring></argsstring>
+        <name>JacobiRotationType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotatable.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotatable.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>T</type>
+        <definition>virtual T GQCP::JacobiRotatable&lt; T &gt;::rotated</definition>
+        <argsstring>(const JacobiRotationType &amp;jacobi_rotation) const =0</argsstring>
+        <name>rotated</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aceec524481b666ab9f1bcf7465f6a3ad">rotated</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aceec524481b666ab9f1bcf7465f6a3ad">rotated</reimplementedby>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" kindref="member">JacobiRotationType</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the Jacobi rotation and return the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The jacobi-transformed object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotatable.hpp" line="68" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::JacobiRotatable&lt; T &gt;::rotate</definition>
+        <argsstring>(const JacobiRotationType &amp;jacobi_rotation)</argsstring>
+        <name>rotate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" kindref="member">JacobiRotationType</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place apply the Jacobi rotation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotatable.hpp" line="80" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotatable.hpp" bodystart="80" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An (abstract) interface for types that may be transformed from one orbital basis to another, using a Jacobi rotation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type that should be Jacobi-transformable. It is given as a template argument, enabling <ref refid="class_g_q_c_p_1_1_c_r_t_p" kindref="compound">CRTP</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="2">
+        <label>GQCP::DoublySpinResolvedJacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SpinResolvedJacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotatable.hpp" line="50" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotatable.hpp" bodystart="50" bodyend="83"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatable</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatable</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual"><scope>GQCP::JacobiRotatable</scope><name>rotated</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_d14101abff67e2743de1df9a6546494d" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals</compoundname>
+    <innerfile refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp">AP1roG.hpp</innerfile>
+    <innerfile refid="_a_p1ro_g_jacobi_orbital_optimizer_8hpp">AP1roGJacobiOrbitalOptimizer.hpp</innerfile>
+    <innerfile refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp">AP1roGLagrangianNewtonOrbitalOptimizer.hpp</innerfile>
+    <innerfile refid="_p_s_environment_8hpp">PSEnvironment.hpp</innerfile>
+    <innerfile refid="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp">vAP1roG.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/"/>
+  </compounddef>
+</doxygen>

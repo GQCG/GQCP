@@ -1,0 +1,234 @@
+\hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o}{}\doxysection{G\+Q\+CP\+::Cartesian\+G\+TO Class Reference}
+\label{class_g_q_c_p_1_1_cartesian_g_t_o}\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+
+
+{\ttfamily \#include $<$Cartesian\+G\+T\+O.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Cartesian\+G\+TO\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_cartesian_g_t_o__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Cartesian\+G\+TO\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_cartesian_g_t_o__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a0194c2b46fbc9003f41cc2ed5a32e179}{Cartesian\+G\+TO}} (const double gaussian\+\_\+exponent, const \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} \&cartesian\+\_\+exponents, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a0f476bac29a54dc64576169edf3cefe3}{center}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1bf3c912ca8f57b29f6d768b53f4ff31}{Cartesian\+G\+TO}} ()
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ad58879bd9fcc2ebbb6292382548c4d4e}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const override
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1d2981debed95c7be81c1b8380a7e776}{operator==}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} \&other) const
+\item 
+const \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_af66a81bb7e711485be77a82a1521256b}{cartesian\+Exponents}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a78aeebf0fa23d409235f8a5bbba3493c}{calculate\+Position\+Derivative}} (const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} direction) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} $>$, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a390dad269fb60af20306777986049661}{calculate\+Position\+Gradient}} () const
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a0f476bac29a54dc64576169edf3cefe3}{center}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a13b07048f2f30318060dff528cbbad55}{description}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussian\+Exponent}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a91f6a839c472a31e276893eb54693ca5}{normalization\+Factor}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a59333cb8b8aa5cbc9a319195f8b1480f}{calculate\+Normalization\+Factor\+Component}} (const double gaussian\+\_\+exponent, const size\+\_\+t cartesian\+\_\+exponent)
+\item 
+static double \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_aee5504defedb8cf4ad5ed6fc3bc4c357}{calculate\+Normalization\+Factor}} (const double gaussian\+\_\+exponent, const \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} \&cartesian\+\_\+exponents)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A Cartesian Gaussian-\/type orbital (G\+TO), often referred to as a Cartesian \textquotesingle{}primitive\textquotesingle{}.
+
+\begin{DoxyNote}{Note}
+Mathematically speaking, a Cartesian G\+TO is a real-\/valued scalar function taking an Euclidean vector (3D-\/vector) as argument, which is why we inherit from \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{Scalar\+Function}}. 
+
+Calling operator() returns the value of the unnormalized Cartesian Gaussian. 
+
+Contracted G\+T\+Os can be expressed as linear combinations of G\+T\+Os\+: Linear\+Combination$<$\+Cartesian\+G\+T\+O$>$. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a0194c2b46fbc9003f41cc2ed5a32e179}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a0194c2b46fbc9003f41cc2ed5a32e179}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!CartesianGTO@{CartesianGTO}}
+\index{CartesianGTO@{CartesianGTO}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{CartesianGTO()}{CartesianGTO()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::\+Cartesian\+G\+TO (\begin{DoxyParamCaption}\item[{const double}]{gaussian\+\_\+exponent,  }\item[{const \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} \&}]{cartesian\+\_\+exponents,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{center }\end{DoxyParamCaption})}
+
+Construct a Cartesian G\+TO from its members.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gaussian\+\_\+exponent} & the exponent of the exponential \\
+\hline
+{\em cartesian\+\_\+exponents} & the exponents of x, y and z \\
+\hline
+{\em center} & the center of the Cartesian G\+TO \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a1bf3c912ca8f57b29f6d768b53f4ff31}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a1bf3c912ca8f57b29f6d768b53f4ff31}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!CartesianGTO@{CartesianGTO}}
+\index{CartesianGTO@{CartesianGTO}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{CartesianGTO()}{CartesianGTO()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::\+Cartesian\+G\+TO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The default constructor setting everything to zero. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_aee5504defedb8cf4ad5ed6fc3bc4c357}\label{class_g_q_c_p_1_1_cartesian_g_t_o_aee5504defedb8cf4ad5ed6fc3bc4c357}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!calculateNormalizationFactor@{calculateNormalizationFactor}}
+\index{calculateNormalizationFactor@{calculateNormalizationFactor}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{calculateNormalizationFactor()}{calculateNormalizationFactor()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::calculate\+Normalization\+Factor (\begin{DoxyParamCaption}\item[{const double}]{gaussian\+\_\+exponent,  }\item[{const \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} \&}]{cartesian\+\_\+exponents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em gaussian\+\_\+exponent} & the exponent of the G\+TO \\
+\hline
+{\em cartesian\+\_\+exponents} & the exponents of the Cartesian functions x, y, z\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total normalization factor of a Cartesian G\+TO with the given exponents 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a59333cb8b8aa5cbc9a319195f8b1480f}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a59333cb8b8aa5cbc9a319195f8b1480f}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!calculateNormalizationFactorComponent@{calculateNormalizationFactorComponent}}
+\index{calculateNormalizationFactorComponent@{calculateNormalizationFactorComponent}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{calculateNormalizationFactorComponent()}{calculateNormalizationFactorComponent()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::calculate\+Normalization\+Factor\+Component (\begin{DoxyParamCaption}\item[{const double}]{gaussian\+\_\+exponent,  }\item[{const size\+\_\+t}]{cartesian\+\_\+exponent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em gaussian\+\_\+exponent} & the exponent of the G\+TO \\
+\hline
+{\em cartesian\+\_\+exponent} & the exponent of the Cartesian function (x, y, z)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+one of the components (x, y, z) of the total normalization factor of a Cartesian G\+TO with the given exponents 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a78aeebf0fa23d409235f8a5bbba3493c}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a78aeebf0fa23d409235f8a5bbba3493c}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!calculatePositionDerivative@{calculatePositionDerivative}}
+\index{calculatePositionDerivative@{calculatePositionDerivative}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{calculatePositionDerivative()}{calculatePositionDerivative()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} $>$ G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::calculate\+Position\+Derivative (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{direction }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & the Cartesian direction in which the derivative should be calculated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the derivative of this Cartesian G\+TO with respect to the position coordinate in the x-\/, y-\/, or z-\/direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a390dad269fb60af20306777986049661}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a390dad269fb60af20306777986049661}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!calculatePositionGradient@{calculatePositionGradient}}
+\index{calculatePositionGradient@{calculatePositionGradient}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{calculatePositionGradient()}{calculatePositionGradient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} $>$, 3 $>$ G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::calculate\+Position\+Gradient (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the gradient of this Cartesian G\+TO with respect to the position coordinate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_af66a81bb7e711485be77a82a1521256b}\label{class_g_q_c_p_1_1_cartesian_g_t_o_af66a81bb7e711485be77a82a1521256b}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!cartesianExponents@{cartesianExponents}}
+\index{cartesianExponents@{cartesianExponents}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{cartesianExponents()}{cartesianExponents()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}}\& G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::cartesian\+Exponents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the Cartesian exponents for this Cartesian G\+TO 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a0f476bac29a54dc64576169edf3cefe3}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a0f476bac29a54dc64576169edf3cefe3}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!center@{center}}
+\index{center@{center}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{center()}{center()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double, 3$>$\& G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the center of this Cartesian G\+TO 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a13b07048f2f30318060dff528cbbad55}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a13b07048f2f30318060dff528cbbad55}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!description@{description}}
+\index{description@{description}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+a textual description of self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}\label{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!gaussianExponent@{gaussianExponent}}
+\index{gaussianExponent@{gaussianExponent}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{gaussianExponent()}{gaussianExponent()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::gaussian\+Exponent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the Gaussian exponent for this Cartesian G\+TO 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a91f6a839c472a31e276893eb54693ca5}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a91f6a839c472a31e276893eb54693ca5}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!normalizationFactor@{normalizationFactor}}
+\index{normalizationFactor@{normalizationFactor}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{normalizationFactor()}{normalizationFactor()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::normalization\+Factor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the total normalization factor for this Cartesian G\+TO 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_ad58879bd9fcc2ebbb6292382548c4d4e}\label{class_g_q_c_p_1_1_cartesian_g_t_o_ad58879bd9fcc2ebbb6292382548c4d4e}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{r }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & the value at which the G\+TO should be evaluated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the unnormalized G\+TO at the given position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cartesian_g_t_o_a1d2981debed95c7be81c1b8380a7e776}\label{class_g_q_c_p_1_1_cartesian_g_t_o_a1d2981debed95c7be81c1b8380a7e776}} 
+\index{GQCP::CartesianGTO@{GQCP::CartesianGTO}!operator==@{operator==}}
+\index{operator==@{operator==}!GQCP::CartesianGTO@{GQCP::CartesianGTO}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool G\+Q\+C\+P\+::\+Cartesian\+G\+T\+O\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the other \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if this \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} is equal to the other \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Functions/\mbox{\hyperlink{_cartesian_g_t_o_8hpp}{Cartesian\+G\+T\+O.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Mathematical/\+Functions/\mbox{\hyperlink{_cartesian_g_t_o_8cpp}{Cartesian\+G\+T\+O.\+cpp}}\end{DoxyCompactItemize}

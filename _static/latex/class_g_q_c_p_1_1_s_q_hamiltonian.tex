@@ -1,0 +1,707 @@
+\hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian}{}\doxysection{G\+Q\+CP\+::S\+Q\+Hamiltonian$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_s_q_hamiltonian}\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+
+
+{\ttfamily \#include $<$S\+Q\+Hamiltonian.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::S\+Q\+Hamiltonian$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_s_q_hamiltonian__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::S\+Q\+Hamiltonian$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_s_q_hamiltonian__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} = \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} = \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a0ff4aff618ccdce4444e23d2fef5c3c1}{Spinor\+Tag}} = typename Scalar\+S\+Q\+One\+Electron\+Operator\+::\+Spinor\+Tag
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}} = typename Scalar\+S\+Q\+One\+Electron\+Operator\+::\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} = \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}{Transformation}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}{Jacobi\+Rotation\+Type}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{Jacobi\+Rotatable\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}{Jacobi\+Rotation\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad7f54f1e8930c8211016ce2a4cd36539}{S\+Q\+Hamiltonian}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$ \&h\+\_\+contributions, const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} $>$ \&g\+\_\+contributions)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_af2c43e32c5c2346c0cb86e1a78fb97d1}{S\+Q\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&h, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&g)
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a572840d48ec7a3a022cd1d433f3ad972}{core}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ac9c751574b0f9dca664a442df6ea2b33}{core}} ()
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_adc6fed95f3c845ea6f24ee7f3d229624}{core\+Contributions}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7ea14fa9a59af319f5f72aaed1bc7c02}{core\+Contributions}} ()
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7a542abe14c404fc287b64da5e6dc1d9}{two\+Electron}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a136ec162928cfc02ea5e64584e5bfa1b}{two\+Electron}} ()
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a9cf67ce36b24ceaed5d0bd1d47f3c3ee}{two\+Electron\+Contributions}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aafdb7b33179bfd5ea2b42ca0415312bf}{two\+Electron\+Contributions}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a9beb3656dcb386bb52a74e74f7723ad2}{number\+Of\+Orbitals}} () const
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}} $>$\+::value$\vert$$\vert$std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}} $>$\+::value, double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a372711fc8e6dbe6045215ad1690370cb}{calculate\+Edmiston\+Ruedenberg\+Localization\+Index}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} orbital\+\_\+space) const
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}} $>$\+::value$\vert$$\vert$std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad5f38ac2839431dff5307442e003e970}{calculate\+Effective\+One\+Electron\+Integrals}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a20459a50f5bd5370b7f95dd1f9749d74}{calculate\+Expectation\+Value}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} \&D, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} \&d) const
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}} $>$\+::value$\vert$$\vert$std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a51eeaf42d6ab6a74a741a1b2e8ce521f}{calculate\+Fockian\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} \&D, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} \&d) const
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}} $>$\+::value$\vert$$\vert$std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a41c38368fb562cb742997acd24968c3d}{calculate\+Super\+Fockian\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} \&D, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} \&d) const
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a1974cfedfd2f65a7c3c11cae50624761}{calculate\+Inactive\+Fockian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} orbital\+\_\+space) const
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aa0da4c96496c98f106bb15ebdae1c78f}{calculate\+Inactive\+Fockian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} orbital\+\_\+space) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a42ddb132b31bc893a31de4b17e950531}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}{Transformation}} \&T) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aceec524481b666ab9f1bcf7465f6a3ad}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}{Jacobi\+Rotation\+Type}} \&jacobi\+\_\+rotation) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a4ecea9448380ac865f268ab182fac42b}{operator+=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&sq\+\_\+one\+\_\+op)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a5d99b8e0b87b7a592eaf67c4e9616714}{operator-\/=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&sq\+\_\+one\+\_\+op)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad806906fb1a4760234aaec2c19c4d2f4}{operator+=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&sq\+\_\+two\+\_\+op)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aef1abfcc4f1b119bcbcc42adbabe68db}{operator-\/=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&sq\+\_\+two\+\_\+op)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Z1  = Scalar, typename Z2  = Spinor\+Tag$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z1, double $>$\+::value \&\&std\+::is\+\_\+same$<$ Z2, \mbox{\hyperlink{class_g_q_c_p_1_1_restricted_spinor_tag}{Restricted\+Spinor\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a549c426ee8aff2229728c1dd153d8b25}{From\+Hubbard}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{G\+Q\+C\+P\+::\+Hubbard\+Hamiltonian}}$<$ double $>$ \&hubbard\+\_\+hamiltonian)
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a68a1a435964ac94d351e9b9462610eaf}{Molecular}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&spinor\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule)
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a4e2fa2707828e181d1a0dbe949627abf}{Unrestricted\+Spin\+Orbital\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a4bd21e025ee47308d107aae8253cad12}{Molecular}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&spinor\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule)
+\item 
+{\footnotesize template$<$typename Z  = Spinor\+Tag$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a1d921704d5557be179a967b4be47fa29}{Molecular}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&spinor\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule)
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a885418972b6a0e608bdcab54aa4f66b3}{Random}} (const size\+\_\+t dim)
+\item 
+{\footnotesize template$<$typename Z1  = Scalar, typename Z2  = Spinor\+Tag$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z1, double $>$\+::value \&\&std\+::is\+\_\+same$<$ Z2, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a62d5e77135791639f73c6e1ac5b497f4}{From\+F\+C\+I\+D\+U\+MP}} (const std\+::string \&fcidump\+\_\+filename)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a9c3b31820ee74a6b0ccf34e52e0ae83f}{operator+}} (\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} lhs, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&rhs)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a99baa6883252bcfcf356e9fcb7bfe8b3}{operator+}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&lhs, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} rhs)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_abd8c34dbfa3cd8a425d856d2516d9d1c}{operator-\/}} (\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} lhs, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&rhs)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad75b89e4e1c4988efd5e6bb1645895c5}{operator+}} (\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} lhs, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&rhs)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ae4ea8e312e33a1d461aba5bb3121fe99}{operator+}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&lhs, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} rhs)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a83c5e92d4ecd908efe920531a87f60b2}{operator-\/}} (\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} lhs, const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&rhs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator$>$\newline
+class G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$}
+
+A second-\/quantized electronic Hamiltonian. It consists of one-\/electron (core) and two-\/electron contributions.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator} & The type of second-\/quantized one-\/electron operator underlying this Hamiltonian. \\
+\hline
+{\em \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator} & The type of second-\/quantized two-\/electron operator underlying this Hamiltonian. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!JacobiRotationType@{JacobiRotationType}}
+\index{JacobiRotationType@{JacobiRotationType}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{JacobiRotationType}{JacobiRotationType}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}{Jacobi\+Rotation\+Type}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{Jacobi\+Rotatable\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}{Jacobi\+Rotation\+Type}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!OneDM@{OneDM}}
+\index{OneDM@{OneDM}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{OneDM}{OneDM}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}} =  typename Scalar\+S\+Q\+One\+Electron\+Operator\+::\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!ScalarSQOneElectronOperator@{ScalarSQOneElectronOperator}}
+\index{ScalarSQOneElectronOperator@{ScalarSQOneElectronOperator}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarSQOneElectronOperator}{ScalarSQOneElectronOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} =  \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}\label{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!ScalarSQTwoElectronOperator@{ScalarSQTwoElectronOperator}}
+\index{ScalarSQTwoElectronOperator@{ScalarSQTwoElectronOperator}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarSQTwoElectronOperator}{ScalarSQTwoElectronOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} =  \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!Self@{Self}}
+\index{Self@{Self}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Self}{Self}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a0ff4aff618ccdce4444e23d2fef5c3c1}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a0ff4aff618ccdce4444e23d2fef5c3c1}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!SpinorTag@{SpinorTag}}
+\index{SpinorTag@{SpinorTag}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{SpinorTag}{SpinorTag}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a0ff4aff618ccdce4444e23d2fef5c3c1}{Spinor\+Tag}} =  typename Scalar\+S\+Q\+One\+Electron\+Operator\+::\+Spinor\+Tag}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}\label{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}{Transformation}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}{Transformation}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}\label{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!TwoDM@{TwoDM}}
+\index{TwoDM@{TwoDM}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{TwoDM}{TwoDM}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_ad7f54f1e8930c8211016ce2a4cd36539}\label{class_g_q_c_p_1_1_s_q_hamiltonian_ad7f54f1e8930c8211016ce2a4cd36539}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!SQHamiltonian@{SQHamiltonian}}
+\index{SQHamiltonian@{SQHamiltonian}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{SQHamiltonian()}{SQHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} $>$ \&}]{h\+\_\+contributions,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} $>$ \&}]{g\+\_\+contributions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}} for one-\/ and two-\/electron contributions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em h\+\_\+contributions} & The contributions to the total one-\/electron interaction operator. \\
+\hline
+{\em g\+\_\+contributions} & The contributions to the total two-\/electron interaction operator. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_af2c43e32c5c2346c0cb86e1a78fb97d1}\label{class_g_q_c_p_1_1_s_q_hamiltonian_af2c43e32c5c2346c0cb86e1a78fb97d1}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!SQHamiltonian@{SQHamiltonian}}
+\index{SQHamiltonian@{SQHamiltonian}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{SQHamiltonian()}{SQHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&}]{h,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}} from total one-\/ and two-\/electron contributions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & The total one-\/electron interaction operator, i.\+e. the core Hamiltonian. \\
+\hline
+{\em g} & The total two-\/electron interaction operator. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a372711fc8e6dbe6045215ad1690370cb}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a372711fc8e6dbe6045215ad1690370cb}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!calculateEdmistonRuedenbergLocalizationIndex@{calculateEdmistonRuedenbergLocalizationIndex}}
+\index{calculateEdmistonRuedenbergLocalizationIndex@{calculateEdmistonRuedenbergLocalizationIndex}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateEdmistonRuedenbergLocalizationIndex()}{calculateEdmistonRuedenbergLocalizationIndex()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}}$>$\+::value $\vert$$\vert$ std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}}$>$\+::value, double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::calculate\+Edmiston\+Ruedenberg\+Localization\+Index (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}}}]{orbital\+\_\+space }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the Edmiston-\/\+Ruedenberg localization index, which is the trace of the two-\/electron integrals over only the occupied orbitals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em orbital\+\_\+space} & An orbital space which denotes the occupied-\/active-\/virtual separation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Edmiston-\/\+Ruedenberg localization index.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is not enabled for unrestricted Hamiltonians. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_ad5f38ac2839431dff5307442e003e970}\label{class_g_q_c_p_1_1_s_q_hamiltonian_ad5f38ac2839431dff5307442e003e970}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!calculateEffectiveOneElectronIntegrals@{calculateEffectiveOneElectronIntegrals}}
+\index{calculateEffectiveOneElectronIntegrals@{calculateEffectiveOneElectronIntegrals}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateEffectiveOneElectronIntegrals()}{calculateEffectiveOneElectronIntegrals()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}}$>$\+::value $\vert$$\vert$ std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::calculate\+Effective\+One\+Electron\+Integrals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the effective one-\/electron integrals. These are the core integrals, with the contributions form a Kronecker delta-\/term in the two-\/electron integrals.
+
+\begin{DoxyReturn}{Returns}
+The effective one-\/electron integrals.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is not enabled for unrestricted Hamiltonians. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a20459a50f5bd5370b7f95dd1f9749d74}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a20459a50f5bd5370b7f95dd1f9749d74}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!calculateExpectationValue@{calculateExpectationValue}}
+\index{calculateExpectationValue@{calculateExpectationValue}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateExpectationValue()}{calculateExpectationValue()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::calculate\+Expectation\+Value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} \&}]{D,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} \&}]{d }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the electronic energy, i.\+e. the expectation value of this Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em D} & The 1-\/DM. \\
+\hline
+{\em d} & The 2-\/DM.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The expectation value of this Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a51eeaf42d6ab6a74a741a1b2e8ce521f}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a51eeaf42d6ab6a74a741a1b2e8ce521f}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!calculateFockianMatrix@{calculateFockianMatrix}}
+\index{calculateFockianMatrix@{calculateFockianMatrix}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateFockianMatrix()}{calculateFockianMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}}$>$\+::value $\vert$$\vert$ std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::calculate\+Fockian\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} \&}]{D,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} \&}]{d }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the Fockian matrix of this Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em D} & The 1-\/DM (or the response 1-\/DM for made-\/variational wave function models). \\
+\hline
+{\em d} & The 2-\/DM (or the response 2-\/DM for made-\/variational wave function models).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Fockian matrix.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is not enabled for unrestricted Hamiltonians. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a1974cfedfd2f65a7c3c11cae50624761}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a1974cfedfd2f65a7c3c11cae50624761}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!calculateInactiveFockian@{calculateInactiveFockian}}
+\index{calculateInactiveFockian@{calculateInactiveFockian}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateInactiveFockian()}{calculateInactiveFockian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::calculate\+Inactive\+Fockian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}}}]{orbital\+\_\+space }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the inactive Fockian operator for a general Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em orbital\+\_\+space} & An orbital space which denotes the occupied-\/virtual separation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The inactive Fockian operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_aa0da4c96496c98f106bb15ebdae1c78f}\label{class_g_q_c_p_1_1_s_q_hamiltonian_aa0da4c96496c98f106bb15ebdae1c78f}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!calculateInactiveFockian@{calculateInactiveFockian}}
+\index{calculateInactiveFockian@{calculateInactiveFockian}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateInactiveFockian()}{calculateInactiveFockian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::calculate\+Inactive\+Fockian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}}}]{orbital\+\_\+space }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the inactive Fockian operator for a restricted Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em orbital\+\_\+space} & An orbital space which denotes the occupied-\/virtual separation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The inactive Fockian operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a41c38368fb562cb742997acd24968c3d}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a41c38368fb562cb742997acd24968c3d}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!calculateSuperFockianMatrix@{calculateSuperFockianMatrix}}
+\index{calculateSuperFockianMatrix@{calculateSuperFockianMatrix}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSuperFockianMatrix()}{calculateSuperFockianMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}}$>$\+::value $\vert$$\vert$ std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::calculate\+Super\+Fockian\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a40eb5c140f476ec958cb06cbd33d9ae0}{One\+DM}} \&}]{D,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aeed7e445ae80d653e082bea209c62b06}{Two\+DM}} \&}]{d }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the super-\/\+Fockian matrix of this Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em D} & The 1-\/DM (or the response 1-\/DM for made-\/variational wave function models). \\
+\hline
+{\em d} & The 2-\/DM (or the response 2-\/DM for made-\/variational wave function models).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The super-\/\+Fockian matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_ac9c751574b0f9dca664a442df6ea2b33}\label{class_g_q_c_p_1_1_s_q_hamiltonian_ac9c751574b0f9dca664a442df6ea2b33}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!core@{core}}
+\index{core@{core}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{core()}{core()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A writable reference to the total one-\/electron interaction operator, i.\+e. the core Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a572840d48ec7a3a022cd1d433f3ad972}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a572840d48ec7a3a022cd1d433f3ad972}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!core@{core}}
+\index{core@{core}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{core()}{core()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only reference to the total one-\/electron interaction operator, i.\+e. the core Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a7ea14fa9a59af319f5f72aaed1bc7c02}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a7ea14fa9a59af319f5f72aaed1bc7c02}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!coreContributions@{coreContributions}}
+\index{coreContributions@{coreContributions}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{coreContributions()}{coreContributions()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::core\+Contributions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A writable reference to the contributions to the total one-\/electron interaction operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_adc6fed95f3c845ea6f24ee7f3d229624}\label{class_g_q_c_p_1_1_s_q_hamiltonian_adc6fed95f3c845ea6f24ee7f3d229624}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!coreContributions@{coreContributions}}
+\index{coreContributions@{coreContributions}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{coreContributions()}{coreContributions()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+const std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::core\+Contributions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only reference to the contributions to the total one-\/electron interaction operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a62d5e77135791639f73c6e1ac5b497f4}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a62d5e77135791639f73c6e1ac5b497f4}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!FromFCIDUMP@{FromFCIDUMP}}
+\index{FromFCIDUMP@{FromFCIDUMP}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{FromFCIDUMP()}{FromFCIDUMP()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z1  = Scalar, typename Z2  = Spinor\+Tag$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z1, double$>$\+::value \&\& std\+::is\+\_\+same$<$Z2, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::From\+F\+C\+I\+D\+U\+MP (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fcidump\+\_\+filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Parse an F\+C\+I\+D\+U\+MP file and read in its Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fcidump\+\_\+filename} & The name of the F\+C\+I\+D\+U\+MP file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Hamiltonian corresponding to the contents of an F\+C\+I\+D\+U\+MP file.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This named constructor is only available in the real case. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a549c426ee8aff2229728c1dd153d8b25}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a549c426ee8aff2229728c1dd153d8b25}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!FromHubbard@{FromHubbard}}
+\index{FromHubbard@{FromHubbard}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{FromHubbard()}{FromHubbard()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z1  = Scalar, typename Z2  = Spinor\+Tag$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z1, double$>$\+::value \&\& std\+::is\+\_\+same$<$Z2, \mbox{\hyperlink{class_g_q_c_p_1_1_restricted_spinor_tag}{Restricted\+Spinor\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}}, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::From\+Hubbard (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{G\+Q\+C\+P\+::\+Hubbard\+Hamiltonian}}$<$ double $>$ \&}]{hubbard\+\_\+hamiltonian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+M\+A\+RK\+: Named constructors Create an {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}} from a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{Hubbard\+Hamiltonian}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hubbard\+\_\+hamiltonian} & The Hubbard model Hamiltonian.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}} generated from the given Hubbard model Hamiltonian.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This named constructor is only available for real matrix representations. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a1d921704d5557be179a967b4be47fa29}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a1d921704d5557be179a967b4be47fa29}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!Molecular@{Molecular}}
+\index{Molecular@{Molecular}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Molecular()}{Molecular()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_general_spinor_tag}{General\+Spinor\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::Molecular (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a71125369a2644554e4737fcb4241d1ce}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{spinor\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Quantize the molecular Hamiltonian in a general spinor basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em spinor\+\_\+basis} & The spinor basis in which the Hamiltonian should be expressed. \\
+\hline
+{\em molecule} & The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A second-\/quantized molecular Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a68a1a435964ac94d351e9b9462610eaf}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a68a1a435964ac94d351e9b9462610eaf}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!Molecular@{Molecular}}
+\index{Molecular@{Molecular}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Molecular()}{Molecular()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{Restricted\+Spin\+Orbital\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::Molecular (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{spinor\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Quantize the molecular Hamiltonian in a restricted spin-\/orbital basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em spinor\+\_\+basis} & The spinor basis in which the Hamiltonian should be expressed. \\
+\hline
+{\em molecule} & The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A second-\/quantized molecular Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a4bd21e025ee47308d107aae8253cad12}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a4bd21e025ee47308d107aae8253cad12}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!Molecular@{Molecular}}
+\index{Molecular@{Molecular}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Molecular()}{Molecular()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Spinor\+Tag$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a4e2fa2707828e181d1a0dbe949627abf}{Unrestricted\+Spin\+Orbital\+Tag}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::Molecular (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{spinor\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Quantize the molecular Hamiltonian in an unrestricted spin-\/orbital basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em spinor\+\_\+basis} & The spinor basis in which the Hamiltonian should be expressed. \\
+\hline
+{\em molecule} & The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A second-\/quantized molecular Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a9beb3656dcb386bb52a74e74f7723ad2}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a9beb3656dcb386bb52a74e74f7723ad2}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!numberOfOrbitals@{numberOfOrbitals}}
+\index{numberOfOrbitals@{numberOfOrbitals}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfOrbitals()}{numberOfOrbitals()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::number\+Of\+Orbitals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The number of orbitals (spinors or spin-\/orbitals, depending on the context) this second-\/quantized Hamiltonian is related to. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a4ecea9448380ac865f268ab182fac42b}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a4ecea9448380ac865f268ab182fac42b}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&}]{sq\+\_\+one\+\_\+op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Addition-\/assignment with a (scalar) one-\/electron operator. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_ad806906fb1a4760234aaec2c19c4d2f4}\label{class_g_q_c_p_1_1_s_q_hamiltonian_ad806906fb1a4760234aaec2c19c4d2f4}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&}]{sq\+\_\+two\+\_\+op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Addition-\/assignment with a (scalar) two-\/electron operator. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a5d99b8e0b87b7a592eaf67c4e9616714}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a5d99b8e0b87b7a592eaf67c4e9616714}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&}]{sq\+\_\+one\+\_\+op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Subtraction-\/assignment with a (scalar) one-\/electron operator. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_aef1abfcc4f1b119bcbcc42adbabe68db}\label{class_g_q_c_p_1_1_s_q_hamiltonian_aef1abfcc4f1b119bcbcc42adbabe68db}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&}]{sq\+\_\+two\+\_\+op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Subtraction-\/assignment with a (scalar) one-\/electron operator. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a885418972b6a0e608bdcab54aa4f66b3}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a885418972b6a0e608bdcab54aa4f66b3}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!Random@{Random}}
+\index{Random@{Random}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Random()}{Random()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::Random (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a random {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}} with values uniformly distributed between \mbox{[}-\/1,1\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & The dimension of the matrix representations of the one-\/ and two-\/electron integrals, i.\+e. the number of orbitals.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{S\+Q\+Hamiltonian}}}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This named constructor is only available in the real case. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_aceec524481b666ab9f1bcf7465f6a3ad}\label{class_g_q_c_p_1_1_s_q_hamiltonian_aceec524481b666ab9f1bcf7465f6a3ad}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!rotated@{rotated}}
+\index{rotated@{rotated}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{rotated()}{rotated()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::rotated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a7dc51b7c9ce481aabbef73c0fb3cf3c3}{Jacobi\+Rotation\+Type}} \&}]{jacobi\+\_\+rotation }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the Jacobi rotation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em jacobi\+\_\+rotation} & The Jacobi rotation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Jacobi-\/rotated object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a42ddb132b31bc893a31de4b17e950531}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a42ddb132b31bc893a31de4b17e950531}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!transformed@{transformed}}
+\index{transformed@{transformed}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{transformed()}{transformed()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_aaa8c64045c2c95ffb8c3e014131514c9}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the basis transformation and return the resulting Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The basis transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The basis-\/transformed Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a136ec162928cfc02ea5e64584e5bfa1b}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a136ec162928cfc02ea5e64584e5bfa1b}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!twoElectron@{twoElectron}}
+\index{twoElectron@{twoElectron}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{twoElectron()}{twoElectron()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::two\+Electron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A writable reference to the total two-\/electron interaction operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a7a542abe14c404fc287b64da5e6dc1d9}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a7a542abe14c404fc287b64da5e6dc1d9}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!twoElectron@{twoElectron}}
+\index{twoElectron@{twoElectron}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{twoElectron()}{twoElectron()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::two\+Electron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only reference to the total two-\/electron interaction operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_aafdb7b33179bfd5ea2b42ca0415312bf}\label{class_g_q_c_p_1_1_s_q_hamiltonian_aafdb7b33179bfd5ea2b42ca0415312bf}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!twoElectronContributions@{twoElectronContributions}}
+\index{twoElectronContributions@{twoElectronContributions}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{twoElectronContributions()}{twoElectronContributions()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::two\+Electron\+Contributions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A writable reference to the contributions to the total two-\/electron interaction operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a9cf67ce36b24ceaed5d0bd1d47f3c3ee}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a9cf67ce36b24ceaed5d0bd1d47f3c3ee}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!twoElectronContributions@{twoElectronContributions}}
+\index{twoElectronContributions@{twoElectronContributions}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{twoElectronContributions()}{twoElectronContributions()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+const std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian}}$<$ \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator, \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$\+::two\+Electron\+Contributions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only reference to the contributions to the total two-\/electron interaction operator. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a99baa6883252bcfcf356e9fcb7bfe8b3}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a99baa6883252bcfcf356e9fcb7bfe8b3}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&}]{lhs,  }\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+A commutative version of the previous addition. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_ae4ea8e312e33a1d461aba5bb3121fe99}\label{class_g_q_c_p_1_1_s_q_hamiltonian_ae4ea8e312e33a1d461aba5bb3121fe99}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&}]{lhs,  }\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+A commutative version of the previous addition. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a9c3b31820ee74a6b0ccf34e52e0ae83f}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a9c3b31820ee74a6b0ccf34e52e0ae83f}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}}]{lhs,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Addition, canonically implemented using addition-\/assignment. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_ad75b89e4e1c4988efd5e6bb1645895c5}\label{class_g_q_c_p_1_1_s_q_hamiltonian_ad75b89e4e1c4988efd5e6bb1645895c5}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}}]{lhs,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Addition, canonically implemented using addition-\/assignment. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_abd8c34dbfa3cd8a425d856d2516d9d1c}\label{class_g_q_c_p_1_1_s_q_hamiltonian_abd8c34dbfa3cd8a425d856d2516d9d1c}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/}{operator-}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}}]{lhs,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a521e12b9283f73f08f1766f03e04e372}{Scalar\+S\+Q\+One\+Electron\+Operator}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Subtraction, canonically implemented using addition-\/assignment. \mbox{\Hypertarget{class_g_q_c_p_1_1_s_q_hamiltonian_a83c5e92d4ecd908efe920531a87f60b2}\label{class_g_q_c_p_1_1_s_q_hamiltonian_a83c5e92d4ecd908efe920531a87f60b2}} 
+\index{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$@{GQCP::SQHamiltonian$<$ \_ScalarSQOneElectronOperator, \_ScalarSQTwoElectronOperator $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/}{operator-}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar\+S\+Q\+One\+Electron\+Operator , typename \+\_\+\+Scalar\+S\+Q\+Two\+Electron\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}} operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a09eb549be0a2ee97c1be277c967809b7}{Self}}}]{lhs,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_ad80a88634fa62991bf5657113bddfd07}{Scalar\+S\+Q\+Two\+Electron\+Operator}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Subtraction, canonically implemented using addition-\/assignment. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+Second\+Quantized/\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{S\+Q\+Hamiltonian.\+hpp}}\end{DoxyCompactItemize}

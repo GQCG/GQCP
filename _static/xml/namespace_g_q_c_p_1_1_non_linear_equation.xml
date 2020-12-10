@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1_non_linear_equation" kind="namespace" language="C++">
+    <compoundname>GQCP::NonLinearEquation</compoundname>
+    <innerclass refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update" prot="public">GQCP::NonLinearEquation::NewtonStepUpdate</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="32" column="1"/>
+  </compounddef>
+</doxygen>

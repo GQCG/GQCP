@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_nuclear_repulsion_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::NuclearRepulsionOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_nuclear_operator" prot="public" virt="non-virtual">GQCP::BaseNuclearOperator</basecompoundref>
+    <includes refid="_nuclear_repulsion_operator_8hpp" local="no">NuclearRepulsionOperator.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a095316bd4ac0e4c331e10f1326251105" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::NuclearRepulsionOperator::value</definition>
+        <argsstring>() const</argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The scalar value of this nuclear repulsion operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp" line="48" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/NuclearRepulsionOperator.cpp" bodystart="31" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a94b1c7232e7ff103f31c2346b8d2d96a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::BaseNuclearOperator::BaseNuclearOperator</definition>
+        <argsstring>(const NuclearFramework &amp;nuclear_framework)</argsstring>
+        <name>BaseNuclearOperator</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
+          <declname>nuclear_framework</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_base_nuclear_operator" kindref="compound">BaseNuclearOperator</ref></computeroutput> from a nuclear framework.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclear_framework</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclear framework underlying a nuclear operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseNuclearOperator.cpp" bodystart="33" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_repulsion_operator_1aa0e8aca777e43c4686b376eb80850b61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::BaseNuclearOperator::BaseNuclearOperator</definition>
+        <argsstring>(const std::vector&lt; Nucleus &gt; &amp;nuclei)</argsstring>
+        <name>BaseNuclearOperator</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
+          <declname>nuclei</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_base_nuclear_operator" kindref="compound">BaseNuclearOperator</ref></computeroutput> from a vector of nuclei.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclei</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclei that are considered to represent the nuclear framework underlying a nuclear operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseNuclearOperator.cpp" bodystart="42" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The nuclear repulsion operator. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::NuclearRepulsionOperator</label>
+        <link refid="class_g_q_c_p_1_1_nuclear_repulsion_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseNuclearOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_nuclear_operator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::NuclearRepulsionOperator</label>
+        <link refid="class_g_q_c_p_1_1_nuclear_repulsion_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseNuclearOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_nuclear_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp" bodystart="31" bodyend="49"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a94b1c7232e7ff103f31c2346b8d2d96a" prot="public" virt="non-virtual"><scope>GQCP::NuclearRepulsionOperator</scope><name>BaseNuclearOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_repulsion_operator_1aa0e8aca777e43c4686b376eb80850b61" prot="public" virt="non-virtual"><scope>GQCP::NuclearRepulsionOperator</scope><name>BaseNuclearOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a94b1c7232e7ff103f31c2346b8d2d96a" prot="public" virt="non-virtual" ambiguityscope="GQCP::BaseNuclearOperator::"><scope>GQCP::NuclearRepulsionOperator</scope><name>BaseNuclearOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1aa0e8aca777e43c4686b376eb80850b61" prot="public" virt="non-virtual" ambiguityscope="GQCP::BaseNuclearOperator::"><scope>GQCP::NuclearRepulsionOperator</scope><name>BaseNuclearOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" prot="public" virt="non-virtual"><scope>GQCP::NuclearRepulsionOperator</scope><name>nuclearFramework</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a095316bd4ac0e4c331e10f1326251105" prot="public" virt="non-virtual"><scope>GQCP::NuclearRepulsionOperator</scope><name>value</name></member>
+      <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5ff429963c499ddfca45164e17e734e9" prot="public" virt="pure-virtual"><scope>GQCP::NuclearRepulsionOperator</scope><name>~BaseNuclearOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

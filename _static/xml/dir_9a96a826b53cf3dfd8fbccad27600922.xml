@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_9a96a826b53cf3dfd8fbccad27600922" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC</compoundname>
+    <innerfile refid="_q_c_method_2_c_c_2_c_c_d_8hpp">CCD.hpp</innerfile>
+    <innerfile refid="_c_c_d_amplitudes_update_8hpp">CCDAmplitudesUpdate.hpp</innerfile>
+    <innerfile refid="_c_c_d_energy_calculation_8hpp">CCDEnergyCalculation.hpp</innerfile>
+    <innerfile refid="_c_c_d_intermediates_update_8hpp">CCDIntermediatesUpdate.hpp</innerfile>
+    <innerfile refid="_c_c_d_solver_8hpp">CCDSolver.hpp</innerfile>
+    <innerfile refid="_q_c_method_2_c_c_2_c_c_s_d_8hpp">CCSD.hpp</innerfile>
+    <innerfile refid="_c_c_s_d_amplitudes_update_8hpp">CCSDAmplitudesUpdate.hpp</innerfile>
+    <innerfile refid="_c_c_s_d_energy_calculation_8hpp">CCSDEnergyCalculation.hpp</innerfile>
+    <innerfile refid="_c_c_s_d_environment_8hpp">CCSDEnvironment.hpp</innerfile>
+    <innerfile refid="_c_c_s_d_intermediates_update_8hpp">CCSDIntermediatesUpdate.hpp</innerfile>
+    <innerfile refid="_c_c_s_d_solver_8hpp">CCSDSolver.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/"/>
+  </compounddef>
+</doxygen>

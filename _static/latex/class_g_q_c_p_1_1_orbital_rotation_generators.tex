@@ -1,0 +1,136 @@
+\hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators}{}\doxysection{G\+Q\+CP\+::Orbital\+Rotation\+Generators Class Reference}
+\label{class_g_q_c_p_1_1_orbital_rotation_generators}\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+
+
+{\ttfamily \#include $<$Orbital\+Rotation\+Generators.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Orbital\+Rotation\+Generators\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_orbital_rotation_generators__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators_ac1acbcaa8a7d1d9d13e8adea6622f0c2}{Orbital\+Rotation\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&kappa\+\_\+vector)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators_a3202721effa4b5079b9defafd0caf039}{Orbital\+Rotation\+Generators}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&kappa\+\_\+matrix)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators_a05e28b5a48166bcae75fc9a99cad8430}{as\+Matrix}} () const
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators_aee0ac01294b848cbe49b4ea29e99d8d9}{as\+Vector}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators_a3fd8a7162bed8e4b33863ec8429db5c2}{rotation}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators_a4e0cbcad858140e1fe49d40da3d57372}{number\+Of\+Spatial\+Orbitals}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators_a349b4e62d2f1b8a6f2a3f82bc377dc57}{From\+Occ\+Occ}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} \&o\+\_\+o\+\_\+generators, const size\+\_\+t K)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The real singlet orbital rotation generators kappa. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators_ac1acbcaa8a7d1d9d13e8adea6622f0c2}\label{class_g_q_c_p_1_1_orbital_rotation_generators_ac1acbcaa8a7d1d9d13e8adea6622f0c2}} 
+\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}!OrbitalRotationGenerators@{OrbitalRotationGenerators}}
+\index{OrbitalRotationGenerators@{OrbitalRotationGenerators}!GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+\doxysubsubsection{\texorpdfstring{OrbitalRotationGenerators()}{OrbitalRotationGenerators()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Orbital\+Rotation\+Generators\+::\+Orbital\+Rotation\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{kappa\+\_\+vector }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em kappa\+\_\+vector} & the orbital rotation generators represented as a vector that corresponds to the strict upper/lower triangle of the kappa matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators_a3202721effa4b5079b9defafd0caf039}\label{class_g_q_c_p_1_1_orbital_rotation_generators_a3202721effa4b5079b9defafd0caf039}} 
+\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}!OrbitalRotationGenerators@{OrbitalRotationGenerators}}
+\index{OrbitalRotationGenerators@{OrbitalRotationGenerators}!GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+\doxysubsubsection{\texorpdfstring{OrbitalRotationGenerators()}{OrbitalRotationGenerators()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Orbital\+Rotation\+Generators\+::\+Orbital\+Rotation\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&}]{kappa\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em kappa\+\_\+vector} & the orbital rotation generators represented as the full antisymmetric matrix kappa \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators_a05e28b5a48166bcae75fc9a99cad8430}\label{class_g_q_c_p_1_1_orbital_rotation_generators_a05e28b5a48166bcae75fc9a99cad8430}} 
+\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}!asMatrix@{asMatrix}}
+\index{asMatrix@{asMatrix}!GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+\doxysubsubsection{\texorpdfstring{asMatrix()}{asMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ G\+Q\+C\+P\+::\+Orbital\+Rotation\+Generators\+::as\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the antisymmetric orbital rotation generator matrix kappa 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators_aee0ac01294b848cbe49b4ea29e99d8d9}\label{class_g_q_c_p_1_1_orbital_rotation_generators_aee0ac01294b848cbe49b4ea29e99d8d9}} 
+\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}!asVector@{asVector}}
+\index{asVector@{asVector}!GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+\doxysubsubsection{\texorpdfstring{asVector()}{asVector()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$\& G\+Q\+C\+P\+::\+Orbital\+Rotation\+Generators\+::as\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the orbital rotation generators as the strict upper/lower triangle of the kappa matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators_a349b4e62d2f1b8a6f2a3f82bc377dc57}\label{class_g_q_c_p_1_1_orbital_rotation_generators_a349b4e62d2f1b8a6f2a3f82bc377dc57}} 
+\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}!FromOccOcc@{FromOccOcc}}
+\index{FromOccOcc@{FromOccOcc}!GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+\doxysubsubsection{\texorpdfstring{FromOccOcc()}{FromOccOcc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} G\+Q\+C\+P\+::\+Orbital\+Rotation\+Generators\+::\+From\+Occ\+Occ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} \&}]{o\+\_\+o\+\_\+generators,  }\item[{const size\+\_\+t}]{K }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Construct orbital rotation generators by adding redundant (i.\+e. 0) occupied-\/virtual and virtual-\/virtual generators to the given occupied-\/occupied generators
+
+
+\begin{DoxyParams}{Parameters}
+{\em o\+\_\+o\+\_\+generators} & the occupied-\/occupied orbital rotation generators \\
+\hline
+{\em K} & the total number of spatial orbitals\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}full\textquotesingle{} orbital rotation generators from the given occupied-\/occupied generators
+\end{DoxyReturn}
+Construct orbital rotation generators by adding redundant (i.\+e. 0) occupied-\/virtual and virtual-\/virtual generators to the given occupied-\/occupied generators
+
+
+\begin{DoxyParams}{Parameters}
+{\em o\+\_\+o\+\_\+generators} & the occupied-\/occupied orbital rotation generators \\
+\hline
+{\em K} & the number of spatial orbitals\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}full\textquotesingle{} orbital rotation generators from the given occupied-\/occupied generators 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators_a4e0cbcad858140e1fe49d40da3d57372}\label{class_g_q_c_p_1_1_orbital_rotation_generators_a4e0cbcad858140e1fe49d40da3d57372}} 
+\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}!numberOfSpatialOrbitals@{numberOfSpatialOrbitals}}
+\index{numberOfSpatialOrbitals@{numberOfSpatialOrbitals}!GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+\doxysubsubsection{\texorpdfstring{numberOfSpatialOrbitals()}{numberOfSpatialOrbitals()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Orbital\+Rotation\+Generators\+::number\+Of\+Spatial\+Orbitals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_rotation_generators_a3fd8a7162bed8e4b33863ec8429db5c2}\label{class_g_q_c_p_1_1_orbital_rotation_generators_a3fd8a7162bed8e4b33863ec8429db5c2}} 
+\index{GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}!rotation@{rotation}}
+\index{rotation@{rotation}!GQCP::OrbitalRotationGenerators@{GQCP::OrbitalRotationGenerators}}
+\doxysubsubsection{\texorpdfstring{rotation()}{rotation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$double$>$ G\+Q\+C\+P\+::\+Orbital\+Rotation\+Generators\+::rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The unitary transformation corresponds to these orbital rotation generators, i.\+e. exp(-\/kappa). 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Transformations/\mbox{\hyperlink{_orbital_rotation_generators_8hpp}{Orbital\+Rotation\+Generators.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Transformations/\mbox{\hyperlink{_orbital_rotation_generators_8cpp}{Orbital\+Rotation\+Generators.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_array" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Array</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Eigen::Array&lt; double, Dynamic, Dynamic &gt;</basecompoundref>
+    <includes refid="_array_8hpp" local="no">Array.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+        <defval>double</defval>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>_Rows</declname>
+        <defname>_Rows</defname>
+        <defval><ref refid="namespace_g_q_c_p_1aae02f7d1e3557edc7114d417804dd298" kindref="member">Dynamic</ref></defval>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>_Cols</declname>
+        <defname>_Cols</defname>
+        <defval><ref refid="namespace_g_q_c_p_1aae02f7d1e3557edc7114d417804dd298" kindref="member">Dynamic</ref></defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_array_1a4fcfaa985c1451c6659bfea6a9c5e59f" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Array</ref>&lt; <ref refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" kindref="member">Rows</ref>, <ref refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" kindref="member">Cols</ref> &gt;</type>
+        <definition>using GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Self =  Array&lt;Scalar, Rows, Cols&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" prot="public" static="no">
+        <type>Eigen::Array&lt; <ref refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" kindref="member">Rows</ref>, <ref refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" kindref="member">Cols</ref> &gt;</type>
+        <definition>using GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Base =  Eigen::Array&lt;Scalar, Rows, Cols&gt;</definition>
+        <argsstring></argsstring>
+        <name>Base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Rows</definition>
+        <argsstring></argsstring>
+        <name>Rows</name>
+        <initializer>= _Rows</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="41" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Cols</definition>
+        <argsstring></argsstring>
+        <name>Cols</name>
+        <initializer>= _Cols</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="42" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_array_1a2c65c9d1508b75e3c49dd6032aff56ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref> &amp;</type>
+        <definition>const Base&amp; GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Eigen</definition>
+        <argsstring>() const</argsstring>
+        <name>Eigen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PUBLIC METHODS <simplesect kind="return"><para>this as a const Eigen::Array </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="64" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_array_1a1b74a3bd9afc30efda40dc938bc7b8c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref> &amp;</type>
+        <definition>Base&amp; GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Eigen</definition>
+        <argsstring>()</argsstring>
+        <name>Eigen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>this as a non-const Eigen::Matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="69" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;</label>
+        <link refid="class_g_q_c_p_1_1_array"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen::Array&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;</label>
+        <link refid="class_g_q_c_p_1_1_array"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen::Array&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="36" bodyend="70"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Base</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Cols</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1a2c65c9d1508b75e3c49dd6032aff56ba" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1a1b74a3bd9afc30efda40dc938bc7b8c8" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Rows</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1a4fcfaa985c1451c6659bfea6a9c5e59f" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Self</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

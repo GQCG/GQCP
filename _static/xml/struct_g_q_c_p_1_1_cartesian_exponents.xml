@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_cartesian_exponents" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::CartesianExponents</compoundname>
+    <includes refid="_cartesian_exponents_8hpp" local="no">CartesianExponents.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_g_q_c_p_1_1_cartesian_exponents_1aa72b7f24d1b6f4a1fa5a712f20324986" prot="public" static="no" mutable="no">
+        <type>std::array&lt; size_t, 3 &gt;</type>
+        <definition>std::array&lt;size_t, 3&gt; GQCP::CartesianExponents::exponents</definition>
+        <argsstring></argsstring>
+        <name>exponents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="35" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1a5b3e6dd7cb8dfe12a6f59a1b2f547a96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::CartesianExponents::CartesianExponents</definition>
+        <argsstring>(const std::array&lt; size_t, 3 &gt; &amp;array)</argsstring>
+        <name>CartesianExponents</name>
+        <param>
+          <type>const std::array&lt; size_t, 3 &gt; &amp;</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the array containing the x-, y- and z-exponent (in that order) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="34" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1accb56b28d31a0155f0aa4fba2825093d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::CartesianExponents::CartesianExponents</definition>
+        <argsstring>(const size_t x, const size_t y, const size_t z)</argsstring>
+        <name>CartesianExponents</name>
+        <param>
+          <type>const size_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the exponent in x </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the exponent in y </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the exponent in z </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="51" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="43" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1a1a1c975b171b49a70297a4ce772a65fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::CartesianExponents::CartesianExponents</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;vector)</argsstring>
+        <name>CartesianExponents</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>vector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vector containing the x-, y- and z-exponent (in that order) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="50" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1ab38c3089fe647c4732505d8ef5a0e34b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::CartesianExponents::operator&lt;</definition>
+        <argsstring>(const CartesianExponents &amp;rhs) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the operator &lt;</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if these Cartesian exponents are &apos;smaller&apos; than the ones on the right-hand side. The following logic is used: lhs &lt; rhs<itemizedlist>
+<listitem><para>if lhs&apos;s angular momentum is smaller</para>
+</listitem><listitem><para>if both angular momenta are equal, x takes precedence over y, over z</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1, 1, 0}(=xy) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="67" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1ab757a59ee0e6aece7d91044b4b5df6c1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::CartesianExponents::operator==</definition>
+        <argsstring>(const CartesianExponents &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the operator ==</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if the Cartesian exponents are considered equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="77" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="94" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1ad51f90c09e69bf312ac97e6b754a3511" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::CartesianExponents::operator!=</definition>
+        <argsstring>(const CartesianExponents &amp;rhs) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the operator ==</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if the Cartesian exponents are considered different </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="84" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="104" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1af87af131d9cdc94713c92058f5024105" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::CartesianExponents::angularMomentum</definition>
+        <argsstring>() const</argsstring>
+        <name>angularMomentum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the angular momentum corresponding to these exponents </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="92" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="116" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1a0a4880e488b1fbdedc160ee5f727c81f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &gt;</type>
+        <definition>std::vector&lt; CartesianExponents &gt; GQCP::CartesianExponents::allPermutations</definition>
+        <argsstring>() const</argsstring>
+        <name>allPermutations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a sorted list of all permutations (i.e. switching x, y, z) of these Cartesian exponents </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="97" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="129" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1a150724bc37aec10de7ab5a28ca3dbbc5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::array&lt; size_t, 3 &gt; &amp;</type>
+        <definition>const std::array&lt;size_t, 3&gt;&amp; GQCP::CartesianExponents::asArray</definition>
+        <argsstring>() const</argsstring>
+        <name>asArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the exponents as an array </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="102" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1ac4331957ae21837147bcdc9175b77340" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::CartesianExponents::description</definition>
+        <argsstring>() const</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of self </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="107" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="150" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1a311290fc4ae2e2fce7d21d2dbb8c3194" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::CartesianExponents::value</definition>
+        <argsstring>(const CartesianDirection direction) const</argsstring>
+        <name>value</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the direction (x,y,z) whose exponent should be returned</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the exponent in the given direction </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="114" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" bodystart="114" bodyend="114"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents exponents of the Cartesian functions x, y and z </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::CartesianExponents</label>
+        <link refid="struct_g_q_c_p_1_1_cartesian_exponents"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" bodystart="33" bodyend="115"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a0a4880e488b1fbdedc160ee5f727c81f" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>allPermutations</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1af87af131d9cdc94713c92058f5024105" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>angularMomentum</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a150724bc37aec10de7ab5a28ca3dbbc5" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>asArray</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a5b3e6dd7cb8dfe12a6f59a1b2f547a96" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>CartesianExponents</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1accb56b28d31a0155f0aa4fba2825093d" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>CartesianExponents</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a1a1c975b171b49a70297a4ce772a65fb" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>CartesianExponents</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1ac4331957ae21837147bcdc9175b77340" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>description</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1aa72b7f24d1b6f4a1fa5a712f20324986" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>exponents</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1ad51f90c09e69bf312ac97e6b754a3511" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>operator!=</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1ab38c3089fe647c4732505d8ef5a0e34b" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>operator&lt;</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1ab757a59ee0e6aece7d91044b4b5df6c1" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>operator==</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a311290fc4ae2e2fce7d21d2dbb8c3194" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

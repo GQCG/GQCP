@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::BasisTransformableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</compoundname>
+    <includes refid="_g_s_q_two_electron_operator_8hpp" local="no">GSQTwoElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+      <param>
+        <type>typename Vectorizer</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a40d541cf898f3e901ebb51995dae6488" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::BasisTransformableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::Transformation =  GTransformation&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="146" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_basis_transformable" kindref="compound">BasisTransformable</ref></computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a single parameter/matrix element: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from <ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator" kindref="compound">SimpleSQOneElectronOperator</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BasisTransformableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="143" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="143" bodyend="147"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a40d541cf898f3e901ebb51995dae6488" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>Transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

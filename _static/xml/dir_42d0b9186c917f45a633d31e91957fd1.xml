@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_42d0b9186c917f45a633d31e91957fd1" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized</compoundname>
+    <innerfile refid="_angular_momentum_operator_8hpp">AngularMomentumOperator.hpp</innerfile>
+    <innerfile refid="_base_f_q_operator_8hpp">BaseFQOperator.hpp</innerfile>
+    <innerfile refid="_base_nuclear_operator_8hpp">BaseNuclearOperator.hpp</innerfile>
+    <innerfile refid="_base_reference_dependent_operator_8hpp">BaseReferenceDependentOperator.hpp</innerfile>
+    <innerfile refid="_coulomb_repulsion_operator_8hpp">CoulombRepulsionOperator.hpp</innerfile>
+    <innerfile refid="_electronic_density_operator_8hpp">ElectronicDensityOperator.hpp</innerfile>
+    <innerfile refid="_electronic_dipole_operator_8hpp">ElectronicDipoleOperator.hpp</innerfile>
+    <innerfile refid="_electronic_spin__z_operator_8hpp">ElectronicSpin_zOperator.hpp</innerfile>
+    <innerfile refid="_electronic_spin_operator_8hpp">ElectronicSpinOperator.hpp</innerfile>
+    <innerfile refid="_kinetic_operator_8hpp">KineticOperator.hpp</innerfile>
+    <innerfile refid="_linear_momentum_operator_8hpp">LinearMomentumOperator.hpp</innerfile>
+    <innerfile refid="_nuclear_attraction_operator_8hpp">NuclearAttractionOperator.hpp</innerfile>
+    <innerfile refid="_nuclear_dipole_operator_8hpp">NuclearDipoleOperator.hpp</innerfile>
+    <innerfile refid="_nuclear_repulsion_operator_8hpp">NuclearRepulsionOperator.hpp</innerfile>
+    <innerfile refid="_operator_8hpp">Operator.hpp</innerfile>
+    <innerfile refid="_overlap_operator_8hpp">OverlapOperator.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/"/>
+  </compounddef>
+</doxygen>

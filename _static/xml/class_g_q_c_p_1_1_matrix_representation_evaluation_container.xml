@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_matrix_representation_evaluation_container" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::MatrixRepresentationEvaluationContainer</compoundname>
+    <includes refid="_matrix_representation_evaluation_container_8hpp" local="no">MatrixRepresentationEvaluationContainer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Matrix</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" prot="public" static="no">
+        <type>_Matrix</type>
+        <definition>using GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::Matrix =  _Matrix</definition>
+        <argsstring></argsstring>
+        <name>Matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="37" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a5249468abc4206c06b7d2786620a99eb" prot="public" static="no">
+        <type>typename <ref refid="class_g_q_c_p_1_1_matrix_1a820960c1c3ad2c124d6be1ccd0eec021" kindref="member">Matrix::Scalar</ref></type>
+        <definition>using GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::Scalar =  typename Matrix::Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aac052cc33b05c34338e8b2ee46f7c637" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="43" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a1f58343098e10f15d7521e19e52e3001" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="46" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aa62b8fa69579d4f38fada5f3ef224455" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" kindref="member">Matrix</ref></type>
+        <definition>Matrix GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::matrix</definition>
+        <argsstring></argsstring>
+        <name>matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="49" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a6b9ef0370563f0eea68afd8d1db51ddc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::MatrixRepresentationEvaluationContainer</definition>
+        <argsstring>(const size_t dimension)</argsstring>
+        <name>MatrixRepresentationEvaluationContainer</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dimension of the matrix representation (the number of elements in one row/column) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a01e94b367635ae325c4ae22c55ff8262" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::addColumnwise</definition>
+        <argsstring>(const size_t column, const Scalar value)</argsstring>
+        <name>addColumnwise</name>
+        <param>
+          <type>const size_t</type>
+          <declname>column</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a5249468abc4206c06b7d2786620a99eb" kindref="member">Scalar</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>column</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>column index of the matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the value which is added to a given position in the matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="75" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="75" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ab16ce58d35ab786810dbde8115dffad2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::addRowwise</definition>
+        <argsstring>(const size_t row, const double value)</argsstring>
+        <name>addRowwise</name>
+        <param>
+          <type>const size_t</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>row index of the matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the value which is added to a given position in the matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="86" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a2ec4dee0f5cbae2b7730d647c6729eea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" kindref="member">Matrix</ref> &amp;</type>
+        <definition>const Matrix&amp; GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::evaluation</definition>
+        <argsstring>() const</argsstring>
+        <name>evaluation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the evaluation that is stored </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="91" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ac70cfe74faa0933d129260dd8654edb5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::increment</definition>
+        <argsstring>()</argsstring>
+        <name>increment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Move to the next index in the iteration </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="96" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a6740eba1f8a2206adff9187763fb7bb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;::isFinished</definition>
+        <argsstring>()</argsstring>
+        <name>isFinished</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Tests if the iteration is finished, if true the index is reset to 0</para>
+<para><simplesect kind="return"><para>true if the iteration is finished </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="103" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="103" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that can efficiently construct the (square) matrix representation of a mathematical operator.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Matrix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type that is used as a matrix representation, i.e. a container that stores the matrix representation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::MatrixRepresentationEvaluationContainer&lt; _Matrix &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="35" bodyend="111"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a01e94b367635ae325c4ae22c55ff8262" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>addColumnwise</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ab16ce58d35ab786810dbde8115dffad2" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>addRowwise</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a1f58343098e10f15d7521e19e52e3001" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>end</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a2ec4dee0f5cbae2b7730d647c6729eea" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>evaluation</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ac70cfe74faa0933d129260dd8654edb5" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>increment</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aac052cc33b05c34338e8b2ee46f7c637" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>index</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a6740eba1f8a2206adff9187763fb7bb9" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>isFinished</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>Matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aa62b8fa69579d4f38fada5f3ef224455" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a6b9ef0370563f0eea68afd8d1db51ddc" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>MatrixRepresentationEvaluationContainer</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a5249468abc4206c06b7d2786620a99eb" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

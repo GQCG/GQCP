@@ -1,0 +1,175 @@
+\hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{}\doxysection{G\+Q\+CP\+::Libint\+One\+Electron\+Integral\+Engine$<$ \+\_\+N $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine}\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+
+
+{\ttfamily \#include $<$Libint\+One\+Electron\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Libint\+One\+Electron\+Integral\+Engine$<$ \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_libint_one_electron_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Libint\+One\+Electron\+Integral\+Engine$<$ \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_libint_one_electron_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a4f3de27fe215afa94ca40359da86fb2e}{Integral\+Scalar}} = double
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a5d1dce40c1384dd9953d2d6a54320e58}{Libint\+One\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_abafd6b319e98014dd8dd074842e74f10}{Libint\+One\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a2dfa057022f73f592f9069a81feefbe0}{Libint\+One\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0f765f003b6c9ee602a63e75c4076bed}{Libint\+One\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a4f3de27fe215afa94ca40359da86fb2e}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0b7145b2e812d88b6a4bf169fbb8b76b}{N}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a23dd8c30d8a8f48fa616cab87ec3463d}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&shell1, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&shell2) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0b7145b2e812d88b6a4bf169fbb8b76b}{N}} = \+\_\+N
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$size\+\_\+t \+\_\+N$>$\newline
+class G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+N $>$}
+
+A one-\/electron integral engine that uses libint as its backend
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+N} & the number of components the operator has \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a4f3de27fe215afa94ca40359da86fb2e}\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a4f3de27fe215afa94ca40359da86fb2e}} 
+\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a4f3de27fe215afa94ca40359da86fb2e}{Integral\+Scalar}} =  double}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a5d1dce40c1384dd9953d2d6a54320e58}\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a5d1dce40c1384dd9953d2d6a54320e58}} 
+\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}!LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}}
+\index{LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}!GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{LibintOneElectronIntegralEngine()}{LibintOneElectronIntegralEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{Libint\+One\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the electronic electric dipole operator \\
+\hline
+{\em max\+\_\+nprim} & the maximum number of primitives per contracted Gaussian shell \\
+\hline
+{\em max\+\_\+l} & the maximum angular momentum of Gaussian shell \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine_abafd6b319e98014dd8dd074842e74f10}\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine_abafd6b319e98014dd8dd074842e74f10}} 
+\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}!LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}}
+\index{LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}!GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{LibintOneElectronIntegralEngine()}{LibintOneElectronIntegralEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{Libint\+One\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the kinetic operator \\
+\hline
+{\em max\+\_\+nprim} & the maximum number of primitives per contracted Gaussian shell \\
+\hline
+{\em max\+\_\+l} & the maximum angular momentum of Gaussian shell \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a2dfa057022f73f592f9069a81feefbe0}\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a2dfa057022f73f592f9069a81feefbe0}} 
+\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}!LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}}
+\index{LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}!GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{LibintOneElectronIntegralEngine()}{LibintOneElectronIntegralEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{Libint\+One\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the nuclear attraction operator \\
+\hline
+{\em max\+\_\+nprim} & the maximum number of primitives per contracted Gaussian shell \\
+\hline
+{\em max\+\_\+l} & the maximum angular momentum of Gaussian shell \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0f765f003b6c9ee602a63e75c4076bed}\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0f765f003b6c9ee602a63e75c4076bed}} 
+\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}!LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}}
+\index{LibintOneElectronIntegralEngine@{LibintOneElectronIntegralEngine}!GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{LibintOneElectronIntegralEngine()}{LibintOneElectronIntegralEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{Libint\+One\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the overlap operator \\
+\hline
+{\em max\+\_\+nprim} & the maximum number of primitives per contracted Gaussian shell \\
+\hline
+{\em max\+\_\+l} & the maximum angular momentum of Gaussian shell \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a23dd8c30d8a8f48fa616cab87ec3463d}\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a23dd8c30d8a8f48fa616cab87ec3463d}} 
+\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a4f3de27fe215afa94ca40359da86fb2e}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0b7145b2e812d88b6a4bf169fbb8b76b}{N}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{shell1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{shell2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em shell1} & the first shell \\
+\hline
+{\em shell2} & the second shell \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Engine$<$ G\+T\+O\+Shell, \+\_\+\+N, double $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0b7145b2e812d88b6a4bf169fbb8b76b}\label{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a0b7145b2e812d88b6a4bf169fbb8b76b}} 
+\index{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}!N@{N}}
+\index{N@{N}!GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintOneElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::N = \+\_\+N\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libint_one_electron_integral_engine_8hpp}{Libint\+One\+Electron\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

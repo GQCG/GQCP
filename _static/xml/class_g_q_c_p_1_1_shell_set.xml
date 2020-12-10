@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_shell_set" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ShellSet</compoundname>
+    <includes refid="_shell_set_8hpp" local="no">ShellSet.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" prot="public" static="no">
+        <type>_Shell</type>
+        <definition>using GQCP::ShellSet&lt; _Shell &gt;::Shell =  _Shell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_shell_set_1a4434580128915230eabf525c93a56dde" prot="public" static="no">
+        <type>typename Shell::Primitive</type>
+        <definition>using GQCP::ShellSet&lt; _Shell &gt;::Primitive =  typename Shell::Primitive</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_shell_set_1a48ecd4d67ae529405cc6fdd1ca622f9f" prot="public" static="no">
+        <type>typename Shell::BasisFunction</type>
+        <definition>using GQCP::ShellSet&lt; _Shell &gt;::BasisFunction =  typename Shell::BasisFunction</definition>
+        <argsstring></argsstring>
+        <name>BasisFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_shell_set_1a259a65f9c32a9dce1029208ffa7daddf" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" kindref="member">Shell</ref> &gt;</type>
+        <definition>std::vector&lt;Shell&gt; GQCP::ShellSet&lt; _Shell &gt;::shells</definition>
+        <argsstring></argsstring>
+        <name>shells</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="47" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1ab1ff68735ec79d74c9e65b8ac6b46bb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ShellSet&lt; _Shell &gt;::ShellSet</definition>
+        <argsstring>(const std::vector&lt; Shell &gt; &amp;shells)</argsstring>
+        <name>ShellSet</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>shells</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shells</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>all the shells represented by a vector </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="58" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1ad364127deebe828f3239656dd510255e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ShellSet&lt; _Shell &gt;::ShellSet</definition>
+        <argsstring>(const std::initializer_list&lt; GTOShell &gt; &amp;list)</argsstring>
+        <name>ShellSet</name>
+        <param>
+          <type>const std::initializer_list&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> using an initializer_list </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="65" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1a2e91b38cfc6f64e7ce3f8a221be12b53" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" kindref="member">Shell</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;Shell&gt;&amp; GQCP::ShellSet&lt; _Shell &gt;::asVector</definition>
+        <argsstring>() const</argsstring>
+        <name>asVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a vector of the underlying shells that this shellset describes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="76" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1afe8bd19fea107b47391923d99763ddae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::ShellSet&lt; _Shell &gt;::basisFunctionIndex</definition>
+        <argsstring>(const size_t shell_index) const</argsstring>
+        <name>basisFunctionIndex</name>
+        <param>
+          <type>const size_t</type>
+          <declname>shell_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shell_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the (total basis function) index that corresponds to the first basis function in the given shell </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="83" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="83" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1a63065c1fe4c4732b54c2c329c6d8619a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_shell_set_1a48ecd4d67ae529405cc6fdd1ca622f9f" kindref="member">BasisFunction</ref> &gt;</type>
+        <definition>std::vector&lt;BasisFunction&gt; GQCP::ShellSet&lt; _Shell &gt;::basisFunctions</definition>
+        <argsstring>() const</argsstring>
+        <name>basisFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the basis functions that &apos;are&apos; in this shell </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="98" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="98" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1a4409d48541063e67371594aa305687a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::ShellSet&lt; _Shell &gt;::embedNormalizationFactors</definition>
+        <argsstring>()</argsstring>
+        <name>embedNormalizationFactors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="116" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="116" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1aedd598eb82a83d2542b06db08c06cd16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::ShellSet&lt; _Shell &gt;::embedNormalizationFactorsOfPrimitives</definition>
+        <argsstring>()</argsstring>
+        <name>embedNormalizationFactorsOfPrimitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing</para>
+<para>Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="129" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="129" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1a5a5e583e3b3824b70377ef9d045aef38" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::ShellSet&lt; _Shell &gt;::maximumAngularMomentum</definition>
+        <argsstring>() const</argsstring>
+        <name>maximumAngularMomentum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the maximum angular momentum of the shells </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="140" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="140" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1af106eaf05bf9defbfc0bac771464ada3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::ShellSet&lt; _Shell &gt;::maximumNumberOfPrimitives</definition>
+        <argsstring>() const</argsstring>
+        <name>maximumNumberOfPrimitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the maximum number of primitives that are used inside the shells </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="158" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="158" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1a128975ef5fca1719a8257eacef8c7270" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt;</type>
+        <definition>std::vector&lt;Nucleus&gt; GQCP::ShellSet&lt; _Shell &gt;::nuclei</definition>
+        <argsstring>() const</argsstring>
+        <name>nuclei</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>an ordered vector of the unique nuclei in this shell set </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="176" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="176" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1abe949af8f29058c15b0f462797b19970" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::ShellSet&lt; _Shell &gt;::numberOfBasisFunctions</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfBasisFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of basis functions in this shell set </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="200" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="200" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1a9b7a4bee7ad1c6a87d3f5d60423f4ae3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::ShellSet&lt; _Shell &gt;::numberOfShells</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfShells</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of shells in this shell set </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="214" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="214" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_shell_set_1a81c243c231826670d3f653a758efc4d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::ShellSet&lt; _Shell &gt;::unEmbedNormalizationFactorsOfPrimitives</definition>
+        <argsstring>()</argsstring>
+        <name>unEmbedNormalizationFactorsOfPrimitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing</para>
+<para>Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="222" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="222" bodyend="227"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents a set of shells</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of shell that is contained in this set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::ShellSet&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_shell_set"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp" bodystart="38" bodyend="228"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a2e91b38cfc6f64e7ce3f8a221be12b53" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a48ecd4d67ae529405cc6fdd1ca622f9f" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>BasisFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1afe8bd19fea107b47391923d99763ddae" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>basisFunctionIndex</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a63065c1fe4c4732b54c2c329c6d8619a" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>basisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a4409d48541063e67371594aa305687a9" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>embedNormalizationFactors</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1aedd598eb82a83d2542b06db08c06cd16" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>embedNormalizationFactorsOfPrimitives</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a5a5e583e3b3824b70377ef9d045aef38" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>maximumAngularMomentum</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1af106eaf05bf9defbfc0bac771464ada3" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>maximumNumberOfPrimitives</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a128975ef5fca1719a8257eacef8c7270" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>nuclei</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1abe949af8f29058c15b0f462797b19970" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>numberOfBasisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a9b7a4bee7ad1c6a87d3f5d60423f4ae3" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>numberOfShells</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a4434580128915230eabf525c93a56dde" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>Primitive</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a259a65f9c32a9dce1029208ffa7daddf" prot="private" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>shells</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1ab1ff68735ec79d74c9e65b8ac6b46bb8" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>ShellSet</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1ad364127deebe828f3239656dd510255e" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>ShellSet</name></member>
+      <member refid="class_g_q_c_p_1_1_shell_set_1a81c243c231826670d3f653a758efc4d7" prot="public" virt="non-virtual"><scope>GQCP::ShellSet</scope><name>unEmbedNormalizationFactorsOfPrimitives</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,420 @@
+\hypertarget{class_g_q_c_p_1_1_square_matrix}{}\doxysection{G\+Q\+CP\+::Square\+Matrix$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_square_matrix}\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$Square\+Matrix.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Square\+Matrix$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_square_matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Square\+Matrix$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_square_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a3539bd6c04613bfc02561c6ae1bfff9f}{Self}} = \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aeb77a54f205d882662841c0aaab2dbc1}{Square\+Matrix}} ()
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a3a3e9592b9d14e30e923ebd49f177177}{Square\+Matrix}} (const size\+\_\+t dim)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a71c12ab57ae3a136b19c67270a138c02}{Square\+Matrix}} (const size\+\_\+t rows, const size\+\_\+t cols)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0ccee967e25408559c5b06c2e8d1b2fd}{Square\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&M)
+\item 
+{\footnotesize template$<$typename Derived\+Expression $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aade211ea90d7a106a08db23939e20ecc}{Square\+Matrix}} (const Eigen\+::\+Matrix\+Base$<$ Derived\+Expression $>$ \&expression)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}} () const
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0b63025d8fd5ed7c7cfdb6da82a1f68d}{is\+Self\+Adjoint}} (const double threshold=1.\+0e-\/08) const
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a957455e43a3f0991500024376713cfec}{is\+Hermitian}} (const double threshold=1.\+0e-\/08) const
+\item 
+std\+::array$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}}, 2 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a41e7131c842e8e9cea385be462d8d309}{no\+Pivot\+L\+U\+Decompose}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a8e16efb3d9cb08a8ba04db0abc88c66a}{pair\+Wise\+Strict\+Reduced}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ad2771d96e3cff714f68dbdb5c7420021}{calculate\+Permanent\+Combinatorial}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af4bae3858d82278f0a0ada4382b8c9f9}{calculate\+Permanent\+Ryser}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af916a1d7dab54e720134c9445f32b2ea}{From\+Strict\+Triangle}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&v)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}{Identity}} (const size\+\_\+t dim)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0762291135e1043da5582add757a5240}{Partition\+Matrix}} (const std\+::vector$<$ size\+\_\+t $>$ \&indices, const size\+\_\+t M)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_afce67055c3293379cc196854bb235e75}{Partition\+Matrix}} (const size\+\_\+t start, const size\+\_\+t range, const size\+\_\+t M)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a57533e5025634786577ccc29e183c04c}{Random}} (const size\+\_\+t dim)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af9a12d2f0b3447800c1743b503233cab}{Random\+Symmetric}} (const size\+\_\+t dim)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a7b4e7cb4f0a489ff6595054f133f1861}{Random\+Unitary}} (const size\+\_\+t dim)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af0b4efec0dffa9a02baf6143c47ee3ed}{Symmetric\+From\+Upper\+Triangle}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&v)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Zero}} (const size\+\_\+t dim)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Square\+Matrix$<$ \+\_\+\+Scalar $>$}
+
+A square matrix. It is an extension of the \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}} class, allowing for dynamic-\/size square matrices.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}\label{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} =  \+\_\+\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a3539bd6c04613bfc02561c6ae1bfff9f}\label{class_g_q_c_p_1_1_square_matrix_a3539bd6c04613bfc02561c6ae1bfff9f}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!Self@{Self}}
+\index{Self@{Self}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Self}{Self}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_aeb77a54f205d882662841c0aaab2dbc1}\label{class_g_q_c_p_1_1_square_matrix_aeb77a54f205d882662841c0aaab2dbc1}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!SquareMatrix@{SquareMatrix}}
+\index{SquareMatrix@{SquareMatrix}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SquareMatrix()}{SquareMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The default constructor. \mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a3a3e9592b9d14e30e923ebd49f177177}\label{class_g_q_c_p_1_1_square_matrix_a3a3e9592b9d14e30e923ebd49f177177}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!SquareMatrix@{SquareMatrix}}
+\index{SquareMatrix@{SquareMatrix}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SquareMatrix()}{SquareMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a square matrix given a dimension.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & The dimension of the square matrix. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a71c12ab57ae3a136b19c67270a138c02}\label{class_g_q_c_p_1_1_square_matrix_a71c12ab57ae3a136b19c67270a138c02}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!SquareMatrix@{SquareMatrix}}
+\index{SquareMatrix@{SquareMatrix}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SquareMatrix()}{SquareMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{rows,  }\item[{const size\+\_\+t}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A default constructor for Pybind11\textquotesingle{}s Eigen-\/related casting.
+
+\begin{DoxyNote}{Note}
+This method is only here to avoid compile-\/time errors with Pybind11 and should never be called directly! 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a0ccee967e25408559c5b06c2e8d1b2fd}\label{class_g_q_c_p_1_1_square_matrix_a0ccee967e25408559c5b06c2e8d1b2fd}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!SquareMatrix@{SquareMatrix}}
+\index{SquareMatrix@{SquareMatrix}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SquareMatrix()}{SquareMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&}]{M }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}} from a \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{G\+Q\+C\+P\+::\+MatrixX}} and check the given matrix is square.
+
+
+\begin{DoxyParams}{Parameters}
+{\em M} & The matrix that should be square. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_aade211ea90d7a106a08db23939e20ecc}\label{class_g_q_c_p_1_1_square_matrix_aade211ea90d7a106a08db23939e20ecc}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!SquareMatrix@{SquareMatrix}}
+\index{SquareMatrix@{SquareMatrix}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SquareMatrix()}{SquareMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Derived\+Expression $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}} (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Base$<$ Derived\+Expression $>$ \&}]{expression }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}} from \mbox{\hyperlink{namespace_eigen}{Eigen}} expressions.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived\+Expression} & The type of the Eigen\+::\+Matrix expression, which is normally generated by the compiler.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The \mbox{\hyperlink{namespace_eigen}{Eigen}} expression. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_ad2771d96e3cff714f68dbdb5c7420021}\label{class_g_q_c_p_1_1_square_matrix_ad2771d96e3cff714f68dbdb5c7420021}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!calculatePermanentCombinatorial@{calculatePermanentCombinatorial}}
+\index{calculatePermanentCombinatorial@{calculatePermanentCombinatorial}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculatePermanentCombinatorial()}{calculatePermanentCombinatorial()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+double \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Permanent\+Combinatorial (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the permanent using a combinatorial algorithm 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_af4bae3858d82278f0a0ada4382b8c9f9}\label{class_g_q_c_p_1_1_square_matrix_af4bae3858d82278f0a0ada4382b8c9f9}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!calculatePermanentRyser@{calculatePermanentRyser}}
+\index{calculatePermanentRyser@{calculatePermanentRyser}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculatePermanentRyser()}{calculatePermanentRyser()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+double \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Permanent\+Ryser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the permanent of the given square matrix using the Ryser algorithm
+\end{DoxyReturn}
+Note that this algorithm does not work for dimensions larger than 64\+: see \href{https://www.codeproject.com/Articles/21282/\%2FArticles\%2F21282\%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit}{\texttt{ https\+://www.\+codeproject.\+com/\+Articles/21282/\%2\+F\+Articles\%2\+F21282\%2\+F\+Compute-\/\+Permanent-\/of-\/a-\/\+Matrix-\/with-\/\+Ryser-\/s-\/\+Algorit}} \mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}\label{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!dimension@{dimension}}
+\index{dimension@{dimension}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{dimension()}{dimension()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the dimension of this square matrix, i.\+e. the number of rows or columns 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_af916a1d7dab54e720134c9445f32b2ea}\label{class_g_q_c_p_1_1_square_matrix_af916a1d7dab54e720134c9445f32b2ea}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!FromStrictTriangle@{FromStrictTriangle}}
+\index{FromStrictTriangle@{FromStrictTriangle}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{FromStrictTriangle()}{FromStrictTriangle()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::From\+Strict\+Triangle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the strict (not including the diagonal) lower/upper triangle of the matrix in column major form\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a square matrix in which the lower triangle is filled in with its given vector representation; all other elements are set to zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}\label{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!Identity@{Identity}}
+\index{Identity@{Identity}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Identity()}{Identity()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Identity (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an identity square matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & The dimension of the square matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An identity square matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a957455e43a3f0991500024376713cfec}\label{class_g_q_c_p_1_1_square_matrix_a957455e43a3f0991500024376713cfec}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!isHermitian@{isHermitian}}
+\index{isHermitian@{isHermitian}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{isHermitian()}{isHermitian()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::is\+Hermitian (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+If this square matrix is self-\/adjoint. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a0b63025d8fd5ed7c7cfdb6da82a1f68d}\label{class_g_q_c_p_1_1_square_matrix_a0b63025d8fd5ed7c7cfdb6da82a1f68d}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!isSelfAdjoint@{isSelfAdjoint}}
+\index{isSelfAdjoint@{isSelfAdjoint}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{isSelfAdjoint()}{isSelfAdjoint()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::is\+Self\+Adjoint (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+If this square matrix is self-\/adjoint. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a41e7131c842e8e9cea385be462d8d309}\label{class_g_q_c_p_1_1_square_matrix_a41e7131c842e8e9cea385be462d8d309}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!noPivotLUDecompose@{noPivotLUDecompose}}
+\index{noPivotLUDecompose@{noPivotLUDecompose}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{noPivotLUDecompose()}{noPivotLUDecompose()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+std\+::array$<$\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}}, 2$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::no\+Pivot\+L\+U\+Decompose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/pivoted LU decomposition in an array, with L at position 0 and U on position 1 of the array.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Pivoting is required to ensure that the decomposition is stable. Eigen3 provides partial and full pivot modules, so when the pivot or permutation of a matrix is not of interest we strongly recommend using Eigen3 instead 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a8e16efb3d9cb08a8ba04db0abc88c66a}\label{class_g_q_c_p_1_1_square_matrix_a8e16efb3d9cb08a8ba04db0abc88c66a}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!pairWiseStrictReduced@{pairWiseStrictReduced}}
+\index{pairWiseStrictReduced@{pairWiseStrictReduced}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{pairWiseStrictReduced()}{pairWiseStrictReduced()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::pair\+Wise\+Strict\+Reduced (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a pair-\/wise strict reduced form of this square matrix. The elements of the matrix are put into the vector such that v(m) = M(i,j)
+\end{DoxyReturn}
+in which m is calculated from i and j in a column-\/major way, with the restriction that i$>$j
+
+Note that this is equal to extracting to strict lower triangular matrix as a vector in column major form. Example\+: \begin{DoxyVerb}    5
+    1   5       -> (1, 2, 3)
+    2   3   5
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_afce67055c3293379cc196854bb235e75}\label{class_g_q_c_p_1_1_square_matrix_afce67055c3293379cc196854bb235e75}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!PartitionMatrix@{PartitionMatrix}}
+\index{PartitionMatrix@{PartitionMatrix}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{PartitionMatrix()}{PartitionMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Partition\+Matrix (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{start,  }\item[{const size\+\_\+t}]{range,  }\item[{const size\+\_\+t}]{M }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & starting index of the partition \\
+\hline
+{\em range} & range overwhich the partition indices stretch \\
+\hline
+{\em M} & the dimension of the resulting matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \textquotesingle{}partition\textquotesingle{} matrix, which is a diagonal matrix, whose diagonal elements are either 0 or 1, as specified by the given indices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a0762291135e1043da5582add757a5240}\label{class_g_q_c_p_1_1_square_matrix_a0762291135e1043da5582add757a5240}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!PartitionMatrix@{PartitionMatrix}}
+\index{PartitionMatrix@{PartitionMatrix}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{PartitionMatrix()}{PartitionMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Partition\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{indices,  }\item[{const size\+\_\+t}]{M }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & the indices of the diagonal which will be set to 1 \\
+\hline
+{\em M} & the dimension of the resulting matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \textquotesingle{}partition\textquotesingle{} matrix, which is a diagonal matrix, whose diagonal elements are either 0 or 1, as specified by the given indices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a57533e5025634786577ccc29e183c04c}\label{class_g_q_c_p_1_1_square_matrix_a57533e5025634786577ccc29e183c04c}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!Random@{Random}}
+\index{Random@{Random}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Random()}{Random()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Random (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a random square matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & The dimension of the resulting matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random square matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_af9a12d2f0b3447800c1743b503233cab}\label{class_g_q_c_p_1_1_square_matrix_af9a12d2f0b3447800c1743b503233cab}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!RandomSymmetric@{RandomSymmetric}}
+\index{RandomSymmetric@{RandomSymmetric}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{RandomSymmetric()}{RandomSymmetric()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Random\+Symmetric (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a random symmetrix matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & The dimension of the resulting matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random symmetric matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_a7b4e7cb4f0a489ff6595054f133f1861}\label{class_g_q_c_p_1_1_square_matrix_a7b4e7cb4f0a489ff6595054f133f1861}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!RandomUnitary@{RandomUnitary}}
+\index{RandomUnitary@{RandomUnitary}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{RandomUnitary()}{RandomUnitary()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Random\+Unitary (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a random unitary matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & The dimension of the resulting matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random unitary matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_af0b4efec0dffa9a02baf6143c47ee3ed}\label{class_g_q_c_p_1_1_square_matrix_af0b4efec0dffa9a02baf6143c47ee3ed}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!SymmetricFromUpperTriangle@{SymmetricFromUpperTriangle}}
+\index{SymmetricFromUpperTriangle@{SymmetricFromUpperTriangle}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SymmetricFromUpperTriangle()}{SymmetricFromUpperTriangle()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Symmetric\+From\+Upper\+Triangle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & the upper triangle (including the diagonal) of a matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the full, symmetric matrix corresponding to the given upper triangle 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}\label{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}} 
+\index{GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}!Zero@{Zero}}
+\index{Zero@{Zero}!GQCP::SquareMatrix$<$ \_Scalar $>$@{GQCP::SquareMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Zero()}{Zero()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{G\+Q\+C\+P\+::\+Square\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Zero (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a zero square matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & The dimension of the square matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An zero square matrix. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_square_matrix_8hpp}{Square\+Matrix.\+hpp}}\end{DoxyCompactItemize}

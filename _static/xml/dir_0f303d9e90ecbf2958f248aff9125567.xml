@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_0f303d9e90ecbf2958f248aff9125567" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include</compoundname>
+    <innerdir refid="dir_b2d1647eeffb5c0b5b0687b9ad8acce5">/__w/GQCP/GQCP/gqcp/include/Basis</innerdir>
+    <innerdir refid="dir_48ddfae5dd558b6147ef35393fcef6e1">/__w/GQCP/GQCP/gqcp/include/DensityMatrix</innerdir>
+    <innerdir refid="dir_149e5f50ad70cb49c7e4a458ffc6a689">/__w/GQCP/GQCP/gqcp/include/Mathematical</innerdir>
+    <innerdir refid="dir_3f7661081dfd8038b3f615272e600c89">/__w/GQCP/GQCP/gqcp/include/Molecule</innerdir>
+    <innerdir refid="dir_0abd343f772b22441c1a865d2f6eb737">/__w/GQCP/GQCP/gqcp/include/Operator</innerdir>
+    <innerdir refid="dir_3b2cc30d09dd415306402d06edcc38d7">/__w/GQCP/GQCP/gqcp/include/Processing</innerdir>
+    <innerdir refid="dir_d7d218554e8f7cd1ed4d34252e45a7a6">/__w/GQCP/GQCP/gqcp/include/QCMethod</innerdir>
+    <innerdir refid="dir_ce923ae59ac6788e723b6592a9fb6365">/__w/GQCP/GQCP/gqcp/include/QCModel</innerdir>
+    <innerdir refid="dir_66be7ac6eb7ceb82711fb2d51260f40c">/__w/GQCP/GQCP/gqcp/include/QuantumChemical</innerdir>
+    <innerdir refid="dir_8bb0e5033a16e9ae7b7d0490d631532e">/__w/GQCP/GQCP/gqcp/include/Utilities</innerdir>
+    <innerfile refid="gqcp_8hpp">gqcp.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/"/>
+  </compounddef>
+</doxygen>

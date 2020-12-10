@@ -1,0 +1,336 @@
+\hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice}{}\doxysection{G\+Q\+CP\+::Implicit\+Matrix\+Slice$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_implicit_matrix_slice}\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$Implicit\+Matrix\+Slice.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Implicit\+Matrix\+Slice$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_g_q_c_p_1_1_implicit_matrix_slice__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_afa40af129ba899491054271b8cae6d3c}{Implicit\+Matrix\+Slice}} (const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&rows\+\_\+implicit\+\_\+to\+\_\+dense, const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&cols\+\_\+implicit\+\_\+to\+\_\+dense, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \&M)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a0771fa9d0f5c2e4e83e60dab9d1bda71}{Implicit\+Matrix\+Slice}} (const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&rows\+\_\+implicit\+\_\+to\+\_\+dense, const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&cols\+\_\+implicit\+\_\+to\+\_\+dense)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_af0f9b6279f0d4960a6597882a2963bd4}{Implicit\+Matrix\+Slice}} ()
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a2a98a04bc7cbcfda3b2c7c8a8d4b334c}{operator()}} (const size\+\_\+t row, const size\+\_\+t col) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ad9ad2064d5c659aec8146c1b7cef0b44}{operator()}} (const size\+\_\+t row, const size\+\_\+t col)
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ac621e9ddb2df28ac144d043cf8d06e5f}{as\+Matrix}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a6821fc7079d6e2cff3b8a9849bee4ef4}{as\+Vector}} () const
+\item 
+const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a70eefd9bf58591279c903c7b0c6f5b66}{column\+Index\+Map}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a6df4decf4762ca9ce020b49e08728f45}{dense\+Index\+Of\+Column}} (const size\+\_\+t col) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ad12f4e99ff37cc14b171db4456d80c9f}{dense\+Index\+Of\+Row}} (const size\+\_\+t row) const
+\item 
+const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a2e40fa80fe0f68c539890c151c57c126}{row\+Index\+Map}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a998e24f97b6c5e84b060bd08c463f35c}{From\+Block\+Ranges}} (const size\+\_\+t row\+\_\+start, const size\+\_\+t row\+\_\+end, const size\+\_\+t col\+\_\+start, const size\+\_\+t col\+\_\+end, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \&M)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a24e57055796a956464ad16f6fc5485b3}{From\+Indices}} (const std\+::vector$<$ size\+\_\+t $>$ \&row\+\_\+indices, const std\+::vector$<$ size\+\_\+t $>$ \&col\+\_\+indices, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \&M)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_aaf5cd7442fd79d7875a14b2c2f265140}{Zero\+From\+Block\+Ranges}} (const size\+\_\+t row\+\_\+start, const size\+\_\+t row\+\_\+end, const size\+\_\+t col\+\_\+start, const size\+\_\+t col\+\_\+end)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a541f0ab69cbdaa8282c384bae9534f3d}{Zero\+From\+Indices}} (const std\+::vector$<$ size\+\_\+t $>$ \&row\+\_\+indices, const std\+::vector$<$ size\+\_\+t $>$ \&col\+\_\+indices)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice$<$ \+\_\+\+Scalar $>$}
+
+A slice of a matrix that only exists implicitly.
+
+If the full matrix is unnecessary to know, and only a certain slice of the matrix is of interest, this class implements operator() that can be used with the row and column indices of the full matrix.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar representation of one element of the encapsulating matrix \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_afa40af129ba899491054271b8cae6d3c}\label{class_g_q_c_p_1_1_implicit_matrix_slice_afa40af129ba899491054271b8cae6d3c}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!ImplicitMatrixSlice@{ImplicitMatrixSlice}}
+\index{ImplicitMatrixSlice@{ImplicitMatrixSlice}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{ImplicitMatrixSlice()}{ImplicitMatrixSlice()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}} (\begin{DoxyParamCaption}\item[{const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&}]{rows\+\_\+implicit\+\_\+to\+\_\+dense,  }\item[{const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&}]{cols\+\_\+implicit\+\_\+to\+\_\+dense,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \&}]{M }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize an \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}\textquotesingle{}s members.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows\+\_\+implicit\+\_\+to\+\_\+dense} & maps the row indices of the implicit matrix to the row indices of the dense representation of the slice \\
+\hline
+{\em cols\+\_\+implicit\+\_\+to\+\_\+dense} & maps the column indices of the implicit matrix to the column indices of the dense representation of the slice \\
+\hline
+{\em M} & the dense representation of the slice \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a0771fa9d0f5c2e4e83e60dab9d1bda71}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a0771fa9d0f5c2e4e83e60dab9d1bda71}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!ImplicitMatrixSlice@{ImplicitMatrixSlice}}
+\index{ImplicitMatrixSlice@{ImplicitMatrixSlice}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{ImplicitMatrixSlice()}{ImplicitMatrixSlice()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}} (\begin{DoxyParamCaption}\item[{const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&}]{rows\+\_\+implicit\+\_\+to\+\_\+dense,  }\item[{const std\+::map$<$ size\+\_\+t, size\+\_\+t $>$ \&}]{cols\+\_\+implicit\+\_\+to\+\_\+dense }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize an \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}\textquotesingle{}s members, with a zero matrix for the dense representation of the slice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows\+\_\+implicit\+\_\+to\+\_\+dense} & maps the row indices of the implicit matrix to the row indices of the dense representation of the slice \\
+\hline
+{\em cols\+\_\+implicit\+\_\+to\+\_\+dense} & maps the column indices of the implicit matrix to the column indices of the dense representation of the slice \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_af0f9b6279f0d4960a6597882a2963bd4}\label{class_g_q_c_p_1_1_implicit_matrix_slice_af0f9b6279f0d4960a6597882a2963bd4}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!ImplicitMatrixSlice@{ImplicitMatrixSlice}}
+\index{ImplicitMatrixSlice@{ImplicitMatrixSlice}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{ImplicitMatrixSlice()}{ImplicitMatrixSlice()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A default constructor setting everything to zero. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_ac621e9ddb2df28ac144d043cf8d06e5f}\label{class_g_q_c_p_1_1_implicit_matrix_slice_ac621e9ddb2df28ac144d043cf8d06e5f}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!asMatrix@{asMatrix}}
+\index{asMatrix@{asMatrix}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{asMatrix()}{asMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::as\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+this as a matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a6821fc7079d6e2cff3b8a9849bee4ef4}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a6821fc7079d6e2cff3b8a9849bee4ef4}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!asVector@{asVector}}
+\index{asVector@{asVector}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{asVector()}{asVector()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::as\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+this as a (column-\/major) vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a70eefd9bf58591279c903c7b0c6f5b66}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a70eefd9bf58591279c903c7b0c6f5b66}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!columnIndexMap@{columnIndexMap}}
+\index{columnIndexMap@{columnIndexMap}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{columnIndexMap()}{columnIndexMap()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const std\+::map$<$size\+\_\+t, size\+\_\+t$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::column\+Index\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the map between the column indices of the implicit matrix and the column indices of the dense representation of the slice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a6df4decf4762ca9ce020b49e08728f45}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a6df4decf4762ca9ce020b49e08728f45}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!denseIndexOfColumn@{denseIndexOfColumn}}
+\index{denseIndexOfColumn@{denseIndexOfColumn}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{denseIndexOfColumn()}{denseIndexOfColumn()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::dense\+Index\+Of\+Column (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{col }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convert an implicit column index to the column index in the dense representation of this slice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em col} & the column number in the implicit encapsulating matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the column index the dense representation of this slice. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_ad12f4e99ff37cc14b171db4456d80c9f}\label{class_g_q_c_p_1_1_implicit_matrix_slice_ad12f4e99ff37cc14b171db4456d80c9f}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!denseIndexOfRow@{denseIndexOfRow}}
+\index{denseIndexOfRow@{denseIndexOfRow}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{denseIndexOfRow()}{denseIndexOfRow()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::dense\+Index\+Of\+Row (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convert an implicit row index to the row index in the dense representation of this slice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & the row number in the implicit encapsulating matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the row index the dense representation of this slice. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a998e24f97b6c5e84b060bd08c463f35c}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a998e24f97b6c5e84b060bd08c463f35c}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!FromBlockRanges@{FromBlockRanges}}
+\index{FromBlockRanges@{FromBlockRanges}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{FromBlockRanges()}{FromBlockRanges()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::From\+Block\+Ranges (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row\+\_\+start,  }\item[{const size\+\_\+t}]{row\+\_\+end,  }\item[{const size\+\_\+t}]{col\+\_\+start,  }\item[{const size\+\_\+t}]{col\+\_\+end,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \&}]{M }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Construct an \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}} from a dense matrix block and corresponding index ranges.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+start} & the 0-\/based row index of the implicit matrix at which the block starts \\
+\hline
+{\em row\+\_\+end} & the 0-\/based row index of the implicit matrix at which the block ends (not included) \\
+\hline
+{\em col\+\_\+start} & the 0-\/based column index of the implicit matrix at which the block starts \\
+\hline
+{\em col\+\_\+end} & the 0-\/based column index of the implicit matrix at which the block ends (not included) \\
+\hline
+{\em M} & the dense representation of the block\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an implicit matrix slice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a24e57055796a956464ad16f6fc5485b3}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a24e57055796a956464ad16f6fc5485b3}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!FromIndices@{FromIndices}}
+\index{FromIndices@{FromIndices}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{FromIndices()}{FromIndices()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::From\+Indices (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{row\+\_\+indices,  }\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{col\+\_\+indices,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} $>$ \&}]{M }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an implicit matrix slice through a dense representation of the slice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+indices} & the row indices (in order) of the implicit matrix that the row indices of the dense representation of the slice correspond to \\
+\hline
+{\em col\+\_\+indices} & the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to \\
+\hline
+{\em M} & the dense representation of the slice\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an implicit matrix slice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_ad9ad2064d5c659aec8146c1b7cef0b44}\label{class_g_q_c_p_1_1_implicit_matrix_slice_ad9ad2064d5c659aec8146c1b7cef0b44}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::operator() (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row,  }\item[{const size\+\_\+t}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Access an element of this implicit matrix slice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & the row number in the implicit encapsulating matrix \\
+\hline
+{\em col} & the column number in the implicit encapsulating matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a writable element of the implicit encapsulating matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a2a98a04bc7cbcfda3b2c7c8a8d4b334c}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a2a98a04bc7cbcfda3b2c7c8a8d4b334c}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::operator() (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row,  }\item[{const size\+\_\+t}]{col }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Access an element of this implicit matrix slice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & the row number in the implicit encapsulating matrix \\
+\hline
+{\em col} & the column number in the implicit encapsulating matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a read-\/only element of the implicit encapsulating matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a2e40fa80fe0f68c539890c151c57c126}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a2e40fa80fe0f68c539890c151c57c126}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!rowIndexMap@{rowIndexMap}}
+\index{rowIndexMap@{rowIndexMap}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{rowIndexMap()}{rowIndexMap()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const std\+::map$<$size\+\_\+t, size\+\_\+t$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::row\+Index\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the map between the row indices of the implicit matrix and the row indices of the dense representation of the slice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_aaf5cd7442fd79d7875a14b2c2f265140}\label{class_g_q_c_p_1_1_implicit_matrix_slice_aaf5cd7442fd79d7875a14b2c2f265140}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!ZeroFromBlockRanges@{ZeroFromBlockRanges}}
+\index{ZeroFromBlockRanges@{ZeroFromBlockRanges}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{ZeroFromBlockRanges()}{ZeroFromBlockRanges()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::Zero\+From\+Block\+Ranges (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row\+\_\+start,  }\item[{const size\+\_\+t}]{row\+\_\+end,  }\item[{const size\+\_\+t}]{col\+\_\+start,  }\item[{const size\+\_\+t}]{col\+\_\+end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Construct a zero \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}} with given block ranges.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+start} & the 0-\/based row index of the implicit matrix at which the block starts \\
+\hline
+{\em row\+\_\+end} & the 0-\/based row index of the implicit matrix at which the block ends (not included) \\
+\hline
+{\em col\+\_\+start} & the 0-\/based column index of the implicit matrix at which the block starts \\
+\hline
+{\em col\+\_\+end} & the 0-\/based column index of the implicit matrix at which the block ends (not included) \\
+\hline
+{\em M} & the dense representation of the block\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a zero implicit matrix slice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_implicit_matrix_slice_a541f0ab69cbdaa8282c384bae9534f3d}\label{class_g_q_c_p_1_1_implicit_matrix_slice_a541f0ab69cbdaa8282c384bae9534f3d}} 
+\index{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}!ZeroFromIndices@{ZeroFromIndices}}
+\index{ZeroFromIndices@{ZeroFromIndices}!GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$@{GQCP::ImplicitMatrixSlice$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{ZeroFromIndices()}{ZeroFromIndices()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{G\+Q\+C\+P\+::\+Implicit\+Matrix\+Slice}}$<$ \+\_\+\+Scalar $>$\+::Zero\+From\+Indices (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{row\+\_\+indices,  }\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{col\+\_\+indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a zero-\/initialized implicit matrix slice from given allowed row and column indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+indices} & the row indices (in order) of the implicit matrix that the row indices of the dense representation of the slice correspond to \\
+\hline
+{\em col\+\_\+indices} & the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an implicit matrix slice 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_implicit_matrix_slice_8hpp}{Implicit\+Matrix\+Slice.\+hpp}}\end{DoxyCompactItemize}

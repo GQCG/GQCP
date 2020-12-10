@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::APIGGeminalCoefficients</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_geminal_coefficients_interface" prot="public" virt="non-virtual">GQCP::GeminalCoefficientsInterface</basecompoundref>
+    <includes refid="_a_p_i_g_geminal_coefficients_8hpp" local="no">APIGGeminalCoefficients.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a49b86aaaee674ddadc4fc96503b90655" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::APIGGeminalCoefficients::K</definition>
+        <argsstring></argsstring>
+        <name>K</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="34" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a3ffeca23e6326aaf9a752ef71d9d14f5" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::APIGGeminalCoefficients::N_P</definition>
+        <argsstring></argsstring>
+        <name>N_P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a499010d6384322f76991a5f99b1cd2c9" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; double &gt;</type>
+        <definition>MatrixX&lt;double&gt; GQCP::APIGGeminalCoefficients::G</definition>
+        <argsstring></argsstring>
+        <name>G</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="36" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a33eb09e64b5de6b4cf849105ab38ab1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::APIGGeminalCoefficients::APIGGeminalCoefficients</definition>
+        <argsstring>(const MatrixX&lt; double &gt; &amp;G)</argsstring>
+        <name>APIGGeminalCoefficients</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; double &gt; &amp;</type>
+          <declname>G</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the APIG geminal coefficients in their matrix representation</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the APIG geminal coefficients </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a64591d3c0289ef64e015adafe43c0cc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::APIGGeminalCoefficients::APIGGeminalCoefficients</definition>
+        <argsstring>(const size_t N_P, const size_t K)</argsstring>
+        <name>APIGGeminalCoefficients</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor that sets the geminal coefficients to zero</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs (= the number of geminals) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="47" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a9d5c97a1bb063865aa65cb8e24f69dd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::APIGGeminalCoefficients::~APIGGeminalCoefficients</definition>
+        <argsstring>() override</argsstring>
+        <name>~APIGGeminalCoefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default destructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a4362beaed6824f8bff5181620dc00d83" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::APIGGeminalCoefficients::operator()</definition>
+        <argsstring>(const size_t i, const size_t p) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the geminal, i.e. subscript of the geminal coefficient: i is in [0, N_P[ with N_P the number of electron pairs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the orbital, i.e. superscript of the geminal coefficient</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an element of the AP1roG geminal coefficient matrix G_i^a </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="72" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="71" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a793c2fe466d0e10c3fd903bf73b62e49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; double &gt; &amp;</type>
+        <definition>const MatrixX&lt;double&gt;&amp; GQCP::APIGGeminalCoefficients::asMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>asMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the geminal coefficients in matrix form </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="108" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a57b4983a492bc6503a33c711b2174197" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GQCP::APIGGeminalCoefficients::overlap</definition>
+        <argsstring>(const SpinUnresolvedONV &amp;onv) const override</argsstring>
+        <name>overlap</name>
+        <reimplements refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f">overlap</reimplements>
+        <param>
+          <type>const SpinUnresolvedONV &amp;</type>
+          <declname>onv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the doubly-occupied (spin-resolved) ONV that is being projected on</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the overlap of the APIG wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="115" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="133" bodyend="152"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a4f077d1f3afbe54f734e39cd618fccab" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients" kindref="compound">APIGGeminalCoefficients</ref></type>
+        <definition>APIGGeminalCoefficients GQCP::APIGGeminalCoefficients::FromColumnMajor</definition>
+        <argsstring>(const VectorX&lt; double &gt; &amp;g, const size_t N_P, const size_t K)</argsstring>
+        <name>FromColumnMajor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the geminal coefficients in a vector representation that is in column-major storage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs (= the number of geminals) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="82" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1ac6fabe6616d102fc8bc583d5a48a3ad6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients" kindref="compound">APIGGeminalCoefficients</ref></type>
+        <definition>APIGGeminalCoefficients GQCP::APIGGeminalCoefficients::FromRowMajor</definition>
+        <argsstring>(const VectorX&lt; double &gt; &amp;g, const size_t N_P, const size_t K)</argsstring>
+        <name>FromRowMajor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the geminal coefficients in a vector representation that is in row-major storage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs (= the number of geminals) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="89" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="97" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a3f53d62293e6e7a62633473723b16b9c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::APIGGeminalCoefficients::numberOfGeminalCoefficients</definition>
+        <argsstring>(const size_t N_P, const size_t K)</argsstring>
+        <name>numberOfGeminalCoefficients</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs (= the number of geminals) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the number of &apos;free&apos; geminal coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="100" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="113" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents geminal coefficients for an APIG wave function </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::APIGGeminalCoefficients</label>
+        <link refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::GeminalCoefficientsInterface</label>
+        <link refid="class_g_q_c_p_1_1_geminal_coefficients_interface"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::APIGGeminalCoefficients</label>
+        <link refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::GeminalCoefficientsInterface</label>
+        <link refid="class_g_q_c_p_1_1_geminal_coefficients_interface"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" bodystart="32" bodyend="116"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a33eb09e64b5de6b4cf849105ab38ab1b" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>APIGGeminalCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a64591d3c0289ef64e015adafe43c0cc5" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>APIGGeminalCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a793c2fe466d0e10c3fd903bf73b62e49" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a4f077d1f3afbe54f734e39cd618fccab" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>FromColumnMajor</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1ac6fabe6616d102fc8bc583d5a48a3ad6" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>FromRowMajor</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a499010d6384322f76991a5f99b1cd2c9" prot="private" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>G</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a49b86aaaee674ddadc4fc96503b90655" prot="private" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>K</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a3ffeca23e6326aaf9a752ef71d9d14f5" prot="private" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>N_P</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a3f53d62293e6e7a62633473723b16b9c" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>numberOfGeminalCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a4362beaed6824f8bff5181620dc00d83" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a57b4983a492bc6503a33c711b2174197" prot="public" virt="virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>overlap</name></member>
+      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>toLinearExpansion</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a9d5c97a1bb063865aa65cb8e24f69dd5" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>~APIGGeminalCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" prot="public" virt="virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>~GeminalCoefficientsInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,40 @@
+\hypertarget{aliases_8hpp}{}\doxysection{/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Utilities/aliases.hpp File Reference}
+\label{aliases_8hpp}\index{/\_\_w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp}}
+{\ttfamily \#include \char`\"{}Utilities/type\+\_\+traits.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for aliases.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{aliases_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{aliases_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{G\+Q\+C\+P\+::complex}} = std\+::complex$<$ double $>$
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_g_q_c_p_a34f7bafce2f585c406de61d1eb4616b5}{G\+Q\+C\+P\+::\+Is\+Real}} = enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+same$<$ T, double $>$\+::value $>$
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_g_q_c_p_a3ce6a14846d6795ad08dda8abbf505bc}{G\+Q\+C\+P\+::\+Is\+Complex}} = enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+same$<$ T, complex $>$\+::value $>$
+\item 
+{\footnotesize template$<$typename T , typename U $>$ }\\using \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{G\+Q\+C\+P\+::product\+\_\+t}} = decltype(std\+::declval$<$ T $>$() $\ast$std\+::declval$<$ U $>$())
+\item 
+{\footnotesize template$<$typename T , typename U $>$ }\\using \mbox{\hyperlink{namespace_g_q_c_p_ad8362e85425df3608c553719ea712652}{G\+Q\+C\+P\+::sum\+\_\+t}} = decltype(std\+::declval$<$ T $>$()+std\+::declval$<$ U $>$())
+\end{DoxyCompactItemize}

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_ee01769bfaeb3f33195d6ca712294cb2" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Basis</compoundname>
+    <innerdir refid="dir_6b4e3172dc092f9a01a04d85d44c119d">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals</innerdir>
+    <innerdir refid="dir_dd35e9705ab55b5b66c50ab1377f02a9">/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis</innerdir>
+    <innerdir refid="dir_ebd31c0b96f80963a9338155166dec6c">/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis</innerdir>
+    <innerdir refid="dir_f7f17ba6af08d25acbe1f49d3f108ba3">/__w/GQCP/GQCP/gqcp/src/Basis/Transformations</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Basis/"/>
+  </compounddef>
+</doxygen>

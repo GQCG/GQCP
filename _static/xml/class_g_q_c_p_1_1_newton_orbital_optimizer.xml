@@ -1,0 +1,547 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_newton_orbital_optimizer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::NewtonOrbitalOptimizer</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_orbital_optimizer" prot="public" virt="non-virtual">GQCP::BaseOrbitalOptimizer</basecompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_e_r_newton_localizer" prot="public" virt="non-virtual">GQCP::ERNewtonLocalizer</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::QCMethodNewtonOrbitalOptimizer</derivedcompoundref>
+    <includes refid="_newton_orbital_optimizer_8hpp" local="no">NewtonOrbitalOptimizer.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad31068b230ffb38e97432624120c4318" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_hessian_modifier" kindref="compound">BaseHessianModifier</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;BaseHessianModifier&gt; GQCP::NewtonOrbitalOptimizer::hessian_modifier</definition>
+        <argsstring></argsstring>
+        <name>hessian_modifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="39" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a7654786bd0428dd90feb1de31fc7fe4c" prot="protected" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::NewtonOrbitalOptimizer::gradient</definition>
+        <argsstring></argsstring>
+        <name>gradient</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="41" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a4b4f69a479c8d9f5df94fb0a150b5e37" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>SquareMatrix&lt;double&gt; GQCP::NewtonOrbitalOptimizer::hessian</definition>
+        <argsstring></argsstring>
+        <name>hessian</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="42" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::NewtonOrbitalOptimizer::NewtonOrbitalOptimizer</definition>
+        <argsstring>(std::shared_ptr&lt; BaseHessianModifier &gt; hessian_modifier, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>NewtonOrbitalOptimizer</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_hessian_modifier" kindref="compound">BaseHessianModifier</ref> &gt;</type>
+          <declname>hessian_modifier</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac524dbf48349206dcc68774489d30a6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::NewtonOrbitalOptimizer::~NewtonOrbitalOptimizer</definition>
+        <argsstring>()=default</argsstring>
+        <name>~NewtonOrbitalOptimizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default destructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="61" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a91fddcff45c5d1298e9a6e5676ce4cb9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>virtual SquareMatrix&lt;double&gt; GQCP::NewtonOrbitalOptimizer::calculateGradientMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const =0</argsstring>
+        <name>calculateGradientMatrix</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a2a512ac9d603955917c5fffcf2929e3e">calculateGradientMatrix</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4fa16f419c9798ebd459e7f2e2267ae3">calculateGradientMatrix</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the current orbital gradient as a matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="71" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
+        <definition>virtual SquareRankFourTensor&lt;double&gt; GQCP::NewtonOrbitalOptimizer::calculateHessianTensor</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const =0</argsstring>
+        <name>calculateHessianTensor</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ab95ca42113e2e839113f61349a7ba5af">calculateHessianTensor</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1ad390e4279a7a14fa78973fcbd4c8b197">calculateHessianTensor</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the current orbital Hessian as a tensor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="78" column="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a917e48231bf397dcdc210590451113e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref></type>
+        <definition>virtual OrbitalRotationGenerators GQCP::NewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const =0</argsstring>
+        <name>calculateNewFullOrbitalGenerators</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a42d0ec0da1507f51c81086668c18696e">calculateNewFullOrbitalGenerators</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_e_r_newton_localizer_1acfbbaaa60d27d064ae23539c8996f2ca">calculateNewFullOrbitalGenerators</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Use gradient and Hessian information to determine a new direction for the &apos;full&apos; orbital rotation generators kappa. Note that a distinction is made between &apos;free&apos; generators, i.e. those that are calculated from the gradient and Hessian information and the &apos;full&apos; generators, which also include the redundant parameters (that can be set to zero). The &apos;full&apos; generators are used to calculate the total rotation matrix using the matrix exponential</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the new full set orbital generators, including the redundant parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="87" column="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a5726b8a9e0b7477cd9ed7c7faa282018" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void GQCP::NewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian)=0</argsstring>
+        <name>prepareOrbitalDerivativesCalculation</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ac736fd3da99a293e336f759704944413">prepareOrbitalDerivativesCalculation</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a7059d13f4c52ef77baec8567a9e72eb1">prepareOrbitalDerivativesCalculation</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="92" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac7e61168011a697ef30a239b899e06c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; double &gt;</type>
+        <definition>RTransformation&lt; double &gt; GQCP::NewtonOrbitalOptimizer::calculateNewRotationMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
+        <name>calculateNewRotationMatrix</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_orbital_optimizer_1af32721cfe32694b37fd050a608d5a374">calculateNewRotationMatrix</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Produce a new rotation matrix by either<itemizedlist>
+<listitem><para>continuing in the direction of the i.e. the smallest (negative) eigenvalue</para>
+</listitem><listitem><para>using the Newton step if it is well-defined</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current Hamiltonian.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration.</para>
+</simplesect>
+Produce a new rotation matrix by either<itemizedlist>
+<listitem><para>continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)</para>
+</listitem><listitem><para>using the Newton step if it is well-defined</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current Hamiltonian.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="106" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="56" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1ab0623fc9be4cf9c68821c2ea6d012acd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool GQCP::NewtonOrbitalOptimizer::checkForConvergence</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
+        <name>checkForConvergence</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a02599e35214b1c257efb3193c536abf2">checkForConvergence</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determine if the algorithm has converged or not Specifically for the Newton-step based algorithms, this function<itemizedlist>
+<listitem><para>computes the gradient and checks its norm for convergence</para>
+</listitem><listitem><para>if the gradient is zero, the Hessian is calculated and positive definiteness is checked</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if the algorithm is considered to be converged </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="118" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="79" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::NewtonOrbitalOptimizer::prepareConvergenceChecking</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
+        <name>prepareConvergenceChecking</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a33b25e7711aaa563cc0f4722152fb2b5">prepareConvergenceChecking</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="123" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="99" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1afdf8b122a17957cf67dcf4d7ad0df726" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt; double &gt; GQCP::NewtonOrbitalOptimizer::calculateGradientVector</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
+        <name>calculateGradientVector</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the current orbital gradient as a vector. <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref> indices are converted to vector indices in the convention that p&gt;q</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the current orbital gradient as a vector </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="133" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="118" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a3c677c380a02d6ed3bccc718a704b8f8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>SquareMatrix&lt; double &gt; GQCP::NewtonOrbitalOptimizer::calculateHessianMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
+        <name>calculateHessianMatrix</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the current orbital Hessian as a matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="140" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="128" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1aa7bc61e43d13cc7c1c2905110738918c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref></type>
+        <definition>OrbitalRotationGenerators GQCP::NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
+        <name>calculateNewFreeOrbitalGenerators</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Use gradient and Hessian information to determine a new direction for the &apos;free&apos; orbital rotation generators kappa. Note that a distinction is made between &apos;free&apos; generators, i.e. those that are calculated from the gradient and Hessian information and the &apos;full&apos; generators, which also include the redundant parameters (that can be set to zero). The &apos;full&apos; generators are used to calculate the total rotation matrix using the matrix exponential</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the new free orbital generators </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="149" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="140" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1a9b786e21bc708e260f84322ed239ff40" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt; double &gt; GQCP::NewtonOrbitalOptimizer::directionFromIndefiniteHessian</definition>
+        <argsstring>() const</argsstring>
+        <name>directionFromIndefiniteHessian</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian</para>
+<para><simplesect kind="return"><para>the new direction from the Hessian if the Newton step is ill-defined </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="156" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="169" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad3464e1f18027d579598c62ef854fff6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::NewtonOrbitalOptimizer::newtonStepIsWellDefined</definition>
+        <argsstring>() const</argsstring>
+        <name>newtonStepIsWellDefined</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>if a Newton step would be well-defined, i.e. the Hessian is positive definite </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="161" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp" bodystart="179" bodyend="188"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization: the orbital gradient and Hessian are calculated through the DMs </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::NewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::QCMethodNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="3">
+        <label>GQCP::ERNewtonLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_newton_localizer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::NewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#gradient</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#hessian</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="4">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="5">
+        <label>GQCP::SquareMatrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MatrixX&lt; double  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp" bodystart="37" bodyend="162"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a91fddcff45c5d1298e9a6e5676ce4cb9" prot="public" virt="pure-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>calculateGradientMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1afdf8b122a17957cf67dcf4d7ad0df726" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>calculateGradientVector</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a3c677c380a02d6ed3bccc718a704b8f8" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>calculateHessianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd" prot="public" virt="pure-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>calculateHessianTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1aa7bc61e43d13cc7c1c2905110738918c" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>calculateNewFreeOrbitalGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a917e48231bf397dcdc210590451113e5" prot="public" virt="pure-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>calculateNewFullOrbitalGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac7e61168011a697ef30a239b899e06c5" prot="public" virt="virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>calculateNewRotationMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ab0623fc9be4cf9c68821c2ea6d012acd" prot="public" virt="virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>checkForConvergence</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>convergence_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a9b786e21bc708e260f84322ed239ff40" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>directionFromIndefiniteHessian</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a7654786bd0428dd90feb1de31fc7fe4c" prot="protected" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>gradient</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a4b4f69a479c8d9f5df94fb0a150b5e37" prot="protected" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>hessian</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad31068b230ffb38e97432624120c4318" prot="protected" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>hessian_modifier</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>is_converged</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>maximum_number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>NewtonOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad3464e1f18027d579598c62ef854fff6" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>newtonStepIsWellDefined</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>numberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b" prot="public" virt="virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>prepareConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a5726b8a9e0b7477cd9ed7c7faa282018" prot="public" virt="pure-virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>prepareOrbitalDerivativesCalculation</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>~BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac524dbf48349206dcc68774489d30a6d" prot="public" virt="virtual"><scope>GQCP::NewtonOrbitalOptimizer</scope><name>~NewtonOrbitalOptimizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

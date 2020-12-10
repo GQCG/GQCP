@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_79448545136e565c8efebc1ae12bce98" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning</compoundname>
+    <innerfile refid="_g_mulliken_partitioning_8hpp">GMullikenPartitioning.hpp</innerfile>
+    <innerfile refid="_r_mulliken_partitioning_8hpp">RMullikenPartitioning.hpp</innerfile>
+    <innerfile refid="_u_mulliken_partitioning_8hpp">UMullikenPartitioning.hpp</innerfile>
+    <innerfile refid="_u_mulliken_partitioning_component_8hpp">UMullikenPartitioningComponent.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/"/>
+  </compounddef>
+</doxygen>

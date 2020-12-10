@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_geminal_coefficients_interface" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::GeminalCoefficientsInterface</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" prot="public" virt="non-virtual">GQCP::AP1roGGeminalCoefficients</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients" prot="public" virt="non-virtual">GQCP::APIGGeminalCoefficients</derivedcompoundref>
+    <includes refid="_geminal_coefficients_interface_8hpp" local="no">GeminalCoefficientsInterface.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::GeminalCoefficientsInterface::~GeminalCoefficientsInterface</definition>
+        <argsstring>()=default</argsstring>
+        <name>~GeminalCoefficientsInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" line="31" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double GQCP::GeminalCoefficientsInterface::overlap</definition>
+        <argsstring>(const SpinUnresolvedONV &amp;onv) const =0</argsstring>
+        <name>overlap</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1a6217bfe7a49d21e50507fb926208f975">overlap</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a57b4983a492bc6503a33c711b2174197">overlap</reimplementedby>
+        <param>
+          <type>const SpinUnresolvedONV &amp;</type>
+          <declname>onv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the doubly-occupied (spin-resolved) ONV that is being projected on</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the overlap of the APIG-like wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" line="41" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; SeniorityZeroONVBasis &gt;</type>
+        <definition>LinearExpansion&lt; SeniorityZeroONVBasis &gt; GQCP::GeminalCoefficientsInterface::toLinearExpansion</definition>
+        <argsstring>(const SeniorityZeroONVBasis &amp;onv_basis) const</argsstring>
+        <name>toLinearExpansion</name>
+        <param>
+          <type>const SeniorityZeroONVBasis &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the seniority-zero spin-resolved ONV basis the wave function should live in</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the wave function expansion corresponding to the geminal coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" line="51" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/GeminalCoefficientsInterface.cpp" bodystart="33" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::APIGGeminalCoefficients</label>
+        <link refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::AP1roGGeminalCoefficients</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::GeminalCoefficientsInterface</label>
+        <link refid="class_g_q_c_p_1_1_geminal_coefficients_interface"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::GeminalCoefficientsInterface</label>
+        <link refid="class_g_q_c_p_1_1_geminal_coefficients_interface"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" line="28" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" bodystart="28" bodyend="52"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f" prot="public" virt="pure-virtual"><scope>GQCP::GeminalCoefficientsInterface</scope><name>overlap</name></member>
+      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" prot="public" virt="non-virtual"><scope>GQCP::GeminalCoefficientsInterface</scope><name>toLinearExpansion</name></member>
+      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" prot="public" virt="virtual"><scope>GQCP::GeminalCoefficientsInterface</scope><name>~GeminalCoefficientsInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

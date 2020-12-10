@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_97189f8bdcb13d91395c09d841162246" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp</compoundname>
+    <innerdir refid="dir_0f303d9e90ecbf2958f248aff9125567">/__w/GQCP/GQCP/gqcp/include</innerdir>
+    <innerdir refid="dir_d404669e0d4bf6387b4b6b921299d848">/__w/GQCP/GQCP/gqcp/src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/"/>
+  </compounddef>
+</doxygen>

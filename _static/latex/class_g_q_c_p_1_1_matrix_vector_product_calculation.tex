@@ -1,0 +1,71 @@
+\hypertarget{class_g_q_c_p_1_1_matrix_vector_product_calculation}{}\doxysection{G\+Q\+CP\+::Matrix\+Vector\+Product\+Calculation Class Reference}
+\label{class_g_q_c_p_1_1_matrix_vector_product_calculation}\index{GQCP::MatrixVectorProductCalculation@{GQCP::MatrixVectorProductCalculation}}
+
+
+{\ttfamily \#include $<$Matrix\+Vector\+Product\+Calculation.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Matrix\+Vector\+Product\+Calculation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_g_q_c_p_1_1_matrix_vector_product_calculation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Matrix\+Vector\+Product\+Calculation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_g_q_c_p_1_1_matrix_vector_product_calculation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae5787266b1ab6ab5678066534935c547}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae12bd52993b438c89bb00e731c22f905}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+An iteration step that calculates the matrix-\/vector products for all (new) guess vectors. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae5787266b1ab6ab5678066534935c547}\label{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae5787266b1ab6ab5678066534935c547}} 
+\index{GQCP::MatrixVectorProductCalculation@{GQCP::MatrixVectorProductCalculation}!description@{description}}
+\index{description@{description}!GQCP::MatrixVectorProductCalculation@{GQCP::MatrixVectorProductCalculation}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Matrix\+Vector\+Product\+Calculation\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae12bd52993b438c89bb00e731c22f905}\label{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae12bd52993b438c89bb00e731c22f905}} 
+\index{GQCP::MatrixVectorProductCalculation@{GQCP::MatrixVectorProductCalculation}!execute@{execute}}
+\index{execute@{execute}!GQCP::MatrixVectorProductCalculation@{GQCP::MatrixVectorProductCalculation}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Matrix\+Vector\+Product\+Calculation\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate the matrix-\/vector products for all the (new) guess vectors and add them to the environment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_matrix_vector_product_calculation_8hpp}{Matrix\+Vector\+Product\+Calculation.\+hpp}}\end{DoxyCompactItemize}

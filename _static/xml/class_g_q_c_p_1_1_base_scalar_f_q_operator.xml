@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_scalar_f_q_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::BaseScalarFQOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</basecompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" prot="public" virt="non-virtual">GQCP::CoulombRepulsionOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_density_operator" prot="public" virt="non-virtual">GQCP::ElectronicDensityOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" prot="public" virt="non-virtual">GQCP::ElectronicSpin_zOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_kinetic_operator" prot="public" virt="non-virtual">GQCP::KineticOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" prot="public" virt="non-virtual">GQCP::NuclearAttractionOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_overlap_operator" prot="public" virt="non-virtual">GQCP::OverlapOperator</derivedcompoundref>
+    <includes refid="_base_f_q_operator_8hpp" local="no">BaseFQOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>N</declname>
+        <defname>N</defname>
+      </param>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t GQCP::BaseScalarFQOperator&lt; N, _Scalar &gt;::NumberOfComponents</definition>
+        <argsstring></argsstring>
+        <name>NumberOfComponents</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" line="79" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_scalar_f_q_operator_1ad07fca0083a7212821250e3beff14242" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref></type>
+        <definition>const ScalarVectorizer GQCP::BaseScalarFQOperator&lt; N, _Scalar &gt;::vectorizer</definition>
+        <argsstring></argsstring>
+        <name>vectorizer</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" line="82" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base class for scalar operators. Since the underlying <computeroutput>Vectorizer</computeroutput> is <computeroutput>ScalarVectorizer</computeroutput>, we&apos;re sure -at compile time- that the number of components is 1.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of electrons related to this operator: usually 1 or 2. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar representation of the operator: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>GQCP::ElectronicDensityOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_electronic_density_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::BaseScalarFQOperator&lt; N, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::CoulombRepulsionOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_coulomb_repulsion_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::KineticOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_kinetic_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::ElectronicSpin_zOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_electronic_spin__z_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::NuclearAttractionOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_nuclear_attraction_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+      <node id="8">
+        <label>GQCP::OverlapOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_overlap_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseScalarFQOperator&lt; N, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" line="71" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" bodystart="72" bodyend="83"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" prot="public" virt="non-virtual"><scope>GQCP::BaseScalarFQOperator</scope><name>NumberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1ae56208bbc85e6d9d401fa4540f20a573" prot="public" virt="non-virtual"><scope>GQCP::BaseScalarFQOperator</scope><name>NumberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" prot="public" virt="non-virtual"><scope>GQCP::BaseScalarFQOperator</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1ad07fca0083a7212821250e3beff14242" prot="public" virt="non-virtual"><scope>GQCP::BaseScalarFQOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a3bf379636691d7d74ea96afc8f5049cf" prot="public" virt="non-virtual"><scope>GQCP::BaseScalarFQOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a1f47a08d6dbad212da9370b4d55fd522" prot="public" virt="virtual"><scope>GQCP::BaseScalarFQOperator</scope><name>~BaseFQOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

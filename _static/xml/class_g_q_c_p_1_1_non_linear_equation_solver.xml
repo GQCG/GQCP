@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_non_linear_equation_solver" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::NonLinearEquationSolver</compoundname>
+    <includes refid="_non_linear_equation_solver_8hpp" local="no">NonLinearEquationSolver.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_non_linear_equation_solver_1af145fe12142f9942d1d9ec8a333f0199" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::NonLinearEquationSolver&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_non_linear_equation_solver_1a8fa8bd3c3e4cf9b433968460b15cc779" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename LinearSolver</type>
+            <defval>decltype(LinearEquationSolver&lt;<ref refid="class_g_q_c_p_1_1_non_linear_equation_solver_1af145fe12142f9942d1d9ec8a333f0199" kindref="member">Scalar</ref>&gt;::ColPivHouseholderQR())</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_environment" kindref="compound">NonLinearEquationEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_solver_1af145fe12142f9942d1d9ec8a333f0199" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>static IterativeAlgorithm&lt;NonLinearEquationEnvironment&lt;Scalar&gt; &gt; GQCP::NonLinearEquationSolver&lt; _Scalar &gt;::Newton</definition>
+        <argsstring>(const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128, const LinearSolver &amp;linear_solver=LinearEquationSolver&lt; Scalar &gt;::ColPivHouseholderQR())</argsstring>
+        <name>Newton</name>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <param>
+          <type>const LinearSolver &amp;</type>
+          <declname>linear_solver</declname>
+          <defval>LinearEquationSolver&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_solver_1af145fe12142f9942d1d9ec8a333f0199" kindref="member">Scalar</ref> &gt;::ColPivHouseholderQR()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold that is used in comparing the iterates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations the algorithm may perform </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>linear_solver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the linear solver that is used in the Newton step update, this defaults to a ColPivHouseholderQR linear equations solver.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>LinearSolver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the linear solver used in the Newton step update, this defaults to the type of the ColPivHouseholderQR linear equations solver</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a Newton-step based non-linear system of equations solver that uses the norm of the difference of two consecutive iterations of variables as a convergence criterion </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp" line="57" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp" bodystart="57" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A factory class that can construct solvers for non-linear systems of equations in an easy way.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the variables of the system of equations </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::NonLinearEquationSolver&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_non_linear_equation_solver"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp" bodystart="37" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_solver_1a8fa8bd3c3e4cf9b433968460b15cc779" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationSolver</scope><name>Newton</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_solver_1af145fe12142f9942d1d9ec8a333f0199" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationSolver</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_subspace_update" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SubspaceUpdate</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <includes refid="_subspace_update_8hpp" local="no">SubspaceUpdate.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_subspace_update_1a55be15122002ee2c8a60a698511e1ec6" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::SubspaceUpdate::maximum_subspace_dimension</definition>
+        <argsstring></argsstring>
+        <name>maximum_subspace_dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_subspace_update_1adee02e55137028238eea07ca2524c9b1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::SubspaceUpdate::threshold</definition>
+        <argsstring></argsstring>
+        <name>threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="37" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_update_1ae143e2928335bd1fa0c895fcad26f2f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SubspaceUpdate::SubspaceUpdate</definition>
+        <argsstring>(const size_t maximum_subspace_dimension=15, const double threshold=1.0e-03)</argsstring>
+        <name>SubspaceUpdate</name>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_subspace_dimension</declname>
+          <defval>15</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-03</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>maximum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum dimension of the subspace before collapsing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold on the norm used for determining if a new projected correction vector should be added to the subspace </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="49" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_update_1a1af3f62a92fa892cb28acd7b2bbc0bb7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::SubspaceUpdate::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="61" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="61" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_update_1acf11b3134f5b1a2d059bfa2f3bcc5bf7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::SubspaceUpdate::execute</definition>
+        <argsstring>(EigenproblemEnvironment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add projected correction vectors to the subspace (if their norm is large enough) and collapse the subspace becomes too large. The new subspace vectors (after a collapse) are linear combinations of current subspace vectors, with coefficients found in the lowest eigenvectors of the subspace matrix.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="71" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="71" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A step that adds projected correction vectors to the subspace (if their norm is large enough) and collapses the subspace if it becomes too large. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::SubspaceUpdate</label>
+        <link refid="class_g_q_c_p_1_1_subspace_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SubspaceUpdate</label>
+        <link refid="class_g_q_c_p_1_1_subspace_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="32" bodyend="95"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_subspace_update_1a1af3f62a92fa892cb28acd7b2bbc0bb7" prot="public" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; EigenproblemEnvironment &gt;::"><scope>GQCP::SubspaceUpdate</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_update_1acf11b3134f5b1a2d059bfa2f3bcc5bf7" prot="public" virt="virtual"><scope>GQCP::SubspaceUpdate</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_update_1a55be15122002ee2c8a60a698511e1ec6" prot="private" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>maximum_subspace_dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_update_1ae143e2928335bd1fa0c895fcad26f2f7" prot="public" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>SubspaceUpdate</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_update_1adee02e55137028238eea07ca2524c9b1" prot="private" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::SubspaceUpdate</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,472 @@
+\hypertarget{class_g_q_c_p_1_1_matrix}{}\doxysection{G\+Q\+CP\+::Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_matrix}\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+
+
+{\ttfamily \#include $<$Matrix.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} = \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}{Base}} = Eigen\+::\+Matrix$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Z  = bool$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+vector, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a931ab808381a0ad8eedbc5f2f123651d}{are\+Equal\+Eigenvalues\+As}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&other, double tolerance=1.\+0e-\/12) const
+\item 
+{\footnotesize template$<$typename Z  = bool$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+vector, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a5611f1d276314cdc5ba20df00a01dfe9}{is\+Equal\+Eigenvector\+As}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&other, double tolerance=1.\+0e-\/12) const
+\item 
+{\footnotesize template$<$typename Z  = bool$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+matrix, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a576cfb262eb965a0b49f4e679cf076c3}{has\+Equal\+Sets\+Of\+Eigenvectors\+As}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}} $>$ \&other, double tolerance=1.\+0e-\/12) const
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+vector \&\&(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}==3), Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a3caff939907e085c41fe8f49b6f73e8b}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} direction) const
+\item 
+{\footnotesize template$<$typename Z  = Scalar\&$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+vector \&\&(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}==3), Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a3079a6b39d8762808e23b1c09c86459e}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} direction)
+\item 
+{\footnotesize template$<$typename Z  = Self$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+matrix, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a947bdbdcb3639ef34328379d6ac44efc}{calculate\+Minor}} (size\+\_\+t i, size\+\_\+t j) const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}{Base}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a4ab539a046eb6f9b53409d6e891a0d41}{Eigen}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}{Base}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a0e55d5edef5e39cb143c75574f8d2ce3}{Eigen}} ()
+\item 
+const bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a643652b7fcd93870c6eeee96b106a7bc}{is\+Positive\+Semi\+Definite}} (const double threshold=-\/1.\+0e-\/5) const
+\item 
+{\footnotesize template$<$typename Z  = Matrix$<$\+Scalar, Rows, 1$>$$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+matrix, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aacdf6a9b11a624ae51b4e69b1380d623}{pair\+Wise\+Reduced}} (const size\+\_\+t start\+\_\+i=0, size\+\_\+t start\+\_\+j=0) const
+\item 
+{\footnotesize template$<$typename Z  = void$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+matrix, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a2d1866393b114f7cc8af355efca26ecc}{print}} (std\+::ostream \&output\+\_\+stream=std\+::cout) const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_abef9f57236063712c2db15f9c85d03a8}{remove\+Column}} (const size\+\_\+t i)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a1f7cadaa478ca049d032e3efcd68a251}{remove\+Columns}} (const std\+::vector$<$ size\+\_\+t $>$ \&column\+\_\+indices)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a78dabf4d5db685de94ba0620ee1acb07}{remove\+Row}} (const size\+\_\+t i)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a5583011d897d7571b1dedef5007301e1}{remove\+Rows}} (const std\+::vector$<$ size\+\_\+t $>$ \&row\+\_\+indices)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Z  = Self$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}}==\mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}) \&\&(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}==\mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}), Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6153bff8107862438160220961ed89ce}{From\+Column\+Major\+Vector}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&v, const size\+\_\+t rows, const size\+\_\+t cols)
+\item 
+{\footnotesize template$<$typename Z  = Self$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+vector, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ae98c3bb26e7fed523adaf0a32533ac65}{From\+File}} (const std\+::string \&filename, size\+\_\+t rows)
+\item 
+{\footnotesize template$<$typename Z  = Self$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Self\+::is\+\_\+matrix, Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a4eb0f430ff61453545937182a00e3375}{From\+File}} (const std\+::string \&filename, size\+\_\+t rows, size\+\_\+t cols)
+\item 
+{\footnotesize template$<$typename Z  = Self$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}}==\mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}) \&\&(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}==\mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}), Z $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a8e56d9f13a050d49f57cfeeabfb48e3a}{From\+Row\+Major\+Vector}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&v, const size\+\_\+t rows, const size\+\_\+t cols)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}} = \+\_\+\+Rows
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}} = \+\_\+\+Cols
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$\newline
+class G\+Q\+C\+P\+::\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$}
+
+An extension of the Eigen\+::\+Matrix class, with extra operations
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar representation type \\
+\hline
+{\em \+\_\+\+Rows} & the number of rows (int or Dynamic) \\
+\hline
+{\em \+\_\+\+Cols} & the number of columns (int or Dynamic)\\
+\hline
+\end{DoxyTemplParams}
+We have decided to inherit from Eigen\+::\+Matrix, because we will use different hierarchies\+: see also\+: \href{https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html}{\texttt{ https\+://eigen.\+tuxfamily.\+org/dox-\/devel/\+Topic\+Customizing\+\_\+\+Inheriting\+Matrix.\+html}} 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}\label{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!Base@{Base}}
+\index{Base@{Base}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}{Base}} =  Eigen\+::\+Matrix$<$\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}\label{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} =  \+\_\+\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}\label{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!Self@{Self}}
+\index{Self@{Self}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Self}{Self}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6d1e1e6a379620ae791c3ab385580e40}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}}$>$}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a931ab808381a0ad8eedbc5f2f123651d}\label{class_g_q_c_p_1_1_matrix_a931ab808381a0ad8eedbc5f2f123651d}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!areEqualEigenvaluesAs@{areEqualEigenvaluesAs}}
+\index{areEqualEigenvaluesAs@{areEqualEigenvaluesAs}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{areEqualEigenvaluesAs()}{areEqualEigenvaluesAs()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = bool$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+vector, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::are\+Equal\+Eigenvalues\+As (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&}]{other,  }\item[{double}]{tolerance = {\ttfamily 1.0e-\/12} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if two sets of eigenvalues are equal within a given tolerance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em eigenvalues1} & The first set of eigenvalues. \\
+\hline
+{\em eigenvalues2} & The second set of eigenvalues. \\
+\hline
+{\em tolerance} & The tolerance for comparison.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If two sets of eigenvalues are equal within a given tolerance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a947bdbdcb3639ef34328379d6ac44efc}\label{class_g_q_c_p_1_1_matrix_a947bdbdcb3639ef34328379d6ac44efc}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!calculateMinor@{calculateMinor}}
+\index{calculateMinor@{calculateMinor}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{calculateMinor()}{calculateMinor()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Self$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+matrix, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::calculate\+Minor (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i,  }\item[{size\+\_\+t}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & row index (starting from 0) \\
+\hline
+{\em j} & column index (starting from 0)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the i-\/j minor (i.\+e. delete the i-\/th row and j-\/th column) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a0e55d5edef5e39cb143c75574f8d2ce3}\label{class_g_q_c_p_1_1_matrix_a0e55d5edef5e39cb143c75574f8d2ce3}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!Eigen@{Eigen}}
+\index{Eigen@{Eigen}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Eigen()}{Eigen()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}{Base}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::Eigen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+This as a non-\/const \mbox{\hyperlink{namespace_eigen}{Eigen}} base. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a4ab539a046eb6f9b53409d6e891a0d41}\label{class_g_q_c_p_1_1_matrix_a4ab539a046eb6f9b53409d6e891a0d41}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!Eigen@{Eigen}}
+\index{Eigen@{Eigen}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Eigen()}{Eigen()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aee293d22d945960b87ac42b0b36fe9ec}{Base}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::Eigen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+This as a const \mbox{\hyperlink{namespace_eigen}{Eigen}} base. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a6153bff8107862438160220961ed89ce}\label{class_g_q_c_p_1_1_matrix_a6153bff8107862438160220961ed89ce}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!FromColumnMajorVector@{FromColumnMajorVector}}
+\index{FromColumnMajorVector@{FromColumnMajorVector}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{FromColumnMajorVector()}{FromColumnMajorVector()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Self$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}} == \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}) \&\& (\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}} == \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}), Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::From\+Column\+Major\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&}]{v,  }\item[{const size\+\_\+t}]{rows,  }\item[{const size\+\_\+t}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Convert a given column-\/major vector to a matrix with the given number of rows
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a vector that is supposed to be in a column-\/major ordering \\
+\hline
+{\em rows} & the number of rows the resulting matrix should have \\
+\hline
+{\em cols} & the number of columns the resulting matrix should have \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_ae98c3bb26e7fed523adaf0a32533ac65}\label{class_g_q_c_p_1_1_matrix_ae98c3bb26e7fed523adaf0a32533ac65}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!FromFile@{FromFile}}
+\index{FromFile@{FromFile}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{FromFile()}{FromFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Self$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+vector, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{size\+\_\+t}]{rows }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Construct a vector by reading in a file
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & the name of the file to be read in \\
+\hline
+{\em rows} & the number of expected rows \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a4eb0f430ff61453545937182a00e3375}\label{class_g_q_c_p_1_1_matrix_a4eb0f430ff61453545937182a00e3375}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!FromFile@{FromFile}}
+\index{FromFile@{FromFile}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{FromFile()}{FromFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Self$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+matrix, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{size\+\_\+t}]{rows,  }\item[{size\+\_\+t}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Construct a matrix by reading in a file
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & the name of the file to be read in \\
+\hline
+{\em rows} & the number of expected rows \\
+\hline
+{\em cols} & the number of expected columns \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a8e56d9f13a050d49f57cfeeabfb48e3a}\label{class_g_q_c_p_1_1_matrix_a8e56d9f13a050d49f57cfeeabfb48e3a}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!FromRowMajorVector@{FromRowMajorVector}}
+\index{FromRowMajorVector@{FromRowMajorVector}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{FromRowMajorVector()}{FromRowMajorVector()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Self$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}{Cols}} == \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}) \&\& (\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}} == \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}), Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::From\+Row\+Major\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&}]{v,  }\item[{const size\+\_\+t}]{rows,  }\item[{const size\+\_\+t}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Convert a given row-\/major vector to a matrix with the given number of rows
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a vector that is supposed to be in a column-\/major ordering \\
+\hline
+{\em rows} & the number of rows the resulting matrix should have \\
+\hline
+{\em cols} & the number of columns the resulting matrix should have \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a576cfb262eb965a0b49f4e679cf076c3}\label{class_g_q_c_p_1_1_matrix_a576cfb262eb965a0b49f4e679cf076c3}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!hasEqualSetsOfEigenvectorsAs@{hasEqualSetsOfEigenvectorsAs}}
+\index{hasEqualSetsOfEigenvectorsAs@{hasEqualSetsOfEigenvectorsAs}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{hasEqualSetsOfEigenvectorsAs()}{hasEqualSetsOfEigenvectorsAs()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = bool$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+matrix, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::has\+Equal\+Sets\+Of\+Eigenvectors\+As (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}} $>$ \&}]{other,  }\item[{double}]{tolerance = {\ttfamily 1.0e-\/12} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if two sets of eigenvectors are equal within a given tolerance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em eigenvectors1} & The first set of eigenvectors. \\
+\hline
+{\em eigenvectors2} & The second set of eigenvectors. \\
+\hline
+{\em tolerance} & The tolerance for comparison.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If two sets of eigenvectors are equal within a given tolerance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a5611f1d276314cdc5ba20df00a01dfe9}\label{class_g_q_c_p_1_1_matrix_a5611f1d276314cdc5ba20df00a01dfe9}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!isEqualEigenvectorAs@{isEqualEigenvectorAs}}
+\index{isEqualEigenvectorAs@{isEqualEigenvectorAs}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{isEqualEigenvectorAs()}{isEqualEigenvectorAs()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = bool$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+vector, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::is\+Equal\+Eigenvector\+As (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 1 $>$ \&}]{other,  }\item[{double}]{tolerance = {\ttfamily 1.0e-\/12} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if two eigenvectors are equal, within a given tolerance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em eigenvector1} & The first eigenvector. \\
+\hline
+{\em eigenvector2} & The second eigenvector. \\
+\hline
+{\em tolerance} & The tolerance for comparison.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If two eigenvectors are equal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a643652b7fcd93870c6eeee96b106a7bc}\label{class_g_q_c_p_1_1_matrix_a643652b7fcd93870c6eeee96b106a7bc}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!isPositiveSemiDefinite@{isPositiveSemiDefinite}}
+\index{isPositiveSemiDefinite@{isPositiveSemiDefinite}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{isPositiveSemiDefinite()}{isPositiveSemiDefinite()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+const bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::is\+Positive\+Semi\+Definite (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily -\/1.0e-\/5} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & The threshold on which the lowest eigenvalue is judged.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean that states whether or not the matrix is positive semi-\/definite, i.\+e. has no strictly negative eigenvalues. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a3079a6b39d8762808e23b1c09c86459e}\label{class_g_q_c_p_1_1_matrix_a3079a6b39d8762808e23b1c09c86459e}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Scalar\&$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+vector \&\& (\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}} == 3), Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & the Cartesian direction (x, y, or z)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a modifiable value in the vector that corresponds to the given direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a3caff939907e085c41fe8f49b6f73e8b}\label{class_g_q_c_p_1_1_matrix_a3caff939907e085c41fe8f49b6f73e8b}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Scalar$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+vector \&\& (\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}{Rows}} == 3), Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{direction }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & the Cartesian direction (x, y, or z)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value in the vector that corresponds to the given direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_aacdf6a9b11a624ae51b4e69b1380d623}\label{class_g_q_c_p_1_1_matrix_aacdf6a9b11a624ae51b4e69b1380d623}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!pairWiseReduced@{pairWiseReduced}}
+\index{pairWiseReduced@{pairWiseReduced}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{pairWiseReduced()}{pairWiseReduced()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = Matrix$<$\+Scalar, Rows, 1$>$$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+matrix, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::pair\+Wise\+Reduced (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{start\+\_\+i = {\ttfamily 0},  }\item[{size\+\_\+t}]{start\+\_\+j = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+i} & the index at which the rows should start \\
+\hline
+{\em start\+\_\+j} & the index at which the columns should start\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this matrix as a vector in a column-\/major storage, i.\+e. a pair-\/wise reduced form of this matrix. The elements of the matrix are put into the vector such that v(m) = M(i,j)
+\end{DoxyReturn}
+in which m is calculated from i and j in a column-\/major way \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a2d1866393b114f7cc8af355efca26ecc}\label{class_g_q_c_p_1_1_matrix_a2d1866393b114f7cc8af355efca26ecc}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!print@{print}}
+\index{print@{print}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+template$<$typename Z  = void$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Self\+::is\+\_\+matrix, Z$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{output\+\_\+stream = {\ttfamily std\+:\+:cout} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Print the contents of a this to an output filestream
+
+
+\begin{DoxyParams}{Parameters}
+{\em output\+\_\+stream} & the stream used for outputting \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_abef9f57236063712c2db15f9c85d03a8}\label{class_g_q_c_p_1_1_matrix_abef9f57236063712c2db15f9c85d03a8}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!removeColumn@{removeColumn}}
+\index{removeColumn@{removeColumn}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{removeColumn()}{removeColumn()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::remove\+Column (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the i-\/th column of this matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the index of the column that should be removed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Implementation adapted from (\href{https://stackoverflow.com/a/46303314}{\texttt{ https\+://stackoverflow.\+com/a/46303314}}), while waiting for \mbox{\hyperlink{namespace_eigen}{Eigen}}\textquotesingle{}s 3.\+4 release. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a1f7cadaa478ca049d032e3efcd68a251}\label{class_g_q_c_p_1_1_matrix_a1f7cadaa478ca049d032e3efcd68a251}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!removeColumns@{removeColumns}}
+\index{removeColumns@{removeColumns}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{removeColumns()}{removeColumns()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::remove\+Columns (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{column\+\_\+indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the columns at the given indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+indices} & the indices of the columns that should be removed, in ascending order \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a78dabf4d5db685de94ba0620ee1acb07}\label{class_g_q_c_p_1_1_matrix_a78dabf4d5db685de94ba0620ee1acb07}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!removeRow@{removeRow}}
+\index{removeRow@{removeRow}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{removeRow()}{removeRow()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::remove\+Row (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the i-\/th row of this matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the index of the row that should be removed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Implementation adapted from (\href{https://stackoverflow.com/a/46303314}{\texttt{ https\+://stackoverflow.\+com/a/46303314}}), while waiting for \mbox{\hyperlink{namespace_eigen}{Eigen}}\textquotesingle{}s 3.\+4 release. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a5583011d897d7571b1dedef5007301e1}\label{class_g_q_c_p_1_1_matrix_a5583011d897d7571b1dedef5007301e1}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!removeRows@{removeRows}}
+\index{removeRows@{removeRows}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{removeRows()}{removeRows()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::remove\+Rows (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{row\+\_\+indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the rows at the given indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+indices} & the indices of the columns that should be removed, in ascending order \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}\label{class_g_q_c_p_1_1_matrix_ab2b55a62636aba92729ecdf6a195200e}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!Cols@{Cols}}
+\index{Cols@{Cols}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Cols}{Cols}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::Cols = \+\_\+\+Cols\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}\label{class_g_q_c_p_1_1_matrix_a6ecf8ac009c539043cf3a9c49cd7c684}} 
+\index{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}!Rows@{Rows}}
+\index{Rows@{Rows}!GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$@{GQCP::Matrix$<$ \_Scalar, \_Rows, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Rows}{Rows}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar  = double, int \+\_\+\+Rows = Dynamic, int \+\_\+\+Cols = Dynamic$>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols $>$\+::Rows = \+\_\+\+Rows\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_matrix_8hpp}{Matrix.\+hpp}}\end{DoxyCompactItemize}

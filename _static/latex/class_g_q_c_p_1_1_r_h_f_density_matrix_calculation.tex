@@ -1,0 +1,102 @@
+\hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{}\doxysection{G\+Q\+CP\+::R\+H\+F\+Density\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}\index{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$R\+H\+F\+Density\+Matrix\+Calculation.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::R\+H\+F\+Density\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::R\+H\+F\+Density\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ae8667eeeb9c7fc1c6d8916b041932127}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ac6264423ccdaa685ae94a16c16f95750}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ae8667eeeb9c7fc1c6d8916b041932127}{Scalar}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_a04575d40b5d9e12abd67ae9e2eb99ccc}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_aee9177a13825e09dbfe306c73a663e03}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ac6264423ccdaa685ae94a16c16f95750}{Environment}} \&environment) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+R\+H\+F\+Density\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$}
+
+An iteration step that calculates the current density matrix (expressed in the scalar/\+AO basis) from the current coefficient matrix.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type used to represent the expansion coefficient/elements of the transformation matrix\+: real or complex. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ac6264423ccdaa685ae94a16c16f95750}\label{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ac6264423ccdaa685ae94a16c16f95750}} 
+\index{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{G\+Q\+C\+P\+::\+R\+H\+F\+Density\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ac6264423ccdaa685ae94a16c16f95750}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{R\+H\+F\+S\+C\+F\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ae8667eeeb9c7fc1c6d8916b041932127}{Scalar}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ae8667eeeb9c7fc1c6d8916b041932127}\label{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ae8667eeeb9c7fc1c6d8916b041932127}} 
+\index{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{G\+Q\+C\+P\+::\+R\+H\+F\+Density\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ae8667eeeb9c7fc1c6d8916b041932127}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_a04575d40b5d9e12abd67ae9e2eb99ccc}\label{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_a04575d40b5d9e12abd67ae9e2eb99ccc}} 
+\index{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}!description@{description}}
+\index{description@{description}!GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{G\+Q\+C\+P\+::\+R\+H\+F\+Density\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_aee9177a13825e09dbfe306c73a663e03}\label{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_aee9177a13825e09dbfe306c73a663e03}} 
+\index{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}!execute@{execute}}
+\index{execute@{execute}!GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixCalculation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{G\+Q\+C\+P\+::\+R\+H\+F\+Density\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_ac6264423ccdaa685ae94a16c16f95750}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Calculate the current R\+HF density matrix and place it in the environment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+H\+F/\+R\+H\+F/\mbox{\hyperlink{_r_h_f_density_matrix_calculation_8hpp}{R\+H\+F\+Density\+Matrix\+Calculation.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_e_r_jacobi_localizer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ERJacobiLocalizer</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" prot="public" virt="non-virtual">GQCP::JacobiOrbitalOptimizer</basecompoundref>
+    <includes refid="_e_r_jacobi_localizer_8hpp" local="no">ERJacobiLocalizer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a46614cd4d5719fdf1f04da48be8ef77d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::ERJacobiLocalizer::A</definition>
+        <argsstring></argsstring>
+        <name>A</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="32" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1afa41c7bd0664534e5b08d8667922c63e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::ERJacobiLocalizer::B</definition>
+        <argsstring></argsstring>
+        <name>B</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="32" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a09f10e32448aa5807371f3968f9a9228" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::ERJacobiLocalizer::C</definition>
+        <argsstring></argsstring>
+        <name>C</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="32" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a10d1d10533de405fad74ce40bb285a83" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::ERJacobiLocalizer::calculateJacobiCoefficients</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j) override</argsstring>
+        <name>calculateJacobiCoefficients</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a1d0903ec685d348fc47027d6d2cfe0bd">calculateJacobiCoefficients</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 2</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="48" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp" bodystart="37" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a7b9ed114325905e0abadaf81969829d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GQCP::ERJacobiLocalizer::calculateOptimalRotationAngle</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j) const override</argsstring>
+        <name>calculateOptimalRotationAngle</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a88fb6f7fd3ce8670e540b1f1e0e896cf">calculateOptimalRotationAngle</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 2</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="57" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp" bodystart="54" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1acedf0ad70bd6c08bdac78a5addac8e74" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GQCP::ERJacobiLocalizer::calculateScalarFunctionChange</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const JacobiRotation &amp;jacobi_rotation) const override</argsstring>
+        <name>calculateScalarFunctionChange</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1adb16cd498fedf675dbc0ef1f9c538757">calculateScalarFunctionChange</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the change in the value of the scalar function (i.e. minus the ER localization index) if the given Jacobi rotation would be used to rotate the given Hamiltonian</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation would be used to rotate the given Hamiltonian </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="65" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp" bodystart="72" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1ad4c9ec9d542e031896cb53f112d29c2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::ERJacobiLocalizer::prepareJacobiSpecificConvergenceChecking</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
+        <name>prepareJacobiSpecificConvergenceChecking</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1ab453b26fea4b3901b2483afa97b061b1">prepareJacobiSpecificConvergenceChecking</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="70" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_jacobi_localizer_1acdb881443d205c747880aa88382f8e23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::JacobiOrbitalOptimizer::JacobiOrbitalOptimizer</definition>
+        <argsstring>(const size_t dim, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>JacobiOrbitalOptimizer</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convergence_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold used to check for convergence </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations that may be used to achieve convergence </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="37" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Jacobi rotations </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="2">
+        <label>GQCP::JacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::ERJacobiLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_jacobi_localizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="2">
+        <label>GQCP::JacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::ERJacobiLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_jacobi_localizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp" bodystart="30" bodyend="71"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a46614cd4d5719fdf1f04da48be8ef77d" prot="private" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>A</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1afa41c7bd0664534e5b08d8667922c63e" prot="private" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>B</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a09f10e32448aa5807371f3968f9a9228" prot="private" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a10d1d10533de405fad74ce40bb285a83" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>calculateJacobiCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a7dff6c1818ec2325b7dcf5bdf9451832" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>calculateNewRotationMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a33ff7044eb3f0c3c18266205a38f1305" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>calculateOptimalJacobiParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1a7b9ed114325905e0abadaf81969829d2" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>calculateOptimalRotationAngle</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1acedf0ad70bd6c08bdac78a5addac8e74" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>calculateScalarFunctionChange</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a613899349c56b102563b2fe8dff886a6" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>checkForConvergence</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a47db01d590dd175c7125a2f8d12546be" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>comparer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>convergence_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1afa2b23e301f0eee1ea111cde0cbf9231" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>dim</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>is_converged</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1acdb881443d205c747880aa88382f8e23" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>JacobiOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1acdb881443d205c747880aa88382f8e23" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiOrbitalOptimizer::"><scope>GQCP::ERJacobiLocalizer</scope><name>JacobiOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>maximum_number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>numberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1acaae116e87a463b1d00d55bb32811737" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>optimal_jacobi_with_scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a7bfe81d67f87d94e11afbfcd8c6a2079" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>pair_type</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a4ae385438afc93d40d1cbadfa031a48f" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>prepareConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1ad4c9ec9d542e031896cb53f112d29c2b" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>prepareJacobiSpecificConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>~BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a498a290b456a8ea7f9549d17cde54c8e" prot="public" virt="virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>~JacobiOrbitalOptimizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

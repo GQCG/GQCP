@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_f03c06cc3ef56f8c95f606de7e6c42ea" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals</compoundname>
+    <innerdir refid="dir_37617fc2218eedfce52b62599adbd81f">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces</innerdir>
+    <innerfile refid="_base_one_electron_integral_buffer_8hpp">BaseOneElectronIntegralBuffer.hpp</innerfile>
+    <innerfile refid="_base_one_electron_integral_engine_8hpp">BaseOneElectronIntegralEngine.hpp</innerfile>
+    <innerfile refid="_base_two_electron_integral_buffer_8hpp">BaseTwoElectronIntegralBuffer.hpp</innerfile>
+    <innerfile refid="_base_two_electron_integral_engine_8hpp">BaseTwoElectronIntegralEngine.hpp</innerfile>
+    <innerfile refid="_integral_calculator_8hpp">IntegralCalculator.hpp</innerfile>
+    <innerfile refid="_integral_engine_8hpp">IntegralEngine.hpp</innerfile>
+    <innerfile refid="_mc_murchie_davidson_coefficient_8hpp">McMurchieDavidsonCoefficient.hpp</innerfile>
+    <innerfile refid="_one_electron_integral_buffer_8hpp">OneElectronIntegralBuffer.hpp</innerfile>
+    <innerfile refid="_one_electron_integral_engine_8hpp">OneElectronIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_angular_momentum_integral_engine_8hpp">PrimitiveAngularMomentumIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_cartesian_operator_integral_engine_8hpp">PrimitiveCartesianOperatorIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_dipole_integral_engine_8hpp">PrimitiveDipoleIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_kinetic_energy_integral_engine_8hpp">PrimitiveKineticEnergyIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_linear_momentum_integral_engine_8hpp">PrimitiveLinearMomentumIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_overlap_integral_engine_8hpp">PrimitiveOverlapIntegralEngine.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/"/>
+  </compounddef>
+</doxygen>

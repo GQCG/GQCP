@@ -1,0 +1,143 @@
+\hypertarget{class_g_q_c_p_1_1_primitive_dipole_integral_engine}{}\doxysection{G\+Q\+CP\+::Primitive\+Dipole\+Integral\+Engine Class Reference}
+\label{class_g_q_c_p_1_1_primitive_dipole_integral_engine}\index{GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}}
+
+
+{\ttfamily \#include $<$Primitive\+Dipole\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Primitive\+Dipole\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_primitive_dipole_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Primitive\+Dipole\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_primitive_dipole_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}{Integral\+Scalar}} = \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Dipole\+Operator\+::\+Scalar}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a5f86a52f03d1e58697e2362d702c2218}{Primitive\+Dipole\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&dipole\+\_\+operator, const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a7d77d8c96bbaf6ecf9e4b4873b06a264}{component}}=Cartesian\+Direction\+::x)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a52037e4720ba8388a7d56b37d135129d}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} \&right)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a66141f0cff314bc8e680a479d5b5171f}{calculate1D}} (const double \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}, const double K, const int i, const double \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}, const double L, const int j)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae92321e7c3ce29098ab68bd859ebcaef}{Components}} = \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator_a00d21fd28669791d314090ae6e422f2c}{Electronic\+Dipole\+Operator\+::\+Number\+Of\+Components}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A class that can calculate electronic dipole integrals over primitive Cartesian G\+T\+Os. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}\label{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}} 
+\index{GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}{G\+Q\+C\+P\+::\+Primitive\+Dipole\+Integral\+Engine\+::\+Integral\+Scalar}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Dipole\+Operator\+::\+Scalar}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a5f86a52f03d1e58697e2362d702c2218}\label{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a5f86a52f03d1e58697e2362d702c2218}} 
+\index{GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}!PrimitiveDipoleIntegralEngine@{PrimitiveDipoleIntegralEngine}}
+\index{PrimitiveDipoleIntegralEngine@{PrimitiveDipoleIntegralEngine}!GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{PrimitiveDipoleIntegralEngine()}{PrimitiveDipoleIntegralEngine()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Primitive\+Dipole\+Integral\+Engine\+::\+Primitive\+Dipole\+Integral\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{dipole\+\_\+operator,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{component = {\ttfamily CartesianDirection\+:\+:x} }\end{DoxyParamCaption})}
+
+Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine}{Primitive\+Dipole\+Integral\+Engine}} from its members.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dipole\+\_\+operator} & the dipole operator over which this engine should calculate integrals \\
+\hline
+{\em component} & the initial component of the dipole operator this engine should calculate integrals over\\
+\hline
+\end{DoxyParams}
+Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine}{Primitive\+Dipole\+Integral\+Engine}} from its members.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dipole\+\_\+operator} & the dipole operator over which this engine should calculate integrals \\
+\hline
+{\em component} & the current component of the dipole operator this engine can calculate integrals over \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a52037e4720ba8388a7d56b37d135129d}\label{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a52037e4720ba8388a7d56b37d135129d}} 
+\index{GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}{Primitive\+Dipole\+Integral\+Engine\+::\+Integral\+Scalar}} G\+Q\+C\+P\+::\+Primitive\+Dipole\+Integral\+Engine\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}} \&}]{right }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & the left Cartesian G\+TO (primitive) \\
+\hline
+{\em right} & the right Cartesian G\+TO (primitive)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the dipole integral (of the current component) over the two given primitives 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a66141f0cff314bc8e680a479d5b5171f}\label{class_g_q_c_p_1_1_primitive_dipole_integral_engine_a66141f0cff314bc8e680a479d5b5171f}} 
+\index{GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}!calculate1D@{calculate1D}}
+\index{calculate1D@{calculate1D}!GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{calculate1D()}{calculate1D()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae3b14b76459c1612a777a6f9f5ec7906}{Primitive\+Dipole\+Integral\+Engine\+::\+Integral\+Scalar}} G\+Q\+C\+P\+::\+Primitive\+Dipole\+Integral\+Engine\+::calculate1D (\begin{DoxyParamCaption}\item[{const double}]{alpha,  }\item[{const double}]{K,  }\item[{const int}]{i,  }\item[{const double}]{beta,  }\item[{const double}]{L,  }\item[{const int}]{j }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & the Gaussian exponent of the left 1-\/D primitive \\
+\hline
+{\em K} & the (directional coordinate of the) center of the left 1-\/D primitive \\
+\hline
+{\em i} & the Cartesian exponent of the left 1-\/D primitive \\
+\hline
+{\em beta} & the Gaussian exponent of the right 1-\/D primitive \\
+\hline
+{\em L} & the (directional coordinate of the) center of the right 1-\/D primitive \\
+\hline
+{\em j} & the Cartesian exponent of the right 1-\/D primitive\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the dipole integral over the two given 1-\/D primitives 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae92321e7c3ce29098ab68bd859ebcaef}\label{class_g_q_c_p_1_1_primitive_dipole_integral_engine_ae92321e7c3ce29098ab68bd859ebcaef}} 
+\index{GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}!Components@{Components}}
+\index{Components@{Components}!GQCP::PrimitiveDipoleIntegralEngine@{GQCP::PrimitiveDipoleIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{Components}{Components}}
+{\footnotesize\ttfamily constexpr auto G\+Q\+C\+P\+::\+Primitive\+Dipole\+Integral\+Engine\+::\+Components = \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator_a00d21fd28669791d314090ae6e422f2c}{Electronic\+Dipole\+Operator\+::\+Number\+Of\+Components}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_dipole_integral_engine_8hpp}{Primitive\+Dipole\+Integral\+Engine.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_dipole_integral_engine_8cpp}{Primitive\+Dipole\+Integral\+Engine.\+cpp}}\end{DoxyCompactItemize}

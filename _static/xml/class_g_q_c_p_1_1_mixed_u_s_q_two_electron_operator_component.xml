@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::MixedUSQTwoElectronOperatorComponent</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_s_q_operator_storage" prot="public" virt="non-virtual">GQCP::SQOperatorStorage&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</basecompoundref>
+    <includes refid="_mixed_u_s_q_two_electron_operator_component_8hpp" local="no">MixedUSQTwoElectronOperatorComponent.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+      <param>
+        <type>typename _Vectorizer</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1aceaa16ee5f230bec806b55b0acc8985e" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a5f63d345d67394fe0d55805d7a4fcf33" prot="public" static="no">
+        <type>_Vectorizer</type>
+        <definition>using GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::Vectorizer =  _Vectorizer</definition>
+        <argsstring></argsstring>
+        <name>Vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a198f42df182d3a3fc6546dac91221810" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" kindref="compound">MixedUSQTwoElectronOperatorComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1aceaa16ee5f230bec806b55b0acc8985e" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a5f63d345d67394fe0d55805d7a4fcf33" kindref="member">Vectorizer</ref> &gt;</type>
+        <definition>using GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::Self =  MixedUSQTwoElectronOperatorComponent&lt;Scalar, Vectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a003586f1a045f4557a0cc7bc15af3b96" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_storage_array" kindref="compound">StorageArray</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1aceaa16ee5f230bec806b55b0acc8985e" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a5f63d345d67394fe0d55805d7a4fcf33" kindref="member">Vectorizer</ref> &gt;</type>
+        <definition>StorageArray&lt;Scalar, Vectorizer&gt; GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::calculateExpectationValue</definition>
+        <argsstring>(const MixedSpinResolved2DMComponent&lt; Scalar &gt; &amp;d) const</argsstring>
+        <name>calculateExpectationValue</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1aceaa16ee5f230bec806b55b0acc8985e" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the expectation value of this two-electron operator, given a two-electron density matrix. (This includes the prefactor 1/2.)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 2-DM (that represents the wave function).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The expectation values of all the components of the two-electron operator, with the given 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="72" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="72" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a54f48f38a556c4b41c4059d4a2d094cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a198f42df182d3a3fc6546dac91221810" kindref="member">Self</ref></type>
+        <definition>Self GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::transformed</definition>
+        <argsstring>(const UTransformationComponent&lt; Scalar &gt; &amp;T, const Spin sigma) const</argsstring>
+        <name>transformed</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1aceaa16ee5f230bec806b55b0acc8985e" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis transformation for the spin component sigma, and return the resulting two-electron integrals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-transformed two-electron operator.</para>
+</simplesect>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="113" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="113" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a7e3a24f117bfe7614a1f7716891f7b43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::transform</definition>
+        <argsstring>(const UTransformationComponent&lt; Scalar &gt; &amp;T, const Spin sigma)</argsstring>
+        <name>transform</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1aceaa16ee5f230bec806b55b0acc8985e" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place apply the basis transformation for the spin component sigma.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="157" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="157" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a37867784a03c0aef5ed53a0cb99b5b3c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a198f42df182d3a3fc6546dac91221810" kindref="member">Self</ref></type>
+        <definition>Self GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::rotated</definition>
+        <argsstring>(const JacobiRotation &amp;jacobi_rotation, const Spin sigma) const</argsstring>
+        <name>rotated</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis rotation for the spin component sigma, and return the resulting two-electron integrals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-rotated two-electron operator.</para>
+</simplesect>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="174" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="174" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a84bbe4df10a272ad8914d488128aa129" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;::rotate</definition>
+        <argsstring>(const JacobiRotation &amp;jacobi_rotation, const Spin sigma)</argsstring>
+        <name>rotate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place apply the basis rotation for the spin component sigma, and return the resulting two-electron integrals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>We apologize for this half-baked API. It is currently present in the code, while issue #559 (<ulink url="https://github.com/GQCG/GQCP/issues/688">https://github.com/GQCG/GQCP/issues/688</ulink>) is being implemented. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="189" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="189" bodyend="193"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>One of the mixed (i.e. alpha-beta or beta-alpha) spin components of an unrestricted two-electron operator.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a single parameter: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from <computeroutput><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">USQOneElectronOperator</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>GQCP::CRTP&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="1">
+        <label>GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SQOperatorStorage&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::DerivedOperator, OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SQOperatorStorageBase&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>GQCP::CRTP&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="1">
+        <label>GQCP::MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_storage_array"/>
+      </node>
+      <node id="2">
+        <label>GQCP::SQOperatorStorage&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::DerivedOperator, OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SQOperatorStorageBase&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#array</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp" bodystart="40" bodyend="194"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a887b0138971425ecf72ae15c9226b3c9" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ae0f9fa3ea86967e23c84a2f6ed581d00" prot="protected" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>array</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a003586f1a045f4557a0cc7bc15af3b96" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>calculateExpectationValue</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1aa8811fdc967a2f0a034ee1798073e434" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>DerivedOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1af5e51d0f8a0ac96f0c138e44e9614ad4" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>dot</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a6ee4af5c3c3b6b4801fdd3bb1af52526" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>FinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1aa40b1e7828e835d102b1f687c8666b5b" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>MatrixRepresentation</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aec5499c60c1ccf1c3a2bbb4ede557181" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>numberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3db8d8010d4b40797ca252c8dc4ca1a1" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3406af47b43cdf59b508d2c65ed78dd5" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a8fe948ec5f11fde630a6076b6d280563" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::DerivedOperator, OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::Scalar &gt;::"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a95a0c4cf331f89f073323bd8aaa60a6e" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::DerivedOperator, OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::Scalar &gt;::"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa0e555ece4f4d592420ded0008dd0088" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a84bbe4df10a272ad8914d488128aa129" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a37867784a03c0aef5ed53a0cb99b5b3c" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1aceaa16ee5f230bec806b55b0acc8985e" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a7bdaff688770ec8194aeaef02fae1340" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>ScalarFinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a198f42df182d3a3fc6546dac91221810" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa46cbd4ee56231f35b4ed67b0a293e54" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ac0aaa4116c253ed87d1d55cc3d1714e5" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acca6d82a69a99fc3ee97cfafc7ba3245" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a69ee654058f7d2476fbaa07dff233f9b" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a31d5da079f8ab325d4afec400f9fecbb" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a7e3a24f117bfe7614a1f7716891f7b43" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a54f48f38a556c4b41c4059d4a2d094cb" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aaebf3b63a4e7041ea0754b4d5e8868aa" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component_1a5f63d345d67394fe0d55805d7a4fcf33" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aae57f5b84d06fde585c7597e2b6e225b" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a5438632d87c01fcf056ba50906806d94" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8da76d3901f36713b1f908624c514b49" prot="public" virt="non-virtual"><scope>GQCP::MixedUSQTwoElectronOperatorComponent</scope><name>Zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

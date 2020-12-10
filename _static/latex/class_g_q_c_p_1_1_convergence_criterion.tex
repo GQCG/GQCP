@@ -1,0 +1,114 @@
+\hypertarget{class_g_q_c_p_1_1_convergence_criterion}{}\doxysection{G\+Q\+CP\+::Convergence\+Criterion$<$ \+\_\+\+Environment $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_convergence_criterion}\index{GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}}
+
+
+{\ttfamily \#include $<$Convergence\+Criterion.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Convergence\+Criterion$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_convergence_criterion__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Convergence\+Criterion$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_convergence_criterion__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a4594ec2c922fcc9aafb6734e68fa158d}{$\sim$\+Convergence\+Criterion}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a5d2993454005779f8a6376c63aec430c}{description}} () const =0
+\item 
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a84503e9b2b4bdd01188f21be512bc281}{is\+Fulfilled}} (\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Environment$>$\newline
+class G\+Q\+C\+P\+::\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}
+
+A criterion that can check convergence by examining certain properties of the environment.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Environment} & the type of the environment that this criterion can read from \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}\label{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}} 
+\index{GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{G\+Q\+C\+P\+::\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} =  \+\_\+\+Environment}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_convergence_criterion_a4594ec2c922fcc9aafb6734e68fa158d}\label{class_g_q_c_p_1_1_convergence_criterion_a4594ec2c922fcc9aafb6734e68fa158d}} 
+\index{GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}!````~ConvergenceCriterion@{$\sim$ConvergenceCriterion}}
+\index{````~ConvergenceCriterion@{$\sim$ConvergenceCriterion}!GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$ConvergenceCriterion()}{~ConvergenceCriterion()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{G\+Q\+C\+P\+::\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::$\sim$\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{Convergence\+Criterion}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_convergence_criterion_a5d2993454005779f8a6376c63aec430c}\label{class_g_q_c_p_1_1_convergence_criterion_a5d2993454005779f8a6376c63aec430c}} 
+\index{GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}!description@{description}}
+\index{description@{description}!GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{G\+Q\+C\+P\+::\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this convergence criterion. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence_a60eb61cd13e3663cdcca2c7a1f7a8dfd}{G\+Q\+C\+P\+::\+Residual\+Vector\+Convergence$<$ \+\_\+\+Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ac4551544623997fd2a585830d238ecf9}{G\+Q\+C\+P\+::\+Consecutive\+Iterates\+Norm\+Convergence$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a7915c59e6ba2fd2ac59aebf377b3b7b2}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_convergence_criterion_a84503e9b2b4bdd01188f21be512bc281}\label{class_g_q_c_p_1_1_convergence_criterion_a84503e9b2b4bdd01188f21be512bc281}} 
+\index{GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}!isFulfilled@{isFulfilled}}
+\index{isFulfilled@{isFulfilled}!GQCP::ConvergenceCriterion$<$ \_Environment $>$@{GQCP::ConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{isFulfilled()}{isFulfilled()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{G\+Q\+C\+P\+::\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::is\+Fulfilled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that this criterion can read from\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if this criterion is fulfilled 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence_aefd9d7262006ed781a52ee7238adc6b8}{G\+Q\+C\+P\+::\+Residual\+Vector\+Convergence$<$ \+\_\+\+Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a0be253e3c3a65055a4e2bdba68c34e54}{G\+Q\+C\+P\+::\+Consecutive\+Iterates\+Norm\+Convergence$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a86066355bcaf6aa79b6d0152bbf4fe8f}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Algorithm/\mbox{\hyperlink{_convergence_criterion_8hpp}{Convergence\+Criterion.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,143 @@
+\hypertarget{class_g_q_c_p_1_1_q_c_structure}{}\doxysection{G\+Q\+CP\+::Q\+C\+Structure$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_q_c_structure}\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$Q\+C\+Structure.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Q\+C\+Structure$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_g_q_c_p_1_1_q_c_structure__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}} = \+\_\+\+Q\+C\+Model
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_af00552d03eb740daaedac7b6c53ae8ff}{Q\+C\+Structure}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} $>$ \&energies, const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}} $>$ \&model\+\_\+parameters)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a917d86b1a78da0d70ed1390fe4bab7a8}{energy}} (const size\+\_\+t i=0) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a5f1a68bdf40e8eec2fefbb893f43a32b}{ground\+State\+Energy}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a77d066e51a876b84b5d78a2b96f7f5b7}{parameters}} (const size\+\_\+t i=0) const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a38df33d901610edee4e7d0c6a97ce7bf}{ground\+State\+Parameters}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Q\+C\+Model, typename \+\_\+\+Scalar = double$>$\newline
+class G\+Q\+C\+P\+::\+Q\+C\+Structure$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$}
+
+A quantum chemical structure. It encapsulates (energy, optimal parameter)-\/pairs for the ground state, and possibly excited states.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Q\+C\+Model} & The type of the optimal model parameters. \\
+\hline
+{\em \+\_\+\+Scalar} & The scalar type of the energy\+: real or complex. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}\label{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}} 
+\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}!QCModel@{QCModel}}
+\index{QCModel@{QCModel}!GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{QCModel}{QCModel}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Q\+C\+Model , typename \+\_\+\+Scalar  = double$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{G\+Q\+C\+P\+::\+Q\+C\+Structure}}$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}} =  \+\_\+\+Q\+C\+Model}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}\label{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}} 
+\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Q\+C\+Model , typename \+\_\+\+Scalar  = double$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{G\+Q\+C\+P\+::\+Q\+C\+Structure}}$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_structure_af00552d03eb740daaedac7b6c53ae8ff}\label{class_g_q_c_p_1_1_q_c_structure_af00552d03eb740daaedac7b6c53ae8ff}} 
+\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}!QCStructure@{QCStructure}}
+\index{QCStructure@{QCStructure}!GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{QCStructure()}{QCStructure()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Q\+C\+Model , typename \+\_\+\+Scalar  = double$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{G\+Q\+C\+P\+::\+Q\+C\+Structure}}$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{Q\+C\+Structure}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} $>$ \&}]{energies,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}} $>$ \&}]{model\+\_\+parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em energies} & The electronic energies for the ground state and possibly for the excited states. \\
+\hline
+{\em model\+\_\+parameters} & The optimal model parameters for the ground state and possibly for the excited states. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_structure_a917d86b1a78da0d70ed1390fe4bab7a8}\label{class_g_q_c_p_1_1_q_c_structure_a917d86b1a78da0d70ed1390fe4bab7a8}} 
+\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}!energy@{energy}}
+\index{energy@{energy}!GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{energy()}{energy()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Q\+C\+Model , typename \+\_\+\+Scalar  = double$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{G\+Q\+C\+P\+::\+Q\+C\+Structure}}$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+::energy (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index of an excited state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The electronic energy corresponding to the i-\/th excited state. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_structure_a5f1a68bdf40e8eec2fefbb893f43a32b}\label{class_g_q_c_p_1_1_q_c_structure_a5f1a68bdf40e8eec2fefbb893f43a32b}} 
+\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}!groundStateEnergy@{groundStateEnergy}}
+\index{groundStateEnergy@{groundStateEnergy}!GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{groundStateEnergy()}{groundStateEnergy()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Q\+C\+Model , typename \+\_\+\+Scalar  = double$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{G\+Q\+C\+P\+::\+Q\+C\+Structure}}$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+::ground\+State\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The ground state electronic energy for this quantum chemical structure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_structure_a38df33d901610edee4e7d0c6a97ce7bf}\label{class_g_q_c_p_1_1_q_c_structure_a38df33d901610edee4e7d0c6a97ce7bf}} 
+\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}!groundStateParameters@{groundStateParameters}}
+\index{groundStateParameters@{groundStateParameters}!GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{groundStateParameters()}{groundStateParameters()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Q\+C\+Model , typename \+\_\+\+Scalar  = double$>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{G\+Q\+C\+P\+::\+Q\+C\+Structure}}$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+::ground\+State\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The ground state model parameters for this quantum chemical structure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_structure_a77d066e51a876b84b5d78a2b96f7f5b7}\label{class_g_q_c_p_1_1_q_c_structure_a77d066e51a876b84b5d78a2b96f7f5b7}} 
+\index{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}!parameters@{parameters}}
+\index{parameters@{parameters}!GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$@{GQCP::QCStructure$<$ \_QCModel, \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{parameters()}{parameters()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Q\+C\+Model , typename \+\_\+\+Scalar  = double$>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{Q\+C\+Model}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{G\+Q\+C\+P\+::\+Q\+C\+Structure}}$<$ \+\_\+\+Q\+C\+Model, \+\_\+\+Scalar $>$\+::parameters (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index of an excited state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The optimal model parameters corresponding to the i-\/th excited state. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\mbox{\hyperlink{_q_c_structure_8hpp}{Q\+C\+Structure.\+hpp}}\end{DoxyCompactItemize}

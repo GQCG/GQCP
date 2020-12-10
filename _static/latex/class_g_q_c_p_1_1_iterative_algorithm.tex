@@ -1,0 +1,190 @@
+\hypertarget{class_g_q_c_p_1_1_iterative_algorithm}{}\doxysection{G\+Q\+CP\+::Iterative\+Algorithm$<$ \+\_\+\+Environment $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_iterative_algorithm}\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+
+
+{\ttfamily \#include $<$Iterative\+Algorithm.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Iterative\+Algorithm$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{class_g_q_c_p_1_1_iterative_algorithm__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Criterion $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_afa032f15f52a6296be5b02d8d4079fb0}{Iterative\+Algorithm}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{Step\+Collection}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}} $>$ \&steps, const Criterion \&convergence\+\_\+criterion, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a83d469ddf0d942cb38f2161a7922c6b2}{description}} () const
+\item 
+{\footnotesize template$<$typename Z  = Step$<$\+Environment$>$$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}}, typename Z\+::\+Environment $>$\+::value, void $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a356f37e3d7fa7de9f7ac27a98d63e5f5}{insert}} (const Z \&step, const size\+\_\+t index)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ae459d4c90d11df0f1b4ea67db7b2e293}{maximum\+Number\+Of\+Iterations}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a687cac45fb0d820001960019dcd2b331}{number\+Of\+Iterations}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a10999981761f1e11f253f314a34fd063}{perform}} (\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}} \&environment)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a20ca757a5e8a98f552b0f4c40ceb840e}{remove}} (const size\+\_\+t index)
+\item 
+{\footnotesize template$<$typename Z  = Step$<$\+Environment$>$$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}}, typename Z\+::\+Environment $>$\+::value, void $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ac92f77d72edff57a7bf169c6a555f1b2}{replace}} (const Z \&step, const size\+\_\+t index)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Environment$>$\newline
+class G\+Q\+C\+P\+::\+Iterative\+Algorithm$<$ \+\_\+\+Environment $>$}
+
+An algorithm that performs iterations. In every iteration, convergence is checked and a set of iteration steps is performed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Environment} & the type of environment that this algorithm is associated to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}\label{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}} =  \+\_\+\+Environment}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_afa032f15f52a6296be5b02d8d4079fb0}\label{class_g_q_c_p_1_1_iterative_algorithm_afa032f15f52a6296be5b02d8d4079fb0}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!IterativeAlgorithm@{IterativeAlgorithm}}
+\index{IterativeAlgorithm@{IterativeAlgorithm}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{IterativeAlgorithm()}{IterativeAlgorithm()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename Criterion $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{Step\+Collection}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}} $>$ \&}]{steps,  }\item[{const Criterion \&}]{convergence\+\_\+criterion,  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize the members of the iterative algorithm
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Criterion} & the type of the convergence criterion that is used\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em steps} & the collection of algorithm steps that is performed in-\/between convergence checks \\
+\hline
+{\em convergence\+\_\+criterion} & the convergence criterion that must be fulfilled in order for the algorithm to have converged \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_a83d469ddf0d942cb38f2161a7922c6b2}\label{class_g_q_c_p_1_1_iterative_algorithm_a83d469ddf0d942cb38f2161a7922c6b2}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!description@{description}}
+\index{description@{description}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this iterative algorithm. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_a356f37e3d7fa7de9f7ac27a98d63e5f5}\label{class_g_q_c_p_1_1_iterative_algorithm_a356f37e3d7fa7de9f7ac27a98d63e5f5}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!insert@{insert}}
+\index{insert@{insert}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename Z  = Step$<$\+Environment$>$$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}}, typename Z\+::\+Environment$>$\+::value, void$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::insert (\begin{DoxyParamCaption}\item[{const Z \&}]{step,  }\item[{const size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Insert an algorithm step at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em step} & the step that should be inserted into this algorithm \\
+\hline
+{\em index} & the zero-\/based index that the given step should be performed at in this algorithm \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_ae459d4c90d11df0f1b4ea67db7b2e293}\label{class_g_q_c_p_1_1_iterative_algorithm_ae459d4c90d11df0f1b4ea67db7b2e293}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!maximumNumberOfIterations@{maximumNumberOfIterations}}
+\index{maximumNumberOfIterations@{maximumNumberOfIterations}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{maximumNumberOfIterations()}{maximumNumberOfIterations()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::maximum\+Number\+Of\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the maximum number of iterations the algorithm may perform 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_a687cac45fb0d820001960019dcd2b331}\label{class_g_q_c_p_1_1_iterative_algorithm_a687cac45fb0d820001960019dcd2b331}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!numberOfIterations@{numberOfIterations}}
+\index{numberOfIterations@{numberOfIterations}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfIterations()}{numberOfIterations()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::number\+Of\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of iterations that have been performed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_a10999981761f1e11f253f314a34fd063}\label{class_g_q_c_p_1_1_iterative_algorithm_a10999981761f1e11f253f314a34fd063}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!perform@{perform}}
+\index{perform@{perform}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{perform()}{perform()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::perform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Perform the iteration steps until convergence is achieved
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that this algorithm is associated to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_a20ca757a5e8a98f552b0f4c40ceb840e}\label{class_g_q_c_p_1_1_iterative_algorithm_a20ca757a5e8a98f552b0f4c40ceb840e}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!remove@{remove}}
+\index{remove@{remove}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::remove (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the algorithm step at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the zero-\/based index of the step in this algorithm that should be removed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_algorithm_ac92f77d72edff57a7bf169c6a555f1b2}\label{class_g_q_c_p_1_1_iterative_algorithm_ac92f77d72edff57a7bf169c6a555f1b2}} 
+\index{GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}!replace@{replace}}
+\index{replace@{replace}!GQCP::IterativeAlgorithm$<$ \_Environment $>$@{GQCP::IterativeAlgorithm$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{replace()}{replace()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename Z  = Step$<$\+Environment$>$$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}}, typename Z\+::\+Environment$>$\+::value, void$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{G\+Q\+C\+P\+::\+Iterative\+Algorithm}}$<$ \+\_\+\+Environment $>$\+::replace (\begin{DoxyParamCaption}\item[{const Z \&}]{step,  }\item[{const size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Replace an algorithm step at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em step} & the step that should be inserted into this algorithm \\
+\hline
+{\em index} & the zero-\/based index of the step that should be replaced \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Algorithm/\mbox{\hyperlink{_iterative_algorithm_8hpp}{Iterative\+Algorithm.\+hpp}}\end{DoxyCompactItemize}

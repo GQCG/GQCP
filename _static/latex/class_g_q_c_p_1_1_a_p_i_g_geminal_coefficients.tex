@@ -1,0 +1,188 @@
+\hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients}{}\doxysection{G\+Q\+CP\+::A\+P\+I\+G\+Geminal\+Coefficients Class Reference}
+\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients}\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+
+
+{\ttfamily \#include $<$A\+P\+I\+G\+Geminal\+Coefficients.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::A\+P\+I\+G\+Geminal\+Coefficients\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::A\+P\+I\+G\+Geminal\+Coefficients\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a33eb09e64b5de6b4cf849105ab38ab1b}{A\+P\+I\+G\+Geminal\+Coefficients}} (const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&G)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a64591d3c0289ef64e015adafe43c0cc5}{A\+P\+I\+G\+Geminal\+Coefficients}} (const size\+\_\+t N\+\_\+P, const size\+\_\+t K)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a9d5c97a1bb063865aa65cb8e24f69dd5}{$\sim$\+A\+P\+I\+G\+Geminal\+Coefficients}} () override
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a4362beaed6824f8bff5181620dc00d83}{operator()}} (const size\+\_\+t i, const size\+\_\+t p) const
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a793c2fe466d0e10c3fd903bf73b62e49}{as\+Matrix}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a57b4983a492bc6503a33c711b2174197}{overlap}} (const Spin\+Unresolved\+O\+NV \&onv) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients}{A\+P\+I\+G\+Geminal\+Coefficients}} \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a4f077d1f3afbe54f734e39cd618fccab}{From\+Column\+Major}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&g, const size\+\_\+t N\+\_\+P, const size\+\_\+t K)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients}{A\+P\+I\+G\+Geminal\+Coefficients}} \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_ac6fabe6616d102fc8bc583d5a48a3ad6}{From\+Row\+Major}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&g, const size\+\_\+t N\+\_\+P, const size\+\_\+t K)
+\item 
+static size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a3f53d62293e6e7a62633473723b16b9c}{number\+Of\+Geminal\+Coefficients}} (const size\+\_\+t N\+\_\+P, const size\+\_\+t K)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that represents geminal coefficients for an A\+P\+IG wave function 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a33eb09e64b5de6b4cf849105ab38ab1b}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a33eb09e64b5de6b4cf849105ab38ab1b}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!APIGGeminalCoefficients@{APIGGeminalCoefficients}}
+\index{APIGGeminalCoefficients@{APIGGeminalCoefficients}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{APIGGeminalCoefficients()}{APIGGeminalCoefficients()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::\+A\+P\+I\+G\+Geminal\+Coefficients (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&}]{G }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em G} & the A\+P\+IG geminal coefficients in their matrix representation\\
+\hline
+{\em G} & the A\+P\+IG geminal coefficients \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a64591d3c0289ef64e015adafe43c0cc5}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a64591d3c0289ef64e015adafe43c0cc5}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!APIGGeminalCoefficients@{APIGGeminalCoefficients}}
+\index{APIGGeminalCoefficients@{APIGGeminalCoefficients}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{APIGGeminalCoefficients()}{APIGGeminalCoefficients()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::\+A\+P\+I\+G\+Geminal\+Coefficients (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{N\+\_\+P,  }\item[{const size\+\_\+t}]{K }\end{DoxyParamCaption})}
+
+Constructor that sets the geminal coefficients to zero
+
+
+\begin{DoxyParams}{Parameters}
+{\em N\+\_\+P} & the number of electron pairs (= the number of geminals) \\
+\hline
+{\em K} & the number of spatial orbitals \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a9d5c97a1bb063865aa65cb8e24f69dd5}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a9d5c97a1bb063865aa65cb8e24f69dd5}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!````~APIGGeminalCoefficients@{$\sim$APIGGeminalCoefficients}}
+\index{````~APIGGeminalCoefficients@{$\sim$APIGGeminalCoefficients}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{$\sim$APIGGeminalCoefficients()}{~APIGGeminalCoefficients()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::$\sim$\+A\+P\+I\+G\+Geminal\+Coefficients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+The default destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a793c2fe466d0e10c3fd903bf73b62e49}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a793c2fe466d0e10c3fd903bf73b62e49}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!asMatrix@{asMatrix}}
+\index{asMatrix@{asMatrix}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{asMatrix()}{asMatrix()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$\& G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::as\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the geminal coefficients in matrix form 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a4f077d1f3afbe54f734e39cd618fccab}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a4f077d1f3afbe54f734e39cd618fccab}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!FromColumnMajor@{FromColumnMajor}}
+\index{FromColumnMajor@{FromColumnMajor}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{FromColumnMajor()}{FromColumnMajor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients}{A\+P\+I\+G\+Geminal\+Coefficients}} G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::\+From\+Column\+Major (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{g,  }\item[{const size\+\_\+t}]{N\+\_\+P,  }\item[{const size\+\_\+t}]{K }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & the geminal coefficients in a vector representation that is in column-\/major storage \\
+\hline
+{\em N\+\_\+P} & the number of electron pairs (= the number of geminals) \\
+\hline
+{\em K} & the number of spatial orbitals \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_ac6fabe6616d102fc8bc583d5a48a3ad6}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_ac6fabe6616d102fc8bc583d5a48a3ad6}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!FromRowMajor@{FromRowMajor}}
+\index{FromRowMajor@{FromRowMajor}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{FromRowMajor()}{FromRowMajor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients}{A\+P\+I\+G\+Geminal\+Coefficients}} G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::\+From\+Row\+Major (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{g,  }\item[{const size\+\_\+t}]{N\+\_\+P,  }\item[{const size\+\_\+t}]{K }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & the geminal coefficients in a vector representation that is in row-\/major storage \\
+\hline
+{\em N\+\_\+P} & the number of electron pairs (= the number of geminals) \\
+\hline
+{\em K} & the number of spatial orbitals \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a3f53d62293e6e7a62633473723b16b9c}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a3f53d62293e6e7a62633473723b16b9c}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!numberOfGeminalCoefficients@{numberOfGeminalCoefficients}}
+\index{numberOfGeminalCoefficients@{numberOfGeminalCoefficients}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{numberOfGeminalCoefficients()}{numberOfGeminalCoefficients()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::number\+Of\+Geminal\+Coefficients (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{N\+\_\+P,  }\item[{const size\+\_\+t}]{K }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em N\+\_\+P} & the number of electron pairs (= the number of geminals) \\
+\hline
+{\em K} & the number of spatial orbitals\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of \textquotesingle{}free\textquotesingle{} geminal coefficients 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a4362beaed6824f8bff5181620dc00d83}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a4362beaed6824f8bff5181620dc00d83}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::operator() (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{p }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the zero-\/based index of the geminal, i.\+e. subscript of the geminal coefficient\+: i is in \mbox{[}0, N\+\_\+P\mbox{[} with N\+\_\+P the number of electron pairs \\
+\hline
+{\em p} & the zero-\/based index of the orbital, i.\+e. superscript of the geminal coefficient\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an element of the A\+P1roG geminal coefficient matrix G\+\_\+i$^\wedge$a 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a57b4983a492bc6503a33c711b2174197}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a57b4983a492bc6503a33c711b2174197}} 
+\index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!overlap@{overlap}}
+\index{overlap@{overlap}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
+\doxysubsubsection{\texorpdfstring{overlap()}{overlap()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+A\+P\+I\+G\+Geminal\+Coefficients\+::overlap (\begin{DoxyParamCaption}\item[{const Spin\+Unresolved\+O\+NV \&}]{onv }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv} & the doubly-\/occupied (spin-\/resolved) O\+NV that is being projected on\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the overlap of the A\+P\+IG wave function with the given O\+NV, i.\+e. the projection of the A\+P\+IG wave function onto that O\+NV 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a3be4021a57bdf21adab08a5a4521eb0f}{G\+Q\+C\+P\+::\+Geminal\+Coefficients\+Interface}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Model/\+Geminals/\mbox{\hyperlink{_a_p_i_g_geminal_coefficients_8hpp}{A\+P\+I\+G\+Geminal\+Coefficients.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Q\+C\+Model/\+Geminals/\mbox{\hyperlink{_a_p_i_g_geminal_coefficients_8cpp}{A\+P\+I\+G\+Geminal\+Coefficients.\+cpp}}\end{DoxyCompactItemize}

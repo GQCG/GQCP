@@ -1,0 +1,179 @@
+\hypertarget{class_g_q_c_p_1_1_g_transformation}{}\doxysection{G\+Q\+CP\+::G\+Transformation$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_g_transformation}\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$G\+Transformation.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::G\+Transformation$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_transformation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::G\+Transformation$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_transformation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_af0a06a95f3ac730b767a26a3b14ab805}{G\+Transformation}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_af71b9f36f524da82d19e7bf740ca91ae}{G\+Transformation}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}}, const size\+\_\+t K\+\_\+alpha, const size\+\_\+t K\+\_\+beta)
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a35294c4513ec448c7740080377781eb6}{alpha}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a5c03564330bdb423500ded04404f7fe2}{beta}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a6bdc555980660dec5c3594ef4ad2199d}{component}} (const \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}} sigma) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a511cfa0246d40baa45e7dcee1f79cacb}{From\+Unrestricted}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{U\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&u\+\_\+transformation)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a31d3196ed11543a85afe55d53cf96cb2}{Identity}} (const size\+\_\+t K\+\_\+alpha, const size\+\_\+t K\+\_\+beta)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+G\+Transformation$<$ \+\_\+\+Scalar $>$}
+
+A \textquotesingle{}general\textquotesingle{} basis transformation, i.\+e. a general, full-\/spinor basis transformation where the transformation mixes the alpha-\/ and beta components of the two-\/component spinors.
+
+In general, we adopt the convention outlined in (\href{https://gqcg-res.github.io/knowdes/spinor-transformations.html}{\texttt{ https\+://gqcg-\/res.\+github.\+io/knowdes/spinor-\/transformations.\+html}}), where the new orbitals\textquotesingle{} coefficients can be found in the respective {\bfseries{column}} of the related transformation matrix.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type used for a transformation coefficient\+: real or complex. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}\label{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_af0a06a95f3ac730b767a26a3b14ab805}\label{class_g_q_c_p_1_1_g_transformation_af0a06a95f3ac730b767a26a3b14ab805}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!GTransformation@{GTransformation}}
+\index{GTransformation@{GTransformation}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{GTransformation()}{GTransformation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&}]{T }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}} from the transformation matrix that it encapsulates.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_af71b9f36f524da82d19e7bf740ca91ae}\label{class_g_q_c_p_1_1_g_transformation_af71b9f36f524da82d19e7bf740ca91ae}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!GTransformation@{GTransformation}}
+\index{GTransformation@{GTransformation}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{GTransformation()}{GTransformation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&}]{T,  }\item[{const size\+\_\+t}]{K\+\_\+alpha,  }\item[{const size\+\_\+t}]{K\+\_\+beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}} from the transformation matrix that it encapsulates, where the number of basis functions used for the expansion of the alpha components may differ from the number of basis functions for the beta components.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns. \\
+\hline
+{\em K\+\_\+alpha} & The number of basis functions that are used for the expansion of the alpha components. \\
+\hline
+{\em K\+\_\+beta} & The number of basis functions that are used for the expansion of the beta components. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_a35294c4513ec448c7740080377781eb6}\label{class_g_q_c_p_1_1_g_transformation_a35294c4513ec448c7740080377781eb6}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!alpha@{alpha}}
+\index{alpha@{alpha}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{alpha()}{alpha()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::alpha (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The part of the general transformation matrix that describes the expansion coefficients of the alpha components of the spinors. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_a5c03564330bdb423500ded04404f7fe2}\label{class_g_q_c_p_1_1_g_transformation_a5c03564330bdb423500ded04404f7fe2}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!beta@{beta}}
+\index{beta@{beta}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{beta()}{beta()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::beta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The part of the general transformation matrix that describes the expansion coefficients of the beta components of the spinors. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_a6bdc555980660dec5c3594ef4ad2199d}\label{class_g_q_c_p_1_1_g_transformation_a6bdc555980660dec5c3594ef4ad2199d}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!component@{component}}
+\index{component@{component}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{component()}{component()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}}]{sigma }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sigma} & Alpha or beta.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The part of the general transformation that describes the spinors of the requested component. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_a511cfa0246d40baa45e7dcee1f79cacb}\label{class_g_q_c_p_1_1_g_transformation_a511cfa0246d40baa45e7dcee1f79cacb}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!FromUnrestricted@{FromUnrestricted}}
+\index{FromUnrestricted@{FromUnrestricted}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{FromUnrestricted()}{FromUnrestricted()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::From\+Unrestricted (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{U\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&}]{u\+\_\+transformation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Convert an {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{U\+Transformation}}} into its generalized counterpart.
+
+
+\begin{DoxyParams}{Parameters}
+{\em u\+\_\+transformation} & The unrestricted transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}} that corresponds to the {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{U\+Transformation}}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_a31d3196ed11543a85afe55d53cf96cb2}\label{class_g_q_c_p_1_1_g_transformation_a31d3196ed11543a85afe55d53cf96cb2}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!Identity@{Identity}}
+\index{Identity@{Identity}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Identity()}{Identity()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Q\+C\+P\+::\+G\+Transformation}}$<$ \+\_\+\+Scalar $>$\+::Identity (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{K\+\_\+alpha,  }\item[{const size\+\_\+t}]{K\+\_\+beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Construct an identity transformation related to different number of alpha and beta atomic spinors. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Transformations/\mbox{\hyperlink{_g_transformation_8hpp}{G\+Transformation.\+hpp}}\end{DoxyCompactItemize}

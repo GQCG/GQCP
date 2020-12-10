@@ -1,0 +1,117 @@
+\hypertarget{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{}\doxysection{G\+Q\+CP\+::Mc\+Murchie\+Davidson\+Coefficient Class Reference}
+\label{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}\index{GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}}
+
+
+{\ttfamily \#include $<$Mc\+Murchie\+Davidson\+Coefficient.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Mc\+Murchie\+Davidson\+Coefficient\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_af44d0e549766b8b9ec145282078d67ca}{Mc\+Murchie\+Davidson\+Coefficient}} (const double K, const double alpha, const double L, const double beta)
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_aaa4db462c959066380ea4a9b201ce1f8}{operator()}} (const int i, const int j, const int t) const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a6e45664e3ffca2c50c94ae6e46d2ef44}{center\+Of\+Mass}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_add58479b11276f84af4e77433214e11b}{distance}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a93a17b44635c47cab7d157daf9f946ea}{reduced\+Exponent}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a08f173bdd06c961321fcb9e6a1c6ea87}{total\+Exponent}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An implementation of the Mc\+Murchie-\/\+Davidson expansion coefficients through recurrence relations. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_af44d0e549766b8b9ec145282078d67ca}\label{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_af44d0e549766b8b9ec145282078d67ca}} 
+\index{GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}!McMurchieDavidsonCoefficient@{McMurchieDavidsonCoefficient}}
+\index{McMurchieDavidsonCoefficient@{McMurchieDavidsonCoefficient}!GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}}
+\doxysubsubsection{\texorpdfstring{McMurchieDavidsonCoefficient()}{McMurchieDavidsonCoefficient()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Mc\+Murchie\+Davidson\+Coefficient\+::\+Mc\+Murchie\+Davidson\+Coefficient (\begin{DoxyParamCaption}\item[{const double}]{K,  }\item[{const double}]{alpha,  }\item[{const double}]{L,  }\item[{const double}]{beta }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em K} & one of the components of the center of the left Cartesian G\+TO \\
+\hline
+{\em alpha} & the Gaussian exponent of the left Cartesian G\+TO \\
+\hline
+{\em L} & one of the components of the center of the left Cartesian G\+TO \\
+\hline
+{\em beta} & the Gaussian exponent of the right Cartesian G\+TO \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a6e45664e3ffca2c50c94ae6e46d2ef44}\label{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a6e45664e3ffca2c50c94ae6e46d2ef44}} 
+\index{GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}!centerOfMass@{centerOfMass}}
+\index{centerOfMass@{centerOfMass}!GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}}
+\doxysubsubsection{\texorpdfstring{centerOfMass()}{centerOfMass()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Mc\+Murchie\+Davidson\+Coefficient\+::center\+Of\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the center of mass of the Gaussian overlap distribution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_add58479b11276f84af4e77433214e11b}\label{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_add58479b11276f84af4e77433214e11b}} 
+\index{GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}!distance@{distance}}
+\index{distance@{distance}!GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Mc\+Murchie\+Davidson\+Coefficient\+::distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+(one component of) the distance vector between the left and right Cartesian Gaussian (left -\/ right) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_aaa4db462c959066380ea4a9b201ce1f8}\label{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_aaa4db462c959066380ea4a9b201ce1f8}} 
+\index{GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Mc\+Murchie\+Davidson\+Coefficient\+::operator() (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j,  }\item[{const int}]{t }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the Cartesian exponent of the left Cartesian G\+TO \\
+\hline
+{\em j} & the Cartesian exponent of the right Cartesian G\+TO \\
+\hline
+{\em t} & the degree of the Hermite Gaussian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value for the Mc\+Murchie-\/\+Davidson expansion coefficient E$^\wedge$\{i,j\}\+\_\+t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a93a17b44635c47cab7d157daf9f946ea}\label{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a93a17b44635c47cab7d157daf9f946ea}} 
+\index{GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}!reducedExponent@{reducedExponent}}
+\index{reducedExponent@{reducedExponent}!GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}}
+\doxysubsubsection{\texorpdfstring{reducedExponent()}{reducedExponent()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Mc\+Murchie\+Davidson\+Coefficient\+::reduced\+Exponent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the reduced exponent of the Gaussian overlap distribution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a08f173bdd06c961321fcb9e6a1c6ea87}\label{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a08f173bdd06c961321fcb9e6a1c6ea87}} 
+\index{GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}!totalExponent@{totalExponent}}
+\index{totalExponent@{totalExponent}!GQCP::McMurchieDavidsonCoefficient@{GQCP::McMurchieDavidsonCoefficient}}
+\doxysubsubsection{\texorpdfstring{totalExponent()}{totalExponent()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Mc\+Murchie\+Davidson\+Coefficient\+::total\+Exponent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the total exponent of the Gaussian overlap distribution 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_mc_murchie_davidson_coefficient_8hpp}{Mc\+Murchie\+Davidson\+Coefficient.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Integrals/\mbox{\hyperlink{_mc_murchie_davidson_coefficient_8cpp}{Mc\+Murchie\+Davidson\+Coefficient.\+cpp}}\end{DoxyCompactItemize}

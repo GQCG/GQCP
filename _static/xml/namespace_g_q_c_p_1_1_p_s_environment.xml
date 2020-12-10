@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1_p_s_environment" kind="namespace" language="C++">
+    <compoundname>GQCP::PSEnvironment</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_p_s_environment_1ab7ade7744238001d644f02702f8d7309" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_non_linear_equation_environment" kindref="compound">NonLinearEquationEnvironment</ref>&lt; Scalar &gt;</type>
+        <definition>NonLinearEquationEnvironment&lt;Scalar&gt; GQCP::PSEnvironment::AP1roG</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G_initial)</argsstring>
+        <name>AP1roG</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; Scalar &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G_initial</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a non-linear equation environment with the AP1roG geminal coefficients as an initial guess.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second-quantized Hamiltonian, expressed in an orthonormal spinor basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G_initial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial guess for the AP1roG geminal coefficients</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an environment suitable for AP1roG calculations </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp" line="39" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp" bodystart="39" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_p_s_environment_1a84c4e68c10aeadbb0062b6de6c9f94b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_non_linear_equation_environment" kindref="compound">NonLinearEquationEnvironment</ref>&lt; Scalar &gt;</type>
+        <definition>NonLinearEquationEnvironment&lt;Scalar&gt; GQCP::PSEnvironment::AP1roG</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
+        <name>AP1roG</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; Scalar &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a non-linear equation environment with a zero initial guess for the AP1roG geminal coefficients.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second-quantized Hamiltonian, expressed in an orthonormal spinor basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an environment suitable for AP1roG calculations </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp" line="60" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp" bodystart="60" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp" line="27" column="1"/>
+  </compounddef>
+</doxygen>

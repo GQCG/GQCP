@@ -1,0 +1,182 @@
+\hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer}{}\doxysection{G\+Q\+CP\+::E\+R\+Newton\+Localizer Class Reference}
+\label{class_g_q_c_p_1_1_e_r_newton_localizer}\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+
+
+{\ttfamily \#include $<$E\+R\+Newton\+Localizer.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::E\+R\+Newton\+Localizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_e_r_newton_localizer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::E\+R\+Newton\+Localizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_e_r_newton_localizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_a59125505e5873464449527cc1e8f47d0}{E\+R\+Newton\+Localizer}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} orbital\+\_\+space, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\+\_\+modifier}}, const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_a2a512ac9d603955917c5fffcf2929e3e}{calculate\+Gradient\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ab95ca42113e2e839113f61349a7ba5af}{calculate\+Hessian\+Tensor}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_acfbbaaa60d27d064ae23539c8996f2ca}{calculate\+New\+Full\+Orbital\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ac736fd3da99a293e336f759704944413}{prepare\+Orbital\+Derivatives\+Calculation}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) override
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ae17466a9719678c3263edf19f2c93872}{calculate\+Gradient\+Matrix\+Element}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t i, const size\+\_\+t j) const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_aa4868063120b4fb560a3d84b476ff3da}{calculate\+Hessian\+Tensor\+Element}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t i, const size\+\_\+t j, const size\+\_\+t k, const size\+\_\+t l) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A class that localizes a set of orthonormal real spatial orbitals according to the maximization of the Edmiston-\/\+Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Newton steps. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_a59125505e5873464449527cc1e8f47d0}\label{class_g_q_c_p_1_1_e_r_newton_localizer_a59125505e5873464449527cc1e8f47d0}} 
+\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!ERNewtonLocalizer@{ERNewtonLocalizer}}
+\index{ERNewtonLocalizer@{ERNewtonLocalizer}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+\doxysubsubsection{\texorpdfstring{ERNewtonLocalizer()}{ERNewtonLocalizer()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+E\+R\+Newton\+Localizer\+::\+E\+R\+Newton\+Localizer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}}}]{orbital\+\_\+space,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$}]{hessian\+\_\+modifier,  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em orbital\+\_\+space} & the occupied-\/virtual orbital space \\
+\hline
+{\em hessian\+\_\+modifier} & the modifier functor that should be used when an indefinite Hessian is encountered \\
+\hline
+{\em convergence\+\_\+threshold} & the threshold used to check for convergence \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations that may be used to achieve convergence \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_a2a512ac9d603955917c5fffcf2929e3e}\label{class_g_q_c_p_1_1_e_r_newton_localizer_a2a512ac9d603955917c5fffcf2929e3e}} 
+\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!calculateGradientMatrix@{calculateGradientMatrix}}
+\index{calculateGradientMatrix@{calculateGradientMatrix}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+\doxysubsubsection{\texorpdfstring{calculateGradientMatrix()}{calculateGradientMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ G\+Q\+C\+P\+::\+E\+R\+Newton\+Localizer\+::calculate\+Gradient\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the current orbital gradient of the Edmiston-\/\+Ruedenberg localization index as a matrix 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a91fddcff45c5d1298e9a6e5676ce4cb9}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_ae17466a9719678c3263edf19f2c93872}\label{class_g_q_c_p_1_1_e_r_newton_localizer_ae17466a9719678c3263edf19f2c93872}} 
+\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!calculateGradientMatrixElement@{calculateGradientMatrixElement}}
+\index{calculateGradientMatrixElement@{calculateGradientMatrixElement}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+\doxysubsubsection{\texorpdfstring{calculateGradientMatrixElement()}{calculateGradientMatrixElement()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+E\+R\+Newton\+Localizer\+::calculate\+Gradient\+Matrix\+Element (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian \\
+\hline
+{\em i} & the row of the gradient \textquotesingle{}matrix\textquotesingle{} \\
+\hline
+{\em j} & the column of the gradient \textquotesingle{}matrix\textquotesingle{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the element (i,j) of the Edmiston-\/\+Ruedenberg localization index gradient 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_ab95ca42113e2e839113f61349a7ba5af}\label{class_g_q_c_p_1_1_e_r_newton_localizer_ab95ca42113e2e839113f61349a7ba5af}} 
+\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!calculateHessianTensor@{calculateHessianTensor}}
+\index{calculateHessianTensor@{calculateHessianTensor}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+\doxysubsubsection{\texorpdfstring{calculateHessianTensor()}{calculateHessianTensor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ double $>$ G\+Q\+C\+P\+::\+E\+R\+Newton\+Localizer\+::calculate\+Hessian\+Tensor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the current orbital Hessian of the Edmiston-\/\+Ruedenberg localization index as a tensor 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a602cde8c8513bd31d3cae859a3bf31bd}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_aa4868063120b4fb560a3d84b476ff3da}\label{class_g_q_c_p_1_1_e_r_newton_localizer_aa4868063120b4fb560a3d84b476ff3da}} 
+\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!calculateHessianTensorElement@{calculateHessianTensorElement}}
+\index{calculateHessianTensorElement@{calculateHessianTensorElement}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+\doxysubsubsection{\texorpdfstring{calculateHessianTensorElement()}{calculateHessianTensorElement()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+E\+R\+Newton\+Localizer\+::calculate\+Hessian\+Tensor\+Element (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k,  }\item[{const size\+\_\+t}]{l }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian \\
+\hline
+{\em i} & the first index of the Hessian \textquotesingle{}tensor\textquotesingle{} \\
+\hline
+{\em j} & the second index of the Hessian \textquotesingle{}tensor\textquotesingle{} \\
+\hline
+{\em k} & the third index of the Hessian \textquotesingle{}tensor\textquotesingle{} \\
+\hline
+{\em l} & the fourth index of the Hessian \textquotesingle{}tensor\textquotesingle{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the element (i,j,k,l) of the Edmiston-\/\+Ruedenberg localization index Hessian 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_acfbbaaa60d27d064ae23539c8996f2ca}\label{class_g_q_c_p_1_1_e_r_newton_localizer_acfbbaaa60d27d064ae23539c8996f2ca}} 
+\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}}
+\index{calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+\doxysubsubsection{\texorpdfstring{calculateNewFullOrbitalGenerators()}{calculateNewFullOrbitalGenerators()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} G\+Q\+C\+P\+::\+E\+R\+Newton\+Localizer\+::calculate\+New\+Full\+Orbital\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Use gradient and Hessian information to determine a new direction for the \textquotesingle{}full\textquotesingle{} orbital rotation generators kappa. Note that a distinction is made between \textquotesingle{}free\textquotesingle{} generators, i.\+e. those that are calculated from the gradient and Hessian information and the \textquotesingle{}full\textquotesingle{} generators, which also include the redundant parameters (that can be set to zero). The \textquotesingle{}full\textquotesingle{} generators are used to calculate the total rotation matrix using the matrix exponential
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new full set orbital generators, including the redundant parameters 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a917e48231bf397dcdc210590451113e5}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_ac736fd3da99a293e336f759704944413}\label{class_g_q_c_p_1_1_e_r_newton_localizer_ac736fd3da99a293e336f759704944413}} 
+\index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!prepareOrbitalDerivativesCalculation@{prepareOrbitalDerivativesCalculation}}
+\index{prepareOrbitalDerivativesCalculation@{prepareOrbitalDerivativesCalculation}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
+\doxysubsubsection{\texorpdfstring{prepareOrbitalDerivativesCalculation()}{prepareOrbitalDerivativesCalculation()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+E\+R\+Newton\+Localizer\+::prepare\+Orbital\+Derivatives\+Calculation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Prepare this object (i.\+e. the context for the orbital optimization algorithm) to be able to check for convergence 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a5726b8a9e0b7477cd9ed7c7faa282018}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+Orbital\+Optimization/\+Localization/\mbox{\hyperlink{_e_r_newton_localizer_8hpp}{E\+R\+Newton\+Localizer.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Q\+C\+Method/\+Orbital\+Optimization/\+Localization/\mbox{\hyperlink{_e_r_newton_localizer_8cpp}{E\+R\+Newton\+Localizer.\+cpp}}\end{DoxyCompactItemize}

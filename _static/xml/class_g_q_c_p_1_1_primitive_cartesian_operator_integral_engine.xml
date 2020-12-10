@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::PrimitiveCartesianOperatorIntegralEngine</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveAngularMomentumIntegralEngine</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveDipoleIntegralEngine</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveLinearMomentumIntegralEngine</derivedcompoundref>
+    <includes refid="_primitive_cartesian_operator_integral_engine_8hpp" local="no">PrimitiveCartesianOperatorIntegralEngine.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a7d77d8c96bbaf6ecf9e4b4873b06a264" prot="protected" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+        <definition>CartesianDirection GQCP::PrimitiveCartesianOperatorIntegralEngine::component</definition>
+        <argsstring></argsstring>
+        <name>component</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp" line="34" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a5ae4f80cc95067e1919a1d7336d46d42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::PrimitiveCartesianOperatorIntegralEngine::PrimitiveCartesianOperatorIntegralEngine</definition>
+        <argsstring>(const CartesianDirection component=CartesianDirection::x)</argsstring>
+        <name>PrimitiveCartesianOperatorIntegralEngine</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+          <declname>component</declname>
+          <defval>CartesianDirection::x</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <ref refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" kindref="compound">PrimitiveCartesianOperatorIntegralEngine</ref> from its members.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial component of the Cartesian operator this engine should calculate integrals over</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The primitive engine&apos;s state may be changed through the prepareStateForComponent method. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.cpp" bodystart="37" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a14f348eef8b2b49487a42b887b407334" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>GQCP::PrimitiveCartesianOperatorIntegralEngine::~PrimitiveCartesianOperatorIntegralEngine</definition>
+        <argsstring>()=0</argsstring>
+        <name>~PrimitiveCartesianOperatorIntegralEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A pure virtual destructor in order to make this class abstract.</para>
+<para>A pure virtual destructor should have an empty body. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp" line="55" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.cpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1abc3fd20e83b16565852112d4594c7ba8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::PrimitiveCartesianOperatorIntegralEngine::prepareStateForComponent</definition>
+        <argsstring>(const size_t component)</argsstring>
+        <name>prepareStateForComponent</name>
+        <param>
+          <type>const size_t</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the component of the operator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp" line="65" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.cpp" bodystart="60" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base class for integral engines over a Cartesian operator, i.e. an operator with three vector components (x, y, z). </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::PrimitiveAngularMomentumIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::PrimitiveLinearMomentumIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::PrimitiveCartesianOperatorIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine"/>
+      </node>
+      <node id="3">
+        <label>GQCP::PrimitiveDipoleIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::PrimitiveCartesianOperatorIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp" bodystart="32" bodyend="66"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a7d77d8c96bbaf6ecf9e4b4873b06a264" prot="protected" virt="non-virtual"><scope>GQCP::PrimitiveCartesianOperatorIntegralEngine</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1abc3fd20e83b16565852112d4594c7ba8" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCartesianOperatorIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a5ae4f80cc95067e1919a1d7336d46d42" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCartesianOperatorIntegralEngine</scope><name>PrimitiveCartesianOperatorIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a14f348eef8b2b49487a42b887b407334" prot="public" virt="pure-virtual"><scope>GQCP::PrimitiveCartesianOperatorIntegralEngine</scope><name>~PrimitiveCartesianOperatorIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_step" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::Step</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_functional_step" prot="public" virt="non-virtual">GQCP::FunctionalStep&lt; _Environment &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update" prot="public" virt="non-virtual">GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update" prot="public" virt="non-virtual">GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_step_collection" prot="public" virt="non-virtual">GQCP::StepCollection&lt; _Environment &gt;</derivedcompoundref>
+    <includes refid="_step_8hpp" local="no">Step.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Environment</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" static="no">
+        <type>_Environment</type>
+        <definition>using GQCP::Step&lt; _Environment &gt;::Environment =  _Environment</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/Step.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/Step.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::Step&lt; _Environment &gt;::~Step</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Step</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/Step.hpp" line="47" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string GQCP::Step&lt; _Environment &gt;::description</definition>
+        <argsstring>() const =0</argsstring>
+        <name>description</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_functional_step_1acdbcb74b42d6f390be7c6aa00e05978b">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a4f63e6c1cb7d7de973cbb4212e5ba699">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a4f63e6c1cb7d7de973cbb4212e5ba699">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a9364e58c7624df4f6621f712a929b5f3">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a719c5657ab1eaa89adbe008e9516c618">description</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/Step.hpp" line="57" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void GQCP::Step&lt; _Environment &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment)=0</argsstring>
+        <name>execute</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_correction_vector_calculation_1a120b466e0f888fbdddddc15a311830fd">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_guess_vector_update_1a7a851040ae4141bf75a5c04e3b8c4789">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_matrix_vector_product_calculation_1ae12bd52993b438c89bb00e731c22f905">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_residual_vector_calculation_1a737360db727b663e2f6c84ff82ebab1b">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_subspace_matrix_calculation_1a654f1375ead21ecacb9e0b2492bf7321">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a289097a48ae666a44136878246d964c9">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_subspace_update_1acf11b3134f5b1a2d059bfa2f3bcc5bf7">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_functional_step_1aa30af9328c3482352d24d15e05156e1d">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a227f70ef9375810de6e45dfbc23fc034">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a227f70ef9375810de6e45dfbc23fc034">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_dense_diagonalization_1a22c3d402fc47e074ed0b50b6345bee8e">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a74bf63843f2f9eb8753f556b9dec2fee">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a78d80e98d2ec9b89724474295c1371a1">execute</reimplementedby>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Execute/perform this algorithm step.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that this step can read from and write to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/Step.hpp" line="64" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An elementary calculation that is regarded as one step in an algorithm.</para>
+<para>Derived classes should implement:<itemizedlist>
+<listitem><para><ref refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" kindref="member">description()</ref></para>
+</listitem><listitem><para><ref refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" kindref="member">execute()</ref></para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_Environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the environment that this step can read from and write to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="4">
+        <label>GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::StepCollection&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step_collection"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::Minimization::NewtonStepUpdate&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::FunctionalStep&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_step"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/Step.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/Step.hpp" bodystart="37" bodyend="65"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual"><scope>GQCP::Step</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::Step</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual"><scope>GQCP::Step</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::Step</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

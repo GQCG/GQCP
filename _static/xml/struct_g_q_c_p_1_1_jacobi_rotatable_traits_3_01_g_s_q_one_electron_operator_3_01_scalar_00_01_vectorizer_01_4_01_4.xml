@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::JacobiRotatableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</compoundname>
+    <includes refid="_g_s_q_one_electron_operator_8hpp" local="no">GSQOneElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+      <param>
+        <type>typename Vectorizer</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a87740379a4fccc4ead6b0ae8dca63c60" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref></type>
+        <definition>using GQCP::JacobiRotatableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::JacobiRotationType =  JacobiRotation</definition>
+        <argsstring></argsstring>
+        <name>JacobiRotationType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" line="160" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_jacobi_rotatable" kindref="compound">JacobiRotatable</ref></computeroutput>. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::JacobiRotatableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" line="157" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" bodystart="157" bodyend="161"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a87740379a4fccc4ead6b0ae8dca63c60" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>JacobiRotationType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

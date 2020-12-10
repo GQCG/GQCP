@@ -1,0 +1,582 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::QCModel::AP1roG</compoundname>
+    <includes refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp" local="no">AP1roG.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ac954d184a0921503e6f8ca70fa64a6e4" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref></type>
+        <definition>AP1roGGeminalCoefficients GQCP::QCModel::AP1roG::G</definition>
+        <argsstring></argsstring>
+        <name>G</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="36" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a1a29b3f8370455ef444a5f25d31b9b99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCModel::AP1roG::AP1roG</definition>
+        <argsstring>(const AP1roGGeminalCoefficients &amp;G)</argsstring>
+        <name>AP1roG</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the optimal geminal coefficients </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="47" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a0c86f7b1e86880d39923cd580c0ff7e0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::QCModel::AP1roG::calculateEnergy</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
+        <name>calculateEnergy</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the electronic energy for these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="127" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a9c5154f7c663cea49b086ee367622579" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; double &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;double&gt; GQCP::QCModel::AP1roG::calculatePSEJacobian</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
+        <name>calculatePSEJacobian</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="134" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="134" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ad711e91f6b4182ba8a7c4278ed6b70a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+        <definition>const AP1roGGeminalCoefficients&amp; GQCP::QCModel::AP1roG::geminalCoefficients</definition>
+        <argsstring>() const</argsstring>
+        <name>geminalCoefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the corresponding geminal coefficients of these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="139" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="139" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1adc626240acb081ffeaada4b64f49ee16" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::AP1roG::numberOfElectronPairs</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfElectronPairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of electron pairs that are described by these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="144" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="144" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1af37536e8ca03b59472cee79abfd9f052" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::AP1roG::numberOfSpatialOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfSpatialOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of spatial orbitals that are described by these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="149" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="149" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a0b336c18af4c184591021bcfdd5d3f3a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+        <definition>OrbitalSpace GQCP::QCModel::AP1roG::orbitalSpace</definition>
+        <argsstring>() const</argsstring>
+        <name>orbitalSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the implicit occupied-virtual orbital space that is associated with these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> model parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="154" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="154" bodyend="154"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a09afa5a4f60c4f631c58aefd7ecc6330" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::QCModel::AP1roG::calculateEnergy</definition>
+        <argsstring>(const AP1roGGeminalCoefficients &amp;G, const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian)</argsstring>
+        <name>calculateEnergy</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> geminal coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> electronic energy</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the converged <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> geminal coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> electronic energy </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="61" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp" bodystart="34" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a5a45133f35275f9c34da2708b34ac52b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::QCModel::AP1roG::calculatePSECoordinateFunction</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G, const size_t i, const size_t a)</argsstring>
+        <name>calculatePSECoordinateFunction</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> geminal coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the subscript for the coordinate function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the superscript for the coordinate function</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the PSE coordinate function with given indices (i,a) at the given geminal coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="71" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp" bodystart="69" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ab67d87d4990776227871e6b68ea726cc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; double &gt;</type>
+        <definition>ImplicitMatrixSlice&lt; double &gt; GQCP::QCModel::AP1roG::calculatePSECoordinateFunctions</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G)</argsstring>
+        <name>calculatePSECoordinateFunctions</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> geminal coefficients</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the PSEs, evaluated at the given geminal coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="79" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp" bodystart="127" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a855fc777447b989dcd4b0deb153dd1b1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; double &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt; double &gt; GQCP::QCModel::AP1roG::calculatePSEJacobian</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G)</argsstring>
+        <name>calculatePSEJacobian</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> geminal coefficients</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="87" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp" bodystart="237" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a79195d8abb1f7da152ada5b5b05909b0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1afdcf4d963710902cad07f1c683df75bf" kindref="member">MatrixFunction</ref>&lt; double &gt;</type>
+        <definition>MatrixFunction&lt; double &gt; GQCP::QCModel::AP1roG::callablePSEJacobian</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
+        <name>callablePSEJacobian</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a callable (i.e. with operator()) expression for the Jacobian: the accepted VectorX&lt;double&gt; argument should contain the geminal coefficients in a column-major representation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="95" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp" bodystart="269" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ac5bb3c054474a28f82e40cf4b3c1b940" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction</ref>&lt; double &gt;</type>
+        <definition>VectorFunction&lt; double &gt; GQCP::QCModel::AP1roG::callablePSECoordinateFunctions</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
+        <name>callablePSECoordinateFunctions</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a callable (i.e. with operator()) expression for the coordinate functions: the accepted VectorX&lt;double&gt; argument should contain the geminal coefficients in a column-major representation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="103" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp" bodystart="155" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a153cceaa3e19f3387fc703f468de09ae" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::QCModel::AP1roG::calculatePSEJacobianElement</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G, const size_t i, const size_t a, const size_t j, const size_t b)</argsstring>
+        <name>calculatePSEJacobianElement</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> geminal coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the subscript for the coordinate function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the superscript for the coordinate function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the subscript for the geminal coefficient </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the superscript for the geminal coefficient</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Jacobian element with compound indices (i,a) and (j,b) at the given geminal coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="115" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp" bodystart="178" bodyend="228"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> (=pCCD) geminal (coupled-cluster) wave function model. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::QCModel::AP1roG</label>
+        <link refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="34" bodyend="155"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a1a29b3f8370455ef444a5f25d31b9b99" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>AP1roG</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a09afa5a4f60c4f631c58aefd7ecc6330" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculateEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a0c86f7b1e86880d39923cd580c0ff7e0" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculateEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a5a45133f35275f9c34da2708b34ac52b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSECoordinateFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ab67d87d4990776227871e6b68ea726cc" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSECoordinateFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a855fc777447b989dcd4b0deb153dd1b1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSEJacobian</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a9c5154f7c663cea49b086ee367622579" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSEJacobian</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a153cceaa3e19f3387fc703f468de09ae" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSEJacobianElement</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ac5bb3c054474a28f82e40cf4b3c1b940" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>callablePSECoordinateFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a79195d8abb1f7da152ada5b5b05909b0" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>callablePSEJacobian</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ac954d184a0921503e6f8ca70fa64a6e4" prot="private" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>G</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ad711e91f6b4182ba8a7c4278ed6b70a8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>geminalCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1adc626240acb081ffeaada4b64f49ee16" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>numberOfElectronPairs</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1af37536e8ca03b59472cee79abfd9f052" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>numberOfSpatialOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a0b336c18af4c184591021bcfdd5d3f3a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>orbitalSpace</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

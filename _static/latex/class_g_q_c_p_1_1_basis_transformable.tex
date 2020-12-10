@@ -1,0 +1,139 @@
+\hypertarget{class_g_q_c_p_1_1_basis_transformable}{}\doxysection{G\+Q\+CP\+::Basis\+Transformable$<$ Type $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_basis_transformable}\index{GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}}
+
+
+{\ttfamily \#include $<$Basis\+Transformable.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Basis\+Transformable$<$ Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_basis_transformable__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Basis\+Transformable$<$ Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{class_g_q_c_p_1_1_basis_transformable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$ Type $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Type \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a3c511224fd132184fb2e01579754850d}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&T) const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_aa55d3cf1b186ac2ec926e97a7b6d645f}{transform}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&T)
+\item 
+virtual Type \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_ae0af50867dbd06193b64c2bcdd6b51ba}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&U) const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{rotate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&U)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Type$>$\newline
+class G\+Q\+C\+P\+::\+Basis\+Transformable$<$ Type $>$}
+
+An (abstract) interface for types that may be transformed from one orbital basis to another.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type} & The type that should be basis-\/transformable. It is given as a template argument, enabling \mbox{\hyperlink{class_g_q_c_p_1_1_c_r_t_p}{C\+R\+TP}}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}\label{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}} 
+\index{GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
+{\footnotesize\ttfamily template$<$typename Type $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{G\+Q\+C\+P\+::\+Basis\+Transformable}}$<$ Type $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$Type$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}\label{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}} 
+\index{GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}!rotate@{rotate}}
+\index{rotate@{rotate}!GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{rotate()}{rotate()}}
+{\footnotesize\ttfamily template$<$typename Type $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{G\+Q\+C\+P\+::\+Basis\+Transformable}}$<$ Type $>$\+::rotate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&}]{U }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+In-\/place apply the basis rotation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em U} & The basis rotation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_basis_transformable_ae0af50867dbd06193b64c2bcdd6b51ba}\label{class_g_q_c_p_1_1_basis_transformable_ae0af50867dbd06193b64c2bcdd6b51ba}} 
+\index{GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}!rotated@{rotated}}
+\index{rotated@{rotated}!GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{rotated()}{rotated()}}
+{\footnotesize\ttfamily template$<$typename Type $>$ \\
+virtual Type \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{G\+Q\+C\+P\+::\+Basis\+Transformable}}$<$ Type $>$\+::rotated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&}]{U }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the basis rotation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em U} & The basis rotation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The basis-\/rotated object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_basis_transformable_aa55d3cf1b186ac2ec926e97a7b6d645f}\label{class_g_q_c_p_1_1_basis_transformable_aa55d3cf1b186ac2ec926e97a7b6d645f}} 
+\index{GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}!transform@{transform}}
+\index{transform@{transform}!GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily template$<$typename Type $>$ \\
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{G\+Q\+C\+P\+::\+Basis\+Transformable}}$<$ Type $>$\+::transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&}]{T }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+In-\/place apply the basis transformation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The basis transformation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_basis_transformable_a3c511224fd132184fb2e01579754850d}\label{class_g_q_c_p_1_1_basis_transformable_a3c511224fd132184fb2e01579754850d}} 
+\index{GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}!transformed@{transformed}}
+\index{transformed@{transformed}!GQCP::BasisTransformable$<$ Type $>$@{GQCP::BasisTransformable$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{transformed()}{transformed()}}
+{\footnotesize\ttfamily template$<$typename Type $>$ \\
+virtual Type \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{G\+Q\+C\+P\+::\+Basis\+Transformable}}$<$ Type $>$\+::transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Apply the basis transformation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The basis transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The basis-\/transformed object. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a42ddb132b31bc893a31de4b17e950531}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian$<$ Scalar $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a42ddb132b31bc893a31de4b17e950531}{G\+Q\+C\+P\+::\+S\+Q\+Hamiltonian$<$ double $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_ada0b12379e30e62f52101ccd6ea8b4ec}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+Two\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, G\+S\+Q\+Two\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_ada0b12379e30e62f52101ccd6ea8b4ec}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+Two\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, Pure\+U\+S\+Q\+Two\+Electron\+Operator\+Component$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_ada0b12379e30e62f52101ccd6ea8b4ec}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+Two\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, R\+S\+Q\+Two\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator$<$ Scalar, \+\_\+\+Vectorizer, G\+S\+Q\+One\+Electron\+Operator$<$ Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator$<$ Scalar, \+\_\+\+Vectorizer, U\+S\+Q\+One\+Electron\+Operator\+Component$<$ Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, R\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator$<$ Scalar, \+\_\+\+Vectorizer, R\+S\+Q\+One\+Electron\+Operator$<$ Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, U\+S\+Q\+One\+Electron\+Operator\+Component$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, G\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba6f33b2d67fc36483b2ed3d75c6e2dc}{G\+Q\+C\+P\+::\+Simple2\+D\+M$<$ \+\_\+\+Scalar, G2\+D\+M$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba6f33b2d67fc36483b2ed3d75c6e2dc}{G\+Q\+C\+P\+::\+Simple2\+D\+M$<$ \+\_\+\+Scalar, Orbital2\+D\+M$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba6f33b2d67fc36483b2ed3d75c6e2dc}{G\+Q\+C\+P\+::\+Simple2\+D\+M$<$ double, Orbital2\+D\+M$<$ double $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba6f33b2d67fc36483b2ed3d75c6e2dc}{G\+Q\+C\+P\+::\+Simple2\+D\+M$<$ \+\_\+\+Scalar, Pure\+Spin\+Resolved2\+D\+M\+Component$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}{G\+Q\+C\+P\+::\+Simple1\+D\+M$<$ \+\_\+\+Scalar, Spin\+Density1\+D\+M$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}{G\+Q\+C\+P\+::\+Simple1\+D\+M$<$ \+\_\+\+Scalar, G1\+D\+M$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}{G\+Q\+C\+P\+::\+Simple1\+D\+M$<$ \+\_\+\+Scalar, Orbital1\+D\+M$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}{G\+Q\+C\+P\+::\+Simple1\+D\+M$<$ double, Orbital1\+D\+M$<$ double $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}{G\+Q\+C\+P\+::\+Simple1\+D\+M$<$ \+\_\+\+Scalar, Spin\+Resolved1\+D\+M\+Component$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable_a740a28fb79d7744d3645efc0ac44f927}{G\+Q\+C\+P\+::\+Spin\+Resolved\+Basis\+Transformable$<$ Type $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable_a740a28fb79d7744d3645efc0ac44f927}{G\+Q\+C\+P\+::\+Spin\+Resolved\+Basis\+Transformable$<$ U\+Transformation$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable_a740a28fb79d7744d3645efc0ac44f927}{G\+Q\+C\+P\+::\+Spin\+Resolved\+Basis\+Transformable$<$ U\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable_a740a28fb79d7744d3645efc0ac44f927}{G\+Q\+C\+P\+::\+Spin\+Resolved\+Basis\+Transformable$<$ U\+Spin\+Orbital\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable_a740a28fb79d7744d3645efc0ac44f927}{G\+Q\+C\+P\+::\+Spin\+Resolved\+Basis\+Transformable$<$ U\+Transformation$<$ Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable_a740a28fb79d7744d3645efc0ac44f927}{G\+Q\+C\+P\+::\+Spin\+Resolved\+Basis\+Transformable$<$ Spin\+Resolved1\+D\+M$<$ \+\_\+\+Scalar $>$ $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a537698d7d018a1c0ff31509bc227bfa8}{G\+Q\+C\+P\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ Type $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a537698d7d018a1c0ff31509bc227bfa8}{G\+Q\+C\+P\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ Spin\+Resolved2\+D\+M$<$ \+\_\+\+Scalar $>$ $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a537698d7d018a1c0ff31509bc227bfa8}{G\+Q\+C\+P\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ U\+S\+Q\+Two\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Transformations/\mbox{\hyperlink{_basis_transformable_8hpp}{Basis\+Transformable.\+hpp}}\end{DoxyCompactItemize}

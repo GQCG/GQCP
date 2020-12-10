@@ -1,0 +1,181 @@
+\hypertarget{class_g_q_c_p_1_1_scalar_function_product}{}\doxysection{G\+Q\+CP\+::Scalar\+Function\+Product$<$ T1, T2 $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_scalar_function_product}\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+
+
+{\ttfamily \#include $<$Scalar\+Function.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Scalar\+Function\+Product$<$ T1, T2 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_g_q_c_p_1_1_scalar_function_product__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Scalar\+Function\+Product$<$ T1, T2 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_g_q_c_p_1_1_scalar_function_product__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_ac65c286f254398c890747487b3d182f2}{Valued}} = \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ typename T1\+::\+Valued, typename T2\+::\+Valued $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a1aa38b29542830aaf77357d9f646afde}{Scalar}} = typename T1\+::\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a393fe273be01a60f718fc97fe918d818}{Scalar\+Function\+Product}} (const T1 \&\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_acadf6b7e46b4e9e54d4a80570548d101}{lhs}}, const T2 \&\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a38035afedcd55b113652a1ecc253df92}{rhs}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_aca07784c628c2856deab08682e05e1ce}{Scalar\+Function\+Product}} ()=default
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a4b9515f99b8eb9454165fc3bd6985df1}{Scalar\+Function\+Product}} (const int literal)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a3a54511e9fb2f8b5ffb21cd695f2c2d3}{description}} () const
+\item 
+const T1 \& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_acadf6b7e46b4e9e54d4a80570548d101}{lhs}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_ac65c286f254398c890747487b3d182f2}{Valued}} \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_ac5c556ca9f1b740b7760f0c2cc5b8f48}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a1aa38b29542830aaf77357d9f646afde}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a7e177d6f65f265f1aaf25658accfb8b5}{Cols}} $>$ \&\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}) const override
+\item 
+const T2 \& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a38035afedcd55b113652a1ecc253df92}{rhs}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const auto \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a7e177d6f65f265f1aaf25658accfb8b5}{Cols}} = T1\+::\+Cols
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T1, typename T2 = T1$>$\newline
+class G\+Q\+C\+P\+::\+Scalar\+Function\+Product$<$ T1, T2 $>$}
+
+A class template that represents a product of scalar functions (of the same type), such that the evaluation of a product is the product of the evaluations
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & the left-\/hand side scalar function type \\
+\hline
+{\em T2} & the right-\/hand side scalar function type \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_a1aa38b29542830aaf77357d9f646afde}\label{class_g_q_c_p_1_1_scalar_function_product_a1aa38b29542830aaf77357d9f646afde}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a1aa38b29542830aaf77357d9f646afde}{Scalar}} =  typename T1\+::\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_ac65c286f254398c890747487b3d182f2}\label{class_g_q_c_p_1_1_scalar_function_product_ac65c286f254398c890747487b3d182f2}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!Valued@{Valued}}
+\index{Valued@{Valued}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{Valued}{Valued}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_ac65c286f254398c890747487b3d182f2}{Valued}} =  \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename T1\+::\+Valued, typename T2\+::\+Valued$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_a393fe273be01a60f718fc97fe918d818}\label{class_g_q_c_p_1_1_scalar_function_product_a393fe273be01a60f718fc97fe918d818}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!ScalarFunctionProduct@{ScalarFunctionProduct}}
+\index{ScalarFunctionProduct@{ScalarFunctionProduct}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarFunctionProduct()}{ScalarFunctionProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{Scalar\+Function\+Product}} (\begin{DoxyParamCaption}\item[{const T1 \&}]{lhs,  }\item[{const T2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & the left-\/hand side of the product \\
+\hline
+{\em rhs} & the right-\/hand side of the product \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_aca07784c628c2856deab08682e05e1ce}\label{class_g_q_c_p_1_1_scalar_function_product_aca07784c628c2856deab08682e05e1ce}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!ScalarFunctionProduct@{ScalarFunctionProduct}}
+\index{ScalarFunctionProduct@{ScalarFunctionProduct}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarFunctionProduct()}{ScalarFunctionProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{Scalar\+Function\+Product}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+The default constructor. \mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_a4b9515f99b8eb9454165fc3bd6985df1}\label{class_g_q_c_p_1_1_scalar_function_product_a4b9515f99b8eb9454165fc3bd6985df1}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!ScalarFunctionProduct@{ScalarFunctionProduct}}
+\index{ScalarFunctionProduct@{ScalarFunctionProduct}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarFunctionProduct()}{ScalarFunctionProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{Scalar\+Function\+Product}} (\begin{DoxyParamCaption}\item[{const int}]{literal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The constructor for a \textquotesingle{}zero\textquotesingle{} instance given the \textquotesingle{}0\textquotesingle{} integer literal. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_a3a54511e9fb2f8b5ffb21cd695f2c2d3}\label{class_g_q_c_p_1_1_scalar_function_product_a3a54511e9fb2f8b5ffb21cd695f2c2d3}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!description@{description}}
+\index{description@{description}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_acadf6b7e46b4e9e54d4a80570548d101}\label{class_g_q_c_p_1_1_scalar_function_product_acadf6b7e46b4e9e54d4a80570548d101}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!lhs@{lhs}}
+\index{lhs@{lhs}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{lhs()}{lhs()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+const T1\& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::lhs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the left-\/hand side of this product 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_ac5c556ca9f1b740b7760f0c2cc5b8f48}\label{class_g_q_c_p_1_1_scalar_function_product_ac5c556ca9f1b740b7760f0c2cc5b8f48}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_ac65c286f254398c890747487b3d182f2}{Valued}} \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a1aa38b29542830aaf77357d9f646afde}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product_a7e177d6f65f265f1aaf25658accfb8b5}{Cols}} $>$ \&}]{x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the vector/point at which the scalar function product is to be evaluated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the product of the evaluated left-\/hand and right-\/hand side scalar functions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_a38035afedcd55b113652a1ecc253df92}\label{class_g_q_c_p_1_1_scalar_function_product_a38035afedcd55b113652a1ecc253df92}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!rhs@{rhs}}
+\index{rhs@{rhs}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{rhs()}{rhs()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+const T2\& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::rhs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the right-\/hand side of this product 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_product_a7e177d6f65f265f1aaf25658accfb8b5}\label{class_g_q_c_p_1_1_scalar_function_product_a7e177d6f65f265f1aaf25658accfb8b5}} 
+\index{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}!Cols@{Cols}}
+\index{Cols@{Cols}!GQCP::ScalarFunctionProduct$<$ T1, T2 $>$@{GQCP::ScalarFunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{Cols}{Cols}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+const auto \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product}}$<$ T1, T2 $>$\+::Cols = T1\+::\+Cols\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Functions/\mbox{\hyperlink{_scalar_function_8hpp}{Scalar\+Function.\+hpp}}\end{DoxyCompactItemize}

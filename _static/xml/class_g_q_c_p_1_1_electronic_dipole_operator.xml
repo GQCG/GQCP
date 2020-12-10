@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_electronic_dipole_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ElectronicDipoleOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseFQOperator&lt; double &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_reference_dependent_operator" prot="public" virt="non-virtual">GQCP::BaseReferenceDependentOperator</basecompoundref>
+    <includes refid="_electronic_dipole_operator_8hpp" local="no">ElectronicDipoleOperator.hpp</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_electronic_dipole_operator_1a00d21fd28669791d314090ae6e422f2c" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t GQCP::ElectronicDipoleOperator::NumberOfComponents</definition>
+        <argsstring></argsstring>
+        <name>NumberOfComponents</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp" line="48" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_electronic_dipole_operator_1ab623a703ccbf2329ae1eb23fb44b7ed3" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref></type>
+        <definition>const VectorVectorizer GQCP::ElectronicDipoleOperator::vectorizer</definition>
+        <argsstring></argsstring>
+        <name>vectorizer</name>
+        <initializer>{{<ref refid="class_g_q_c_p_1_1_electronic_dipole_operator_1a00d21fd28669791d314090ae6e422f2c" kindref="member">ElectronicDipoleOperator::NumberOfComponents</ref>}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp" line="51" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_electronic_dipole_operator_1a54a0c94b11d3c1b094b91de2c1125083" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::BaseReferenceDependentOperator::BaseReferenceDependentOperator</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;reference=Vector&lt; double, 3 &gt;::Zero())</argsstring>
+        <name>BaseReferenceDependentOperator</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>reference</declname>
+          <defval><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;::Zero()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <computeroutput><ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator" kindref="compound">BaseReferenceDependentOperator</ref></computeroutput> using a point of reference.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point that is used as a reference to define the operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseReferenceDependentOperator.cpp" bodystart="33" bodyend="34"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The (one-electron) electronic dipole operator. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BaseVectorFQOneElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ElectronicDipoleOperator</label>
+        <link refid="class_g_q_c_p_1_1_electronic_dipole_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BaseVectorFQOneElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+      <node id="4">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ElectronicDipoleOperator</label>
+        <link refid="class_g_q_c_p_1_1_electronic_dipole_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp" bodystart="33" bodyend="52"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_electronic_dipole_operator_1a54a0c94b11d3c1b094b91de2c1125083" prot="public" virt="non-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>BaseReferenceDependentOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a54a0c94b11d3c1b094b91de2c1125083" prot="public" virt="non-virtual" ambiguityscope="GQCP::BaseReferenceDependentOperator::"><scope>GQCP::ElectronicDipoleOperator</scope><name>BaseReferenceDependentOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_electronic_dipole_operator_1a00d21fd28669791d314090ae6e422f2c" prot="public" virt="non-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>NumberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1ae56208bbc85e6d9d401fa4540f20a573" prot="public" virt="non-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>NumberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" prot="public" virt="non-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>reference</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" prot="public" virt="non-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_electronic_dipole_operator_1ab623a703ccbf2329ae1eb23fb44b7ed3" prot="public" virt="non-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a3bf379636691d7d74ea96afc8f5049cf" prot="public" virt="non-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a1f47a08d6dbad212da9370b4d55fd522" prot="public" virt="virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>~BaseFQOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a67db3a2bf7e00d38db5fcba98dec06ed" prot="public" virt="pure-virtual"><scope>GQCP::ElectronicDipoleOperator</scope><name>~BaseReferenceDependentOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

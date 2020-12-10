@@ -1,0 +1,472 @@
+\hypertarget{_2__w_2_g_q_c_p_2_g_q_c_p_2gqcp_2src_2_o_n_v_basis_2_spin_unresolved_o_n_v_8cpp-example}{}\doxysection{/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+O\+N\+V\+Basis/\+Spin\+Unresolved\+O\+N\+V.\+cpp}
+
+\begin{DoxyParams}{Parameters}
+{\em index\+\_\+start} & the starting index (included), read from right to left \\
+\hline
+{\em index\+\_\+end} & the ending index (not included), read from right to left\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the representation of a slice (i.\+e. a subset) of the O\+NV (read from right to left) between index\+\_\+start (included) and index\+\_\+end (not included)
+\end{DoxyReturn}
+\char`\"{}010011\char`\"{}.slice(1, 4) =$>$ \char`\"{}01\mbox{[}001\mbox{]}1\char`\"{} -\/$>$ \char`\"{}001\char`\"{}, where the spinor indices are\+: 543210
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{// This file is part of GQCG-\/GQCP.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// Copyright (C) 2017-\/2020  the GQCG developers}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// GQCG-\/GQCP is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{\textcolor{comment}{// it under the terms of the GNU Lesser General Public License as published by}}
+\DoxyCodeLine{\textcolor{comment}{// the Free Software Foundation, either version 3 of the License, or}}
+\DoxyCodeLine{\textcolor{comment}{// (at your option) any later version.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// GQCG-\/GQCP is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{\textcolor{comment}{// but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{\textcolor{comment}{// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{\textcolor{comment}{// GNU Lesser General Public License for more details.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// You should have received a copy of the GNU Lesser General Public License}}
+\DoxyCodeLine{\textcolor{comment}{// along with GQCG-\/GQCP.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}ONVBasis/SpinUnresolvedONV.hpp"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}ONVBasis/SpinUnresolvedONVBasis.hpp"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <boost/dynamic\_bitset.hpp>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <numeric>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  CONSTRUCTORS}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{SpinUnresolvedONV::SpinUnresolvedONV(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} M, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} N, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} unsigned\_representation) :}
+\DoxyCodeLine{    SpinUnresolvedONV(M, N) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    this-\/>unsigned\_representation = unsigned\_representation;}
+\DoxyCodeLine{    this-\/>updateOccupationIndices();  \textcolor{comment}{// throws error if the representation and N are not compatible}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{SpinUnresolvedONV::SpinUnresolvedONV(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} M, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} N) :}
+\DoxyCodeLine{    M \{M\},}
+\DoxyCodeLine{    N \{N\},}
+\DoxyCodeLine{    occupied\_indices(N, 0) \{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  NAMED CONSTRUCTORS}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{SpinUnresolvedONV SpinUnresolvedONV::FromString(\textcolor{keyword}{const} std::string\& string\_representation) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    boost::dynamic\_bitset<> intermediate\_bitset \{string\_representation\};  \textcolor{comment}{// the least significant bit has the highest position in the string}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} M = intermediate\_bitset.size();}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} N = intermediate\_bitset.count();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} unsigned\_representation = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(intermediate\_bitset.to\_ulong());}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} SpinUnresolvedONV(M, N, unsigned\_representation);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{SpinUnresolvedONV SpinUnresolvedONV::FromOccupiedIndices(\textcolor{keyword}{const} std::vector<size\_t>\& occupied\_indices, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} M) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Generate the corresponding unsigned representation and use that constructor.}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} unsigned\_representation = 0;}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : occupied\_indices) \{}
+\DoxyCodeLine{        unsigned\_representation += std::pow(2, index);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} N = occupied\_indices.size();}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} SpinUnresolvedONV(M, N, unsigned\_representation);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{SpinUnresolvedONV SpinUnresolvedONV::GHF(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} M, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} N, \textcolor{keyword}{const} VectorX<double>\& orbital\_energies) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// The GHF ONV is that one in which the N spinors with the lowest energy are occupied.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Create an array that contains the indices of the spinors with ascending energy.}}
+\DoxyCodeLine{    std::vector<size\_t> indices(M);                \textcolor{comment}{// zero-\/initialized with M elements}}
+\DoxyCodeLine{    std::iota(indices.begin(), indices.end(), 0);  \textcolor{comment}{// start with 0}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Sort the indices according to the orbital energies.}}
+\DoxyCodeLine{    std::stable\_sort(indices.begin(), indices.end(), [\&orbital\_energies](\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} i, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} j) \{ return orbital\_energies(i) < orbital\_energies(j); \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} std::vector<size\_t> occupied\_indices \{indices.begin(), indices.begin() + N\};  \textcolor{comment}{// the first N elements}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} SpinUnresolvedONV::FromOccupiedIndices(occupied\_indices, M);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  OPERATORS}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::ostream\& \mbox{\hyperlink{namespace_g_q_c_p_a7937d446bbf2002cbeb64115498ab03d}{operator<<}}(std::ostream\& os, \textcolor{keyword}{const} SpinUnresolvedONV\& onv) \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} os << onv.asString();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::operator==(\textcolor{keyword}{const} SpinUnresolvedONV\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>unsigned\_representation == other.unsigned\_representation \&\& this-\/>M == other.M;  \textcolor{comment}{// this ensures that N, M and representation are equal}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::operator!=(\textcolor{keyword}{const} SpinUnresolvedONV\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} !(this-\/>operator==(other));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  PUBLIC METHODS}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::annihilate(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>isOccupied(p)) \{}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} operator\_string = 1U << p;}
+\DoxyCodeLine{        this-\/>unsigned\_representation \&= \string~operator\_string;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::annihilate(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p, \textcolor{keywordtype}{int}\& sign) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>annihilate(p)) \{  \textcolor{comment}{// we have to first check if we can annihilate before applying the phase factor}}
+\DoxyCodeLine{        sign *= this-\/>operatorPhaseFactor(p);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::annihilateAll(\textcolor{keyword}{const} std::vector<size\_t>\& indices) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areOccupied(indices)) \{  \textcolor{comment}{// only if all indices are occupied, we will annihilate}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
+\DoxyCodeLine{            this-\/>annihilate(index);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::annihilateAll(\textcolor{keyword}{const} std::vector<size\_t>\& indices, \textcolor{keywordtype}{int}\& sign) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areOccupied(indices)) \{  \textcolor{comment}{// only if all indices are occupied, we will annihilate}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
+\DoxyCodeLine{            this-\/>annihilate(index, sign);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::areOccupied(\textcolor{keyword}{const} std::vector<size\_t>\& indices)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (!this-\/>isOccupied(index)) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Only if all indices have been tested to be occupied, we can return true}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::areUnoccupied(\textcolor{keyword}{const} std::vector<size\_t>\& indices)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (this-\/>isOccupied(index)) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Only if all indices have been tested to be unoccupied, we can return true}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string SpinUnresolvedONV::asString()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    boost::dynamic\_bitset<> intermediate\_bitset \{this-\/>M, this-\/>unsigned\_representation\};}
+\DoxyCodeLine{    std::string text;  \textcolor{comment}{// the string that will contain the textual representation of this spin-\/unresolved ONV}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    boost::to\_string(intermediate\_bitset, text);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} text;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{double} SpinUnresolvedONV::calculateProjection(\textcolor{keyword}{const} SpinUnresolvedONV\& onv\_on, \textcolor{keyword}{const} GTransformation<double>\& C\_of, \textcolor{keyword}{const} GTransformation<double>\& C\_on, \textcolor{keyword}{const} SquareMatrix<double>\& S)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Make a reference copy in order to improve readibility of the following code.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto}\& onv\_of = *\textcolor{keyword}{this};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Calculate the raw matrix representation of the transformation between the spinor bases, since we're going to have to slice its rows and columns.}}
+\DoxyCodeLine{    MatrixX<double> U = C\_on.matrix().adjoint() * S * C\_of.matrix();}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// U's columns should be the ones occupied in the 'of'-\/ONV.}}
+\DoxyCodeLine{    \textcolor{comment}{// U's rows should be the ones occupied in the 'on'-\/ONV.}}
+\DoxyCodeLine{    \textcolor{comment}{// While waiting for Eigen 3.4 to release (which has better slicing APIs), we'll remove the UNoccupied rows/columns.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} unoccupied\_indices\_of = onv\_of.unoccupiedIndices();}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} unoccupied\_indices\_on = onv\_on.unoccupiedIndices();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    U.removeColumns(unoccupied\_indices\_of);}
+\DoxyCodeLine{    U.removeRows(unoccupied\_indices\_on);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// The requested overlap element is the determinant of the resulting matrix.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} U.determinant();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONV::countNumberOfDifferences(\textcolor{keyword}{const} SpinUnresolvedONV\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} \_\_builtin\_popcountl(this-\/>unsigned\_representation \string^ other.unsigned\_representation);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::create(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (!this-\/>isOccupied(p)) \{}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} operator\_string = 1U << p;}
+\DoxyCodeLine{        this-\/>unsigned\_representation \string^= operator\_string;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::create(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p, \textcolor{keywordtype}{int}\& sign) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>create(p)) \{  \textcolor{comment}{// we have to first check if we can create before applying the phase factor}}
+\DoxyCodeLine{        sign *= this-\/>operatorPhaseFactor(p);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::createAll(\textcolor{keyword}{const} std::vector<size\_t>\& indices) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areUnoccupied(indices)) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
+\DoxyCodeLine{            this-\/>create(index);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::createAll(\textcolor{keyword}{const} std::vector<size\_t>\& indices, \textcolor{keywordtype}{int}\& sign) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areUnoccupied(indices)) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
+\DoxyCodeLine{            this-\/>create(index, sign);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::vector<size\_t> SpinUnresolvedONV::findDifferentOccupations(\textcolor{keyword}{const} SpinUnresolvedONV\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} differences = this-\/>unsigned\_representation \string^ other.unsigned\_representation;}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} occupied\_differences = differences \& this-\/>unsigned\_representation;  \textcolor{comment}{// this holds all indices occupied in this, but unoccupied in other}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} number\_of\_occupied\_differences = \_\_builtin\_popcountl(occupied\_differences);}
+\DoxyCodeLine{    std::vector<size\_t> positions;}
+\DoxyCodeLine{    positions.reserve(number\_of\_occupied\_differences);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Find the positions of the set bits in occupied\_differences}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} counter = 0; counter < number\_of\_occupied\_differences; counter++) \{  \textcolor{comment}{// counts the number of occupied differences we have already encountered}}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} position = \_\_builtin\_ctzl(occupied\_differences);                \textcolor{comment}{// count trailing zeros}}
+\DoxyCodeLine{        positions.push\_back(position);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        occupied\_differences \string^= occupied\_differences \& -\/occupied\_differences;  \textcolor{comment}{// annihilate the least significant set bit}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} positions;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::vector<size\_t> SpinUnresolvedONV::findMatchingOccupations(\textcolor{keyword}{const} SpinUnresolvedONV\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} matches = this-\/>unsigned\_representation \& other.unsigned\_representation;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} number\_of\_occupied\_matches = \_\_builtin\_popcountl(matches);}
+\DoxyCodeLine{    std::vector<size\_t> positions;}
+\DoxyCodeLine{    positions.reserve(number\_of\_occupied\_matches);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Find the positions of the set bits in occupied\_differences}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} counter = 0; counter < number\_of\_occupied\_matches; counter++) \{  \textcolor{comment}{// counts the number of occupied differences we have already encountered}}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} position = \_\_builtin\_ctzl(matches);                         \textcolor{comment}{// count trailing zeros}}
+\DoxyCodeLine{        positions.push\_back(position);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        matches \string^= matches \& -\/matches;  \textcolor{comment}{// annihilate the least significant set bit}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} positions;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} SpinUnresolvedONV::forEach(\textcolor{keyword}{const} std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t})>\& callback)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Loop over every electron in this ONV and retrieve the index of the spinor that it occupies.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e = 0; e < this-\/>numberOfElectrons(); e++) \{}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p = this-\/>occupationIndexOf(e);}
+\DoxyCodeLine{        callback(p);}
+\DoxyCodeLine{    \}  \textcolor{comment}{// electron index loop}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} SpinUnresolvedONV::forEach(\textcolor{keyword}{const} std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t}, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t})>\& callback)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Loop over every electron in this ONV and retrieve the index of the spinor that it occupies.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e1 = 0; e1 < this-\/>numberOfElectrons(); e1++) \{}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p = this-\/>occupationIndexOf(e1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Loop over every different electron in this ONV and retrieve the index of the spinor that it occupies.}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e2 = 0; e2 < e1; e2++) \{}
+\DoxyCodeLine{            \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} q = this-\/>occupationIndexOf(e2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            callback(p, q);}
+\DoxyCodeLine{        \}  \textcolor{comment}{// electron 2 index loop}}
+\DoxyCodeLine{    \}      \textcolor{comment}{// electron 1 index loop}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::isOccupied(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (p > this-\/>M -\/ 1) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::isOccupied(size\_t): The index is out of the bitset bounds"{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} operator\_string = 1U << p;}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>unsigned\_representation \& operator\_string;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::isUnoccupied(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} !this-\/>isOccupied(p);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} SpinUnresolvedONV::operatorPhaseFactor(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (p == 0) \{  \textcolor{comment}{// we can't give this to this-\/>slice(0, 0)}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} m = \_\_builtin\_popcountl(this-\/>slice(0, p));  \textcolor{comment}{// count the number of set bits in the slice [0,p-\/1]}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (m \% 2 == 0) \{  \textcolor{comment}{// even number of electrons: phase factor (+1)}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// odd number of electrons: phase factor (-\/1)}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{OrbitalSpace SpinUnresolvedONV::orbitalSpace()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Create an occupied-\/virtual orbital space.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} OrbitalSpace(this-\/>occupiedIndices(), this-\/>unoccupiedIndices());}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} SpinUnresolvedONV::replaceRepresentationWith(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} unsigned\_representation) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    this-\/>unsigned\_representation = unsigned\_representation;}
+\DoxyCodeLine{    this-\/>updateOccupationIndices();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONV::slice(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} index\_start, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} index\_end)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// First, do some checks}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (index\_end <= index\_start) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::slice(size\_t, size\_t): index\_end should be larger than index\_start."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (index\_end > this-\/>M + 1) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::slice(size\_t, size\_t): The last slicing index index\_end cannot be greater than the number of spatial orbitals M."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// The union of these conditions also include the case that index\_start > this-\/>M}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Shift bits to the right}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} u = this-\/>unsigned\_representation >> index\_start;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Create the correct mask}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} mask\_length = index\_end -\/ index\_start;}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} mask = ((1U) << mask\_length) -\/ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Use the mask}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} u \& mask;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::vector<size\_t> SpinUnresolvedONV::unoccupiedIndices()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Create a vector containing all indices.}}
+\DoxyCodeLine{    std::vector<size\_t> all\_indices(this-\/>M);}
+\DoxyCodeLine{    std::iota(all\_indices.begin(), all\_indices.end(), 0);  \textcolor{comment}{// fill all\_indices with increasing numbers, starting by 0}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// The unoccupied indices are \{all indices\}\(\backslash\)\{occupied indices\}.}}
+\DoxyCodeLine{    std::vector<size\_t> unoccupied\_indices;}
+\DoxyCodeLine{    std::set\_difference(all\_indices.begin(), all\_indices.end(), this-\/>occupied\_indices.begin(), this-\/>occupied\_indices.end(),}
+\DoxyCodeLine{                        std::inserter(unoccupied\_indices, unoccupied\_indices.begin()));}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} unoccupied\_indices;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} SpinUnresolvedONV::updateOccupationIndices() \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} representation\_copy = this-\/>unsigned\_representation;}
+\DoxyCodeLine{    \textcolor{keywordtype}{int} electron\_index = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while} (representation\_copy != 0) \{}
+\DoxyCodeLine{        this-\/>occupied\_indices[electron\_index] = \_\_builtin\_ctzl(representation\_copy);  \textcolor{comment}{// retrieves occupation index}}
+\DoxyCodeLine{        electron\_index++;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        representation\_copy \string^= (representation\_copy \& -\/representation\_copy);  \textcolor{comment}{// flip the least significant bit}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (electron\_index != this-\/>N) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible"{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}  \textcolor{comment}{// namespace GQCP}}
+\end{DoxyCodeInclude}
+ 

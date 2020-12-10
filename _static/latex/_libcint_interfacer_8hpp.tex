@@ -1,0 +1,85 @@
+\hypertarget{_libcint_interfacer_8hpp}{}\doxysection{/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\+Libcint\+Interfacer.hpp File Reference}
+\label{_libcint_interfacer_8hpp}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp}}
+{\ttfamily \#include \char`\"{}Basis/\+Scalar\+Basis/\+G\+T\+O\+Shell.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Basis/\+Scalar\+Basis/\+Shell\+Set.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Molecule/\+Molecule.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Operator/\+First\+Quantized/\+Operator.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$cint.\+h$>$}\newline
+Include dependency graph for Libcint\+Interfacer.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_libcint_interfacer_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_libcint_interfacer_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer}{G\+Q\+C\+P\+::\+Libcint\+Interfacer}}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{G\+Q\+C\+P\+::libcint\+::\+Raw\+Container}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}}
+\item 
+ \mbox{\hyperlink{namespace_g_q_c_p_1_1libcint}{G\+Q\+C\+P\+::libcint}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{G\+Q\+C\+P\+::\+Libcint1e\+Function}} = std\+::function$<$ int(double $\ast$, const int $\ast$, const int $\ast$, int, const int $\ast$, int, const double $\ast$)$>$
+\item 
+using \mbox{\hyperlink{namespace_g_q_c_p_ab9e82f4c5fc3ac406b005fcbea227dfb}{G\+Q\+C\+P\+::\+Libcint2e\+Function}} = std\+::function$<$ int(double $\ast$, const int $\ast$, const int $\ast$, int, const int $\ast$, int, const double $\ast$, const C\+I\+N\+T\+Opt $\ast$)$>$
+\item 
+using \mbox{\hyperlink{namespace_g_q_c_p_af6c0e3151a6af439a47e0812512aea6b}{G\+Q\+C\+P\+::\+Libcint2e\+Optimizer\+Function}} = std\+::function$<$ void(C\+I\+N\+T\+Opt $\ast$$\ast$, const int $\ast$, const int, const int $\ast$, const int, const double $\ast$)$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+F\+I\+NT \mbox{\hyperlink{_libcint_interfacer_8hpp_a6c2a186dcf0acac2b41dffd37416a24e}{cint1e\+\_\+kin\+\_\+cart}} (double $\ast$buf, const int $\ast$shls, const int $\ast$atm, int natm, const int $\ast$bas, int nbas, const double $\ast$env)
+\item 
+F\+I\+NT \mbox{\hyperlink{_libcint_interfacer_8hpp_a486df8072a50991766c43c2c17e4caf3}{cint1e\+\_\+nuc\+\_\+cart}} (double $\ast$buf, const int $\ast$shls, const int $\ast$atm, int natm, const int $\ast$bas, int nbas, const double $\ast$env)
+\item 
+F\+I\+NT \mbox{\hyperlink{_libcint_interfacer_8hpp_a92f6330fd89e1bb23c9805d67234a35d}{cint1e\+\_\+ovlp\+\_\+cart}} (double $\ast$buf, const int $\ast$shls, const int $\ast$atm, int natm, const int $\ast$bas, int nbas, const double $\ast$env)
+\item 
+F\+I\+NT \mbox{\hyperlink{_libcint_interfacer_8hpp_a51f59c02f04c9ded61396b886fe2dd21}{cint1e\+\_\+r\+\_\+cart}} (double $\ast$buf, const int $\ast$shls, const int $\ast$atm, int natm, const int $\ast$bas, int nbas, const double $\ast$env)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_libcint_interfacer_8hpp_a6c2a186dcf0acac2b41dffd37416a24e}\label{_libcint_interfacer_8hpp_a6c2a186dcf0acac2b41dffd37416a24e}} 
+\index{LibcintInterfacer.hpp@{LibcintInterfacer.hpp}!cint1e\_kin\_cart@{cint1e\_kin\_cart}}
+\index{cint1e\_kin\_cart@{cint1e\_kin\_cart}!LibcintInterfacer.hpp@{LibcintInterfacer.hpp}}
+\doxysubsubsection{\texorpdfstring{cint1e\_kin\_cart()}{cint1e\_kin\_cart()}}
+{\footnotesize\ttfamily F\+I\+NT cint1e\+\_\+kin\+\_\+cart (\begin{DoxyParamCaption}\item[{double $\ast$}]{buf,  }\item[{const int $\ast$}]{shls,  }\item[{const int $\ast$}]{atm,  }\item[{int}]{natm,  }\item[{const int $\ast$}]{bas,  }\item[{int}]{nbas,  }\item[{const double $\ast$}]{env }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_libcint_interfacer_8hpp_a486df8072a50991766c43c2c17e4caf3}\label{_libcint_interfacer_8hpp_a486df8072a50991766c43c2c17e4caf3}} 
+\index{LibcintInterfacer.hpp@{LibcintInterfacer.hpp}!cint1e\_nuc\_cart@{cint1e\_nuc\_cart}}
+\index{cint1e\_nuc\_cart@{cint1e\_nuc\_cart}!LibcintInterfacer.hpp@{LibcintInterfacer.hpp}}
+\doxysubsubsection{\texorpdfstring{cint1e\_nuc\_cart()}{cint1e\_nuc\_cart()}}
+{\footnotesize\ttfamily F\+I\+NT cint1e\+\_\+nuc\+\_\+cart (\begin{DoxyParamCaption}\item[{double $\ast$}]{buf,  }\item[{const int $\ast$}]{shls,  }\item[{const int $\ast$}]{atm,  }\item[{int}]{natm,  }\item[{const int $\ast$}]{bas,  }\item[{int}]{nbas,  }\item[{const double $\ast$}]{env }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_libcint_interfacer_8hpp_a92f6330fd89e1bb23c9805d67234a35d}\label{_libcint_interfacer_8hpp_a92f6330fd89e1bb23c9805d67234a35d}} 
+\index{LibcintInterfacer.hpp@{LibcintInterfacer.hpp}!cint1e\_ovlp\_cart@{cint1e\_ovlp\_cart}}
+\index{cint1e\_ovlp\_cart@{cint1e\_ovlp\_cart}!LibcintInterfacer.hpp@{LibcintInterfacer.hpp}}
+\doxysubsubsection{\texorpdfstring{cint1e\_ovlp\_cart()}{cint1e\_ovlp\_cart()}}
+{\footnotesize\ttfamily F\+I\+NT cint1e\+\_\+ovlp\+\_\+cart (\begin{DoxyParamCaption}\item[{double $\ast$}]{buf,  }\item[{const int $\ast$}]{shls,  }\item[{const int $\ast$}]{atm,  }\item[{int}]{natm,  }\item[{const int $\ast$}]{bas,  }\item[{int}]{nbas,  }\item[{const double $\ast$}]{env }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_libcint_interfacer_8hpp_a51f59c02f04c9ded61396b886fe2dd21}\label{_libcint_interfacer_8hpp_a51f59c02f04c9ded61396b886fe2dd21}} 
+\index{LibcintInterfacer.hpp@{LibcintInterfacer.hpp}!cint1e\_r\_cart@{cint1e\_r\_cart}}
+\index{cint1e\_r\_cart@{cint1e\_r\_cart}!LibcintInterfacer.hpp@{LibcintInterfacer.hpp}}
+\doxysubsubsection{\texorpdfstring{cint1e\_r\_cart()}{cint1e\_r\_cart()}}
+{\footnotesize\ttfamily F\+I\+NT cint1e\+\_\+r\+\_\+cart (\begin{DoxyParamCaption}\item[{double $\ast$}]{buf,  }\item[{const int $\ast$}]{shls,  }\item[{const int $\ast$}]{atm,  }\item[{int}]{natm,  }\item[{const int $\ast$}]{bas,  }\item[{int}]{nbas,  }\item[{const double $\ast$}]{env }\end{DoxyParamCaption})}
+

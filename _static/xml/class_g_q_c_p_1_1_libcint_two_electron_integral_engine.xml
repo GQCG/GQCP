@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::LibcintTwoElectronIntegralEngine</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</basecompoundref>
+    <includes refid="_libcint_two_electron_integral_engine_8hpp" local="no">LibcintTwoElectronIntegralEngine.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>_N</declname>
+        <defname>_N</defname>
+      </param>
+      <param>
+        <type>typename _IntegralScalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" prot="public" static="no">
+        <type>_Shell</type>
+        <definition>using GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::Shell =  _Shell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1abe498205d4d709c3c6bab9a3bd277e65" prot="public" static="no">
+        <type>_IntegralScalar</type>
+        <definition>using GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::IntegralScalar =  _IntegralScalar</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1af5559db63d0655594be4e38d7d0a5e3d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <initializer>= _N</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="46" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1ab435a6606f771d5dd03fe7a0c795b8b8" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1ab9e82f4c5fc3ac406b005fcbea227dfb" kindref="member">Libcint2eFunction</ref></type>
+        <definition>Libcint2eFunction GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_function</definition>
+        <argsstring></argsstring>
+        <name>libcint_function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="50" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a23bb6a9c2724a5be47711225a952b6d5" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1af6c0e3151a6af439a47e0812512aea6b" kindref="member">Libcint2eOptimizerFunction</ref></type>
+        <definition>Libcint2eOptimizerFunction GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_optimizer_function</definition>
+        <argsstring></argsstring>
+        <name>libcint_optimizer_function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="51" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a2b71e7f4fe7aa5ce05d36a09a7d5ac76" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1libcint_1_1_raw_container" kindref="compound">libcint::RawContainer</ref></type>
+        <definition>libcint::RawContainer GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_raw_container</definition>
+        <argsstring></argsstring>
+        <name>libcint_raw_container</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="54" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3297934abdd126f25482fb7c2628c24d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" kindref="member">Shell</ref> &gt;</type>
+        <definition>ShellSet&lt;Shell&gt; GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::shell_set</definition>
+        <argsstring></argsstring>
+        <name>shell_set</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="55" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a287c6be774a5da1bd961168a173f9c99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::LibcintTwoElectronIntegralEngine</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;op, const ShellSet&lt; Shell &gt; &amp;shell_set)</argsstring>
+        <name>LibcintTwoElectronIntegralEngine</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Coulomb repulsion operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3fe3d85618e88bb2db9feef4762f5031" kindref="member">calculate()</ref> calls </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="67" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3fe3d85618e88bb2db9feef4762f5031" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" kindref="compound">BaseTwoElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a87e94dce0cbb9f885900ae0564d94e59" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1af5559db63d0655594be4e38d7d0a5e3d" kindref="member">N</ref> &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;BaseTwoElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
+        <argsstring>(const Shell &amp;shell1, const Shell &amp;shell2, const Shell &amp;shell3, const Shell &amp;shell4) override</argsstring>
+        <name>calculate</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2b36d7ebbf6ee7aa876b6f15df77c18b">calculate</reimplements>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell2</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell3</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" kindref="member">Shell</ref> &amp;</type>
+          <declname>shell4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shell1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the third shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fourth shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This method is not marked const to allow the Engine&apos;s internals to be changed </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="86" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="86" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An two-electron integral engine that uses libcint as its backend</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of shell the integral engine is able to handle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of components the operator has </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_IntegralScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of an integral</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>_Shell is a template parameter because that enables compile-time checking of correct arguments. See also the notes in <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine</ref>. The libcint optimizer struct should also be kept in the engine during the shell-quartet loop, because it should only be initialized once, having access to all the data inside the libcint RawContainer. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="42" bodyend="111"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3fe3d85618e88bb2db9feef4762f5031" prot="public" virt="virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1abe498205d4d709c3c6bab9a3bd277e65" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1ab435a6606f771d5dd03fe7a0c795b8b8" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>libcint_function</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a23bb6a9c2724a5be47711225a952b6d5" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>libcint_optimizer_function</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a2b71e7f4fe7aa5ce05d36a09a7d5ac76" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>libcint_raw_container</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a287c6be774a5da1bd961168a173f9c99" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>LibcintTwoElectronIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1af5559db63d0655594be4e38d7d0a5e3d" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>N</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3297934abdd126f25482fb7c2628c24d" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>shell_set</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1ae5e5b288c06cc335f171292ca652eca2" prot="public" virt="virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>~BaseTwoElectronIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

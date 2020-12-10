@@ -1,0 +1,361 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_nucleus" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Nucleus</compoundname>
+    <includes refid="_nucleus_8hpp" local="no">Nucleus.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_nucleus_1ade1ad260fe6c22d5b13e6f28b87ca5a7" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::Nucleus::Z</definition>
+        <argsstring></argsstring>
+        <name>Z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="38" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_nucleus_1a21c6e993f4ec4d472487bc638890850f" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::Nucleus::R</definition>
+        <argsstring></argsstring>
+        <name>R</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="39" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a2582585e6eb8df6733751334f193753f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::Nucleus::Nucleus</definition>
+        <argsstring>(const size_t Z, const double x, const double y, const double z)</argsstring>
+        <name>Nucleus</name>
+        <param>
+          <type>const size_t</type>
+          <declname>Z</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the atomic number (Z) of the nucleus </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the x-position of the nucleus in bohr </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the y-position of the nucleus in bohr </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the z-position of the nucleus in bohr </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="51" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp" bodystart="39" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a7ddd6804dc7e49c2e89f865c2101167a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::Nucleus::Nucleus</definition>
+        <argsstring>(const size_t Z, const Vector&lt; double, 3 &gt; &amp;position)</argsstring>
+        <name>Nucleus</name>
+        <param>
+          <type>const size_t</type>
+          <declname>Z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the atomic number (Z) of the nucleus </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the position of the nucleus in bohr </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp" bodystart="51" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a13137959256b336277347eba7d4cb729" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::Nucleus::Nucleus</definition>
+        <argsstring>()</argsstring>
+        <name>Nucleus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Default constructor, creating a &apos;ghost&apos; nucleus (i.e. Bq) in the origin </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp" bodystart="58" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1aba9221c3b456232c5ba88b28cd408799" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::Nucleus::calculateDistanceWith</definition>
+        <argsstring>(const Nucleus &amp;other) const</argsstring>
+        <name>calculateDistanceWith</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other nucleus</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Euclidian distance between this nucleus and the other </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="100" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp" bodystart="139" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a591b7498e7a210248e6414780b4805e9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::Nucleus::description</definition>
+        <argsstring>() const</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this nucleus. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="105" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="105" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a9399a944aa72b5be0846e3ab48779fea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::Nucleus::element</definition>
+        <argsstring>() const</argsstring>
+        <name>element</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The string representation of the element that corresponds to this nucleus. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="116" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1abc4628e6085740c4c15c5549ed6ccfd2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::Nucleus::charge</definition>
+        <argsstring>() const</argsstring>
+        <name>charge</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the charge of this nucleus </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="121" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a051a913283f5a20066e45d2c369ffccb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::Nucleus::position</definition>
+        <argsstring>() const</argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the position of this nucleus </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="126" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="126" bodyend="126"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_nucleus_1add3a9881efd3c38d0dd574fb5259d84c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const Nucleus &amp;nucleus)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;</type>
+          <declname>nucleus</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Overloading of operator&lt;&lt; for a <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> to be used with ostreams</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the output stream to which the nucleus should be concatenated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nucleus</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nucleus which should be concatenated to the output stream</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the updated output stream </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="77" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp" bodystart="75" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a97c4c1edf8ff61f3c52629761ff1dab6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;, const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;)&gt;</type>
+        <definition>std::function&lt; bool(const Nucleus &amp;, const Nucleus &amp;)&gt; GQCP::Nucleus::sortComparer</definition>
+        <argsstring>(const double tolerance=1.0e-08)</argsstring>
+        <name>sortComparer</name>
+        <param>
+          <type>const double</type>
+          <declname>tolerance</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a functor that can be used in sorting atoms. It features a custom implementation, in which the x-coordinate takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="85" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp" bodystart="90" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1af5828115bf52ad9b213b744ef4716f69" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;, const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;)&gt;</type>
+        <definition>std::function&lt; bool(const Nucleus &amp;, const Nucleus &amp;)&gt; GQCP::Nucleus::equalityComparer</definition>
+        <argsstring>(const double tolerance=1.0e-08)</argsstring>
+        <name>equalityComparer</name>
+        <param>
+          <type>const double</type>
+          <declname>tolerance</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a functor that can be used in checking atom for equality. Atoms are equal if their charge and position are equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="90" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp" bodystart="117" bodyend="127"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents a nucleus: it has a charge and a position in space </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Nucleus</label>
+        <link refid="class_g_q_c_p_1_1_nucleus"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="36" bodyend="127"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_nucleus_1aba9221c3b456232c5ba88b28cd408799" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>calculateDistanceWith</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1abc4628e6085740c4c15c5549ed6ccfd2" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>charge</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a591b7498e7a210248e6414780b4805e9" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a9399a944aa72b5be0846e3ab48779fea" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>element</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1af5828115bf52ad9b213b744ef4716f69" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>equalityComparer</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a2582585e6eb8df6733751334f193753f" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Nucleus</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a7ddd6804dc7e49c2e89f865c2101167a" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Nucleus</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a13137959256b336277347eba7d4cb729" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Nucleus</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1add3a9881efd3c38d0dd574fb5259d84c" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a051a913283f5a20066e45d2c369ffccb" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>position</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a21c6e993f4ec4d472487bc638890850f" prot="private" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>R</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a97c4c1edf8ff61f3c52629761ff1dab6" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>sortComparer</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1ade1ad260fe6c22d5b13e6f28b87ca5a7" prot="private" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

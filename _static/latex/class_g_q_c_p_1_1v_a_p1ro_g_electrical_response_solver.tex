@@ -1,0 +1,195 @@
+\hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver}{}\doxysection{G\+Q\+CP\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver Class Reference}
+\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver}\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+
+
+{\ttfamily \#include $<$v\+A\+P1ro\+G\+Electrical\+Response\+Solver.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a251b8cd9995043e2e60ea7e641689aaa}{v\+A\+P1ro\+G\+Electrical\+Response\+Solver}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g}{Q\+C\+Model\+::v\+A\+P1roG}} \&vap1rog)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a52d70a8cd2e3e9a0a7d5a8ee7fc38e2e}{calculate\+Parameter\+Response\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}{calculate\+Parameter\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ \&dipole\+\_\+op) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ad464d1cfb15165e547f0eb1ca949d4b1}{calculate\+Multiplier\+Response\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ab5785e1d1d32f6d9506a311bcb7b324d}{calculate\+Explicit\+Multiplier\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ dipole\+\_\+op) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a9cd37173138f67cadedf893c0f408b86}{calculate\+Implicit\+Multiplier\+Response\+Force\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ac562f842f10fb39e0ba64bbc3e4d5441}{calculate\+Multiplier\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ dipole\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a6f5cf46763e12fd1d88ae5b738c19d34}{calculate\+Multiplier\+Response}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ dipole\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class whose instances can solve the response equations for v\+A\+P1roG. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a251b8cd9995043e2e60ea7e641689aaa}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a251b8cd9995043e2e60ea7e641689aaa}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!vAP1roGElectricalResponseSolver@{vAP1roGElectricalResponseSolver}}
+\index{vAP1roGElectricalResponseSolver@{vAP1roGElectricalResponseSolver}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{vAP1roGElectricalResponseSolver()}{vAP1roGElectricalResponseSolver()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g}{Q\+C\+Model\+::v\+A\+P1roG}} \&}]{vap1rog }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em vap1rog} & the optimal v\+A\+P1roG parameters \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ab5785e1d1d32f6d9506a311bcb7b324d}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ab5785e1d1d32f6d9506a311bcb7b324d}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateExplicitMultiplierResponseForce@{calculateExplicitMultiplierResponseForce}}
+\index{calculateExplicitMultiplierResponseForce@{calculateExplicitMultiplierResponseForce}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateExplicitMultiplierResponseForce()}{calculateExplicitMultiplierResponseForce()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::calculate\+Explicit\+Multiplier\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$}]{dipole\+\_\+op }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dipole\+\_\+op} & the dipole integrals expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the explicit (i.\+e. the first part of the) Lagrangian multiplier response force, A\+\_\+lambda 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a9cd37173138f67cadedf893c0f408b86}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a9cd37173138f67cadedf893c0f408b86}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateImplicitMultiplierResponseForceConstant@{calculateImplicitMultiplierResponseForceConstant}}
+\index{calculateImplicitMultiplierResponseForceConstant@{calculateImplicitMultiplierResponseForceConstant}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateImplicitMultiplierResponseForceConstant()}{calculateImplicitMultiplierResponseForceConstant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$ double $>$ G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::calculate\+Implicit\+Multiplier\+Response\+Force\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the multiplier force constant of the implicit part (i.\+e. the second part of the) Lagrangian multiplier response, B\+\_\+lambda 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a6f5cf46763e12fd1d88ae5b738c19d34}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a6f5cf46763e12fd1d88ae5b738c19d34}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateMultiplierResponse@{calculateMultiplierResponse}}
+\index{calculateMultiplierResponse@{calculateMultiplierResponse}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateMultiplierResponse()}{calculateMultiplierResponse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::calculate\+Multiplier\+Response (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$}]{dipole\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&}]{x }\end{DoxyParamCaption}) const}
+
+Solve the linear response equations for the Lagrangian multiplier response
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian parameters \\
+\hline
+{\em dipole\+\_\+op} & the dipole integrals expressed in an orthonormal orbital basis \\
+\hline
+{\em x} & the first-\/order parameter response\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Lagrangian multiplier reponse y 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ad464d1cfb15165e547f0eb1ca949d4b1}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ad464d1cfb15165e547f0eb1ca949d4b1}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateMultiplierResponseConstant@{calculateMultiplierResponseConstant}}
+\index{calculateMultiplierResponseConstant@{calculateMultiplierResponseConstant}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateMultiplierResponseConstant()}{calculateMultiplierResponseConstant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::calculate\+Multiplier\+Response\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Lagrangian multiplier response constant (k\+\_\+lambda), which is the transpose of the parameter multiplier response constant 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ac562f842f10fb39e0ba64bbc3e4d5441}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_ac562f842f10fb39e0ba64bbc3e4d5441}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateMultiplierResponseForce@{calculateMultiplierResponseForce}}
+\index{calculateMultiplierResponseForce@{calculateMultiplierResponseForce}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateMultiplierResponseForce()}{calculateMultiplierResponseForce()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::calculate\+Multiplier\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$}]{dipole\+\_\+op,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&}]{x }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian expressed in an orthonormal orbital basis \\
+\hline
+{\em dipole\+\_\+op} & the dipole integrals expressed in an orthonormal orbital basis \\
+\hline
+{\em x} & the first-\/order parameter response\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Lagrangian multiplier response force (F\+\_\+lambda) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a52d70a8cd2e3e9a0a7d5a8ee7fc38e2e}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a52d70a8cd2e3e9a0a7d5a8ee7fc38e2e}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateParameterResponseConstant@{calculateParameterResponseConstant}}
+\index{calculateParameterResponseConstant@{calculateParameterResponseConstant}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateParameterResponseConstant()}{calculateParameterResponseConstant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parameter response constant (k\+\_\+p), i.\+e. the first-\/order parameter partial derivative of the P\+S\+Es, which is the Jacobian of the P\+S\+Es
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian parameters\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parameter response constant (k\+\_\+p), i.\+e. the first-\/order parameter partial derivative of the P\+S\+Es, which is the Jacobian of the P\+S\+Es 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}{G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}} 
+\index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateParameterResponseForce@{calculateParameterResponseForce}}
+\index{calculateParameterResponseForce@{calculateParameterResponseForce}!GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateParameterResponseForce()}{calculateParameterResponseForce()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ \&}]{dipole\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dipole\+\_\+op} & the dipole integrals expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parameter response force (F\+\_\+p) as an (Nx3)-\/matrix, i.\+e. the first-\/order perturbation derivative of the P\+S\+Es 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}{G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Processing/\+Properties/\mbox{\hyperlink{v_a_p1ro_g_electrical_response_solver_8hpp}{v\+A\+P1ro\+G\+Electrical\+Response\+Solver.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Processing/\+Properties/\mbox{\hyperlink{v_a_p1ro_g_electrical_response_solver_8cpp}{v\+A\+P1ro\+G\+Electrical\+Response\+Solver.\+cpp}}\end{DoxyCompactItemize}

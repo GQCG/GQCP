@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_56734510d0d14ef1ee351fb86f505aa1" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem</compoundname>
+    <innerdir refid="dir_fa8552c11c546e886dd0ab624ab9fd09">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson</innerdir>
+    <innerfile refid="_dense_diagonalization_8hpp">DenseDiagonalization.hpp</innerfile>
+    <innerfile refid="_eigenpair_8hpp">Eigenpair.hpp</innerfile>
+    <innerfile refid="_eigenproblem_environment_8hpp">EigenproblemEnvironment.hpp</innerfile>
+    <innerfile refid="_eigenproblem_solver_8hpp">EigenproblemSolver.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::BasisTransformableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</compoundname>
+    <includes refid="_g_transformation_8hpp" local="no">GTransformation.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1a412d57cec44aca4b92367e4ecb5a4499" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::BasisTransformableTraits&lt; GTransformation&lt; Scalar &gt; &gt;::Transformation =  GTransformation&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="170" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_basis_transformable" kindref="compound">BasisTransformable</ref></computeroutput>. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BasisTransformableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="167" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="167" bodyend="171"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1a412d57cec44aca4b92367e4ecb5a4499" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</scope><name>Transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

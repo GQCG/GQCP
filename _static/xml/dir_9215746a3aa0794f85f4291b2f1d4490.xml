@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_9215746a3aa0794f85f4291b2f1d4490" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Mathematical</compoundname>
+    <innerdir refid="dir_cee0e4a9be0398681472b1b3a9977ef8">/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions</innerdir>
+    <innerdir refid="dir_d8e2c13fa0a721c4c8395a551a68aabd">/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid</innerdir>
+    <innerdir refid="dir_069a7b10d39394b75137414a696e6f2e">/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Mathematical/"/>
+  </compounddef>
+</doxygen>

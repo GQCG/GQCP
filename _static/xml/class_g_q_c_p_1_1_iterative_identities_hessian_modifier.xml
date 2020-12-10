@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_iterative_identities_hessian_modifier" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::IterativeIdentitiesHessianModifier</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_hessian_modifier" prot="public" virt="non-virtual">GQCP::BaseHessianModifier</basecompoundref>
+    <includes refid="_iterative_identities_hessian_modifier_8hpp" local="no">IterativeIdentitiesHessianModifier.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a42efbf2ed72b54e75fd0ca4d2fff1032" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::IterativeIdentitiesHessianModifier::alpha</definition>
+        <argsstring></argsstring>
+        <name>alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" line="34" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1adb78ae4137c2240c76a44a2aeedf3f76" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::IterativeIdentitiesHessianModifier::beta</definition>
+        <argsstring></argsstring>
+        <name>beta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a976c91ce61861ef87160bcf46b672944" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::IterativeIdentitiesHessianModifier::tau</definition>
+        <argsstring></argsstring>
+        <name>tau</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1ab627bc2b2da64c10d085b7991be66c5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::IterativeIdentitiesHessianModifier::IterativeIdentitiesHessianModifier</definition>
+        <argsstring>(const double alpha=2.0, const double beta=1.0e-03)</argsstring>
+        <name>IterativeIdentitiesHessianModifier</name>
+        <param>
+          <type>const double</type>
+          <declname>alpha</declname>
+          <defval>2.0</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>beta</declname>
+          <defval>1.0e-03</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the increment factor used to obtain the next scaler tau </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the heuristic increment </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a82c62cd66ed7797b1af9775588ec72d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>SquareMatrix&lt; double &gt; GQCP::IterativeIdentitiesHessianModifier::operator()</definition>
+        <argsstring>(const SquareMatrix&lt; double &gt; &amp;hessian) override</argsstring>
+        <name>operator()</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_hessian_modifier_1a8e94b709f06013e7bcdf29e9f6519d07">operator()</reimplements>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt; &amp;</type>
+          <declname>hessian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hessian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current indefinite Hessian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a modified Hessian that is made positive (for minimizers) or negative (for maximizers) definite </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" line="56" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.cpp" bodystart="48" bodyend="74"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A Hessian modifier functor that uses multiples of the identity matrix to try to obtain a positive/negative definite Hessian</para>
+<para>This implements <ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm</ref> 3.3 in Nocedal and Wright </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::IterativeIdentitiesHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_base_hessian_modifier"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::IterativeIdentitiesHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_base_hessian_modifier"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp" bodystart="32" bodyend="57"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a42efbf2ed72b54e75fd0ca4d2fff1032" prot="private" virt="non-virtual"><scope>GQCP::IterativeIdentitiesHessianModifier</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1adb78ae4137c2240c76a44a2aeedf3f76" prot="private" virt="non-virtual"><scope>GQCP::IterativeIdentitiesHessianModifier</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1ab627bc2b2da64c10d085b7991be66c5f" prot="public" virt="non-virtual"><scope>GQCP::IterativeIdentitiesHessianModifier</scope><name>IterativeIdentitiesHessianModifier</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a82c62cd66ed7797b1af9775588ec72d3" prot="public" virt="virtual"><scope>GQCP::IterativeIdentitiesHessianModifier</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a976c91ce61861ef87160bcf46b672944" prot="private" virt="non-virtual"><scope>GQCP::IterativeIdentitiesHessianModifier</scope><name>tau</name></member>
+      <member refid="class_g_q_c_p_1_1_base_hessian_modifier_1a07e279d7354674fa0214a6b94e52c0ab" prot="public" virt="virtual"><scope>GQCP::IterativeIdentitiesHessianModifier</scope><name>~BaseHessianModifier</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

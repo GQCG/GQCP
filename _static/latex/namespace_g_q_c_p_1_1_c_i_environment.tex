@@ -1,0 +1,66 @@
+\hypertarget{namespace_g_q_c_p_1_1_c_i_environment}{}\doxysection{G\+Q\+CP\+::C\+I\+Environment Namespace Reference}
+\label{namespace_g_q_c_p_1_1_c_i_environment}\index{GQCP::CIEnvironment@{GQCP::CIEnvironment}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Hamiltonian , typename O\+N\+V\+Basis $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \mbox{\hyperlink{namespace_g_q_c_p_1_1_c_i_environment_a4374650422c83e8e5379f74334455225}{Dense}} (const Hamiltonian \&hamiltonian, const O\+N\+V\+Basis \&onv\+\_\+basis)
+\item 
+{\footnotesize template$<$typename Hamiltonian , typename O\+N\+V\+Basis $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \mbox{\hyperlink{namespace_g_q_c_p_1_1_c_i_environment_ad65c2cc9f1c4f0b52e17435504f2df53}{Iterative}} (const Hamiltonian \&hamiltonian, const O\+N\+V\+Basis \&onv\+\_\+basis, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&V)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_c_i_environment_a4374650422c83e8e5379f74334455225}\label{namespace_g_q_c_p_1_1_c_i_environment_a4374650422c83e8e5379f74334455225}} 
+\index{GQCP::CIEnvironment@{GQCP::CIEnvironment}!Dense@{Dense}}
+\index{Dense@{Dense}!GQCP::CIEnvironment@{GQCP::CIEnvironment}}
+\doxysubsubsection{\texorpdfstring{Dense()}{Dense()}}
+{\footnotesize\ttfamily template$<$typename Hamiltonian , typename O\+N\+V\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} G\+Q\+C\+P\+::\+C\+I\+Environment\+::\+Dense (\begin{DoxyParamCaption}\item[{const Hamiltonian \&}]{hamiltonian,  }\item[{const O\+N\+V\+Basis \&}]{onv\+\_\+basis }\end{DoxyParamCaption})}
+
+Create an environment suitable for solving dense CI eigenvalue problems for the given Hamiltonian and O\+NV basis.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Hamiltonian} & The type of Hamiltonian whose eigenproblem is trying to be solved. \\
+\hline
+{\em O\+N\+V\+Basis} & The type of O\+NV basis in which the Hamiltonian should be represented.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em hamiltonian} & A second-\/quantized Hamiltonian expressed in an orthonormal orbital basis. \\
+\hline
+{\em onv\+\_\+basis} & An O\+NV basis that spans a Fock (sub)space in which the Hamiltonian eigenproblem should be solved.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}} initialized suitable for solving dense CI eigenvalue problems for the given Hamiltonian and O\+NV basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_c_i_environment_ad65c2cc9f1c4f0b52e17435504f2df53}\label{namespace_g_q_c_p_1_1_c_i_environment_ad65c2cc9f1c4f0b52e17435504f2df53}} 
+\index{GQCP::CIEnvironment@{GQCP::CIEnvironment}!Iterative@{Iterative}}
+\index{Iterative@{Iterative}!GQCP::CIEnvironment@{GQCP::CIEnvironment}}
+\doxysubsubsection{\texorpdfstring{Iterative()}{Iterative()}}
+{\footnotesize\ttfamily template$<$typename Hamiltonian , typename O\+N\+V\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} G\+Q\+C\+P\+::\+C\+I\+Environment\+::\+Iterative (\begin{DoxyParamCaption}\item[{const Hamiltonian \&}]{hamiltonian,  }\item[{const O\+N\+V\+Basis \&}]{onv\+\_\+basis,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \&}]{V }\end{DoxyParamCaption})}
+
+Create an environment suitable for solving iterative CI eigenvalue problems for the given Hamiltonian and O\+NV basis.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Hamiltonian} & The type of Hamiltonian whose eigenproblem is trying to be solved. \\
+\hline
+{\em O\+N\+V\+Basis} & The type of O\+NV basis in which the Hamiltonian should be represented.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em hamiltonian} & A second-\/quantized Hamiltonian expressed in an orthonormal orbital basis. \\
+\hline
+{\em onv\+\_\+basis} & An O\+NV basis that spans a Fock (sub)space in which the Hamiltonian eigenproblem should be solved. \\
+\hline
+{\em V} & A matrix of initial guess vectors, where each column of the matrix is an initial guess vector.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}} initialized suitable for solving iterative CI eigenvalue problems for the given Hamiltonian and O\+NV basis. 
+\end{DoxyReturn}

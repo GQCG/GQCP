@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1elements" kind="namespace" language="C++">
+    <compoundname>GQCP::elements</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1elements_1a00b3e1bbcc41a8e15b2591ac050f8006" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; boost::bimap&lt; std::string, size_t &gt;::value_type &gt;</type>
+        <definition>std::vector&lt;boost::bimap&lt;std::string, size_t&gt;::value_type&gt; GQCP::elements::elements_list</definition>
+        <argsstring></argsstring>
+        <name>elements_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a vector of bimap values, which provides .begin() and .end() iterators</para>
+<para>Adapted from <ulink url="https://stackoverflow.com/a/20290421/7930415">https://stackoverflow.com/a/20290421/7930415</ulink> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" line="37" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1elements_1a64170deb5a0523f72b6d27d49d1fc4b0" prot="public" static="yes" mutable="no">
+        <type>const boost::bimap&lt; std::string, size_t &gt;</type>
+        <definition>const boost::bimap&lt;std::string, size_t&gt; GQCP::elements::periodic_table</definition>
+        <argsstring></argsstring>
+        <name>periodic_table</name>
+        <initializer>{elements_list.begin(), elements_list.end()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Use the .begin() and .end() iterators of a std::vector to construct a boost::bimap</para>
+<para>Adapted from <ulink url="https://stackoverflow.com/a/20290421/7930415">https://stackoverflow.com/a/20290421/7930415</ulink> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" line="165" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1elements_1ac5dcc53a36a3732c4d8a15ffc954f002" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; GQCP::elements::atomicNumberToElement</definition>
+        <argsstring>(const size_t atomic_number)</argsstring>
+        <name>atomicNumberToElement</name>
+        <param>
+          <type>const size_t</type>
+          <declname>atomic_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>atomic_number</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the atomic number of an element</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the symbol of the corresponding element </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" line="188" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" bodystart="188" bodyend="191" declfile="/__w/GQCP/GQCP/gqcp/include/Molecule/elements.hpp" declline="33" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1elements_1afbbf86dc79a97b10bb2c86a02826d013" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::elements::elementToAtomicNumber</definition>
+        <argsstring>(const std::string &amp;symbol)</argsstring>
+        <name>elementToAtomicNumber</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>symbol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>symbol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of an element</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the atomic number of the corresponding element </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" line="177" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/elements.cpp" bodystart="177" bodyend="180" declfile="/__w/GQCP/GQCP/gqcp/include/Molecule/elements.hpp" declline="41" declcolumn="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/elements.hpp" line="25" column="1"/>
+  </compounddef>
+</doxygen>

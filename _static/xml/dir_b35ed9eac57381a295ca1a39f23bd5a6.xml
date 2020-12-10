@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_b35ed9eac57381a295ca1a39f23bd5a6" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/ONVBasis</compoundname>
+    <innerfile refid="_seniority_zero_o_n_v_basis_8cpp">SeniorityZeroONVBasis.cpp</innerfile>
+    <innerfile refid="_spin_resolved_o_n_v_8cpp">SpinResolvedONV.cpp</innerfile>
+    <innerfile refid="_spin_resolved_o_n_v_basis_8cpp">SpinResolvedONVBasis.cpp</innerfile>
+    <innerfile refid="_spin_resolved_selected_o_n_v_basis_8cpp">SpinResolvedSelectedONVBasis.cpp</innerfile>
+    <innerfile refid="_spin_unresolved_o_n_v_8cpp">SpinUnresolvedONV.cpp</innerfile>
+    <innerfile refid="_spin_unresolved_o_n_v_basis_8cpp">SpinUnresolvedONVBasis.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/ONVBasis/"/>
+  </compounddef>
+</doxygen>

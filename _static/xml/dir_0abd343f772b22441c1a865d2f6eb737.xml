@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_0abd343f772b22441c1a865d2f6eb737" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Operator</compoundname>
+    <innerdir refid="dir_42d0b9186c917f45a633d31e91957fd1">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized</innerdir>
+    <innerdir refid="dir_652cc385387507453a4ee659969ac393">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/"/>
+  </compounddef>
+</doxygen>

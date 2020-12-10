@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_kinetic_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::KineticOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseScalarFQOperator&lt; double &gt;</basecompoundref>
+    <includes refid="_kinetic_operator_8hpp" local="no">KineticOperator.hpp</includes>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The (one-electron) (non-relativistic) kinetic energy operator. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::KineticOperator</label>
+        <link refid="class_g_q_c_p_1_1_kinetic_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BaseScalarFQOneElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::KineticOperator</label>
+        <link refid="class_g_q_c_p_1_1_kinetic_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
+      <node id="2">
+        <label>BaseScalarFQOneElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/KineticOperator.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/KineticOperator.hpp" bodystart="31" bodyend="31"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" prot="public" virt="non-virtual"><scope>GQCP::KineticOperator</scope><name>NumberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1ae56208bbc85e6d9d401fa4540f20a573" prot="public" virt="non-virtual"><scope>GQCP::KineticOperator</scope><name>NumberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" prot="public" virt="non-virtual"><scope>GQCP::KineticOperator</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1ad07fca0083a7212821250e3beff14242" prot="public" virt="non-virtual"><scope>GQCP::KineticOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a3bf379636691d7d74ea96afc8f5049cf" prot="public" virt="non-virtual"><scope>GQCP::KineticOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a1f47a08d6dbad212da9370b4d55fd522" prot="public" virt="virtual"><scope>GQCP::KineticOperator</scope><name>~BaseFQOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

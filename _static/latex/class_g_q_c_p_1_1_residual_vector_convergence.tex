@@ -1,0 +1,119 @@
+\hypertarget{class_g_q_c_p_1_1_residual_vector_convergence}{}\doxysection{G\+Q\+CP\+::Residual\+Vector\+Convergence$<$ \+\_\+\+Environment $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_residual_vector_convergence}\index{GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}}
+
+
+{\ttfamily \#include $<$Residual\+Vector\+Convergence.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Residual\+Vector\+Convergence$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_residual_vector_convergence__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Residual\+Vector\+Convergence$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_residual_vector_convergence__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence_a7e5cb82e0596a4e6a326d726ed6c8bc4}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence_a7b375a337b8a3489f8e4f46f89281433}{Residual\+Vector\+Convergence}} (const double threshold=1.\+0e-\/08)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence_a60eb61cd13e3663cdcca2c7a1f7a8dfd}{description}} () const override
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence_aefd9d7262006ed781a52ee7238adc6b8}{is\+Fulfilled}} (\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} \&environment) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Environment$>$\newline
+class G\+Q\+C\+P\+::\+Residual\+Vector\+Convergence$<$ \+\_\+\+Environment $>$}
+
+A convergence criterion that checks if the norm of each of the residual vectors is smaller than a threshold.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Environment} & the type of the calculation environment \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_residual_vector_convergence_a7e5cb82e0596a4e6a326d726ed6c8bc4}\label{class_g_q_c_p_1_1_residual_vector_convergence_a7e5cb82e0596a4e6a326d726ed6c8bc4}} 
+\index{GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence}{G\+Q\+C\+P\+::\+Residual\+Vector\+Convergence}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} =  \+\_\+\+Environment}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_residual_vector_convergence_a7b375a337b8a3489f8e4f46f89281433}\label{class_g_q_c_p_1_1_residual_vector_convergence_a7b375a337b8a3489f8e4f46f89281433}} 
+\index{GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}!ResidualVectorConvergence@{ResidualVectorConvergence}}
+\index{ResidualVectorConvergence@{ResidualVectorConvergence}!GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{ResidualVectorConvergence()}{ResidualVectorConvergence()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence}{G\+Q\+C\+P\+::\+Residual\+Vector\+Convergence}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence}{Residual\+Vector\+Convergence}} (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & the threshold that is used in checking the norm of the residual vectors \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_residual_vector_convergence_a60eb61cd13e3663cdcca2c7a1f7a8dfd}\label{class_g_q_c_p_1_1_residual_vector_convergence_a60eb61cd13e3663cdcca2c7a1f7a8dfd}} 
+\index{GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}!description@{description}}
+\index{description@{description}!GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence}{G\+Q\+C\+P\+::\+Residual\+Vector\+Convergence}}$<$ \+\_\+\+Environment $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a5d2993454005779f8a6376c63aec430c}{G\+Q\+C\+P\+::\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_residual_vector_convergence_aefd9d7262006ed781a52ee7238adc6b8}\label{class_g_q_c_p_1_1_residual_vector_convergence_aefd9d7262006ed781a52ee7238adc6b8}} 
+\index{GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}!isFulfilled@{isFulfilled}}
+\index{isFulfilled@{isFulfilled}!GQCP::ResidualVectorConvergence$<$ \_Environment $>$@{GQCP::ResidualVectorConvergence$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{isFulfilled()}{isFulfilled()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_convergence}{G\+Q\+C\+P\+::\+Residual\+Vector\+Convergence}}$<$ \+\_\+\+Environment $>$\+::is\+Fulfilled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the norm of each of the residual vectors is smaller than a threshold 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a84503e9b2b4bdd01188f21be512bc281}{G\+Q\+C\+P\+::\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_residual_vector_convergence_8hpp}{Residual\+Vector\+Convergence.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,165 @@
+\hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion}{}\doxysection{G\+Q\+CP\+::Compound\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_compound_convergence_criterion}\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+
+
+{\ttfamily \#include $<$Compound\+Convergence\+Criterion.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Compound\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_compound_convergence_criterion__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Compound\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_compound_convergence_criterion__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}{Environment}} = \+\_\+\+Environment
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a25c055a3350caa9a0e56320989d32632}{Self}} = \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{Compound\+Convergence\+Criterion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}{Environment}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename C1 , typename C2 $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_aa76dec874e961298dc932604447156d6}{Compound\+Convergence\+Criterion}} (const C1 \&criterion1, const C2 \&criterion2)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a7915c59e6ba2fd2ac59aebf377b3b7b2}{description}} () const override
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a86066355bcaf6aa79b6d0152bbf4fe8f}{is\+Fulfilled}} (\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}{Environment}} \&environment) override
+\item 
+{\footnotesize template$<$typename C $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a25c055a3350caa9a0e56320989d32632}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a6eeec244ae1aab11dc5e6a9bce48c825}{add}} (const C \&criterion)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_aa1d295b65dd9285e76d9815a5cb7e42e}{count}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Environment$>$\newline
+class G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}
+
+A criterion that checks convergence by requiring that multiple convergence criteria are fulfilled simultaneously.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Environment} & the type of the environment that this criterion can read from \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}\label{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}} 
+\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}{Environment}} =  \+\_\+\+Environment}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion_a25c055a3350caa9a0e56320989d32632}\label{class_g_q_c_p_1_1_compound_convergence_criterion_a25c055a3350caa9a0e56320989d32632}} 
+\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}!Self@{Self}}
+\index{Self@{Self}!GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Self}{Self}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a25c055a3350caa9a0e56320989d32632}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{Compound\+Convergence\+Criterion}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}{Environment}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion_aa76dec874e961298dc932604447156d6}\label{class_g_q_c_p_1_1_compound_convergence_criterion_aa76dec874e961298dc932604447156d6}} 
+\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}!CompoundConvergenceCriterion@{CompoundConvergenceCriterion}}
+\index{CompoundConvergenceCriterion@{CompoundConvergenceCriterion}!GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{CompoundConvergenceCriterion()}{CompoundConvergenceCriterion()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename C1 , typename C2 $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{Compound\+Convergence\+Criterion}} (\begin{DoxyParamCaption}\item[{const C1 \&}]{criterion1,  }\item[{const C2 \&}]{criterion2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A basic constructor from two criteria that should be fulfilled at the same time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em criterion1} & the first convergence criterion \\
+\hline
+{\em criterion2} & the second convergence criterion \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion_a6eeec244ae1aab11dc5e6a9bce48c825}\label{class_g_q_c_p_1_1_compound_convergence_criterion_a6eeec244ae1aab11dc5e6a9bce48c825}} 
+\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}!add@{add}}
+\index{add@{add}!GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename C $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_a25c055a3350caa9a0e56320989d32632}{Self}} \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::add (\begin{DoxyParamCaption}\item[{const C \&}]{criterion }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add another convergence criterion that should be fulfilled in this compound convergence criterion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em criterion} & the new convergence criterion\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an updated version of $\ast$this, in order to allow chaining 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion_aa1d295b65dd9285e76d9815a5cb7e42e}\label{class_g_q_c_p_1_1_compound_convergence_criterion_aa1d295b65dd9285e76d9815a5cb7e42e}} 
+\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}!count@{count}}
+\index{count@{count}!GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{count()}{count()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of simple convergence criteria that are compounded in this one 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion_a7915c59e6ba2fd2ac59aebf377b3b7b2}\label{class_g_q_c_p_1_1_compound_convergence_criterion_a7915c59e6ba2fd2ac59aebf377b3b7b2}} 
+\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}!description@{description}}
+\index{description@{description}!GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+P\+U\+B\+L\+IC O\+V\+E\+R\+R\+I\+D\+D\+EN M\+E\+T\+H\+O\+DS \begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a5d2993454005779f8a6376c63aec430c}{G\+Q\+C\+P\+::\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_compound_convergence_criterion_a86066355bcaf6aa79b6d0152bbf4fe8f}\label{class_g_q_c_p_1_1_compound_convergence_criterion_a86066355bcaf6aa79b6d0152bbf4fe8f}} 
+\index{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}!isFulfilled@{isFulfilled}}
+\index{isFulfilled@{isFulfilled}!GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$@{GQCP::CompoundConvergenceCriterion$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{isFulfilled()}{isFulfilled()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion}{G\+Q\+C\+P\+::\+Compound\+Convergence\+Criterion}}$<$ \+\_\+\+Environment $>$\+::is\+Fulfilled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_compound_convergence_criterion_ae9036ef3b116abfbfd7a9193ab294070}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that this criterion can read from\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if this criterion is fulfilled 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a84503e9b2b4bdd01188f21be512bc281}{G\+Q\+C\+P\+::\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Algorithm/\mbox{\hyperlink{_compound_convergence_criterion_8hpp}{Compound\+Convergence\+Criterion.\+hpp}}\end{DoxyCompactItemize}

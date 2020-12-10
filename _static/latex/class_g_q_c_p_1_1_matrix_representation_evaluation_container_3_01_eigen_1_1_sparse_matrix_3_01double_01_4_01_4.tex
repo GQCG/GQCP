@@ -1,0 +1,187 @@
+\hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4}{}\doxysection{G\+Q\+CP\+::Matrix\+Representation\+Evaluation\+Container$<$ Eigen\+::Sparse\+Matrix$<$ double $>$ $>$ Class Reference}
+\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4}\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+
+
+{\ttfamily \#include $<$Matrix\+Representation\+Evaluation\+Container.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Matrix\+Representation\+Evaluation\+Container$<$ Eigen\+::Sparse\+Matrix$<$ double $>$ $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a4cdccc71eb1f4d7a570451d8530f94e0}{Matrix\+Representation\+Evaluation\+Container}} (const size\+\_\+t dimension)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aba1eb7f7fa8d5d6e5e814cbd3ebc7251}{add\+Columnwise}} (const size\+\_\+t column, const double value)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a07fc37bc6a2da6a7fea030e27c91928c}{add\+Rowwise}} (const size\+\_\+t row, const double value)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aad46a17a33908704f48219214374aa20}{add\+To\+Matrix}} ()
+\item 
+const Eigen\+::\+Sparse\+Matrix$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_ae84ef28f40d65771185a5e5568ce226c}{evaluation}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a952659564582b974796c1fc66bf5a14a}{increment}} ()
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a8534d496c28943b3792a35cb5f439fde}{is\+Finished}} ()
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_af06f05377c199e19257aa5fb5cce45d0}{reserve}} (const size\+\_\+t n)
+\item 
+const std\+::vector$<$ Eigen\+::\+Triplet$<$ double $>$ $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a8320fc9992c24b89e97dcefc4386499d}{triplets}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_ab15783ea544a92fcf8ece4026cb20575}{index}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a243273b8cf2cd5368190e0b988ce696f}{end}}
+\item 
+Eigen\+::\+Sparse\+Matrix$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aae2d547457612a04cfc466839c5bfc67}{matrix}}
+\item 
+std\+::vector$<$ Eigen\+::\+Triplet$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aa8ea4ed84517fe732c8b857b9d6bc365}{triplet\+\_\+vector}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Sparse template specialization is required because insertions into an existing sparse matrix are expensive Elements should only be added to the matrix once all of them are evaluated in a vector of triplets 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a4cdccc71eb1f4d7a570451d8530f94e0}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a4cdccc71eb1f4d7a570451d8530f94e0}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}}
+\index{MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixRepresentationEvaluationContainer()}{MatrixRepresentationEvaluationContainer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{Matrix\+Representation\+Evaluation\+Container}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dimension} & the dimensions of the matrix (equal to that of the fock space) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aba1eb7f7fa8d5d6e5e814cbd3ebc7251}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aba1eb7f7fa8d5d6e5e814cbd3ebc7251}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!addColumnwise@{addColumnwise}}
+\index{addColumnwise@{addColumnwise}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{addColumnwise()}{addColumnwise()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::add\+Columnwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{column,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column This function adds the values to a triplet vector to add the values to the sparse matrix, one should call \char`\"{}add\+To\+Matrix()\char`\"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & column index of the matrix \\
+\hline
+{\em value} & the value which is added to a given position in the matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a07fc37bc6a2da6a7fea030e27c91928c}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a07fc37bc6a2da6a7fea030e27c91928c}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!addRowwise@{addRowwise}}
+\index{addRowwise@{addRowwise}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{addRowwise()}{addRowwise()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::add\+Rowwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row This function adds the values to a triplet vector to add the values to the sparse matrix, one should call \char`\"{}add\+To\+Matrix()\char`\"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & row index of the matrix \\
+\hline
+{\em value} & the value which is added to a given position in the matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aad46a17a33908704f48219214374aa20}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aad46a17a33908704f48219214374aa20}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!addToMatrix@{addToMatrix}}
+\index{addToMatrix@{addToMatrix}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{addToMatrix()}{addToMatrix()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::add\+To\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Fill the sparse matrix with the elements stored in the triplet vector the more elements that are already present in the matrix, the more expensive this operation becomes Therefore, it is ill-\/advised to call the method more than once, after filling, the triplet vector is cleared \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_ae84ef28f40d65771185a5e5568ce226c}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_ae84ef28f40d65771185a5e5568ce226c}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!evaluation@{evaluation}}
+\index{evaluation@{evaluation}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{evaluation()}{evaluation()}}
+{\footnotesize\ttfamily const Eigen\+::\+Sparse\+Matrix$<$double$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::evaluation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the evaluation that is stored
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+the matrix will not be initialized if {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aad46a17a33908704f48219214374aa20}{add\+To\+Matrix()}}} has not been called 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a952659564582b974796c1fc66bf5a14a}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a952659564582b974796c1fc66bf5a14a}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!increment@{increment}}
+\index{increment@{increment}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{increment()}{increment()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Move to the next index in the iteration \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a8534d496c28943b3792a35cb5f439fde}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a8534d496c28943b3792a35cb5f439fde}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!isFinished@{isFinished}}
+\index{isFinished@{isFinished}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{isFinished()}{isFinished()}}
+{\footnotesize\ttfamily bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::is\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Tests if the iteration is finished, if true the index is reset to 0
+
+\begin{DoxyReturn}{Returns}
+true if the iteration is finished 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_af06f05377c199e19257aa5fb5cce45d0}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_af06f05377c199e19257aa5fb5cce45d0}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!reserve@{reserve}}
+\index{reserve@{reserve}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::reserve (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reserves an amount of memory for the triplet vector
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the amount triplets that should be reserved \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a8320fc9992c24b89e97dcefc4386499d}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a8320fc9992c24b89e97dcefc4386499d}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!triplets@{triplets}}
+\index{triplets@{triplets}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{triplets()}{triplets()}}
+{\footnotesize\ttfamily const std\+::vector$<$Eigen\+::\+Triplet$<$double$>$ $>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::triplets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the triplet vector 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a243273b8cf2cd5368190e0b988ce696f}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_a243273b8cf2cd5368190e0b988ce696f}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!end@{end}}
+\index{end@{end}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{end}{end}}
+{\footnotesize\ttfamily size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::end}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_ab15783ea544a92fcf8ece4026cb20575}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_ab15783ea544a92fcf8ece4026cb20575}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!index@{index}}
+\index{index@{index}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::index = 0}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aae2d547457612a04cfc466839c5bfc67}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aae2d547457612a04cfc466839c5bfc67}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{matrix}{matrix}}
+{\footnotesize\ttfamily Eigen\+::\+Sparse\+Matrix$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::matrix}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aa8ea4ed84517fe732c8b857b9d6bc365}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_aa8ea4ed84517fe732c8b857b9d6bc365}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}!triplet\_vector@{triplet\_vector}}
+\index{triplet\_vector@{triplet\_vector}!GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ Eigen::SparseMatrix$<$ double $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{triplet\_vector}{triplet\_vector}}
+{\footnotesize\ttfamily std\+::vector$<$Eigen\+::\+Triplet$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ Eigen\+::\+Sparse\+Matrix$<$ double $>$ $>$\+::triplet\+\_\+vector}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_matrix_representation_evaluation_container_8hpp}{Matrix\+Representation\+Evaluation\+Container.\+hpp}}\end{DoxyCompactItemize}

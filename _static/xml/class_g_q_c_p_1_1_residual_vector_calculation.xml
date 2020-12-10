@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_residual_vector_calculation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ResidualVectorCalculation</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <includes refid="_residual_vector_calculation_8hpp" local="no">ResidualVectorCalculation.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_residual_vector_calculation_1ab631f2ebe300eb2bf78638e5c1073e45" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::ResidualVectorCalculation::number_of_requested_eigenpairs</definition>
+        <argsstring></argsstring>
+        <name>number_of_requested_eigenpairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_residual_vector_calculation_1acc5ae34403a28caab1c086b982cc22f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ResidualVectorCalculation::ResidualVectorCalculation</definition>
+        <argsstring>(const size_t number_of_requested_eigenpairs=1)</argsstring>
+        <name>ResidualVectorCalculation</name>
+        <param>
+          <type>const size_t</type>
+          <declname>number_of_requested_eigenpairs</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>number_of_requested_eigenpairs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of solutions the Davidson solver should find </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" bodystart="46" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_residual_vector_calculation_1afb3cb399b0a1fae12b5580e2a4c62624" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::ResidualVectorCalculation::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" line="57" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" bodystart="57" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_residual_vector_calculation_1a737360db727b663e2f6c84ff82ebab1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::ResidualVectorCalculation::execute</definition>
+        <argsstring>(EigenproblemEnvironment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the residual vectors from the new guesses for the eigenvectors.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" line="67" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" bodystart="67" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A step that calculates the residual vectors from the new guesses for the eigenvectors. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::ResidualVectorCalculation</label>
+        <link refid="class_g_q_c_p_1_1_residual_vector_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::ResidualVectorCalculation</label>
+        <link refid="class_g_q_c_p_1_1_residual_vector_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp" bodystart="32" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1afb3cb399b0a1fae12b5580e2a4c62624" prot="public" virt="non-virtual"><scope>GQCP::ResidualVectorCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; EigenproblemEnvironment &gt;::"><scope>GQCP::ResidualVectorCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::ResidualVectorCalculation</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1a737360db727b663e2f6c84ff82ebab1b" prot="public" virt="virtual"><scope>GQCP::ResidualVectorCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1ab631f2ebe300eb2bf78638e5c1073e45" prot="private" virt="non-virtual"><scope>GQCP::ResidualVectorCalculation</scope><name>number_of_requested_eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1acc5ae34403a28caab1c086b982cc22f8" prot="public" virt="non-virtual"><scope>GQCP::ResidualVectorCalculation</scope><name>ResidualVectorCalculation</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::ResidualVectorCalculation</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

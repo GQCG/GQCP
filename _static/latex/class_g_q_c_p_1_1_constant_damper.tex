@@ -1,0 +1,72 @@
+\hypertarget{class_g_q_c_p_1_1_constant_damper}{}\doxysection{G\+Q\+CP\+::Constant\+Damper Class Reference}
+\label{class_g_q_c_p_1_1_constant_damper}\index{GQCP::ConstantDamper@{GQCP::ConstantDamper}}
+
+
+{\ttfamily \#include $<$Constant\+Damper.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Constant\+Damper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{class_g_q_c_p_1_1_constant_damper__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_constant_damper_a03b3a767d24b1dbed01eed4a1ca8200a}{Constant\+Damper}} (const double alpha)
+\item 
+{\footnotesize template$<$typename Subject $>$ }\\Subject \mbox{\hyperlink{class_g_q_c_p_1_1_constant_damper_af5853bd1faa16d325cb727e9f84d22cd}{accelerate}} (const Subject \&last, const Subject \&next\+\_\+to\+\_\+last)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An accelerator that produces its accelerated subject by a damped linear combination of the two previous subjects. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_constant_damper_a03b3a767d24b1dbed01eed4a1ca8200a}\label{class_g_q_c_p_1_1_constant_damper_a03b3a767d24b1dbed01eed4a1ca8200a}} 
+\index{GQCP::ConstantDamper@{GQCP::ConstantDamper}!ConstantDamper@{ConstantDamper}}
+\index{ConstantDamper@{ConstantDamper}!GQCP::ConstantDamper@{GQCP::ConstantDamper}}
+\doxysubsubsection{\texorpdfstring{ConstantDamper()}{ConstantDamper()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Constant\+Damper\+::\+Constant\+Damper (\begin{DoxyParamCaption}\item[{const double}]{alpha }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & the damping factor \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_constant_damper_af5853bd1faa16d325cb727e9f84d22cd}\label{class_g_q_c_p_1_1_constant_damper_af5853bd1faa16d325cb727e9f84d22cd}} 
+\index{GQCP::ConstantDamper@{GQCP::ConstantDamper}!accelerate@{accelerate}}
+\index{accelerate@{accelerate}!GQCP::ConstantDamper@{GQCP::ConstantDamper}}
+\doxysubsubsection{\texorpdfstring{accelerate()}{accelerate()}}
+{\footnotesize\ttfamily template$<$typename Subject $>$ \\
+Subject G\+Q\+C\+P\+::\+Constant\+Damper\+::accelerate (\begin{DoxyParamCaption}\item[{const Subject \&}]{last,  }\item[{const Subject \&}]{next\+\_\+to\+\_\+last }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate an accelerated subject using a constant damping step.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Subject} & the type of subject that should be accelerated\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em last} & the most recent subject \\
+\hline
+{\em next\+\_\+to\+\_\+last} & the second most recent subject\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an accelerated subject 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Accelerator/\mbox{\hyperlink{_constant_damper_8hpp}{Constant\+Damper.\+hpp}}\end{DoxyCompactItemize}

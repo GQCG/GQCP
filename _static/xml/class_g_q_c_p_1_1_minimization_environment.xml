@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_minimization_environment" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::MinimizationEnvironment</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_optimization_environment" prot="public" virt="non-virtual">GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_minimization_environment_8hpp" local="no">MinimizationEnvironment.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_minimization_environment_1aa802d9ef9b18dc6771c0255dce8a44b1" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::MinimizationEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_minimization_environment_1ad30a88c4a9a9d22fca0d633e23bc941b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimization_environment_1aa802d9ef9b18dc6771c0255dce8a44b1" kindref="member">Scalar</ref> &gt;</type>
+        <definition>VectorFunction&lt;Scalar&gt; GQCP::MinimizationEnvironment&lt; _Scalar &gt;::gradient_function</definition>
+        <argsstring></argsstring>
+        <name>gradient_function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" line="42" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_minimization_environment_1a9d0b1034bfa9cef8a28a760be75bf9bc" prot="public" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1afdcf4d963710902cad07f1c683df75bf" kindref="member">MatrixFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimization_environment_1aa802d9ef9b18dc6771c0255dce8a44b1" kindref="member">Scalar</ref> &gt;</type>
+        <definition>MatrixFunction&lt;Scalar&gt; GQCP::MinimizationEnvironment&lt; _Scalar &gt;::hessian_function</definition>
+        <argsstring></argsstring>
+        <name>hessian_function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" line="43" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_minimization_environment_1ab451fcecd0855732ad3fbed9575615c7" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; double &gt;</type>
+        <definition>std::deque&lt;double&gt; GQCP::MinimizationEnvironment&lt; _Scalar &gt;::function_values</definition>
+        <argsstring></argsstring>
+        <name>function_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" line="45" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_minimization_environment_1ad9794645ea2a18324435b5b986764928" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::MinimizationEnvironment&lt; _Scalar &gt;::MinimizationEnvironment</definition>
+        <argsstring>(const VectorX&lt; _Scalar &gt; &amp;initial_guess, const VectorFunction&lt; Scalar &gt; &amp;gradient_function, const MatrixFunction&lt; Scalar &gt; &amp;hessian_function)</argsstring>
+        <name>MinimizationEnvironment</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; _Scalar &gt; &amp;</type>
+          <declname>initial_guess</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimization_environment_1aa802d9ef9b18dc6771c0255dce8a44b1" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>gradient_function</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1afdcf4d963710902cad07f1c683df75bf" kindref="member">MatrixFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimization_environment_1aa802d9ef9b18dc6771c0255dce8a44b1" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>hessian_function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the optimization environment with an initial guess</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>initial_guess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial guess for the variables </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gradient_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a callable function that produces the gradient of the scalar function, evaluated at the given variables </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hessian_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a callable function that produces the Hessian of the scalar function, evaluated at the given variables </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" bodystart="60" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An environment that can be used to minimize scalar functions.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the variables of scalar function </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::MinimizationEnvironment&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimization_environment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_optimization_environment"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::MinimizationEnvironment&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimization_environment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_optimization_environment"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp" bodystart="35" bodyend="64"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_minimization_environment_1ab451fcecd0855732ad3fbed9575615c7" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>function_values</name></member>
+      <member refid="class_g_q_c_p_1_1_minimization_environment_1ad30a88c4a9a9d22fca0d633e23bc941b" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>gradient_function</name></member>
+      <member refid="class_g_q_c_p_1_1_minimization_environment_1a9d0b1034bfa9cef8a28a760be75bf9bc" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>hessian_function</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>Iterate</name></member>
+      <member refid="class_g_q_c_p_1_1_minimization_environment_1ad9794645ea2a18324435b5b986764928" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>MinimizationEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>OptimizationEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_minimization_environment_1aa802d9ef9b18dc6771c0255dce8a44b1" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1adb8d5b6dd10be21c085d1a6855d307db" prot="public" virt="non-virtual"><scope>GQCP::MinimizationEnvironment</scope><name>variables</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

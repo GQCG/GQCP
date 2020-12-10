@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_db2ccceb1cb34e4987a43fd657d60903" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Utilities</compoundname>
+    <innerfile refid="miscellaneous_8cpp">miscellaneous.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Utilities/"/>
+  </compounddef>
+</doxygen>

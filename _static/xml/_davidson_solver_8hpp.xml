@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_davidson_solver_8hpp" kind="file" language="C++">
+    <compoundname>DavidsonSolver.hpp</compoundname>
+    <includes refid="_iterative_algorithm_8hpp" local="yes">Mathematical/Algorithm/IterativeAlgorithm.hpp</includes>
+    <includes refid="_step_collection_8hpp" local="yes">Mathematical/Algorithm/StepCollection.hpp</includes>
+    <includes refid="_correction_vector_calculation_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp</includes>
+    <includes refid="_guess_vector_update_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp</includes>
+    <includes refid="_matrix_vector_product_calculation_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp</includes>
+    <includes refid="_residual_vector_calculation_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp</includes>
+    <includes refid="_residual_vector_convergence_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorConvergence.hpp</includes>
+    <includes refid="_subspace_matrix_calculation_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixCalculation.hpp</includes>
+    <includes refid="_subspace_matrix_diagonalization_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</includes>
+    <includes refid="_subspace_update_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp</includes>
+    <includes refid="_eigenproblem_environment_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</includes>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
+    <incdepgraph>
+      <node id="25">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="3">
+        <label>Mathematical/Algorithm/ConvergenceCriterion.hpp</label>
+        <link refid="_convergence_criterion_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>functional</label>
+      </node>
+      <node id="20">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>iterator</label>
+      </node>
+      <node id="6">
+        <label>Mathematical/Algorithm/Step.hpp</label>
+        <link refid="_step_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>Mathematical/Algorithm/Algorithm.hpp</label>
+        <link refid="_algorithm_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp</label>
+        <link refid="_guess_vector_update_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>boost/format.hpp</label>
+      </node>
+      <node id="34">
+        <label>numeric</label>
+      </node>
+      <node id="15">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp</label>
+        <link refid="_correction_vector_calculation_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="33">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="26">
+        <label>fstream</label>
+      </node>
+      <node id="5">
+        <label>Mathematical/Algorithm/StepCollection.hpp</label>
+        <link refid="_step_collection_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorConvergence.hpp</label>
+        <link refid="_residual_vector_convergence_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="40">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</label>
+        <link refid="_subspace_matrix_diagonalization_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Utilities/memory.hpp</label>
+        <link refid="memory_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp</label>
+        <link refid="_eigenproblem_solver_8hpp"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp</label>
+        <link refid="_dense_diagonalization_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixCalculation.hpp</label>
+        <link refid="_subspace_matrix_calculation_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Mathematical/Representation/Matrix.hpp</label>
+        <link refid="_matrix_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>vector</label>
+      </node>
+      <node id="22">
+        <label>Utilities/aliases.hpp</label>
+        <link refid="aliases_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp</label>
+        <link refid="_subspace_update_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>utility</label>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
+        <link refid="_davidson_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp</label>
+        <link refid="_matrix_vector_product_calculation_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>cstdlib</label>
+      </node>
+      <node id="27">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>cstddef</label>
+      </node>
+      <node id="37">
+        <label>Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp</label>
+        <link refid="_residual_vector_calculation_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Mathematical/Algorithm/IterativeAlgorithm.hpp</label>
+        <link refid="_iterative_algorithm_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_traits</label>
+      </node>
+      <node id="16">
+        <label>Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</label>
+        <link refid="_eigenproblem_environment_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>complex</label>
+      </node>
+      <node id="30">
+        <label>algorithm</label>
+      </node>
+      <node id="19">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
+      </node>
+      <node id="17">
+        <label>Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</label>
+        <link refid="_eigenpair_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
+        <link refid="_davidson_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
+    <innernamespace refid="namespace_g_q_c_p_1_1_eigenproblem_solver">GQCP::EigenproblemSolver</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>GQCG-GQCP.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2017-2020<sp/><sp/>the<sp/>GQCG<sp/>developers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>along<sp/>with<sp/>GQCG-GQCP.<sp/><sp/>If<sp/>not,<sp/>see<sp/>&lt;http://www.gnu.org/licenses/&gt;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_iterative_algorithm_8hpp" kindref="compound">Mathematical/Algorithm/IterativeAlgorithm.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_step_collection_8hpp" kindref="compound">Mathematical/Algorithm/StepCollection.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_correction_vector_calculation_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_guess_vector_update_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_matrix_vector_product_calculation_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_residual_vector_calculation_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_residual_vector_convergence_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorConvergence.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_subspace_matrix_calculation_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixCalculation.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_subspace_matrix_diagonalization_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_subspace_update_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_eigenproblem_environment_8hpp" kindref="compound">Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">EigenproblemSolver<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1a3b583fefca6c8e3bef88ae692f3b9b41" refkind="member"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm&lt;EigenproblemEnvironment&gt;</ref><sp/><ref refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1a3b583fefca6c8e3bef88ae692f3b9b41" kindref="member">Davidson</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_requested_eigenpairs<sp/>=<sp/>1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>maximum_subspace_dimension<sp/>=<sp/>15,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>convergence_threshold<sp/>=<sp/>1.0e-08,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>correction_threshold<sp/>=<sp/>1.0e-12,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>maximum_number_of_iterations<sp/>=<sp/>128,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inclusion_threshold<sp/>=<sp/>1.0e-03)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>iteration<sp/>cycle<sp/>that<sp/>effectively<sp/>&apos;defines&apos;<sp/>our<sp/>Davidson<sp/>solver</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_step_collection" kindref="compound">StepCollection&lt;EigenproblemEnvironment&gt;</ref><sp/>davidson_cycle<sp/>{};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>davidson_cycle</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="class_g_q_c_p_1_1_step_collection_1a564aa7135354b9c6af9b0b0114d534d7" kindref="member">add</ref>(<ref refid="class_g_q_c_p_1_1_matrix_vector_product_calculation" kindref="compound">MatrixVectorProductCalculation</ref>())</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.add(<ref refid="class_g_q_c_p_1_1_subspace_matrix_calculation" kindref="compound">SubspaceMatrixCalculation</ref>())</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.add(<ref refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization" kindref="compound">SubspaceMatrixDiagonalization</ref>(number_of_requested_eigenpairs))</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.add(<ref refid="class_g_q_c_p_1_1_guess_vector_update" kindref="compound">GuessVectorUpdate</ref>())</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.add(<ref refid="class_g_q_c_p_1_1_residual_vector_calculation" kindref="compound">ResidualVectorCalculation</ref>(number_of_requested_eigenpairs))</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.add(<ref refid="class_g_q_c_p_1_1_correction_vector_calculation" kindref="compound">CorrectionVectorCalculation</ref>(number_of_requested_eigenpairs,<sp/>correction_threshold))<sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>solves<sp/>the<sp/>residual<sp/>equations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.add(<ref refid="class_g_q_c_p_1_1_subspace_update" kindref="compound">SubspaceUpdate</ref>(maximum_subspace_dimension,<sp/>inclusion_threshold));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>convergence<sp/>criterion<sp/>on<sp/>the<sp/>norm<sp/>of<sp/>the<sp/>residual<sp/>vectors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_residual_vector_convergence" kindref="compound">ResidualVectorConvergence&lt;EigenproblemEnvironment&gt;</ref><sp/>convergence_criterion<sp/>{convergence_threshold};</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm&lt;EigenproblemEnvironment&gt;</ref>(davidson_cycle,<sp/>convergence_criterion,<sp/>maximum_number_of_iterations);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>EigenproblemSolver</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"/>
+  </compounddef>
+</doxygen>

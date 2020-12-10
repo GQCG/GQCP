@@ -1,0 +1,155 @@
+\hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}{}\doxysection{G\+Q\+CP\+::Libcint\+Two\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}\index{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+
+
+{\ttfamily \#include $<$Libcint\+Two\+Electron\+Integral\+Buffer.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Libcint\+Two\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Libcint\+Two\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}{Integral\+Scalar}} = \+\_\+\+Integral\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a6f58edc57ccb04ced4effa43af77817c}{Libcint\+Two\+Electron\+Integral\+Buffer}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}{Integral\+Scalar}} $>$ \&buffer, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer_a615942a3f0224d81cdfb450d5d23cc57}{nbf1}}, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer_aca60e3eec09bcbb6dd0f9dc006a3f25d}{nbf2}}, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer_a33d523d07d2a881590c6b3e6dec594d3}{nbf3}}, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer_a075cccc8cee214ab6ae28e5a829c662d}{nbf4}}, const int result)
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a57c6600cc78f886464837fc72738e4fe}{are\+Integrals\+All\+Zero}} () const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a779a754af0aa9056900119bebf5933da}{value}} (const size\+\_\+t i, const size\+\_\+t f1, const size\+\_\+t f2, const size\+\_\+t f3, const size\+\_\+t f4) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a99b8e84bef3df72e75462e2b05fa9412}{N}} = \+\_\+N
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Integral\+Scalar, size\+\_\+t \+\_\+N$>$\newline
+class G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}
+
+A buffer for storing libcint two-\/electron integrals
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Integral\+Scalar} & the scalar representation of an integral \\
+\hline
+{\em \+\_\+N} & the number of components the operator has \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}} 
+\index{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}{Integral\+Scalar}} =  \+\_\+\+Integral\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a6f58edc57ccb04ced4effa43af77817c}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a6f58edc57ccb04ced4effa43af77817c}} 
+\index{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!LibcintTwoElectronIntegralBuffer@{LibcintTwoElectronIntegralBuffer}}
+\index{LibcintTwoElectronIntegralBuffer@{LibcintTwoElectronIntegralBuffer}!GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{LibcintTwoElectronIntegralBuffer()}{LibcintTwoElectronIntegralBuffer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}{Libcint\+Two\+Electron\+Integral\+Buffer}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}{Integral\+Scalar}} $>$ \&}]{buffer,  }\item[{const size\+\_\+t}]{nbf1,  }\item[{const size\+\_\+t}]{nbf2,  }\item[{const size\+\_\+t}]{nbf3,  }\item[{const size\+\_\+t}]{nbf4,  }\item[{const int}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & the libcint integral data, already put inside a vector \\
+\hline
+{\em nbf1} & the number of basis functions in the first shell \\
+\hline
+{\em nbf2} & the number of basis functions in the second shell \\
+\hline
+{\em nbf3} & the number of basis functions in the third shell \\
+\hline
+{\em nbf4} & the number of basis functions in the fourth shell \\
+\hline
+{\em result} & the result of the libcint\+\_\+function call \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a57c6600cc78f886464837fc72738e4fe}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a57c6600cc78f886464837fc72738e4fe}} 
+\index{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!areIntegralsAllZero@{areIntegralsAllZero}}
+\index{areIntegralsAllZero@{areIntegralsAllZero}!GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{areIntegralsAllZero()}{areIntegralsAllZero()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::are\+Integrals\+All\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+if all the values of the calculated integrals are zero 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer_a6ea199f70814102a3a10b76dbd850f90}{G\+Q\+C\+P\+::\+Base\+Two\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a779a754af0aa9056900119bebf5933da}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a779a754af0aa9056900119bebf5933da}} 
+\index{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!value@{value}}
+\index{value@{value}!GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_ad3442f331beb8aa62d57836a9fcde386}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::value (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{f1,  }\item[{const size\+\_\+t}]{f2,  }\item[{const size\+\_\+t}]{f3,  }\item[{const size\+\_\+t}]{f4 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the index of the component of the operator \\
+\hline
+{\em f1} & the index of the basis function within shell 1 \\
+\hline
+{\em f2} & the index of the basis function within shell 2 \\
+\hline
+{\em f3} & the index of the basis function within shell 3 \\
+\hline
+{\em f4} & the index of the basis function within shell 4\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a value from this integral buffer 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer_aae389b8ee9a545e84ebdd11a7b81c95a}{G\+Q\+C\+P\+::\+Base\+Two\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a99b8e84bef3df72e75462e2b05fa9412}\label{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_a99b8e84bef3df72e75462e2b05fa9412}} 
+\index{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!N@{N}}
+\index{N@{N}!GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::LibcintTwoElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_buffer}{G\+Q\+C\+P\+::\+Libcint\+Two\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::N = \+\_\+N\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libcint_two_electron_integral_buffer_8hpp}{Libcint\+Two\+Electron\+Integral\+Buffer.\+hpp}}\end{DoxyCompactItemize}

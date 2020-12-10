@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_d_i_i_s" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::DIIS</compoundname>
+    <includes refid="_d_i_i_s_8hpp" local="no">DIIS.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::DIIS&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_i_i_s_1afc4b6a0b711eafeeb3740780eb7f8a9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Subject</type>
+          </param>
+        </templateparamlist>
+        <type>Subject</type>
+        <definition>Subject GQCP::DIIS&lt; _Scalar &gt;::accelerate</definition>
+        <argsstring>(const std::vector&lt; Subject &gt; &amp;subjects, const std::vector&lt; VectorX&lt; Scalar &gt;&gt; &amp;errors) const</argsstring>
+        <name>accelerate</name>
+        <param>
+          <type>const std::vector&lt; Subject &gt; &amp;</type>
+          <declname>subjects</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt;&gt; &amp;</type>
+          <declname>errors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>subject</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the subject</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the DIIS-accelerated subject </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" line="52" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" bodystart="52" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_i_i_s_1ada680f4053f5b2f63d4f0f3cfdec45fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt;</type>
+        <definition>VectorX&lt;Scalar&gt; GQCP::DIIS&lt; _Scalar &gt;::calculateDIISCoefficients</definition>
+        <argsstring>(const std::vector&lt; VectorX&lt; Scalar &gt;&gt; &amp;errors) const</argsstring>
+        <name>calculateDIISCoefficients</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt;&gt; &amp;</type>
+          <declname>errors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Find the linear combination of errors that minimizes the total error measure in the least squares sense (i.e. according to the <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> algorithm).</para>
+<para><simplesect kind="return"><para>the coefficients that minimize the error measure </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" line="70" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" bodystart="70" bodyend="97"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An accelerator that uses a direct inversion of the iterative subspace (<ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>) on a subject to produce an accelerated subject.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent an element of a <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> error vector </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::DIIS&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_d_i_i_s"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" bodystart="37" bodyend="98"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_d_i_i_s_1afc4b6a0b711eafeeb3740780eb7f8a9f" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>accelerate</name></member>
+      <member refid="class_g_q_c_p_1_1_d_i_i_s_1ada680f4053f5b2f63d4f0f3cfdec45fa" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>calculateDIISCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,102 @@
+\hypertarget{class_g_q_c_p_1_1_base_f_q_operator}{}\doxysection{G\+Q\+CP\+::Base\+F\+Q\+Operator$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_base_f_q_operator}\index{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}}
+
+
+{\ttfamily \#include $<$Base\+F\+Q\+Operator.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Base\+F\+Q\+Operator$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_base_f_q_operator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Base\+F\+Q\+Operator$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_g_q_c_p_1_1_base_f_q_operator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}} = \+\_\+\+Vectorizer
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}{$\sim$\+Base\+F\+Q\+Operator}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}{Number\+Of\+Electrons}} = N
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$size\+\_\+t N, typename \+\_\+\+Scalar, typename \+\_\+\+Vectorizer$>$\newline
+class G\+Q\+C\+P\+::\+Base\+F\+Q\+Operator$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$}
+
+A base class used to represent first-\/quantized one-\/electron operators.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+N} & The number of electrons related to this operator\+: usually 1 or 2. \\
+\hline
+{\em \+\_\+\+Scalar} & The scalar representation of the operator\+: real or complex. \\
+\hline
+{\em \+\_\+\+Vectorizer} & The type of the vectorizer that relates to the tensor structure of one-\/electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}\label{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}} 
+\index{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$size\+\_\+t N, typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{G\+Q\+C\+P\+::\+Base\+F\+Q\+Operator}}$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}} =  \+\_\+\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}\label{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}} 
+\index{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}!Vectorizer@{Vectorizer}}
+\index{Vectorizer@{Vectorizer}!GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{Vectorizer}{Vectorizer}}
+{\footnotesize\ttfamily template$<$size\+\_\+t N, typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{G\+Q\+C\+P\+::\+Base\+F\+Q\+Operator}}$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}} =  \+\_\+\+Vectorizer}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}\label{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}} 
+\index{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}!````~BaseFQOperator@{$\sim$BaseFQOperator}}
+\index{````~BaseFQOperator@{$\sim$BaseFQOperator}!GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseFQOperator()}{~BaseFQOperator()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t N, typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer $>$ \\
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{G\+Q\+C\+P\+::\+Base\+F\+Q\+Operator}}$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$\+::$\sim$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{Base\+F\+Q\+Operator}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}\label{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}} 
+\index{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}!NumberOfElectrons@{NumberOfElectrons}}
+\index{NumberOfElectrons@{NumberOfElectrons}!GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$@{GQCP::BaseFQOperator$<$ N, \_Scalar, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{NumberOfElectrons}{NumberOfElectrons}}
+{\footnotesize\ttfamily template$<$size\+\_\+t N, typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{G\+Q\+C\+P\+::\+Base\+F\+Q\+Operator}}$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$\+::Number\+Of\+Electrons = N\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+First\+Quantized/\mbox{\hyperlink{_base_f_q_operator_8hpp}{Base\+F\+Q\+Operator.\+hpp}}\end{DoxyCompactItemize}

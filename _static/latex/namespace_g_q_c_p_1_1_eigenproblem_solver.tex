@@ -1,0 +1,45 @@
+\hypertarget{namespace_g_q_c_p_1_1_eigenproblem_solver}{}\doxysection{G\+Q\+CP\+::Eigenproblem\+Solver Namespace Reference}
+\label{namespace_g_q_c_p_1_1_eigenproblem_solver}\index{GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_algorithm}{Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_eigenproblem_solver_a9a2501282b66266fa06c568c92bbfee2}{Dense}} ()
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_eigenproblem_solver_a3b583fefca6c8e3bef88ae692f3b9b41}{Davidson}} (const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1, const size\+\_\+t maximum\+\_\+subspace\+\_\+dimension=15, const double convergence\+\_\+threshold=1.\+0e-\/08, double correction\+\_\+threshold=1.\+0e-\/12, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128, const double inclusion\+\_\+threshold=1.\+0e-\/03)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_eigenproblem_solver_a3b583fefca6c8e3bef88ae692f3b9b41}\label{namespace_g_q_c_p_1_1_eigenproblem_solver_a3b583fefca6c8e3bef88ae692f3b9b41}} 
+\index{GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}!Davidson@{Davidson}}
+\index{Davidson@{Davidson}!GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}}
+\doxysubsubsection{\texorpdfstring{Davidson()}{Davidson()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Solver\+::\+Davidson (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1},  }\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 15},  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{double}]{correction\+\_\+threshold = {\ttfamily 1.0e-\/12},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128},  }\item[{const double}]{inclusion\+\_\+threshold = {\ttfamily 1.0e-\/03} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+\_\+of\+\_\+requested\+\_\+eigenpairs} & the number of solutions the Davidson solver should find \\
+\hline
+{\em maximum\+\_\+subspace\+\_\+dimension} & the maximum dimension of the subspace before collapsing \\
+\hline
+{\em convergence\+\_\+threshold} & the threshold that is used in determining the norm on the residuals, which determines convergence \\
+\hline
+{\em correction\+\_\+threshold} & the threshold used in solving the (approximated) residue correction equation \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform \\
+\hline
+{\em inclusion\+\_\+threshold} & the threshold on the norm used for determining if a new projected correction vector should be added to the subspace\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an iterative algorithm that can find the lowest n eigenvectors of a matrix using Davidson\textquotesingle{}s algorithm 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_eigenproblem_solver_a9a2501282b66266fa06c568c92bbfee2}\label{namespace_g_q_c_p_1_1_eigenproblem_solver_a9a2501282b66266fa06c568c92bbfee2}} 
+\index{GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}!Dense@{Dense}}
+\index{Dense@{Dense}!GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}}
+\doxysubsubsection{\texorpdfstring{Dense()}{Dense()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_algorithm}{Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$>$ G\+Q\+C\+P\+::\+Eigenproblem\+Solver\+::\+Dense (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+an algorithm that can diagonalize a dense matrix 
+\end{DoxyReturn}

@@ -1,0 +1,298 @@
+\hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{}\doxysection{G\+Q\+CP\+::Simple\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+
+
+{\ttfamily \#include $<$Simple\+S\+Q\+One\+Electron\+Operator.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Simple\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_simple_s_q_one_electron_operator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Simple\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_simple_s_q_one_electron_operator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}} = \+\_\+\+Vectorizer
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} = \+\_\+\+Derived\+Operator
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_af5fc9cb1cbffc6552e48c4a1d92d209a}{Matrix\+Representation}} = \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a3902f05b064651713a7003fb513064ed}{Self}} = \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab6efacbe6abc0002e31bc4fe08ae6c7e}{Scalar\+Derived\+Operator}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} $>$\+::Scalar\+Operator
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} $>$\+::One\+DM
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}{Derived2\+DM}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} $>$\+::Two\+DM
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}{Mulliken\+Partitioning}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}{Mulliken\+Partitioning}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab6a38425352d5efdf8e3a733be931c3d}{calculate\+Expectation\+Value}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} \&D) const
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_aaff15231cb93a6b83f3523a5280d55bb}{calculate\+Fockian\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} \&D, const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}{Derived2\+DM}} \&d) const
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ double $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_aefb18657cba382fba0cbad975fcac1f9}{calculate\+Super\+Fockian\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} \&D, const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}{Derived2\+DM}} \&d) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}} \&T) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab1474f3ec1beed8cc704747f81a73d31}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&jacobi\+\_\+rotation) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a860bef15613c7755de4338798f99a612}{one\+Index\+Transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}} \&T) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a9e0f7547e55b563f6fc4074a0b8d1779}{partitioned}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}{Mulliken\+Partitioning}} \&mulliken\+\_\+partitioning) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Vectorizer, typename \+\_\+\+Derived\+Operator$>$\newline
+class G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$}
+
+A second-\/quantized one-\/electron operator whose parameters are described by a single matrix.
+
+This class is used as a base class for {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{R\+S\+Q\+One\+Electron\+Operator}}} and {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{G\+S\+Q\+One\+Electron\+Operator}}}, since they both admit parameter representations using a single matrix, as opposed to {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{U\+S\+Q\+One\+Electron\+Operator}}}, which uses separate alpha-\/ and beta-\/ matrices. The word \textquotesingle{}simple\textquotesingle{} is used here as an antonym for \textquotesingle{}compound\textquotesingle{}.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type used for a single parameter/matrix element\+: real or complex. \\
+\hline
+{\em \+\_\+\+Vectorizer} & The type of the vectorizer that relates a one-\/dimensional storage of matrices to the tensor structure of one-\/electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). \\
+\hline
+{\em \+\_\+\+Derived\+Operator} & The type of the operator that derives from this class, enabling \mbox{\hyperlink{class_g_q_c_p_1_1_c_r_t_p}{C\+R\+TP}} and compile-\/time polymorphism. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!Derived1DM@{Derived1DM}}
+\index{Derived1DM@{Derived1DM}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Derived1DM}{Derived1DM}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}}$>$\+::One\+DM}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!Derived2DM@{Derived2DM}}
+\index{Derived2DM@{Derived2DM}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Derived2DM}{Derived2DM}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}{Derived2\+DM}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}}$>$\+::Two\+DM}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!DerivedOperator@{DerivedOperator}}
+\index{DerivedOperator@{DerivedOperator}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{DerivedOperator}{DerivedOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} =  \+\_\+\+Derived\+Operator}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_af5fc9cb1cbffc6552e48c4a1d92d209a}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_af5fc9cb1cbffc6552e48c4a1d92d209a}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!MatrixRepresentation@{MatrixRepresentation}}
+\index{MatrixRepresentation@{MatrixRepresentation}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixRepresentation}{MatrixRepresentation}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_af5fc9cb1cbffc6552e48c4a1d92d209a}{Matrix\+Representation}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!MullikenPartitioning@{MullikenPartitioning}}
+\index{MullikenPartitioning@{MullikenPartitioning}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{MullikenPartitioning}{MullikenPartitioning}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}{Mulliken\+Partitioning}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}{Mulliken\+Partitioning}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}} =  \+\_\+\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab6efacbe6abc0002e31bc4fe08ae6c7e}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab6efacbe6abc0002e31bc4fe08ae6c7e}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!ScalarDerivedOperator@{ScalarDerivedOperator}}
+\index{ScalarDerivedOperator@{ScalarDerivedOperator}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarDerivedOperator}{ScalarDerivedOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab6efacbe6abc0002e31bc4fe08ae6c7e}{Scalar\+Derived\+Operator}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}}$>$\+::Scalar\+Operator}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a3902f05b064651713a7003fb513064ed}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a3902f05b064651713a7003fb513064ed}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!Self@{Self}}
+\index{Self@{Self}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Self}{Self}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a3902f05b064651713a7003fb513064ed}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{Simple\+S\+Q\+One\+Electron\+Operator}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{Operator\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!Vectorizer@{Vectorizer}}
+\index{Vectorizer@{Vectorizer}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{Vectorizer}{Vectorizer}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}} =  \+\_\+\+Vectorizer}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab6a38425352d5efdf8e3a733be931c3d}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab6a38425352d5efdf8e3a733be931c3d}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!calculateExpectationValue@{calculateExpectationValue}}
+\index{calculateExpectationValue@{calculateExpectationValue}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateExpectationValue()}{calculateExpectationValue()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ae661ad854b8c71debfeb350cc21db702}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::calculate\+Expectation\+Value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} \&}]{D }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the expectation value of this one-\/electron operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em D} & The 1-\/DM (that represents the wave function).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The expectation value of all components of the one-\/electron operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_aaff15231cb93a6b83f3523a5280d55bb}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_aaff15231cb93a6b83f3523a5280d55bb}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!calculateFockianMatrix@{calculateFockianMatrix}}
+\index{calculateFockianMatrix@{calculateFockianMatrix}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateFockianMatrix()}{calculateFockianMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::calculate\+Fockian\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} \&}]{D,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}{Derived2\+DM}} \&}]{d }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the Fockian matrix for (each of the components of) this one-\/electron operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em D} & The 1-\/DM (or the response 1-\/DM for made-\/variational wave function models). \\
+\hline
+{\em d} & The 2-\/DM (or the response 2-\/DM for made-\/variational wave function models).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Fockian matrix.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is only enabled in the real case. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_aefb18657cba382fba0cbad975fcac1f9}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_aefb18657cba382fba0cbad975fcac1f9}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!calculateSuperFockianMatrix@{calculateSuperFockianMatrix}}
+\index{calculateSuperFockianMatrix@{calculateSuperFockianMatrix}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSuperFockianMatrix()}{calculateSuperFockianMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$double$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a4061b290e2065f53d3aef075da0abcd3}{Vectorizer}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::calculate\+Super\+Fockian\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_acb59766aa2ef88790a36b059e4896bc1}{Derived1\+DM}} \&}]{D,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a66f1572868ae3bc4105f55783551667a}{Derived2\+DM}} \&}]{d }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the super-\/\+Fockian matrix for (each of the components of) this one-\/electron operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em D} & The 1-\/DM (or the response 1-\/DM for made-\/variational wave function models). \\
+\hline
+{\em d} & The 2-\/DM (or the response 2-\/DM for made-\/variational wave function models).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The super-\/\+Fockian matrix.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is only enabled in the real case. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a860bef15613c7755de4338798f99a612}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a860bef15613c7755de4338798f99a612}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!oneIndexTransformed@{oneIndexTransformed}}
+\index{oneIndexTransformed@{oneIndexTransformed}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{oneIndexTransformed()}{oneIndexTransformed()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::one\+Index\+Transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Apply a one-\/index transformation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The basis transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The one-\/index-\/transformed one-\/electron operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a9e0f7547e55b563f6fc4074a0b8d1779}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a9e0f7547e55b563f6fc4074a0b8d1779}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!partitioned@{partitioned}}
+\index{partitioned@{partitioned}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{partitioned()}{partitioned()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::partitioned (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_afcb21b0fa27c292d97432fca3d5053d2}{Mulliken\+Partitioning}} \&}]{mulliken\+\_\+partitioning }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Partition this one-\/electron operator according to the supplied Mulliken partitioning scheme.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mulliken\+\_\+partitioning} & An encapsulation of the Mulliken partitioning scheme.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A one-\/electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-\/partitioning of this one-\/electron operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab1474f3ec1beed8cc704747f81a73d31}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ab1474f3ec1beed8cc704747f81a73d31}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!rotated@{rotated}}
+\index{rotated@{rotated}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{rotated()}{rotated()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::rotated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&}]{jacobi\+\_\+rotation }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the Jacobi rotation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em jacobi\+\_\+rotation} & The Jacobi rotation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The jacobi-\/transformed object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}\label{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_ad74d55024bd63ad9138f011a13fdd5f0}} 
+\index{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}!transformed@{transformed}}
+\index{transformed@{transformed}!GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$@{GQCP::SimpleSQOneElectronOperator$<$ \_Scalar, \_Vectorizer, \_DerivedOperator $>$}}
+\doxysubsubsection{\texorpdfstring{transformed()}{transformed()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Vectorizer , typename \+\_\+\+Derived\+Operator $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a7488da057249f35bf3f7172fff40865b}{Derived\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{G\+Q\+C\+P\+::\+Simple\+S\+Q\+One\+Electron\+Operator}}$<$ \+\_\+\+Scalar, \+\_\+\+Vectorizer, \+\_\+\+Derived\+Operator $>$\+::transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator_a22bb1d9a25abec93b329d3563e1da508}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the basis transformation and return the resulting one-\/electron integrals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The basis transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The basis-\/transformed one-\/electron integrals. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+Second\+Quantized/\mbox{\hyperlink{_simple_s_q_one_electron_operator_8hpp}{Simple\+S\+Q\+One\+Electron\+Operator.\+hpp}}\end{DoxyCompactItemize}

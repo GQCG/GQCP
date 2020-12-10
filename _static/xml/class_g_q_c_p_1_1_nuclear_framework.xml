@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_nuclear_framework" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::NuclearFramework</compoundname>
+    <includes refid="_nuclear_framework_8hpp" local="no">NuclearFramework.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_nuclear_framework_1a194b54094a26a8bc6e8e1f60458677da" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt;</type>
+        <definition>std::vector&lt;Nucleus&gt; GQCP::NuclearFramework::nuclei</definition>
+        <argsstring></argsstring>
+        <name>nuclei</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="37" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a50006d54362ff68dd763b8b68066931e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::NuclearFramework::NuclearFramework</definition>
+        <argsstring>(const std::vector&lt; Nucleus &gt; &amp;nuclei)</argsstring>
+        <name>NuclearFramework</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
+          <declname>nuclei</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclei</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nuclei of the nuclear framework </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="39" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1ae94fb8b1bdb904cb833b2a06b2a5b345" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::NuclearFramework::calculateInternuclearDistanceBetween</definition>
+        <argsstring>(const size_t index1, const size_t index2) const</argsstring>
+        <name>calculateInternuclearDistanceBetween</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index1</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the first nucleus </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the second nucleus</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the distance between the two nuclei at index1 and index2 in bohr </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="114" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="263" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a2ff042c7c8ae8d14ec07e8234491228d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::NuclearFramework::description</definition>
+        <argsstring>() const</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this framework. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="119" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" bodystart="119" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;Nucleus&gt;&amp; GQCP::NuclearFramework::nucleiAsVector</definition>
+        <argsstring>() const</argsstring>
+        <name>nucleiAsVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the nuclei in this nuclear framework as a std::vector </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="133" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a6cbb29c6b5f00a9a4ff734f8eb94941b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::NuclearFramework::numberOfNuclei</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfNuclei</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of nuclei in this nuclear framework </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="138" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1adae13b11b7b8594945ad319aac75e28b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::NuclearFramework::totalNucleicCharge</definition>
+        <argsstring>() const</argsstring>
+        <name>totalNucleicCharge</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the sum of all the charges of the nuclei </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="143" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="277" bodyend="286"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a89a96e491ecefe6f8bf7fe98789def70" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref></type>
+        <definition>NuclearFramework GQCP::NuclearFramework::HChain</definition>
+        <argsstring>(const size_t n, const double spacing, const CartesianDirection axis=CartesianDirection::z)</argsstring>
+        <name>HChain</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>spacing</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+          <declname>axis</declname>
+          <defval>CartesianDirection::z</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of H nuclei </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the internuclear spacing in bohr </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Cartesian axis on which the H-chain should be placed</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a H-chain with equal internuclear spacing</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of H nuclei </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the internuclear spacing in bohr</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a H-chain with equal internuclear spacing </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="58" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="66" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a9540bf1ce1e2008ad531230408f079b5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref></type>
+        <definition>NuclearFramework GQCP::NuclearFramework::H2Chain</definition>
+        <argsstring>(const size_t n, const double a, const double b, const CartesianDirection axis=CartesianDirection::z)</argsstring>
+        <name>H2Chain</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+          <declname>axis</declname>
+          <defval>CartesianDirection::z</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of H2-molecules </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the internuclear distance in bohr </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the intermolecular distance in bohr </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Cartesian axis on which the H2-chain should be placed</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a H2-chain with the specified internuclear and intermolecular distances</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of H2-molecules </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the internuclear distance in bohr </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the intermolecular distance in bohr</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a H2-chain with the specified internuclear and intermolecular distances </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="68" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="101" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a4cf243ffb033679896693a6aa13095d2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref></type>
+        <definition>NuclearFramework GQCP::NuclearFramework::HRingFromDistance</definition>
+        <argsstring>(const size_t n, const double distance)</argsstring>
+        <name>HRingFromDistance</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of hydrogens </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the distance (in bohr) between neighbouring hydrogen atoms</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a regular H-ring where neighbouring hydrogens are separated by the given distance </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="77" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="141" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a9b01585de8dbb6f92092dc8b727a444b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref></type>
+        <definition>NuclearFramework GQCP::NuclearFramework::HRingFromRadius</definition>
+        <argsstring>(const size_t n, const double radius)</argsstring>
+        <name>HRingFromRadius</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of hydrogens </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the radius (in bohr) of the circumscribed circle</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a regular H-ring whose hydrogens are on the circle with the given radius </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="85" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="157" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a1bfaf0cc27def18c7921123a1a81c0a1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref></type>
+        <definition>NuclearFramework GQCP::NuclearFramework::ReadXYZ</definition>
+        <argsstring>(const std::string &amp;xyz_filename)</argsstring>
+        <name>ReadXYZ</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>xyz_filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xyz_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the .xyz-file that contains the nuclear coordinates in Angstrom </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="92" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="189" bodyend="232"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_nuclear_framework_1acb65a286f6605e901492eeab91beaad6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const NuclearFramework &amp;nuclear_framework)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
+          <declname>nuclear_framework</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the output stream which the nuclear framework should be concatenated to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nuclear_framework</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nuclear framework that should be concatenated to the output stream</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the updated output stream </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="103" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp" bodystart="245" bodyend="250"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A collection of nuclei at fixed positions in space.</para>
+<para>The unit of length is chosen to be the atomic unit (a.u.) bohr. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::NuclearFramework</label>
+        <link refid="class_g_q_c_p_1_1_nuclear_framework"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" bodystart="35" bodyend="144"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1ae94fb8b1bdb904cb833b2a06b2a5b345" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>calculateInternuclearDistanceBetween</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a2ff042c7c8ae8d14ec07e8234491228d" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a9540bf1ce1e2008ad531230408f079b5" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>H2Chain</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a89a96e491ecefe6f8bf7fe98789def70" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>HChain</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a4cf243ffb033679896693a6aa13095d2" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>HRingFromDistance</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a9b01585de8dbb6f92092dc8b727a444b" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>HRingFromRadius</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a50006d54362ff68dd763b8b68066931e" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>NuclearFramework</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a194b54094a26a8bc6e8e1f60458677da" prot="private" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>nuclei</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>nucleiAsVector</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a6cbb29c6b5f00a9a4ff734f8eb94941b" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>numberOfNuclei</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1acb65a286f6605e901492eeab91beaad6" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a1bfaf0cc27def18c7921123a1a81c0a1" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>ReadXYZ</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1adae13b11b7b8594945ad319aac75e28b" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>totalNucleicCharge</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

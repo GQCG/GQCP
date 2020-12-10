@@ -1,0 +1,218 @@
+\hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{}\doxysection{G\+Q\+CP\+::Base\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer}\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+
+
+{\ttfamily \#include $<$Base\+One\+Electron\+Integral\+Buffer.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Base\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_base_one_electron_integral_buffer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Base\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_base_one_electron_integral_buffer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} = \+\_\+\+Integral\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_ad6b54c9052a08862e46ff33ae8454150}{Base\+One\+Electron\+Integral\+Buffer}} (const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}{nbf1}}, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}{nbf2}})
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a57d1a4399d5efc0ead4e673cc2184f06}{$\sim$\+Base\+One\+Electron\+Integral\+Buffer}} ()=default
+\item 
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a5232fce397b298cb104338dcca2f4372}{are\+Integrals\+All\+Zero}} () const =0
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7bc13b7b9e41f521fee0b6e42010bf2f}{value}} (const size\+\_\+t i, const size\+\_\+t f1, const size\+\_\+t f2) const =0
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a507bcae75392dfa3711c5c94cecb26f5}{emplace}} (std\+::array$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a4ca9cff291498c51e7f613c8147ddbcc}{N}} $>$ \&full\+\_\+components, const size\+\_\+t bf1, const size\+\_\+t bf2) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa56618790db92694ff81073db85b1a59}{number\+Of\+Basis\+Functions\+In\+Shell1}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a9da29ace8b56208361adda924956575c}{number\+Of\+Basis\+Functions\+In\+Shell2}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a4ca9cff291498c51e7f613c8147ddbcc}{N}} = \+\_\+N
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}{nbf1}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}{nbf2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Integral\+Scalar, size\+\_\+t \+\_\+N$>$\newline
+class G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}
+
+A base class to implement buffers for storing one-\/electron integrals
+
+An integral buffer facilitates placing integrals (see \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a507bcae75392dfa3711c5c94cecb26f5}{emplace()}}) that were calculated over shells into the correct matrix representation of an operator in an orbital basis
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Integral\+Scalar} & the scalar representation of an integral \\
+\hline
+{\em \+\_\+N} & the number of components the corresponding operator has \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} =  \+\_\+\+Integral\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_ad6b54c9052a08862e46ff33ae8454150}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_ad6b54c9052a08862e46ff33ae8454150}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!BaseOneElectronIntegralBuffer@{BaseOneElectronIntegralBuffer}}
+\index{BaseOneElectronIntegralBuffer@{BaseOneElectronIntegralBuffer}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{BaseOneElectronIntegralBuffer()}{BaseOneElectronIntegralBuffer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{nbf1,  }\item[{const size\+\_\+t}]{nbf2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em nbf1} & the number of basis functions in the first shell \\
+\hline
+{\em nbf2} & the number of basis functions in the second shell \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a57d1a4399d5efc0ead4e673cc2184f06}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a57d1a4399d5efc0ead4e673cc2184f06}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!````~BaseOneElectronIntegralBuffer@{$\sim$BaseOneElectronIntegralBuffer}}
+\index{````~BaseOneElectronIntegralBuffer@{$\sim$BaseOneElectronIntegralBuffer}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseOneElectronIntegralBuffer()}{~BaseOneElectronIntegralBuffer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::$\sim$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a5232fce397b298cb104338dcca2f4372}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a5232fce397b298cb104338dcca2f4372}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!areIntegralsAllZero@{areIntegralsAllZero}}
+\index{areIntegralsAllZero@{areIntegralsAllZero}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{areIntegralsAllZero()}{areIntegralsAllZero()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::are\+Integrals\+All\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\begin{DoxyReturn}{Returns}
+if all the values of the calculated integrals are zero 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a505efa700605e761f5fc72aa41878dc1}{G\+Q\+C\+P\+::\+Libcint\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_buffer_a9682e2dd597e7523148e243a935f0fde}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a507bcae75392dfa3711c5c94cecb26f5}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a507bcae75392dfa3711c5c94cecb26f5}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!emplace@{emplace}}
+\index{emplace@{emplace}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{emplace()}{emplace()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::emplace (\begin{DoxyParamCaption}\item[{std\+::array$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a4ca9cff291498c51e7f613c8147ddbcc}{N}} $>$ \&}]{full\+\_\+components,  }\item[{const size\+\_\+t}]{bf1,  }\item[{const size\+\_\+t}]{bf2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Place the calculated integrals inside the matrix representation of the integrals
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+\_\+components} & the components of the full matrix representation (over all the basis functions) of the operator \\
+\hline
+{\em bf1} & the total basis function index of the first basis function in the first shell \\
+\hline
+{\em bf2} & the total basis function index of the first basis function in the second shell \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa56618790db92694ff81073db85b1a59}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa56618790db92694ff81073db85b1a59}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!numberOfBasisFunctionsInShell1@{numberOfBasisFunctionsInShell1}}
+\index{numberOfBasisFunctionsInShell1@{numberOfBasisFunctionsInShell1}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfBasisFunctionsInShell1()}{numberOfBasisFunctionsInShell1()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::number\+Of\+Basis\+Functions\+In\+Shell1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of basis functions that are in the first shell 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a9da29ace8b56208361adda924956575c}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a9da29ace8b56208361adda924956575c}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!numberOfBasisFunctionsInShell2@{numberOfBasisFunctionsInShell2}}
+\index{numberOfBasisFunctionsInShell2@{numberOfBasisFunctionsInShell2}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfBasisFunctionsInShell2()}{numberOfBasisFunctionsInShell2()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::number\+Of\+Basis\+Functions\+In\+Shell2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of basis functions that are in the second shell 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7bc13b7b9e41f521fee0b6e42010bf2f}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7bc13b7b9e41f521fee0b6e42010bf2f}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!value@{value}}
+\index{value@{value}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::value (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{f1,  }\item[{const size\+\_\+t}]{f2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the index of the component of the operator \\
+\hline
+{\em f1} & the index of the basis function within shell 1 \\
+\hline
+{\em f2} & the index of the basis function within shell 2\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a value from this integral buffer 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer_a699f63f2a570a11e2022e678458078d3}{G\+Q\+C\+P\+::\+Libint\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+N $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a2b5f6303c7798c9e58494847f028320e}{G\+Q\+C\+P\+::\+Libcint\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_buffer_a2ba2d8bb28b1cfddaa32e2fd0200dcf0}{G\+Q\+C\+P\+::\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+Integral\+Scalar, \+\_\+\+N $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a4ca9cff291498c51e7f613c8147ddbcc}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a4ca9cff291498c51e7f613c8147ddbcc}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!N@{N}}
+\index{N@{N}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::N = \+\_\+N\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!nbf1@{nbf1}}
+\index{nbf1@{nbf1}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{nbf1}{nbf1}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::nbf1\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}\label{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}} 
+\index{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}!nbf2@{nbf2}}
+\index{nbf2@{nbf2}!GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$@{GQCP::BaseOneElectronIntegralBuffer$<$ \_IntegralScalar, \_N $>$}}
+\doxysubsubsection{\texorpdfstring{nbf2}{nbf2}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar , size\+\_\+t \+\_\+N$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{G\+Q\+C\+P\+::\+Base\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+\+Integral\+Scalar, \+\_\+N $>$\+::nbf2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_base_one_electron_integral_buffer_8hpp}{Base\+One\+Electron\+Integral\+Buffer.\+hpp}}\end{DoxyCompactItemize}

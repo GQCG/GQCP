@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_f5c41286cd86757b29ad27f984e6b6af" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis</compoundname>
+    <innerfile refid="_g_spinor_basis_8hpp">GSpinorBasis.hpp</innerfile>
+    <innerfile refid="_occupation_type_8hpp">OccupationType.hpp</innerfile>
+    <innerfile refid="_orbital_space_8hpp">OrbitalSpace.hpp</innerfile>
+    <innerfile refid="_r_spin_orbital_basis_8hpp">RSpinOrbitalBasis.hpp</innerfile>
+    <innerfile refid="_simple_spinor_basis_8hpp">SimpleSpinorBasis.hpp</innerfile>
+    <innerfile refid="_simple_spin_orbital_basis_8hpp">SimpleSpinOrbitalBasis.hpp</innerfile>
+    <innerfile refid="_spinor_8hpp">Spinor.hpp</innerfile>
+    <innerfile refid="_spin_resolved_orbital_space_8hpp">SpinResolvedOrbitalSpace.hpp</innerfile>
+    <innerfile refid="_u_spin_orbital_basis_8hpp">USpinOrbitalBasis.hpp</innerfile>
+    <innerfile refid="_u_spin_orbital_basis_component_8hpp">USpinOrbitalBasisComponent.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/"/>
+  </compounddef>
+</doxygen>

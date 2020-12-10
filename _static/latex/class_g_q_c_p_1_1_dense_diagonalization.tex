@@ -1,0 +1,71 @@
+\hypertarget{class_g_q_c_p_1_1_dense_diagonalization}{}\doxysection{G\+Q\+CP\+::Dense\+Diagonalization Class Reference}
+\label{class_g_q_c_p_1_1_dense_diagonalization}\index{GQCP::DenseDiagonalization@{GQCP::DenseDiagonalization}}
+
+
+{\ttfamily \#include $<$Dense\+Diagonalization.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Dense\+Diagonalization\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_dense_diagonalization__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Dense\+Diagonalization\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_dense_diagonalization__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_dense_diagonalization_abb3d222b533cd59f944f411d2134b591}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_dense_diagonalization_a22c3d402fc47e074ed0b50b6345bee8e}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A step that performs a dense diagonalization. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_diagonalization_abb3d222b533cd59f944f411d2134b591}\label{class_g_q_c_p_1_1_dense_diagonalization_abb3d222b533cd59f944f411d2134b591}} 
+\index{GQCP::DenseDiagonalization@{GQCP::DenseDiagonalization}!description@{description}}
+\index{description@{description}!GQCP::DenseDiagonalization@{GQCP::DenseDiagonalization}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Dense\+Diagonalization\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_diagonalization_a22c3d402fc47e074ed0b50b6345bee8e}\label{class_g_q_c_p_1_1_dense_diagonalization_a22c3d402fc47e074ed0b50b6345bee8e}} 
+\index{GQCP::DenseDiagonalization@{GQCP::DenseDiagonalization}!execute@{execute}}
+\index{execute@{execute}!GQCP::DenseDiagonalization@{GQCP::DenseDiagonalization}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Dense\+Diagonalization\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that this step can read from and write to \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\mbox{\hyperlink{_dense_diagonalization_8hpp}{Dense\+Diagonalization.\+hpp}}\end{DoxyCompactItemize}

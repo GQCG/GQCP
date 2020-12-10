@@ -1,0 +1,249 @@
+\hypertarget{class_g_q_c_p_1_1_simple_spinor_basis}{}\doxysection{G\+Q\+CP\+::Simple\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_simple_spinor_basis}\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+
+
+{\ttfamily \#include $<$Simple\+Spinor\+Basis.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Simple\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_simple_spinor_basis__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Simple\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_simple_spinor_basis__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_acccd2faf9d3407fcf35fc71ee4629ceb}{Expansion\+Scalar}} = \+\_\+\+Expansion\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} = \+\_\+\+Final\+Spinor\+Basis
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}{Jacobi\+Rotation\+Type}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{Jacobi\+Rotatable\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}{Jacobi\+Rotation\+Type}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}{S\+Q\+Overlap\+Operator}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_spinor_basis_traits}{Spinor\+Basis\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}{S\+Q\+Overlap\+Operator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_af946e8de1e88562c95630a0aef5f6a77}{Simple\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}{C}})
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ad150aa71df288eda895400a1970976d2}{expansion}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_abbad8e4366b720933a378ea276bf9502}{simple\+Dimension}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}{S\+Q\+Overlap\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}} () const
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa00b804a0f522ee6b046e45d9e39a7b8}{is\+Orthonormal}} (const double precision=1.\+0e-\/08) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a7dcbcf5803cb8c3b4b65cb49ce3f5f69}{lowdin\+Orthonormalization}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a53160b32246fe945f0fb7aa46d15c4e9}{lowdin\+Orthonormalize}} ()
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa6d146421985b3aefc1b4a9ec4aa6c54}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \&T) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a35d1cde61d7596a61df2c39ddef578b1}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}{Jacobi\+Rotation\+Type}} \&jacobi\+\_\+rotation) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}{C}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Expansion\+Scalar, typename \+\_\+\+Final\+Spinor\+Basis$>$\newline
+class G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$}
+
+A class that represents a spinor basis that has no internal structure (hence \textquotesingle{}simple\textquotesingle{}) with respect to spin components.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Expansion\+Scalar} & The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals\+: real or complex. \\
+\hline
+{\em \+\_\+\+Final\+Spinor\+Basis} & The spinor basis that ultimately derives from this class, enabling \mbox{\hyperlink{class_g_q_c_p_1_1_c_r_t_p}{C\+R\+TP}} and compile-\/time polymorphism. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_acccd2faf9d3407fcf35fc71ee4629ceb}\label{class_g_q_c_p_1_1_simple_spinor_basis_acccd2faf9d3407fcf35fc71ee4629ceb}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!ExpansionScalar@{ExpansionScalar}}
+\index{ExpansionScalar@{ExpansionScalar}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{ExpansionScalar}{ExpansionScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_acccd2faf9d3407fcf35fc71ee4629ceb}{Expansion\+Scalar}} =  \+\_\+\+Expansion\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}\label{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!FinalSpinorBasis@{FinalSpinorBasis}}
+\index{FinalSpinorBasis@{FinalSpinorBasis}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{FinalSpinorBasis}{FinalSpinorBasis}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} =  \+\_\+\+Final\+Spinor\+Basis}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}\label{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!JacobiRotationType@{JacobiRotationType}}
+\index{JacobiRotationType@{JacobiRotationType}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{JacobiRotationType}{JacobiRotationType}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}{Jacobi\+Rotation\+Type}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{Jacobi\+Rotatable\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}{Jacobi\+Rotation\+Type}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}\label{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!SQOverlapOperator@{SQOverlapOperator}}
+\index{SQOverlapOperator@{SQOverlapOperator}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{SQOverlapOperator}{SQOverlapOperator}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}{S\+Q\+Overlap\+Operator}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_spinor_basis_traits}{Spinor\+Basis\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}{S\+Q\+Overlap\+Operator}}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}\label{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_af946e8de1e88562c95630a0aef5f6a77}\label{class_g_q_c_p_1_1_simple_spinor_basis_af946e8de1e88562c95630a0aef5f6a77}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!SimpleSpinorBasis@{SimpleSpinorBasis}}
+\index{SimpleSpinorBasis@{SimpleSpinorBasis}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{SimpleSpinorBasis()}{SimpleSpinorBasis()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{Simple\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \&}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em C} & The transformation that relates the current set of spinors with the atomic spinors. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_ad150aa71df288eda895400a1970976d2}\label{class_g_q_c_p_1_1_simple_spinor_basis_ad150aa71df288eda895400a1970976d2}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!expansion@{expansion}}
+\index{expansion@{expansion}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{expansion()}{expansion()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::expansion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only reference to the transformation that relates the current set of spinors with the atomic spinors. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_aa00b804a0f522ee6b046e45d9e39a7b8}\label{class_g_q_c_p_1_1_simple_spinor_basis_aa00b804a0f522ee6b046e45d9e39a7b8}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!isOrthonormal@{isOrthonormal}}
+\index{isOrthonormal@{isOrthonormal}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{isOrthonormal()}{isOrthonormal()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::is\+Orthonormal (\begin{DoxyParamCaption}\item[{const double}]{precision = {\ttfamily 1.0e-\/08} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if this spinor basis is orthonormal within the given precision.
+
+
+\begin{DoxyParams}{Parameters}
+{\em precision} & The precision used to test orthonormality.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If this spinor basis is orthonormal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_a7dcbcf5803cb8c3b4b65cb49ce3f5f69}\label{class_g_q_c_p_1_1_simple_spinor_basis_a7dcbcf5803cb8c3b4b65cb49ce3f5f69}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!lowdinOrthonormalization@{lowdinOrthonormalization}}
+\index{lowdinOrthonormalization@{lowdinOrthonormalization}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{lowdinOrthonormalization()}{lowdinOrthonormalization()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::lowdin\+Orthonormalization (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The transformation to the Löwdin basis\+: T = S\+\_\+current$^\wedge$\{-\/1/2\}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_a53160b32246fe945f0fb7aa46d15c4e9}\label{class_g_q_c_p_1_1_simple_spinor_basis_a53160b32246fe945f0fb7aa46d15c4e9}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!lowdinOrthonormalize@{lowdinOrthonormalize}}
+\index{lowdinOrthonormalize@{lowdinOrthonormalize}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{lowdinOrthonormalize()}{lowdinOrthonormalize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::lowdin\+Orthonormalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Transform the spinor basis to the \textquotesingle{}Löwdin basis\textquotesingle{}, which is the orthonormal basis that we transform to with T = S$^\wedge$\{-\/1/2\}, where S is the current overlap matrix. \mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}\label{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!overlap@{overlap}}
+\index{overlap@{overlap}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{overlap()}{overlap()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a62e6854ce1fb8ab009b0479586337f8e}{S\+Q\+Overlap\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::overlap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The overlap (one-\/electron) operator of this spinor basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_a35d1cde61d7596a61df2c39ddef578b1}\label{class_g_q_c_p_1_1_simple_spinor_basis_a35d1cde61d7596a61df2c39ddef578b1}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!rotated@{rotated}}
+\index{rotated@{rotated}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{rotated()}{rotated()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::rotated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa137ad5da7e46d3f6bfb30e1c8a4a71f}{Jacobi\+Rotation\+Type}} \&}]{jacobi\+\_\+rotation }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the Jacobi rotation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em jacobi\+\_\+rotation} & The Jacobi rotation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Jacobi-\/rotated object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_abbad8e4366b720933a378ea276bf9502}\label{class_g_q_c_p_1_1_simple_spinor_basis_abbad8e4366b720933a378ea276bf9502}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!simpleDimension@{simpleDimension}}
+\index{simpleDimension@{simpleDimension}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{simpleDimension()}{simpleDimension()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::simple\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The dimension of this simple spinor basis, i.\+e. the dimension of the underlying coefficient matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_aa6d146421985b3aefc1b4a9ec4aa6c54}\label{class_g_q_c_p_1_1_simple_spinor_basis_aa6d146421985b3aefc1b4a9ec4aa6c54}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!transformed@{transformed}}
+\index{transformed@{transformed}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{transformed()}{transformed()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa3b991f95864658a48cb6b7360dca2aa}{Final\+Spinor\+Basis}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Apply the basis transformation and return the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The basis transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The basis-\/transformed object. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}\label{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}} 
+\index{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}!C@{C}}
+\index{C@{C}!GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$@{GQCP::SimpleSpinorBasis$<$ \_ExpansionScalar, \_FinalSpinorBasis $>$}}
+\doxysubsubsection{\texorpdfstring{C}{C}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Final\+Spinor\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_ab9db1b00c22813762c69cdb4c020487f}{Transformation}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{G\+Q\+C\+P\+::\+Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Final\+Spinor\+Basis $>$\+::C\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Spinor\+Basis/\mbox{\hyperlink{_simple_spinor_basis_8hpp}{Simple\+Spinor\+Basis.\+hpp}}\end{DoxyCompactItemize}

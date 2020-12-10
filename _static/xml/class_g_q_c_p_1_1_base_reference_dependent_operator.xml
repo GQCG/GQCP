@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_reference_dependent_operator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseReferenceDependentOperator</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_angular_momentum_operator" prot="public" virt="non-virtual">GQCP::AngularMomentumOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public" virt="non-virtual">GQCP::ElectronicDipoleOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" prot="public" virt="non-virtual">GQCP::NuclearDipoleOperator</derivedcompoundref>
+    <includes refid="_base_reference_dependent_operator_8hpp" local="no">BaseReferenceDependentOperator.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_reference_dependent_operator_1a9f5ae286ca1297af6a69d66bbfc5f220" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::BaseReferenceDependentOperator::m_reference</definition>
+        <argsstring></argsstring>
+        <name>m_reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_reference_dependent_operator_1a54a0c94b11d3c1b094b91de2c1125083" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::BaseReferenceDependentOperator::BaseReferenceDependentOperator</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;reference=Vector&lt; double, 3 &gt;::Zero())</argsstring>
+        <name>BaseReferenceDependentOperator</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>reference</declname>
+          <defval><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;::Zero()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <computeroutput><ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator" kindref="compound">BaseReferenceDependentOperator</ref></computeroutput> using a point of reference.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point that is used as a reference to define the operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseReferenceDependentOperator.cpp" bodystart="33" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_reference_dependent_operator_1a67db3a2bf7e00d38db5fcba98dec06ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>GQCP::BaseReferenceDependentOperator::~BaseReferenceDependentOperator</definition>
+        <argsstring>()=0</argsstring>
+        <name>~BaseReferenceDependentOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" line="56" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseReferenceDependentOperator.cpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::BaseReferenceDependentOperator::reference</definition>
+        <argsstring>() const</argsstring>
+        <name>reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The point that is used as a reference to define the operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" line="66" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" bodystart="66" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::AngularMomentumOperator</label>
+        <link refid="class_g_q_c_p_1_1_angular_momentum_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::ElectronicDipoleOperator</label>
+        <link refid="class_g_q_c_p_1_1_electronic_dipole_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+      <node id="4">
+        <label>GQCP::NuclearDipoleOperator</label>
+        <link refid="class_g_q_c_p_1_1_nuclear_dipole_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp" bodystart="32" bodyend="67"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a54a0c94b11d3c1b094b91de2c1125083" prot="public" virt="non-virtual"><scope>GQCP::BaseReferenceDependentOperator</scope><name>BaseReferenceDependentOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a9f5ae286ca1297af6a69d66bbfc5f220" prot="private" virt="non-virtual"><scope>GQCP::BaseReferenceDependentOperator</scope><name>m_reference</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" prot="public" virt="non-virtual"><scope>GQCP::BaseReferenceDependentOperator</scope><name>reference</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a67db3a2bf7e00d38db5fcba98dec06ed" prot="public" virt="pure-virtual"><scope>GQCP::BaseReferenceDependentOperator</scope><name>~BaseReferenceDependentOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::JacobiRotatableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</compoundname>
+    <includes refid="_s_q_hamiltonian_8hpp" local="no">SQHamiltonian.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename ScalarSQOneElectronOperator</type>
+      </param>
+      <param>
+        <type>typename ScalarSQTwoElectronOperator</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c_1a9dc942609c25849392792191e20569a5" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt; ScalarSQOneElectronOperator &gt;::<ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c_1a9dc942609c25849392792191e20569a5" kindref="member">JacobiRotationType</ref></type>
+        <definition>using GQCP::JacobiRotatableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;::JacobiRotationType =  typename JacobiRotatableTraits&lt;ScalarSQOneElectronOperator&gt;::JacobiRotationType</definition>
+        <argsstring></argsstring>
+        <name>JacobiRotationType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="797" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="797" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_jacobi_rotatable" kindref="compound">JacobiRotatable</ref></computeroutput>. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::JacobiRotatableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="794" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="794" bodyend="798"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c_1a9dc942609c25849392792191e20569a5" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</scope><name>JacobiRotationType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

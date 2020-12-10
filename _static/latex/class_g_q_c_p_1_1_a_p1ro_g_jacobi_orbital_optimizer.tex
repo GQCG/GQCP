@@ -1,0 +1,185 @@
+\hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer}{}\doxysection{G\+Q\+CP\+::A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer Class Reference}
+\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer}\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+
+
+{\ttfamily \#include $<$A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a0f8d2b629f638389d966f5db84400c10}{A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer}} (const size\+\_\+t N\+\_\+P, const size\+\_\+t K, const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a9e9f1749f5ab732836abac8e731efea5}{A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}} \&G, const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_ada3d09617b0f3008a8873a02259627d4}{calculate\+Jacobi\+Coefficients}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t p, const size\+\_\+t q) override
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_af4c02c5f63b7224dce4345d6fbea2449}{calculate\+Optimal\+Rotation\+Angle}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t p, const size\+\_\+t q) const override
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a1feb9cc0360904a0dc681756ef681e00}{calculate\+Scalar\+Function\+Change}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&jacobi\+\_\+rotation) const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_adc5302895d7c2e72a6d807777f9426f9}{prepare\+Jacobi\+Specific\+Convergence\+Checking}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) override
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a959df5807353d1dcd9e9ad24cd7fcdcd}{electronic\+Energy}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A class that is used to find a minimum of the electronic energy for A\+P1roG wave functions with respect to rotations of the underlying spatial orbital basis. By using analytical Jacobi rotations, and subsequently re-\/solving the A\+P1roG P\+S\+Es, a new orbital basis is found that results in a lower A\+P1roG energy
+
+Note that, since this algorithm does not use the P\+SE Lagrangian, a rotation can jump out of the A\+P1roG manifold, so this algorithm should be used with care 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a0f8d2b629f638389d966f5db84400c10}\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a0f8d2b629f638389d966f5db84400c10}} 
+\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}!AP1roGJacobiOrbitalOptimizer@{AP1roGJacobiOrbitalOptimizer}}
+\index{AP1roGJacobiOrbitalOptimizer@{AP1roGJacobiOrbitalOptimizer}!GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{AP1roGJacobiOrbitalOptimizer()}{AP1roGJacobiOrbitalOptimizer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{N\+\_\+P,  }\item[{const size\+\_\+t}]{K,  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em N\+\_\+P} & the number of electron pairs \\
+\hline
+{\em K} & the number of spatial orbitals \\
+\hline
+{\em convergence\+\_\+threshold} & the threshold used to check for convergence \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations that may be used to achieve convergence\\
+\hline
+\end{DoxyParams}
+The initial guess for the geminal coefficients is zero \mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a9e9f1749f5ab732836abac8e731efea5}\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a9e9f1749f5ab732836abac8e731efea5}} 
+\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}!AP1roGJacobiOrbitalOptimizer@{AP1roGJacobiOrbitalOptimizer}}
+\index{AP1roGJacobiOrbitalOptimizer@{AP1roGJacobiOrbitalOptimizer}!GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{AP1roGJacobiOrbitalOptimizer()}{AP1roGJacobiOrbitalOptimizer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}} \&}]{G,  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em G} & the initial geminal coefficients \\
+\hline
+{\em convergence\+\_\+threshold} & the threshold used to check for convergence \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations that may be used to achieve convergence \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_ada3d09617b0f3008a8873a02259627d4}\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_ada3d09617b0f3008a8873a02259627d4}} 
+\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}!calculateJacobiCoefficients@{calculateJacobiCoefficients}}
+\index{calculateJacobiCoefficients@{calculateJacobiCoefficients}!GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{calculateJacobiCoefficients()}{calculateJacobiCoefficients()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+::calculate\+Jacobi\+Coefficients (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const size\+\_\+t}]{p,  }\item[{const size\+\_\+t}]{q }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & the index of spatial orbital 1 \\
+\hline
+{\em q} & the index of spatial orbital 2 \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a1d0903ec685d348fc47027d6d2cfe0bd}{G\+Q\+C\+P\+::\+Jacobi\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_af4c02c5f63b7224dce4345d6fbea2449}\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_af4c02c5f63b7224dce4345d6fbea2449}} 
+\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}!calculateOptimalRotationAngle@{calculateOptimalRotationAngle}}
+\index{calculateOptimalRotationAngle@{calculateOptimalRotationAngle}!GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{calculateOptimalRotationAngle()}{calculateOptimalRotationAngle()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+::calculate\+Optimal\+Rotation\+Angle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const size\+\_\+t}]{p,  }\item[{const size\+\_\+t}]{q }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian \\
+\hline
+{\em p} & the index of spatial orbital 1 \\
+\hline
+{\em q} & the index of spatial orbital 2\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a88fb6f7fd3ce8670e540b1f1e0e896cf}{G\+Q\+C\+P\+::\+Jacobi\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a1feb9cc0360904a0dc681756ef681e00}\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a1feb9cc0360904a0dc681756ef681e00}} 
+\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}!calculateScalarFunctionChange@{calculateScalarFunctionChange}}
+\index{calculateScalarFunctionChange@{calculateScalarFunctionChange}!GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{calculateScalarFunctionChange()}{calculateScalarFunctionChange()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+::calculate\+Scalar\+Function\+Change (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&}]{jacobi\+\_\+rotation }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian \\
+\hline
+{\em jacobi\+\_\+rotation} & The Jacobi rotation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the change in the value of the scalar function (i.\+e. the A\+P1roG energy) if the given Jacobi rotation would be used to rotate the given Hamiltonian
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian \\
+\hline
+{\em jacobi\+\_\+rotation} & Jacobi rotation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the scalar function (i.\+e. the A\+P1roG energy) if the given Jacobi rotation would be used to rotate the given Hamiltonian 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_adb16cd498fedf675dbc0ef1f9c538757}{G\+Q\+C\+P\+::\+Jacobi\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a959df5807353d1dcd9e9ad24cd7fcdcd}\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_a959df5807353d1dcd9e9ad24cd7fcdcd}} 
+\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}!electronicEnergy@{electronicEnergy}}
+\index{electronicEnergy@{electronicEnergy}!GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{electronicEnergy()}{electronicEnergy()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+::electronic\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the electronic energy calculated by this orbital optimizer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_adc5302895d7c2e72a6d807777f9426f9}\label{class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_adc5302895d7c2e72a6d807777f9426f9}} 
+\index{GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}!prepareJacobiSpecificConvergenceChecking@{prepareJacobiSpecificConvergenceChecking}}
+\index{prepareJacobiSpecificConvergenceChecking@{prepareJacobiSpecificConvergenceChecking}!GQCP::AP1roGJacobiOrbitalOptimizer@{GQCP::AP1roGJacobiOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{prepareJacobiSpecificConvergenceChecking()}{prepareJacobiSpecificConvergenceChecking()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer\+::prepare\+Jacobi\+Specific\+Convergence\+Checking (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Prepare this object (i.\+e. the context for the orbital optimization algorithm) to be able to check for convergence
+
+In the case of this uncoupled A\+P1roG Jacobi orbital optimizer, we should solve the A\+P1roG P\+S\+Es at the start at every iteration, using the current orbitals 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_ab453b26fea4b3901b2483afa97b061b1}{G\+Q\+C\+P\+::\+Jacobi\+Orbital\+Optimizer}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+Geminals/\mbox{\hyperlink{_a_p1ro_g_jacobi_orbital_optimizer_8hpp}{A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Q\+C\+Method/\+Geminals/\mbox{\hyperlink{_a_p1ro_g_jacobi_orbital_optimizer_8cpp}{A\+P1ro\+G\+Jacobi\+Orbital\+Optimizer.\+cpp}}\end{DoxyCompactItemize}

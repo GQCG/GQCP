@@ -1,0 +1,23 @@
+\hypertarget{_this-example}{}\doxysection{This}
+Calculate the overlap $<$on$\vert$of$>$\+: the projection of between this spin-\/resolved O\+NV (\textquotesingle{}of\textquotesingle{}) and another spin-\/resolved O\+NV (\textquotesingle{}on\textquotesingle{}), expressed in different R/\+U-\/spinor bases. The \textquotesingle{}on\textquotesingle{}-\/O\+NV is supposed to be expressed in restricted spin-\/orbitals, and the \textquotesingle{}of\textquotesingle{}-\/O\+NV is supposed to be expressed in unrestricted spin-\/orbitals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+on} & The spin-\/resolved O\+NV that should be projected on. \\
+\hline
+{\em C\+\_\+unrestricted} & The transformation between the unrestricted spin-\/orbitals and the atomic spin-\/orbitals. \\
+\hline
+{\em C\+\_\+restricted} & The transformation between the restricted spin-\/orbitals and the atomic spin-\/orbitals. \\
+\hline
+{\em S} & The overlap matrix of the underlying A\+Os.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The overlap element $<$on$\vert$of$>$.
+\end{DoxyReturn}
+method can be used to project U\+H\+F-\/\+O\+N\+Vs onto R\+H\+F-\/\+O\+N\+Vs, by calling uhf\+\_\+onv.\+calculate\+Projection(rhf\+\_\+onv, C\+\_\+unrestricted, C\+\_\+restricted, S)
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_spinor_basis_traits" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::SpinorBasisTraits</compoundname>
+    <includes refid="_simple_spinor_basis_8hpp" local="no">SimpleSpinorBasis.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename SpinorBasis</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SpinorBasisTraits&lt; SpinorBasis &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_spinor_basis_traits"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="37" bodyend="37"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

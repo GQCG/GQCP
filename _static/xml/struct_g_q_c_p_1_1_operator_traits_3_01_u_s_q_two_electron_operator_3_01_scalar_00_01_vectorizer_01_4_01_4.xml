@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</compoundname>
+    <includes refid="_u_s_q_two_electron_operator_8hpp" local="no">USQTwoElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+      <param>
+        <type>typename Vectorizer</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a9e8da0eee03b53dea2086a74ed0c04e0" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a917f77e00f808dfce7965011d7f9a824" kindref="member">ScalarUSQTwoElectronOperator</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::ScalarOperator =  ScalarUSQTwoElectronOperator&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>ScalarOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="319" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="319" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1ad9b117e211efe32a633ee18c44199db7" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::Transformation =  UTransformation&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="322" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="322" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a766cfe03d339e013aeb0ad691fadc8b0" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::OneDM =  SpinResolved1DM&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>OneDM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="325" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="325" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a356a3062ec3635107ba06eb976e0a022" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::TwoDM =  SpinResolved2DM&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>TwoDM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="328" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="328" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information (traits) on <computeroutput><ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" kindref="compound">USQTwoElectronOperator</ref></computeroutput> that is otherwise not accessible through a public class alias.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a single parameter: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from <computeroutput><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">USQOneElectronOperator</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="316" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="316" bodyend="329"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a766cfe03d339e013aeb0ad691fadc8b0" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>OneDM</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a9e8da0eee03b53dea2086a74ed0c04e0" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>ScalarOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1ad9b117e211efe32a633ee18c44199db7" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>Transformation</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a356a3062ec3635107ba06eb976e0a022" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>TwoDM</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

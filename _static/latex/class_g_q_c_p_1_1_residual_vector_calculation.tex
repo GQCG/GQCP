@@ -1,0 +1,87 @@
+\hypertarget{class_g_q_c_p_1_1_residual_vector_calculation}{}\doxysection{G\+Q\+CP\+::Residual\+Vector\+Calculation Class Reference}
+\label{class_g_q_c_p_1_1_residual_vector_calculation}\index{GQCP::ResidualVectorCalculation@{GQCP::ResidualVectorCalculation}}
+
+
+{\ttfamily \#include $<$Residual\+Vector\+Calculation.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Residual\+Vector\+Calculation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_residual_vector_calculation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Residual\+Vector\+Calculation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_residual_vector_calculation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation_acc5ae34403a28caab1c086b982cc22f8}{Residual\+Vector\+Calculation}} (const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation_afb3cb399b0a1fae12b5580e2a4c62624}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation_a737360db727b663e2f6c84ff82ebab1b}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A step that calculates the residual vectors from the new guesses for the eigenvectors. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_residual_vector_calculation_acc5ae34403a28caab1c086b982cc22f8}\label{class_g_q_c_p_1_1_residual_vector_calculation_acc5ae34403a28caab1c086b982cc22f8}} 
+\index{GQCP::ResidualVectorCalculation@{GQCP::ResidualVectorCalculation}!ResidualVectorCalculation@{ResidualVectorCalculation}}
+\index{ResidualVectorCalculation@{ResidualVectorCalculation}!GQCP::ResidualVectorCalculation@{GQCP::ResidualVectorCalculation}}
+\doxysubsubsection{\texorpdfstring{ResidualVectorCalculation()}{ResidualVectorCalculation()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Residual\+Vector\+Calculation\+::\+Residual\+Vector\+Calculation (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+\_\+of\+\_\+requested\+\_\+eigenpairs} & the number of solutions the Davidson solver should find \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_residual_vector_calculation_afb3cb399b0a1fae12b5580e2a4c62624}\label{class_g_q_c_p_1_1_residual_vector_calculation_afb3cb399b0a1fae12b5580e2a4c62624}} 
+\index{GQCP::ResidualVectorCalculation@{GQCP::ResidualVectorCalculation}!description@{description}}
+\index{description@{description}!GQCP::ResidualVectorCalculation@{GQCP::ResidualVectorCalculation}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Residual\+Vector\+Calculation\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_residual_vector_calculation_a737360db727b663e2f6c84ff82ebab1b}\label{class_g_q_c_p_1_1_residual_vector_calculation_a737360db727b663e2f6c84ff82ebab1b}} 
+\index{GQCP::ResidualVectorCalculation@{GQCP::ResidualVectorCalculation}!execute@{execute}}
+\index{execute@{execute}!GQCP::ResidualVectorCalculation@{GQCP::ResidualVectorCalculation}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Residual\+Vector\+Calculation\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate the residual vectors from the new guesses for the eigenvectors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_residual_vector_calculation_8hpp}{Residual\+Vector\+Calculation.\+hpp}}\end{DoxyCompactItemize}

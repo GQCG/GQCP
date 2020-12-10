@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_45b68fad4872c09ee59e23428ba67da1" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization</compoundname>
+    <innerdir refid="dir_e7640cb0b21552d64da79884357ccee5">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator</innerdir>
+    <innerdir refid="dir_56734510d0d14ef1ee351fb86f505aa1">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem</innerdir>
+    <innerdir refid="dir_cb50b33af0fa26949cfbf4953da1f9d6">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization</innerdir>
+    <innerdir refid="dir_4767a49069fe6ad868cda8b5db319b4a">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation</innerdir>
+    <innerfile refid="_consecutive_iterates_norm_convergence_8hpp">ConsecutiveIteratesNormConvergence.hpp</innerfile>
+    <innerfile refid="_optimization_environment_8hpp">OptimizationEnvironment.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/"/>
+  </compounddef>
+</doxygen>

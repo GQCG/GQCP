@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulating ONVs and their addresses</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/doxygen.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/search/search.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/html/jquery.js"></script>
+    <script src="../_static/html/dynsections.js"></script>
+    <script src="../_static/html/menu.js"></script>
+    <script src="../_static/html/menudata.js"></script>
+    <script src="../_static/html/search/typedefs_5.js"></script>
+    <script src="../_static/html/search/files_c.js"></script>
+    <script src="../_static/html/search/classes_d.js"></script>
+    <script src="../_static/html/search/variables_1.js"></script>
+    <script src="../_static/html/search/classes_11.js"></script>
+    <script src="../_static/html/search/all_15.js"></script>
+    <script src="../_static/html/search/all_18.js"></script>
+    <script src="../_static/html/search/variables_6.js"></script>
+    <script src="../_static/html/search/search.js"></script>
+    <script src="../_static/html/search/classes_15.js"></script>
+    <script src="../_static/html/search/all_3.js"></script>
+    <script src="../_static/html/search/typedefs_e.js"></script>
+    <script src="../_static/html/search/all_4.js"></script>
+    <script src="../_static/html/search/typedefs_0.js"></script>
+    <script src="../_static/html/search/files_10.js"></script>
+    <script src="../_static/html/search/enumvalues_0.js"></script>
+    <script src="../_static/html/search/classes_e.js"></script>
+    <script src="../_static/html/search/typedefs_2.js"></script>
+    <script src="../_static/html/search/enumvalues_4.js"></script>
+    <script src="../_static/html/search/all_8.js"></script>
+    <script src="../_static/html/search/all_16.js"></script>
+    <script src="../_static/html/search/functions_13.js"></script>
+    <script src="../_static/html/search/typedefs_1.js"></script>
+    <script src="../_static/html/search/all_e.js"></script>
+    <script src="../_static/html/search/functions_12.js"></script>
+    <script src="../_static/html/search/classes_17.js"></script>
+    <script src="../_static/html/search/files_b.js"></script>
+    <script src="../_static/html/search/functions_f.js"></script>
+    <script src="../_static/html/search/all_a.js"></script>
+    <script src="../_static/html/search/files_11.js"></script>
+    <script src="../_static/html/search/all_1a.js"></script>
+    <script src="../_static/html/search/files_4.js"></script>
+    <script src="../_static/html/search/functions_11.js"></script>
+    <script src="../_static/html/search/variables_5.js"></script>
+    <script src="../_static/html/search/files_8.js"></script>
+    <script src="../_static/html/search/files_0.js"></script>
+    <script src="../_static/html/search/enums_1.js"></script>
+    <script src="../_static/html/search/typedefs_7.js"></script>
+    <script src="../_static/html/search/functions_e.js"></script>
+    <script src="../_static/html/search/classes_b.js"></script>
+    <script src="../_static/html/search/classes_0.js"></script>
+    <script src="../_static/html/search/classes_f.js"></script>
+    <script src="../_static/html/search/functions_7.js"></script>
+    <script src="../_static/html/search/related_1.js"></script>
+    <script src="../_static/html/search/all_c.js"></script>
+    <script src="../_static/html/search/typedefs_13.js"></script>
+    <script src="../_static/html/search/classes_1.js"></script>
+    <script src="../_static/html/search/variables_4.js"></script>
+    <script src="../_static/html/search/functions_10.js"></script>
+    <script src="../_static/html/search/typedefs_8.js"></script>
+    <script src="../_static/html/search/enumvalues_1.js"></script>
+    <script src="../_static/html/search/typedefs_4.js"></script>
+    <script src="../_static/html/search/classes_3.js"></script>
+    <script src="../_static/html/search/variables_8.js"></script>
+    <script src="../_static/html/search/variables_9.js"></script>
+    <script src="../_static/html/search/files_12.js"></script>
+    <script src="../_static/html/search/functions_15.js"></script>
+    <script src="../_static/html/search/typedefs_10.js"></script>
+    <script src="../_static/html/search/all_10.js"></script>
+    <script src="../_static/html/search/enumvalues_6.js"></script>
+    <script src="../_static/html/search/classes_5.js"></script>
+    <script src="../_static/html/search/functions_14.js"></script>
+    <script src="../_static/html/search/functions_3.js"></script>
+    <script src="../_static/html/search/files_13.js"></script>
+    <script src="../_static/html/search/functions_18.js"></script>
+    <script src="../_static/html/search/files_9.js"></script>
+    <script src="../_static/html/search/functions_c.js"></script>
+    <script src="../_static/html/search/files_3.js"></script>
+    <script src="../_static/html/search/functions_5.js"></script>
+    <script src="../_static/html/search/all_11.js"></script>
+    <script src="../_static/html/search/all_13.js"></script>
+    <script src="../_static/html/search/variables_3.js"></script>
+    <script src="../_static/html/search/searchdata.js"></script>
+    <script src="../_static/html/search/all_17.js"></script>
+    <script src="../_static/html/search/variables_7.js"></script>
+    <script src="../_static/html/search/enumvalues_3.js"></script>
+    <script src="../_static/html/search/variables_14.js"></script>
+    <script src="../_static/html/search/typedefs_c.js"></script>
+    <script src="../_static/html/search/files_2.js"></script>
+    <script src="../_static/html/search/variables_c.js"></script>
+    <script src="../_static/html/search/all_6.js"></script>
+    <script src="../_static/html/search/classes_4.js"></script>
+    <script src="../_static/html/search/functions_2.js"></script>
+    <script src="../_static/html/search/files_7.js"></script>
+    <script src="../_static/html/search/typedefs_12.js"></script>
+    <script src="../_static/html/search/enumvalues_2.js"></script>
+    <script src="../_static/html/search/variables_12.js"></script>
+    <script src="../_static/html/search/enumvalues_5.js"></script>
+    <script src="../_static/html/search/functions_16.js"></script>
+    <script src="../_static/html/search/enumvalues_7.js"></script>
+    <script src="../_static/html/search/functions_17.js"></script>
+    <script src="../_static/html/search/all_7.js"></script>
+    <script src="../_static/html/search/functions_9.js"></script>
+    <script src="../_static/html/search/all_b.js"></script>
+    <script src="../_static/html/search/variables_a.js"></script>
+    <script src="../_static/html/search/files_16.js"></script>
+    <script src="../_static/html/search/functions_b.js"></script>
+    <script src="../_static/html/search/enumvalues_9.js"></script>
+    <script src="../_static/html/search/typedefs_d.js"></script>
+    <script src="../_static/html/search/all_12.js"></script>
+    <script src="../_static/html/search/classes_a.js"></script>
+    <script src="../_static/html/search/all_0.js"></script>
+    <script src="../_static/html/search/files_5.js"></script>
+    <script src="../_static/html/search/files_f.js"></script>
+    <script src="../_static/html/search/variables_10.js"></script>
+    <script src="../_static/html/search/variables_d.js"></script>
+    <script src="../_static/html/search/enumvalues_8.js"></script>
+    <script src="../_static/html/search/functions_4.js"></script>
+    <script src="../_static/html/search/classes_14.js"></script>
+    <script src="../_static/html/search/related_0.js"></script>
+    <script src="../_static/html/search/files_14.js"></script>
+    <script src="../_static/html/search/classes_c.js"></script>
+    <script src="../_static/html/search/classes_12.js"></script>
+    <script src="../_static/html/search/variables_b.js"></script>
+    <script src="../_static/html/search/enums_2.js"></script>
+    <script src="../_static/html/search/files_e.js"></script>
+    <script src="../_static/html/search/all_1.js"></script>
+    <script src="../_static/html/search/typedefs_11.js"></script>
+    <script src="../_static/html/search/all_14.js"></script>
+    <script src="../_static/html/search/all_5.js"></script>
+    <script src="../_static/html/search/all_f.js"></script>
+    <script src="../_static/html/search/typedefs_f.js"></script>
+    <script src="../_static/html/search/all_2.js"></script>
+    <script src="../_static/html/search/variables_f.js"></script>
+    <script src="../_static/html/search/files_1.js"></script>
+    <script src="../_static/html/search/functions_d.js"></script>
+    <script src="../_static/html/search/classes_10.js"></script>
+    <script src="../_static/html/search/functions_0.js"></script>
+    <script src="../_static/html/search/typedefs_3.js"></script>
+    <script src="../_static/html/search/variables_11.js"></script>
+    <script src="../_static/html/search/files_6.js"></script>
+    <script src="../_static/html/search/functions_6.js"></script>
+    <script src="../_static/html/search/variables_13.js"></script>
+    <script src="../_static/html/search/files_a.js"></script>
+    <script src="../_static/html/search/all_1b.js"></script>
+    <script src="../_static/html/search/enums_0.js"></script>
+    <script src="../_static/html/search/typedefs_a.js"></script>
+    <script src="../_static/html/search/all_19.js"></script>
+    <script src="../_static/html/search/all_9.js"></script>
+    <script src="../_static/html/search/namespaces_1.js"></script>
+    <script src="../_static/html/search/typedefs_b.js"></script>
+    <script src="../_static/html/search/variables_e.js"></script>
+    <script src="../_static/html/search/classes_7.js"></script>
+    <script src="../_static/html/search/typedefs_14.js"></script>
+    <script src="../_static/html/search/files_d.js"></script>
+    <script src="../_static/html/search/typedefs_9.js"></script>
+    <script src="../_static/html/search/variables_0.js"></script>
+    <script src="../_static/html/search/classes_6.js"></script>
+    <script src="../_static/html/search/functions_a.js"></script>
+    <script src="../_static/html/search/classes_2.js"></script>
+    <script src="../_static/html/search/functions_1.js"></script>
+    <script src="../_static/html/search/files_15.js"></script>
+    <script src="../_static/html/search/classes_13.js"></script>
+    <script src="../_static/html/search/typedefs_6.js"></script>
+    <script src="../_static/html/search/functions_8.js"></script>
+    <script src="../_static/html/search/classes_9.js"></script>
+    <script src="../_static/html/search/classes_16.js"></script>
+    <script src="../_static/html/search/namespaces_0.js"></script>
+    <script src="../_static/html/search/variables_2.js"></script>
+    <script src="../_static/html/search/classes_8.js"></script>
+    <script src="../_static/html/search/all_d.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GQCP devops" href="devops.html" />
+    <link rel="prev" title="Introduction for developers" href="introduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpg" class="logo" alt="logo">
+  
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../landing-page.html">
+   The Ghent Quantum Chemistry Package
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  User documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/introduction.html">
+   Introduction for users
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/molecules.html">
+   Molecules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/orbital-bases.html">
+   Orbital bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/quantum-chemical-methods.html">
+   Quantum chemical methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/quantum-chemical-models.html">
+   Quantum chemical models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/use-cases.html">
+   Common use cases
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/AP1roG-calculations.html">
+   AP1roG calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/CCSD.html">
+   CCSD calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Custom-algorithms-showcase-CUHF.html">
+   Custom algorithms showcase - CUHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html">
+   DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#preparing-the-hamiltonian-in-the-canonical-rhf-basis">
+   Preparing the Hamiltonian in the canonical RHF basis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#dense-doci-calculations">
+   Dense DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#davidson-doci-calculations">
+   ‘Davidson’ DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/FCI.html">
+   Molecular FCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/HF-Stability.html">
+   Checking the Hartree-Fock Stability conditions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Hubbard.html">
+   Hubbard calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Mulliken-population.html">
+   Calculating the Mulliken population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/ONVPath.html">
+   ONV path manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/R-U-GHF-overlaps.html">
+   Overlaps between R/U/GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/README.html">
+   Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/RHF-dipole-moments.html">
+   Calculating the RHF dipole moment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Spinor-bases.html">
+   Spinor bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Try-out-Binder.html">
+   Try out GQCP: the Ghent Quantum Chemistry Package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Try-out-Colab.html">
+   Try out GQCP: the Ghent Quantum Chemistry Package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/UHF-calculations.html">
+   UHF SCF
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Developer documentation
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style-guide.html">
+   GQCP Style Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction for developers
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Manipulating ONVs and their addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="devops.html">
+   GQCP devops
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/troubleshooting.html">
+   Troubleshooting guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/citations.html">
+   Academic references
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/api.html">
+   API
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Blog posts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blog/2020-11-30-RSDD.html">
+   GQCP appears in RSDD2020
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/developer-documentation/ONV-path-manipulation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-electron-excitations">
+   One-electron excitations
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="manipulating-onvs-and-their-addresses">
+<h1>Manipulating ONVs and their addresses<a class="headerlink" href="#manipulating-onvs-and-their-addresses" title="Permalink to this headline">¶</a></h1>
+<p>Understanding the inner workings of a low-level CI code can be daunting, mainly because bit string manipulations can be very hard to understand without any guidance. This section should help aspiring developers how GQCP deals with the manipulation of ONV’s (occupation number vectors) and their path representation in an addressing scheme.</p>
+<blockquote>
+<div><p>Note: In order to understand the following section, it is necessary that you understand the theory first, since the code tries to follow the theory as closely as possible. To brush up on CI algorithms, ONVs and addressing schemes, we highly recommend chapter 11 in the ‘purple bible’ <a class="reference external" href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119019572">Molecular Electronic‐Structure Theory</a> by Helgaker, Jørgensen and Olsen.</p>
+</div></blockquote>
+<div class="section" id="one-electron-excitations">
+<h2>One-electron excitations<a class="headerlink" href="#one-electron-excitations" title="Permalink to this headline">¶</a></h2>
+<p>ONV path manipulations are intuitively described using a second quantization approach, which GQCP’s API sticks to as closely as possible by providing a class <code class="docutils literal notranslate"><span class="pre">ONVPath</span></code>. To manipulate an ONV path, we use the elementary second quantization operators to annihilate or create arcs that represent occupied orbitals. In an ONV path, a diagonal arc represents an occupied orbital, while a vertical arc represents an unoccupied orbital. As an example, we will use the path of the ONV <code class="docutils literal notranslate"><span class="pre">|10110&gt;</span></code>.</p>
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Python-->
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a F(5,3) Fock space.</span>
+<span class="n">onv_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinUnresolvedONVBasis</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">onv</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinUnresolvedONV</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">onv_path</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ONVPath</span><span class="p">(</span><span class="n">onv_basis</span><span class="p">,</span> <span class="n">onv</span><span class="p">)</span>
+</pre></div>
+</div>
+<!--C++-->
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set up a F(5,3) Fock space.</span>
+<span class="k">const</span> <span class="kt">size_t</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">size_t</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONVBasis</span> <span class="n">onv_basis</span> <span class="p">{</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">};</span>
+
+<span class="k">const</span> <span class="k">auto</span> <span class="n">I</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONV</span><span class="o">::</span><span class="n">FromOccupiedIndices</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="mi">5</span><span class="p">);</span>  <span class="c1">// |10110&gt;</span>
+<span class="n">GQCP</span><span class="o">::</span><span class="n">ONVPath</span> <span class="n">onv_path</span> <span class="p">{</span><span class="n">onv_basis</span><span class="p">,</span> <span class="n">I</span><span class="p">};</span>
+</pre></div>
+</div>
+<!--END_DOCUSAURUS_CODE_TABS-->
+<p>Graphically, the state of the corresponding <code class="docutils literal notranslate"><span class="pre">ONVPath</span></code> may be pictorially represented as:</p>
+<p><img alt="init_path" src="../_images/ONVPath_10110.png" /></p>
+<p>Since the address of an ONV is the sum of its diagonal arc weights, the address for <code class="docutils literal notranslate"><span class="pre">|10110&gt;</span></code> is <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+<blockquote>
+<div><p>Notice the blue dot at the coordinate [0, 0]. This signifies that no annihilations on the ONV have taken place.</p>
+</div></blockquote>
+<p>The function <code class="docutils literal notranslate"><span class="pre">annihilate()</span></code> removes the diagonal arc starting at the given coordinate in the ONV path.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">*  Annihilate the diagonal arc that starts at the coordinate (q,n).</span>
+<span class="cm">* </span>
+<span class="cm">*  @param q        the index of the orbital that should be annihilated</span>
+<span class="cm">*  @param n        the number of electrons in the ONV/path up to the orbital index q</span>
+<span class="cm">*/</span>
+<span class="kt">void</span> <span class="n">ONVPath</span><span class="o">::</span><span class="n">annihilate</span><span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="n">q</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// During annihilation, we&#39;re removing an arc, so we&#39;ll have to update the current address by removing the corresponding arc weight.</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span> <span class="o">-=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+
+    <span class="c1">// Update the next possible creation index. Since we&#39;re always constructing paths from the top-left to the bottom-right, we&#39;re only considering creation indices p &gt; q.</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">p</span> <span class="o">=</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are three diagonal arcs (starting at [0, 0], [2, 1] and [3, 2]), which are the coordinates where <code class="docutils literal notranslate"><span class="pre">annihilate()</span></code> can remove an electron. Let’s say we <code class="docutils literal notranslate"><span class="pre">annihilate(0,</span> <span class="pre">0)</span></code>. The diagonal arc starting at [0, 0] will then become a vertical arc, resulting in a new, <em>open</em> path, related to the ONV <code class="docutils literal notranslate"><span class="pre">|00110&gt;</span></code></p>
+<blockquote>
+<div><p>Note: An <em>open</em> path represents the situation where the associated ONV belongs to a Fock space with less electrons.</p>
+</div></blockquote>
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Python-->
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Annihilate the electron in the orbital with index 0</span>
+<span class="n">onv_path</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<!--C++-->
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Annihilate the electron in the orbital with index 0.</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">annihilate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<!--END_DOCUSAURUS_CODE_TABS-->
+<p><img alt="first_annihilate" src="../_images/ONVPath_00110_1.png" /></p>
+<p>Since we have removed a diagonal arc with weight <code class="docutils literal notranslate"><span class="pre">1</span></code>, the current address of this open path is <code class="docutils literal notranslate"><span class="pre">2</span></code>. To <em>close</em> the current path, we can use the <code class="docutils literal notranslate"><span class="pre">create()</span></code> function.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">*  Create the diagonal arc that starts at the coordinate (p, n).</span>
+<span class="cm">* </span>
+<span class="cm">*  @param p        the index of the orbital that should be created</span>
+<span class="cm">*  @param n        the number of electrons in the ONV/path up to the orbital index q, prior to the creation</span>
+<span class="cm">*/</span>
+<span class="kt">void</span> <span class="n">ONVPath</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// During creation, we&#39;re adding an arc, so we&#39;ll have to update the current address by adding the corresponding arc weight.</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span> <span class="o">+=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this particular case, the path can be closed by creating at coordinate [1, 0], resulting in a new ONV: <code class="docutils literal notranslate"><span class="pre">|01110&gt;</span></code>.</p>
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Python-->
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an electron in the orbital with index 1</span>
+<span class="n">onv_path</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<!--C++-->
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an electron in the orbital with index 1.</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<!--END_DOCUSAURUS_CODE_TABS-->
+<p><img alt="first_create" src="../_images/ONVPath_01110.png" /></p>
+<p>This was not the only way to close the path related to the ONV <code class="docutils literal notranslate"><span class="pre">|00110&gt;</span></code>. Clearly, it is possible to create an electron in the orbital with index <code class="docutils literal notranslate"><span class="pre">4</span></code>. In order to update the path’s state, we’ll have to shift diagonal arcs (indicating occupied orbitals) to the left until a vertical arc is encountered to close the gap. For this purpose, GQCP offers the API <code class="docutils literal notranslate"><span class="pre">leftTranslateDiagonalArc()</span></code>.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">  *  Translate the diagonal arc that starts at the coordinate (p, n) to the left.</span>
+<span class="cm">  * </span>
+<span class="cm">  *  @param p        the index of the orbital that should be annihilated</span>
+<span class="cm">  *  @param n        the number of electrons in the ONV/path up to the orbital index p</span>
+<span class="cm">  */</span>
+ <span class="kt">void</span> <span class="n">ONVPath</span><span class="o">::</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+
+     <span class="c1">// Translating a diagonal arc can be rewritten as an annihilation, followed by a creation.</span>
+     <span class="k">this</span><span class="o">-&gt;</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+     <span class="k">this</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+     <span class="c1">// Since a left-translation describes the process of &#39;encountering an electron/occupied orbital&#39;, the sign factor should be updated according to the fermionic anti-commutation rules.</span>
+     <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_sign</span> <span class="o">*=</span> <span class="mi">-1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: <code class="docutils literal notranslate"><span class="pre">leftTranslateDiagonalArc()</span></code> keep track of the overall sign of the annihilations and creations due to the fermionic anti-commutation relations.</p>
+</div></blockquote>
+<p>The initial situation may be described in the following figure, on the left.</p>
+<p><img alt="first_annihilate_shift" src="../_images/ONVPath_00110_2_3_side.png" /></p>
+<blockquote>
+<div><p>Notice the blue dot at the coordinate [2, 0]. This means that the path’s state is now ready to be modified starting at the orbital with index <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</div></blockquote>
+<p>We’ll get started by moving the diagonal arc that starts at [2, 1], yielding the situation on the right.</p>
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Python-->
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Translate the diagonal arc that starts at (2, 1) to (2, 0).</span>
+<span class="n">onv_path</span><span class="o">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<!--C++-->
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Translate the diagonal arc that starts at (2, 1) to (2, 0).</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<!--END_DOCUSAURUS_CODE_TABS-->
+<p>Since we have removed an arc with weight <code class="docutils literal notranslate"><span class="pre">1</span></code>, and created one with weight <code class="docutils literal notranslate"><span class="pre">2</span></code>, the current address of this open path is <code class="docutils literal notranslate"><span class="pre">3</span></code>. After this translation, the situation is still very similar. The next possible creation index is still an occupied index, so we’ll need to perform another translation.</p>
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Python-->
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Translate the diagonal arc that starts at (3, 2) to (3, 1).</span>
+<span class="n">onv_path</span><span class="o">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<!--C++-->
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Translate the diagonal arc that starts at (3, 2) to (3, 1).</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<!--END_DOCUSAURUS_CODE_TABS-->
+<p>Instead of translating the occupied arcs to the left manually, there is also the possibility to keep translating occupied arcs until an unoccupied, vertical ar is found. This is done with <code class="docutils literal notranslate"><span class="pre">leftTranslateDiagonalArcUntilVerticalArc()</span></code>. This function translates diagonal arcs using the <code class="docutils literal notranslate"><span class="pre">leftTranslateDiagonalArc()</span></code> function, until an unoccupied creation index is found.</p>
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Python-->
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keep translating diagonal arcs to the left, until an unoccupied index is found.</span>
+<span class="n">onv_path</span><span class="o">.</span><span class="n">leftTranslateDiagonalArcUntilVerticalArc</span><span class="p">()</span>
+</pre></div>
+</div>
+<!--C++-->
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Keep translating diagonal arcs to the left, until an unoccupied index is found.</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArcUntilVerticalArc</span><span class="p">();</span>
+</pre></div>
+</div>
+<!--END_DOCUSAURUS_CODE_TABS-->
+<p>This will lead to the exact same ONV as performing the two <code class="docutils literal notranslate"><span class="pre">leftTranslateDiagonalArc()</span></code> functions separately.</p>
+<p><img alt="second_shift" src="../_images/ONVPath_00110_4.png" /></p>
+<p>Since we’ve removed an arc with weight <code class="docutils literal notranslate"><span class="pre">1</span></code> and created one with weight <code class="docutils literal notranslate"><span class="pre">3</span></code>, the address of the resulting open path is <code class="docutils literal notranslate"><span class="pre">5</span></code>. Finally, we may close the path by creating an electron, since the next index now refers to an unoccupied orbital. The weight of the related diagonal arc is <code class="docutils literal notranslate"><span class="pre">4</span></code>, so finally the address of the resulting ONV is <code class="docutils literal notranslate"><span class="pre">9</span></code>.</p>
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Python-->
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an electron in the orbital with index 4.</span>
+<span class="n">onv_path</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<!--C++-->
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an electron in the orbital with index 4.</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<!--END_DOCUSAURUS_CODE_TABS-->
+<p><img alt="final_creation" src="../_images/ONVPath_00111.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "GQCG/GQCP",
+            ref: "develop",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./developer-documentation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">Introduction for developers</a>
+    <a class='right-next' id="next-link" href="devops.html" title="next page">GQCP devops</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Ghent Quantum Chemistry Group<br/>
+        
+            &copy; Copyright 2017-2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

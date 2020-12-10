@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::CCSDEnergyCalculation</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_c_c_s_d_energy_calculation_8hpp" local="no">CCSDEnergyCalculation.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae8c3492a40a9a0fb7b06b2d27eba797d" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae948c74d396ea92f33fc17b1ccb8fbfb" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae8c3492a40a9a0fb7b06b2d27eba797d" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::Environment =  CCSDEnvironment&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a7289ab09cfe140d1bb1c4ff15d970479" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" line="50" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a6a572a72973a50d86c2bca93737ab5b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae948c74d396ea92f33fc17b1ccb8fbfb" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the current CCSD electronic correlation energy.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" line="60" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" bodystart="60" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that calculates the current CCSD electronic correlation energy.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the amplitudes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" bodystart="35" bodyend="72"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a7289ab09cfe140d1bb1c4ff15d970479" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::CCSDEnergyCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae948c74d396ea92f33fc17b1ccb8fbfb" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a6a572a72973a50d86c2bca93737ab5b2" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::CCSDEnergyCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae8c3492a40a9a0fb7b06b2d27eba797d" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

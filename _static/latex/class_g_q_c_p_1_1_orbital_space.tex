@@ -1,0 +1,339 @@
+\hypertarget{class_g_q_c_p_1_1_orbital_space}{}\doxysection{G\+Q\+CP\+::Orbital\+Space Class Reference}
+\label{class_g_q_c_p_1_1_orbital_space}\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+
+
+{\ttfamily \#include $<$Orbital\+Space.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Orbital\+Space\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_orbital_space__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0b5a700279bbf9e294d6451832b817b3}{Orbital\+Space}} (const std\+::vector$<$ size\+\_\+t $>$ \&occupied\+\_\+indices, const std\+::vector$<$ size\+\_\+t $>$ \&active\+\_\+indices, const std\+::vector$<$ size\+\_\+t $>$ \&virtual\+\_\+indices)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a664c69605bbb10c501298ec7d82739}{Orbital\+Space}} (const std\+::vector$<$ size\+\_\+t $>$ \&occupied\+\_\+indices, const std\+::vector$<$ size\+\_\+t $>$ \&virtual\+\_\+indices)
+\item 
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$ Scalar $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_acb89ad14bcf5209d3a865bd3f4fa459d}{create\+Representable\+Object\+For}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} row\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} column\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ Scalar $>$ \&M) const
+\item 
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$ Scalar $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a11e108ce916d6b9f43e0978ee35dc35f}{create\+Representable\+Object\+For}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis1\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis2\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis3\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis4\+\_\+type, const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ Scalar, 4 $>$ \&T) const
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_af55bd0e3e8eafebeb497533a33e11754}{description}} () const
+\item 
+const std\+::vector$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_ade818f11cda64633a2d021d2aa7b8239}{indices}} () const
+\item 
+const std\+::vector$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a5f723800aca1fd0a2064798e2cb190cc}{indices}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} type) const
+\item 
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$ Scalar $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a94054746984d5264a8db8be75ec36515}{initialize\+Representable\+Object\+For}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} row\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} column\+\_\+type) const
+\item 
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$ Scalar $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_ae0715f30727c67afad1a406b77d04e3f}{initialize\+Representable\+Object\+For}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis1\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis2\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis3\+\_\+type, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} axis4\+\_\+type) const
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6b56ebfb1e6121780b9874ebd9df4ec0}{is\+Index}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} type, const size\+\_\+t p) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0db283ce4ba51869f4bce2c7db121ed4}{number\+Of\+Excitations}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} from, const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} to) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{number\+Of\+Orbitals}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a373451b0fd61fb610e876948084130c6}{number\+Of\+Orbitals}} (const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}} type) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}{Implicit}} (const std\+::map$<$ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}, size\+\_\+t $>$ \&occupation\+\_\+type\+\_\+numbers)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that encapsulates occupied, active and virtual orbital indices.
+
+\begin{DoxyNote}{Note}
+The union of these three sets of indices is supposed to be the full set of orbital indices. 
+
+This class is intended to be used in conjunction with restricted spin-\/orbital bases (\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}) or general spinor bases (\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}). 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a0b5a700279bbf9e294d6451832b817b3}\label{class_g_q_c_p_1_1_orbital_space_a0b5a700279bbf9e294d6451832b817b3}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!OrbitalSpace@{OrbitalSpace}}
+\index{OrbitalSpace@{OrbitalSpace}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{OrbitalSpace()}{OrbitalSpace()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Orbital\+Space\+::\+Orbital\+Space (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{occupied\+\_\+indices,  }\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{active\+\_\+indices,  }\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{virtual\+\_\+indices }\end{DoxyParamCaption})}
+
+Construct an orbital space from occupied, active and virtual indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em occupied\+\_\+indices} & the indices of the orbitals that are considered occupied by the electrons \\
+\hline
+{\em active\+\_\+indices} & the indices of the orbitals that are considered \textquotesingle{}active\textquotesingle{}, i.\+e. those spinor indices that are occupied in some set of configurations but not in others \\
+\hline
+{\em virtual\+\_\+indices} & the indices of the orbitals that are considered virtual (i.\+e. unoccupied) by the electrons \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a0a664c69605bbb10c501298ec7d82739}\label{class_g_q_c_p_1_1_orbital_space_a0a664c69605bbb10c501298ec7d82739}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!OrbitalSpace@{OrbitalSpace}}
+\index{OrbitalSpace@{OrbitalSpace}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{OrbitalSpace()}{OrbitalSpace()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Orbital\+Space\+::\+Orbital\+Space (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{occupied\+\_\+indices,  }\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{virtual\+\_\+indices }\end{DoxyParamCaption})}
+
+Construct an orbital space only from occupied and virtual indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em occupied\+\_\+indices} & the indices of the orbitals that are considered occupied by the electrons \\
+\hline
+{\em virtual\+\_\+indices} & the indices of the orbitals that are considered virtual (i.\+e. unoccupied) by the electrons\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This constructor assumes that there are no active orbital indices
+\end{DoxyNote}
+Construct an orbital space from occupied and virtual indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em occupied\+\_\+indices} & the indices of the orbitals that are considered occupied by the electrons \\
+\hline
+{\em virtual\+\_\+indices} & the indices of the orbitals that are considered virtual (i.\+e. unoccupied) by the electrons \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a11e108ce916d6b9f43e0978ee35dc35f}\label{class_g_q_c_p_1_1_orbital_space_a11e108ce916d6b9f43e0978ee35dc35f}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!createRepresentableObjectFor@{createRepresentableObjectFor}}
+\index{createRepresentableObjectFor@{createRepresentableObjectFor}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{createRepresentableObjectFor()}{createRepresentableObjectFor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$Scalar$>$ G\+Q\+C\+P\+::\+Orbital\+Space\+::create\+Representable\+Object\+For (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis1\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis2\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis3\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis4\+\_\+type,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ Scalar, 4 $>$ \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & the scalar type of the elements of the implicit tensor\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em axis1\+\_\+type} & the spinor occupation type for the first tensor axis \\
+\hline
+{\em axis2\+\_\+type} & the spinor occupation type for the second tensor axis \\
+\hline
+{\em axis3\+\_\+type} & the spinor occupation type for the third tensor axis \\
+\hline
+{\em axis4\+\_\+type} & the spinor occupation type for the fourth tensor axis \\
+\hline
+{\em T} & the dense representation of the tensor slice\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an implicit rank-\/four tensor slice, according to the given occupation types
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+For the representation of an occupied-\/occupied-\/virtual-\/virtual object (for example the T2-\/coupled-\/cluster amplitudes t\+\_\+\{ij\}$^\wedge$\{ab\}), the following method can be called orbital\+\_\+space.\+create\+Representable\+Object\+For(\+Occupation\+Type\+::k\+\_\+occupied, Occupation\+Type\+::k\+\_\+occupied, Occupation\+Type\+::k\+\_\+virtual, Occupation\+Type\+::k\+\_\+virtual, T), where {\ttfamily T} is supposed to be the dense tensor representation of the T2-\/amplitudes. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_acb89ad14bcf5209d3a865bd3f4fa459d}\label{class_g_q_c_p_1_1_orbital_space_acb89ad14bcf5209d3a865bd3f4fa459d}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!createRepresentableObjectFor@{createRepresentableObjectFor}}
+\index{createRepresentableObjectFor@{createRepresentableObjectFor}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{createRepresentableObjectFor()}{createRepresentableObjectFor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$Scalar$>$ G\+Q\+C\+P\+::\+Orbital\+Space\+::create\+Representable\+Object\+For (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{row\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{column\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ Scalar $>$ \&}]{M }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense representation of the matrix slice.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & the scalar type of the elements of the implicit matrix\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+type} & the spinor occupation type for the rows \\
+\hline
+{\em column\+\_\+type} & the spinor occupation type for the columns \\
+\hline
+{\em M} & the dense representation of the matrix slice\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an implicit matrix slice, according to the given occupation types
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+For the representation of an occupied-\/virtual object (for example the T1-\/coupled-\/cluster amplitudes t\+\_\+i$^\wedge$a), the following method can be called orbital\+\_\+space.\+create\+Representable\+Object\+For(\+Occupation\+Type\+::k\+\_\+occupied, Occupation\+Type\+::k\+\_\+virtual, M), where {\ttfamily M} is supposed to be the dense matrix representation of the T1 amplitudes. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_af55bd0e3e8eafebeb497533a33e11754}\label{class_g_q_c_p_1_1_orbital_space_af55bd0e3e8eafebeb497533a33e11754}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!description@{description}}
+\index{description@{description}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Orbital\+Space\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this orbital space 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}\label{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!Implicit@{Implicit}}
+\index{Implicit@{Implicit}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{Implicit()}{Implicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} G\+Q\+C\+P\+::\+Orbital\+Space\+::\+Implicit (\begin{DoxyParamCaption}\item[{const std\+::map$<$ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}, size\+\_\+t $>$ \&}]{occupation\+\_\+type\+\_\+numbers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Create an implicit orbital space with the given dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em occupation\+\_\+type\+\_\+numbers} & a map that links an occupation type (k\+\_\+occupied, k\+\_\+active, k\+\_\+virtual) with the number of orbitals that are to be found in that orbital space\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+An \textquotesingle{}implicit\textquotesingle{} orbital space is one where all indices are sorted by increasing value, and the occupied indices are lower than the active indices, which are in turn lower than the virtual indices. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_ade818f11cda64633a2d021d2aa7b8239}\label{class_g_q_c_p_1_1_orbital_space_ade818f11cda64633a2d021d2aa7b8239}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!indices@{indices}}
+\index{indices@{indices}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{indices()}{indices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const std\+::vector$<$size\+\_\+t$>$\& G\+Q\+C\+P\+::\+Orbital\+Space\+::indices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+all the indices of the spinors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a5f723800aca1fd0a2064798e2cb190cc}\label{class_g_q_c_p_1_1_orbital_space_a5f723800aca1fd0a2064798e2cb190cc}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!indices@{indices}}
+\index{indices@{indices}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{indices()}{indices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const std\+::vector$<$ size\+\_\+t $>$ \& G\+Q\+C\+P\+::\+Orbital\+Space\+::indices (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{type }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & the occupation type that the indices should belong to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the indices that belong to the given occupation type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_ae0715f30727c67afad1a406b77d04e3f}\label{class_g_q_c_p_1_1_orbital_space_ae0715f30727c67afad1a406b77d04e3f}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!initializeRepresentableObjectFor@{initializeRepresentableObjectFor}}
+\index{initializeRepresentableObjectFor@{initializeRepresentableObjectFor}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{initializeRepresentableObjectFor()}{initializeRepresentableObjectFor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$Scalar$>$ G\+Q\+C\+P\+::\+Orbital\+Space\+::initialize\+Representable\+Object\+For (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis1\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis2\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis3\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{axis4\+\_\+type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an implicit, zero-\/initialized, mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & the scalar type of the elements of the implicit tensor\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em axis1\+\_\+type} & the spinor occupation type for the first tensor axis \\
+\hline
+{\em axis2\+\_\+type} & the spinor occupation type for the second tensor axis \\
+\hline
+{\em axis3\+\_\+type} & the spinor occupation type for the third tensor axis \\
+\hline
+{\em axis4\+\_\+type} & the spinor occupation type for the fourth tensor axis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a zero-\/initialized implicit rank-\/four tensor slice, according to the given occupation types
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+For the representation of an occupied-\/occupied-\/virtual-\/virtual object (for example the T2-\/coupled-\/cluster amplitudes t\+\_\+\{ij\}$^\wedge$\{ab\}), the following method can be called orbital\+\_\+space.\+create\+Representable\+Object\+For(\+Occupation\+Type\+::k\+\_\+occupied, Occupation\+Type\+::k\+\_\+occupied, Occupation\+Type\+::k\+\_\+virtual, Occupation\+Type\+::k\+\_\+virtual) 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a94054746984d5264a8db8be75ec36515}\label{class_g_q_c_p_1_1_orbital_space_a94054746984d5264a8db8be75ec36515}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!initializeRepresentableObjectFor@{initializeRepresentableObjectFor}}
+\index{initializeRepresentableObjectFor@{initializeRepresentableObjectFor}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{initializeRepresentableObjectFor()}{initializeRepresentableObjectFor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$Scalar$>$ G\+Q\+C\+P\+::\+Orbital\+Space\+::initialize\+Representable\+Object\+For (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{row\+\_\+type,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{column\+\_\+type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an implicit, zero-\/initialized, mathematical object that can serve as the representation of a object with the given occupation types.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & the scalar type of the elements of the implicit matrix\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+type} & the spinor occupation type for the rows \\
+\hline
+{\em column\+\_\+type} & the spinor occupation type for the columns\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a zero-\/initialized implicit matrix slice, according to the given occupation types
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+For the representation of an occupied-\/virtual object (for example the T1-\/coupled-\/cluster amplitudes t\+\_\+i$^\wedge$a), the following method can be called orbital\+\_\+space.\+initialize\+Representable\+Object\+For(\+Occupation\+Type\+::k\+\_\+occupied, Occupation\+Type\+::k\+\_\+virtual) 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a6b56ebfb1e6121780b9874ebd9df4ec0}\label{class_g_q_c_p_1_1_orbital_space_a6b56ebfb1e6121780b9874ebd9df4ec0}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!isIndex@{isIndex}}
+\index{isIndex@{isIndex}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{isIndex()}{isIndex()}}
+{\footnotesize\ttfamily bool G\+Q\+C\+P\+::\+Orbital\+Space\+::is\+Index (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{type,  }\item[{const size\+\_\+t}]{p }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & an occupation type (k\+\_\+occupied, k\+\_\+active, k\+\_\+virtual) \\
+\hline
+{\em p} & an orbital index\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the orbital at the given index is in the given orbital set 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a0db283ce4ba51869f4bce2c7db121ed4}\label{class_g_q_c_p_1_1_orbital_space_a0db283ce4ba51869f4bce2c7db121ed4}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!numberOfExcitations@{numberOfExcitations}}
+\index{numberOfExcitations@{numberOfExcitations}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{numberOfExcitations()}{numberOfExcitations()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Orbital\+Space\+::number\+Of\+Excitations (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{from,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{to }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & the type of orbitals that should be excited from \\
+\hline
+{\em to} & the type of orbitals that should be excited to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of possible excitations between the two orbital sets 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}\label{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!numberOfOrbitals@{numberOfOrbitals}}
+\index{numberOfOrbitals@{numberOfOrbitals}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{numberOfOrbitals()}{numberOfOrbitals()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Orbital\+Space\+::number\+Of\+Orbitals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the total number of orbitals (i.\+e. spatial orbitals or spinors, depending on the context) in this orbital space 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_space_a373451b0fd61fb610e876948084130c6}\label{class_g_q_c_p_1_1_orbital_space_a373451b0fd61fb610e876948084130c6}} 
+\index{GQCP::OrbitalSpace@{GQCP::OrbitalSpace}!numberOfOrbitals@{numberOfOrbitals}}
+\index{numberOfOrbitals@{numberOfOrbitals}!GQCP::OrbitalSpace@{GQCP::OrbitalSpace}}
+\doxysubsubsection{\texorpdfstring{numberOfOrbitals()}{numberOfOrbitals()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Orbital\+Space\+::number\+Of\+Orbitals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{Occupation\+Type}}}]{type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & an occupation type (k\+\_\+occupied, k\+\_\+active, k\+\_\+virtual)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of orbitals (i.\+e. spatial orbitals or spinors, depending on the context) that belong to the given occupation type 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Spinor\+Basis/\mbox{\hyperlink{_orbital_space_8hpp}{Orbital\+Space.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Spinor\+Basis/\mbox{\hyperlink{_orbital_space_8cpp}{Orbital\+Space.\+cpp}}\end{DoxyCompactItemize}

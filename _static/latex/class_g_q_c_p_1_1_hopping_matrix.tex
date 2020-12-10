@@ -1,0 +1,185 @@
+\hypertarget{class_g_q_c_p_1_1_hopping_matrix}{}\doxysection{G\+Q\+CP\+::Hopping\+Matrix$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_hopping_matrix}\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$Hopping\+Matrix.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Hopping\+Matrix$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_hopping_matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Hopping\+Matrix$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_hopping_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a422b1a3dc9cfbe1453b51158881ea5fa}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a8daeb4c172ded5405bbc91a230dfcbf1}{Hopping\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&H)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a6b159b48db10550f12569373104a1d94}{Hopping\+Matrix}} ()
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_af8c2b048619c52e21824a24c71b2a564}{Hopping\+Matrix}} (const size\+\_\+t cols, const size\+\_\+t rows)
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a529ce0833ae29bdbebe6bd2e274a29ff}{Hopping\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&A, const double t, const double U, typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value $>$\+::type $\ast$=0)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_acb5b4f6d12e5b217c09c52b35ab086a8}{number\+Of\+Lattice\+Sites}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a1a557f7dd9e1cb28a53a638a674d6464}{From\+C\+S\+Line}} (const std\+::string \&csline)
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a79cab3d4b8302d57cdd8c0fc115d0c04}{Random}} (const size\+\_\+t K)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Hopping\+Matrix$<$ \+\_\+\+Scalar $>$}
+
+The Hubbard hopping matrix.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type of the elements of the hopping matrix. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a422b1a3dc9cfbe1453b51158881ea5fa}\label{class_g_q_c_p_1_1_hopping_matrix_a422b1a3dc9cfbe1453b51158881ea5fa}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a8daeb4c172ded5405bbc91a230dfcbf1}\label{class_g_q_c_p_1_1_hopping_matrix_a8daeb4c172ded5405bbc91a230dfcbf1}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!HoppingMatrix@{HoppingMatrix}}
+\index{HoppingMatrix@{HoppingMatrix}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{HoppingMatrix()}{HoppingMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Scalar}} $>$ \&}]{H }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a hopping matrix from its representation as a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em H} & The Hubbard hopping matrix, represented as a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a6b159b48db10550f12569373104a1d94}\label{class_g_q_c_p_1_1_hopping_matrix_a6b159b48db10550f12569373104a1d94}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!HoppingMatrix@{HoppingMatrix}}
+\index{HoppingMatrix@{HoppingMatrix}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{HoppingMatrix()}{HoppingMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The default constructor. \mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_af8c2b048619c52e21824a24c71b2a564}\label{class_g_q_c_p_1_1_hopping_matrix_af8c2b048619c52e21824a24c71b2a564}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!HoppingMatrix@{HoppingMatrix}}
+\index{HoppingMatrix@{HoppingMatrix}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{HoppingMatrix()}{HoppingMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{cols,  }\item[{const size\+\_\+t}]{rows }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A constructor required for compatibility with Pybind11. In its \textquotesingle{}\mbox{\hyperlink{namespace_eigen}{Eigen}}\textquotesingle{} bindings (eigen.\+h), it makes a call \char`\"{}\+Type(fits.\+rows, fits.\+cols)\char`\"{}. This constructor should be called there. \mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a529ce0833ae29bdbebe6bd2e274a29ff}\label{class_g_q_c_p_1_1_hopping_matrix_a529ce0833ae29bdbebe6bd2e274a29ff}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!HoppingMatrix@{HoppingMatrix}}
+\index{HoppingMatrix@{HoppingMatrix}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{HoppingMatrix()}{HoppingMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&}]{A,  }\item[{const double}]{t,  }\item[{const double}]{U,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The Hubbard adjacency matrix, specifying the connectivity of the Hubbard lattice. \\
+\hline
+{\em t} & The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term. \\
+\hline
+{\em U} & The Hubbard parameter U.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This constructor is only available in the real case (for the std\+::enable\+\_\+if, see \href{https://stackoverflow.com/a/17842695/7930415}{\texttt{ https\+://stackoverflow.\+com/a/17842695/7930415}}). 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a1a557f7dd9e1cb28a53a638a674d6464}\label{class_g_q_c_p_1_1_hopping_matrix_a1a557f7dd9e1cb28a53a638a674d6464}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!FromCSLine@{FromCSLine}}
+\index{FromCSLine@{FromCSLine}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{FromCSLine()}{FromCSLine()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::From\+C\+S\+Line (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{csline }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a hopping matrix from a comma-\/separated line.
+
+
+\begin{DoxyParams}{Parameters}
+{\em csline} & A comma-\/separated line that contains the upper triangle (in column-\/major ordering) of the Hubbard hopping matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hopping matrix that corresponds to the given comma-\/separated line. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_acb5b4f6d12e5b217c09c52b35ab086a8}\label{class_g_q_c_p_1_1_hopping_matrix_acb5b4f6d12e5b217c09c52b35ab086a8}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!numberOfLatticeSites@{numberOfLatticeSites}}
+\index{numberOfLatticeSites@{numberOfLatticeSites}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfLatticeSites()}{numberOfLatticeSites()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::number\+Of\+Lattice\+Sites (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of lattice sites corresponding used in this hopping matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a79cab3d4b8302d57cdd8c0fc115d0c04}\label{class_g_q_c_p_1_1_hopping_matrix_a79cab3d4b8302d57cdd8c0fc115d0c04}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!Random@{Random}}
+\index{Random@{Random}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Random()}{Random()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{G\+Q\+C\+P\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::Random (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{K }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a random Hopping matrix with elements distributed uniformly in \mbox{[}-\/1.\+0, 1.\+0\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em K} & The number of lattice sites.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random hopping matrix.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is only available for real scalars. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+Second\+Quantized/\+Model\+Hamiltonian/\mbox{\hyperlink{_hopping_matrix_8hpp}{Hopping\+Matrix.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1libcint" kind="namespace" language="C++">
+    <compoundname>GQCP::libcint</compoundname>
+    <innerclass refid="class_g_q_c_p_1_1libcint_1_1_raw_container" prot="public">GQCP::libcint::RawContainer</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1ad959f5bc849d6377202c4783dfb58ec0" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::ptr_common_orig</definition>
+        <argsstring></argsstring>
+        <name>ptr_common_orig</name>
+        <initializer>= PTR_COMMON_ORIG</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>C++ global variables instead of macro commands </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="146" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1ad3b2d072e22f85dc400f47f3463d8ead" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::ptr_env_start</definition>
+        <argsstring></argsstring>
+        <name>ptr_env_start</name>
+        <initializer>= PTR_ENV_START</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="147" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a8b51d692daece4b49c3f763fc64cc991" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::atm_slots</definition>
+        <argsstring></argsstring>
+        <name>atm_slots</name>
+        <initializer>= ATM_SLOTS</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="149" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a422235cc8bfac7460761e5d688806ac8" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::charge_of</definition>
+        <argsstring></argsstring>
+        <name>charge_of</name>
+        <initializer>= CHARGE_OF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="150" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1ac3d875d25efce9ad7eecffaef5c115a2" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::ptr_coord</definition>
+        <argsstring></argsstring>
+        <name>ptr_coord</name>
+        <initializer>= PTR_COORD</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="151" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a855114344714574418639c44ea553cd5" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::bas_slots</definition>
+        <argsstring></argsstring>
+        <name>bas_slots</name>
+        <initializer>= BAS_SLOTS</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="154" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a8415e5bbdb9ffd6035992a60422e817d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::atom_of</definition>
+        <argsstring></argsstring>
+        <name>atom_of</name>
+        <initializer>= ATOM_OF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="155" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a3c6e8457be75d5e466a36e5339d733ed" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::ang_of</definition>
+        <argsstring></argsstring>
+        <name>ang_of</name>
+        <initializer>= ANG_OF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="156" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1aa86ec1cca93d962815d6f85f5b0c513c" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::nprim_of</definition>
+        <argsstring></argsstring>
+        <name>nprim_of</name>
+        <initializer>= NPRIM_OF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="157" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a2bf15a172ba5758c46185c2d2871ac71" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::nctr_of</definition>
+        <argsstring></argsstring>
+        <name>nctr_of</name>
+        <initializer>= NCTR_OF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="158" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a45c7e10256f5a9ff9e2ce13309f46b8e" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::ptr_exp</definition>
+        <argsstring></argsstring>
+        <name>ptr_exp</name>
+        <initializer>= PTR_EXP</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="159" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_g_q_c_p_1_1libcint_1a7bc311928b830a1ca58f173143710e9a" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int GQCP::libcint::ptr_coeff</definition>
+        <argsstring></argsstring>
+        <name>ptr_coeff</name>
+        <initializer>= PTR_COEFF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="160" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="62" column="1"/>
+  </compounddef>
+</doxygen>

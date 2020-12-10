@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_g_t_o_basis_set" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::GTOBasisSet</compoundname>
+    <includes refid="_g_t_o_basis_set_8hpp" local="no">GTOBasisSet.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_t_o_basis_set_1a0c56ccdcce01ab17b17bf86a9eafb4b5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string GQCP::GTOBasisSet::basisset_name</definition>
+        <argsstring></argsstring>
+        <name>basisset_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" line="37" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_basis_set_1aab57a3ac1776d26445aa0a332bb5bf48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GTOBasisSet::GTOBasisSet</definition>
+        <argsstring>(const std::string &amp;basisset_name)</argsstring>
+        <name>GTOBasisSet</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>basisset_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the basisset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp" bodystart="33" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_basis_set_1a08624f31c4f05cb3e8ff9784587d48c1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;</type>
+        <definition>ShellSet&lt; GTOShell &gt; GQCP::GTOBasisSet::generate</definition>
+        <argsstring>(const NuclearFramework &amp;nuclear_framework) const</argsstring>
+        <name>generate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
+          <declname>nuclear_framework</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclear_framework</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nuclear framework containing the nuclei on which the shells should be centered</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the shell set by placing the shells corresponding to the basisset information on every nucleus of the nuclear framework</para>
+</simplesect>
+PUBLIC METHODS <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclear_framework</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nuclear framework containing the nuclei on which the shells should be centered</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the shell set by placing the shells corresponding to the basisset information on every nucleus of the nuclear framework </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" line="56" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp" bodystart="46" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_basis_set_1acc7abae92675c4a80eac95e8ae387517" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;</type>
+        <definition>ShellSet&lt; GTOShell &gt; GQCP::GTOBasisSet::generate</definition>
+        <argsstring>(const Molecule &amp;molecule) const</argsstring>
+        <name>generate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the molecule containing the nuclei on which the shells should be centered</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the shell set by placing the shells corresponding to the basisset information on every nucleus of the molecule </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" line="63" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp" bodystart="60" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_basis_set_1a119b18faf3007a2db6f0b725e6b340f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string&amp; GQCP::GTOBasisSet::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the name of the basisset </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" line="68" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents a Gaussian basis set: it serves as a mold to construct GTOShells </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::GTOBasisSet</label>
+        <link refid="class_g_q_c_p_1_1_g_t_o_basis_set"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" bodystart="35" bodyend="69"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1a0c56ccdcce01ab17b17bf86a9eafb4b5" prot="private" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>basisset_name</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1a08624f31c4f05cb3e8ff9784587d48c1" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>generate</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1acc7abae92675c4a80eac95e8ae387517" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>generate</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1aab57a3ac1776d26445aa0a332bb5bf48" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>GTOBasisSet</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1a119b18faf3007a2db6f0b725e6b340f9" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

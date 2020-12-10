@@ -1,0 +1,24 @@
+\hypertarget{_t_8einsum-example}{}\doxysection{T.\+einsum}
+Contract this tensor with a matrix, using a Num\+Py \textquotesingle{}einsum\textquotesingle{}-\/like A\+PI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em contraction\+\_\+string} & The string used to specify the wanted contraction, e.\+g. \char`\"{}ijkl,jk-\/$>$il\char`\"{} \\
+\hline
+{\em rhs} & The right-\/hand side of the contraction, a matrix in this case.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & The number of axes that should be contracted over.\\
+\hline
+\end{DoxyTemplParams}
+(\char`\"{}ijkl,jk-\/$>$il\char`\"{}, M) will contract the j and k axes of the second tensor with those of the first tensor, resulting in a rank 2 tensor with axes i and l.
+
+\begin{DoxyReturn}{Returns}
+The result of the tensor contraction.
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

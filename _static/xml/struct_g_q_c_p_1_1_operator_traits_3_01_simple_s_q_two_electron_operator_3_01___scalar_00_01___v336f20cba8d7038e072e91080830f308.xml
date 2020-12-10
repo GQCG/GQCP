@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</compoundname>
+    <includes refid="_simple_s_q_two_electron_operator_8hpp" local="no">SimpleSQTwoElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+      <param>
+        <type>typename _Vectorizer</type>
+      </param>
+      <param>
+        <type>typename _DerivedOperator</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_1aa3e73d4133b1a7b61079e706822ab018" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="490" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="490" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_1aeb438e01599d703391a7ea5da230420e" prot="public" static="no">
+        <type>_Vectorizer</type>
+        <definition>using GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Vectorizer =  _Vectorizer</definition>
+        <argsstring></argsstring>
+        <name>Vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="493" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="493" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_1a7a386c32eb0c696623dd5ea925ee7e52" prot="public" static="no">
+        <type>_DerivedOperator</type>
+        <definition>using GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator =  _DerivedOperator</definition>
+        <argsstring></argsstring>
+        <name>DerivedOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="496" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="496" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information on operators that is otherwise not accessible through a public class alias. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="487" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="487" bodyend="497"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_1a7a386c32eb0c696623dd5ea925ee7e52" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</scope><name>DerivedOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_1aa3e73d4133b1a7b61079e706822ab018" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</scope><name>Scalar</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_1aeb438e01599d703391a7ea5da230420e" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</scope><name>Vectorizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

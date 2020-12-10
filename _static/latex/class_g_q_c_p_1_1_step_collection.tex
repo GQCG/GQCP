@@ -1,0 +1,184 @@
+\hypertarget{class_g_q_c_p_1_1_step_collection}{}\doxysection{G\+Q\+CP\+::Step\+Collection$<$ \+\_\+\+Environment $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_step_collection}\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+
+
+{\ttfamily \#include $<$Step\+Collection.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Step\+Collection$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_step_collection__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Step\+Collection$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_step_collection__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a4f63e6c1cb7d7de973cbb4212e5ba699}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a227f70ef9375810de6e45dfbc23fc034}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}} \&environment) override
+\item 
+{\footnotesize template$<$typename Z  = Step$<$\+Environment$>$$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}, typename Z\+::\+Environment $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{Step\+Collection}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}} $>$ \& $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a564aa7135354b9c6af9b0b0114d534d7}{add}} (const Z \&step)
+\item 
+{\footnotesize template$<$typename Z  = Step$<$\+Environment$>$$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}, typename Z\+::\+Environment $>$\+::value, void $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a009873ccc611a2c200c15d51e0c38e2b}{insert}} (const Z \&step, const size\+\_\+t index)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}{number\+Of\+Steps}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a7b03c30ebdc23920b3872a4409e887df}{remove}} (const size\+\_\+t index)
+\item 
+{\footnotesize template$<$typename Z  = Step$<$\+Environment$>$$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}, typename Z\+::\+Environment $>$\+::value, void $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a10234ffefae0fbec6949dc0a85902323}{replace}} (const Z \&step, const size\+\_\+t index)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Environment$>$\newline
+class G\+Q\+C\+P\+::\+Step\+Collection$<$ \+\_\+\+Environment $>$}
+
+A collection of steps to be executed in a consecutive order.
+
+This iteration cycle maintains the ownership of its constituting steps.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Environment} & the type of the environment that this iteration step can read from and write to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}\label{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}} =  \+\_\+\+Environment}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a564aa7135354b9c6af9b0b0114d534d7}\label{class_g_q_c_p_1_1_step_collection_a564aa7135354b9c6af9b0b0114d534d7}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!add@{add}}
+\index{add@{add}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename Z  = Step$<$\+Environment$>$$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}, typename Z\+::\+Environment$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{Step\+Collection}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}$>$\&$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::add (\begin{DoxyParamCaption}\item[{const Z \&}]{step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a new step to the collection of steps.
+
+\begin{DoxyReturn}{Returns}
+the modified collection of steps, in order to allow chaining. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a4f63e6c1cb7d7de973cbb4212e5ba699}\label{class_g_q_c_p_1_1_step_collection_a4f63e6c1cb7d7de973cbb4212e5ba699}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!description@{description}}
+\index{description@{description}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{G\+Q\+C\+P\+::\+Step$<$ \+\_\+\+Environment $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a227f70ef9375810de6e45dfbc23fc034}\label{class_g_q_c_p_1_1_step_collection_a227f70ef9375810de6e45dfbc23fc034}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!execute@{execute}}
+\index{execute@{execute}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Execute all the steps in this collection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that this step can read from and write to \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ \+\_\+\+Environment $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a009873ccc611a2c200c15d51e0c38e2b}\label{class_g_q_c_p_1_1_step_collection_a009873ccc611a2c200c15d51e0c38e2b}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!insert@{insert}}
+\index{insert@{insert}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename Z  = Step$<$\+Environment$>$$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}, typename Z\+::\+Environment$>$\+::value, void$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::insert (\begin{DoxyParamCaption}\item[{const Z \&}]{step,  }\item[{const size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Insert an algorithm step at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em step} & the step that should be inserted into this algorithm step collection \\
+\hline
+{\em index} & the zero-\/based index that the given step should be performed at in the total collection of steps \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}\label{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!numberOfSteps@{numberOfSteps}}
+\index{numberOfSteps@{numberOfSteps}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfSteps()}{numberOfSteps()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::number\+Of\+Steps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of steps that are in this consecutive collection 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a7b03c30ebdc23920b3872a4409e887df}\label{class_g_q_c_p_1_1_step_collection_a7b03c30ebdc23920b3872a4409e887df}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!remove@{remove}}
+\index{remove@{remove}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::remove (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the step at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the zero-\/based index of the step in this collection that should be removed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_collection_a10234ffefae0fbec6949dc0a85902323}\label{class_g_q_c_p_1_1_step_collection_a10234ffefae0fbec6949dc0a85902323}} 
+\index{GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}!replace@{replace}}
+\index{replace@{replace}!GQCP::StepCollection$<$ \_Environment $>$@{GQCP::StepCollection$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{replace()}{replace()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+template$<$typename Z  = Step$<$\+Environment$>$$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}, typename Z\+::\+Environment$>$\+::value, void$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{G\+Q\+C\+P\+::\+Step\+Collection}}$<$ \+\_\+\+Environment $>$\+::replace (\begin{DoxyParamCaption}\item[{const Z \&}]{step,  }\item[{const size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Replace an algorithm step at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em step} & the step that should be inserted into this algorithm \\
+\hline
+{\em index} & the zero-\/based index of the step that should be replaced \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Algorithm/\mbox{\hyperlink{_step_collection_8hpp}{Step\+Collection.\+hpp}}\end{DoxyCompactItemize}

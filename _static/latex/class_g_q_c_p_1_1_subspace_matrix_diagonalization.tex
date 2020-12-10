@@ -1,0 +1,87 @@
+\hypertarget{class_g_q_c_p_1_1_subspace_matrix_diagonalization}{}\doxysection{G\+Q\+CP\+::Subspace\+Matrix\+Diagonalization Class Reference}
+\label{class_g_q_c_p_1_1_subspace_matrix_diagonalization}\index{GQCP::SubspaceMatrixDiagonalization@{GQCP::SubspaceMatrixDiagonalization}}
+
+
+{\ttfamily \#include $<$Subspace\+Matrix\+Diagonalization.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Subspace\+Matrix\+Diagonalization\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_subspace_matrix_diagonalization__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Subspace\+Matrix\+Diagonalization\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_subspace_matrix_diagonalization__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization_abd0329999c90d0f1828c02be9817a20e}{Subspace\+Matrix\+Diagonalization}} (const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a4874cd13941a8fdf1984df8241ee89c0}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a289097a48ae666a44136878246d964c9}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+An iteration step that diagonalizes the subspace matrix, i.\+e. the projection of the matrix A onto the subspace spanned by the vectors in V. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_subspace_matrix_diagonalization_abd0329999c90d0f1828c02be9817a20e}\label{class_g_q_c_p_1_1_subspace_matrix_diagonalization_abd0329999c90d0f1828c02be9817a20e}} 
+\index{GQCP::SubspaceMatrixDiagonalization@{GQCP::SubspaceMatrixDiagonalization}!SubspaceMatrixDiagonalization@{SubspaceMatrixDiagonalization}}
+\index{SubspaceMatrixDiagonalization@{SubspaceMatrixDiagonalization}!GQCP::SubspaceMatrixDiagonalization@{GQCP::SubspaceMatrixDiagonalization}}
+\doxysubsubsection{\texorpdfstring{SubspaceMatrixDiagonalization()}{SubspaceMatrixDiagonalization()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Subspace\+Matrix\+Diagonalization\+::\+Subspace\+Matrix\+Diagonalization (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+\_\+of\+\_\+requested\+\_\+eigenpairs} & the number of solutions the Davidson solver should find \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a4874cd13941a8fdf1984df8241ee89c0}\label{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a4874cd13941a8fdf1984df8241ee89c0}} 
+\index{GQCP::SubspaceMatrixDiagonalization@{GQCP::SubspaceMatrixDiagonalization}!description@{description}}
+\index{description@{description}!GQCP::SubspaceMatrixDiagonalization@{GQCP::SubspaceMatrixDiagonalization}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Subspace\+Matrix\+Diagonalization\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a289097a48ae666a44136878246d964c9}\label{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a289097a48ae666a44136878246d964c9}} 
+\index{GQCP::SubspaceMatrixDiagonalization@{GQCP::SubspaceMatrixDiagonalization}!execute@{execute}}
+\index{execute@{execute}!GQCP::SubspaceMatrixDiagonalization@{GQCP::SubspaceMatrixDiagonalization}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Subspace\+Matrix\+Diagonalization\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Diagonalize the subspace matrix, i.\+e. the projection of the matrix A onto the subspace spanned by the vectors in V, and write its eigenvalues and eigenvectors to the environment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_subspace_matrix_diagonalization_8hpp}{Subspace\+Matrix\+Diagonalization.\+hpp}}\end{DoxyCompactItemize}

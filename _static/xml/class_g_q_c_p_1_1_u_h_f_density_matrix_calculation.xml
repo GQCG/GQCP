@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::UHFDensityMatrixCalculation</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_u_h_f_density_matrix_calculation_8hpp" local="no">UHFDensityMatrixCalculation.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1abaf6e6f44484ca9af1897314f5f2623a" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::UHFDensityMatrixCalculation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a9756454d27065d5535224ce8b6a12d63" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kindref="compound">UHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1abaf6e6f44484ca9af1897314f5f2623a" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::UHFDensityMatrixCalculation&lt; _Scalar &gt;::Environment =  UHFSCFEnvironment&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a9fdc96af4d1eb5aa0551f6b77e717202" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::UHFDensityMatrixCalculation&lt; _Scalar &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" line="51" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" bodystart="51" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a8b228d23a01758b17ec265b3c575ed57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::UHFDensityMatrixCalculation&lt; _Scalar &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a9756454d27065d5535224ce8b6a12d63" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the current UHF alpha and beta density matrices (in the AO basis) and place them in the environment.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" line="61" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" bodystart="61" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that calculates the current alpha and beta density matrices (expressed in the scalar/AO basis) from the current coefficient matrices.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent the expansion coefficient/elements of the transformation matrix: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UHFDensityMatrixCalculation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UHFDensityMatrixCalculation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp" bodystart="36" bodyend="69"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a9fdc96af4d1eb5aa0551f6b77e717202" prot="public" virt="non-virtual"><scope>GQCP::UHFDensityMatrixCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::UHFDensityMatrixCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a9756454d27065d5535224ce8b6a12d63" prot="public" virt="non-virtual"><scope>GQCP::UHFDensityMatrixCalculation</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a8b228d23a01758b17ec265b3c575ed57" prot="public" virt="non-virtual"><scope>GQCP::UHFDensityMatrixCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::UHFDensityMatrixCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1abaf6e6f44484ca9af1897314f5f2623a" prot="public" virt="non-virtual"><scope>GQCP::UHFDensityMatrixCalculation</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::UHFDensityMatrixCalculation</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

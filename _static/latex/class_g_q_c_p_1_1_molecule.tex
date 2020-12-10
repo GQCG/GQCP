@@ -1,0 +1,293 @@
+\hypertarget{class_g_q_c_p_1_1_molecule}{}\doxysection{G\+Q\+CP\+::Molecule Class Reference}
+\label{class_g_q_c_p_1_1_molecule}\index{GQCP::Molecule@{GQCP::Molecule}}
+
+
+{\ttfamily \#include $<$Molecule.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Molecule\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_molecule__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a478babe6e4033416bb4a23740e4d5b1a}{Molecule}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&nuclear\+\_\+framework, const int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}}=0)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a8f45be13b20d535d79ce42e9228d82fd}{Molecule}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei, const int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}}=0)
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a979617cd0c20c011905260dc9498b105}{calculate\+Internuclear\+Distance\+Between}} (const size\+\_\+t index1, const size\+\_\+t index2) const
+\item 
+int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_ad55695b2796a87d5c3276a033d2790d0}{description}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_abb23281bd50936d1115c7edf884cebba}{nuclear\+Framework}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a5337c0a0c80c96b19ab510b84519c437}{number\+Of\+Atoms}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a09a87198a37af7590019ce31e6e0b8e2}{number\+Of\+Electron\+Pairs}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a4ca709831d05e304432a5f7cac306c77}{number\+Of\+Electrons}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a7654f858b1e93f82490e569d94ae8acf}{total\+Nucleic\+Charge}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a5edb8a575c2f622906eee8b47a30a6fc}{H\+Chain}} (const size\+\_\+t n, const double spacing, const int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}}=0, const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} axis=Cartesian\+Direction\+::z)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_af98fb12545c699f7df3c48cb65f8f1d8}{H2\+Chain}} (const size\+\_\+t n, const double a, const double b, const int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}}=0, const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} axis=Cartesian\+Direction\+::z)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_acc978f66877c02b64b05acc66645fcf7}{H\+Ring\+From\+Distance}} (const size\+\_\+t n, const double distance, const int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}}=0)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a0ff4ded7cfca001c8dd3950e03299389}{H\+Ring\+From\+Radius}} (const size\+\_\+t n, const double radius, const int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}}=0)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_abcb84141cfe68fa68905e10672550cde}{Read\+X\+YZ}} (const std\+::string \&xyz\+\_\+filename, const int \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}{charge}}=0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_g_q_c_p_1_1_molecule_a26f5bb69dbe474029870d2ba1f064a19}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A molecule\+: a number of electrons and a collection of nuclei arranged in a nuclear framework. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a478babe6e4033416bb4a23740e4d5b1a}\label{class_g_q_c_p_1_1_molecule_a478babe6e4033416bb4a23740e4d5b1a}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!Molecule@{Molecule}}
+\index{Molecule@{Molecule}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{Molecule()}{Molecule()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Molecule\+::\+Molecule (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework,  }\item[{const int}]{charge = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuclear\+\_\+framework} & the nuclear framework that makes up the molecule, with coordinates in bohr \\
+\hline
+{\em charge} & the charge of the molecule\+: +1 -\/$>$ cation (one electron less than the neutral molecule) 0 -\/$>$ neutral molecule -\/1 -\/$>$ anion (one electron more than the neutral molecule) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a8f45be13b20d535d79ce42e9228d82fd}\label{class_g_q_c_p_1_1_molecule_a8f45be13b20d535d79ce42e9228d82fd}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!Molecule@{Molecule}}
+\index{Molecule@{Molecule}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{Molecule()}{Molecule()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Molecule\+::\+Molecule (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei,  }\item[{const int}]{charge = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuclei} & the nuclei that make up the molecule, with coordinates in bohr \\
+\hline
+{\em charge} & the charge of the molecule\+: +1 -\/$>$ cation (one electron less than the neutral molecule) 0 -\/$>$ neutral molecule -\/1 -\/$>$ anion (one electron more than the neutral molecule) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a979617cd0c20c011905260dc9498b105}\label{class_g_q_c_p_1_1_molecule_a979617cd0c20c011905260dc9498b105}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!calculateInternuclearDistanceBetween@{calculateInternuclearDistanceBetween}}
+\index{calculateInternuclearDistanceBetween@{calculateInternuclearDistanceBetween}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{calculateInternuclearDistanceBetween()}{calculateInternuclearDistanceBetween()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Molecule\+::calculate\+Internuclear\+Distance\+Between (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{index1,  }\item[{const size\+\_\+t}]{index2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em index1} & the index of the first nucleus \\
+\hline
+{\em index2} & the index of the second nucleus\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance between the two nuclei at index1 and index2 in bohr 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}\label{class_g_q_c_p_1_1_molecule_a3f85509fb6239731fe4f7c29cb94a30d}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!charge@{charge}}
+\index{charge@{charge}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{charge()}{charge()}}
+{\footnotesize\ttfamily int G\+Q\+C\+P\+::\+Molecule\+::charge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the charge of this molecule (in a.\+u.) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_ad55695b2796a87d5c3276a033d2790d0}\label{class_g_q_c_p_1_1_molecule_ad55695b2796a87d5c3276a033d2790d0}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!description@{description}}
+\index{description@{description}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Molecule\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this molecule. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_af98fb12545c699f7df3c48cb65f8f1d8}\label{class_g_q_c_p_1_1_molecule_af98fb12545c699f7df3c48cb65f8f1d8}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!H2Chain@{H2Chain}}
+\index{H2Chain@{H2Chain}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{H2Chain()}{H2Chain()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} G\+Q\+C\+P\+::\+Molecule\+::\+H2\+Chain (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{a,  }\item[{const double}]{b,  }\item[{const int}]{charge = {\ttfamily 0},  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{axis = {\ttfamily CartesianDirection\+:\+:z} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of H2-\/molecules \\
+\hline
+{\em a} & the internuclear distance in bohr \\
+\hline
+{\em b} & the intermolecular distance in bohr \\
+\hline
+{\em charge} & the total charge\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a charged H2-\/chain 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a5edb8a575c2f622906eee8b47a30a6fc}\label{class_g_q_c_p_1_1_molecule_a5edb8a575c2f622906eee8b47a30a6fc}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!HChain@{HChain}}
+\index{HChain@{HChain}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{HChain()}{HChain()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} G\+Q\+C\+P\+::\+Molecule\+::\+H\+Chain (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{spacing,  }\item[{const int}]{charge = {\ttfamily 0},  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{axis = {\ttfamily CartesianDirection\+:\+:z} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of H nuclei \\
+\hline
+{\em spacing} & the internuclear spacing in bohr \\
+\hline
+{\em charge} & the total charge\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a H-\/chain with equal internuclear spacing
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of H nuclei \\
+\hline
+{\em spacing} & the internuclear spacing in bohr \\
+\hline
+{\em charge} & the total charge\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a charged H-\/chain with equal internuclear spacing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_acc978f66877c02b64b05acc66645fcf7}\label{class_g_q_c_p_1_1_molecule_acc978f66877c02b64b05acc66645fcf7}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!HRingFromDistance@{HRingFromDistance}}
+\index{HRingFromDistance@{HRingFromDistance}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{HRingFromDistance()}{HRingFromDistance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} G\+Q\+C\+P\+::\+Molecule\+::\+H\+Ring\+From\+Distance (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{distance,  }\item[{const int}]{charge = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of hydrogens \\
+\hline
+{\em distance} & the distance (in bohr) between neighbouring hydrogen atoms\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a regular H-\/ring where neighbouring hydrogens are separated by the given distance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a0ff4ded7cfca001c8dd3950e03299389}\label{class_g_q_c_p_1_1_molecule_a0ff4ded7cfca001c8dd3950e03299389}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!HRingFromRadius@{HRingFromRadius}}
+\index{HRingFromRadius@{HRingFromRadius}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{HRingFromRadius()}{HRingFromRadius()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} G\+Q\+C\+P\+::\+Molecule\+::\+H\+Ring\+From\+Radius (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const double}]{radius,  }\item[{const int}]{charge = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the number of hydrogens \\
+\hline
+{\em radius} & the radius (in bohr) of the circumscribed circle\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a regular H-\/ring whose hydrogens are on the circle with the given radius 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_abb23281bd50936d1115c7edf884cebba}\label{class_g_q_c_p_1_1_molecule_abb23281bd50936d1115c7edf884cebba}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!nuclearFramework@{nuclearFramework}}
+\index{nuclearFramework@{nuclearFramework}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{nuclearFramework()}{nuclearFramework()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}}\& G\+Q\+C\+P\+::\+Molecule\+::nuclear\+Framework (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the underlying nuclear framework 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a5337c0a0c80c96b19ab510b84519c437}\label{class_g_q_c_p_1_1_molecule_a5337c0a0c80c96b19ab510b84519c437}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!numberOfAtoms@{numberOfAtoms}}
+\index{numberOfAtoms@{numberOfAtoms}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{numberOfAtoms()}{numberOfAtoms()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Molecule\+::number\+Of\+Atoms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of atoms in this molecule 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a09a87198a37af7590019ce31e6e0b8e2}\label{class_g_q_c_p_1_1_molecule_a09a87198a37af7590019ce31e6e0b8e2}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!numberOfElectronPairs@{numberOfElectronPairs}}
+\index{numberOfElectronPairs@{numberOfElectronPairs}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{numberOfElectronPairs()}{numberOfElectronPairs()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Molecule\+::number\+Of\+Electron\+Pairs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of electron pairs in this molecule. For odd numbers of electrons, the number of electron pairs is equal to that of the (N-\/1)-\/even-\/electron system. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a4ca709831d05e304432a5f7cac306c77}\label{class_g_q_c_p_1_1_molecule_a4ca709831d05e304432a5f7cac306c77}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!numberOfElectrons@{numberOfElectrons}}
+\index{numberOfElectrons@{numberOfElectrons}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{numberOfElectrons()}{numberOfElectrons()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Molecule\+::number\+Of\+Electrons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of electrons in the molecule 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_abcb84141cfe68fa68905e10672550cde}\label{class_g_q_c_p_1_1_molecule_abcb84141cfe68fa68905e10672550cde}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!ReadXYZ@{ReadXYZ}}
+\index{ReadXYZ@{ReadXYZ}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{ReadXYZ()}{ReadXYZ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} G\+Q\+C\+P\+::\+Molecule\+::\+Read\+X\+YZ (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{xyz\+\_\+filename,  }\item[{const int}]{charge = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Construct a molecule based on the content of a given .xyz-\/file. In an .xyz-\/file, the molecular coordinates are in Angstrom
+
+
+\begin{DoxyParams}{Parameters}
+{\em xyz\+\_\+filename} & the .xyz-\/file that contains the molecular coordinates in Angstrom \\
+\hline
+{\em charge} & the charge of the molecule\+: +1 -\/$>$ cation (one electron less than the neutral molecule) 0 -\/$>$ neutral molecule -\/1 -\/$>$ anion (one electron more than the neutral molecule) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a7654f858b1e93f82490e569d94ae8acf}\label{class_g_q_c_p_1_1_molecule_a7654f858b1e93f82490e569d94ae8acf}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!totalNucleicCharge@{totalNucleicCharge}}
+\index{totalNucleicCharge@{totalNucleicCharge}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{totalNucleicCharge()}{totalNucleicCharge()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Molecule\+::total\+Nucleic\+Charge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the sum of all the charges of the nuclei that are in this molecule 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_molecule_a26f5bb69dbe474029870d2ba1f064a19}\label{class_g_q_c_p_1_1_molecule_a26f5bb69dbe474029870d2ba1f064a19}} 
+\index{GQCP::Molecule@{GQCP::Molecule}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!GQCP::Molecule@{GQCP::Molecule}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & the output stream which the molecule should be concatenated to \\
+\hline
+{\em molecule} & the molecule that should be concatenated to the output stream\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the updated output stream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Molecule/\mbox{\hyperlink{_molecule_8hpp}{Molecule.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Molecule/\mbox{\hyperlink{_molecule_8cpp}{Molecule.\+cpp}}\end{DoxyCompactItemize}

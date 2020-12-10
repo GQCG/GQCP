@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::BasisTransformableTraits</compoundname>
+    <includes refid="_basis_transformable_8hpp" local="no">BasisTransformable.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Type</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_basis_transformable" kindref="compound">BasisTransformable</ref></computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type that should conform to <computeroutput><ref refid="class_g_q_c_p_1_1_basis_transformable" kindref="compound">BasisTransformable</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BasisTransformableTraits&lt; Type &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/BasisTransformable.hpp" bodystart="37" bodyend="37"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

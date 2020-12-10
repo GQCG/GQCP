@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::QCMethod::CCD</compoundname>
+    <includes refid="_q_c_method_2_c_c_2_c_c_d_8hpp" local="no">CCD.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::QCMethod::CCD&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a59581e9b5145aa42e5e049ab260bb1bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Solver</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">GQCP::QCModel::CCD</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>QCStructure&lt;GQCP::QCModel::CCD&lt;Scalar&gt; &gt; GQCP::QCMethod::CCD&lt; _Scalar &gt;::optimize</definition>
+        <argsstring>(Solver &amp;solver, CCSDEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
+        <name>optimize</name>
+        <param>
+          <type>Solver &amp;</type>
+          <declname>solver</declname>
+        </param>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Optimize the <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d" kindref="compound">CCD</ref> wave function model.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Solver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the solver</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>solver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the solver that will try to optimize the parameters </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment, which acts as a sort of calculation space for the solver </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" line="54" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" bodystart="54" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d" kindref="compound">CCD</ref> quantum chemical method.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type used to represent the T2-amplitudes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::QCMethod::CCD&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" bodystart="36" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a59581e9b5145aa42e5e049ab260bb1bf" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCD</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCD</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

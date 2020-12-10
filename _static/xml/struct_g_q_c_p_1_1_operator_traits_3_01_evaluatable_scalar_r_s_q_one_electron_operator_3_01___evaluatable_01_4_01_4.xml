@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</compoundname>
+    <includes refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp" local="no">EvaluatableScalarRSQOneElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Evaluatable</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" prot="public" static="no">
+        <type>_Evaluatable</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;::Evaluatable =  _Evaluatable</definition>
+        <argsstring></argsstring>
+        <name>Evaluatable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="148" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a22b52a7a18cf6285470721a57fdbe2a4" prot="public" static="no">
+        <type>typename Evaluatable::Scalar</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;::Scalar =  typename Evaluatable::Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="151" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a8364091416b0ed7cd4b226bc3f53d267" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator</ref>&lt; <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" kindref="member">Evaluatable</ref> &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;::DerivedOperator =  EvaluatableScalarRSQOneElectronOperator&lt;Evaluatable&gt;</definition>
+        <argsstring></argsstring>
+        <name>DerivedOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="154" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a976d2ef2d234bbf7736d4a5fdda36fcd" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator</ref>&lt; <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" kindref="member">Evaluatable</ref> &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;::ScalarOperator =  EvaluatableScalarRSQOneElectronOperator&lt;Evaluatable&gt;</definition>
+        <argsstring></argsstring>
+        <name>ScalarOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="157" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information on operators that is otherwise not accessible through a public class alias. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="146" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="146" bodyend="158"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a8364091416b0ed7cd4b226bc3f53d267" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</scope><name>DerivedOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</scope><name>Evaluatable</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a22b52a7a18cf6285470721a57fdbe2a4" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</scope><name>Scalar</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a976d2ef2d234bbf7736d4a5fdda36fcd" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</scope><name>ScalarOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,74 @@
+\hypertarget{class_g_q_c_p_1_1_minimizer}{}\doxysection{G\+Q\+CP\+::Minimizer$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_minimizer}\index{GQCP::Minimizer$<$ \_Scalar $>$@{GQCP::Minimizer$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$Minimizer.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Minimizer$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_minimizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{Minimization\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_a3a798b44876f9fdd5685bced252a4a9b}{Newton}} (const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Minimizer$<$ \+\_\+\+Scalar $>$}
+
+A factory class that can construct minimizers in an easy way.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type that is used to represent the variables of function that is minimized \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}\label{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}} 
+\index{GQCP::Minimizer$<$ \_Scalar $>$@{GQCP::Minimizer$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::Minimizer$<$ \_Scalar $>$@{GQCP::Minimizer$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_minimizer}{G\+Q\+C\+P\+::\+Minimizer}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_minimizer_a3a798b44876f9fdd5685bced252a4a9b}\label{class_g_q_c_p_1_1_minimizer_a3a798b44876f9fdd5685bced252a4a9b}} 
+\index{GQCP::Minimizer$<$ \_Scalar $>$@{GQCP::Minimizer$<$ \_Scalar $>$}!Newton@{Newton}}
+\index{Newton@{Newton}!GQCP::Minimizer$<$ \_Scalar $>$@{GQCP::Minimizer$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Newton()}{Newton()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{Minimization\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimizer}{G\+Q\+C\+P\+::\+Minimizer}}$<$ \+\_\+\+Scalar $>$\+::Newton (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & the threshold that is used in comparing the density matrices \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Newton-\/step minimizer that uses the norm of the difference of two consecutive iterations of variables as a convergence criterion 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Minimization/\mbox{\hyperlink{_minimizer_8hpp}{Minimizer.\+hpp}}\end{DoxyCompactItemize}

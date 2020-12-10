@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_guess_vector_update" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::GuessVectorUpdate</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <includes refid="_guess_vector_update_8hpp" local="no">GuessVectorUpdate.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_guess_vector_update_1a587095aac1b169167816445427e96607" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::GuessVectorUpdate::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp" line="42" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp" bodystart="42" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_guess_vector_update_1a7a851040ae4141bf75a5c04e3b8c4789" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::GuessVectorUpdate::execute</definition>
+        <argsstring>(EigenproblemEnvironment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp" line="52" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp" bodystart="52" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A step that calculates new guesses for the eigenvectors from the diagonalized subspace matrix. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::GuessVectorUpdate</label>
+        <link refid="class_g_q_c_p_1_1_guess_vector_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::GuessVectorUpdate</label>
+        <link refid="class_g_q_c_p_1_1_guess_vector_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp" bodystart="32" bodyend="58"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_guess_vector_update_1a587095aac1b169167816445427e96607" prot="public" virt="non-virtual"><scope>GQCP::GuessVectorUpdate</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; EigenproblemEnvironment &gt;::"><scope>GQCP::GuessVectorUpdate</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::GuessVectorUpdate</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_guess_vector_update_1a7a851040ae4141bf75a5c04e3b8c4789" prot="public" virt="virtual"><scope>GQCP::GuessVectorUpdate</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::GuessVectorUpdate</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

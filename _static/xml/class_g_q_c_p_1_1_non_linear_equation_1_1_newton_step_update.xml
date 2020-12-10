@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::NonLinearEquation::NewtonStepUpdate</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; _Environment &gt;</basecompoundref>
+    <includes refid="_non_linear_equation_2_newton_step_update_8hpp" local="no">NewtonStepUpdate.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+      <param>
+        <type>typename _Environment</type>
+      </param>
+      <param>
+        <type>typename LinearSolver</type>
+        <defval>decltype(LinearEquationSolver&lt;_Scalar&gt;::ColPivHouseholderQR())</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a92d938b716a2e84f5114e283ce273be7" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a5934bc339e52c5b46608cfd820e812d0" prot="public" static="no">
+        <type>_Environment</type>
+        <definition>using GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;::Environment =  _Environment</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1ae521f4a908b3276eb5be837b035e3764" prot="private" static="no" mutable="no">
+        <type>LinearSolver</type>
+        <definition>LinearSolver GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;::linear_solver</definition>
+        <argsstring></argsstring>
+        <name>linear_solver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="54" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1af82f0ceef12307f4a1da8e4162518016" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;::NewtonStepUpdate</definition>
+        <argsstring>(const LinearSolver &amp;linear_solver=LinearEquationSolver&lt; Scalar &gt;::ColPivHouseholderQR())</argsstring>
+        <name>NewtonStepUpdate</name>
+        <param>
+          <type>const LinearSolver &amp;</type>
+          <declname>linear_solver</declname>
+          <defval>LinearEquationSolver&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a92d938b716a2e84f5114e283ce273be7" kindref="member">Scalar</ref> &gt;::ColPivHouseholderQR()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>linear_solver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the linear equation solver that solves for the Newton step, i.e. it finds &apos;x&apos; in [Jx = - f]. This defaults to the ColPivHouseholderQR linear equations solver </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" bodystart="65" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a719c5657ab1eaa89adbe008e9516c618" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="76" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" bodystart="76" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a78d80e98d2ec9b89724474295c1371a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate a new iteration of the variables and add them to the environment.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="86" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" bodystart="86" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that produces updated variables according to a Newton step.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the variables of the system of equations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the calculation environment </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_LinearSolver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the solver that performs the Newton step, this defaults to the type of the ColPivHouseholderQR linear equations solver </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp" bodystart="44" bodyend="103"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a719c5657ab1eaa89adbe008e9516c618" prot="public" virt="virtual"><scope>GQCP::NonLinearEquation::NewtonStepUpdate</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a5934bc339e52c5b46608cfd820e812d0" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquation::NewtonStepUpdate</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a78d80e98d2ec9b89724474295c1371a1" prot="public" virt="virtual"><scope>GQCP::NonLinearEquation::NewtonStepUpdate</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1ae521f4a908b3276eb5be837b035e3764" prot="private" virt="non-virtual"><scope>GQCP::NonLinearEquation::NewtonStepUpdate</scope><name>linear_solver</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1af82f0ceef12307f4a1da8e4162518016" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquation::NewtonStepUpdate</scope><name>NewtonStepUpdate</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a92d938b716a2e84f5114e283ce273be7" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquation::NewtonStepUpdate</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::NonLinearEquation::NewtonStepUpdate</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_orbital2_d_m" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Orbital2DM</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_simple2_d_m" prot="public" virt="non-virtual">GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_orbital2_d_m_8hpp" local="no">Orbital2DM.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_orbital2_d_m_1a6489bb6cefe21dd2292e7c859e8f6cc4" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::Orbital2DM&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Orbital2DM.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Orbital2DM.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type used to represent a two-electron orbital density matrix, i.e. the summed alpha-alpha, alpha-beta, beta-alpha and beta-beta density matrices.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a density matrix element: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::JacobiRotatable&lt; Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::BasisTransformable&lt; Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::Orbital2DM&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::JacobiRotatable&lt; Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::BasisTransformable&lt; Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::Orbital2DM&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Orbital2DM.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Orbital2DM.hpp" bodystart="41" bodyend="53"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_tensor_1a27c1c038c06c561f87d788f96d80a7db" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1afaef2cb55ae37ca6174f956614e32411" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1adf256320409b3cb071a75f236c342d77" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Base</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>DerivedDM</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa3537155a1ab4f7207232610ddeae5f9" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a65b3e312701a619764a36cb9e5b77247" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a7f3fc273d404b00111e250639592e310" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1afbf2116f91e93cce546be34cfbe362c6" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ab0aac5a7270d58bb2739787076f320cf" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a4f661c1441222dccb0b170cdcc04a744" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>FromBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a3d43828d2fa60cdb902529d56a34c21c" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>FromFile</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0fbb66c2ec178b7c21441ef6aaf3362d" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>hasEqualDimensionsAs</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1aedf5e3a286be6c44e3209f722cd42d14" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>isApprox</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>numberOfElements</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9294ffe2b798149a40916f8750e511c7" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aed1f55de7a9d98b0840235518c9936b9" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>OneDM</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a43265946ffddd810e5380feb8806edc2" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator=</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a6a4c62ac97e943c971985487edde42c9" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>pairWiseReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1afaab91c4c43e216d1e0c1d7c2d45a746" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>pairWiseStrictReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>print</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a52e4cca8048c3e51977fa460f5715d76" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Rank</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aa0174297056f19cd441279cb3f1f4b20" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>reduce</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ad617715dde3cdf405c91fc7e2ab4bba5" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>reshape</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; Orbital2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::Orbital2DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; Orbital2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::Orbital2DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1afa2372a0996cdbb192187d0ab8f72866" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; Orbital2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::Orbital2DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; Orbital2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::Orbital2DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital2_d_m_1a6489bb6cefe21dd2292e7c859e8f6cc4" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aefc8c5af3ee2724a55047ea838b0c6bf" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a69d281a8471cddd9cfacb64a15330769" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa7d76da72a02cda047036cfdee4dd398" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ad7a0f38bc13a432d0b0bc8f1e757550f" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a7aa129b102b42f24a27d967dc05e9190" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9f69bac123516579adcd3a106e032208" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>trace</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::Orbital2DM</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba11548e39f9172a41286b4bab30bfbf" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc" prot="public" virt="virtual"><scope>GQCP::Orbital2DM</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

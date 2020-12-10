@@ -1,0 +1,580 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::QCModel::CCD</compoundname>
+    <includes refid="_q_c_model_2_c_c_2_c_c_d_8hpp" local="no">CCD.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::QCModel::CCD&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a522c201b7b97664e3aa979d348b85d41" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>T2Amplitudes&lt;Scalar&gt; GQCP::QCModel::CCD&lt; _Scalar &gt;::t2</definition>
+        <argsstring></argsstring>
+        <name>t2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="42" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a7c840fc544eadd0b4a7e445633abee04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCModel::CCD&lt; _Scalar &gt;::CCD</definition>
+        <argsstring>(const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
+        <name>CCD</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref> wave function from its converged T2-amplitudes.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="55" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1add89c4974ab51739b414329fe909b9fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const T2Amplitudes&lt;Scalar&gt;&amp; GQCP::QCModel::CCD&lt; _Scalar &gt;::t2Amplitudes</definition>
+        <argsstring>() const</argsstring>
+        <name>t2Amplitudes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref> model parameters&apos; T2-amplitudes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="376" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="376" bodyend="376"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1ae63a87d7d2e047d07f58010a3545a8c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref></type>
+        <definition>static Scalar GQCP::QCModel::CCD&lt; _Scalar &gt;::calculateCorrelationEnergy</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
+        <name>calculateCorrelationEnergy</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref> correlation energy.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (inactive) Fock matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref> correlation energy </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="72" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="72" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a3b7c8405c4256985bdc8158eb41e67f9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref></type>
+        <definition>static Scalar GQCP::QCModel::CCD&lt; _Scalar &gt;::calculateT2AmplitudeEquation</definition>
+        <argsstring>(const size_t i, const size_t j, const size_t a, const size_t b, const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T2Amplitudes&lt; Scalar &gt; &amp;t2, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F1, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F2, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;W1, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;W2, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;W3)</argsstring>
+        <name>calculateT2AmplitudeEquation</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>F1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>F2</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>W1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>W2</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>W3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the value for one of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref> T2-amplitude equations, evaluated at the given T2-amplitudes (and itermediates). f_{ij}^{ab} = &lt;Phi_{ij}^{ab}| H |Phi_0&gt; with H the similarity-transformed normal-ordered Hamiltonian</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (occupied) subscript for the amplitude equation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other (occupied) subscript for the amplitude equation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (virtual) superscript for the amplitude equation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other (virtual) superscript for the amplitude equation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (inactive) Fock matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>F1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the F1-intermediate (equation (3) in Stanton1991) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>F2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the F2-intermediate (equation (4) in Stanton1991) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>W1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the W1-intermediate (equation (6) in Stanton1991) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>W2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the W2-intermediate (equation (7) in Stanton1991) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>W3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the W3-intermediate (equation (8) in Stantion1991)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the value for one of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref> T2-amplitude equations </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="113" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="113" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a1316b87c9c3ddac753756dc611b6121c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::QCModel::CCD&lt; _Scalar &gt;::calculateF1</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
+        <name>calculateF1</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (inactive) Fock matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the F1-intermediate</para>
+</simplesect>
+<simplesect kind="note"><para>This is one of the intermediate quantities in the factorization of <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref>. In particular, F1 represents equation (3) in Stanton1991. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="176" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="176" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a190fbcbac6f68842fd5ee7cbc9016c84" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::QCModel::CCD&lt; _Scalar &gt;::calculateF2</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
+        <name>calculateF2</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (inactive) Fock matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the F2-intermediate</para>
+</simplesect>
+<simplesect kind="note"><para>This is one of the intermediate quantities in the factorization of <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref>. In particular, F2 represents equation (4) in Stanton1991. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="217" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="217" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a936fe2d9cae044af7ce144569d924eac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCD&lt; _Scalar &gt;::calculateW1</definition>
+        <argsstring>(const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
+        <name>calculateW1</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the W1-intermediate</para>
+</simplesect>
+<simplesect kind="note"><para>This is one of the intermediate quantities in the factorization of <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref>. In particular, W1 represents equation (6) in Stanton1991. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="257" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="257" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a666dfa903199d5936b0991e3dc5d0c2a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCD&lt; _Scalar &gt;::calculateW2</definition>
+        <argsstring>(const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
+        <name>calculateW2</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the W2-intermediate</para>
+</simplesect>
+<simplesect kind="note"><para>This is one of the intermediate quantities in the factorization of <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref>. In particular, W2 represents equation (7) in Stanton1991. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="297" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="297" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1acadd069c7c3c224b2177156d933614af" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCD&lt; _Scalar &gt;::calculateW3</definition>
+        <argsstring>(const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
+        <name>calculateW3</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T2-amplitudes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the W3-intermediate</para>
+</simplesect>
+<simplesect kind="note"><para>This is one of the intermediate quantities in the factorization of <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref>. In particular, W3 represents equation (8) in Stanton1991. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="337" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="337" bodyend="366"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">CCD</ref> (coupled-cluster doubles) wave function model.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type of the amplitudes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::QCModel::CCD&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp" bodystart="36" bodyend="377"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1ae63a87d7d2e047d07f58010a3545a8c3" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>calculateCorrelationEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a1316b87c9c3ddac753756dc611b6121c" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>calculateF1</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a190fbcbac6f68842fd5ee7cbc9016c84" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>calculateF2</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a3b7c8405c4256985bdc8158eb41e67f9" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>calculateT2AmplitudeEquation</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a936fe2d9cae044af7ce144569d924eac" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>calculateW1</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a666dfa903199d5936b0991e3dc5d0c2a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>calculateW2</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1acadd069c7c3c224b2177156d933614af" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>calculateW3</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a7c840fc544eadd0b4a7e445633abee04" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>CCD</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a522c201b7b97664e3aa979d348b85d41" prot="private" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>t2</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1add89c4974ab51739b414329fe909b9fb" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCD</scope><name>t2Amplitudes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

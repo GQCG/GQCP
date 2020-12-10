@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::BasisTransformableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</compoundname>
+    <includes refid="_g_s_q_one_electron_operator_8hpp" local="no">GSQOneElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+      <param>
+        <type>typename Vectorizer</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a1d331bfe5898c1b086822cf3b677a85d" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::BasisTransformableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::Transformation =  GTransformation&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" line="145" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_basis_transformable" kindref="compound">BasisTransformable</ref></computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a single parameter: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BasisTransformableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" line="142" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" bodystart="142" bodyend="146"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a1d331bfe5898c1b086822cf3b677a85d" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>Transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

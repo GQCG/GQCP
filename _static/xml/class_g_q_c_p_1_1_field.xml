@@ -1,0 +1,513 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_field" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Field</compoundname>
+    <includes refid="_field_8hpp" local="no">Field.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_field_1ac05d595b5d734b24ce947469837c82ec" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; GQCP::Field&lt; T &gt;::m_values</definition>
+        <argsstring></argsstring>
+        <name>m_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="41" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a27d74e786797f85f4fe8ccf30708b1d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::Field&lt; T &gt;::Field</definition>
+        <argsstring>(const std::vector&lt; T &gt; &amp;values)</argsstring>
+        <name>Field</name>
+        <param>
+          <type>const std::vector&lt; T &gt; &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The memberwise constructor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the evaluated function values, in the order of the grid&apos;s loop </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="54" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="54" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a99d36576548fc2611f5f13e9c6bbdec9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+        <definition>Field&lt;T&gt;&amp; GQCP::Field&lt; T &gt;::operator+=</definition>
+        <argsstring>(const Field&lt; T &gt; &amp;rhs)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a field to this one by a point-wise addition.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the addition</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a reference to the modified this</para>
+</simplesect>
+<simplesect kind="note"><para>The fields are supposed to be defined on the same grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="230" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="230" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a17d85ea84f06e375902ee6bc413cac12" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+        <definition>Field&lt;T&gt; GQCP::Field&lt; T &gt;::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Negate the values of this field.</para>
+<para><simplesect kind="return"><para>a negated version of this field </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="261" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="261" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a2d3b7b324fccb3264a8537c0134ab82b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+        <definition>Field&lt;T&gt;&amp; GQCP::Field&lt; T &gt;::operator-=</definition>
+        <argsstring>(const Field&lt; T &gt; &amp;rhs)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtract another field from this field by point-wise subtraction.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the subtraction</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a reference to the modified this</para>
+</simplesect>
+<simplesect kind="note"><para>The fields are supposed to be defined on the same grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="282" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="282" bodyend="287"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a709a5277d19e960fff8b5afde28c7baf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::Field&lt; T &gt;::map</definition>
+        <argsstring>(const std::function&lt; T(const T &amp;)&gt; &amp;function)</argsstring>
+        <name>map</name>
+        <param>
+          <type>const std::function&lt; T(const T &amp;)&gt; &amp;</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply a given function on each of this field&apos;s values, in-place.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the function to be used on each of the values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="317" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="317" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a44491a8480589c4626de6cc0f829ba87" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+        <definition>Field&lt;T&gt; GQCP::Field&lt; T &gt;::mapped</definition>
+        <argsstring>(const std::function&lt; T(const T &amp;)&gt; &amp;function) const</argsstring>
+        <name>mapped</name>
+        <param>
+          <type>const std::function&lt; T(const T &amp;)&gt; &amp;</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply a given function on each of this field&apos;s values.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the function to be used on each of the values</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a field with the mapped values </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="331" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="331" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1ae22b6b1749c6a965e416a97cd8b0b03a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::Field&lt; T &gt;::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size of this field, i.e. the number of field values </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="343" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="343" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a3234482b7438aa74a8d34f70e4a88998" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T&amp; GQCP::Field&lt; T &gt;::value</definition>
+        <argsstring>(const size_t index) const</argsstring>
+        <name>value</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access one of the field&apos;s values.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the function value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a read-only field value, corresponding to the given index </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="352" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="352" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a21e856aed7158e85629174c723326367" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; GQCP::Field&lt; T &gt;::value</definition>
+        <argsstring>(const size_t index)</argsstring>
+        <name>value</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access one of the field&apos;s values.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the function value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a writable field value, corresponding to the given index </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="361" column="7" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="361" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1ac7abb5968dfe23dd27173b6c12db5be8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; T &gt; &amp;</type>
+        <definition>const std::vector&lt;T&gt;&amp; GQCP::Field&lt; T &gt;::values</definition>
+        <argsstring>() const</argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the evaluated function values, in the order of the grid&apos;s loop </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="366" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="366" bodyend="366"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a71f2cab01ca251a5079adf2cf2322f5e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval>T</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::<ref refid="class_g_q_c_p_1_1_field_1a3234482b7438aa74a8d34f70e4a88998" kindref="member">value</ref>, <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; double &gt; &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, Field&lt;double&gt; &gt; GQCP::Field&lt; T &gt;::ReadCubeFile</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>ReadCubeFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Parse a GAUSSIAN Cube file (<ulink url="http://paulbourke.net/dataformats/cube/">http://paulbourke.net/dataformats/cube/</ulink>) for scalar field values. The grid-associated information is discarded.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the cubefile</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This named constructor is only enabled for Field&lt;double&gt;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="70" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="70" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_field_1a96a3a855c67fca74317edf285082a3a7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, N &gt; &gt;</type>
+        <definition>static Field&lt;Vector&lt;double, N&gt; &gt; GQCP::Field&lt; T &gt;::ReadGridFile</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>ReadGridFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Parse an .igrid- or .rgrid-file and create the <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref> that is contained in it. The values for the grid are discarded.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the .igrid-file</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>An integration grid (.igrid) file is a headerless file and contains the following data:<itemizedlist>
+<listitem><para>Each row relates to one grid point.</para>
+</listitem><listitem><para>Column specification:<itemizedlist>
+<listitem><para>Column 1: The index from 1 to the number of grid points</para>
+</listitem><listitem><para>Columns 2-4: The position of the grid point: x, y, and z</para>
+</listitem><listitem><para>Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field</para>
+</listitem><listitem><para>Column 5, 6 or 8: The integration weight associated to the grid point</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+<simplesect kind="note"><para>A regular grid (.rgrid) file is a headerless file and contains the following data:<itemizedlist>
+<listitem><para>Each row relates to one grid point, where the fastest changing values are z &gt; y &gt; x.</para>
+</listitem><listitem><para>Column specification:<itemizedlist>
+<listitem><para>Column 1: The index from 1 to the number of grid points</para>
+</listitem><listitem><para>Columns 2-4: The position of the grid point: x, y, and z</para>
+</listitem><listitem><para>Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="157" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="157" bodyend="212"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_field_1af389765c10f7818e16bd66d6e9d235cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+        <definition>Field&lt;T&gt; operator+</definition>
+        <argsstring>(Field&lt; T &gt; lhs, const Field&lt; T &gt; &amp;rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add two fields by a point-wise addition.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the left-hand side of the addition </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the addition</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the sum of the two fields</para>
+</simplesect>
+<simplesect kind="note"><para>The fields are supposed to be defined on the same grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="249" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="249" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_field_1af08d9a23cd201e1b7e71675a05fd8c9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+        <definition>Field&lt;T&gt; operator-</definition>
+        <argsstring>(Field&lt; T &gt; lhs, const Field&lt; T &gt; &amp;rhs)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtract one field from another by point-wise subtraction.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the left-hand side of the subtraction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the right-hand side of the subtraction</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the difference of the two fields</para>
+</simplesect>
+<simplesect kind="note"><para>The fields are supposed to be defined on the same grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="300" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="300" bodyend="304"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A set of function values corresponding to points in space.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the evaluated function values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Field&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_field"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="39" bodyend="367"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_field_1a27d74e786797f85f4fe8ccf30708b1d9" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>Field</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1ac05d595b5d734b24ce947469837c82ec" prot="private" virt="non-virtual"><scope>GQCP::Field</scope><name>m_values</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a709a5277d19e960fff8b5afde28c7baf" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>map</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a44491a8480589c4626de6cc0f829ba87" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>mapped</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1af389765c10f7818e16bd66d6e9d235cd" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>operator+</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a99d36576548fc2611f5f13e9c6bbdec9" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a17d85ea84f06e375902ee6bc413cac12" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1af08d9a23cd201e1b7e71675a05fd8c9e" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a2d3b7b324fccb3264a8537c0134ab82b" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a71f2cab01ca251a5079adf2cf2322f5e" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>ReadCubeFile</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a96a3a855c67fca74317edf285082a3a7" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>ReadGridFile</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1ae22b6b1749c6a965e416a97cd8b0b03a" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>size</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a3234482b7438aa74a8d34f70e4a88998" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>value</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1a21e856aed7158e85629174c723326367" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>value</name></member>
+      <member refid="class_g_q_c_p_1_1_field_1ac7abb5968dfe23dd27173b6c12db5be8" prot="public" virt="non-virtual"><scope>GQCP::Field</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

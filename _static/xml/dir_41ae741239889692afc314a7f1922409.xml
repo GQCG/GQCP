@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_41ae741239889692afc314a7f1922409" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian</compoundname>
+    <innerfile refid="_hopping_matrix_8hpp">HoppingMatrix.hpp</innerfile>
+    <innerfile refid="_hubbard_hamiltonian_8hpp">HubbardHamiltonian.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/"/>
+  </compounddef>
+</doxygen>

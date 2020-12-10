@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_069a7b10d39394b75137414a696e6f2e" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization</compoundname>
+    <innerdir refid="dir_838be35ecc4d18c05ee53fd1decc5f49">/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/Minimization</innerdir>
+    <innerdir refid="dir_e64b97bf56c44664b7c350cbd0954ef0">/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/NonLinearEquation</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/"/>
+  </compounddef>
+</doxygen>

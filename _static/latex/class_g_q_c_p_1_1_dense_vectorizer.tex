@@ -1,0 +1,186 @@
+\hypertarget{class_g_q_c_p_1_1_dense_vectorizer}{}\doxysection{G\+Q\+CP\+::Dense\+Vectorizer$<$ A $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_dense_vectorizer}\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+
+
+{\ttfamily \#include $<$Dense\+Vectorizer.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Dense\+Vectorizer$<$ A $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_dense_vectorizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ad7ea32c04b5fc8ba7f4ddfa882140625}{Dense\+Vectorizer}} (const std\+::array$<$ size\+\_\+t, A $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ac78a975787d5b6467a7c5433614c7b9d}{dimensions}}, const \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5}{Ordering}} ordering=Ordering\+::\+Column\+Major)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ae3532176463e4b0739df98172c5f4b67}{Dense\+Vectorizer}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a1ed21f7a475d6a73d0c870fce1a33abc}{offset}} (const std\+::array$<$ size\+\_\+t, A $>$ \&indices) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a28472ea97ca2632a3b0fa6a20435e00d}{dimension}} (const size\+\_\+t axis) const
+\item 
+const std\+::array$<$ size\+\_\+t, A $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ac78a975787d5b6467a7c5433614c7b9d}{dimensions}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ade9a8861fbacf06054d36647ad5f8c03}{number\+Of\+Axes}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a05907ab8cff671a7c0f95c068ac6babf}{number\+Of\+Elements}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}} (const size\+\_\+t axis) const
+\item 
+const std\+::array$<$ size\+\_\+t, A $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aff9da3e46ec3e9eb34c98d26b33edd39}{strides}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a56985fe9a137a3974a85b2feecb941d9}{Number\+Of\+Axes}} = A
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$size\+\_\+t A$>$\newline
+class G\+Q\+C\+P\+::\+Dense\+Vectorizer$<$ A $>$}
+
+A class that takes care of mapping indices related to dense axes to vector indices.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em A} & The number of axes supported by the vectorizer. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_ad7ea32c04b5fc8ba7f4ddfa882140625}\label{class_g_q_c_p_1_1_dense_vectorizer_ad7ea32c04b5fc8ba7f4ddfa882140625}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!DenseVectorizer@{DenseVectorizer}}
+\index{DenseVectorizer@{DenseVectorizer}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{DenseVectorizer()}{DenseVectorizer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{Dense\+Vectorizer}} (\begin{DoxyParamCaption}\item[{const std\+::array$<$ size\+\_\+t, A $>$ \&}]{dimensions,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5}{Ordering}}}]{ordering = {\ttfamily Ordering\+:\+:ColumnMajor} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{Dense\+Vectorizer}}} from axis dimensions and an ordering type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dimensions} & The dimensions of each axis. \\
+\hline
+{\em ordering} & The ordering of the axes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_ae3532176463e4b0739df98172c5f4b67}\label{class_g_q_c_p_1_1_dense_vectorizer_ae3532176463e4b0739df98172c5f4b67}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!DenseVectorizer@{DenseVectorizer}}
+\index{DenseVectorizer@{DenseVectorizer}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{DenseVectorizer()}{DenseVectorizer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{Dense\+Vectorizer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The default constructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_a28472ea97ca2632a3b0fa6a20435e00d}\label{class_g_q_c_p_1_1_dense_vectorizer_a28472ea97ca2632a3b0fa6a20435e00d}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!dimension@{dimension}}
+\index{dimension@{dimension}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{dimension()}{dimension()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::dimension (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{axis }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & An axis number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dimension of the given axis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_ac78a975787d5b6467a7c5433614c7b9d}\label{class_g_q_c_p_1_1_dense_vectorizer_ac78a975787d5b6467a7c5433614c7b9d}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!dimensions@{dimensions}}
+\index{dimensions@{dimensions}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{dimensions()}{dimensions()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+const std\+::array$<$size\+\_\+t, A$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The dimensions of each axis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_ade9a8861fbacf06054d36647ad5f8c03}\label{class_g_q_c_p_1_1_dense_vectorizer_ade9a8861fbacf06054d36647ad5f8c03}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!numberOfAxes@{numberOfAxes}}
+\index{numberOfAxes@{numberOfAxes}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfAxes()}{numberOfAxes()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::number\+Of\+Axes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The number of axes for this vectorizer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_a05907ab8cff671a7c0f95c068ac6babf}\label{class_g_q_c_p_1_1_dense_vectorizer_a05907ab8cff671a7c0f95c068ac6babf}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!numberOfElements@{numberOfElements}}
+\index{numberOfElements@{numberOfElements}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfElements()}{numberOfElements()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::number\+Of\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The number of elements that can be described by this vectorizer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_a1ed21f7a475d6a73d0c870fce1a33abc}\label{class_g_q_c_p_1_1_dense_vectorizer_a1ed21f7a475d6a73d0c870fce1a33abc}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!offset@{offset}}
+\index{offset@{offset}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{offset()}{offset()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::offset (\begin{DoxyParamCaption}\item[{const std\+::array$<$ size\+\_\+t, A $>$ \&}]{indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+M\+A\+RK\+: Element access Calculate the 1-\/dimensional offset number (also called\+: address, contiguous index) corresponding to the given indices that specify coordinates for each axis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & A list of indices, where each entry corresponds to the coordinate of each axis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The 1-\/dimensional offset number. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}\label{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!stride@{stride}}
+\index{stride@{stride}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{stride()}{stride()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::stride (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{axis }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & An axis number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The stride of the given axis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_aff9da3e46ec3e9eb34c98d26b33edd39}\label{class_g_q_c_p_1_1_dense_vectorizer_aff9da3e46ec3e9eb34c98d26b33edd39}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!strides@{strides}}
+\index{strides@{strides}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{strides()}{strides()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+const std\+::array$<$size\+\_\+t, A$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::strides (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The strides associated to each axis. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_dense_vectorizer_a56985fe9a137a3974a85b2feecb941d9}\label{class_g_q_c_p_1_1_dense_vectorizer_a56985fe9a137a3974a85b2feecb941d9}} 
+\index{GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}!NumberOfAxes@{NumberOfAxes}}
+\index{NumberOfAxes@{NumberOfAxes}!GQCP::DenseVectorizer$<$ A $>$@{GQCP::DenseVectorizer$<$ A $>$}}
+\doxysubsubsection{\texorpdfstring{NumberOfAxes}{NumberOfAxes}}
+{\footnotesize\ttfamily template$<$size\+\_\+t A$>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{G\+Q\+C\+P\+::\+Dense\+Vectorizer}}$<$ A $>$\+::Number\+Of\+Axes = A\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_dense_vectorizer_8hpp}{Dense\+Vectorizer.\+hpp}}\end{DoxyCompactItemize}

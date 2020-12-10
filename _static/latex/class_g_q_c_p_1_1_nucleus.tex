@@ -1,0 +1,187 @@
+\hypertarget{class_g_q_c_p_1_1_nucleus}{}\doxysection{G\+Q\+CP\+::Nucleus Class Reference}
+\label{class_g_q_c_p_1_1_nucleus}\index{GQCP::Nucleus@{GQCP::Nucleus}}
+
+
+{\ttfamily \#include $<$Nucleus.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Nucleus\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_g_q_c_p_1_1_nucleus__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a2582585e6eb8df6733751334f193753f}{Nucleus}} (const size\+\_\+t Z, const double \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}, const double \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}, const double \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{z}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a7ddd6804dc7e49c2e89f865c2101167a}{Nucleus}} (const size\+\_\+t Z, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a051a913283f5a20066e45d2c369ffccb}{position}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a13137959256b336277347eba7d4cb729}{Nucleus}} ()
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_aba9221c3b456232c5ba88b28cd408799}{calculate\+Distance\+With}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&other) const
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a591b7498e7a210248e6414780b4805e9}{description}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a9399a944aa72b5be0846e3ab48779fea}{element}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_abc4628e6085740c4c15c5549ed6ccfd2}{charge}} () const
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a051a913283f5a20066e45d2c369ffccb}{position}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&)$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_a97c4c1edf8ff61f3c52629761ff1dab6}{sort\+Comparer}} (const double tolerance=1.\+0e-\/08)
+\item 
+static std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&)$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_af5828115bf52ad9b213b744ef4716f69}{equality\+Comparer}} (const double tolerance=1.\+0e-\/08)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus_add3a9881efd3c38d0dd574fb5259d84c}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&nucleus)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that represents a nucleus\+: it has a charge and a position in space 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_a2582585e6eb8df6733751334f193753f}\label{class_g_q_c_p_1_1_nucleus_a2582585e6eb8df6733751334f193753f}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!Nucleus@{Nucleus}}
+\index{Nucleus@{Nucleus}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{Nucleus()}{Nucleus()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Nucleus\+::\+Nucleus (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{Z,  }\item[{const double}]{x,  }\item[{const double}]{y,  }\item[{const double}]{z }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Z} & the atomic number (Z) of the nucleus \\
+\hline
+{\em x} & the x-\/position of the nucleus in bohr \\
+\hline
+{\em y} & the y-\/position of the nucleus in bohr \\
+\hline
+{\em z} & the z-\/position of the nucleus in bohr \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_a7ddd6804dc7e49c2e89f865c2101167a}\label{class_g_q_c_p_1_1_nucleus_a7ddd6804dc7e49c2e89f865c2101167a}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!Nucleus@{Nucleus}}
+\index{Nucleus@{Nucleus}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{Nucleus()}{Nucleus()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Nucleus\+::\+Nucleus (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{Z,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{position }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Z} & the atomic number (Z) of the nucleus \\
+\hline
+{\em position} & the position of the nucleus in bohr \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_a13137959256b336277347eba7d4cb729}\label{class_g_q_c_p_1_1_nucleus_a13137959256b336277347eba7d4cb729}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!Nucleus@{Nucleus}}
+\index{Nucleus@{Nucleus}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{Nucleus()}{Nucleus()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Nucleus\+::\+Nucleus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor, creating a \textquotesingle{}ghost\textquotesingle{} nucleus (i.\+e. Bq) in the origin 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_aba9221c3b456232c5ba88b28cd408799}\label{class_g_q_c_p_1_1_nucleus_aba9221c3b456232c5ba88b28cd408799}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!calculateDistanceWith@{calculateDistanceWith}}
+\index{calculateDistanceWith@{calculateDistanceWith}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{calculateDistanceWith()}{calculateDistanceWith()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Nucleus\+::calculate\+Distance\+With (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the other nucleus\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Euclidian distance between this nucleus and the other 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_abc4628e6085740c4c15c5549ed6ccfd2}\label{class_g_q_c_p_1_1_nucleus_abc4628e6085740c4c15c5549ed6ccfd2}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!charge@{charge}}
+\index{charge@{charge}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{charge()}{charge()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Nucleus\+::charge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the charge of this nucleus 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_a591b7498e7a210248e6414780b4805e9}\label{class_g_q_c_p_1_1_nucleus_a591b7498e7a210248e6414780b4805e9}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!description@{description}}
+\index{description@{description}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Nucleus\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this nucleus. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_a9399a944aa72b5be0846e3ab48779fea}\label{class_g_q_c_p_1_1_nucleus_a9399a944aa72b5be0846e3ab48779fea}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!element@{element}}
+\index{element@{element}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{element()}{element()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Nucleus\+::element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The string representation of the element that corresponds to this nucleus. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_af5828115bf52ad9b213b744ef4716f69}\label{class_g_q_c_p_1_1_nucleus_af5828115bf52ad9b213b744ef4716f69}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!equalityComparer@{equalityComparer}}
+\index{equalityComparer@{equalityComparer}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{equalityComparer()}{equalityComparer()}}
+{\footnotesize\ttfamily std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&)$>$ G\+Q\+C\+P\+::\+Nucleus\+::equality\+Comparer (\begin{DoxyParamCaption}\item[{const double}]{tolerance = {\ttfamily 1.0e-\/08} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyReturn}{Returns}
+a functor that can be used in checking atom for equality. Atoms are equal if their charge and position are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_a051a913283f5a20066e45d2c369ffccb}\label{class_g_q_c_p_1_1_nucleus_a051a913283f5a20066e45d2c369ffccb}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!position@{position}}
+\index{position@{position}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{position()}{position()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double, 3$>$\& G\+Q\+C\+P\+::\+Nucleus\+::position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the position of this nucleus 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_a97c4c1edf8ff61f3c52629761ff1dab6}\label{class_g_q_c_p_1_1_nucleus_a97c4c1edf8ff61f3c52629761ff1dab6}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!sortComparer@{sortComparer}}
+\index{sortComparer@{sortComparer}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{sortComparer()}{sortComparer()}}
+{\footnotesize\ttfamily std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&)$>$ G\+Q\+C\+P\+::\+Nucleus\+::sort\+Comparer (\begin{DoxyParamCaption}\item[{const double}]{tolerance = {\ttfamily 1.0e-\/08} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyReturn}{Returns}
+a functor that can be used in sorting atoms. It features a custom implementation, in which the x-\/coordinate takes precedence over the y-\/coordinate, which in turn takes precedence over the z-\/coordinate 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_nucleus_add3a9881efd3c38d0dd574fb5259d84c}\label{class_g_q_c_p_1_1_nucleus_add3a9881efd3c38d0dd574fb5259d84c}} 
+\index{GQCP::Nucleus@{GQCP::Nucleus}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!GQCP::Nucleus@{GQCP::Nucleus}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&}]{nucleus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Overloading of operator$<$$<$ for a \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} to be used with ostreams
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & the output stream to which the nucleus should be concatenated \\
+\hline
+{\em nucleus} & the nucleus which should be concatenated to the output stream\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the updated output stream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Molecule/\mbox{\hyperlink{_nucleus_8hpp}{Nucleus.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Molecule/\mbox{\hyperlink{_nucleus_8cpp}{Nucleus.\+cpp}}\end{DoxyCompactItemize}

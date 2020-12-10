@@ -1,0 +1,726 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SimpleSQTwoElectronOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_s_q_operator_storage" prot="public" virt="non-virtual">GQCP::SQOperatorStorage&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; _DerivedOperator &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; _DerivedOperator &gt;</basecompoundref>
+    <includes refid="_simple_s_q_two_electron_operator_8hpp" local="no">SimpleSQTwoElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+      <param>
+        <type>typename _Vectorizer</type>
+      </param>
+      <param>
+        <type>typename _DerivedOperator</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a114e14b8c49476b1b0bb74b5d3ab223b" prot="public" static="no">
+        <type>_Vectorizer</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::Vectorizer =  _Vectorizer</definition>
+        <argsstring></argsstring>
+        <name>Vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" prot="public" static="no">
+        <type>_DerivedOperator</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::DerivedOperator =  _DerivedOperator</definition>
+        <argsstring></argsstring>
+        <name>DerivedOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aed2241de9b971a177271dba50eb94b13" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator" kindref="compound">SimpleSQTwoElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a114e14b8c49476b1b0bb74b5d3ab223b" kindref="member">Vectorizer</ref>, <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" kindref="member">DerivedOperator</ref> &gt;</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::Self =  SimpleSQTwoElectronOperator&lt;Scalar, Vectorizer, DerivedOperator&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a231dd33ab6d93574f9638a31d198dc3e" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::MatrixRepresentation =  SquareRankFourTensor&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>MatrixRepresentation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a323595923e548d275d2acf2e28d75bb4" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" kindref="member">DerivedOperator</ref> &gt;::SQOneElectronOperator</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::DerivedSQOneElectronOperator =  typename OperatorTraits&lt;DerivedOperator&gt;::SQOneElectronOperator</definition>
+        <argsstring></argsstring>
+        <name>DerivedSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aeb6c0cb939e41dcfff02daca388df47f" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" kindref="member">DerivedOperator</ref> &gt;::OneDM</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::Derived1DM =  typename OperatorTraits&lt;DerivedOperator&gt;::OneDM</definition>
+        <argsstring></argsstring>
+        <name>Derived1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a05412940f88bb6522df92e334315498c" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" kindref="member">DerivedOperator</ref> &gt;::TwoDM</type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::Derived2DM =  typename OperatorTraits&lt;DerivedOperator&gt;::TwoDM</definition>
+        <argsstring></argsstring>
+        <name>Derived2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a02a587d19cfe444dc088c523eea50e54" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" kindref="member">DerivedOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a02a587d19cfe444dc088c523eea50e54" kindref="member">Transformation</ref></type>
+        <definition>using GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::Transformation =  typename OperatorTraits&lt;DerivedOperator&gt;::Transformation</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="73" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a4937ad940b74c9e3e05e2a8031d8b3c2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::is_antisymmetrized</definition>
+        <argsstring></argsstring>
+        <name>is_antisymmetrized</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="78" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ac25018de357564880f6317e1d6930137" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::is_expressed_using_chemists_notation</definition>
+        <argsstring></argsstring>
+        <name>is_expressed_using_chemists_notation</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="81" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a5ba898d010523b0525f8f2d76f968828" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_storage_array" kindref="compound">StorageArray</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a114e14b8c49476b1b0bb74b5d3ab223b" kindref="member">Vectorizer</ref> &gt;</type>
+        <definition>StorageArray&lt;Scalar, Vectorizer&gt; GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::calculateExpectationValue</definition>
+        <argsstring>(const Derived2DM &amp;d) const</argsstring>
+        <name>calculateExpectationValue</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a05412940f88bb6522df92e334315498c" kindref="member">Derived2DM</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the expectation value of this two-electron operator, given a two-electron density matrix. (This includes the prefactor 1/2.)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 2-DM (that represents the wave function).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The expectation values of all the components of the two-electron operator, with the given 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="104" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="104" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a710b1ac2356a85deee1d5d6c47ea5a9d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="class_g_q_c_p_1_1_storage_array" kindref="compound">StorageArray</ref>&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;, <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a114e14b8c49476b1b0bb74b5d3ab223b" kindref="member">Vectorizer</ref> &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, StorageArray&lt;SquareMatrix&lt;double&gt;, Vectorizer&gt; &gt; GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::calculateFockianMatrix</definition>
+        <argsstring>(const Derived1DM &amp;D, const Derived2DM &amp;d) const</argsstring>
+        <name>calculateFockianMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aeb6c0cb939e41dcfff02daca388df47f" kindref="member">Derived1DM</ref> &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a05412940f88bb6522df92e334315498c" kindref="member">Derived2DM</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the Fockian matrix for (each of the components of) this two-electron operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 1-DM (or the response 1-DM for made-variational wave function models). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 2-DM (or the response 2-DM for made-variational wave function models).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The Fockian matrix.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is only enabled in the real case. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="140" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="140" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a7bab46450e4e1bddbff79f3e8ddfcf0b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="class_g_q_c_p_1_1_storage_array" kindref="compound">StorageArray</ref>&lt; <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;, <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a114e14b8c49476b1b0bb74b5d3ab223b" kindref="member">Vectorizer</ref> &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, StorageArray&lt;SquareRankFourTensor&lt;double&gt;, Vectorizer&gt; &gt; GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::calculateSuperFockianMatrix</definition>
+        <argsstring>(const Derived1DM &amp;D, const Derived2DM &amp;d) const</argsstring>
+        <name>calculateSuperFockianMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aeb6c0cb939e41dcfff02daca388df47f" kindref="member">Derived1DM</ref> &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a05412940f88bb6522df92e334315498c" kindref="member">Derived2DM</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the super-Fockian matrix for (each of the components of) this two-electron operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 1-DM (or the response 1-DM for made-variational wave function models). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 2-DM (or the response 2-DM for made-variational wave function models).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The super-Fockian matrix.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is only enabled in the real case. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="190" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="190" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ae3c403cf1c713b5c63334f00f4ea16e5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a323595923e548d275d2acf2e28d75bb4" kindref="member">DerivedSQOneElectronOperator</ref></type>
+        <definition>DerivedSQOneElectronOperator GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::effectiveOneElectronPartition</definition>
+        <argsstring>() const</argsstring>
+        <name>effectiveOneElectronPartition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The one-electron operator that is the difference between this two-electron operator (E_PQRS) and a product of one-electron operators (E_PQ E_RS). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="247" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="247" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ada0b12379e30e62f52101ccd6ea8b4ec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" kindref="member">DerivedOperator</ref></type>
+        <definition>DerivedOperator GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::transformed</definition>
+        <argsstring>(const Transformation &amp;T) const override</argsstring>
+        <name>transformed</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a02a587d19cfe444dc088c523eea50e54" kindref="member">Transformation</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis transformation and return the resulting two-electron integrals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-transformed one-electron integrals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="283" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="283" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a3e6be644da73696328a0ac02ebd9bf50" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" kindref="member">DerivedOperator</ref></type>
+        <definition>DerivedOperator GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::rotated</definition>
+        <argsstring>(const JacobiRotation &amp;jacobi_rotation) const override</argsstring>
+        <name>rotated</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the Jacobi rotation and return the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The Jacobi-transformed object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="334" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="334" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aecc99e276678dade74f99917241682e8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::isAntisymmetrized</definition>
+        <argsstring>() const</argsstring>
+        <name>isAntisymmetrized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>If these two-electron integrals are considered to be antisymmetrized.</para>
+</simplesect>
+<simplesect kind="note"><para>If so, these integrals represent:<itemizedlist>
+<listitem><para>if they are expressed using chemist&apos;s notation: g_{PQRS} - g_{PSRQ}, i.e. they are antisymmetric upon interchanging the indices PR or QS</para>
+</listitem><listitem><para>if they are expressed using physicist&apos;s notation: &lt;PQ|RS&gt; - &lt;PQ|SR&gt;, i.e. they are antisymmetric upon interchanging the indices PQ or RS </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="356" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="356" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a9aa56110ec0acd40b9d33b12f7f814fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aed2241de9b971a177271dba50eb94b13" kindref="member">Self</ref></type>
+        <definition>Self GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::antisymmetrized</definition>
+        <argsstring>() const</argsstring>
+        <name>antisymmetrized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An antisymmetrized version of this two-electron operator, i.e. one with matrix elements that are modified to obey antisymmetry w.r.t. creation and annihilation indices.</para>
+</simplesect>
+<simplesect kind="note"><para>If the integrals are expressed using<itemizedlist>
+<listitem><para>chemist&apos;s notation g_{PQRS}, return g_{PQRS} - g_{PSRQ}</para>
+</listitem><listitem><para>physicist&apos;s notation &lt;PQ|RS&gt;, return &lt;PQ||RS&gt; = &lt;PQ|RS&gt; - &lt;PQ|SR&gt; </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="366" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="366" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a9647fef0aee06ff660e3e2aec3b819f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::antisymmetrize</definition>
+        <argsstring>()</argsstring>
+        <name>antisymmetrize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place antisymmetrize this two-electron operator.</para>
+<para><simplesect kind="note"><para>If the integrals are expressed using<itemizedlist>
+<listitem><para>chemist&apos;s notation g_{PQRS}, they are modified to g_{PQRS} - g_{PSRQ}</para>
+</listitem><listitem><para>physicist&apos;s notation &lt;PQ|RS&gt;, they are modified to &lt;PQ||RS&gt; = &lt;PQ|RS&gt; - &lt;PQ|SR&gt; </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="402" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="402" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1abbe16ec8961672c3f0300c086d071bed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::isExpressedUsingChemistsNotation</definition>
+        <argsstring>() const</argsstring>
+        <name>isExpressedUsingChemistsNotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>If this two-electron operator&apos;s integrals are expressed using chemist&apos;s notation g_{PQRS}, i.e. (PQ|RS) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="412" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="412" bodyend="412"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a9ee6f22c7f5c9ae795e69dc7c33ba6c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::isExpressedUsingPhysicistsNotation</definition>
+        <argsstring>() const</argsstring>
+        <name>isExpressedUsingPhysicistsNotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>If this two-electron operator&apos;s integrals are expressed using physicist&apos;s notation &lt;PQ|RS&gt; </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="417" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="417" bodyend="417"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1abf0625c0fe9d373c5605a809fe2bae08" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aed2241de9b971a177271dba50eb94b13" kindref="member">Self</ref></type>
+        <definition>Self GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::convertedToChemistsNotation</definition>
+        <argsstring>() const</argsstring>
+        <name>convertedToChemistsNotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The two-electron operator with integrals changed to chemist&apos;s notation (from physicist&apos;s notation). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="422" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="422" bodyend="440"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a5689800be902fc72cbd92c8fb99c71d6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aed2241de9b971a177271dba50eb94b13" kindref="member">Self</ref></type>
+        <definition>Self GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::convertedToPhysicistsNotation</definition>
+        <argsstring>() const</argsstring>
+        <name>convertedToPhysicistsNotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The two-electron operator with integrals changed to physicist&apos;s notation (from chemist&apos;s notation). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="446" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="446" bodyend="464"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a46a104b3d7edf0144c383fbf3bac1070" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::convertToChemistsNotation</definition>
+        <argsstring>()</argsstring>
+        <name>convertToChemistsNotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place change this two-electron operator&apos;s integrals to chemist&apos;s notation (from physicist&apos;s notation). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="470" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="470" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aaf2b6d3355c6e65a45541b6c54950f27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::convertToPhysicistsNotation</definition>
+        <argsstring>()</argsstring>
+        <name>convertToPhysicistsNotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In-place change this two-electron operator&apos;s integrals to physicist&apos;s notation (from chemist&apos;s notation). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="475" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="475" bodyend="475"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A second-quantized one-electron operator whose parameters are described by a single tensor.</para>
+<para>This class is used as a base class for <computeroutput><ref refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" kindref="compound">RSQTwoElectronOperator</ref></computeroutput> and <computeroutput><ref refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator" kindref="compound">GSQTwoElectronOperator</ref></computeroutput>, since they both admit parameter representations using a single tensor, as opposed to <computeroutput><ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" kindref="compound">USQTwoElectronOperator</ref></computeroutput>, which uses separate alpha- and beta- tensors. The word &apos;simple&apos; is used here as an antonym for &apos;compound&apos;.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a single parameter/matrix element: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from <ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator" kindref="compound">SimpleSQOneElectronOperator</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_DerivedOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the operator that derives from this class, enabling <ref refid="class_g_q_c_p_1_1_c_r_t_p" kindref="compound">CRTP</ref> and compile-time polymorphism. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>GQCP::BasisTransformable&lt; _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="7">
+        <label>GQCP::JacobiRotatable&lt; _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::SQOperatorStorageBase&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+      </node>
+      <node id="4">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SQOperatorStorage&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::CRTP&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>GQCP::BasisTransformable&lt; _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="8">
+        <label>GQCP::JacobiRotatable&lt; _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::SQOperatorStorageBase&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#array</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_storage_array"/>
+      </node>
+      <node id="1">
+        <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SQOperatorStorage&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::CRTP&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp" bodystart="46" bodyend="476"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a887b0138971425ecf72ae15c9226b3c9" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a9647fef0aee06ff660e3e2aec3b819f1" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>antisymmetrize</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a9aa56110ec0acd40b9d33b12f7f814fa" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>antisymmetrized</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ae0f9fa3ea86967e23c84a2f6ed581d00" prot="protected" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>array</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a5ba898d010523b0525f8f2d76f968828" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>calculateExpectationValue</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a710b1ac2356a85deee1d5d6c47ea5a9d" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>calculateFockianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a7bab46450e4e1bddbff79f3e8ddfcf0b" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>calculateSuperFockianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1abf0625c0fe9d373c5605a809fe2bae08" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>convertedToChemistsNotation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a5689800be902fc72cbd92c8fb99c71d6" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>convertedToPhysicistsNotation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a46a104b3d7edf0144c383fbf3bac1070" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>convertToChemistsNotation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aaf2b6d3355c6e65a45541b6c54950f27" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>convertToPhysicistsNotation</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aeb6c0cb939e41dcfff02daca388df47f" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Derived1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a05412940f88bb6522df92e334315498c" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Derived2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a2da38f64abe43837678f2a7d06d1f3ed" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>DerivedOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a323595923e548d275d2acf2e28d75bb4" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>DerivedSQOneElectronOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1af5e51d0f8a0ac96f0c138e44e9614ad4" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>dot</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ae3c403cf1c713b5c63334f00f4ea16e5" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>effectiveOneElectronPartition</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a6ee4af5c3c3b6b4801fdd3bb1af52526" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>FinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a4937ad940b74c9e3e05e2a8031d8b3c2" prot="private" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>is_antisymmetrized</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ac25018de357564880f6317e1d6930137" prot="private" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>is_expressed_using_chemists_notation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aecc99e276678dade74f99917241682e8" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>isAntisymmetrized</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1abbe16ec8961672c3f0300c086d071bed" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>isExpressedUsingChemistsNotation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a9ee6f22c7f5c9ae795e69dc7c33ba6c2" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>isExpressedUsingPhysicistsNotation</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a231dd33ab6d93574f9638a31d198dc3e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>MatrixRepresentation</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aec5499c60c1ccf1c3a2bbb4ede557181" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>numberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3db8d8010d4b40797ca252c8dc4ca1a1" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3406af47b43cdf59b508d2c65ed78dd5" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a8fe948ec5f11fde630a6076b6d280563" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;::"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a95a0c4cf331f89f073323bd8aaa60a6e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;::"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa0e555ece4f4d592420ded0008dd0088" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; _DerivedOperator &gt;::"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; _DerivedOperator &gt;::"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a3e6be644da73696328a0ac02ebd9bf50" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; _DerivedOperator &gt;::"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; _DerivedOperator &gt;::"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a7bdaff688770ec8194aeaef02fae1340" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>ScalarFinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1aed2241de9b971a177271dba50eb94b13" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa46cbd4ee56231f35b4ed67b0a293e54" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ac0aaa4116c253ed87d1d55cc3d1714e5" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acca6d82a69a99fc3ee97cfafc7ba3245" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a69ee654058f7d2476fbaa07dff233f9b" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a31d5da079f8ab325d4afec400f9fecbb" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a02a587d19cfe444dc088c523eea50e54" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ada0b12379e30e62f52101ccd6ea8b4ec" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; _DerivedOperator &gt;::"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aaebf3b63a4e7041ea0754b4d5e8868aa" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a114e14b8c49476b1b0bb74b5d3ab223b" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aae57f5b84d06fde585c7597e2b6e225b" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a5438632d87c01fcf056ba50906806d94" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8da76d3901f36713b1f908624c514b49" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQTwoElectronOperator</scope><name>Zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

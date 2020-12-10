@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_48ddfae5dd558b6147ef35393fcef6e1" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/DensityMatrix</compoundname>
+    <innerfile refid="_density_matrix_traits_8hpp">DensityMatrixTraits.hpp</innerfile>
+    <innerfile refid="_g1_d_m_8hpp">G1DM.hpp</innerfile>
+    <innerfile refid="_g2_d_m_8hpp">G2DM.hpp</innerfile>
+    <innerfile refid="_mixed_spin_resolved2_d_m_component_8hpp">MixedSpinResolved2DMComponent.hpp</innerfile>
+    <innerfile refid="_orbital1_d_m_8hpp">Orbital1DM.hpp</innerfile>
+    <innerfile refid="_orbital2_d_m_8hpp">Orbital2DM.hpp</innerfile>
+    <innerfile refid="_pure_spin_resolved2_d_m_component_8hpp">PureSpinResolved2DMComponent.hpp</innerfile>
+    <innerfile refid="_simple1_d_m_8hpp">Simple1DM.hpp</innerfile>
+    <innerfile refid="_simple2_d_m_8hpp">Simple2DM.hpp</innerfile>
+    <innerfile refid="_spin_density1_d_m_8hpp">SpinDensity1DM.hpp</innerfile>
+    <innerfile refid="_spin_resolved1_d_m_8hpp">SpinResolved1DM.hpp</innerfile>
+    <innerfile refid="_spin_resolved1_d_m_component_8hpp">SpinResolved1DMComponent.hpp</innerfile>
+    <innerfile refid="_spin_resolved2_d_m_8hpp">SpinResolved2DM.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/"/>
+  </compounddef>
+</doxygen>

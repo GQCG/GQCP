@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_spin_resolved2_d_m" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SpinResolved2DM</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" prot="public" virt="non-virtual">GQCP::DoublySpinResolvedBase&lt; PureSpinResolved2DMComponent&lt; _Scalar &gt;, MixedSpinResolved2DMComponent&lt; _Scalar &gt;, SpinResolved2DM&lt; _Scalar &gt; &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable" prot="public" virt="non-virtual">GQCP::DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_spin_resolved2_d_m_8hpp" local="no">SpinResolved2DM.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1ae334f20472a5e944c4ec8aedb2c973cf" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::SpinResolved2DM&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1a2ef5bcf1e85d71497386544f2cbabfb1" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ae334f20472a5e944c4ec8aedb2c973cf" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::SpinResolved2DM&lt; _Scalar &gt;::Self =  SpinResolved2DM&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1a4c58e2057d5df2ac35f9f85e546a8366" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::SpinResolved2DM&lt; _Scalar &gt;::numberOfOrbitals</definition>
+        <argsstring>(const Spin sigma, const Spin tau) const</argsstring>
+        <name>numberOfOrbitals</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>tau</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha or beta. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tau</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha or beta.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the spin-resolved 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="72" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="72" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1af32067fd0dde6a92c3e00d775491ae49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ae334f20472a5e944c4ec8aedb2c973cf" kindref="member">Scalar</ref> &gt;</type>
+        <definition>Orbital2DM&lt;Scalar&gt; GQCP::SpinResolved2DM&lt; _Scalar &gt;::orbitalDensity</definition>
+        <argsstring>() const</argsstring>
+        <name>orbitalDensity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The orbital (total, spin-summed) two-electron density matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="89" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="89" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that encapsulates the spin parts of the spin-resolved two-electron density matrix.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of one of the density matrix elements: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::SpinResolved2DM&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved2_d_m"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::DoublySpinResolvedBase&lt; PureSpinResolved2DMComponent&lt; _Scalar &gt;, MixedSpinResolved2DMComponent&lt; _Scalar &gt;, SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_base"/>
+      </node>
+      <node id="5">
+        <label>GQCP::DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>GQCP::DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::SpinResolved2DM&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved2_d_m"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::DoublySpinResolvedBase&lt; PureSpinResolved2DMComponent&lt; _Scalar &gt;, MixedSpinResolved2DMComponent&lt; _Scalar &gt;, SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_base"/>
+      </node>
+      <node id="5">
+        <label>GQCP::DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="44" bodyend="111"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a3b00a4e21ad888d40c95f497cbc5b694" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>alphaAlpha</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a42eb4252e37bfb0c72a001f4b80c1bf8" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>alphaAlpha</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1af09c9e21929a8447daf32408221ff56a" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>alphaBeta</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1ae05d160f6b2435d83c9d2ad7c2ffe04d" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>alphaBeta</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a5c9f1b662f39a03b728e2c024360b194" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>betaAlpha</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a8c86194235d9b1daa7784393b74737d1" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>betaAlpha</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1ac77e62d5f651dce8c4217a6aa7f3487d" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>betaBeta</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a72c48ee531a89ceb97ab723b3ef6cee9" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>betaBeta</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a1916ec0b84dff2397eaa37d1e6a26d7f" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a6cee2100ccc8d339d1305fcdbb146221" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>DoublySpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_1a22e5277961cb14e1d3b16aa5d6bd5aee" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a230628c5e23252fa38b8cc228430757e" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Mixed</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a4c58e2057d5df2ac35f9f85e546a8366" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1af32067fd0dde6a92c3e00d775491ae49" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>orbitalDensity</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1aca1c50d6a880fe35529aec8e60bc8dd2" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Pure</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_1a6d8f51cf240f4a7acc6bc309a84ab563" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ae334f20472a5e944c4ec8aedb2c973cf" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a2ef5bcf1e85d71497386544f2cbabfb1" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SpinResolved2DM</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a1be0aa8993c5cbb96da09e91aa2de3eb" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a537698d7d018a1c0ff31509bc227bfa8" prot="public" virt="virtual"><scope>GQCP::SpinResolved2DM</scope><name>transformed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

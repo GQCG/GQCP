@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</compoundname>
+    <includes refid="_r_spin_orbital_basis_8hpp" local="no">RSpinOrbitalBasis.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _ExpansionScalar</type>
+      </param>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a438617e73318636306b950569cbb2454" prot="public" static="no">
+        <type>_ExpansionScalar</type>
+        <definition>using GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::ExpansionScalar =  _ExpansionScalar</definition>
+        <argsstring></argsstring>
+        <name>ExpansionScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="282" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a578f151fb19420f865bab54e03c2e9eb" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; <ref refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a438617e73318636306b950569cbb2454" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>using GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::Transformation =  RTransformation&lt;ExpansionScalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="285" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="285" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a0a39e8a300c65cc51a20a613bc2ad9ee" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a438617e73318636306b950569cbb2454" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>using GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::SQOverlapOperator =  ScalarRSQOneElectronOperator&lt;ExpansionScalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>SQOverlapOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="288" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="288" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="280" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="280" bodyend="289"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a438617e73318636306b950569cbb2454" prot="public" virt="non-virtual"><scope>GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</scope><name>ExpansionScalar</name></member>
+      <member refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a0a39e8a300c65cc51a20a613bc2ad9ee" prot="public" virt="non-virtual"><scope>GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</scope><name>SQOverlapOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a578f151fb19420f865bab54e03c2e9eb" prot="public" virt="non-virtual"><scope>GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</scope><name>Transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

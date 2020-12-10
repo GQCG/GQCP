@@ -1,0 +1,119 @@
+\hypertarget{class_g_q_c_p_1_1_step}{}\doxysection{G\+Q\+CP\+::Step$<$ \+\_\+\+Environment $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_step}\index{GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}}
+
+
+{\ttfamily \#include $<$Step.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Step$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_step__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Step$<$ \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_step__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Environment$>$\newline
+class G\+Q\+C\+P\+::\+Step$<$ \+\_\+\+Environment $>$}
+
+An elementary calculation that is regarded as one step in an algorithm.
+
+Derived classes should implement\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description()}}
+\item \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute()}}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Environment} & the type of the environment that this step can read from and write to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}\label{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}} 
+\index{GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step}{G\+Q\+C\+P\+::\+Step}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} =  \+\_\+\+Environment}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}\label{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}} 
+\index{GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}!````~Step@{$\sim$Step}}
+\index{````~Step@{$\sim$Step}!GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$Step()}{~Step()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step}{G\+Q\+C\+P\+::\+Step}}$<$ \+\_\+\+Environment $>$\+::$\sim$\mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}\label{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}} 
+\index{GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}!description@{description}}
+\index{description@{description}!GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step}{G\+Q\+C\+P\+::\+Step}}$<$ \+\_\+\+Environment $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a719c5657ab1eaa89adbe008e9516c618}{G\+Q\+C\+P\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a9364e58c7624df4f6621f712a929b5f3}{G\+Q\+C\+P\+::\+Minimization\+::\+Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a4f63e6c1cb7d7de973cbb4212e5ba699}{G\+Q\+C\+P\+::\+Step\+Collection$<$ \+\_\+\+Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a4f63e6c1cb7d7de973cbb4212e5ba699}{G\+Q\+C\+P\+::\+Step\+Collection$<$ Environment $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_acdbcb74b42d6f390be7c6aa00e05978b}{G\+Q\+C\+P\+::\+Functional\+Step$<$ \+\_\+\+Environment $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}\label{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}} 
+\index{GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}!execute@{execute}}
+\index{execute@{execute}!GQCP::Step$<$ \_Environment $>$@{GQCP::Step$<$ \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step}{G\+Q\+C\+P\+::\+Step}}$<$ \+\_\+\+Environment $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Execute/perform this algorithm step.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that this step can read from and write to \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a78d80e98d2ec9b89724474295c1371a1}{G\+Q\+C\+P\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a74bf63843f2f9eb8753f556b9dec2fee}{G\+Q\+C\+P\+::\+Minimization\+::\+Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_dense_diagonalization_a22c3d402fc47e074ed0b50b6345bee8e}{G\+Q\+C\+P\+::\+Dense\+Diagonalization}}, \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a227f70ef9375810de6e45dfbc23fc034}{G\+Q\+C\+P\+::\+Step\+Collection$<$ \+\_\+\+Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a227f70ef9375810de6e45dfbc23fc034}{G\+Q\+C\+P\+::\+Step\+Collection$<$ Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_aa30af9328c3482352d24d15e05156e1d}{G\+Q\+C\+P\+::\+Functional\+Step$<$ \+\_\+\+Environment $>$}}, \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_update_acf11b3134f5b1a2d059bfa2f3bcc5bf7}{G\+Q\+C\+P\+::\+Subspace\+Update}}, \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a289097a48ae666a44136878246d964c9}{G\+Q\+C\+P\+::\+Subspace\+Matrix\+Diagonalization}}, \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_calculation_a654f1375ead21ecacb9e0b2492bf7321}{G\+Q\+C\+P\+::\+Subspace\+Matrix\+Calculation}}, \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation_a737360db727b663e2f6c84ff82ebab1b}{G\+Q\+C\+P\+::\+Residual\+Vector\+Calculation}}, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae12bd52993b438c89bb00e731c22f905}{G\+Q\+C\+P\+::\+Matrix\+Vector\+Product\+Calculation}}, \mbox{\hyperlink{class_g_q_c_p_1_1_guess_vector_update_a7a851040ae4141bf75a5c04e3b8c4789}{G\+Q\+C\+P\+::\+Guess\+Vector\+Update}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation_a120b466e0f888fbdddddc15a311830fd}{G\+Q\+C\+P\+::\+Correction\+Vector\+Calculation}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Algorithm/\mbox{\hyperlink{_step_8hpp}{Step.\+hpp}}\end{DoxyCompactItemize}

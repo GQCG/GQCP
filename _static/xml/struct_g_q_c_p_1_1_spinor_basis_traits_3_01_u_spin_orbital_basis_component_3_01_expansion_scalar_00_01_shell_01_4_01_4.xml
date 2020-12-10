@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</compoundname>
+    <includes refid="_u_spin_orbital_basis_component_8hpp" local="no">USpinOrbitalBasisComponent.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename ExpansionScalar</type>
+      </param>
+      <param>
+        <type>typename Shell</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4_1a3efe2ae5754c403013a9640adb6a145f" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; ExpansionScalar &gt;</type>
+        <definition>using GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;::Transformation =  UTransformationComponent&lt;ExpansionScalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="139" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4_1a5e49c1476d9034c4693cd3416301a15d" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1ae63533275636c4067625f662a217726b" kindref="member">ScalarUSQOneElectronOperatorComponent</ref>&lt; ExpansionScalar &gt;</type>
+        <definition>using GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;::SQOverlapOperator =  ScalarUSQOneElectronOperatorComponent&lt;ExpansionScalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>SQOverlapOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="142" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="136" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="136" bodyend="143"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4_1a5e49c1476d9034c4693cd3416301a15d" prot="public" virt="non-virtual"><scope>GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</scope><name>SQOverlapOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4_1a3efe2ae5754c403013a9640adb6a145f" prot="public" virt="non-virtual"><scope>GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</scope><name>Transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

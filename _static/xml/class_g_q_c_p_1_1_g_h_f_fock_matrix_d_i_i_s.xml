@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::GHFFockMatrixDIIS</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_g_h_f_fock_matrix_d_i_i_s_8hpp" local="no">GHFFockMatrixDIIS.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af7fc072b94abe1ac08831123f495ed91" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a549a50fdbeac9bb2189407ee9cd276dc" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment" kindref="compound">GHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af7fc072b94abe1ac08831123f495ed91" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::Environment =  GHFSCFEnvironment&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af9b0a0bca20616fab76752db46da2e8b" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::minimum_subspace_dimension</definition>
+        <argsstring></argsstring>
+        <name>minimum_subspace_dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="48" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af878ed9b840846b8a7d749abb1d1903a" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::maximum_subspace_dimension</definition>
+        <argsstring></argsstring>
+        <name>maximum_subspace_dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="49" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a520d7ed46991e96299db2f950807410a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af7fc072b94abe1ac08831123f495ed91" kindref="member">Scalar</ref> &gt;</type>
+        <definition>DIIS&lt;Scalar&gt; GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::diis</definition>
+        <argsstring></argsstring>
+        <name>diis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="51" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1ab8915bf4de9d72329f6b6090b5e72596" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::GHFFockMatrixDIIS</definition>
+        <argsstring>(const size_t minimum_subspace_dimension=6, const size_t maximum_subspace_dimension=6)</argsstring>
+        <name>GHFFockMatrixDIIS</name>
+        <param>
+          <type>const size_t</type>
+          <declname>minimum_subspace_dimension</declname>
+          <defval>6</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_subspace_dimension</declname>
+          <defval>6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>minimum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the minimum number of Fock matrices that have to be in the subspace before enabling <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of Fock matrices that can be handled by <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="63" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1aa290d11cf0fc2a1a316c278029da597d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="75" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="75" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a914fedf95610d11e4dfc22e752b7a839" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a549a50fdbeac9bb2189407ee9cd276dc" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the accelerated Fock matrix, and perform a diagonalization step on it.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="85" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="85" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that accelerates the Fock matrix (expressed in the scalar/AO basis) based on a <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> accelerator.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent the expansion coefficient/elements of the transformation matrix: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp" bodystart="40" bodyend="107"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1aa290d11cf0fc2a1a316c278029da597d" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFFockMatrixDIIS</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a520d7ed46991e96299db2f950807410a" prot="private" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>diis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a549a50fdbeac9bb2189407ee9cd276dc" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a914fedf95610d11e4dfc22e752b7a839" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFFockMatrixDIIS</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1ab8915bf4de9d72329f6b6090b5e72596" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>GHFFockMatrixDIIS</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af878ed9b840846b8a7d749abb1d1903a" prot="private" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>maximum_subspace_dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af9b0a0bca20616fab76752db46da2e8b" prot="private" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>minimum_subspace_dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1af7fc072b94abe1ac08831123f495ed91" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::GHFFockMatrixDIIS</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

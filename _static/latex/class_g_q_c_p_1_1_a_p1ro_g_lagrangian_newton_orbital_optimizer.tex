@@ -1,0 +1,189 @@
+\hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer}{}\doxysection{G\+Q\+CP\+::A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer Class Reference}
+\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer}\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+
+
+{\ttfamily \#include $<$A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a682f92d1fb05df87f7e4c5a0238e16b5}{A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer}} (const size\+\_\+t N\+\_\+P, const size\+\_\+t K, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\+\_\+modifier}}, const double oo\+\_\+convergence\+\_\+threshold=1.\+0e-\/08, const size\+\_\+t oo\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations=128, const double pse\+\_\+convergence\+\_\+threshold=1.\+0e-\/08, const size\+\_\+t pse\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a02f4bd8943149b3bd83061c9366400c0}{A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}} \&G, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\+\_\+modifier}}, const double oo\+\_\+convergence\+\_\+threshold=1.\+0e-\/08, const size\+\_\+t oo\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations=128, const double pse\+\_\+convergence\+\_\+threshold=1.\+0e-\/08, const size\+\_\+t pse\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5c8c974c787553a88daeaf850210229f}{prepare\+D\+M\+Calculation}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_afdaf6eb8496913f79d26692f65d07317}{calculate1\+DM}} () const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a1931e33efbb95070899b100d8db336a2}{calculate2\+DM}} () const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a42d0ec0da1507f51c81086668c18696e}{calculate\+New\+Full\+Orbital\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a69ab60b9b58343f58660e2bfe8576920}{electronic\+Energy}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a2c0effa80f9ae7eb102ba37f7b710dee}{geminal\+Coefficients}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5f5453dc98e1d3926721c7f7c7654521}{multipliers}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a682f92d1fb05df87f7e4c5a0238e16b5}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a682f92d1fb05df87f7e4c5a0238e16b5}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!AP1roGLagrangianNewtonOrbitalOptimizer@{AP1roGLagrangianNewtonOrbitalOptimizer}}
+\index{AP1roGLagrangianNewtonOrbitalOptimizer@{AP1roGLagrangianNewtonOrbitalOptimizer}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{AP1roGLagrangianNewtonOrbitalOptimizer()}{AP1roGLagrangianNewtonOrbitalOptimizer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{N\+\_\+P,  }\item[{const size\+\_\+t}]{K,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$}]{hessian\+\_\+modifier,  }\item[{const double}]{oo\+\_\+convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{oo\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128},  }\item[{const double}]{pse\+\_\+convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{pse\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em N\+\_\+P} & the number of electron pairs \\
+\hline
+{\em K} & the number of spatial orbitals \\
+\hline
+{\em hessian\+\_\+modifier} & the modifier functor that should be used when an indefinite Hessian is encountered \\
+\hline
+{\em oo\+\_\+convergence\+\_\+threshold} & the threshold used to check for convergence on the orbital gradient \\
+\hline
+{\em oo\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of orbital rotation iterations that may be used to achieve convergence \\
+\hline
+{\em pse\+\_\+convergence\+\_\+threshold} & the threshold used to check for convergence on the geminal coefficients \\
+\hline
+{\em pse\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of Newton steps that may be used to achieve convergence of the P\+S\+Es\\
+\hline
+\end{DoxyParams}
+The initial guess for the geminal coefficients is zero \mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a02f4bd8943149b3bd83061c9366400c0}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a02f4bd8943149b3bd83061c9366400c0}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!AP1roGLagrangianNewtonOrbitalOptimizer@{AP1roGLagrangianNewtonOrbitalOptimizer}}
+\index{AP1roGLagrangianNewtonOrbitalOptimizer@{AP1roGLagrangianNewtonOrbitalOptimizer}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{AP1roGLagrangianNewtonOrbitalOptimizer()}{AP1roGLagrangianNewtonOrbitalOptimizer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}} \&}]{G,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$}]{hessian\+\_\+modifier,  }\item[{const double}]{oo\+\_\+convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{oo\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128},  }\item[{const double}]{pse\+\_\+convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{pse\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em G} & the initial geminal coefficients \\
+\hline
+{\em hessian\+\_\+modifier} & the modifier functor that should be used when an indefinite Hessian is encountered \\
+\hline
+{\em oo\+\_\+convergence\+\_\+threshold} & the threshold used to check for convergence \\
+\hline
+{\em oo\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations that may be used to achieve convergence \\
+\hline
+{\em pse\+\_\+convergence\+\_\+threshold} & the threshold used to check for convergence on the geminal coefficients \\
+\hline
+{\em pse\+\_\+maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of Newton steps that may be used to achieve convergence of the P\+S\+Es \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_afdaf6eb8496913f79d26692f65d07317}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_afdaf6eb8496913f79d26692f65d07317}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!calculate1DM@{calculate1DM}}
+\index{calculate1DM@{calculate1DM}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{calculate1DM()}{calculate1DM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ double $>$ G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::calculate1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the current 1-\/DM 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_a77ccb23d08d84d516aabe4194266f4be}{G\+Q\+C\+P\+::\+Q\+C\+Method\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a1931e33efbb95070899b100d8db336a2}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a1931e33efbb95070899b100d8db336a2}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!calculate2DM@{calculate2DM}}
+\index{calculate2DM@{calculate2DM}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{calculate2DM()}{calculate2DM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ double $>$ G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::calculate2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the current 2-\/DM 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_a16c4c030ecb92d0b5122c05c3e8fa832}{G\+Q\+C\+P\+::\+Q\+C\+Method\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a42d0ec0da1507f51c81086668c18696e}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a42d0ec0da1507f51c81086668c18696e}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}}
+\index{calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{calculateNewFullOrbitalGenerators()}{calculateNewFullOrbitalGenerators()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::calculate\+New\+Full\+Orbital\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Use gradient and Hessian information to determine a new direction for the \textquotesingle{}full\textquotesingle{} orbital rotation generators kappa. Note that a distinction is made between \textquotesingle{}free\textquotesingle{} generators, i.\+e. those that are calculated from the gradient and Hessian information and the \textquotesingle{}full\textquotesingle{} generators, which also include the redundant parameters (that can be set to zero). The \textquotesingle{}full\textquotesingle{} generators are used to calculate the total rotation matrix using the matrix exponential
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new full set orbital generators, including the redundant parameters 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a917e48231bf397dcdc210590451113e5}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a69ab60b9b58343f58660e2bfe8576920}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a69ab60b9b58343f58660e2bfe8576920}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!electronicEnergy@{electronicEnergy}}
+\index{electronicEnergy@{electronicEnergy}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{electronicEnergy()}{electronicEnergy()}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::electronic\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the electronic energy calculated by this orbital optimizer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a2c0effa80f9ae7eb102ba37f7b710dee}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a2c0effa80f9ae7eb102ba37f7b710dee}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!geminalCoefficients@{geminalCoefficients}}
+\index{geminalCoefficients@{geminalCoefficients}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{geminalCoefficients()}{geminalCoefficients()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{A\+P1ro\+G\+Geminal\+Coefficients}}\& G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::geminal\+Coefficients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the geminal coefficients calculated by this orbital optimizer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5f5453dc98e1d3926721c7f7c7654521}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5f5453dc98e1d3926721c7f7c7654521}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!multipliers@{multipliers}}
+\index{multipliers@{multipliers}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{multipliers()}{multipliers()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$double$>$\& G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::multipliers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the Lagrange multipliers calculated by this orbital optimizer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5c8c974c787553a88daeaf850210229f}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5c8c974c787553a88daeaf850210229f}} 
+\index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!prepareDMCalculation@{prepareDMCalculation}}
+\index{prepareDMCalculation@{prepareDMCalculation}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{prepareDMCalculation()}{prepareDMCalculation()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer\+::prepare\+D\+M\+Calculation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Prepare this object (i.\+e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-\/based orbital optimizer
+
+In the case of this uncoupled A\+P1roG Lagrangian orbital optimizer, the P\+S\+Es are re-\/solved in every iteration using the current orbitals 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_a815d7b0854bb6b1b5a2e0ecb2ece412d}{G\+Q\+C\+P\+::\+Q\+C\+Method\+Newton\+Orbital\+Optimizer}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+Geminals/\mbox{\hyperlink{_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp}{A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Q\+C\+Method/\+Geminals/\mbox{\hyperlink{_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp}{A\+P1ro\+G\+Lagrangian\+Newton\+Orbital\+Optimizer.\+cpp}}\end{DoxyCompactItemize}

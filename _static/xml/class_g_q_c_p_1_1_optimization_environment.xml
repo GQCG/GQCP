@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_optimization_environment" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::OptimizationEnvironment</compoundname>
+    <includes refid="_optimization_environment_8hpp" local="no">OptimizationEnvironment.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Iterate</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" prot="public" static="no">
+        <type>_Iterate</type>
+        <definition>using GQCP::OptimizationEnvironment&lt; _Iterate &gt;::Iterate =  _Iterate</definition>
+        <argsstring></argsstring>
+        <name>Iterate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_optimization_environment_1ab90536bd286710f617a8006c9e08558d" prot="public" static="no">
+        <type>typename Iterate::Scalar</type>
+        <definition>using GQCP::OptimizationEnvironment&lt; _Iterate &gt;::Scalar =  typename Iterate::Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" line="36" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_optimization_environment_1adb8d5b6dd10be21c085d1a6855d307db" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; _Iterate &gt;</type>
+        <definition>std::deque&lt;_Iterate&gt; GQCP::OptimizationEnvironment&lt; _Iterate &gt;::variables</definition>
+        <argsstring></argsstring>
+        <name>variables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" line="40" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::OptimizationEnvironment&lt; _Iterate &gt;::OptimizationEnvironment</definition>
+        <argsstring>(const Iterate &amp;initial_guess)</argsstring>
+        <name>OptimizationEnvironment</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" kindref="member">Iterate</ref> &amp;</type>
+          <declname>initial_guess</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the optimization environment with an initial guess</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>initial_guess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial guess for the variables </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" bodystart="53" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A standard environment that stores the iterative variables of an iterative algorithm</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Iterate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the iterative variables </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OptimizationEnvironment&lt; _Iterate &gt;</label>
+        <link refid="class_g_q_c_p_1_1_optimization_environment"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/OptimizationEnvironment.hpp" bodystart="33" bodyend="55"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" prot="public" virt="non-virtual"><scope>GQCP::OptimizationEnvironment</scope><name>Iterate</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" prot="public" virt="non-virtual"><scope>GQCP::OptimizationEnvironment</scope><name>OptimizationEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1ab90536bd286710f617a8006c9e08558d" prot="public" virt="non-virtual"><scope>GQCP::OptimizationEnvironment</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1adb8d5b6dd10be21c085d1a6855d307db" prot="public" virt="non-virtual"><scope>GQCP::OptimizationEnvironment</scope><name>variables</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

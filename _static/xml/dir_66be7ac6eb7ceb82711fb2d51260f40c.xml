@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_66be7ac6eb7ceb82711fb2d51260f40c" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QuantumChemical</compoundname>
+    <innerfile refid="_doubly_spin_resolved_base_8hpp">DoublySpinResolvedBase.hpp</innerfile>
+    <innerfile refid="_spin_8hpp">Spin.hpp</innerfile>
+    <innerfile refid="spinor__tags_8hpp">spinor_tags.hpp</innerfile>
+    <innerfile refid="_spin_resolved_8hpp">SpinResolved.hpp</innerfile>
+    <innerfile refid="_spin_resolved_base_8hpp">SpinResolvedBase.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/"/>
+  </compounddef>
+</doxygen>

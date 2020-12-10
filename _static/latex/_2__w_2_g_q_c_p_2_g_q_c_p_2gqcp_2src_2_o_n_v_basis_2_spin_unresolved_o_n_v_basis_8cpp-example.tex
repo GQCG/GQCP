@@ -1,0 +1,619 @@
+\hypertarget{_2__w_2_g_q_c_p_2_g_q_c_p_2gqcp_2src_2_o_n_v_basis_2_spin_unresolved_o_n_v_basis_8cpp-example}{}\doxysection{/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+O\+N\+V\+Basis/\+Spin\+Unresolved\+O\+N\+V\+Basis.\+cpp}
+Calculate the next allowed unsigned representation of a spin-\/unresolved O\+NV in this O\+NV basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em representation} & A representation of a spin-\/unresolved O\+NV.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The next allowed unsigned representation of a spin-\/unresolved O\+NV in this O\+NV basis.
+\end{DoxyReturn}
+011 -\/$>$ 101 101 -\/$>$ 110
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{// This file is part of GQCG-\/GQCP.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// Copyright (C) 2017-\/2020  the GQCG developers}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// GQCG-\/GQCP is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{\textcolor{comment}{// it under the terms of the GNU Lesser General Public License as published by}}
+\DoxyCodeLine{\textcolor{comment}{// the Free Software Foundation, either version 3 of the License, or}}
+\DoxyCodeLine{\textcolor{comment}{// (at your option) any later version.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// GQCG-\/GQCP is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{\textcolor{comment}{// but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{\textcolor{comment}{// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{\textcolor{comment}{// GNU Lesser General Public License for more details.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// You should have received a copy of the GNU Lesser General Public License}}
+\DoxyCodeLine{\textcolor{comment}{// along with GQCG-\/GQCP.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}ONVBasis/SpinUnresolvedONVBasis.hpp"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <boost/math/special\_functions.hpp>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <boost/numeric/conversion/converter.hpp>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Constructors}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} M, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} N) :}
+\DoxyCodeLine{    M \{M\},}
+\DoxyCodeLine{    N \{N\} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Set up the vertex weights for the addressing scheme for a full spin-\/unresolved ONV basis. This addressing scheme is taken from Helgaker, Jørgensen, Olsen (2000).}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Create a zero matrix of dimensions (M+1)x(N+1)}}
+\DoxyCodeLine{    this-\/>vertex\_weights = std::vector<std::vector<size\_t>>(M + 1, std::vector<size\_t>(N + 1, 0));}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// M=5   N=2}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// The largest (reverse lexical) string is the one that includes the first (M-\/N+1) vertices of the first column}}
+\DoxyCodeLine{    \textcolor{comment}{//      This is because every vertical move from (p,m) to (p+1,m+1) corresponds to "{}orbital p+1 is unoccupied"{}.}}
+\DoxyCodeLine{    \textcolor{comment}{//      Therefore, the largest reverse lexical string is the one where the first (M-\/N) orbitals are unoccupied.}}
+\DoxyCodeLine{    \textcolor{comment}{//      This means that there should be (M-\/N) vertical moves from (0,0).}}
+\DoxyCodeLine{    \textcolor{comment}{// Therefore, we may only set the weights of first (M-\/N+1) vertices of the first column to 1.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} p = 0; p < M -\/ N + 1; p++) \{}
+\DoxyCodeLine{        this-\/>vertex\_weights[p][0] = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// M=5   N=2}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 0 ]}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// The recurrence relation for the vertex weights is as follows:}}
+\DoxyCodeLine{    \textcolor{comment}{//      Every element is the sum of the values of the element vertically above and the element left diagonally above.}}
+\DoxyCodeLine{    \textcolor{comment}{//      W(p,m) = W(p-\/1,m) + W(p-\/1,m-\/1)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} m = 1; m < N + 1; m++) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} p = m; p < (M -\/ N + m) + 1; p++) \{}
+\DoxyCodeLine{            this-\/>vertex\_weights[p][m] = this-\/>vertex\_weights[p -\/ 1][m] + this-\/>vertex\_weights[p -\/ 1][m -\/ 1];}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// M=5   N=2}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 0 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 1 0 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 2 1 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 1 3 3 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 4 6 ]}}
+\DoxyCodeLine{    \textcolor{comment}{// [ 0 0 10]}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Basic information}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::calculateDimension(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} M, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} N) \{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} dim\_double = boost::math::binomial\_coefficient<double>(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\textcolor{keyword}{>}(M), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\textcolor{keyword}{>}(N));}
+\DoxyCodeLine{    \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} boost::numeric::converter<size\_t, double>::convert(dim\_double);}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{catch} (boost::numeric::bad\_numeric\_cast\& e) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::overflow\_error(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::calculateDimension(const size\_t, const size\_t): "{}} + std::string(e.what()));}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Addressing scheme, address calculations and ONV manipulations}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::arcWeight(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} n)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Arc weights and vertex weights are related. This relation is found in Helgaker, Jørgensen, Olsen (2000) in chapter 11.3.6.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>vertexWeight(p, n + 1);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::addressOf(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} representation)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// An implementation of the formula in Helgaker, starting the addressing count from zero}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} copy = representation;}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} address = 0;}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} electron\_count = 0;            \textcolor{comment}{// counts the number of electrons in the spin string up to orbital p}}
+\DoxyCodeLine{    \textcolor{keywordflow}{while} (copy != 0) \{                   \textcolor{comment}{// we will remove the least significant bit each loop, we are finished when no bits are left}}
+\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} p = \_\_builtin\_ctzl(copy);  \textcolor{comment}{// p is the orbital index counter (starting from 1)}}
+\DoxyCodeLine{        electron\_count++;                 \textcolor{comment}{// each bit is an electron hence we add it up to the electron count}}
+\DoxyCodeLine{        address += this-\/>vertexWeight(p, electron\_count);}
+\DoxyCodeLine{        copy \string^= copy \& -\/copy;  \textcolor{comment}{// flip the least significant bit}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} address;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::nextPermutationOf(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} representation)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// t gets this-\/>representation's least significant 0 bits set to 1}}
+\DoxyCodeLine{    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} t = representation | (representation -\/ 1UL);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Next set to 1 the most significant bit to change,}}
+\DoxyCodeLine{    \textcolor{comment}{// set to 0 the least significant ones, and add the necessary 1 bits.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} (t + 1UL) | (((\string~t \& (t + 1UL)) -\/ 1UL) >> (\_\_builtin\_ctzl(representation) + 1UL));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::representationOf(\textcolor{keywordtype}{size\_t} address)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} representation = 0;}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>numberOfElectrons() != 0) \{}
+\DoxyCodeLine{        representation = 0;}
+\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} m = this-\/>numberOfElectrons();  \textcolor{comment}{// counts the number of electrons in the spin string up to orbital p}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} p = this-\/>numberOfOrbitals(); p > 0; p-\/-\/) \{  \textcolor{comment}{// p is an orbital index}}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} weight = vertexWeight(p -\/ 1, m);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if} (weight <= address) \{  \textcolor{comment}{// the algorithm can move diagonally, so we found an occupied orbital}}
+\DoxyCodeLine{                address -\/= weight;}
+\DoxyCodeLine{                representation |= ((1) << (p -\/ 1));  \textcolor{comment}{// set the (p-\/1)th bit: see (https://stackoverflow.com/a/47990)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                m-\/-\/;  \textcolor{comment}{// since we found an occupied orbital, we have one electron less}}
+\DoxyCodeLine{                \textcolor{keywordflow}{if} (m == 0) \{}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} representation;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{SpinUnresolvedONV SpinUnresolvedONVBasis::constructONVFromAddress(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} address)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    SpinUnresolvedONV onv \{this-\/>numberOfOrbitals(), this-\/>numberOfElectrons()\};}
+\DoxyCodeLine{    this-\/>transformONVCorrespondingToAddress(onv, address);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} onv;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} SpinUnresolvedONVBasis::transformONVToNextPermutation(SpinUnresolvedONV\& onv)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    onv.replaceRepresentationWith(this-\/>nextPermutationOf(onv.unsignedRepresentation()));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} SpinUnresolvedONVBasis::transformONVCorrespondingToAddress(SpinUnresolvedONV\& onv, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} address)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    onv.replaceRepresentationWith(this-\/>representationOf(address));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Couplings}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::countOneElectronCouplings(\textcolor{keyword}{const} SpinUnresolvedONV\& onv)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} V = this-\/>numberOfOrbitals() -\/ this-\/>numberOfElectrons();  \textcolor{comment}{// number of virtual orbitals}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} coupling\_count = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e1 = 0; e1 < this-\/>numberOfElectrons(); e1++) \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} p = onv.occupationIndexOf(e1);}
+\DoxyCodeLine{        coupling\_count += (V + e1 -\/ p);  \textcolor{comment}{// number of virtuals with an index larger than p}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} coupling\_count;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::countTotalOneElectronCouplings()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} M = this-\/>numberOfOrbitals();}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} N = this-\/>numberOfElectrons();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} (M -\/ N) * N * (this-\/>dimension());}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::countTotalTwoElectronCouplings()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} M = this-\/>numberOfOrbitals();}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} N = this-\/>numberOfElectrons();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} two\_electron\_permutation = 0;  \textcolor{comment}{// all distributions for two electrons over the virtual orbitals}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (M -\/ N >= 2) \{}
+\DoxyCodeLine{        two\_electron\_permutation = SpinUnresolvedONVBasis::calculateDimension(M -\/ N, 2) * N * (N -\/ 1) * (this-\/>dimension()) / 2;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} two\_electron\_permutation + countTotalOneElectronCouplings();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONVBasis::countTwoElectronCouplings(\textcolor{keyword}{const} SpinUnresolvedONV\& onv)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} M = this-\/>numberOfOrbitals();}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} N = this-\/>numberOfElectrons();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} V = M -\/ N;  \textcolor{comment}{// number of virtual orbitals}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} coupling\_count = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e1 = 0; e1 < N; e1++) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} p = onv.occupationIndexOf(e1);}
+\DoxyCodeLine{        coupling\_count += (V + e1 -\/ p);  \textcolor{comment}{//  one electron part}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e2 = e1 + 1; e2 < N; e2++) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} q = onv.occupationIndexOf(e2);}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} coupling\_count2 = (V + e2 -\/ q);}
+\DoxyCodeLine{            coupling\_count += (V -\/ coupling\_count2) * coupling\_count2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if} (coupling\_count2 > 1) \{}
+\DoxyCodeLine{                coupling\_count += SpinUnresolvedONVBasis::calculateDimension(coupling\_count2, 2);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} coupling\_count;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneElectronCouplings()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} K = this-\/>numberOfOrbitals();}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} N = this-\/>numberOfElectrons();}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} dim = this-\/>dimension();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::vector<std::vector<Eigen::Triplet<double>>> sparse\_entries(K * (K + 1) / 2);}
+\DoxyCodeLine{    std::vector<Eigen::SparseMatrix<double>> sparse\_matrices(K * (K + 1) / 2, Eigen::SparseMatrix<double>(dim, dim));}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (N == 0) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} sparse\_matrices;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Reserve appropriate number of entries}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} reservation\_size = SpinUnresolvedONVBasis::calculateDimension(K -\/ 1, N -\/ 1);}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} p = 0; p < K; p++) \{}
+\DoxyCodeLine{        sparse\_entries[p * (K + K + 1 -\/ p) / 2].reserve(reservation\_size);}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} q = p + 1; q < K; q++) \{}
+\DoxyCodeLine{            sparse\_entries[p * (K + K + 1 -\/ p) / 2 + q -\/ p].reserve(2 * reservation\_size);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    SpinUnresolvedONV onv = this-\/>constructONVFromAddress(0);  \textcolor{comment}{// onv with address 0}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} I = 0; I < dim; I++) \{                         \textcolor{comment}{// I loops over all the addresses of the onv}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e1 = 0; e1 < N; e1++) \{                    \textcolor{comment}{// e1 (electron 1) loops over the (number of) electrons}}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} p = onv.occupationIndexOf(e1);              \textcolor{comment}{// retrieve the index of a given electron}}
+\DoxyCodeLine{            \textcolor{comment}{// remove the weight from the initial address I, because we annihilate}}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} address = I -\/ this-\/>vertexWeight(p, e1 + 1);}
+\DoxyCodeLine{            \textcolor{comment}{// The e2 iteration counts the number of encountered electrons for the creation operator}}
+\DoxyCodeLine{            \textcolor{comment}{// We only consider greater addresses than the initial one (because of symmetry)}}
+\DoxyCodeLine{            \textcolor{comment}{// Hence we only count electron after the annihilated electron (e1)}}
+\DoxyCodeLine{            sparse\_entries[p * (K + K + 1 -\/ p) / 2].emplace\_back(I, I, 1);}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} e2 = e1 + 1;}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} q = p + 1;}
+\DoxyCodeLine{            \textcolor{keywordtype}{int} sign\_e2 = 1;}
+\DoxyCodeLine{            \textcolor{comment}{// perform a shift}}
+\DoxyCodeLine{            this-\/>shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign\_e2);}
+\DoxyCodeLine{            \textcolor{keywordflow}{while} (q < K) \{}
+\DoxyCodeLine{                \textcolor{keywordtype}{size\_t} J = address + this-\/>vertexWeight(q, e2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{                sparse\_entries[p * (K + K + 1 -\/ p) / 2 + q -\/ p].emplace\_back(I, J, sign\_e2);}
+\DoxyCodeLine{                sparse\_entries[p * (K + K + 1 -\/ p) / 2 + q -\/ p].emplace\_back(J, I, sign\_e2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{                q++;  \textcolor{comment}{// go to the next orbital}}
+\DoxyCodeLine{                \textcolor{comment}{// perform a shift}}
+\DoxyCodeLine{                this-\/>shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign\_e2);}
+\DoxyCodeLine{            \}  \textcolor{comment}{//  (creation)}}
+\DoxyCodeLine{        \}      \textcolor{comment}{// e1 loop (annihilation)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Prevent last permutation}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (I < dim -\/ 1) \{}
+\DoxyCodeLine{            this-\/>transformONVToNextPermutation(onv);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} k = 0; k < K * (K + 1) / 2; k++) \{}
+\DoxyCodeLine{        sparse\_matrices[k].setFromTriplets(sparse\_entries[k].begin(), sparse\_entries[k].end());}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} sparse\_matrices;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Iterating}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} SpinUnresolvedONVBasis::forEach(\textcolor{keyword}{const} std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const} SpinUnresolvedONV\&, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t})>\& callback)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} dim = this-\/>dimension();}
+\DoxyCodeLine{    SpinUnresolvedONV onv = this-\/>constructONVFromAddress(0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Loop over all addresses of the ONVs.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} I = 0; I < dim; I++) \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        callback(onv, I);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Prevent the last permutation from occurring, as this would cause errors.}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (I < dim -\/ 1) \{}
+\DoxyCodeLine{            this-\/>transformONVToNextPermutation(onv);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Dense generalized operator evaluations}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(\textcolor{keyword}{const} ScalarGSQOneElectronOperator<double>\& f)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (f.numberOfOrbitals() != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>\&): The number of orbitals of this ONV basis and the given one-\/electron operator are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Initialize a container for the dense matrix representation, and fill it with the general evaluation function.}}
+\DoxyCodeLine{    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container \{this-\/>dimension()\};}
+\DoxyCodeLine{    this-\/>evaluate<SquareMatrix<double>>(f, container);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} container.evaluation();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(\textcolor{keyword}{const} ScalarGSQTwoElectronOperator<double>\& g)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// In order to avoid duplicate code, we choose to delegate this method to the evaluation of a `GSQHamiltonian` that contains no core contributions. This does not affect performance significantly, because the bottleneck will always be the iteration over the whole ONV basis.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} zero = \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aae57f5b84d06fde585c7597e2b6e225b}{ScalarGSQOneElectronOperator<double>::Zero}}(g.numberOfOrbitals());}
+\DoxyCodeLine{    \textcolor{keyword}{const} GSQHamiltonian<double> hamiltonian \{zero, g\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorDense(hamiltonian);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(\textcolor{keyword}{const} GSQHamiltonian<double>\& hamiltonian)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (hamiltonian.numberOfOrbitals() != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>\&): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Initialize a container for the dense matrix representation, and fill it with the general evaluation function.}}
+\DoxyCodeLine{    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container \{this-\/>dimension()\};}
+\DoxyCodeLine{    this-\/>evaluate<SquareMatrix<double>>(hamiltonian, container);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} container.evaluation();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Dense unrestricted operator evaluations}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(\textcolor{keyword}{const} ScalarUSQOneElectronOperatorComponent<double>\& f)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// We may convert an unrestricted component into the generalized representation.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} f\_generalized = \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator_a03c6e36fce8838f941b3ffdb167c2a4d}{ScalarGSQOneElectronOperator<double>::FromUnrestrictedComponent}}(f);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorDense(f\_generalized);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(\textcolor{keyword}{const} ScalarPureUSQTwoElectronOperatorComponent<double>\& g)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// We may convert an unrestricted component into the generalized representation.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} g\_generalized = \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_two_electron_operator_a884709eb9236aa9975d016ee93322d13}{ScalarGSQTwoElectronOperator<double>::FromUnrestrictedComponent}}(g);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorDense(g\_generalized);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Diagonal generalized operator evaluations}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(\textcolor{keyword}{const} ScalarGSQOneElectronOperator<double>\& f\_op)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} K = f\_op.numberOfOrbitals();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (K != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>\&): The number of orbitals of this ONV basis and the given operator are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Prepare some variables.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto}\& f = f\_op.parameters();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} N = this-\/>numberOfElectrons();}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} dim = this-\/>dimension();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    VectorX<double> diagonal = VectorX<double>::Zero(dim);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    SpinUnresolvedONV onv = this-\/>constructONVFromAddress(0);  \textcolor{comment}{// onv with address 0}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} I = 0; I < dim; I++) \{                         \textcolor{comment}{// I loops over all addresses in this ONV basis}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (I > 0) \{}
+\DoxyCodeLine{            this-\/>transformONVToNextPermutation(onv);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e1 = 0; e1 < N; e1++) \{  \textcolor{comment}{// A1 (annihilation 1)}}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} p = onv.occupationIndexOf(e1);}
+\DoxyCodeLine{            diagonal(I) += f(p, p);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} diagonal;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(\textcolor{keyword}{const} ScalarGSQTwoElectronOperator<double>\& g\_op)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{auto} K = g\_op.numberOfOrbitals();}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (K != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarGSQTwoElectronOperator<double>\&): The number of orbitals of this ONV basis and the given operator are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} N = this-\/>numberOfElectrons();}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} dim = this-\/>dimension();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    VectorX<double> diagonal = VectorX<double>::Zero(dim);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} k = g\_op.effectiveOneElectronPartition().parameters();}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto}\& g = g\_op.parameters();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    SpinUnresolvedONV onv = this-\/>constructONVFromAddress(0);  \textcolor{comment}{// onv with address 0}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} I = 0; I < dim; I++) \{                         \textcolor{comment}{// I loops over all addresses in this ONV basis}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (I > 0) \{}
+\DoxyCodeLine{            this-\/>transformONVToNextPermutation(onv);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} e1 = 0; e1 < N; e1++) \{  \textcolor{comment}{// A1 (annihilation 1)}}
+\DoxyCodeLine{            \textcolor{keywordtype}{size\_t} p = onv.occupationIndexOf(e1);}
+\DoxyCodeLine{            diagonal(I) += k(p, p);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} q = 0; q < K; q++) \{  \textcolor{comment}{// q loops over SOs}}
+\DoxyCodeLine{                \textcolor{keywordflow}{if} (onv.isOccupied(q)) \{}
+\DoxyCodeLine{                    diagonal(I) += 0.5 * g(p, p, q, q);}
+\DoxyCodeLine{                \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{                    diagonal(I) += 0.5 * g(p, q, q, p);}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} diagonal;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(\textcolor{keyword}{const} GSQHamiltonian<double>\& sq\_hamiltonian)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorDiagonal(sq\_hamiltonian.core()) + this-\/>evaluateOperatorDiagonal(sq\_hamiltonian.twoElectron());}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Sparse generalized operator evaluations}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(\textcolor{keyword}{const} ScalarGSQOneElectronOperator<double>\& f)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (f.numberOfOrbitals() != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>\&): The number of orbitals of the ONV basis and the operator are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Initialize a container for the sparse matrix representation, and reserve an appropriate amount of memory for it.}}
+\DoxyCodeLine{    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> container \{this-\/>dimension()\};}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} memory = this-\/>dimension() + this-\/>countTotalOneElectronCouplings();}
+\DoxyCodeLine{    container.reserve(memory);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Evaluate the one-\/electron operator and add the evaluations to the sparse matrix representation.}}
+\DoxyCodeLine{    this-\/>evaluate<Eigen::SparseMatrix<double>>(f, container);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Finalize the creation of the sparse matrix and return the result.}}
+\DoxyCodeLine{    container.addToMatrix();}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} container.evaluation();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(\textcolor{keyword}{const} ScalarGSQTwoElectronOperator<double>\& g)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// In order to avoid duplicate code, we choose to delegate this method to the evaluation of a `GSQHamiltonian` that contains no core contributions. This does not affect performance significantly, because the bottleneck will always be the iteration over the whole ONV basis.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} zero = \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aae57f5b84d06fde585c7597e2b6e225b}{ScalarGSQOneElectronOperator<double>::Zero}}(g.numberOfOrbitals());}
+\DoxyCodeLine{    \textcolor{keyword}{const} GSQHamiltonian<double> hamiltonian \{zero, g\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorSparse(hamiltonian);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(\textcolor{keyword}{const} GSQHamiltonian<double>\& hamiltonian)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (hamiltonian.numberOfOrbitals() != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorSparse(const GSQHamiltonian<double>\& hamiltonian): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Initialize a container for the sparse matrix representation, and reserve an appropriate amount of memory for it.}}
+\DoxyCodeLine{    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> container \{this-\/>dimension()\};}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} memory = this-\/>dimension() + this-\/>countTotalTwoElectronCouplings();}
+\DoxyCodeLine{    container.reserve(memory);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Evaluate the Hamiltonian and add the evaluations to the sparse matrix representation.}}
+\DoxyCodeLine{    this-\/>evaluate<Eigen::SparseMatrix<double>>(hamiltonian, container);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Finalize the creation of the sparse matrix and return the result.}}
+\DoxyCodeLine{    container.addToMatrix();}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} container.evaluation();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Sparse unrestricted operator evaluations}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(\textcolor{keyword}{const} ScalarUSQOneElectronOperatorComponent<double>\& f)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// We may convert an unrestricted component into the generalized representation.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} f\_generalized = \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator_a03c6e36fce8838f941b3ffdb167c2a4d}{ScalarGSQOneElectronOperator<double>::FromUnrestrictedComponent}}(f);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorSparse(f\_generalized);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(\textcolor{keyword}{const} ScalarPureUSQTwoElectronOperatorComponent<double>\& g)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// We may convert an unrestricted component into the generalized representation.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} g\_generalized = \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_two_electron_operator_a884709eb9236aa9975d016ee93322d13}{ScalarGSQTwoElectronOperator<double>::FromUnrestrictedComponent}}(g);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorSparse(g\_generalized);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ *  MARK: Generalized matrix-\/vector product evaluations}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(\textcolor{keyword}{const} ScalarGSQOneElectronOperator<double>\& f, \textcolor{keyword}{const} VectorX<double>\& \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (f.numberOfOrbitals() != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>\&, const VectorX<double>\&): The number of orbitals of this ONV basis and the operator are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Initialize a container for the matrix-\/vector product, and fill it with the general evaluation function.}}
+\DoxyCodeLine{    MatrixRepresentationEvaluationContainer<VectorX<double>> container \{\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\};}
+\DoxyCodeLine{    this-\/>evaluate<VectorX<double>>(f, container);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} container.evaluation();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(\textcolor{keyword}{const} ScalarGSQTwoElectronOperator<double>\& g, \textcolor{keyword}{const} VectorX<double>\& \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// In order to avoid duplicate code, we choose to delegate this method to the evaluation of a `GSQHamiltonian` that contains no core contributions. This does not affect performance significantly, because the bottleneck will always be the iteration over the whole ONV basis.}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} zero = \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aae57f5b84d06fde585c7597e2b6e225b}{ScalarGSQOneElectronOperator<double>::Zero}}(g.numberOfOrbitals());}
+\DoxyCodeLine{    \textcolor{keyword}{const} GSQHamiltonian<double> hamiltonian \{zero, g\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>evaluateOperatorMatrixVectorProduct(hamiltonian, \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(\textcolor{keyword}{const} GSQHamiltonian<double>\& hamiltonian, \textcolor{keyword}{const} VectorX<double>\& \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (hamiltonian.numberOfOrbitals() != this-\/>numberOfOrbitals()) \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>\&, const VectorX<double>\& x): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible."{}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Initialize a container for the matrix-\/vector product, and fill it with the general evaluation function.}}
+\DoxyCodeLine{    MatrixRepresentationEvaluationContainer<VectorX<double>> container \{\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\};}
+\DoxyCodeLine{    this-\/>evaluate<VectorX<double>>(hamiltonian, container);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} container.evaluation();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}  \textcolor{comment}{// namespace GQCP}}
+\end{DoxyCodeInclude}
+ 

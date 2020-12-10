@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_37617fc2218eedfce52b62599adbd81f" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces</compoundname>
+    <innerfile refid="_libcint_interfacer_8hpp">LibcintInterfacer.hpp</innerfile>
+    <innerfile refid="_libcint_one_electron_integral_buffer_8hpp">LibcintOneElectronIntegralBuffer.hpp</innerfile>
+    <innerfile refid="_libcint_one_electron_integral_engine_8hpp">LibcintOneElectronIntegralEngine.hpp</innerfile>
+    <innerfile refid="_libcint_two_electron_integral_buffer_8hpp">LibcintTwoElectronIntegralBuffer.hpp</innerfile>
+    <innerfile refid="_libcint_two_electron_integral_engine_8hpp">LibcintTwoElectronIntegralEngine.hpp</innerfile>
+    <innerfile refid="_libint_interfacer_8hpp">LibintInterfacer.hpp</innerfile>
+    <innerfile refid="_libint_one_electron_integral_buffer_8hpp">LibintOneElectronIntegralBuffer.hpp</innerfile>
+    <innerfile refid="_libint_one_electron_integral_engine_8hpp">LibintOneElectronIntegralEngine.hpp</innerfile>
+    <innerfile refid="_libint_two_electron_integral_buffer_8hpp">LibintTwoElectronIntegralBuffer.hpp</innerfile>
+    <innerfile refid="_libint_two_electron_integral_engine_8hpp">LibintTwoElectronIntegralEngine.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/"/>
+  </compounddef>
+</doxygen>

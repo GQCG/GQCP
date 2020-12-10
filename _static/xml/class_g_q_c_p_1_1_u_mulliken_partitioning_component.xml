@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_u_mulliken_partitioning_component" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::UMullikenPartitioningComponent</compoundname>
+    <includes refid="_u_mulliken_partitioning_component_8hpp" local="no">UMullikenPartitioningComponent.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a161f71eda071a0a58a6f2decb6c5a5e5" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a018c77dbf49d04cc8b021b14d07bdd15" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; size_t &gt;</type>
+        <definition>std::vector&lt;size_t&gt; GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::m_indices</definition>
+        <argsstring></argsstring>
+        <name>m_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="44" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a5462c61319c93869ab5b736853f8400c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a161f71eda071a0a58a6f2decb6c5a5e5" kindref="member">Scalar</ref> &gt;</type>
+        <definition>UTransformationComponent&lt;Scalar&gt; GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::C</definition>
+        <argsstring></argsstring>
+        <name>C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="47" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a50c1ae70b4d68b767cfc31042f4d25c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::UMullikenPartitioningComponent</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;indices, const UTransformationComponent&lt; Scalar &gt; &amp;C)</argsstring>
+        <name>UMullikenPartitioningComponent</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>indices</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a161f71eda071a0a58a6f2decb6c5a5e5" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a component of an unrestricted Mulliken partitioning from a set of included AO indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of indices that correspond to the AOs that are included in the Mulliken-partitioning of the AO basis associated to the component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation that relates the atomic spin-orbitals to the set of current spin-orbitals, for one of the components. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="61" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a5c7f2a4f2eb941ecaf8aaf4ad1f699f8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; size_t &gt; &amp;</type>
+        <definition>const std::vector&lt;size_t&gt;&amp; GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::indices</definition>
+        <argsstring>() const</argsstring>
+        <name>indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: General information <simplesect kind="return"><para>The set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="73" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1ad6609b89d79c143abf9cd9585d673f77" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::numberOfOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of orbitals that this Mulliken partitioning is related to. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="78" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a26e3d5ffa8719bf121ff3732003f2b6b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a161f71eda071a0a58a6f2decb6c5a5e5" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SquareMatrix&lt;Scalar&gt; GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::partitionMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>partitionMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Partitioning and projecting <simplesect kind="return"><para>The partition matrix &apos;P_A&apos; related to this Mulliken partitioning. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="88" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a62cb67abfd150beb1ca0158bd06dc273" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a161f71eda071a0a58a6f2decb6c5a5e5" kindref="member">Scalar</ref> &gt;</type>
+        <definition>UTransformationComponent&lt;Scalar&gt; GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;::projectionMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>projectionMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="94" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>One of the components of an unrestricted Mulliken-based partitioning of an AO basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent an element of the Mulliken projection matrix: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::UMullikenPartitioningComponent&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp" bodystart="36" bodyend="95"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a5462c61319c93869ab5b736853f8400c" prot="private" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a5c7f2a4f2eb941ecaf8aaf4ad1f699f8" prot="public" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>indices</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a018c77dbf49d04cc8b021b14d07bdd15" prot="private" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>m_indices</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1ad6609b89d79c143abf9cd9585d673f77" prot="public" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a26e3d5ffa8719bf121ff3732003f2b6b" prot="public" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>partitionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a62cb67abfd150beb1ca0158bd06dc273" prot="public" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>projectionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a161f71eda071a0a58a6f2decb6c5a5e5" prot="public" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a50c1ae70b4d68b767cfc31042f4d25c5" prot="public" virt="non-virtual"><scope>GQCP::UMullikenPartitioningComponent</scope><name>UMullikenPartitioningComponent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

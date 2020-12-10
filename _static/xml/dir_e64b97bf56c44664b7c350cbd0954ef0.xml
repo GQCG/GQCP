@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_e64b97bf56c44664b7c350cbd0954ef0" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/NonLinearEquation</compoundname>
+    <innerfile refid="step_8cpp">step.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/NonLinearEquation/"/>
+  </compounddef>
+</doxygen>

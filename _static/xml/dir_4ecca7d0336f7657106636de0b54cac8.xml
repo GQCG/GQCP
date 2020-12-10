@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_4ecca7d0336f7657106636de0b54cac8" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization</compoundname>
+    <innerdir refid="dir_8157544c943da50df17c34acc8562db6">/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization</innerdir>
+    <innerfile refid="_base_orbital_optimizer_8cpp">BaseOrbitalOptimizer.cpp</innerfile>
+    <innerfile refid="_jacobi_orbital_optimizer_8cpp">JacobiOrbitalOptimizer.cpp</innerfile>
+    <innerfile refid="_newton_orbital_optimizer_8cpp">NewtonOrbitalOptimizer.cpp</innerfile>
+    <innerfile refid="_q_c_method_newton_orbital_optimizer_8cpp">QCMethodNewtonOrbitalOptimizer.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/"/>
+  </compounddef>
+</doxygen>

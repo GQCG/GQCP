@@ -1,0 +1,562 @@
+\hypertarget{class_g_q_c_p_1_1_linear_expansion}{}\doxysection{G\+Q\+CP\+::Linear\+Expansion$<$ \+\_\+\+O\+N\+V\+Basis $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_linear_expansion}\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+
+
+{\ttfamily \#include $<$Linear\+Expansion.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Linear\+Expansion$<$ \+\_\+\+O\+N\+V\+Basis $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{class_g_q_c_p_1_1_linear_expansion__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} = \+\_\+\+O\+N\+V\+Basis
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a52e82dd9a6012ff3c32f3188f490e11b}{Linear\+Expansion}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&onv\+\_\+basis, const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a15d454c6ec927c95f0aaa65f93d027cd}{coefficients}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a8aeb108a3332e5613d0b59ff035a12f3}{Linear\+Expansion}} ()=default
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab91c392f4115f75dac383674522681dc}{coefficient}} (const size\+\_\+t i) const
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a15d454c6ec927c95f0aaa65f93d027cd}{coefficients}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_afcdf2d7ccdf24c12011320d98de2f2f7}{onv\+Basis}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+O\+N\+V\+Basis $>$\+::value $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ae0f959f274efeec4108268f63fd81f73}{basis\+Transform}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$ double $>$ \&T)
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Unresolved\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g1_d_m}{G1\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aa86b6f1fe33fcdd2ae7309fd2f083b4e}{calculate1\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Unresolved\+O\+N\+V\+Basis $>$\+::value, double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ac551b8171a320a270b2adfa67cdba863}{calculate\+N\+D\+M\+Element}} (const std\+::vector$<$ size\+\_\+t $>$ \&bra\+\_\+indices, const std\+::vector$<$ size\+\_\+t $>$ \&ket\+\_\+indices) const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a03116cc358fad0dcddd365c8327f7983}{calculate\+Spin\+Resolved1\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Spin\+Resolved2\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_abefcfaaf40b569a3ce1856974d4a739c}{calculate\+Spin\+Resolved2\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a09d7046bb17f2f5b9341c03b229b7f9d}{calculate1\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_acdf053e84e9f1f58e8c81d99218871d4}{calculate2\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Seniority\+Zero\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ae5a3c06f9e78433e9a1852f358a9c8c5}{calculate1\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Seniority\+Zero\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a91748f9fe8f0e9414dd904552e4c2184}{calculate2\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Seniority\+Zero\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a063db549f477c06c1647c2fd32da1676}{calculate\+Spin\+Resolved1\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Seniority\+Zero\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Spin\+Resolved2\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a131c1561b2bf514202c7cc92a1c8fcd9}{calculate\+Spin\+Resolved2\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a534fd8d25045fc6a57b4a72b947b7a8b}{calculate\+Spin\+Resolved1\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Spin\+Resolved2\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a7a0e1d0f84814472df8d34965d040d01}{calculate\+Spin\+Resolved2\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_af98af92bf5e21b851e09b7540a1f611f}{calculate1\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a10b0da70f8207fbb802a0f8f19cf64ca}{calculate2\+DM}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a165ab1f366f554859e1d13eaf32488cf}{calculate\+Shannon\+Entropy}} () const
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+O\+N\+V\+Basis $>$\+::value, void $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a8658812e07c00b29e4fe91521a1557cc}{for\+Each}} (const std\+::function$<$ void(const double, const Spin\+Resolved\+O\+NV)$>$ \&callback) const
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a31abc84daa8f3799c88be8c13896e888}{is\+Approx}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} $>$ \&other, double tolerance=1e-\/10) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ad7ba5f7d7f01a05389125133c01390c2}{Constant}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&onv\+\_\+basis)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a31eed6b90d90392547583e356e6771d2}{Hartree\+Fock}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&onv\+\_\+basis)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a915311fde7ac205d74f41472a6d5f273}{Normalized}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&onv\+\_\+basis, const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a15d454c6ec927c95f0aaa65f93d027cd}{coefficients}})
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_adee6d93d12a03bc5407b7fdc378ba8c0}{Random}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&onv\+\_\+basis)
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ Z $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a4bdb98135b0f9c49679f1849fe5e25f3}{From\+G\+A\+M\+E\+S\+S\+US}} (const std\+::string \&G\+A\+M\+E\+S\+S\+U\+S\+\_\+filename)
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ Z $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a2919b1b75dea60dabdb343b36545e581}{From\+O\+N\+V\+Projection}} (const Spin\+Resolved\+O\+NV \&onv, const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&r\+\_\+spinor\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&u\+\_\+spinor\+\_\+basis)
+\item 
+{\footnotesize template$<$typename Z  = O\+N\+V\+Basis$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Unresolved\+O\+N\+V\+Basis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ Z $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aa6f8e2d7f7c0e3f448482651ca19f350}{From\+O\+N\+V\+Projection}} (const Spin\+Unresolved\+O\+NV \&onv\+\_\+of, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&spinor\+\_\+basis\+\_\+on, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&spinor\+\_\+basis\+\_\+of)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+O\+N\+V\+Basis$>$\newline
+class G\+Q\+C\+P\+::\+Linear\+Expansion$<$ \+\_\+\+O\+N\+V\+Basis $>$}
+
+A class that represents a linear expansion inside an O\+NV basis.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+O\+N\+V\+Basis} & The type of O\+NV basis. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}\label{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!ONVBasis@{ONVBasis}}
+\index{ONVBasis@{ONVBasis}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{ONVBasis}{ONVBasis}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} =  \+\_\+\+O\+N\+V\+Basis}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a52e82dd9a6012ff3c32f3188f490e11b}\label{class_g_q_c_p_1_1_linear_expansion_a52e82dd9a6012ff3c32f3188f490e11b}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!LinearExpansion@{LinearExpansion}}
+\index{LinearExpansion@{LinearExpansion}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{LinearExpansion()}{LinearExpansion()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&}]{onv\+\_\+basis,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{coefficients }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a linear expansion inside the given O\+NV basis, with corresponding expansion coefficients.
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+basis} & The O\+NV basis with respect to which the coefficients are defined \\
+\hline
+{\em coefficients} & The expansion coefficients. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a8aeb108a3332e5613d0b59ff035a12f3}\label{class_g_q_c_p_1_1_linear_expansion_a8aeb108a3332e5613d0b59ff035a12f3}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!LinearExpansion@{LinearExpansion}}
+\index{LinearExpansion@{LinearExpansion}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{LinearExpansion()}{LinearExpansion()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_ae0f959f274efeec4108268f63fd81f73}\label{class_g_q_c_p_1_1_linear_expansion_ae0f959f274efeec4108268f63fd81f73}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!basisTransform@{basisTransform}}
+\index{basisTransform@{basisTransform}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{basisTransform()}{basisTransform()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+O\+N\+V\+Basis$>$\+::value$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::basis\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$ double $>$ \&}]{T }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given basis transformation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The transformation between the old and the new restricted spin-\/orbital basis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This method is only available for the full spin-\/resolved O\+NV basis. 
+
+This algorithm was implemented from a description in Helgaker2000. 
+\end{DoxyNote}
+The transformation of the expansion coefficients is adapted from Helgaker2000, chapter 11.\+9. For every orbital, a set of correction coefficients will be calculated (Delta C in Helgaker), to update the current coefficients.\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_aa86b6f1fe33fcdd2ae7309fd2f083b4e}\label{class_g_q_c_p_1_1_linear_expansion_aa86b6f1fe33fcdd2ae7309fd2f083b4e}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculate1DM@{calculate1DM}}
+\index{calculate1DM@{calculate1DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1DM()}{calculate1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Unresolved\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g1_d_m}{G1\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a09d7046bb17f2f5b9341c03b229b7f9d}\label{class_g_q_c_p_1_1_linear_expansion_a09d7046bb17f2f5b9341c03b229b7f9d}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculate1DM@{calculate1DM}}
+\index{calculate1DM@{calculate1DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1DM()}{calculate1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the one-\/electron density matrix for a full spin-\/resolved wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The orbital (total, spin-\/summed) 1-\/DM 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_ae5a3c06f9e78433e9a1852f358a9c8c5}\label{class_g_q_c_p_1_1_linear_expansion_ae5a3c06f9e78433e9a1852f358a9c8c5}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculate1DM@{calculate1DM}}
+\index{calculate1DM@{calculate1DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1DM()}{calculate1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Seniority\+Zero\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the orbital one-\/electron density matrix for a seniority-\/zero wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The orbital (total, spin-\/summed) 1-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_af98af92bf5e21b851e09b7540a1f611f}\label{class_g_q_c_p_1_1_linear_expansion_af98af92bf5e21b851e09b7540a1f611f}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculate1DM@{calculate1DM}}
+\index{calculate1DM@{calculate1DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1DM()}{calculate1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the one-\/electron density matrix for a spin-\/resolved selected wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The orbital (total, spin-\/summed) 1-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_acdf053e84e9f1f58e8c81d99218871d4}\label{class_g_q_c_p_1_1_linear_expansion_acdf053e84e9f1f58e8c81d99218871d4}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculate2DM@{calculate2DM}}
+\index{calculate2DM@{calculate2DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculate2DM()}{calculate2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the two-\/electron density matrix for a full spin-\/resolved wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The orbital (total, spin-\/summed) 2-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a91748f9fe8f0e9414dd904552e4c2184}\label{class_g_q_c_p_1_1_linear_expansion_a91748f9fe8f0e9414dd904552e4c2184}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculate2DM@{calculate2DM}}
+\index{calculate2DM@{calculate2DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculate2DM()}{calculate2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Seniority\+Zero\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the two-\/electron density matrix for a seniority-\/zero wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The orbital (total, spin-\/summed) 2-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a10b0da70f8207fbb802a0f8f19cf64ca}\label{class_g_q_c_p_1_1_linear_expansion_a10b0da70f8207fbb802a0f8f19cf64ca}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculate2DM@{calculate2DM}}
+\index{calculate2DM@{calculate2DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculate2DM()}{calculate2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the two-\/electron density matrix for a spin-\/resolved selected wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The orbital (total, spin-\/summed) 2-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_ac551b8171a320a270b2adfa67cdba863}\label{class_g_q_c_p_1_1_linear_expansion_ac551b8171a320a270b2adfa67cdba863}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateNDMElement@{calculateNDMElement}}
+\index{calculateNDMElement@{calculateNDMElement}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateNDMElement()}{calculateNDMElement()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Unresolved\+O\+N\+V\+Basis$>$\+::value, double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+N\+D\+M\+Element (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{bra\+\_\+indices,  }\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{ket\+\_\+indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate an element of the N-\/electron density matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bra\+\_\+indices} & The indices of the orbitals that should be annihilated on the left (on the bra). \\
+\hline
+{\em ket\+\_\+indices} & The indices of the orbitals that should be annihilated on the right (on the ket).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An element of the N-\/\+DM, as specified by the given bra and ket indices. {\ttfamily calculate\+N\+D\+M\+Element(\{0, 1\}, \{2, 1\})} would calculate an element of the 2-\/N\+DM d$^\wedge$\{(2)\} (0, 1, 1, 2) corresponding the operator string\+: {\ttfamily a$^\wedge$\textbackslash{}dagger\+\_\+0 a$^\wedge$\textbackslash{}dagger\+\_\+1 a\+\_\+2 a\+\_\+1}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is only enabled for linear expansions related to spin-\/unresolved O\+NV bases. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a165ab1f366f554859e1d13eaf32488cf}\label{class_g_q_c_p_1_1_linear_expansion_a165ab1f366f554859e1d13eaf32488cf}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateShannonEntropy@{calculateShannonEntropy}}
+\index{calculateShannonEntropy@{calculateShannonEntropy}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateShannonEntropy()}{calculateShannonEntropy()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+double \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+Shannon\+Entropy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+M\+A\+RK\+: Entropy \begin{DoxyReturn}{Returns}
+The Shannon entropy (information content) of the wave function. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a03116cc358fad0dcddd365c8327f7983}\label{class_g_q_c_p_1_1_linear_expansion_a03116cc358fad0dcddd365c8327f7983}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateSpinResolved1DM@{calculateSpinResolved1DM}}
+\index{calculateSpinResolved1DM@{calculateSpinResolved1DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSpinResolved1DM()}{calculateSpinResolved1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+Spin\+Resolved1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the spin-\/resolved one-\/electron density matrix for a full spin-\/resolved wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The spin-\/resolved 1-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a063db549f477c06c1647c2fd32da1676}\label{class_g_q_c_p_1_1_linear_expansion_a063db549f477c06c1647c2fd32da1676}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateSpinResolved1DM@{calculateSpinResolved1DM}}
+\index{calculateSpinResolved1DM@{calculateSpinResolved1DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSpinResolved1DM()}{calculateSpinResolved1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Seniority\+Zero\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+Spin\+Resolved1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the spin-\/resolved one-\/electron density matrix for a seniority-\/zero wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The spin-\/resolved 1-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a534fd8d25045fc6a57b4a72b947b7a8b}\label{class_g_q_c_p_1_1_linear_expansion_a534fd8d25045fc6a57b4a72b947b7a8b}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateSpinResolved1DM@{calculateSpinResolved1DM}}
+\index{calculateSpinResolved1DM@{calculateSpinResolved1DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSpinResolved1DM()}{calculateSpinResolved1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+Spin\+Resolved1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the spin-\/resolved one-\/electron density matrix for a spin-\/resolved selected wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The spin-\/resolved 1-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_abefcfaaf40b569a3ce1856974d4a739c}\label{class_g_q_c_p_1_1_linear_expansion_abefcfaaf40b569a3ce1856974d4a739c}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateSpinResolved2DM@{calculateSpinResolved2DM}}
+\index{calculateSpinResolved2DM@{calculateSpinResolved2DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSpinResolved2DM()}{calculateSpinResolved2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Spin\+Resolved2\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+Spin\+Resolved2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the spin-\/resolved two-\/electron density matrix for a full spin-\/resolved wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The spin-\/resolved 2-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a131c1561b2bf514202c7cc92a1c8fcd9}\label{class_g_q_c_p_1_1_linear_expansion_a131c1561b2bf514202c7cc92a1c8fcd9}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateSpinResolved2DM@{calculateSpinResolved2DM}}
+\index{calculateSpinResolved2DM@{calculateSpinResolved2DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSpinResolved2DM()}{calculateSpinResolved2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Seniority\+Zero\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Spin\+Resolved2\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+Spin\+Resolved2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the spin-\/resolved two-\/electron density matrix for a seniority-\/zero wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The spin-\/resolved 2-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a7a0e1d0f84814472df8d34965d040d01}\label{class_g_q_c_p_1_1_linear_expansion_a7a0e1d0f84814472df8d34965d040d01}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!calculateSpinResolved2DM@{calculateSpinResolved2DM}}
+\index{calculateSpinResolved2DM@{calculateSpinResolved2DM}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateSpinResolved2DM()}{calculateSpinResolved2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Spin\+Resolved2\+DM}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::calculate\+Spin\+Resolved2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the spin-\/resolved two-\/electron density matrix for a spin-\/resolved selected wave function expansion.
+
+\begin{DoxyReturn}{Returns}
+The spin-\/resolved 2-\/DM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_ab91c392f4115f75dac383674522681dc}\label{class_g_q_c_p_1_1_linear_expansion_ab91c392f4115f75dac383674522681dc}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!coefficient@{coefficient}}
+\index{coefficient@{coefficient}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{coefficient()}{coefficient()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+double \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::coefficient (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Access a coefficient of the linear expansion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index (address) of the coefficient that should be obtained.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The i-\/th expansion coefficient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a15d454c6ec927c95f0aaa65f93d027cd}\label{class_g_q_c_p_1_1_linear_expansion_a15d454c6ec927c95f0aaa65f93d027cd}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!coefficients@{coefficients}}
+\index{coefficients@{coefficients}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{coefficients()}{coefficients()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::coefficients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The expansion coefficients of this linear expansion wave function model. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_ad7ba5f7d7f01a05389125133c01390c2}\label{class_g_q_c_p_1_1_linear_expansion_ad7ba5f7d7f01a05389125133c01390c2}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!Constant@{Constant}}
+\index{Constant@{Constant}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&}]{onv\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a linear expansion with a normalized coefficient vector (i.\+e. all the coefficients are equal).
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+basis} & The O\+NV basis with respect to which the coefficients are defined\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A constant \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a8658812e07c00b29e4fe91521a1557cc}\label{class_g_q_c_p_1_1_linear_expansion_a8658812e07c00b29e4fe91521a1557cc}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!forEach@{forEach}}
+\index{forEach@{forEach}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{forEach()}{forEach()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+O\+N\+V\+Basis$>$\+::value, void$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::for\+Each (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const double, const Spin\+Resolved\+O\+NV)$>$ \&}]{callback }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iterate over all expansion coefficients and corresponding O\+N\+Vs, and apply the given callback function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding O\+NV. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a4bdb98135b0f9c49679f1849fe5e25f3}\label{class_g_q_c_p_1_1_linear_expansion_a4bdb98135b0f9c49679f1849fe5e25f3}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!FromGAMESSUS@{FromGAMESSUS}}
+\index{FromGAMESSUS@{FromGAMESSUS}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{FromGAMESSUS()}{FromGAMESSUS()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+Selected\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$Z$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::From\+G\+A\+M\+E\+S\+S\+US (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{G\+A\+M\+E\+S\+S\+U\+S\+\_\+filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a linear expansion by reading in a G\+A\+M\+E\+S\+S-\/\+US file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em G\+A\+M\+E\+S\+S\+U\+S\+\_\+filename} & The name of the G\+A\+M\+E\+S\+S-\/\+US file that contains the spin-\/resolved selected wave function expansion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding spin-\/resolved selected linear expansion from a given G\+A\+M\+E\+S\+S-\/\+US file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a2919b1b75dea60dabdb343b36545e581}\label{class_g_q_c_p_1_1_linear_expansion_a2919b1b75dea60dabdb343b36545e581}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!FromONVProjection@{FromONVProjection}}
+\index{FromONVProjection@{FromONVProjection}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{FromONVProjection()}{FromONVProjection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$Z$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::From\+O\+N\+V\+Projection (\begin{DoxyParamCaption}\item[{const Spin\+Resolved\+O\+NV \&}]{onv,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{r\+\_\+spinor\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{u\+\_\+spinor\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create the linear expansion of the given spin-\/resolved O\+NV that is expressed in the given \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}, by projection onto the spin-\/resolved O\+N\+Vs expressed with respect to the given \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv} & A spin-\/resolved O\+NV expressed with respect to an unrestricted spin-\/orbital basis. \\
+\hline
+{\em r\+\_\+spinor\+\_\+basis} & The restricted spin-\/orbital basis that is used to define the resulting linear expansion of O\+N\+Vs against. \\
+\hline
+{\em u\+\_\+spinor\+\_\+basis} & The unrestricted spin-\/orbital basis against which the given O\+NV is expressed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A linear expansion inside a spin-\/resolved O\+NV basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_aa6f8e2d7f7c0e3f448482651ca19f350}\label{class_g_q_c_p_1_1_linear_expansion_aa6f8e2d7f7c0e3f448482651ca19f350}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!FromONVProjection@{FromONVProjection}}
+\index{FromONVProjection@{FromONVProjection}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{FromONVProjection()}{FromONVProjection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+template$<$typename Z  = O\+N\+V\+Basis$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Unresolved\+O\+N\+V\+Basis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$Z$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::From\+O\+N\+V\+Projection (\begin{DoxyParamCaption}\item[{const Spin\+Unresolved\+O\+NV \&}]{onv\+\_\+of,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{spinor\+\_\+basis\+\_\+on,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{spinor\+\_\+basis\+\_\+of }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create the linear expansion of the given spin-\/unresolved O\+NV that is expressed in the given \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}, by projection onto the spin-\/resolved O\+N\+Vs expressed with respect to another given \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+of} & A spin-\/unresolved O\+NV expressed with respect to a general spinor basis. \\
+\hline
+{\em spinor\+\_\+basis\+\_\+on} & The general spinor basis that is used to define the resulting linear expansion of O\+N\+Vs against. \\
+\hline
+{\em spinor\+\_\+basis\+\_\+of} & The general spinor basis against which the given O\+NV is expressed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A linear expansion inside a spin-\/unresolved O\+NV basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a31eed6b90d90392547583e356e6771d2}\label{class_g_q_c_p_1_1_linear_expansion_a31eed6b90d90392547583e356e6771d2}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!HartreeFock@{HartreeFock}}
+\index{HartreeFock@{HartreeFock}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{HartreeFock()}{HartreeFock()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::Hartree\+Fock (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&}]{onv\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a linear expansion that represents the Hartree-\/\+Fock wave function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+basis} & The O\+NV basis with respect to which the coefficients are defined.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a31abc84daa8f3799c88be8c13896e888}\label{class_g_q_c_p_1_1_linear_expansion_a31abc84daa8f3799c88be8c13896e888}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!isApprox@{isApprox}}
+\index{isApprox@{isApprox}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{isApprox()}{isApprox()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} $>$ \&}]{other,  }\item[{double}]{tolerance = {\ttfamily 1e-\/10} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & wave function for the comparison \\
+\hline
+{\em tolerance} & tolerance for the comparison of coefficients\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if two wave functions are equal within a given tolerance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a915311fde7ac205d74f41472a6d5f273}\label{class_g_q_c_p_1_1_linear_expansion_a915311fde7ac205d74f41472a6d5f273}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!Normalized@{Normalized}}
+\index{Normalized@{Normalized}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{Normalized()}{Normalized()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::Normalized (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&}]{onv\+\_\+basis,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&}]{coefficients }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a normalized linear expansion inside a given O\+NV basis with possibly non-\/normalized coefficients.
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+basis} & The O\+NV basis with respect to which the coefficients are defined. \\
+\hline
+{\em coefficients} & the expansion coefficients\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A normalized \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_afcdf2d7ccdf24c12011320d98de2f2f7}\label{class_g_q_c_p_1_1_linear_expansion_afcdf2d7ccdf24c12011320d98de2f2f7}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!onvBasis@{onvBasis}}
+\index{onvBasis@{onvBasis}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{onvBasis()}{onvBasis()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::onv\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The O\+NV basis that is related to this linear expansion wave function model. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_adee6d93d12a03bc5407b7fdc378ba8c0}\label{class_g_q_c_p_1_1_linear_expansion_adee6d93d12a03bc5407b7fdc378ba8c0}} 
+\index{GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}!Random@{Random}}
+\index{Random@{Random}!GQCP::LinearExpansion$<$ \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{Random()}{Random()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+O\+N\+V\+Basis $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{G\+Q\+C\+P\+::\+Linear\+Expansion}}$<$ \+\_\+\+O\+N\+V\+Basis $>$\+::Random (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aeb2bd1a8561e0df24b4389729ff5565b}{O\+N\+V\+Basis}} \&}]{onv\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in \mbox{[}-\/1, +1\mbox{]} before any normalization.
+
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+basis} & the O\+NV basis with respect to which the coefficients are defined\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Model/\+C\+I/\mbox{\hyperlink{_linear_expansion_8hpp}{Linear\+Expansion.\+hpp}}\end{DoxyCompactItemize}

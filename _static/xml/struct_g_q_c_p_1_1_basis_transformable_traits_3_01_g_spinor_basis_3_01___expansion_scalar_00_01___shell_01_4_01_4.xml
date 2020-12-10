@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::BasisTransformableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</compoundname>
+    <includes refid="_g_spinor_basis_8hpp" local="no">GSpinorBasis.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _ExpansionScalar</type>
+      </param>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a4a04f19dac730449d11e67c1bee74918" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; _ExpansionScalar &gt;</type>
+        <definition>using GQCP::BasisTransformableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::Transformation =  GTransformation&lt;_ExpansionScalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="492" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="492" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_basis_transformable" kindref="compound">BasisTransformable</ref></computeroutput>. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BasisTransformableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="489" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="489" bodyend="493"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a4a04f19dac730449d11e67c1bee74918" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</scope><name>Transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

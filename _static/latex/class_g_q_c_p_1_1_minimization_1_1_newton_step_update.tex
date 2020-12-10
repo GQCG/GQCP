@@ -1,0 +1,112 @@
+\hypertarget{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}{}\doxysection{G\+Q\+CP\+::Minimization\+::Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}\index{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}}
+
+
+{\ttfamily \#include $<$Newton\+Step\+Update.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Minimization\+::Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_minimization_1_1_newton_step_update__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Minimization\+::Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_minimization_1_1_newton_step_update__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a0d85fe6730c6445b905a00963cfe116e}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a23edaea9c5f0af5be6d3677da67b2826}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a9364e58c7624df4f6621f712a929b5f3}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a74bf63843f2f9eb8753f556b9dec2fee}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Environment$>$\newline
+class G\+Q\+C\+P\+::\+Minimization\+::\+Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$}
+
+An iteration step that produces updated variables according to a Newton step.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type that is used to represent the variables of the system of equations \\
+\hline
+{\em \+\_\+\+Environment} & the type of the calculation environment \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a23edaea9c5f0af5be6d3677da67b2826}\label{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a23edaea9c5f0af5be6d3677da67b2826}} 
+\index{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}!Environment@{Environment}}
+\index{Environment@{Environment}!GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Environment}{Environment}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}{G\+Q\+C\+P\+::\+Minimization\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} =  \+\_\+\+Environment}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a0d85fe6730c6445b905a00963cfe116e}\label{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a0d85fe6730c6445b905a00963cfe116e}} 
+\index{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}{G\+Q\+C\+P\+::\+Minimization\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a0d85fe6730c6445b905a00963cfe116e}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a9364e58c7624df4f6621f712a929b5f3}\label{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a9364e58c7624df4f6621f712a929b5f3}} 
+\index{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}!description@{description}}
+\index{description@{description}!GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}{G\+Q\+C\+P\+::\+Minimization\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{G\+Q\+C\+P\+::\+Step$<$ \+\_\+\+Environment $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a74bf63843f2f9eb8753f556b9dec2fee}\label{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a74bf63843f2f9eb8753f556b9dec2fee}} 
+\index{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}!execute@{execute}}
+\index{execute@{execute}!GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$@{GQCP::Minimization::NewtonStepUpdate$<$ \_Scalar, \_Environment $>$}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}{G\+Q\+C\+P\+::\+Minimization\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate a new iteration of the variables and add them to the environment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ \+\_\+\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Minimization/\mbox{\hyperlink{_minimization_2_newton_step_update_8hpp}{Newton\+Step\+Update.\+hpp}}\end{DoxyCompactItemize}

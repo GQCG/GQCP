@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_spin_density1_d_m" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SpinDensity1DM</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_simple1_d_m" prot="public" virt="non-virtual">GQCP::Simple1DM&lt; _Scalar, SpinDensity1DM&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_spin_density1_d_m_8hpp" local="no">SpinDensity1DM.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_density1_d_m_1a4ad79e6847133a51b02bd722087052e9" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::SpinDensity1DM&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinDensity1DM.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinDensity1DM.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type used to represent a one-electron spin-density density matrix, i.e. the alpha density matrix minus the beta density matrix.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a density matrix element: real or complex.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This type represents the (sqrt(2)-scaled) triplet (1,0) 1-DM. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Simple1DM&lt; _Scalar, SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::BasisTransformable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="5">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="3">
+        <label>GQCP::SquareMatrix&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MatrixX&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::JacobiRotatable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::SpinDensity1DM&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_density1_d_m"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Simple1DM&lt; _Scalar, SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::BasisTransformable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="5">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="3">
+        <label>GQCP::SquareMatrix&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MatrixX&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::JacobiRotatable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::SpinDensity1DM&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_density1_d_m"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinDensity1DM.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinDensity1DM.hpp" bodystart="42" bodyend="54"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_matrix_1a931ab808381a0ad8eedbc5f2f123651d" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>areEqualEigenvaluesAs</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1aee293d22d945960b87ac42b0b36fe9ec" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Base</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a947bdbdcb3639ef34328379d6ac44efc" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>calculateMinor</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1ad2771d96e3cff714f68dbdb5c7420021" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>calculatePermanentCombinatorial</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1af4bae3858d82278f0a0ada4382b8c9f9" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>calculatePermanentRyser</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1ab2b55a62636aba92729ecdf6a195200e" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Cols</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a8b792b25e79a11342da60d54b5f1ed44" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>DerivedDM</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a37d881f47fe4a016e5549e3ac22e7aea" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a4ab539a046eb6f9b53409d6e891a0d41" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a0e55d5edef5e39cb143c75574f8d2ce3" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a6153bff8107862438160220961ed89ce" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>FromColumnMajorVector</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1ae98c3bb26e7fed523adaf0a32533ac65" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>FromFile</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a4eb0f430ff61453545937182a00e3375" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>FromFile</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a8e56d9f13a050d49f57cfeeabfb48e3a" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>FromRowMajorVector</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1af916a1d7dab54e720134c9445f32b2ea" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>FromStrictTriangle</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a576cfb262eb965a0b49f4e679cf076c3" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>hasEqualSetsOfEigenvectorsAs</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Identity</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a5611f1d276314cdc5ba20df00a01dfe9" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>isEqualEigenvectorAs</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a957455e43a3f0991500024376713cfec" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>isHermitian</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a643652b7fcd93870c6eeee96b106a7bc" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>isPositiveSemiDefinite</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a0b63025d8fd5ed7c7cfdb6da82a1f68d" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>isSelfAdjoint</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a41e7131c842e8e9cea385be462d8d309" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>noPivotLUDecompose</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4119731fc8031d5bcaecba3db59297bb" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a3caff939907e085c41fe8f49b6f73e8b" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a3079a6b39d8762808e23b1c09c86459e" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1aacdf6a9b11a624ae51b4e69b1380d623" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>pairWiseReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a8e16efb3d9cb08a8ba04db0abc88c66a" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>pairWiseStrictReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a0762291135e1043da5582add757a5240" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>PartitionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1afce67055c3293379cc196854bb235e75" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>PartitionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a2d1866393b114f7cc8af355efca26ecc" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>print</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a57533e5025634786577ccc29e183c04c" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1af9a12d2f0b3447800c1743b503233cab" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>RandomSymmetric</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a7b4e7cb4f0a489ff6595054f133f1861" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>RandomUnitary</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1abef9f57236063712c2db15f9c85d03a8" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>removeColumn</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a1f7cadaa478ca049d032e3efcd68a251" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>removeColumns</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a78dabf4d5db685de94ba0620ee1acb07" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>removeRow</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a5583011d897d7571b1dedef5007301e1" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>removeRows</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinDensity1DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinDensity1DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a6acb767fddd8829ddfd34a3dc5980d2e" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinDensity1DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; SpinDensity1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinDensity1DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_1a6ecf8ac009c539043cf3a9c49cd7c684" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Rows</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_density1_d_m_1a4ad79e6847133a51b02bd722087052e9" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a758c8b8f0d87ca20b2e212140b8e201f" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1aeb77a54f205d882662841c0aaab2dbc1" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>SquareMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a3a3e9592b9d14e30e923ebd49f177177" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>SquareMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a71c12ab57ae3a136b19c67270a138c02" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>SquareMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a0ccee967e25408559c5b06c2e8d1b2fd" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>SquareMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1aade211ea90d7a106a08db23939e20ecc" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>SquareMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1af0b4efec0dffa9a02baf6143c47ee3ed" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>SymmetricFromUpperTriangle</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SpinDensity1DM</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1ad2de22beb149df74e5b4757cfcbbbf5a" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894" prot="public" virt="virtual"><scope>GQCP::SpinDensity1DM</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" prot="public" virt="non-virtual"><scope>GQCP::SpinDensity1DM</scope><name>Zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_subspace_matrix_diagonalization" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SubspaceMatrixDiagonalization</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <includes refid="_subspace_matrix_diagonalization_8hpp" local="no">SubspaceMatrixDiagonalization.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a81c8760f341d1de651f510541854a8df" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::SubspaceMatrixDiagonalization::number_of_requested_eigenpairs</definition>
+        <argsstring></argsstring>
+        <name>number_of_requested_eigenpairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" line="38" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1abd0329999c90d0f1828c02be9817a20e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SubspaceMatrixDiagonalization::SubspaceMatrixDiagonalization</definition>
+        <argsstring>(const size_t number_of_requested_eigenpairs=1)</argsstring>
+        <name>SubspaceMatrixDiagonalization</name>
+        <param>
+          <type>const size_t</type>
+          <declname>number_of_requested_eigenpairs</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>number_of_requested_eigenpairs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of solutions the Davidson solver should find </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" bodystart="49" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a4874cd13941a8fdf1984df8241ee89c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::SubspaceMatrixDiagonalization::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" line="60" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a289097a48ae666a44136878246d964c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::SubspaceMatrixDiagonalization::execute</definition>
+        <argsstring>(EigenproblemEnvironment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Diagonalize the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V, and write its eigenvalues and eigenvectors to the environment.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" line="70" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" bodystart="70" bodyend="87"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that diagonalizes the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::SubspaceMatrixDiagonalization</label>
+        <link refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SubspaceMatrixDiagonalization</label>
+        <link refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" bodystart="35" bodyend="88"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a4874cd13941a8fdf1984df8241ee89c0" prot="public" virt="non-virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; EigenproblemEnvironment &gt;::"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a289097a48ae666a44136878246d964c9" prot="public" virt="virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a81c8760f341d1de651f510541854a8df" prot="private" virt="non-virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>number_of_requested_eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1abd0329999c90d0f1828c02be9817a20e" prot="public" virt="non-virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>SubspaceMatrixDiagonalization</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

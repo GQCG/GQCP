@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_cb77ee1e6cf10d494adbc9ec9af98407" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF</compoundname>
+    <innerfile refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp">UHF.hpp</innerfile>
+    <innerfile refid="_u_h_f_density_matrix_calculation_8hpp">UHFDensityMatrixCalculation.hpp</innerfile>
+    <innerfile refid="_u_h_f_electronic_energy_calculation_8hpp">UHFElectronicEnergyCalculation.hpp</innerfile>
+    <innerfile refid="_u_h_f_error_calculation_8hpp">UHFErrorCalculation.hpp</innerfile>
+    <innerfile refid="_u_h_f_fock_matrix_calculation_8hpp">UHFFockMatrixCalculation.hpp</innerfile>
+    <innerfile refid="_u_h_f_fock_matrix_diagonalization_8hpp">UHFFockMatrixDiagonalization.hpp</innerfile>
+    <innerfile refid="_u_h_f_fock_matrix_d_i_i_s_8hpp">UHFFockMatrixDIIS.hpp</innerfile>
+    <innerfile refid="_u_h_f_s_c_f_environment_8hpp">UHFSCFEnvironment.hpp</innerfile>
+    <innerfile refid="_u_h_f_s_c_f_solver_8hpp">UHFSCFSolver.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/"/>
+  </compounddef>
+</doxygen>

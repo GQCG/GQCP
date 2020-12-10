@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_unrestricted_spinor_tag" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::UnrestrictedSpinorTag</compoundname>
+    <includes refid="spinor__tags_8hpp" local="no">spinor_tags.hpp</includes>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A tag designating types corresponding to spin-orbitals whose spatial parts may differ. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::UnrestrictedSpinorTag</label>
+        <link refid="class_g_q_c_p_1_1_unrestricted_spinor_tag"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/spinor_tags.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/spinor_tags.hpp" bodystart="37" bodyend="37"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

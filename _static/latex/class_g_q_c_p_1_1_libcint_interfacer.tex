@@ -1,0 +1,168 @@
+\hypertarget{class_g_q_c_p_1_1_libcint_interfacer}{}\doxysection{G\+Q\+CP\+::Libcint\+Interfacer Class Reference}
+\label{class_g_q_c_p_1_1_libcint_interfacer}\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+
+
+{\ttfamily \#include $<$Libcint\+Interfacer.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Libcint\+Interfacer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_libcint_interfacer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint\+::\+Raw\+Container}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a9d42e7a68062a1218cb797fa87f9be36}{convert}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&shell\+\_\+set) const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a20b8176235c9cac423b7d3a13eef690e}{set\+Common\+Origin}} (\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint\+::\+Raw\+Container}} \&raw\+\_\+container, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&origin) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a98c802563352cc392c100e92a1653e2d}{one\+Electron\+Function}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&op) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_af49518493a037acddc67fdc17b8f3241}{one\+Electron\+Function}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&op) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a746cb52ff139ef3ed144c13a80bbdf85}{one\+Electron\+Function}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&op) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_ac8e5ca75e5472adae5f0d943b890b278}{one\+Electron\+Function}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \&op) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_ab9e82f4c5fc3ac406b005fcbea227dfb}{Libcint2e\+Function}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_ac12ad664a5da14d88fe081e84b196b87}{two\+Electron\+Function}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&op) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_af6c0e3151a6af439a47e0812512aea6b}{Libcint2e\+Optimizer\+Function}} \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_abed14f8b3e85fad265ef1d569ef4eae6}{two\+Electron\+Optimizer\+Function}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&op) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that takes care of the interfacing with the libcint library 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_a9d42e7a68062a1218cb797fa87f9be36}\label{class_g_q_c_p_1_1_libcint_interfacer_a9d42e7a68062a1218cb797fa87f9be36}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!convert@{convert}}
+\index{convert@{convert}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint\+::\+Raw\+Container}} G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::convert (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{shell\+\_\+set }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em shell\+\_\+set} & the \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{G\+Q\+C\+P\+::\+Shell\+Set}} whose information should be converted\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the information in a \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{G\+Q\+C\+P\+::\+Shell\+Set}} as a \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint\+::\+Raw\+Container}}
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em shell\+\_\+set} & the \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{G\+Q\+C\+P\+::\+Shell\+Set}} whose information should be converted\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the information in a \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{G\+Q\+C\+P\+::\+Shell\+Set}} as a libcint\+::\+Container 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_a98c802563352cc392c100e92a1653e2d}\label{class_g_q_c_p_1_1_libcint_interfacer_a98c802563352cc392c100e92a1653e2d}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!oneElectronFunction@{oneElectronFunction}}
+\index{oneElectronFunction@{oneElectronFunction}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{oneElectronFunction()}{oneElectronFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::one\+Electron\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the electronic electric dipole operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Libcint one-\/electron function that corresponds to the electronic electric dipole operator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_af49518493a037acddc67fdc17b8f3241}\label{class_g_q_c_p_1_1_libcint_interfacer_af49518493a037acddc67fdc17b8f3241}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!oneElectronFunction@{oneElectronFunction}}
+\index{oneElectronFunction@{oneElectronFunction}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{oneElectronFunction()}{oneElectronFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::one\+Electron\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the kinetic operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Libcint one-\/electron function that corresponds to the kinetic operator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_a746cb52ff139ef3ed144c13a80bbdf85}\label{class_g_q_c_p_1_1_libcint_interfacer_a746cb52ff139ef3ed144c13a80bbdf85}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!oneElectronFunction@{oneElectronFunction}}
+\index{oneElectronFunction@{oneElectronFunction}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{oneElectronFunction()}{oneElectronFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::one\+Electron\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the nuclear attraction operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Libcint one-\/electron function that corresponds to the nuclear attraction operator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_ac8e5ca75e5472adae5f0d943b890b278}\label{class_g_q_c_p_1_1_libcint_interfacer_ac8e5ca75e5472adae5f0d943b890b278}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!oneElectronFunction@{oneElectronFunction}}
+\index{oneElectronFunction@{oneElectronFunction}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{oneElectronFunction()}{oneElectronFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1e\+Function}} G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::one\+Electron\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \&}]{op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the overlap operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Libcint one-\/electron function that corresponds to the overlap operator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_a20b8176235c9cac423b7d3a13eef690e}\label{class_g_q_c_p_1_1_libcint_interfacer_a20b8176235c9cac423b7d3a13eef690e}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!setCommonOrigin@{setCommonOrigin}}
+\index{setCommonOrigin@{setCommonOrigin}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{setCommonOrigin()}{setCommonOrigin()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::set\+Common\+Origin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint\+::\+Raw\+Container}} \&}]{raw\+\_\+container,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{origin }\end{DoxyParamCaption}) const}
+
+Set the origin for the calculation of all vector-\/related integrals
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw\+\_\+container} & the \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint\+::\+Raw\+Container}} that holds the data needed by libcint \\
+\hline
+{\em origin} & the new origin for the calculation of all vector-\/related integrals \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_ac12ad664a5da14d88fe081e84b196b87}\label{class_g_q_c_p_1_1_libcint_interfacer_ac12ad664a5da14d88fe081e84b196b87}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!twoElectronFunction@{twoElectronFunction}}
+\index{twoElectronFunction@{twoElectronFunction}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{twoElectronFunction()}{twoElectronFunction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_ab9e82f4c5fc3ac406b005fcbea227dfb}{Libcint2e\+Function}} G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::two\+Electron\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the Coulomb repulsion operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Libcint two-\/electron function that corresponds to the Coulomb repulsion dipole operator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libcint_interfacer_abed14f8b3e85fad265ef1d569ef4eae6}\label{class_g_q_c_p_1_1_libcint_interfacer_abed14f8b3e85fad265ef1d569ef4eae6}} 
+\index{GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}!twoElectronOptimizerFunction@{twoElectronOptimizerFunction}}
+\index{twoElectronOptimizerFunction@{twoElectronOptimizerFunction}!GQCP::LibcintInterfacer@{GQCP::LibcintInterfacer}}
+\doxysubsubsection{\texorpdfstring{twoElectronOptimizerFunction()}{twoElectronOptimizerFunction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_af6c0e3151a6af439a47e0812512aea6b}{Libcint2e\+Optimizer\+Function}} G\+Q\+C\+P\+::\+Libcint\+Interfacer\+::two\+Electron\+Optimizer\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the Coulomb repulsion operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Libcint two-\/electron optimizer function that corresponds to the Coulomb repulsion dipole operator 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libcint_interfacer_8hpp}{Libcint\+Interfacer.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libcint_interfacer_8cpp}{Libcint\+Interfacer.\+cpp}}\end{DoxyCompactItemize}

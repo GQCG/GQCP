@@ -1,0 +1,1342 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_s_q_hamiltonian" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SQHamiltonian</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;</basecompoundref>
+    <includes refid="_s_q_hamiltonian_8hpp" local="no">SQHamiltonian.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _ScalarSQOneElectronOperator</type>
+      </param>
+      <param>
+        <type>typename _ScalarSQTwoElectronOperator</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" prot="public" static="no">
+        <type>_ScalarSQOneElectronOperator</type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::ScalarSQOneElectronOperator =  _ScalarSQOneElectronOperator</definition>
+        <argsstring></argsstring>
+        <name>ScalarSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" prot="public" static="no">
+        <type>_ScalarSQTwoElectronOperator</type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::ScalarSQTwoElectronOperator =  _ScalarSQTwoElectronOperator</definition>
+        <argsstring></argsstring>
+        <name>ScalarSQTwoElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" prot="public" static="no">
+        <type>typename ScalarSQOneElectronOperator::SpinorTag</type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::SpinorTag =  typename ScalarSQOneElectronOperator::SpinorTag</definition>
+        <argsstring></argsstring>
+        <name>SpinorTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="69" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" prot="public" static="no">
+        <type>typename ScalarSQOneElectronOperator::Scalar</type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Scalar =  typename ScalarSQOneElectronOperator::Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="75" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref>, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt;</type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Self =  SQHamiltonian&lt;ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" kindref="member">OneDM</ref></type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::OneDM =  typename OperatorTraits&lt;ScalarSQOneElectronOperator&gt;::OneDM</definition>
+        <argsstring></argsstring>
+        <name>OneDM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="81" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" kindref="member">TwoDM</ref></type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::TwoDM =  typename OperatorTraits&lt;ScalarSQOneElectronOperator&gt;::TwoDM</definition>
+        <argsstring></argsstring>
+        <name>TwoDM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="84" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aaa8c64045c2c95ffb8c3e014131514c9" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aaa8c64045c2c95ffb8c3e014131514c9" kindref="member">Transformation</ref></type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Transformation =  typename OperatorTraits&lt;ScalarSQOneElectronOperator&gt;::Transformation</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="87" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" kindref="member">JacobiRotationType</ref></type>
+        <definition>using GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::JacobiRotationType =  typename JacobiRotatableTraits&lt;ScalarSQOneElectronOperator&gt;::JacobiRotationType</definition>
+        <argsstring></argsstring>
+        <name>JacobiRotationType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="90" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a27495850582382747dd2e64c4674d7e7" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref></type>
+        <definition>ScalarSQOneElectronOperator GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="95" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a630ce850937a7d66957fd52d141e9e54" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref></type>
+        <definition>ScalarSQTwoElectronOperator GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::g</definition>
+        <argsstring></argsstring>
+        <name>g</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="98" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a609f706c461a51aab832587559d6ba98" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;</type>
+        <definition>std::vector&lt;ScalarSQOneElectronOperator&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::h_contributions</definition>
+        <argsstring></argsstring>
+        <name>h_contributions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="101" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a0d3a286e01c10e2a6717952b0f94f998" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt;</type>
+        <definition>std::vector&lt;ScalarSQTwoElectronOperator&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::g_contributions</definition>
+        <argsstring></argsstring>
+        <name>g_contributions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="104" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad7f54f1e8930c8211016ce2a4cd36539" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::SQHamiltonian</definition>
+        <argsstring>(const std::vector&lt; ScalarSQOneElectronOperator &gt; &amp;h_contributions, const std::vector&lt; ScalarSQTwoElectronOperator &gt; &amp;g_contributions)</argsstring>
+        <name>SQHamiltonian</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt; &amp;</type>
+          <declname>h_contributions</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt; &amp;</type>
+          <declname>g_contributions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize a <computeroutput><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref></computeroutput> for one- and two-electron contributions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>h_contributions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The contributions to the total one-electron interaction operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g_contributions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The contributions to the total two-electron interaction operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="118" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="118" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1af2c43e32c5c2346c0cb86e1a78fb97d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::SQHamiltonian</definition>
+        <argsstring>(const ScalarSQOneElectronOperator &amp;h, const ScalarSQTwoElectronOperator &amp;g)</argsstring>
+        <name>SQHamiltonian</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <computeroutput><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref></computeroutput> from total one- and two-electron contributions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total one-electron interaction operator, i.e. the core Hamiltonian. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total two-electron interaction operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="151" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="151" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a572840d48ec7a3a022cd1d433f3ad972" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+        <definition>const ScalarSQOneElectronOperator&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::core</definition>
+        <argsstring>() const</argsstring>
+        <name>core</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the total one-electron interaction operator, i.e. the core Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="370" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="370" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ac9c751574b0f9dca664a442df6ea2b33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+        <definition>ScalarSQOneElectronOperator&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::core</definition>
+        <argsstring>()</argsstring>
+        <name>core</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the total one-electron interaction operator, i.e. the core Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="375" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="375" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1adc6fed95f3c845ea6f24ee7f3d229624" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;ScalarSQOneElectronOperator&gt;&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::coreContributions</definition>
+        <argsstring>() const</argsstring>
+        <name>coreContributions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the contributions to the total one-electron interaction operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="380" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="380" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a7ea14fa9a59af319f5f72aaed1bc7c02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt; &amp;</type>
+        <definition>std::vector&lt;ScalarSQOneElectronOperator&gt;&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::coreContributions</definition>
+        <argsstring>()</argsstring>
+        <name>coreContributions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the contributions to the total one-electron interaction operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="385" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="385" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a7a542abe14c404fc287b64da5e6dc1d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+        <definition>const ScalarSQTwoElectronOperator&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::twoElectron</definition>
+        <argsstring>() const</argsstring>
+        <name>twoElectron</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the total two-electron interaction operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="390" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="390" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a136ec162928cfc02ea5e64584e5bfa1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+        <definition>ScalarSQTwoElectronOperator&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::twoElectron</definition>
+        <argsstring>()</argsstring>
+        <name>twoElectron</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the total two-electron interaction operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="395" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="395" bodyend="395"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a9cf67ce36b24ceaed5d0bd1d47f3c3ee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;ScalarSQTwoElectronOperator&gt;&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::twoElectronContributions</definition>
+        <argsstring>() const</argsstring>
+        <name>twoElectronContributions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the contributions to the total two-electron interaction operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="400" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="400" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aafdb7b33179bfd5ea2b42ca0415312bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt; &amp;</type>
+        <definition>std::vector&lt;ScalarSQTwoElectronOperator&gt;&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::twoElectronContributions</definition>
+        <argsstring>()</argsstring>
+        <name>twoElectronContributions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the contributions to the total two-electron interaction operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="405" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="405" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a9beb3656dcb386bb52a74e74f7723ad2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::numberOfOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of orbitals (spinors or spin-orbitals, depending on the context) this second-quantized Hamiltonian is related to. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="415" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="415" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a372711fc8e6dbe6045215ad1690370cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value||std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_general_spinor_tag" kindref="compound">GeneralSpinorTag</ref> &gt;::value, double &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value || std::is_same&lt;Z, GeneralSpinorTag&gt;::value, double&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::calculateEdmistonRuedenbergLocalizationIndex</definition>
+        <argsstring>(const OrbitalSpace orbital_space) const</argsstring>
+        <name>calculateEdmistonRuedenbergLocalizationIndex</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+          <declname>orbital_space</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the Edmiston-Ruedenberg localization index, which is the trace of the two-electron integrals over only the occupied orbitals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An orbital space which denotes the occupied-active-virtual separation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The Edmiston-Ruedenberg localization index.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is not enabled for unrestricted Hamiltonians. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="432" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="432" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad5f38ac2839431dff5307442e003e970" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value||std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_general_spinor_tag" kindref="compound">GeneralSpinorTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value || std::is_same&lt;Z, GeneralSpinorTag&gt;::value, ScalarSQOneElectronOperator&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::calculateEffectiveOneElectronIntegrals</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateEffectiveOneElectronIntegrals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the effective one-electron integrals. These are the core integrals, with the contributions form a Kronecker delta-term in the two-electron integrals.</para>
+<para><simplesect kind="return"><para>The effective one-electron integrals.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is not enabled for unrestricted Hamiltonians. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="454" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="454" bodyend="457"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a20459a50f5bd5370b7f95dd1f9749d74" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::calculateExpectationValue</definition>
+        <argsstring>(const OneDM &amp;D, const TwoDM &amp;d) const</argsstring>
+        <name>calculateExpectationValue</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" kindref="member">OneDM</ref> &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" kindref="member">TwoDM</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the electronic energy, i.e. the expectation value of this Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 1-DM. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 2-DM.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The expectation value of this Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="468" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="468" bodyend="472"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a51eeaf42d6ab6a74a741a1b2e8ce521f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value||std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_general_spinor_tag" kindref="compound">GeneralSpinorTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value || std::is_same&lt;Z, GeneralSpinorTag&gt;::value, SquareMatrix&lt;Scalar&gt; &gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::calculateFockianMatrix</definition>
+        <argsstring>(const OneDM &amp;D, const TwoDM &amp;d) const</argsstring>
+        <name>calculateFockianMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" kindref="member">OneDM</ref> &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" kindref="member">TwoDM</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the Fockian matrix of this Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 1-DM (or the response 1-DM for made-variational wave function models). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 2-DM (or the response 2-DM for made-variational wave function models).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The Fockian matrix.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is not enabled for unrestricted Hamiltonians. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="486" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="486" bodyend="490"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a41c38368fb562cb742997acd24968c3d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value||std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_general_spinor_tag" kindref="compound">GeneralSpinorTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value || std::is_same&lt;Z, GeneralSpinorTag&gt;::value, SquareRankFourTensor&lt;Scalar&gt; &gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::calculateSuperFockianMatrix</definition>
+        <argsstring>(const OneDM &amp;D, const TwoDM &amp;d) const</argsstring>
+        <name>calculateSuperFockianMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" kindref="member">OneDM</ref> &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" kindref="member">TwoDM</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the super-Fockian matrix of this Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 1-DM (or the response 1-DM for made-variational wave function models). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 2-DM (or the response 2-DM for made-variational wave function models).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The super-Fockian matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="502" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="502" bodyend="506"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a1974cfedfd2f65a7c3c11cae50624761" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_general_spinor_tag" kindref="compound">GeneralSpinorTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, GeneralSpinorTag&gt;::value, ScalarSQOneElectronOperator&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::calculateInactiveFockian</definition>
+        <argsstring>(const OrbitalSpace orbital_space) const</argsstring>
+        <name>calculateInactiveFockian</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+          <declname>orbital_space</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the inactive Fockian operator for a general Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An orbital space which denotes the occupied-virtual separation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The inactive Fockian operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="517" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="517" bodyend="536"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aa0da4c96496c98f106bb15ebdae1c78f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value, ScalarSQOneElectronOperator&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::calculateInactiveFockian</definition>
+        <argsstring>(const OrbitalSpace orbital_space) const</argsstring>
+        <name>calculateInactiveFockian</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+          <declname>orbital_space</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the inactive Fockian operator for a restricted Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An orbital space which denotes the occupied-virtual separation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The inactive Fockian operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="547" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="547" bodyend="566"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a42ddb132b31bc893a31de4b17e950531" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::transformed</definition>
+        <argsstring>(const Transformation &amp;T) const override</argsstring>
+        <name>transformed</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aaa8c64045c2c95ffb8c3e014131514c9" kindref="member">Transformation</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis transformation and return the resulting Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-transformed Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="580" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="580" bodyend="598"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aceec524481b666ab9f1bcf7465f6a3ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::rotated</definition>
+        <argsstring>(const JacobiRotationType &amp;jacobi_rotation) const override</argsstring>
+        <name>rotated</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" kindref="member">JacobiRotationType</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the Jacobi rotation and return the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The Jacobi-rotated object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="619" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="619" bodyend="637"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a4ecea9448380ac865f268ab182fac42b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
+        <definition>Self&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::operator+=</definition>
+        <argsstring>(const ScalarSQOneElectronOperator &amp;sq_one_op)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+          <declname>sq_one_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition-assignment with a (scalar) one-electron operator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="650" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="650" bodyend="657"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a5d99b8e0b87b7a592eaf67c4e9616714" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
+        <definition>Self&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::operator-=</definition>
+        <argsstring>(const ScalarSQOneElectronOperator &amp;sq_one_op)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+          <declname>sq_one_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtraction-assignment with a (scalar) one-electron operator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="680" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="680" bodyend="684"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad806906fb1a4760234aaec2c19c4d2f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
+        <definition>Self&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::operator+=</definition>
+        <argsstring>(const ScalarSQTwoElectronOperator &amp;sq_two_op)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+          <declname>sq_two_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition-assignment with a (scalar) two-electron operator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="703" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="703" bodyend="710"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aef1abfcc4f1b119bcbcc42adbabe68db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
+        <definition>Self&amp; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::operator-=</definition>
+        <argsstring>(const ScalarSQTwoElectronOperator &amp;sq_two_op)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+          <declname>sq_two_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtraction-assignment with a (scalar) one-electron operator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="733" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="733" bodyend="737"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a549c426ee8aff2229728c1dd153d8b25" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z1</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref></defval>
+          </param>
+          <param>
+            <type>typename Z2</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, <ref refid="class_g_q_c_p_1_1_restricted_spinor_tag" kindref="compound">RestrictedSpinorTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref>, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt; &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, RestrictedSpinorTag&gt;::value, SQHamiltonian&lt;ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator&gt; &gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::FromHubbard</definition>
+        <argsstring>(const GQCP::HubbardHamiltonian&lt; double &gt; &amp;hubbard_hamiltonian)</argsstring>
+        <name>FromHubbard</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian" kindref="compound">GQCP::HubbardHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>hubbard_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Named constructors Create an <computeroutput><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref></computeroutput> from a <computeroutput><ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian" kindref="compound">HubbardHamiltonian</ref></computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hubbard_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Hubbard model Hamiltonian.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref> generated from the given Hubbard model Hamiltonian.</para>
+</simplesect>
+<simplesect kind="note"><para>This named constructor is only available for real matrix representations. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="170" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="170" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a68a1a435964ac94d351e9b9462610eaf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
+        <argsstring>(const RSpinOrbitalBasis&lt; double, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
+        <name>Molecular</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>spinor_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the molecular Hamiltonian in a restricted spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor basis in which the Hamiltonian should be expressed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A second-quantized molecular Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="190" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="190" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a4bd21e025ee47308d107aae8253cad12" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a4e2fa2707828e181d1a0dbe949627abf" kindref="member">UnrestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, UnrestrictedSpinOrbitalTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
+        <argsstring>(const USpinOrbitalBasis&lt; double, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
+        <name>Molecular</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kindref="compound">USpinOrbitalBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>spinor_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the molecular Hamiltonian in an unrestricted spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor basis in which the Hamiltonian should be expressed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A second-quantized molecular Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="211" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="211" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a1d921704d5557be179a967b4be47fa29" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_general_spinor_tag" kindref="compound">GeneralSpinorTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, GeneralSpinorTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
+        <argsstring>(const GSpinorBasis&lt; Scalar, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
+        <name>Molecular</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>spinor_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the molecular Hamiltonian in a general spinor basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor basis in which the Hamiltonian should be expressed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A second-quantized molecular Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="232" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="232" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a885418972b6a0e608bdcab54aa4f66b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Random</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>Random</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a random <computeroutput><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref></computeroutput> with values uniformly distributed between [-1,1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix representations of the one- and two-electron integrals, i.e. the number of orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A random <computeroutput><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref></computeroutput>.</para>
+</simplesect>
+<simplesect kind="note"><para>This named constructor is only available in the real case. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="255" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="255" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a62d5e77135791639f73c6e1ac5b497f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z1</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref></defval>
+          </param>
+          <param>
+            <type>typename Z2</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref>, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt; &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, RestrictedSpinOrbitalTag&gt;::value, SQHamiltonian&lt;ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator&gt; &gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::FromFCIDUMP</definition>
+        <argsstring>(const std::string &amp;fcidump_filename)</argsstring>
+        <name>FromFCIDUMP</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fcidump_filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Parse an FCIDUMP file and read in its Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fcidump_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the FCIDUMP file.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The Hamiltonian corresponding to the contents of an FCIDUMP file.</para>
+</simplesect>
+<simplesect kind="note"><para>This named constructor is only available in the real case. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="274" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="274" bodyend="360"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a9c3b31820ee74a6b0ccf34e52e0ae83f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self operator+</definition>
+        <argsstring>(Self lhs, const ScalarSQOneElectronOperator &amp;rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition, canonically implemented using addition-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="663" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="663" bodyend="666"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a99baa6883252bcfcf356e9fcb7bfe8b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self operator+</definition>
+        <argsstring>(const ScalarSQOneElectronOperator &amp;lhs, Self rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A commutative version of the previous addition. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="672" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="672" bodyend="674"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1abd8c34dbfa3cd8a425d856d2516d9d1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self operator-</definition>
+        <argsstring>(Self lhs, const ScalarSQOneElectronOperator &amp;rhs)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtraction, canonically implemented using addition-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="690" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="690" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad75b89e4e1c4988efd5e6bb1645895c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self operator+</definition>
+        <argsstring>(Self lhs, const ScalarSQTwoElectronOperator &amp;rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition, canonically implemented using addition-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="716" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="716" bodyend="719"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ae4ea8e312e33a1d461aba5bb3121fe99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self operator+</definition>
+        <argsstring>(const ScalarSQTwoElectronOperator &amp;lhs, Self rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A commutative version of the previous addition. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="725" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="725" bodyend="727"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a83c5e92d4ecd908efe920531a87f60b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+        <definition>Self operator-</definition>
+        <argsstring>(Self lhs, const ScalarSQTwoElectronOperator &amp;rhs)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtraction, canonically implemented using addition-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="743" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="743" bodyend="746"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A second-quantized electronic Hamiltonian. It consists of one-electron (core) and two-electron contributions.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_ScalarSQOneElectronOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of second-quantized one-electron operator underlying this Hamiltonian. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_ScalarSQTwoElectronOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of second-quantized two-electron operator underlying this Hamiltonian. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::JacobiRotatable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_hamiltonian"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BasisTransformable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>GQCP::JacobiRotatable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_hamiltonian"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BasisTransformable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="57" bodyend="747"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a372711fc8e6dbe6045215ad1690370cb" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateEdmistonRuedenbergLocalizationIndex</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad5f38ac2839431dff5307442e003e970" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateEffectiveOneElectronIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a20459a50f5bd5370b7f95dd1f9749d74" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateExpectationValue</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a51eeaf42d6ab6a74a741a1b2e8ce521f" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateFockianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a1974cfedfd2f65a7c3c11cae50624761" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateInactiveFockian</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aa0da4c96496c98f106bb15ebdae1c78f" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateInactiveFockian</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a41c38368fb562cb742997acd24968c3d" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateSuperFockianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a572840d48ec7a3a022cd1d433f3ad972" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>core</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ac9c751574b0f9dca664a442df6ea2b33" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>core</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1adc6fed95f3c845ea6f24ee7f3d229624" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>coreContributions</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7ea14fa9a59af319f5f72aaed1bc7c02" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>coreContributions</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a62d5e77135791639f73c6e1ac5b497f4" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>FromFCIDUMP</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a549c426ee8aff2229728c1dd153d8b25" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>FromHubbard</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a630ce850937a7d66957fd52d141e9e54" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>g</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0d3a286e01c10e2a6717952b0f94f998" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>g_contributions</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a27495850582382747dd2e64c4674d7e7" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>h</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a609f706c461a51aab832587559d6ba98" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>h_contributions</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a68a1a435964ac94d351e9b9462610eaf" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a4bd21e025ee47308d107aae8253cad12" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a1d921704d5557be179a967b4be47fa29" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a9beb3656dcb386bb52a74e74f7723ad2" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>OneDM</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a9c3b31820ee74a6b0ccf34e52e0ae83f" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator+</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a99baa6883252bcfcf356e9fcb7bfe8b3" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator+</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad75b89e4e1c4988efd5e6bb1645895c5" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator+</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ae4ea8e312e33a1d461aba5bb3121fe99" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator+</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a4ecea9448380ac865f268ab182fac42b" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad806906fb1a4760234aaec2c19c4d2f4" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1abd8c34dbfa3cd8a425d856d2516d9d1c" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a83c5e92d4ecd908efe920531a87f60b2" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a5d99b8e0b87b7a592eaf67c4e9616714" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aef1abfcc4f1b119bcbcc42adbabe68db" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a885418972b6a0e608bdcab54aa4f66b3" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;::"><scope>GQCP::SQHamiltonian</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;::"><scope>GQCP::SQHamiltonian</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aceec524481b666ab9f1bcf7465f6a3ad" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;::"><scope>GQCP::SQHamiltonian</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;::"><scope>GQCP::SQHamiltonian</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>ScalarSQOneElectronOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>ScalarSQTwoElectronOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>SpinorTag</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad7f54f1e8930c8211016ce2a4cd36539" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>SQHamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1af2c43e32c5c2346c0cb86e1a78fb97d1" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>SQHamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SQHamiltonian</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aaa8c64045c2c95ffb8c3e014131514c9" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a42ddb132b31bc893a31de4b17e950531" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt; &gt;::"><scope>GQCP::SQHamiltonian</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>TwoDM</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7a542abe14c404fc287b64da5e6dc1d9" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>twoElectron</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a136ec162928cfc02ea5e64584e5bfa1b" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>twoElectron</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a9cf67ce36b24ceaed5d0bd1d47f3c3ee" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>twoElectronContributions</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aafdb7b33179bfd5ea2b42ca0415312bf" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>twoElectronContributions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

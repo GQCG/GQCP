@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_constant_damper" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ConstantDamper</compoundname>
+    <includes refid="_constant_damper_8hpp" local="no">ConstantDamper.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_constant_damper_1a30c95b914afff4f820bc5e807987aff3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::ConstantDamper::alpha</definition>
+        <argsstring></argsstring>
+        <name>alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" line="29" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_constant_damper_1a03b3a767d24b1dbed01eed4a1ca8200a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ConstantDamper::ConstantDamper</definition>
+        <argsstring>(const double alpha)</argsstring>
+        <name>ConstantDamper</name>
+        <param>
+          <type>const double</type>
+          <declname>alpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the damping factor </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" bodystart="40" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_constant_damper_1af5853bd1faa16d325cb727e9f84d22cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Subject</type>
+          </param>
+        </templateparamlist>
+        <type>Subject</type>
+        <definition>Subject GQCP::ConstantDamper::accelerate</definition>
+        <argsstring>(const Subject &amp;last, const Subject &amp;next_to_last)</argsstring>
+        <name>accelerate</name>
+        <param>
+          <type>const Subject &amp;</type>
+          <declname>last</declname>
+        </param>
+        <param>
+          <type>const Subject &amp;</type>
+          <declname>next_to_last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate an accelerated subject using a constant damping step.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Subject</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of subject that should be accelerated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>last</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the most recent subject </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>next_to_last</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second most recent subject</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an accelerated subject </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" line="64" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" bodystart="64" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An accelerator that produces its accelerated subject by a damped linear combination of the two previous subjects. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::ConstantDamper</label>
+        <link refid="class_g_q_c_p_1_1_constant_damper"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" line="27" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/ConstantDamper.hpp" bodystart="27" bodyend="69"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_constant_damper_1af5853bd1faa16d325cb727e9f84d22cd" prot="public" virt="non-virtual"><scope>GQCP::ConstantDamper</scope><name>accelerate</name></member>
+      <member refid="class_g_q_c_p_1_1_constant_damper_1a30c95b914afff4f820bc5e807987aff3" prot="private" virt="non-virtual"><scope>GQCP::ConstantDamper</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_constant_damper_1a03b3a767d24b1dbed01eed4a1ca8200a" prot="public" virt="non-virtual"><scope>GQCP::ConstantDamper</scope><name>ConstantDamper</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

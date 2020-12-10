@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_1898ac9af35c6d8ed6376f04110e77c0" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI</compoundname>
+    <innerfile refid="_c_i_8hpp">CI.hpp</innerfile>
+    <innerfile refid="_c_i_environment_8hpp">CIEnvironment.hpp</innerfile>
+    <innerfile refid="_d_o_c_i_newton_orbital_optimizer_8hpp">DOCINewtonOrbitalOptimizer.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/"/>
+  </compounddef>
+</doxygen>

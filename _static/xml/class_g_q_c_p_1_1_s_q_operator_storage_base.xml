@@ -1,0 +1,764 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_s_q_operator_storage_base" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SQOperatorStorageBase</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_s_q_operator_storage" prot="public" virt="non-virtual">GQCP::SQOperatorStorage&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</derivedcompoundref>
+    <includes refid="_s_q_operator_storage_base_8hpp" local="no">SQOperatorStorageBase.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _MatrixRepresentation</type>
+      </param>
+      <param>
+        <type>typename _Vectorizer</type>
+      </param>
+      <param>
+        <type>typename _DerivedOperator</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" prot="public" static="no">
+        <type>_MatrixRepresentation</type>
+        <definition>using GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::MatrixRepresentation =  _MatrixRepresentation</definition>
+        <argsstring></argsstring>
+        <name>MatrixRepresentation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a42bb02c35ea4bdbb9e81cbb6235feff3" prot="public" static="no">
+        <type>_DerivedOperator</type>
+        <definition>using GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::DerivedOperator =  _DerivedOperator</definition>
+        <argsstring></argsstring>
+        <name>DerivedOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="51" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" prot="public" static="no">
+        <type>_Vectorizer</type>
+        <definition>using GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Vectorizer =  _Vectorizer</definition>
+        <argsstring></argsstring>
+        <name>Vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="54" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a2490ec535882d6001c7cf6f6fa538c20" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base" kindref="compound">SQOperatorStorageBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref>, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref>, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a42bb02c35ea4bdbb9e81cbb6235feff3" kindref="member">DerivedOperator</ref> &gt;</type>
+        <definition>using GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Self =  SQOperatorStorageBase&lt;MatrixRepresentation, Vectorizer, DerivedOperator&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a42bb02c35ea4bdbb9e81cbb6235feff3" kindref="member">DerivedOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a42bb02c35ea4bdbb9e81cbb6235feff3" kindref="member">DerivedOperator</ref></type>
+        <definition>using GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::FinalOperator =  typename OperatorTraits&lt;DerivedOperator&gt;::DerivedOperator</definition>
+        <argsstring></argsstring>
+        <name>FinalOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a86c6833024d9dd8539b74901f0438f23" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" kindref="member">FinalOperator</ref> &gt;::ScalarOperator</type>
+        <definition>using GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::ScalarFinalOperator =  typename OperatorTraits&lt;FinalOperator&gt;::ScalarOperator</definition>
+        <argsstring></argsstring>
+        <name>ScalarFinalOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1ae0f9fa3ea86967e23c84a2f6ed581d00" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_storage_array" kindref="compound">StorageArray</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref>, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref> &gt;</type>
+        <definition>StorageArray&lt;MatrixRepresentation, Vectorizer&gt; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::array</definition>
+        <argsstring></argsstring>
+        <name>array</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="68" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa46cbd4ee56231f35b4ed67b0a293e54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::SQOperatorStorageBase</definition>
+        <argsstring>(const StorageArray&lt; MatrixRepresentation, Vectorizer &gt; &amp;array)</argsstring>
+        <name>SQOperatorStorageBase</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_storage_array" kindref="compound">StorageArray</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref>, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref> &gt; &amp;</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a second-quantized operator storage from a storage array.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A storage array that contains the matrix representations of all the components of the operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="81" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="81" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1ac0aaa4116c253ed87d1d55cc3d1714e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref></defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::SQOperatorStorageBase</definition>
+        <argsstring>(const MatrixRepresentation &amp;parameters, typename std::enable_if&lt; std::is_same&lt; Z, ScalarVectorizer &gt;::value &gt;::type *=0)</argsstring>
+        <name>SQOperatorStorageBase</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref> &amp;</type>
+          <declname>parameters</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref> &gt;::value &gt;::type *</type>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a second-quantized operator storage from one matrix representation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The matrix representation of operator&apos;s parameters/matrix elements/integrals. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="100" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="100" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1acca6d82a69a99fc3ee97cfafc7ba3245" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref></defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::SQOperatorStorageBase</definition>
+        <argsstring>(const std::vector&lt; MatrixRepresentation &gt; &amp;parameters, typename std::enable_if&lt; std::is_same&lt; Z, VectorVectorizer &gt;::value &gt;::type *=0)</argsstring>
+        <name>SQOperatorStorageBase</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref> &gt; &amp;</type>
+          <declname>parameters</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;::value &gt;::type *</type>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a second-quantized operator storage from a set of three matrix representations, for each of the operator&apos;s components.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of three matrix representations of the parameters/matrix elements/integrals, one for each of the operator&apos;s components. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="111" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="111" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a69ee654058f7d2476fbaa07dff233f9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref></defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::SQOperatorStorageBase</definition>
+        <argsstring>(const std::array&lt; MatrixRepresentation, 3 &gt; &amp;parameters, typename std::enable_if&lt; std::is_same&lt; Z, VectorVectorizer &gt;::value &gt;::type *=0)</argsstring>
+        <name>SQOperatorStorageBase</name>
+        <param>
+          <type>const std::array&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref>, 3 &gt; &amp;</type>
+          <declname>parameters</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;::value &gt;::type *</type>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a second-quantized operator storage from a set of three matrix representations, for each of the operator&apos;s components.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of three matrix representations of the parameters/matrix elements/integrals, one for each of the operator&apos;s components. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="122" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="122" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a31d5da079f8ab325d4afec400f9fecbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::SQOperatorStorageBase</definition>
+        <argsstring>()</argsstring>
+        <name>SQOperatorStorageBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default constructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="130" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="130" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;MatrixRepresentation&gt;&amp; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::allParameters</definition>
+        <argsstring>() const</argsstring>
+        <name>allParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A vector of read-only matrix representions of the parameters/matrix elements/integrals of this operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="221" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="221" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a887b0138971425ecf72ae15c9226b3c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref> &gt; &amp;</type>
+        <definition>std::vector&lt;MatrixRepresentation&gt;&amp; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::allParameters</definition>
+        <argsstring>()</argsstring>
+        <name>allParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A vector of writable matrix representions of the parameters/matrix elements/integrals of this operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="226" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="226" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Indices</declname>
+            <defname>Indices</defname>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref> &amp;</type>
+        <definition>const MatrixRepresentation&amp; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::parameters</definition>
+        <argsstring>(const Indices &amp;... indices) const</argsstring>
+        <name>parameters</name>
+        <param>
+          <type>const Indices &amp;...</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access the matrix representation of this operator that corresponds to the component indicated by the given indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of coordinates that accesses this operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A read-only matrix representation of the parameters/matrix elements/integrals of one of the tensor components of this operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="236" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="236" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa0e555ece4f4d592420ded0008dd0088" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Indices</declname>
+            <defname>Indices</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" kindref="member">MatrixRepresentation</ref> &amp;</type>
+        <definition>MatrixRepresentation&amp; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::parameters</definition>
+        <argsstring>(const Indices &amp;... indices)</argsstring>
+        <name>parameters</name>
+        <param>
+          <type>const Indices &amp;...</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access the matrix representation of this operator that corresponds to the component indicated by the given indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of coordinates that accesses this operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A writable matrix representation of the parameters/matrix elements/integrals of one of the tensor components of this operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="247" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="247" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3406af47b43cdf59b508d2c65ed78dd5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Indices</declname>
+            <defname>Indices</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a86c6833024d9dd8539b74901f0438f23" kindref="member">ScalarFinalOperator</ref></type>
+        <definition>ScalarFinalOperator GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::operator()</definition>
+        <argsstring>(const Indices &amp;... indices) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const Indices &amp;...</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access a component of this operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of coordinates that accesses this operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The component of this operator that corresponds to the given coordinate indices. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="258" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="258" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1aec5499c60c1ccf1c3a2bbb4ede557181" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::numberOfComponents</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfComponents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of components of this operator. For scalar operators (such as the kinetic energy), this is 1, for vector operators (like the dipole operator), this is 3, etc. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="272" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="272" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3db8d8010d4b40797ca252c8dc4ca1a1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::numberOfOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of orbitals this operator is quantized in. For &apos;restricted&apos; operators, this is the number of spatial orbitals, for &apos;general&apos; operators, this is the number of spinors. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="277" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="277" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1aaebf3b63a4e7041ea0754b4d5e8868aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref> &amp;</type>
+        <definition>const Vectorizer&amp; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::vectorizer</definition>
+        <argsstring>() const</argsstring>
+        <name>vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The vectorizer (i.e. the instance that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators) for this operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="282" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="282" bodyend="282"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1aae57f5b84d06fde585c7597e2b6e225b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" kindref="member">FinalOperator</ref></type>
+        <definition>static FinalOperator GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Zero</definition>
+        <argsstring>(const size_t dim, const Vectorizer &amp;vectorizer)</argsstring>
+        <name>Zero</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref> &amp;</type>
+          <declname>vectorizer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Named constructors Construct a second-quantized operator storage with parameters/matrix elements/integrals that are zero.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A zero second-quantized operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="145" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="145" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a5438632d87c01fcf056ba50906806d94" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" kindref="member">FinalOperator</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, ScalarVectorizer&gt;::value, FinalOperator&gt; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Zero</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>Zero</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a scalar second-quantized operator storage with parameters/matrix elements/integrals that are zero.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A zero scalar second-quantized operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="158" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="158" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8da76d3901f36713b1f908624c514b49" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" kindref="member">FinalOperator</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, VectorVectorizer&gt;::value, FinalOperator&gt; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Zero</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>Zero</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a vector second-quantized operator storage with parameters/matrix elements/integrals that are zero.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A zero vector second-quantized operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="171" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="171" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" kindref="member">FinalOperator</ref></type>
+        <definition>static FinalOperator GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Random</definition>
+        <argsstring>(const size_t dim, const Vectorizer &amp;vectorizer)</argsstring>
+        <name>Random</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref> &amp;</type>
+          <declname>vectorizer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a second-quantized operator storage with parameters/matrix elements/integrals that are randomly distributed between [-1, +1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A random second-quantized operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="183" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="183" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" kindref="member">FinalOperator</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, ScalarVectorizer&gt;::value, FinalOperator&gt; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Random</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>Random</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a scalar second-quantized operator storage with parameters/matrix elements/integrals that are randomly distributed between [-1, +1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A random scalar second-quantized operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="196" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="196" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" kindref="member">Vectorizer</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" kindref="member">FinalOperator</ref> &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, VectorVectorizer&gt;::value, FinalOperator&gt; GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;::Random</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>Random</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a vector second-quantized operator storage with parameters/matrix elements/integrals that are randomly distributed between [-1, +1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A random vector second-quantized operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="209" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="209" bodyend="211"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that takes care of storing the matrix elements of one- and two-electron operators and their components.</para>
+<para><simplesect kind="note"><para>The sole reason why this base class is implemented, is to allow SQOperators that don&apos;t have to support vector space arithmetic, like <computeroutput><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator</ref></computeroutput>.</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_MatrixRepresentation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type used to represent the set of parameters/matrix elements/integrals for one component of a second-quantized operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators. This allows for a distinction between scalar operators (such as the kinetic energy or Coulomb operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_DerivedOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the operator that derives from this class, enabling <ref refid="class_g_q_c_p_1_1_c_r_t_p" kindref="compound">CRTP</ref> and compile-time polymorphism. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+      </node>
+      <node id="2">
+        <label>GQCP::SQOperatorStorage&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>#array</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_storage_array"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp" bodystart="45" bodyend="283"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a887b0138971425ecf72ae15c9226b3c9" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ae0f9fa3ea86967e23c84a2f6ed581d00" prot="protected" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>array</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a42bb02c35ea4bdbb9e81cbb6235feff3" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>DerivedOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>FinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>MatrixRepresentation</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aec5499c60c1ccf1c3a2bbb4ede557181" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>numberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3db8d8010d4b40797ca252c8dc4ca1a1" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3406af47b43cdf59b508d2c65ed78dd5" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa0e555ece4f4d592420ded0008dd0088" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a86c6833024d9dd8539b74901f0438f23" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>ScalarFinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a2490ec535882d6001c7cf6f6fa538c20" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa46cbd4ee56231f35b4ed67b0a293e54" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ac0aaa4116c253ed87d1d55cc3d1714e5" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acca6d82a69a99fc3ee97cfafc7ba3245" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a69ee654058f7d2476fbaa07dff233f9b" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a31d5da079f8ab325d4afec400f9fecbb" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a9da9489000da8290ad94766712275778" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aaebf3b63a4e7041ea0754b4d5e8868aa" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aae57f5b84d06fde585c7597e2b6e225b" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a5438632d87c01fcf056ba50906806d94" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8da76d3901f36713b1f908624c514b49" prot="public" virt="non-virtual"><scope>GQCP::SQOperatorStorageBase</scope><name>Zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

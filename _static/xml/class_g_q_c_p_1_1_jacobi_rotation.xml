@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_jacobi_rotation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::JacobiRotation</compoundname>
+    <includes refid="_jacobi_rotation_8hpp" local="no">JacobiRotation.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_jacobi_rotation_1a1766b215103f659b18bc808bc5153247" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::JacobiRotation::m_p</definition>
+        <argsstring></argsstring>
+        <name>m_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_jacobi_rotation_1a1b1ebc1acdeb349775684003a201d40b" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::JacobiRotation::m_q</definition>
+        <argsstring></argsstring>
+        <name>m_q</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="39" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_jacobi_rotation_1a83885cbd6c8f0e6b3bda3b47e67d2569" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::JacobiRotation::m_angle</definition>
+        <argsstring></argsstring>
+        <name>m_angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="42" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotation_1a65ff375f557b41a47d5d7fab31f99714" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::JacobiRotation::JacobiRotation</definition>
+        <argsstring>(const size_t p, const size_t q, const double angle)</argsstring>
+        <name>JacobiRotation</name>
+        <param>
+          <type>const size_t</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the first rotated orbital. (p &gt; q) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the second rotated orbital. (p &gt; q) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle of rotation, in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/JacobiRotation.cpp" bodystart="35" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotation_1aaecc2a2262ed13f87dd49cd62e2998bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::JacobiRotation::JacobiRotation</definition>
+        <argsstring>()</argsstring>
+        <name>JacobiRotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default constructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/JacobiRotation.cpp" bodystart="50" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotation_1a13b00d94d0e1490eb465babb54108b38" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::JacobiRotation::angle</definition>
+        <argsstring>() const</argsstring>
+        <name>angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The angle of rotation, in radians </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="83" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotation_1a40eaa451034bc5df61d7a2d0651ef137" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::JacobiRotation::p</definition>
+        <argsstring>() const</argsstring>
+        <name>p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The index of the first rotated orbital. (p &gt; q) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="88" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotation_1a95580b4a5e354060da0058438a6c004c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::JacobiRotation::q</definition>
+        <argsstring>() const</argsstring>
+        <name>q</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The index of the second rotated orbital. (p &gt; q) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="93" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_jacobi_rotation_1a14faa1d8000f2ab97da179869c23c7d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::JacobiRotation&lt; double &gt;</type>
+        <definition>Eigen::JacobiRotation&lt;double&gt; GQCP::JacobiRotation::Eigen</definition>
+        <argsstring>() const</argsstring>
+        <name>Eigen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>This as an Eigen::JacobiRotation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="103" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="103" bodyend="103"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_jacobi_rotation_1a4d40d2dd444dd328bf6a6ee9ab5eb95f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const JacobiRotation &amp;jacobi_rotation)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output stream which the parameters should be concatenated to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A reference to the updated output stream. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="73" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/JacobiRotation.cpp" bodystart="64" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that encapsulates the parameters that define a real-valued Jacobi rotation. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::JacobiRotation</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotation"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/JacobiRotation.hpp" bodystart="33" bodyend="104"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a13b00d94d0e1490eb465babb54108b38" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>angle</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a14faa1d8000f2ab97da179869c23c7d1" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a65ff375f557b41a47d5d7fab31f99714" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>JacobiRotation</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1aaecc2a2262ed13f87dd49cd62e2998bf" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>JacobiRotation</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a83885cbd6c8f0e6b3bda3b47e67d2569" prot="private" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>m_angle</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a1766b215103f659b18bc808bc5153247" prot="private" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>m_p</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a1b1ebc1acdeb349775684003a201d40b" prot="private" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>m_q</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a4d40d2dd444dd328bf6a6ee9ab5eb95f" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a40eaa451034bc5df61d7a2d0651ef137" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>p</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotation_1a95580b4a5e354060da0058438a6c004c" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotation</scope><name>q</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

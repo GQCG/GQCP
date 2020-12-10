@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting started</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/doxygen.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/search/search.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/html/jquery.js"></script>
+    <script src="../_static/html/dynsections.js"></script>
+    <script src="../_static/html/menu.js"></script>
+    <script src="../_static/html/menudata.js"></script>
+    <script src="../_static/html/search/typedefs_5.js"></script>
+    <script src="../_static/html/search/files_c.js"></script>
+    <script src="../_static/html/search/classes_d.js"></script>
+    <script src="../_static/html/search/variables_1.js"></script>
+    <script src="../_static/html/search/classes_11.js"></script>
+    <script src="../_static/html/search/all_15.js"></script>
+    <script src="../_static/html/search/all_18.js"></script>
+    <script src="../_static/html/search/variables_6.js"></script>
+    <script src="../_static/html/search/search.js"></script>
+    <script src="../_static/html/search/classes_15.js"></script>
+    <script src="../_static/html/search/all_3.js"></script>
+    <script src="../_static/html/search/typedefs_e.js"></script>
+    <script src="../_static/html/search/all_4.js"></script>
+    <script src="../_static/html/search/typedefs_0.js"></script>
+    <script src="../_static/html/search/files_10.js"></script>
+    <script src="../_static/html/search/enumvalues_0.js"></script>
+    <script src="../_static/html/search/classes_e.js"></script>
+    <script src="../_static/html/search/typedefs_2.js"></script>
+    <script src="../_static/html/search/enumvalues_4.js"></script>
+    <script src="../_static/html/search/all_8.js"></script>
+    <script src="../_static/html/search/all_16.js"></script>
+    <script src="../_static/html/search/functions_13.js"></script>
+    <script src="../_static/html/search/typedefs_1.js"></script>
+    <script src="../_static/html/search/all_e.js"></script>
+    <script src="../_static/html/search/functions_12.js"></script>
+    <script src="../_static/html/search/classes_17.js"></script>
+    <script src="../_static/html/search/files_b.js"></script>
+    <script src="../_static/html/search/functions_f.js"></script>
+    <script src="../_static/html/search/all_a.js"></script>
+    <script src="../_static/html/search/files_11.js"></script>
+    <script src="../_static/html/search/all_1a.js"></script>
+    <script src="../_static/html/search/files_4.js"></script>
+    <script src="../_static/html/search/functions_11.js"></script>
+    <script src="../_static/html/search/variables_5.js"></script>
+    <script src="../_static/html/search/files_8.js"></script>
+    <script src="../_static/html/search/files_0.js"></script>
+    <script src="../_static/html/search/enums_1.js"></script>
+    <script src="../_static/html/search/typedefs_7.js"></script>
+    <script src="../_static/html/search/functions_e.js"></script>
+    <script src="../_static/html/search/classes_b.js"></script>
+    <script src="../_static/html/search/classes_0.js"></script>
+    <script src="../_static/html/search/classes_f.js"></script>
+    <script src="../_static/html/search/functions_7.js"></script>
+    <script src="../_static/html/search/related_1.js"></script>
+    <script src="../_static/html/search/all_c.js"></script>
+    <script src="../_static/html/search/typedefs_13.js"></script>
+    <script src="../_static/html/search/classes_1.js"></script>
+    <script src="../_static/html/search/variables_4.js"></script>
+    <script src="../_static/html/search/functions_10.js"></script>
+    <script src="../_static/html/search/typedefs_8.js"></script>
+    <script src="../_static/html/search/enumvalues_1.js"></script>
+    <script src="../_static/html/search/typedefs_4.js"></script>
+    <script src="../_static/html/search/classes_3.js"></script>
+    <script src="../_static/html/search/variables_8.js"></script>
+    <script src="../_static/html/search/variables_9.js"></script>
+    <script src="../_static/html/search/files_12.js"></script>
+    <script src="../_static/html/search/functions_15.js"></script>
+    <script src="../_static/html/search/typedefs_10.js"></script>
+    <script src="../_static/html/search/all_10.js"></script>
+    <script src="../_static/html/search/enumvalues_6.js"></script>
+    <script src="../_static/html/search/classes_5.js"></script>
+    <script src="../_static/html/search/functions_14.js"></script>
+    <script src="../_static/html/search/functions_3.js"></script>
+    <script src="../_static/html/search/files_13.js"></script>
+    <script src="../_static/html/search/functions_18.js"></script>
+    <script src="../_static/html/search/files_9.js"></script>
+    <script src="../_static/html/search/functions_c.js"></script>
+    <script src="../_static/html/search/files_3.js"></script>
+    <script src="../_static/html/search/functions_5.js"></script>
+    <script src="../_static/html/search/all_11.js"></script>
+    <script src="../_static/html/search/all_13.js"></script>
+    <script src="../_static/html/search/variables_3.js"></script>
+    <script src="../_static/html/search/searchdata.js"></script>
+    <script src="../_static/html/search/all_17.js"></script>
+    <script src="../_static/html/search/variables_7.js"></script>
+    <script src="../_static/html/search/enumvalues_3.js"></script>
+    <script src="../_static/html/search/variables_14.js"></script>
+    <script src="../_static/html/search/typedefs_c.js"></script>
+    <script src="../_static/html/search/files_2.js"></script>
+    <script src="../_static/html/search/variables_c.js"></script>
+    <script src="../_static/html/search/all_6.js"></script>
+    <script src="../_static/html/search/classes_4.js"></script>
+    <script src="../_static/html/search/functions_2.js"></script>
+    <script src="../_static/html/search/files_7.js"></script>
+    <script src="../_static/html/search/typedefs_12.js"></script>
+    <script src="../_static/html/search/enumvalues_2.js"></script>
+    <script src="../_static/html/search/variables_12.js"></script>
+    <script src="../_static/html/search/enumvalues_5.js"></script>
+    <script src="../_static/html/search/functions_16.js"></script>
+    <script src="../_static/html/search/enumvalues_7.js"></script>
+    <script src="../_static/html/search/functions_17.js"></script>
+    <script src="../_static/html/search/all_7.js"></script>
+    <script src="../_static/html/search/functions_9.js"></script>
+    <script src="../_static/html/search/all_b.js"></script>
+    <script src="../_static/html/search/variables_a.js"></script>
+    <script src="../_static/html/search/files_16.js"></script>
+    <script src="../_static/html/search/functions_b.js"></script>
+    <script src="../_static/html/search/enumvalues_9.js"></script>
+    <script src="../_static/html/search/typedefs_d.js"></script>
+    <script src="../_static/html/search/all_12.js"></script>
+    <script src="../_static/html/search/classes_a.js"></script>
+    <script src="../_static/html/search/all_0.js"></script>
+    <script src="../_static/html/search/files_5.js"></script>
+    <script src="../_static/html/search/files_f.js"></script>
+    <script src="../_static/html/search/variables_10.js"></script>
+    <script src="../_static/html/search/variables_d.js"></script>
+    <script src="../_static/html/search/enumvalues_8.js"></script>
+    <script src="../_static/html/search/functions_4.js"></script>
+    <script src="../_static/html/search/classes_14.js"></script>
+    <script src="../_static/html/search/related_0.js"></script>
+    <script src="../_static/html/search/files_14.js"></script>
+    <script src="../_static/html/search/classes_c.js"></script>
+    <script src="../_static/html/search/classes_12.js"></script>
+    <script src="../_static/html/search/variables_b.js"></script>
+    <script src="../_static/html/search/enums_2.js"></script>
+    <script src="../_static/html/search/files_e.js"></script>
+    <script src="../_static/html/search/all_1.js"></script>
+    <script src="../_static/html/search/typedefs_11.js"></script>
+    <script src="../_static/html/search/all_14.js"></script>
+    <script src="../_static/html/search/all_5.js"></script>
+    <script src="../_static/html/search/all_f.js"></script>
+    <script src="../_static/html/search/typedefs_f.js"></script>
+    <script src="../_static/html/search/all_2.js"></script>
+    <script src="../_static/html/search/variables_f.js"></script>
+    <script src="../_static/html/search/files_1.js"></script>
+    <script src="../_static/html/search/functions_d.js"></script>
+    <script src="../_static/html/search/classes_10.js"></script>
+    <script src="../_static/html/search/functions_0.js"></script>
+    <script src="../_static/html/search/typedefs_3.js"></script>
+    <script src="../_static/html/search/variables_11.js"></script>
+    <script src="../_static/html/search/files_6.js"></script>
+    <script src="../_static/html/search/functions_6.js"></script>
+    <script src="../_static/html/search/variables_13.js"></script>
+    <script src="../_static/html/search/files_a.js"></script>
+    <script src="../_static/html/search/all_1b.js"></script>
+    <script src="../_static/html/search/enums_0.js"></script>
+    <script src="../_static/html/search/typedefs_a.js"></script>
+    <script src="../_static/html/search/all_19.js"></script>
+    <script src="../_static/html/search/all_9.js"></script>
+    <script src="../_static/html/search/namespaces_1.js"></script>
+    <script src="../_static/html/search/typedefs_b.js"></script>
+    <script src="../_static/html/search/variables_e.js"></script>
+    <script src="../_static/html/search/classes_7.js"></script>
+    <script src="../_static/html/search/typedefs_14.js"></script>
+    <script src="../_static/html/search/files_d.js"></script>
+    <script src="../_static/html/search/typedefs_9.js"></script>
+    <script src="../_static/html/search/variables_0.js"></script>
+    <script src="../_static/html/search/classes_6.js"></script>
+    <script src="../_static/html/search/functions_a.js"></script>
+    <script src="../_static/html/search/classes_2.js"></script>
+    <script src="../_static/html/search/functions_1.js"></script>
+    <script src="../_static/html/search/files_15.js"></script>
+    <script src="../_static/html/search/classes_13.js"></script>
+    <script src="../_static/html/search/typedefs_6.js"></script>
+    <script src="../_static/html/search/functions_8.js"></script>
+    <script src="../_static/html/search/classes_9.js"></script>
+    <script src="../_static/html/search/classes_16.js"></script>
+    <script src="../_static/html/search/namespaces_0.js"></script>
+    <script src="../_static/html/search/variables_2.js"></script>
+    <script src="../_static/html/search/classes_8.js"></script>
+    <script src="../_static/html/search/all_d.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GQCP Style Guide" href="style-guide.html" />
+    <link rel="prev" title="UHF SCF" href="../examples/UHF-calculations.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpg" class="logo" alt="logo">
+  
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../landing-page.html">
+   The Ghent Quantum Chemistry Package
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  User documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/introduction.html">
+   Introduction for users
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/molecules.html">
+   Molecules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/orbital-bases.html">
+   Orbital bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/quantum-chemical-methods.html">
+   Quantum chemical methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/quantum-chemical-models.html">
+   Quantum chemical models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/use-cases.html">
+   Common use cases
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/AP1roG-calculations.html">
+   AP1roG calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/CCSD.html">
+   CCSD calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Custom-algorithms-showcase-CUHF.html">
+   Custom algorithms showcase - CUHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html">
+   DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#preparing-the-hamiltonian-in-the-canonical-rhf-basis">
+   Preparing the Hamiltonian in the canonical RHF basis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#dense-doci-calculations">
+   Dense DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#davidson-doci-calculations">
+   ‘Davidson’ DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/FCI.html">
+   Molecular FCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/HF-Stability.html">
+   Checking the Hartree-Fock Stability conditions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Hubbard.html">
+   Hubbard calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Mulliken-population.html">
+   Calculating the Mulliken population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/ONVPath.html">
+   ONV path manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/R-U-GHF-overlaps.html">
+   Overlaps between R/U/GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/README.html">
+   Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/RHF-dipole-moments.html">
+   Calculating the RHF dipole moment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Spinor-bases.html">
+   Spinor bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Try-out-Binder.html">
+   Try out GQCP: the Ghent Quantum Chemistry Package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Try-out-Colab.html">
+   Try out GQCP: the Ghent Quantum Chemistry Package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/UHF-calculations.html">
+   UHF SCF
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Developer documentation
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style-guide.html">
+   GQCP Style Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ONV-path-manipulation.html">
+   Manipulating ONVs and their addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="devops.html">
+   GQCP devops
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/troubleshooting.html">
+   Troubleshooting guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/citations.html">
+   Academic references
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/api.html">
+   API
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Blog posts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blog/2020-11-30-RSDD.html">
+   GQCP appears in RSDD2020
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/developer-documentation/getting-started.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cloning-the-repository">
+   Cloning the repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-dependencies">
+   Installing dependencies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conda-installation">
+     Conda installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#docker-installation">
+     Docker installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singularity-installation">
+     Singularity installation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-and-installing-with-cmake">
+   Building and installing with CMake
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cmake-options">
+     CMake options
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cmake-options-quick-reference">
+     CMake options - quick reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-visual-studio-code-optional">
+   Setting up Visual Studio Code (optional)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-common-extensions">
+     Installing common extensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clone-the-repository-install-the-necessary-dependencies">
+     Clone the repository &amp; install the necessary dependencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-your-c-compiler">
+     Setting up your C++ compiler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up-your-gqcp-workspace">
+     Set up your GQCP workspace
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-cmake-through-vs-code">
+     Using CMake through VS Code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-auto-formatting-for-c-source-files">
+     Setting up auto-formatting for C++ source files
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Before delving into GQCP’s structure under the hood, let’s make sure you’re set up for development to GQCP.</p>
+<div class="section" id="cloning-the-repository">
+<h2>Cloning the repository<a class="headerlink" href="#cloning-the-repository" title="Permalink to this headline">¶</a></h2>
+<p>For GQCP, we use the <a class="reference external" href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">git flow</a> workflow. All features are therefore based on the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch, which contains the latest developments.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
+<span class="nb">cd</span> GQCP
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-dependencies">
+<h2>Installing dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Please make sure the following dependencies are available on your system:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.boost.org">Boost &lt;= 1.69</a></p></li>
+<li><p><a class="reference external" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen 3.3.4+</a></p></li>
+<li><p><a class="reference external" href="https://github.com/evaleev/libint">libint 2.4.2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/GQCG/libcint/tree/develop">libcint (gqcg fork)</a></p></li>
+</ul>
+<p>You may install these manually, but please note that we offer a Conda and a Docker environment which contains these dependencies from the start.</p>
+<div class="section" id="conda-installation">
+<h3>Conda installation<a class="headerlink" href="#conda-installation" title="Permalink to this headline">¶</a></h3>
+<p>In the root directory of this repository, create the <code class="docutils literal notranslate"><span class="pre">gqcp_dev</span></code> conda environment from the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>-file that we provide.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+conda activate gqcp_dev
+</pre></div>
+</div>
+<p>Since we (still) depend on Libint’s basissets, after installation, you’ll have to set the <code class="docutils literal notranslate"><span class="pre">LIBINT_DATA_PATH</span></code> environment variable to the folder that contains the libint bases. In a default installation (of Libint’s version v2.4.2), the data path is given by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LIBINT_DATA_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/share/libint/2.4.2/basis
+</pre></div>
+</div>
+<p>You will have to either export this environment variable every time you activate the <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> environment or (better) put this export in your .bashrc or (preferred) <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables">add this environment variable to your virtual environment</a>.</p>
+</div>
+<div class="section" id="docker-installation">
+<h3>Docker installation<a class="headerlink" href="#docker-installation" title="Permalink to this headline">¶</a></h3>
+<p>First, <a class="reference external" href="https://docs.docker.com/get-docker/">install Docker</a>. VSCode <a class="reference external" href="https://code.visualstudio.com/docs/remote/containers-tutorial">has excellent support for containers</a>. Using the <a class="reference external" href="https://code.visualstudio.com/docs/remote/containers">Visual Studio Code Remote - Containers</a> you can mount the directory in which you have cloned the GQCP repo in the Docker container. There are two ways to get the Docker container up and running:</p>
+<ol>
+<li><p>You can let VSCode <a class="reference external" href="https://code.visualstudio.com/docs/remote/containers#_quick-start-open-an-existing-folder-in-a-container">build the image on your local machine</a>.</p></li>
+<li><p>You can use a prebuilt container by pulling the <code class="docutils literal notranslate"><span class="pre">gqcp-dev</span></code> image from our organization</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull gqcg/gqcp-dev
+</pre></div>
+</div>
+</li>
+</ol>
+<p>All these settings are stored in the <code class="docutils literal notranslate"><span class="pre">.devcontainer</span></code> folder. For current testing purposes, the example provided in the GQCP repo has been set up in such a way that you build the image on your local machine. Note that the default Conda prefix in this Docker container is <code class="docutils literal notranslate"><span class="pre">/usr/local/miniconda3</span></code>. As such, the <code class="docutils literal notranslate"><span class="pre">LIBINT_DATA_PATH</span></code>, which has already been exported for your convenience, is <code class="docutils literal notranslate"><span class="pre">/usr/local/miniconda3/share/libint/2.4.2/basis</span></code>.</p>
+</div>
+<div class="section" id="singularity-installation">
+<h3>Singularity installation<a class="headerlink" href="#singularity-installation" title="Permalink to this headline">¶</a></h3>
+<p>For HPC systems, <a class="reference external" href="https://sylabs.io/docs/">singularity</a> offers a more secure fork of Docker. Singularity converts Docker images to Singularity images on the fly. For the <a class="reference external" href="https://www.ugent.be/hpc/en">UGent HPC</a> this translates into first making sure <a class="reference external" href="https://vlaams-supercomputing-centrum-vscdocumentation.readthedocs-hosted.com/en/latest/software/singularity.html">that you are able to download and use Singularity images</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir <span class="nv">$VSC_SCRATCH</span>/containers
+mkdir <span class="nv">$VSC_SCRATCH</span>/containers/cache
+mkdir <span class="nv">$VSC_SCRATCH</span>/containers/tmp
+</pre></div>
+</div>
+<p>Then you can pull and convert the Docker image in the scratch space</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/cache <span class="nv">SINGULARITY_TMPDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/tmp <span class="nv">SINGULARITY_PULLFOLDER</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers singularity pull docker://gqcg/gqcp-dev
+</pre></div>
+</div>
+<p>and shell into the resulting <code class="docutils literal notranslate"><span class="pre">*.sif</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity shell <span class="nv">$VSC_SCRATCH</span>/containers/gqcp-dev_latest.sif
+</pre></div>
+</div>
+<p>Note that the above <code class="docutils literal notranslate"><span class="pre">SINGULARITY_*</span></code> environment variables can also be set user wide in your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>.</p>
+</div>
+</div>
+<div class="section" id="building-and-installing-with-cmake">
+<h2>Building and installing with CMake<a class="headerlink" href="#building-and-installing-with-cmake" title="Permalink to this headline">¶</a></h2>
+<p>Right now, you’re set up for development! Typically, developing a new feature on your machine would go through the following cycle:</p>
+<ol class="simple">
+<li><p>You start a <a class="reference external" href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">feature branch</a>, and edit some source files;</p></li>
+<li><p>You locally compile the library and run the unit test cases in order to make sure that you haven’t made any errors;</p></li>
+<li><p>You install the C++ library or its Python bindings and try out your new feature.</p></li>
+</ol>
+<p><a class="reference external" href="https://cmake.org">CMake</a> can help us out tremendously in this regard, with its out-of-source builds. Out-of-source means that we’re creating a temporary folder in the root directory of this repository, so intermediary Makefiles and compiled files does not pollute our repository. Often, this folder is just called <code class="docutils literal notranslate"><span class="pre">build</span></code>, so go ahead and create an out-of-source build directory now.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+</pre></div>
+</div>
+<p>Now, we let CMake do its thing by specifying all the necessary options in <code class="docutils literal notranslate"><span class="pre">(CMake</span> <span class="pre">options)</span></code>. (We’ll go over which CMake options GQCP supports shortly.)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake .. <span class="o">(</span>CMake options<span class="o">)</span>
+</pre></div>
+</div>
+<p>We’ll then try to make all targets, i.e. compiling the C++ library, generating the Python bindings and compiling all tests. This is to rule out any errors in your source files, i.e. we check if the code is statically (at compile-time) correct</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make all
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">all</span></code> is default, so it may be omitted.</p>
+</div></blockquote>
+<p>Once every target has been built, we can check if the code does what is expected, at run-time, by executing all unit tests. This is done by the following command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
+</pre></div>
+</div>
+<p>Finally, we check if the C++ library and its Python bindings can be installed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make install
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>: Depending on which prefix you have specified in the CMake option <code class="docutils literal notranslate"><span class="pre">-DCMAKE_INSTALL_PREFIX</span></code>, you might have to use <code class="docutils literal notranslate"><span class="pre">sudo</span></code> in this installation step.</p>
+</div></blockquote>
+<div class="section" id="cmake-options">
+<h3>CMake options<a class="headerlink" href="#cmake-options" title="Permalink to this headline">¶</a></h3>
+<p>As promised, here is an overview of all the CMake options that GQCP supports.</p>
+<ul>
+<li><p>Specify the C compiler using <code class="docutils literal notranslate"><span class="pre">-DCMAKE_C_COMPILER=cc</span></code>, with <code class="docutils literal notranslate"><span class="pre">cc</span></code> the C-compiler that you would like to use.</p></li>
+<li><p>Specify the C++ compiler using <code class="docutils literal notranslate"><span class="pre">-DCMAKE_CXX_COMPILER=cxx</span></code>, with <code class="docutils literal notranslate"><span class="pre">cxx</span></code> the C++-compiler that you would like to use.</p></li>
+<li><p>In order to let CMake find those libraries and include headers that are not in default locations, please use the <code class="docutils literal notranslate"><span class="pre">-DCMAKE_PREFIX_PATH=prefix_path</span></code> options, with <code class="docutils literal notranslate"><span class="pre">prefix_path</span></code> the path to those libraries and includes (grouped together).</p>
+<p>If you have chosen to use conda for some dependencies, <code class="docutils literal notranslate"><span class="pre">prefix_path</span></code> should be set to e.g. <code class="docutils literal notranslate"><span class="pre">/anaconda3/envs/.../</span></code></p>
+<p>If you use a custom installation of GQCP’s dependencies, you should provide this option in order to let CMake find GQCP’s dependencies (libInt2, libCint, Eigen and Intel MKL), which therefore should be installed in the subfolders of <code class="docutils literal notranslate"><span class="pre">prefix_path</span></code>. For instance, providing <code class="docutils literal notranslate"><span class="pre">-DCMAKE_PREFIX_PATH=/usr/local</span></code> that any subfolders may be found (e.g. the <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, <code class="docutils literal notranslate"><span class="pre">lib</span></code>, <code class="docutils literal notranslate"><span class="pre">lib64</span></code> and <code class="docutils literal notranslate"><span class="pre">include</span></code> folders).</p>
+</li>
+<li><p>In order to control where the library should be installed, you may specify <code class="docutils literal notranslate"><span class="pre">-DCMAKE_INSTALL_PREFIX=prefix</span></code>, with <code class="docutils literal notranslate"><span class="pre">prefix</span></code> the installation prefix you want the library to be installed it. When omitted, <code class="docutils literal notranslate"><span class="pre">prefix</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code>.</p>
+<ul class="simple">
+<li><p>the header files will be installed in <code class="docutils literal notranslate"><span class="pre">prefix/include</span></code></p></li>
+<li><p>the compiled library will be installed in <code class="docutils literal notranslate"><span class="pre">prefix/lib</span></code></p></li>
+<li><p>drivers (optional) and benchmarks (optional) will be installed in <code class="docutils literal notranslate"><span class="pre">prefix/bin</span></code></p></li>
+<li><p>CMake target files will be installed in <code class="docutils literal notranslate"><span class="pre">prefix/cmake</span></code></p></li>
+</ul>
+<p>We should note that setting <code class="docutils literal notranslate"><span class="pre">-DCMAKE_INSTALL_PREFIX=~/.local</span></code> is preferred as this is also makes sure that the installed Python modules can be found automatically.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DBUILD_TESTS=TRUE</span></code> specifies that tests should be built and run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DBUILD_BENCHMARKS=TRUE</span></code> makes sure CMake adds the benchmark executables as targets. This uses <a class="reference external" href="https://github.com/google/benchmark">Google benchmark</a>, so make sure you have this installed if you wish to proceed with benchmarking on your system.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DBUILD_DOCS=TRUE</span></code> specifies that the API documentation for the C++ library should be built using Doxygen, in which case Graphviz is required for UML generation. A custom <code class="docutils literal notranslate"><span class="pre">docs</span></code> target will then be configured by CMake, so that</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  make docs
+</pre></div>
+</div>
+<p>compiles the documentation. After compilation, the HTML documentation can be found in the <code class="docutils literal notranslate"><span class="pre">docs/html</span></code> directory inside your out-of-source <code class="docutils literal notranslate"><span class="pre">build</span></code> directory. Navigating the documentation is easiest if you start with the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DBUILD_PYTHON_BINDINGS=TRUE</span></code> makes sure that selected pieces of the GQCP library can be called from Python. This uses <a class="reference external" href="https://github.com/pybind/pybind11">pybind11</a>, so make sure you have this installed if you wish to use <code class="docutils literal notranslate"><span class="pre">gqcpy</span></code> on your system.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DPYTHON_EXECUTABLE=python_executable</span></code> with <code class="docutils literal notranslate"><span class="pre">python_executable</span></code> the path to your preferred Python executable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DPYTHON_LIBRARY=python_library</span></code> with <code class="docutils literal notranslate"><span class="pre">python_library</span></code> the path to the libraries that support your preferred Python executable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DOPTIMIZE_FOR_NATIVE=TRUE</span></code> optimizes builds for the machine on which the software is built. This should not be enable for Docker builds as not all optimizations are available on all run infrastructures.</p></li>
+</ul>
+</div>
+<div class="section" id="cmake-options-quick-reference">
+<h3>CMake options - quick reference<a class="headerlink" href="#cmake-options-quick-reference" title="Permalink to this headline">¶</a></h3>
+<p>As you can see, there are a lot of options that can (and should) be passed to CMake. For quick reference, here’s a command that should work most of the time. In your out-of-source build directory, initialize CMake, make all targets, run all tests and install the library:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake .. -DCMAKE_PREFIX_PATH<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span> <span class="se">\</span>
+    -DCMAKE_INSTALL_PREFIX<span class="o">=</span>~/.local <span class="se">\</span>
+    -DBUILD_TESTS<span class="o">=</span>TRUE <span class="se">\ </span>
+    -DBUILD_PYTHON_BINDINGS<span class="o">=</span>TRUE <span class="se">\</span>
+    -DPYTHON_EXECUTABLE<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/bin/python <span class="se">\ </span>
+    -DPYTHON_LIBRARY<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/lib/libpython3.8.a
+make -j <span class="m">4</span> <span class="o">&amp;&amp;</span> make <span class="nb">test</span> <span class="o">&amp;&amp;</span> make install
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">4</span></code> will make sure that 4 targets will be built at once. In order to increase compilation speed, you may increase this number, related to the number of cores you have available on your machine.</p>
+</div>
+</div>
+<div class="section" id="setting-up-visual-studio-code-optional">
+<h2>Setting up Visual Studio Code (optional)<a class="headerlink" href="#setting-up-visual-studio-code-optional" title="Permalink to this headline">¶</a></h2>
+<p>At GQCG, our code editor of choice is <a class="reference external" href="https://code.visualstudio.com">Visual Studio Code</a>. VS Code allows for easy collaboration, uses built-in git commands and offers a lot of useful extensions. In order to use VS Code to collaborate on GQCP, some setup is required. This will be covered in this small step-by-step guide.</p>
+<div class="section" id="installing-common-extensions">
+<h3>Installing common extensions<a class="headerlink" href="#installing-common-extensions" title="Permalink to this headline">¶</a></h3>
+<p>To comfortably work on GQCP using VS Code, we recommend you to install the following extensions:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++</a>;</p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=twxs.cmake">CMake language support</a> and <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=gocarlos.cmake-tools">CMake Tools</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="clone-the-repository-install-the-necessary-dependencies">
+<h3>Clone the repository &amp; install the necessary dependencies<a class="headerlink" href="#clone-the-repository-install-the-necessary-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>Make sure that you’ve <a class="reference external" href="#cloning-the-repository">cloned GQCP</a> and <a class="reference external" href="#installing-dependencies">installed GQCP’s dependencies</a>. We recommend using the <code class="docutils literal notranslate"><span class="pre">gqcp_dev</span></code> conda environment, so the necessary dependencies and their paths will all be set correctly.</p>
+</div>
+<div class="section" id="setting-up-your-c-compiler">
+<h3>Setting up your C++ compiler<a class="headerlink" href="#setting-up-your-c-compiler" title="Permalink to this headline">¶</a></h3>
+<p>We often use <a class="reference external" href="https://clang.llvm.org">Clang</a> 7.x.y as our C++ compiler. On macOS, this can easily be installed using <a class="reference external" href="https://www.macports.org">MacPorts</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>port install clang-7.0
+</pre></div>
+</div>
+<p>After the installation, you should create a new toolkit by editing the <code class="docutils literal notranslate"><span class="pre">cmake-tools-kits.json</span></code>-file. (To open this file, open up the VS Code Command Palette and look for <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">user-local</span> <span class="pre">CMake</span> <span class="pre">kits</span></code>).</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Clang 7.1.0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;compilers&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/local/bin/clang-mp-7.0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;CXX&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/local/bin/clang++-mp-7.0&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> The paths to your compilers may be different. You can look for them using the command <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">clang++</span></code> or <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">clang++-mp-7.0</span></code> for clang 7.x.y.</p>
+</div></blockquote>
+<p>After this is done, you can select Clang 7.1.0 as your default compiler in VS Code.</p>
+</div>
+<div class="section" id="set-up-your-gqcp-workspace">
+<h3>Set up your GQCP workspace<a class="headerlink" href="#set-up-your-gqcp-workspace" title="Permalink to this headline">¶</a></h3>
+<p>After opening the GQCP folder in VS Code, select <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Save</span> <span class="pre">Workspace</span> <span class="pre">As...</span></code>, and save your workspace. This will create a folder <code class="docutils literal notranslate"><span class="pre">.vscode</span></code> with a file <code class="docutils literal notranslate"><span class="pre">&lt;workspace-name&gt;.code-workspace</span></code> in it. Within this file, make sure that CMake Tools is forwarded the correct options, i.e. make sure that the <code class="docutils literal notranslate"><span class="pre">&quot;settings&quot;</span></code> key at least contains the following options.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;cmake.configureSettings&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;CMAKE_PREFIX_PATH&quot;</span><span class="p">:</span> <span class="s2">&quot;${CONDA_PREFIX}/envs/gqcp_dev&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;CMAKE_CXX_COMPILER&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/local/bin/clang++-mp-7.0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;BUILD_TESTS&quot;</span><span class="p">:</span> <span class="s2">&quot;TRUE&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;BUILD_PYTHON_BINDINGS&quot;</span><span class="p">:</span> <span class="s2">&quot;TRUE&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;CMAKE_INSTALL_PREFIX&quot;</span><span class="p">:</span> <span class="s2">&quot;${CONDA_PREFIX}/envs/gqcp_dev&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PYTHON_EXECUTABLE&quot;</span><span class="p">:</span> <span class="s2">&quot;${CONDA_PREFIX}/envs/gqcp_dev/bin/python&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In order to use the C++ IntelliSense correctly, you’ll also have to set the corresponding include paths. Find <code class="docutils literal notranslate"><span class="pre">C/C++:</span> <span class="pre">Edit</span> <span class="pre">Configurations</span> <span class="pre">(JSON)</span></code> through VS Code’s Command Palette and open the configurations for your recently created workspace folder. In the <code class="docutils literal notranslate"><span class="pre">c_cpp_properties.json</span></code>-file that is opened, please make sure to update your configuration’s <code class="docutils literal notranslate"><span class="pre">&quot;includePath&quot;</span></code>.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;configurations&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;includePath&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;${CMAKE_PREFIX}/envs/gqcp_dev/include&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;${CMAKE_PREFIX}/envs/gqcp_dev/include/eigen3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;${workspaceFolder}/gqcp/include&quot;</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-cmake-through-vs-code">
+<h3>Using CMake through VS Code<a class="headerlink" href="#using-cmake-through-vs-code" title="Permalink to this headline">¶</a></h3>
+<p>By now, you’re done configuring VS Code and can start developing! If you’d like to compile the code locally to see if your tests still pass and the project can be compiled, you can use <code class="docutils literal notranslate"><span class="pre">CMake</span> <span class="pre">Tools</span></code> extension in your side bar and the clicking on the <code class="docutils literal notranslate"><span class="pre">...</span></code> in the upper right corner.</p>
+<p>In order to let CMake parse your project, use <code class="docutils literal notranslate"><span class="pre">Clean</span> <span class="pre">Reconfigure</span> <span class="pre">All</span> <span class="pre">Projects</span></code>. In the CMake: Project Outline, you can find a list of all targets, which can be built separately. If you would like to (re)build all targets, use <code class="docutils literal notranslate"><span class="pre">Clean</span> <span class="pre">Rebuild</span> <span class="pre">All</span> <span class="pre">Projects</span></code>.</p>
+</div>
+<div class="section" id="setting-up-auto-formatting-for-c-source-files">
+<h3>Setting up auto-formatting for C++ source files<a class="headerlink" href="#setting-up-auto-formatting-for-c-source-files" title="Permalink to this headline">¶</a></h3>
+<p>Since we have provided a clang formatting file <code class="docutils literal notranslate"><span class="pre">./clang-format</span></code>, VS Code’s C++ extension should be set up to parse your C++ source files and format them accordingly. To enable this, make sure that you provide the following setting (either in your workspace or user settings, which one you prefer), in order to let VS Code auto-format your C++ source files on save.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information on our style guide, please read our <span class="xref myst">GQCP style guide page</span>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "GQCG/GQCP",
+            ref: "develop",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./developer-documentation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../examples/UHF-calculations.html" title="previous page">UHF SCF</a>
+    <a class='right-next' id="next-link" href="style-guide.html" title="next page">GQCP Style Guide</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Ghent Quantum Chemistry Group<br/>
+        
+            &copy; Copyright 2017-2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

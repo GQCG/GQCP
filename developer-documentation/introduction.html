@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction for developers</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/doxygen.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/search/search.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/html/jquery.js"></script>
+    <script src="../_static/html/dynsections.js"></script>
+    <script src="../_static/html/menu.js"></script>
+    <script src="../_static/html/menudata.js"></script>
+    <script src="../_static/html/search/typedefs_5.js"></script>
+    <script src="../_static/html/search/files_c.js"></script>
+    <script src="../_static/html/search/classes_d.js"></script>
+    <script src="../_static/html/search/variables_1.js"></script>
+    <script src="../_static/html/search/classes_11.js"></script>
+    <script src="../_static/html/search/all_15.js"></script>
+    <script src="../_static/html/search/all_18.js"></script>
+    <script src="../_static/html/search/variables_6.js"></script>
+    <script src="../_static/html/search/search.js"></script>
+    <script src="../_static/html/search/classes_15.js"></script>
+    <script src="../_static/html/search/all_3.js"></script>
+    <script src="../_static/html/search/typedefs_e.js"></script>
+    <script src="../_static/html/search/all_4.js"></script>
+    <script src="../_static/html/search/typedefs_0.js"></script>
+    <script src="../_static/html/search/files_10.js"></script>
+    <script src="../_static/html/search/enumvalues_0.js"></script>
+    <script src="../_static/html/search/classes_e.js"></script>
+    <script src="../_static/html/search/typedefs_2.js"></script>
+    <script src="../_static/html/search/enumvalues_4.js"></script>
+    <script src="../_static/html/search/all_8.js"></script>
+    <script src="../_static/html/search/all_16.js"></script>
+    <script src="../_static/html/search/functions_13.js"></script>
+    <script src="../_static/html/search/typedefs_1.js"></script>
+    <script src="../_static/html/search/all_e.js"></script>
+    <script src="../_static/html/search/functions_12.js"></script>
+    <script src="../_static/html/search/classes_17.js"></script>
+    <script src="../_static/html/search/files_b.js"></script>
+    <script src="../_static/html/search/functions_f.js"></script>
+    <script src="../_static/html/search/all_a.js"></script>
+    <script src="../_static/html/search/files_11.js"></script>
+    <script src="../_static/html/search/all_1a.js"></script>
+    <script src="../_static/html/search/files_4.js"></script>
+    <script src="../_static/html/search/functions_11.js"></script>
+    <script src="../_static/html/search/variables_5.js"></script>
+    <script src="../_static/html/search/files_8.js"></script>
+    <script src="../_static/html/search/files_0.js"></script>
+    <script src="../_static/html/search/enums_1.js"></script>
+    <script src="../_static/html/search/typedefs_7.js"></script>
+    <script src="../_static/html/search/functions_e.js"></script>
+    <script src="../_static/html/search/classes_b.js"></script>
+    <script src="../_static/html/search/classes_0.js"></script>
+    <script src="../_static/html/search/classes_f.js"></script>
+    <script src="../_static/html/search/functions_7.js"></script>
+    <script src="../_static/html/search/related_1.js"></script>
+    <script src="../_static/html/search/all_c.js"></script>
+    <script src="../_static/html/search/typedefs_13.js"></script>
+    <script src="../_static/html/search/classes_1.js"></script>
+    <script src="../_static/html/search/variables_4.js"></script>
+    <script src="../_static/html/search/functions_10.js"></script>
+    <script src="../_static/html/search/typedefs_8.js"></script>
+    <script src="../_static/html/search/enumvalues_1.js"></script>
+    <script src="../_static/html/search/typedefs_4.js"></script>
+    <script src="../_static/html/search/classes_3.js"></script>
+    <script src="../_static/html/search/variables_8.js"></script>
+    <script src="../_static/html/search/variables_9.js"></script>
+    <script src="../_static/html/search/files_12.js"></script>
+    <script src="../_static/html/search/functions_15.js"></script>
+    <script src="../_static/html/search/typedefs_10.js"></script>
+    <script src="../_static/html/search/all_10.js"></script>
+    <script src="../_static/html/search/enumvalues_6.js"></script>
+    <script src="../_static/html/search/classes_5.js"></script>
+    <script src="../_static/html/search/functions_14.js"></script>
+    <script src="../_static/html/search/functions_3.js"></script>
+    <script src="../_static/html/search/files_13.js"></script>
+    <script src="../_static/html/search/functions_18.js"></script>
+    <script src="../_static/html/search/files_9.js"></script>
+    <script src="../_static/html/search/functions_c.js"></script>
+    <script src="../_static/html/search/files_3.js"></script>
+    <script src="../_static/html/search/functions_5.js"></script>
+    <script src="../_static/html/search/all_11.js"></script>
+    <script src="../_static/html/search/all_13.js"></script>
+    <script src="../_static/html/search/variables_3.js"></script>
+    <script src="../_static/html/search/searchdata.js"></script>
+    <script src="../_static/html/search/all_17.js"></script>
+    <script src="../_static/html/search/variables_7.js"></script>
+    <script src="../_static/html/search/enumvalues_3.js"></script>
+    <script src="../_static/html/search/variables_14.js"></script>
+    <script src="../_static/html/search/typedefs_c.js"></script>
+    <script src="../_static/html/search/files_2.js"></script>
+    <script src="../_static/html/search/variables_c.js"></script>
+    <script src="../_static/html/search/all_6.js"></script>
+    <script src="../_static/html/search/classes_4.js"></script>
+    <script src="../_static/html/search/functions_2.js"></script>
+    <script src="../_static/html/search/files_7.js"></script>
+    <script src="../_static/html/search/typedefs_12.js"></script>
+    <script src="../_static/html/search/enumvalues_2.js"></script>
+    <script src="../_static/html/search/variables_12.js"></script>
+    <script src="../_static/html/search/enumvalues_5.js"></script>
+    <script src="../_static/html/search/functions_16.js"></script>
+    <script src="../_static/html/search/enumvalues_7.js"></script>
+    <script src="../_static/html/search/functions_17.js"></script>
+    <script src="../_static/html/search/all_7.js"></script>
+    <script src="../_static/html/search/functions_9.js"></script>
+    <script src="../_static/html/search/all_b.js"></script>
+    <script src="../_static/html/search/variables_a.js"></script>
+    <script src="../_static/html/search/files_16.js"></script>
+    <script src="../_static/html/search/functions_b.js"></script>
+    <script src="../_static/html/search/enumvalues_9.js"></script>
+    <script src="../_static/html/search/typedefs_d.js"></script>
+    <script src="../_static/html/search/all_12.js"></script>
+    <script src="../_static/html/search/classes_a.js"></script>
+    <script src="../_static/html/search/all_0.js"></script>
+    <script src="../_static/html/search/files_5.js"></script>
+    <script src="../_static/html/search/files_f.js"></script>
+    <script src="../_static/html/search/variables_10.js"></script>
+    <script src="../_static/html/search/variables_d.js"></script>
+    <script src="../_static/html/search/enumvalues_8.js"></script>
+    <script src="../_static/html/search/functions_4.js"></script>
+    <script src="../_static/html/search/classes_14.js"></script>
+    <script src="../_static/html/search/related_0.js"></script>
+    <script src="../_static/html/search/files_14.js"></script>
+    <script src="../_static/html/search/classes_c.js"></script>
+    <script src="../_static/html/search/classes_12.js"></script>
+    <script src="../_static/html/search/variables_b.js"></script>
+    <script src="../_static/html/search/enums_2.js"></script>
+    <script src="../_static/html/search/files_e.js"></script>
+    <script src="../_static/html/search/all_1.js"></script>
+    <script src="../_static/html/search/typedefs_11.js"></script>
+    <script src="../_static/html/search/all_14.js"></script>
+    <script src="../_static/html/search/all_5.js"></script>
+    <script src="../_static/html/search/all_f.js"></script>
+    <script src="../_static/html/search/typedefs_f.js"></script>
+    <script src="../_static/html/search/all_2.js"></script>
+    <script src="../_static/html/search/variables_f.js"></script>
+    <script src="../_static/html/search/files_1.js"></script>
+    <script src="../_static/html/search/functions_d.js"></script>
+    <script src="../_static/html/search/classes_10.js"></script>
+    <script src="../_static/html/search/functions_0.js"></script>
+    <script src="../_static/html/search/typedefs_3.js"></script>
+    <script src="../_static/html/search/variables_11.js"></script>
+    <script src="../_static/html/search/files_6.js"></script>
+    <script src="../_static/html/search/functions_6.js"></script>
+    <script src="../_static/html/search/variables_13.js"></script>
+    <script src="../_static/html/search/files_a.js"></script>
+    <script src="../_static/html/search/all_1b.js"></script>
+    <script src="../_static/html/search/enums_0.js"></script>
+    <script src="../_static/html/search/typedefs_a.js"></script>
+    <script src="../_static/html/search/all_19.js"></script>
+    <script src="../_static/html/search/all_9.js"></script>
+    <script src="../_static/html/search/namespaces_1.js"></script>
+    <script src="../_static/html/search/typedefs_b.js"></script>
+    <script src="../_static/html/search/variables_e.js"></script>
+    <script src="../_static/html/search/classes_7.js"></script>
+    <script src="../_static/html/search/typedefs_14.js"></script>
+    <script src="../_static/html/search/files_d.js"></script>
+    <script src="../_static/html/search/typedefs_9.js"></script>
+    <script src="../_static/html/search/variables_0.js"></script>
+    <script src="../_static/html/search/classes_6.js"></script>
+    <script src="../_static/html/search/functions_a.js"></script>
+    <script src="../_static/html/search/classes_2.js"></script>
+    <script src="../_static/html/search/functions_1.js"></script>
+    <script src="../_static/html/search/files_15.js"></script>
+    <script src="../_static/html/search/classes_13.js"></script>
+    <script src="../_static/html/search/typedefs_6.js"></script>
+    <script src="../_static/html/search/functions_8.js"></script>
+    <script src="../_static/html/search/classes_9.js"></script>
+    <script src="../_static/html/search/classes_16.js"></script>
+    <script src="../_static/html/search/namespaces_0.js"></script>
+    <script src="../_static/html/search/variables_2.js"></script>
+    <script src="../_static/html/search/classes_8.js"></script>
+    <script src="../_static/html/search/all_d.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Manipulating ONVs and their addresses" href="ONV-path-manipulation.html" />
+    <link rel="prev" title="GQCP Style Guide" href="style-guide.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpg" class="logo" alt="logo">
+  
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../landing-page.html">
+   The Ghent Quantum Chemistry Package
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  User documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/introduction.html">
+   Introduction for users
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/molecules.html">
+   Molecules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/orbital-bases.html">
+   Orbital bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/quantum-chemical-methods.html">
+   Quantum chemical methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/quantum-chemical-models.html">
+   Quantum chemical models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/use-cases.html">
+   Common use cases
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/AP1roG-calculations.html">
+   AP1roG calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/CCSD.html">
+   CCSD calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Custom-algorithms-showcase-CUHF.html">
+   Custom algorithms showcase - CUHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html">
+   DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#preparing-the-hamiltonian-in-the-canonical-rhf-basis">
+   Preparing the Hamiltonian in the canonical RHF basis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#dense-doci-calculations">
+   Dense DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#davidson-doci-calculations">
+   ‘Davidson’ DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/FCI.html">
+   Molecular FCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/HF-Stability.html">
+   Checking the Hartree-Fock Stability conditions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Hubbard.html">
+   Hubbard calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Mulliken-population.html">
+   Calculating the Mulliken population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/ONVPath.html">
+   ONV path manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/R-U-GHF-overlaps.html">
+   Overlaps between R/U/GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/README.html">
+   Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/RHF-dipole-moments.html">
+   Calculating the RHF dipole moment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Spinor-bases.html">
+   Spinor bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Try-out-Binder.html">
+   Try out GQCP: the Ghent Quantum Chemistry Package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Try-out-Colab.html">
+   Try out GQCP: the Ghent Quantum Chemistry Package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/UHF-calculations.html">
+   UHF SCF
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Developer documentation
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style-guide.html">
+   GQCP Style Guide
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ONV-path-manipulation.html">
+   Manipulating ONVs and their addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="devops.html">
+   GQCP devops
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/troubleshooting.html">
+   Troubleshooting guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/citations.html">
+   Academic references
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/api.html">
+   API
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Blog posts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blog/2020-11-30-RSDD.html">
+   GQCP appears in RSDD2020
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/developer-documentation/introduction.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-structure-of-the-c-library">
+   General structure of the C++ library
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#second-quantized-operators">
+     Second-quantized operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flexible-solver-algorithms">
+     Flexible solver algorithms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quantum-chemical-methods-and-models">
+     Quantum chemical methods and models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usage-in-an-external-project">
+   Usage in an external project
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-for-developers">
+<h1>Introduction for developers<a class="headerlink" href="#introduction-for-developers" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the developer documentation! Here, we’ll guide you through the design of the C++ library and the Python bindings.</p>
+<p>GQCP has two main components: the C++ library <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> and its associated Python bindings <code class="docutils literal notranslate"><span class="pre">gqcpy</span></code>, which is reflected in the folder structure of the GitHub: files that belong to <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> can be found in the <code class="docutils literal notranslate"><span class="pre">./gqcp</span></code> folder and files that belong <code class="docutils literal notranslate"><span class="pre">gqcpy</span></code> can be found in the <code class="docutils literal notranslate"><span class="pre">./gqcpy</span></code> folder. Pretty straightforward.</p>
+<blockquote>
+<div><p><strong>Note</strong>: Here <code class="docutils literal notranslate"><span class="pre">./</span></code> means the root folder of the repository, i.e. the one that is created after cloning this repository.</p>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">./gqcp</span></code>-folder has three main parts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">./gqcp/include</span></code>, which collects all C++ header files (<code class="docutils literal notranslate"><span class="pre">*.hpp</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./gqcp/src</span></code>, which collects all C++ source files (<code class="docutils literal notranslate"><span class="pre">*.cpp</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./gqcp/tests</span></code>, which collects all our C++ unit tests (<code class="docutils literal notranslate"><span class="pre">*_test.cpp</span></code>)</p></li>
+</ul>
+<p>The Python bindings don’t require any headers, so we only have two subfolders of <code class="docutils literal notranslate"><span class="pre">./gqcpy</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">./gqcpy/src</span></code>, which collects all C++ source files that are used to generate the bindings (<code class="docutils literal notranslate"><span class="pre">*_bindings.cpp</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./gqcpy/examples</span></code>, which collects some illustrative calculations in Jupyter Notebooks.</p></li>
+</ul>
+<p>Inside these folders, we have added the following structure:</p>
+<ul class="simple">
+<li><p><strong>Basis</strong>: for everything related to spinors, spinor basis and transformations</p></li>
+<li><p><strong>DensityMatrix</strong>: for everything related to density matrices</p></li>
+<li><p><strong>Mathematical</strong>: for general mathematical utilities, not directly related to quantum chemistry</p></li>
+<li><p><strong>Molecule</strong>: for everything related to molecules and nuclei</p></li>
+<li><p><strong>ONVBasis</strong>: for everything related to ONVs and bases for Fock (sub)spaces</p></li>
+<li><p><strong>Operator</strong>: for everything related to first- and second-quantized operators</p></li>
+<li><p><strong>Processing</strong>: for collecting everything that happens <em>after</em> the determination of the optimal values of the electronic structure model’s parameters, like response calculations</p></li>
+<li><p><strong>QCMethod</strong>: for the determination of the optimal parameters of an electronic structure model</p></li>
+<li><p><strong>Utilities</strong>: for collecting general utilities that do not belong elsewhere</p></li>
+</ul>
+<div class="section" id="general-structure-of-the-c-library">
+<h2>General structure of the C++ library<a class="headerlink" href="#general-structure-of-the-c-library" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we will go over the main aspects of the C++ library.
+It is meant as an introduction to the source code for interested users, but mainly for C++ developers that are interested in how GQCP works under the hood.
+By reading this section, we assume that you are familiar with C++.</p>
+<div class="section" id="second-quantized-operators">
+<h3>Second-quantized operators<a class="headerlink" href="#second-quantized-operators" title="Permalink to this headline">¶</a></h3>
+<p>Since the GQCP source code uses concepts related to second quantization, we should start by examining the core objects <code class="docutils literal notranslate"><span class="pre">SQOneElectronOperator</span></code> and <code class="docutils literal notranslate"><span class="pre">SQTwoElectronOperator</span></code>: the prefix ‘SQ’ means ‘second-quantized’, we have used it in order to somewhat abbreviate the class names.
+<code class="docutils literal notranslate"><span class="pre">SQOperator</span></code>, which is not a real class but is used to refer to either <code class="docutils literal notranslate"><span class="pre">SQOneElectronOperator</span></code> or <code class="docutils literal notranslate"><span class="pre">SQTwoElectronOperator</span></code>, encapsulates the integrals/parameters that are present in the corresponding second-quantized expression, so there must be a way to create an <code class="docutils literal notranslate"><span class="pre">SQOperator</span></code> from its integrals/parameters.
+Let us go through a small snippet to create an <code class="docutils literal notranslate"><span class="pre">SQOneElectronOperator</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gqcp.hpp&gt;</span><span class="cp"></span>
+
+
+<span class="c1">// Initialize a matrix and convert it into an operator</span>
+<span class="n">GQCP</span><span class="o">::</span><span class="n">SquareMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">M</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="c1">// the matrix representation</span>
+<span class="n">M</span> <span class="o">&lt;&lt;</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span>
+     <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">ScalarRSQOneElectronOperator</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">op</span> <span class="p">{</span><span class="n">M</span><span class="p">};</span>  <span class="c1">// the operator itself</span>
+</pre></div>
+</div>
+<p>If the syntax for the matrix-related objects feels familiar for other C++ developers, it might be because we use the amazing linear algebra library <a class="reference external" href="http://eigen.tuxfamily.org">Eigen</a> for representing vectors, matrices and tensors and performing BLAS/LAPACK operations.
+In this example, we first create a matrix representation using Eigen’s syntax and afterwards create an <code class="docutils literal notranslate"><span class="pre">SQOneElectronOperator</span></code> from it.
+<code class="docutils literal notranslate"><span class="pre">SQOneElectronOperator</span></code> is actually a class template, which has two template arguments.
+The first one is the underlying type of the matrix elements/integrals/parameters, and the second is the number of components the operator has.
+We are most often working with <code class="docutils literal notranslate"><span class="pre">SQOperator</span></code>s with only one component, like the kinetic energy operator, or the Coulomb repulsion operator, but occasionally, we work with electronic dipole operators as well.</p>
+<p>You might have guessed, but <code class="docutils literal notranslate"><span class="pre">ScalarRSQOperator</span></code> is just an alias, which for <code class="docutils literal notranslate"><span class="pre">SQOneElectronOperator</span></code> is written as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Scalar</span><span class="o">&gt;</span>
+<span class="k">using</span> <span class="n">ScalarRSQOneElectronOperator</span> <span class="o">=</span> <span class="n">RSQOneElectronOperator</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="p">,</span> <span class="n">ScalarVectorizer</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In order to access the underlying integrals/parameters/matrix elements, we use the API <code class="docutils literal notranslate"><span class="pre">.parameters(component_index)</span></code> or <code class="docutils literal notranslate"><span class="pre">.allParameters()</span></code>. Building on the previous example, we can now write the following.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gqcp.hpp&gt;</span><span class="cp"></span>
+
+
+<span class="c1">// Initialize two matrices and convert them into the two components of an operator</span>
+<span class="n">GQCP</span><span class="o">::</span><span class="n">SquareMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="c1">// the first matrix representation</span>
+<span class="n">M1</span> <span class="o">&lt;&lt;</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span>
+      <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">;</span>
+
+<span class="n">GQCP</span><span class="o">::</span><span class="n">SquareMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">M2</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">SquareMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">Identity</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="c1">// the second first matrix representation</span>
+
+
+<span class="c1">// Construct an operator with two components</span>
+<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">SQOneElectronOperator</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">op</span> <span class="p">({</span><span class="n">M1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">M1</span><span class="o">*</span><span class="n">M2</span><span class="p">});</span>  <span class="c1">// note that we can naturally work with multiplications of matrices thanks to SquareMatrix inheriting from Eigen</span>
+
+
+<span class="k">const</span> <span class="k">auto</span> <span class="n">all_components</span> <span class="o">=</span> <span class="n">op</span><span class="p">.</span><span class="n">allParameters</span><span class="p">();</span>  <span class="c1">// return all the components</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">op</span><span class="p">.</span><span class="n">parameters</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// access the element (0,1) of the first component: this should print &#39;2&#39;</span>
+</pre></div>
+</div>
+<p>We should note that this type of access both works in a read-only and a write way.</p>
+</div>
+<div class="section" id="flexible-solver-algorithms">
+<h3>Flexible solver algorithms<a class="headerlink" href="#flexible-solver-algorithms" title="Permalink to this headline">¶</a></h3>
+<p>In GQCP, we have chosen for a flexible solver design instead of only providing our users with our implementations of certain optimization algorithms, like RHF SCF or Newton-step based minimizers.</p>
+<p>The first class we will discuss is the <code class="docutils literal notranslate"><span class="pre">IterativeSolver</span></code>. At its core, it provides the implementation of <code class="docutils literal notranslate"><span class="pre">.perform()</span></code>, which iterates until the maximum number of allowed iterations is reached, or the convergence criterion is reached. In every iteration step, it will check if the convergence criterion is fulfilled, and if it is not, it will continue to execute all the steps in its <code class="docutils literal notranslate"><span class="pre">StepCollection</span></code>.</p>
+<p>Convergence criteria can be implemented by deriving from <code class="docutils literal notranslate"><span class="pre">ConvergenceCriterion</span></code> and implementing its <code class="docutils literal notranslate"><span class="pre">isFulfilled()</span></code> method. An example for RHF SCF would be to check the norm on two subsequent density matrices. One important realization is that the iteration steps and the convergence criteria must be able to access the information that the algorithm in its entirety produces. For RHF SCF, this would be the coefficient matrices, the density matrices, the Fock matrices, etc. That is why every <code class="docutils literal notranslate"><span class="pre">IterativeSolver</span></code>, its <code class="docutils literal notranslate"><span class="pre">StepCollection</span></code>, its <code class="docutils literal notranslate"><span class="pre">Step</span></code>s and <code class="docutils literal notranslate"><span class="pre">ConvergenceCriterion</span></code> must all be defined with respect to an <code class="docutils literal notranslate"><span class="pre">Environment</span></code>, which is the template parameter that should be attached to each of these classes.</p>
+<p>An example can make many things clear. Suppose we would like to do an RHF SCF calculation. The code that creates our suggested type of plain RHF SCF solver is the following:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">IterativeAlgorithm</span><span class="o">&lt;</span><span class="n">Environment</span><span class="o">&gt;</span> <span class="n">Plain</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.0e-08</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">maximum_number_of_iterations</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Create the iteration cycle that effectively &#39;defines&#39; a plain RHF SCF solver</span>
+    <span class="n">StepCollection</span><span class="o">&lt;</span><span class="n">RHFSCFEnvironment</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;&gt;</span> <span class="n">plain_rhf_scf_cycle</span> <span class="p">{};</span>
+    <span class="n">plain_rhf_scf_cycle</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">RHFDensityMatrixCalculation</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;</span><span class="p">())</span>
+                        <span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">RHFFockMatrixCalculation</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;</span><span class="p">())</span>
+                        <span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">RHFFockMatrixDiagonalization</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;</span><span class="p">())</span>
+                        <span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">RHFElectronicEnergyCalculation</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;</span><span class="p">());</span>
+
+    <span class="c1">// Create a convergence criterion on the norm of subsequent density matrices</span>
+    <span class="k">const</span> <span class="k">auto</span> <span class="n">density_matrix_extractor</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">(</span><span class="k">const</span> <span class="n">RHFSCFEnvironment</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;&amp;</span> <span class="n">environment</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">environment</span><span class="p">.</span><span class="n">density_matrices</span><span class="p">;</span> <span class="p">};</span>
+    <span class="k">const</span> <span class="n">ConsecutiveIteratesNormConvergence</span><span class="o">&lt;</span><span class="n">Orbital1DM</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">RHFSCFEnvironment</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;&gt;</span> <span class="n">convergence_criterion</span> <span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">density_matrix_extractor</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">IterativeAlgorithm</span><span class="o">&lt;</span><span class="n">RHFSCFEnvironment</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">plain_rhf_scf_cycle</span><span class="p">,</span> <span class="n">convergence_criterion</span><span class="p">,</span> <span class="n">maximum_number_of_iterations</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The reader might confirm that the code is clear: in every iteration, the algorithm will check the convergence on the density matrices (cfr <code class="docutils literal notranslate"><span class="pre">ConsecutiveIteratesNormConvergence</span></code> with a suitable iterate extractor). If the algorithm has not converged, an iteration cycle continues in which the following happens:</p>
+<ol class="simple">
+<li><p>The RHF density matrix is calculated (from the most recent coefficient matrix)</p></li>
+<li><p>The RHF Fock matrix is calculated (from the most recent density matrix);</p></li>
+<li><p>The RHF Fock matrix is diagonalized (to yield a new coefficient matrix);</p></li>
+<li><p>RHF energy is calculated (from the most recent coefficient matrix).</p></li>
+</ol>
+<p>From this example, we can see that every <code class="docutils literal notranslate"><span class="pre">StepCollection</span></code> consists of <code class="docutils literal notranslate"><span class="pre">Step</span></code>s. Each of these <code class="docutils literal notranslate"><span class="pre">Step</span></code>s are instances of classes with an implemented <code class="docutils literal notranslate"><span class="pre">.execute(Environment)</span></code> method that usually 1) read from the environment, 2) calculate some value, 3) write to the environment, but the user is always free to implement his or her desires.</p>
+<p>As a conclusion, we have achieved, in essence, a run-time specification of iterative algorithms and we therefore provide the highest amount of flexibility for the (knowing) user to experiment with different solver algorithms. We will continue to provide default implementations, but if a user requires a new kind of algorithm, i.e. one that requires a new kind of environment, he or she only has to implement a new type of <code class="docutils literal notranslate"><span class="pre">Environment</span></code> and the necessary <code class="docutils literal notranslate"><span class="pre">Step</span></code>s.</p>
+</div>
+<div class="section" id="quantum-chemical-methods-and-models">
+<h3>Quantum chemical methods and models<a class="headerlink" href="#quantum-chemical-methods-and-models" title="Permalink to this headline">¶</a></h3>
+<p>We define a quantum chemical model as a set of related electronic structure models with the same classes of parameters. For example, the RHF wave function model can be mathematically written as the orbital rotation operator acting on the closed-shell reference determinant. Its parameters are all the (occupied-virtual) orbital rotation generators. When we optimize a quantum chemical method, such that a certain objective is fulfilled, we have found its ‘optimal parameters’.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">C++</span></code> code, a <code class="docutils literal notranslate"><span class="pre">QCModel</span></code> is a hypothetical class (i.e. it does not really exist) that allows us to express all the variations for the electronic structure model. Coupled to <code class="docutils literal notranslate"><span class="pre">QCModel</span></code>, we inseparably have the class <code class="docutils literal notranslate"><span class="pre">QCObjective</span></code>. Let’s take a look at the essential source code.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">_DerivedQCObjective</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">QCObjective</span> <span class="o">:</span>
+    <span class="k">public</span> <span class="n">CRTP</span><span class="o">&lt;</span><span class="n">_DerivedQCObjective</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">using</span> <span class="n">DerivedQCObjective</span> <span class="o">=</span> <span class="n">_DerivedQCObjective</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">QCModel</span><span class="o">&gt;</span>
+    <span class="kt">bool</span> <span class="n">isSatisfiedWith</span><span class="p">(</span><span class="k">const</span> <span class="n">QCModel</span><span class="o">&amp;</span> <span class="n">model_parameters</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">derived</span><span class="p">().</span><span class="n">isSatisfiedWith</span><span class="p">(</span><span class="n">model_parameters</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We see that we have made <code class="docutils literal notranslate"><span class="pre">QCObjective</span></code> a compile-time base class, whose derived classes should implement <code class="docutils literal notranslate"><span class="pre">isSatisfiedWith(const</span> <span class="pre">QCModel&amp;)</span></code>. The optimized parameters are then an instance of <code class="docutils literal notranslate"><span class="pre">QCModel</span></code>, such that a corresponding objective <code class="docutils literal notranslate"><span class="pre">isSatisfiedWith</span></code> it.</p>
+<p>Since we had already introduced the <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">QCMethod</span></code>, we chose another name for the actual base class <code class="docutils literal notranslate"><span class="pre">QCMethodProtocol</span></code>, of which we’ll inspect the source code.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">_QCModel</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">_DerivedQCMethod</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">QCMethodProtocol</span><span class="o">:</span>
+    <span class="k">public</span> <span class="n">CRTP</span><span class="o">&lt;</span><span class="n">_DerivedQCMethod</span><span class="o">&gt;</span> <span class="p">{</span>
+
+<span class="k">public</span><span class="o">:</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">QCObjective</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Solver</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Environment</span><span class="o">&gt;</span>
+    <span class="n">QCStructure</span><span class="o">&lt;</span><span class="n">QCModel</span><span class="o">&gt;</span> <span class="n">optimize</span><span class="p">(</span><span class="k">const</span> <span class="n">QCObjective</span><span class="o">&amp;</span> <span class="n">objective</span><span class="p">,</span> <span class="n">Solver</span><span class="o">&amp;</span> <span class="n">solver</span><span class="p">,</span> <span class="n">Environment</span><span class="o">&amp;</span> <span class="n">environment</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">derived</span><span class="p">().</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This class is thus naturally coupled to a <code class="docutils literal notranslate"><span class="pre">QCModel</span></code>. Furthermore, classes that derive from <code class="docutils literal notranslate"><span class="pre">QCMethodProtocol</span></code>, or, better: conform to it, must implement an <code class="docutils literal notranslate"><span class="pre">optimize()</span></code> method, which takes an <code class="docutils literal notranslate"><span class="pre">Objective</span></code> to allow to check if the <code class="docutils literal notranslate"><span class="pre">solver</span></code>’s solution actually produces a solution that is consistent with the objective. It’s the <code class="docutils literal notranslate"><span class="pre">QCMethod</span></code>’s responsibility to construct a <code class="docutils literal notranslate"><span class="pre">QCModel</span></code> from the <code class="docutils literal notranslate"><span class="pre">solver</span></code>’s solution, which is actually stored in the corresponding <code class="docutils literal notranslate"><span class="pre">environment</span></code> and put them in a <code class="docutils literal notranslate"><span class="pre">QCStructure</span></code>, which is a collection of ground- and possibly excited state model parameters.</p>
+</div>
+</div>
+<div class="section" id="usage-in-an-external-project">
+<h2>Usage in an external project<a class="headerlink" href="#usage-in-an-external-project" title="Permalink to this headline">¶</a></h2>
+<p>In order to use the C++ We have created a small <a class="reference external" href="https://github.com/GQCG/GQCP-link">example</a> which showcases how to use <code class="docutils literal notranslate"><span class="pre">GQCP</span></code> in an external C++ project.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "GQCG/GQCP",
+            ref: "develop",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./developer-documentation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="style-guide.html" title="previous page">GQCP Style Guide</a>
+    <a class='right-next' id="next-link" href="ONV-path-manipulation.html" title="next page">Manipulating ONVs and their addresses</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Ghent Quantum Chemistry Group<br/>
+        
+            &copy; Copyright 2017-2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

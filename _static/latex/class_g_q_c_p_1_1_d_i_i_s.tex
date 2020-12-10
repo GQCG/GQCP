@@ -1,0 +1,87 @@
+\hypertarget{class_g_q_c_p_1_1_d_i_i_s}{}\doxysection{G\+Q\+CP\+::D\+I\+IS$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_d_i_i_s}\index{GQCP::DIIS$<$ \_Scalar $>$@{GQCP::DIIS$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$D\+I\+I\+S.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::D\+I\+IS$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{class_g_q_c_p_1_1_d_i_i_s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Subject $>$ }\\Subject \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_afc4b6a0b711eafeeb3740780eb7f8a9f}{accelerate}} (const std\+::vector$<$ Subject $>$ \&subjects, const std\+::vector$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}} $>$$>$ \&errors) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_ada680f4053f5b2f63d4f0f3cfdec45fa}{calculate\+D\+I\+I\+S\+Coefficients}} (const std\+::vector$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}} $>$$>$ \&errors) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+D\+I\+I\+S$<$ \+\_\+\+Scalar $>$}
+
+An accelerator that uses a direct inversion of the iterative subspace (\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}}) on a subject to produce an accelerated subject.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type that is used to represent an element of a \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} error vector \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}\label{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}} 
+\index{GQCP::DIIS$<$ \_Scalar $>$@{GQCP::DIIS$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::DIIS$<$ \_Scalar $>$@{GQCP::DIIS$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{G\+Q\+C\+P\+::\+D\+I\+IS}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_i_i_s_afc4b6a0b711eafeeb3740780eb7f8a9f}\label{class_g_q_c_p_1_1_d_i_i_s_afc4b6a0b711eafeeb3740780eb7f8a9f}} 
+\index{GQCP::DIIS$<$ \_Scalar $>$@{GQCP::DIIS$<$ \_Scalar $>$}!accelerate@{accelerate}}
+\index{accelerate@{accelerate}!GQCP::DIIS$<$ \_Scalar $>$@{GQCP::DIIS$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{accelerate()}{accelerate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Subject $>$ \\
+Subject \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{G\+Q\+C\+P\+::\+D\+I\+IS}}$<$ \+\_\+\+Scalar $>$\+::accelerate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Subject $>$ \&}]{subjects,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}} $>$$>$ \&}]{errors }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em subject} & the subject\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the D\+I\+I\+S-\/accelerated subject 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_i_i_s_ada680f4053f5b2f63d4f0f3cfdec45fa}\label{class_g_q_c_p_1_1_d_i_i_s_ada680f4053f5b2f63d4f0f3cfdec45fa}} 
+\index{GQCP::DIIS$<$ \_Scalar $>$@{GQCP::DIIS$<$ \_Scalar $>$}!calculateDIISCoefficients@{calculateDIISCoefficients}}
+\index{calculateDIISCoefficients@{calculateDIISCoefficients}!GQCP::DIIS$<$ \_Scalar $>$@{GQCP::DIIS$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateDIISCoefficients()}{calculateDIISCoefficients()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{G\+Q\+C\+P\+::\+D\+I\+IS}}$<$ \+\_\+\+Scalar $>$\+::calculate\+D\+I\+I\+S\+Coefficients (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_aa101fd6c8ab281acbf34f9d168444ff8}{Scalar}} $>$$>$ \&}]{errors }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Find the linear combination of errors that minimizes the total error measure in the least squares sense (i.\+e. according to the \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} algorithm).
+
+\begin{DoxyReturn}{Returns}
+the coefficients that minimize the error measure 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Accelerator/\mbox{\hyperlink{_d_i_i_s_8hpp}{D\+I\+I\+S.\+hpp}}\end{DoxyCompactItemize}

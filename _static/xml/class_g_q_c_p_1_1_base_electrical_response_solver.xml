@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_electrical_response_solver" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseElectricalResponseSolver</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_r_h_f_electrical_response_solver" prot="public" virt="non-virtual">GQCP::RHFElectricalResponseSolver</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver" prot="public" virt="non-virtual">GQCP::vAP1roGElectricalResponseSolver</derivedcompoundref>
+    <includes refid="_base_electrical_response_solver_8hpp" local="no">BaseElectricalResponseSolver.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_electrical_response_solver_1ac749b5b8109884a1dfee1e0f0e294118" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::BaseElectricalResponseSolver::~BaseElectricalResponseSolver</definition>
+        <argsstring>()=default</argsstring>
+        <name>~BaseElectricalResponseSolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/BaseElectricalResponseSolver.hpp" line="33" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_electrical_response_solver_1a473fec7ce257c65dc06b24c6e7bfcf63" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>virtual SquareMatrix&lt;double&gt; GQCP::BaseElectricalResponseSolver::calculateParameterResponseConstant</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const =0</argsstring>
+        <name>calculateParameterResponseConstant</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_electrical_response_solver_1ae4f6dd9e92efdd47486d432c293caf4c">calculateParameterResponseConstant</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_1a52d70a8cd2e3e9a0a7d5a8ee7fc38e2e">calculateParameterResponseConstant</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian in an orthonormal orbital basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the parameter response constant (k_p) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/BaseElectricalResponseSolver.hpp" line="43" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_electrical_response_solver_1aab5c5eb8bac13beda120aaab8c56f13e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; double, <ref refid="namespace_g_q_c_p_1aae02f7d1e3557edc7114d417804dd298" kindref="member">Dynamic</ref>, 3 &gt;</type>
+        <definition>virtual Matrix&lt;double, Dynamic, 3&gt; GQCP::BaseElectricalResponseSolver::calculateParameterResponseForce</definition>
+        <argsstring>(const VectorRSQOneElectronOperator&lt; double &gt; &amp;dipole_op) const =0</argsstring>
+        <name>calculateParameterResponseForce</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_electrical_response_solver_1a80e820835840cd28d179b7cf25403e7f">calculateParameterResponseForce</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_1a7998371857b99312be11eddfb500862f">calculateParameterResponseForce</reimplementedby>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a937c6a66a78202fc6957b3d807c57e64" kindref="member">VectorRSQOneElectronOperator</ref>&lt; double &gt; &amp;</type>
+          <declname>dipole_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dipole_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dipole integrals expressed in an orthonormal orbital basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the parameter response force (F_p) as an (Nx3)-matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/BaseElectricalResponseSolver.hpp" line="50" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_electrical_response_solver_1aefba71f24e5892d19ef34c7493ac73a3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; double, <ref refid="namespace_g_q_c_p_1aae02f7d1e3557edc7114d417804dd298" kindref="member">Dynamic</ref>, 3 &gt;</type>
+        <definition>Matrix&lt; double, Dynamic, 3 &gt; GQCP::BaseElectricalResponseSolver::calculateWaveFunctionResponse</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const VectorRSQOneElectronOperator&lt; double &gt; dipole_op) const</argsstring>
+        <name>calculateWaveFunctionResponse</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a937c6a66a78202fc6957b3d807c57e64" kindref="member">VectorRSQOneElectronOperator</ref>&lt; double &gt;</type>
+          <declname>dipole_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Solve the linear response equations for the wave function response</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian parameters expressed in an orthonormal orbital basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dipole_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dipole integrals expressed in an orthonormal orbital basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the wave function response as an (Nx3)-matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/BaseElectricalResponseSolver.hpp" line="63" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Processing/Properties/BaseElectricalResponseSolver.cpp" bodystart="39" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that serves as a base class to solve electrical linear response equations </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::BaseElectricalResponseSolver</label>
+        <link refid="class_g_q_c_p_1_1_base_electrical_response_solver"/>
+      </node>
+      <node id="3">
+        <label>GQCP::vAP1roGElectricalResponseSolver</label>
+        <link refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::RHFElectricalResponseSolver</label>
+        <link refid="class_g_q_c_p_1_1_r_h_f_electrical_response_solver"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseElectricalResponseSolver</label>
+        <link refid="class_g_q_c_p_1_1_base_electrical_response_solver"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/BaseElectricalResponseSolver.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/BaseElectricalResponseSolver.hpp" bodystart="30" bodyend="64"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_electrical_response_solver_1a473fec7ce257c65dc06b24c6e7bfcf63" prot="public" virt="pure-virtual"><scope>GQCP::BaseElectricalResponseSolver</scope><name>calculateParameterResponseConstant</name></member>
+      <member refid="class_g_q_c_p_1_1_base_electrical_response_solver_1aab5c5eb8bac13beda120aaab8c56f13e" prot="public" virt="pure-virtual"><scope>GQCP::BaseElectricalResponseSolver</scope><name>calculateParameterResponseForce</name></member>
+      <member refid="class_g_q_c_p_1_1_base_electrical_response_solver_1aefba71f24e5892d19ef34c7493ac73a3" prot="public" virt="non-virtual"><scope>GQCP::BaseElectricalResponseSolver</scope><name>calculateWaveFunctionResponse</name></member>
+      <member refid="class_g_q_c_p_1_1_base_electrical_response_solver_1ac749b5b8109884a1dfee1e0f0e294118" prot="public" virt="virtual"><scope>GQCP::BaseElectricalResponseSolver</scope><name>~BaseElectricalResponseSolver</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

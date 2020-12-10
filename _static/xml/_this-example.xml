@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_this-example" kind="example">
+    <compoundname>This</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Calculate the overlap &lt;on|of&gt;: the projection of between this spin-resolved ONV (&apos;of&apos;) and another spin-resolved ONV (&apos;on&apos;), expressed in different R/U-spinor bases. The &apos;on&apos;-ONV is supposed to be expressed in restricted spin-orbitals, and the &apos;of&apos;-ONV is supposed to be expressed in unrestricted spin-orbitals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_on</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-resolved ONV that should be projected on. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C_unrestricted</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation between the unrestricted spin-orbitals and the atomic spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C_restricted</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation between the restricted spin-orbitals and the atomic spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The overlap matrix of the underlying AOs.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The overlap element &lt;on|of&gt;.</para>
+</simplesect>
+method can be used to project UHF-ONVs onto RHF-ONVs, by calling uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S) <programlisting filename="This"></programlisting> </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

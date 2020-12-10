@@ -1,0 +1,112 @@
+\hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver}{}\doxysection{G\+Q\+CP\+::Base\+Electrical\+Response\+Solver Class Reference}
+\label{class_g_q_c_p_1_1_base_electrical_response_solver}\index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}}
+
+
+{\ttfamily \#include $<$Base\+Electrical\+Response\+Solver.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Base\+Electrical\+Response\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_base_electrical_response_solver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Base\+Electrical\+Response\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_base_electrical_response_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_ac749b5b8109884a1dfee1e0f0e294118}{$\sim$\+Base\+Electrical\+Response\+Solver}} ()=default
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}{calculate\+Parameter\+Response\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}{calculate\+Parameter\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ \&dipole\+\_\+op) const =0
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aefba71f24e5892d19ef34c7493ac73a3}{calculate\+Wave\+Function\+Response}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ dipole\+\_\+op) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that serves as a base class to solve electrical linear response equations 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_ac749b5b8109884a1dfee1e0f0e294118}\label{class_g_q_c_p_1_1_base_electrical_response_solver_ac749b5b8109884a1dfee1e0f0e294118}} 
+\index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}!````~BaseElectricalResponseSolver@{$\sim$BaseElectricalResponseSolver}}
+\index{````~BaseElectricalResponseSolver@{$\sim$BaseElectricalResponseSolver}!GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseElectricalResponseSolver()}{~BaseElectricalResponseSolver()}}
+{\footnotesize\ttfamily virtual G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver\+::$\sim$\+Base\+Electrical\+Response\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}\label{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}} 
+\index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}!calculateParameterResponseConstant@{calculateParameterResponseConstant}}
+\index{calculateParameterResponseConstant@{calculateParameterResponseConstant}!GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateParameterResponseConstant()}{calculateParameterResponseConstant()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$ G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parameter response constant (k\+\_\+p) 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a52d70a8cd2e3e9a0a7d5a8ee7fc38e2e}{G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ae4f6dd9e92efdd47486d432c293caf4c}{G\+Q\+C\+P\+::\+R\+H\+F\+Electrical\+Response\+Solver}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}\label{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}} 
+\index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}!calculateParameterResponseForce@{calculateParameterResponseForce}}
+\index{calculateParameterResponseForce@{calculateParameterResponseForce}!GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateParameterResponseForce()}{calculateParameterResponseForce()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3$>$ G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ \&}]{dipole\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dipole\+\_\+op} & the dipole integrals expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parameter response force (F\+\_\+p) as an (Nx3)-\/matrix 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}{G\+Q\+C\+P\+::v\+A\+P1ro\+G\+Electrical\+Response\+Solver}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_a80e820835840cd28d179b7cf25403e7f}{G\+Q\+C\+P\+::\+R\+H\+F\+Electrical\+Response\+Solver}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_aefba71f24e5892d19ef34c7493ac73a3}\label{class_g_q_c_p_1_1_base_electrical_response_solver_aefba71f24e5892d19ef34c7493ac73a3}} 
+\index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}!calculateWaveFunctionResponse@{calculateWaveFunctionResponse}}
+\index{calculateWaveFunctionResponse@{calculateWaveFunctionResponse}!GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateWaveFunctionResponse()}{calculateWaveFunctionResponse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver\+::calculate\+Wave\+Function\+Response (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$}]{dipole\+\_\+op }\end{DoxyParamCaption}) const}
+
+Solve the linear response equations for the wave function response
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian parameters expressed in an orthonormal orbital basis \\
+\hline
+{\em dipole\+\_\+op} & the dipole integrals expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the wave function response as an (Nx3)-\/matrix 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Processing/\+Properties/\mbox{\hyperlink{_base_electrical_response_solver_8hpp}{Base\+Electrical\+Response\+Solver.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Processing/\+Properties/\mbox{\hyperlink{_base_electrical_response_solver_8cpp}{Base\+Electrical\+Response\+Solver.\+cpp}}\end{DoxyCompactItemize}

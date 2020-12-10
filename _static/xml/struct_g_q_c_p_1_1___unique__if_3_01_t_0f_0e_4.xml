@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_0e_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::_Unique_if&lt; T[]&gt;</compoundname>
+    <includes refid="memory_8hpp" local="no">memory.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_0e_4_1a6b203ec39081f7e089e3e4b593782864" prot="public" static="no">
+        <type>std::unique_ptr&lt; T[]&gt;</type>
+        <definition>using GQCP::_Unique_if&lt; T[]&gt;::_Unknown_bound =  std::unique_ptr&lt;T[]&gt;</definition>
+        <argsstring></argsstring>
+        <name>_Unknown_bound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::_Unique_if&lt; T[]&gt;</label>
+        <link refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_0e_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" line="46" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" bodystart="46" bodyend="48"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_0e_4_1a6b203ec39081f7e089e3e4b593782864" prot="public" virt="non-virtual"><scope>GQCP::_Unique_if&lt; T[]&gt;</scope><name>_Unknown_bound</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

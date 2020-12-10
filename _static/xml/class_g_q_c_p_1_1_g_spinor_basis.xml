@@ -1,0 +1,931 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_g_spinor_basis" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::GSpinorBasis</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_simple_spinor_basis" prot="public" virt="non-virtual">GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</basecompoundref>
+    <includes refid="_g_spinor_basis_8hpp" local="no">GSpinorBasis.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _ExpansionScalar</type>
+      </param>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" prot="public" static="no">
+        <type>_ExpansionScalar</type>
+        <definition>using GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::ExpansionScalar =  _ExpansionScalar</definition>
+        <argsstring></argsstring>
+        <name>ExpansionScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" prot="public" static="no">
+        <type>_Shell</type>
+        <definition>using GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::Shell =  _Shell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1aad76bcfb2f9b07564621f91dd4c36bd4" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis" kindref="compound">SimpleSpinorBasis</ref>&lt; _ExpansionScalar, <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; _ExpansionScalar, _Shell &gt; &gt;</type>
+        <definition>using GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::Base =  SimpleSpinorBasis&lt;_ExpansionScalar, GSpinorBasis&lt;_ExpansionScalar, _Shell&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>Base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1ac3b826302d446a0d413ab4ff5797148e" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>using GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::Transformation =  GTransformation&lt;ExpansionScalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1ac605d1a1c6a417c9dfe63329f0e894e4" prot="public" static="no">
+        <type>typename Shell::Primitive</type>
+        <definition>using GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::Primitive =  typename Shell::Primitive</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1a30600aed0df6ba06f37e8d0f267da733" prot="public" static="no">
+        <type>typename Shell::BasisFunction</type>
+        <definition>using GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::BasisFunction =  typename Shell::BasisFunction</definition>
+        <argsstring></argsstring>
+        <name>BasisFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_g_spinor_basis_1a9b4dd7434df5fbe0e5a9557b6645d764" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &gt;</type>
+        <definition>SpinResolved&lt;ScalarBasis&lt;Shell&gt; &gt; GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::scalar_bases</definition>
+        <argsstring></argsstring>
+        <name>scalar_bases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="69" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ae40fba6af5f08af4dd516bdb072bc507" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const SpinResolved&lt; ScalarBasis&lt; Shell &gt;&gt; &amp;scalar_bases, const Transformation &amp;C)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt;&gt; &amp;</type>
+          <declname>scalar_bases</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ac3b826302d446a0d413ab4ff5797148e" kindref="member">Transformation</ref> &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <computeroutput><ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref></computeroutput> from scalar bases that are not necessarily equal.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar_bases</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar bases for the alpha and beta components of the spinors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation that relates the current set of spinors with the atomic spinors. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="83" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="83" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1af07dc3114327e1708026c89dad13e8ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const ScalarBasis&lt; Shell &gt; &amp;alpha_scalar_basis, const ScalarBasis&lt; Shell &gt; &amp;beta_scalar_basis, const Transformation &amp;C)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>alpha_scalar_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>beta_scalar_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ac3b826302d446a0d413ab4ff5797148e" kindref="member">Transformation</ref> &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <computeroutput><ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref></computeroutput> from scalar bases that are not necessarily equal.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alpha_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar basis in which the alpha components of the spinors are expanded. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar basis in which the beta components of the spinors are expanded. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation that relates the current set of spinors with the atomic spinors. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="103" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="103" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a831b047849c8af5734f56fde89e9b692" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const ScalarBasis&lt; Shell &gt; &amp;scalar_basis, const Transformation &amp;C)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ac3b826302d446a0d413ab4ff5797148e" kindref="member">Transformation</ref> &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a generalized spinor basis in which both underlying scalar bases are equal. ^ <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar basis in which both the alpha and beta components are expanded. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation that relates the current set of spinors with the atomic spinors. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="113" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="113" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ad87001892202e25bed0b75b80c316c3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const ScalarBasis&lt; Shell &gt; &amp;alpha_scalar_basis, const ScalarBasis&lt; Shell &gt; &amp;beta_scalar_basis)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>alpha_scalar_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>beta_scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alpha_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar basis in which the alpha components of the spinors are expanded. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar basis in which the beta components of the spinors are expanded. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="123" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="123" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a7cdbaa05984076fa4ced02496734e0e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const ScalarBasis&lt; Shell &gt; &amp;scalar_basis)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a generalized spinor basis in which both underlying scalar bases are equal, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar basis in which both the alpha and beta components are expanded. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="133" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="133" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ae74073c7ae5fd36cb4c9ae9744415bd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const NuclearFramework &amp;nuclear_framework, const std::string &amp;basisset_name)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
+          <declname>nuclear_framework</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclear_framework</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclear framework containing the nuclei on which the shells should be centered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="145" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="145" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a7c5f3e3058f54379889c149ddad85bde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const Molecule &amp;molecule, const std::string &amp;basisset_name)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule containing the nuclei on which the shells should be centered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="157" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="157" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a2f38b86e3bf90218d22d7625f8fdd169" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const NuclearFramework &amp;nuclear_framework, const std::string &amp;basisset_name_alpha, const std::string &amp;basisset_name_beta)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
+          <declname>nuclear_framework</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name_alpha</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name_beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclear_framework</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclear framework containing the nuclei on which the shells should be centered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;, used for the expansion of the alpha component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;, used for the expansion of the beta component.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="170" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="170" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a0b543fbfcf49f82f6869e8e5cf09819a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::GSpinorBasis</definition>
+        <argsstring>(const Molecule &amp;molecule, const std::string &amp;basisset_name_alpha, const std::string &amp;basisset_name_beta)</argsstring>
+        <name>GSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name_alpha</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name_beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule containing the nuclei on which the shells should be centered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;, used for the expansion of the alpha component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;, used for the expansion of the beta component.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="184" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="184" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a9062fb369d11c2ede60ae0dd34d9cbd8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::numberOfCoefficients</definition>
+        <argsstring>(const Spin &amp;sigma) const</argsstring>
+        <name>numberOfCoefficients</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref> &amp;</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha or beta.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The number of coefficients that are used for the expansion of the requested spin-component of a spinor. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="235" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="235" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ad71c2691865d2ba1ee0d038b81ceb8a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::numberOfSpinors</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfSpinors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of spinors that are described by this generalized spinor basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="245" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="245" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1aaf8591c62c2f9905264f8329fc2d5d37" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FQOneElectronOperator</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
+        <argsstring>(const FQOneElectronOperator &amp;fq_one_op) const -&gt; GSQOneElectronOperator&lt; product_t&lt; typename FQOneElectronOperator::Scalar, ExpansionScalar &gt;, typename FQOneElectronOperator::Vectorizer &gt;</argsstring>
+        <name>quantize</name>
+        <param>
+          <type>const FQOneElectronOperator &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize a one-electron operator in this general spinor basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a spin-independent first-quantized operator (i.e. whose two-component matrix operator form contains the same scalar operator in the upper-left and lower-right corners)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the second-quantized operator corresponding to the given spin-independent first-quantized operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="266" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="266" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1aa529a4a523093dca0af4104d3b8ee61b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
+        <argsstring>(const ElectronicSpinOperator &amp;fq_one_op) const -&gt; GSQOneElectronOperator&lt; product_t&lt; ElectronicSpinOperator::Scalar, ExpansionScalar &gt;, ElectronicSpinOperator::Vectorizer &gt;</argsstring>
+        <name>quantize</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref> &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the electronic spin operator in this general spinor basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (first-quantized) electronic spin operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The electronic spin operator expressed in this spinor basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="301" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="301" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a9b0e5186f7f5a95f713efca6028025c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;coulomb_op) const -&gt; GSQTwoElectronOperator&lt; product_t&lt; CoulombRepulsionOperator::Scalar, ExpansionScalar &gt;, CoulombRepulsionOperator::Vectorizer &gt;</argsstring>
+        <name>quantize</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>coulomb_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the Coulomb operator in this general spinor basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coulomb_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first-quantized Coulomb operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The second-quantized operator corresponding to the Coulomb operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="353" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="353" bodyend="409"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a29e97fd11c496f40147b63fcbf42a623" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &gt; &amp;</type>
+        <definition>const SpinResolved&lt;ScalarBasis&lt;Shell&gt; &gt;&amp; GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::scalarBases</definition>
+        <argsstring>() const</argsstring>
+        <name>scalarBases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The scalar bases for the alpha and beta components of the spinors. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="419" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="419" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1adf4e812f8804c98d441cea5ad8985dca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_g_mulliken_partitioning" kindref="compound">GMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>GMullikenPartitioning&lt;ExpansionScalar&gt; GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::mullikenPartitioning</definition>
+        <argsstring>(const std::function&lt; bool(const BasisFunction &amp;)&gt; &amp;selector) const</argsstring>
+        <name>mullikenPartitioning</name>
+        <param>
+          <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a30600aed0df6ba06f37e8d0f267da733" kindref="member">BasisFunction</ref> &amp;)&gt; &amp;</type>
+          <declname>selector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Mulliken partitioning Partition this set of generalized spinors according to the Mulliken partitioning scheme.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>selector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A function that returns true for basis functions that should be included the Mulliken partitioning.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_g_mulliken_partitioning" kindref="compound">GMullikenPartitioning</ref></computeroutput> for the AOs selected by the supplied selector function.</para>
+</simplesect>
+<simplesect kind="note"><para>The underlying scalar bases are assumed to be equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="435" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="435" bodyend="440"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a67766903b77d04018df2eb22c050e68a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_g_mulliken_partitioning" kindref="compound">GMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>GMullikenPartitioning&lt;ExpansionScalar&gt; GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::mullikenPartitioning</definition>
+        <argsstring>(const std::function&lt; bool(const Shell &amp;)&gt; &amp;selector) const</argsstring>
+        <name>mullikenPartitioning</name>
+        <param>
+          <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &amp;)&gt; &amp;</type>
+          <declname>selector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Partition this set of generalized spinors according to the Mulliken partitioning scheme.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>selector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A function that returns true for shells that should be included the Mulliken partitioning.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_g_mulliken_partitioning" kindref="compound">GMullikenPartitioning</ref></computeroutput> for the AOs selected by the supplied selector function.</para>
+</simplesect>
+<simplesect kind="note"><para>The underlying scalar bases are assumed to be equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="452" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="452" bodyend="457"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ab54024d72e1fbd81ae0d819787de297b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref>, <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt;</type>
+        <definition>static GSpinorBasis&lt;ExpansionScalar, Shell&gt; GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::FromRestricted</definition>
+        <argsstring>(const RSpinOrbitalBasis&lt; ExpansionScalar, Shell &gt; &amp;r_spinor_basis)</argsstring>
+        <name>FromRestricted</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref>, <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>r_spinor_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert a restricted spin-orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r_spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The restricted spinor basis.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The restricted spinor basis as a generalized one. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="200" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="200" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ac9e094db9455de1ad4823ac71af2c394" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref>, <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt;</type>
+        <definition>static GSpinorBasis&lt;ExpansionScalar, Shell&gt; GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::FromUnrestricted</definition>
+        <argsstring>(const USpinOrbitalBasis&lt; ExpansionScalar, Shell &gt; &amp;u_spinor_basis)</argsstring>
+        <name>FromUnrestricted</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kindref="compound">USpinOrbitalBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref>, <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &amp;</type>
+          <declname>u_spinor_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert an unrestricted spin-orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>u_spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unrestricted spinor basis.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The generalized spinor basis corresponding to the unrestricted spin-orbital basis.</para>
+</simplesect>
+<simplesect kind="note"><para>We assume that the unrestricted spin-orbital basis has equal underlying scalar bases for the alpha- and beta-spin-orbitals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="218" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="218" bodyend="223"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A general spinor basis, i.e. a spinor basis without any restrictions on the expansion of the alpha and beta components of the spinors in terms of the underlying (possibly different) scalar bases.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_ExpansionScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of shell the underlying scalar bases contain.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The individual columns of the coefficient matrix represent the spinors of this basis; they are not ordered by increasing single-particle energy. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_spinor_basis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::CRTP&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="5">
+        <label>GQCP::JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_spinor_basis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>#C</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::CRTP&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="5">
+        <label>GQCP::JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::BasisTransformableTraits&lt; FinalSpinorBasis &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="46" bodyend="458"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aad76bcfb2f9b07564621f91dd4c36bd4" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Base</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a30600aed0df6ba06f37e8d0f267da733" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>BasisFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a9abca647ddeb9772b5c58fe7366204ac" prot="protected" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1ad150aa71df288eda895400a1970976d2" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>expansion</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>ExpansionScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>FinalSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ab54024d72e1fbd81ae0d819787de297b" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>FromRestricted</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ac9e094db9455de1ad4823ac71af2c394" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>FromUnrestricted</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ae40fba6af5f08af4dd516bdb072bc507" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1af07dc3114327e1708026c89dad13e8ef" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a831b047849c8af5734f56fde89e9b692" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ad87001892202e25bed0b75b80c316c3b" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a7cdbaa05984076fa4ced02496734e0e6" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ae74073c7ae5fd36cb4c9ae9744415bd1" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a7c5f3e3058f54379889c149ddad85bde" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a2f38b86e3bf90218d22d7625f8fdd169" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a0b543fbfcf49f82f6869e8e5cf09819a" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>GSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa00b804a0f522ee6b046e45d9e39a7b8" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>isOrthonormal</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a7dcbcf5803cb8c3b4b65cb49ce3f5f69" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>lowdinOrthonormalization</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a53160b32246fe945f0fb7aa46d15c4e9" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>lowdinOrthonormalize</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1adf4e812f8804c98d441cea5ad8985dca" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>mullikenPartitioning</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a67766903b77d04018df2eb22c050e68a" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>mullikenPartitioning</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a9062fb369d11c2ede60ae0dd34d9cbd8" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>numberOfCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ad71c2691865d2ba1ee0d038b81ceb8a8" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>numberOfSpinors</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a42b2813a11f43e74c7fa60ee90a5ae0e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>overlap</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ac605d1a1c6a417c9dfe63329f0e894e4" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Primitive</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aaf8591c62c2f9905264f8329fc2d5d37" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aa529a4a523093dca0af4104d3b8ee61b" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a9b0e5186f7f5a95f713efca6028025c0" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a9b4dd7434df5fbe0e5a9557b6645d764" prot="private" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>scalar_bases</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a29e97fd11c496f40147b63fcbf42a623" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>scalarBases</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1abbad8e4366b720933a378ea276bf9502" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>simpleDimension</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1af946e8de1e88562c95630a0aef5f6a77" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>SimpleSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>SQOverlapOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::GSpinorBasis</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ac3b826302d446a0d413ab4ff5797148e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa6d146421985b3aefc1b4a9ec4aa6c54" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>transformed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

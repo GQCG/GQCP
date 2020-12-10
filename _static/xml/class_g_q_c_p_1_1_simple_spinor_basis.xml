@@ -1,0 +1,403 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_simple_spinor_basis" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::SimpleSpinorBasis</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_c_r_t_p" prot="public" virt="non-virtual">GQCP::CRTP&lt; _FinalSpinorBasis &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; _FinalSpinorBasis &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; _FinalSpinorBasis &gt;</basecompoundref>
+    <includes refid="_simple_spinor_basis_8hpp" local="no">SimpleSpinorBasis.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _ExpansionScalar</type>
+      </param>
+      <param>
+        <type>typename _FinalSpinorBasis</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1acccd2faf9d3407fcf35fc71ee4629ceb" prot="public" static="no">
+        <type>_ExpansionScalar</type>
+        <definition>using GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::ExpansionScalar =  _ExpansionScalar</definition>
+        <argsstring></argsstring>
+        <name>ExpansionScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" prot="public" static="no">
+        <type>_FinalSpinorBasis</type>
+        <definition>using GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::FinalSpinorBasis =  _FinalSpinorBasis</definition>
+        <argsstring></argsstring>
+        <name>FinalSpinorBasis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref></type>
+        <definition>using GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::Transformation =  typename BasisTransformableTraits&lt;FinalSpinorBasis&gt;::Transformation</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" kindref="member">JacobiRotationType</ref></type>
+        <definition>using GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::JacobiRotationType =  typename JacobiRotatableTraits&lt;FinalSpinorBasis&gt;::JacobiRotationType</definition>
+        <argsstring></argsstring>
+        <name>JacobiRotationType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_spinor_basis_traits" kindref="compound">SpinorBasisTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" kindref="member">SQOverlapOperator</ref></type>
+        <definition>using GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::SQOverlapOperator =  typename SpinorBasisTraits&lt;FinalSpinorBasis&gt;::SQOverlapOperator</definition>
+        <argsstring></argsstring>
+        <name>SQOverlapOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_simple_spinor_basis_1a9abca647ddeb9772b5c58fe7366204ac" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref></type>
+        <definition>Transformation GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::C</definition>
+        <argsstring></argsstring>
+        <name>C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="75" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1af946e8de1e88562c95630a0aef5f6a77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::SimpleSpinorBasis</definition>
+        <argsstring>(const Transformation &amp;C)</argsstring>
+        <name>SimpleSpinorBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref> &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation that relates the current set of spinors with the atomic spinors. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="86" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="86" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1ad150aa71df288eda895400a1970976d2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref> &amp;</type>
+        <definition>const Transformation&amp; GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::expansion</definition>
+        <argsstring>() const</argsstring>
+        <name>expansion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the transformation that relates the current set of spinors with the atomic spinors. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="97" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1abbad8e4366b720933a378ea276bf9502" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::simpleDimension</definition>
+        <argsstring>() const</argsstring>
+        <name>simpleDimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The dimension of this simple spinor basis, i.e. the dimension of the underlying coefficient matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="107" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a42b2813a11f43e74c7fa60ee90a5ae0e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" kindref="member">SQOverlapOperator</ref></type>
+        <definition>SQOverlapOperator GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::overlap</definition>
+        <argsstring>() const</argsstring>
+        <name>overlap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The overlap (one-electron) operator of this spinor basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="117" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="117" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa00b804a0f522ee6b046e45d9e39a7b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::isOrthonormal</definition>
+        <argsstring>(const double precision=1.0e-08) const</argsstring>
+        <name>isOrthonormal</name>
+        <param>
+          <type>const double</type>
+          <declname>precision</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Check if this spinor basis is orthonormal within the given precision.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>precision</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The precision used to test orthonormality.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>If this spinor basis is orthonormal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="126" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="126" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a7dcbcf5803cb8c3b4b65cb49ce3f5f69" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref></type>
+        <definition>Transformation GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::lowdinOrthonormalization</definition>
+        <argsstring>() const</argsstring>
+        <name>lowdinOrthonormalization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The transformation to the Löwdin basis: T = S_current^{-1/2}. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="137" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="137" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a53160b32246fe945f0fb7aa46d15c4e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::lowdinOrthonormalize</definition>
+        <argsstring>()</argsstring>
+        <name>lowdinOrthonormalize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Transform the spinor basis to the &apos;Löwdin basis&apos;, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="148" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="148" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa6d146421985b3aefc1b4a9ec4aa6c54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref></type>
+        <definition>FinalSpinorBasis GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::transformed</definition>
+        <argsstring>(const Transformation &amp;T) const override</argsstring>
+        <name>transformed</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the basis transformation and return the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The basis transformation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The basis-transformed object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="162" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="162" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref></type>
+        <definition>FinalSpinorBasis GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;::rotated</definition>
+        <argsstring>(const JacobiRotationType &amp;jacobi_rotation) const override</argsstring>
+        <name>rotated</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" kindref="member">JacobiRotationType</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply the Jacobi rotation and return the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The Jacobi-rotated object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="187" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="187" bodyend="191"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents a spinor basis that has no internal structure (hence &apos;simple&apos;) with respect to spin components.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_ExpansionScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_FinalSpinorBasis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spinor basis that ultimately derives from this class, enabling <ref refid="class_g_q_c_p_1_1_c_r_t_p" kindref="compound">CRTP</ref> and compile-time polymorphism. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::CRTP&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="4">
+        <label>GQCP::JacobiRotatable&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#C</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::CRTP&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="4">
+        <label>GQCP::JacobiRotatable&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="5">
+        <label>GQCP::BasisTransformableTraits&lt; FinalSpinorBasis &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="51" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="54" bodyend="195"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a9abca647ddeb9772b5c58fe7366204ac" prot="protected" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1ad150aa71df288eda895400a1970976d2" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>expansion</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1acccd2faf9d3407fcf35fc71ee4629ceb" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>ExpansionScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>FinalSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa00b804a0f522ee6b046e45d9e39a7b8" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>isOrthonormal</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a7dcbcf5803cb8c3b4b65cb49ce3f5f69" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>lowdinOrthonormalization</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a53160b32246fe945f0fb7aa46d15c4e9" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>lowdinOrthonormalize</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a42b2813a11f43e74c7fa60ee90a5ae0e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>overlap</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::SimpleSpinorBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::SimpleSpinorBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::SimpleSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::SimpleSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1abbad8e4366b720933a378ea276bf9502" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>simpleDimension</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1af946e8de1e88562c95630a0aef5f6a77" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>SimpleSpinorBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>SQOverlapOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa6d146421985b3aefc1b4a9ec4aa6c54" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::SimpleSpinorBasis</scope><name>transformed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

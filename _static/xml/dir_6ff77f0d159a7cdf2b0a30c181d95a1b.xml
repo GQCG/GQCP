@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_6ff77f0d159a7cdf2b0a30c181d95a1b" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation</compoundname>
+    <innerfile refid="_array_8hpp">Array.hpp</innerfile>
+    <innerfile refid="_dense_vectorizer_8hpp">DenseVectorizer.hpp</innerfile>
+    <innerfile refid="_implicit_matrix_slice_8hpp">ImplicitMatrixSlice.hpp</innerfile>
+    <innerfile refid="_implicit_rank_four_tensor_slice_8hpp">ImplicitRankFourTensorSlice.hpp</innerfile>
+    <innerfile refid="_matrix_8hpp">Matrix.hpp</innerfile>
+    <innerfile refid="_matrix_representation_evaluation_container_8hpp">MatrixRepresentationEvaluationContainer.hpp</innerfile>
+    <innerfile refid="_square_matrix_8hpp">SquareMatrix.hpp</innerfile>
+    <innerfile refid="_square_rank_four_tensor_8hpp">SquareRankFourTensor.hpp</innerfile>
+    <innerfile refid="_storage_array_8hpp">StorageArray.hpp</innerfile>
+    <innerfile refid="_tensor_8hpp">Tensor.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/"/>
+  </compounddef>
+</doxygen>

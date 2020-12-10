@@ -1,0 +1,500 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_c_c_s_d_environment" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::CCSDEnvironment</compoundname>
+    <includes refid="_c_c_s_d_environment_8hpp" local="no">CCSDEnvironment.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::CCSDEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a70b4d4d2b5ea5557bd35a69d3beade56" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; double &gt;</type>
+        <definition>std::deque&lt;double&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::electronic_energies</definition>
+        <argsstring></argsstring>
+        <name>electronic_energies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="45" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1abdea2152c1643fb71b13cfd2383d92ee" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>std::deque&lt;T1Amplitudes&lt;Scalar&gt; &gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::t1_amplitudes</definition>
+        <argsstring></argsstring>
+        <name>t1_amplitudes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="47" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a3a005b633746ec034014da148dfae1e5" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>std::deque&lt;T2Amplitudes&lt;Scalar&gt; &gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::t2_amplitudes</definition>
+        <argsstring></argsstring>
+        <name>t2_amplitudes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="48" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a96da3b098a302ff00696091b168cba8e" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SquareMatrix&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="50" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a288b0979b63efb8eb9aadd045f8c93aa" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SquareRankFourTensor&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::V_A</definition>
+        <argsstring></argsstring>
+        <name>V_A</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="51" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a72da8af53a68fa131224b46dc95c6d38" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::F1</definition>
+        <argsstring></argsstring>
+        <name>F1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="53" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1abe71efd4652b9bd6c52bb8fbba7c5a8a" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::F2</definition>
+        <argsstring></argsstring>
+        <name>F2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="54" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1aa15efed5f0c29ad3902fb22fbfee144f" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::F3</definition>
+        <argsstring></argsstring>
+        <name>F3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="55" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1af3bf999f40eb1f4019f4f6cedaf68497" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::W1</definition>
+        <argsstring></argsstring>
+        <name>W1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="57" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a3b8177e76f48c0c23672614df1d655b9" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::W2</definition>
+        <argsstring></argsstring>
+        <name>W2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="58" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1aebad34c0e75242395ac182c8acf8f76c" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::W3</definition>
+        <argsstring></argsstring>
+        <name>W3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="59" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a7cc49f9d70f86016ce8001ff03eb49b4" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::tau2</definition>
+        <argsstring></argsstring>
+        <name>tau2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="61" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a1e5a40b4e932c61662592b8cf8859902" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::tau2_tilde</definition>
+        <argsstring></argsstring>
+        <name>tau2_tilde</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="62" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a8741859b3abcc2d830d340da3222d494" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::CCSDEnvironment&lt; _Scalar &gt;::CCSDEnvironment</definition>
+        <argsstring>(const T1Amplitudes&lt; Scalar &gt; &amp;t1_amplitudes, const T2Amplitudes&lt; Scalar &gt; &amp;t2_amplitudes, const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A)</argsstring>
+        <name>CCSDEnvironment</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t1_amplitudes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2_amplitudes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize a CCSD algorithmic environment with given T1- and T2-amplitudes.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t1_amplitudes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial T1-amplitudes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t2_amplitudes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial T2-amplitudes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (inactive) Fock matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="78" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a5d4c983ec466321e35d9f9a5171bec76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::CCSDEnvironment&lt; _Scalar &gt;::CCSDEnvironment</definition>
+        <argsstring>(const T2Amplitudes&lt; Scalar &gt; &amp;t2_amplitudes, const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A)</argsstring>
+        <name>CCSDEnvironment</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t2_amplitudes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>V_A</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize a CCD algorithmic environment with given T2-amplitudes.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t2_amplitudes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial T2-amplitudes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (inactive) Fock matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="92" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="92" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_environment_1aad57786295828bb1e0c1b5e448473bc4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static CCSDEnvironment&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::PerturbativeCCSD</definition>
+        <argsstring>(const GSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const OrbitalSpace &amp;orbital_space)</argsstring>
+        <name>PerturbativeCCSD</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a18949b2153b626c420238dab2a4e7185" kindref="member">GSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
+          <declname>orbital_space</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize a CCSD algorithmic environment with initial guesses for the T1- and T2-amplitudes based on perturbation theory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal spinor basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital space which covers the occupied-virtual separation</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an algorithmic environment suitable for coupled-cluster calculations up to the CCSD level. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="111" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="111" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_environment_1a5659b1bc7ac6615ea537ed3768b13bbd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static CCSDEnvironment&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::PerturbativeCCD</definition>
+        <argsstring>(const GSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const OrbitalSpace &amp;orbital_space)</argsstring>
+        <name>PerturbativeCCD</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a18949b2153b626c420238dab2a4e7185" kindref="member">GSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
+          <declname>orbital_space</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize a CCD algorithmic environment with initial guesses for the T2-amplitudes based on perturbation theory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal spinor basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital space which covers the occupied-virtual separation</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an algorithmic environment suitable for CCD calculations. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="134" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="134" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type the amplitudes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::CCSDEnvironment&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_c_s_d_environment"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+W1</edgelabel>
+          <edgelabel>+W2</edgelabel>
+          <edgelabel>+W3</edgelabel>
+          <edgelabel>+tau2</edgelabel>
+          <edgelabel>+tau2_tilde</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+f</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+V_A</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+F1</edgelabel>
+          <edgelabel>+F2</edgelabel>
+          <edgelabel>+F3</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Eigen::Tensor&lt; Scalar, _Rank &gt;</label>
+      </node>
+      <node id="6">
+        <label>GQCP::SquareRankFourTensor&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>GQCP::ImplicitMatrixSlice&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_implicit_matrix_slice"/>
+      </node>
+      <node id="5">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="7">
+        <label>GQCP::Tensor&lt; Scalar, 4 &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SquareMatrix&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MatrixX&lt; Scalar  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::ImplicitRankFourTensorSlice&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp" bodystart="39" bodyend="146"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a8741859b3abcc2d830d340da3222d494" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>CCSDEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a5d4c983ec466321e35d9f9a5171bec76" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>CCSDEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a70b4d4d2b5ea5557bd35a69d3beade56" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>electronic_energies</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a96da3b098a302ff00696091b168cba8e" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>f</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a72da8af53a68fa131224b46dc95c6d38" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>F1</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1abe71efd4652b9bd6c52bb8fbba7c5a8a" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>F2</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1aa15efed5f0c29ad3902fb22fbfee144f" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>F3</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a5659b1bc7ac6615ea537ed3768b13bbd" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>PerturbativeCCD</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1aad57786295828bb1e0c1b5e448473bc4" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>PerturbativeCCSD</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1abdea2152c1643fb71b13cfd2383d92ee" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>t1_amplitudes</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a3a005b633746ec034014da148dfae1e5" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>t2_amplitudes</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a7cc49f9d70f86016ce8001ff03eb49b4" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>tau2</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a1e5a40b4e932c61662592b8cf8859902" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>tau2_tilde</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a288b0979b63efb8eb9aadd045f8c93aa" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>V_A</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1af3bf999f40eb1f4019f4f6cedaf68497" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>W1</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a3b8177e76f48c0c23672614df1d655b9" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>W2</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1aebad34c0e75242395ac182c8acf8f76c" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>W3</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

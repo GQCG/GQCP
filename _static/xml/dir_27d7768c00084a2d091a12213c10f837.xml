@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_27d7768c00084a2d091a12213c10f837" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm</compoundname>
+    <innerfile refid="_algorithm_8hpp">Algorithm.hpp</innerfile>
+    <innerfile refid="_compound_convergence_criterion_8hpp">CompoundConvergenceCriterion.hpp</innerfile>
+    <innerfile refid="_convergence_criterion_8hpp">ConvergenceCriterion.hpp</innerfile>
+    <innerfile refid="_functional_step_8hpp">FunctionalStep.hpp</innerfile>
+    <innerfile refid="_iterative_algorithm_8hpp">IterativeAlgorithm.hpp</innerfile>
+    <innerfile refid="_step_8hpp">Step.hpp</innerfile>
+    <innerfile refid="_step_collection_8hpp">StepCollection.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/"/>
+  </compounddef>
+</doxygen>

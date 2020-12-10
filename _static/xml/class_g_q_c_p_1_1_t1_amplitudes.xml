@@ -1,0 +1,495 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_t1_amplitudes" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::T1Amplitudes</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; T1Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</basecompoundref>
+    <includes refid="_t1_amplitudes_8hpp" local="no">T1Amplitudes.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::T1Amplitudes&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_t1_amplitudes_1a7abc9070ad99e319a57ac6779a482fb1" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::T1Amplitudes&lt; _Scalar &gt;::Self =  T1Amplitudes&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_t1_amplitudes_1a38f0e0ae8c63efcda20abbe824a04676" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+        <definition>OrbitalSpace GQCP::T1Amplitudes&lt; _Scalar &gt;::orbital_space</definition>
+        <argsstring></argsstring>
+        <name>orbital_space</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="44" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_t1_amplitudes_1a1991e44f80f28cbe85c00fe979c77215" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::T1Amplitudes&lt; _Scalar &gt;::t</definition>
+        <argsstring></argsstring>
+        <name>t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="46" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1a318de1170ed0d3a1beccf2863f0ae920" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::T1Amplitudes&lt; _Scalar &gt;::T1Amplitudes</definition>
+        <argsstring>(const ImplicitMatrixSlice&lt; Scalar &gt; &amp;t, const OrbitalSpace &amp;orbital_space)</argsstring>
+        <name>T1Amplitudes</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
+          <declname>orbital_space</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct T1-amplitudes given their representation as a <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref> and and explicit occupied-virtual orbital space.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T1-amplitudes as a block matrix, implementing easy operator(i,a) calls </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital space which covers the occupied-virtual separation, indicating which indices in the block matrix are occupied and which are virtual </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1aa45c8c14f5c0db828f41001ab9a20186" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::T1Amplitudes&lt; _Scalar &gt;::T1Amplitudes</definition>
+        <argsstring>(const ImplicitMatrixSlice&lt; Scalar &gt; &amp;t, const size_t N, const size_t M)</argsstring>
+        <name>T1Amplitudes</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the T1-amplitudes given their representation as a <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref> and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the T1-amplitudes as a block matrix, implementing easy operator(i,a) calls </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of occupied orbitals </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the total number of orbitals </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="72" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="72" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1a319fb8a01157d667cc4c7480108fa469" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::T1Amplitudes&lt; _Scalar &gt;::operator()</definition>
+        <argsstring>(const size_t i, const size_t a) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access one of the T1-amplitudes.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an occupied index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a virtual index</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the read-only T1-amplitude corresponding to t_i^a </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="136" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1af77bfe33980d15ebd8768fdda8c804e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &amp;</type>
+        <definition>Scalar&amp; GQCP::T1Amplitudes&lt; _Scalar &gt;::operator()</definition>
+        <argsstring>(const size_t i, const size_t a)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access one of the T1-amplitudes.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an occupied index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a virtual index</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the writable T1-amplitude corresponding to t_i^a </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="146" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="146" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const ImplicitMatrixSlice&lt;Scalar&gt;&amp; GQCP::T1Amplitudes&lt; _Scalar &gt;::asImplicitMatrixSlice</definition>
+        <argsstring>() const</argsstring>
+        <name>asImplicitMatrixSlice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the T1-amplitudes as a <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="156" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="156" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1abc7ea3e9be64ed749b6e33011c21fe67" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::T1Amplitudes&lt; _Scalar &gt;::norm</definition>
+        <argsstring>() const</argsstring>
+        <name>norm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the Frobenius norm of these amplitudes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="161" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="161" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1a801461e773b25c13e9318dfbfd6a722b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
+        <definition>const OrbitalSpace&amp; GQCP::T1Amplitudes&lt; _Scalar &gt;::orbitalSpace</definition>
+        <argsstring>() const</argsstring>
+        <name>orbitalSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the orbital space for these T1-amplitudes, which covers the occupied-virtual separation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="166" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="166" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a7abc9070ad99e319a57ac6779a482fb1" kindref="member">Self</ref> &amp;</type>
+        <definition>Self&amp; GQCP::T1Amplitudes&lt; _Scalar &gt;::operator+=</definition>
+        <argsstring>(const Self &amp;rhs) override</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a7abc9070ad99e319a57ac6779a482fb1" kindref="member">Self</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="176" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="176" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a7abc9070ad99e319a57ac6779a482fb1" kindref="member">Self</ref> &amp;</type>
+        <definition>Self&amp; GQCP::T1Amplitudes&lt; _Scalar &gt;::operator*=</definition>
+        <argsstring>(const Scalar &amp;a) override</argsstring>
+        <name>operator*=</name>
+        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911">operator*=</reimplements>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &amp;</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Scalar multiplication-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="194" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="194" bodyend="206"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1a3150e61624672a155ce7a13807c72ac0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static T1Amplitudes&lt;Scalar&gt; GQCP::T1Amplitudes&lt; _Scalar &gt;::Perturbative</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const OrbitalSpace &amp;orbital_space)</argsstring>
+        <name>Perturbative</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
+          <declname>orbital_space</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create perturbative T1-amplitudes using an explicit orbital space.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (inactive) Fock matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital space which covers the occupied-virtual separation</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>T1-amplitudes calculated from an initial perturbative result </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="88" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="88" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t1_amplitudes_1afbceca3af3dee8bdbee4d4a321ad3a6b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static T1Amplitudes&lt;Scalar&gt; GQCP::T1Amplitudes&lt; _Scalar &gt;::Perturbative</definition>
+        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const size_t N, const size_t M)</argsstring>
+        <name>Perturbative</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create perturbative T1-amplitudes using an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in an orthonormal spinor basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of occupied orbitals </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the total number of orbitals</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>T1-amplitudes calculated from an initial perturbative result </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="115" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="115" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The coupled-cluster T1 amplitudes t_i^a. According to context, this class may either represent restricted (i.e. spatial-orbital) amplitudes, or generalized (spinor) amplitudes. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::VectorSpaceArithmetic&lt; T1Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::CRTP&lt; T1Amplitudes&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="1">
+        <label>GQCP::T1Amplitudes&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_t1_amplitudes"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::VectorSpaceArithmetic&lt; T1Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::CRTP&lt; T1Amplitudes&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="1">
+        <label>GQCP::T1Amplitudes&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_t1_amplitudes"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp" bodystart="36" bodyend="207"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>asImplicitMatrixSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1abc7ea3e9be64ed749b6e33011c21fe67" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>norm</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a319fb8a01157d667cc4c7480108fa469" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1af77bfe33980d15ebd8768fdda8c804e5" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb" prot="public" virt="virtual"><scope>GQCP::T1Amplitudes</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; T1Amplitudes&lt; _Scalar &gt;, _Scalar &gt;::"><scope>GQCP::T1Amplitudes</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a38f0e0ae8c63efcda20abbe824a04676" prot="private" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>orbital_space</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a801461e773b25c13e9318dfbfd6a722b" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>orbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a3150e61624672a155ce7a13807c72ac0" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>Perturbative</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1afbceca3af3dee8bdbee4d4a321ad3a6b" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>Perturbative</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a7abc9070ad99e319a57ac6779a482fb1" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a1991e44f80f28cbe85c00fe979c77215" prot="private" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>t</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1a318de1170ed0d3a1beccf2863f0ae920" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>T1Amplitudes</name></member>
+      <member refid="class_g_q_c_p_1_1_t1_amplitudes_1aa45c8c14f5c0db828f41001ab9a20186" prot="public" virt="non-virtual"><scope>GQCP::T1Amplitudes</scope><name>T1Amplitudes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

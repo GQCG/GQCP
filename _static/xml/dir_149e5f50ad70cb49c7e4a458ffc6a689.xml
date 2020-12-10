@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_149e5f50ad70cb49c7e4a458ffc6a689" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical</compoundname>
+    <innerdir refid="dir_27d7768c00084a2d091a12213c10f837">/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm</innerdir>
+    <innerdir refid="dir_6c4af46cc71c81a187b7586915ea7074">/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions</innerdir>
+    <innerdir refid="dir_48c44faaca8d6770190fd195afb3fc1a">/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid</innerdir>
+    <innerdir refid="dir_45b68fad4872c09ee59e23428ba67da1">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization</innerdir>
+    <innerdir refid="dir_6ff77f0d159a7cdf2b0a30c181d95a1b">/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/"/>
+  </compounddef>
+</doxygen>

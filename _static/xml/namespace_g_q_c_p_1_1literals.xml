@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1literals" kind="namespace" language="C++">
+    <compoundname>GQCP::literals</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1literals_1a8e6dba57215616b1228d57f542a4b4a8" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr std::complex&lt; double &gt;</type>
+        <definition>constexpr std::complex&lt;double&gt; GQCP::literals::operator&quot;&quot;_ii</definition>
+        <argsstring>(unsigned long long d)</argsstring>
+        <name>operator&quot;&quot;_ii</name>
+        <param>
+          <type>unsigned long long</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A literal for the imaginary unit.</para>
+<para><simplesect kind="note"><para>This feature is only added in C++14, which is why we provide it ourselves. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" line="39" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1literals_1a81f9eff46f8f79e2d3225d5a27bbec42" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr std::complex&lt; double &gt;</type>
+        <definition>constexpr std::complex&lt;double&gt; GQCP::literals::operator&quot;&quot;_ii</definition>
+        <argsstring>(long double d)</argsstring>
+        <name>operator&quot;&quot;_ii</name>
+        <param>
+          <type>long double</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A literal for the imaginary unit.</para>
+<para><simplesect kind="note"><para>This feature is only added in C++14, which is why we provide it ourselves. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" line="48" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" bodystart="48" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" line="31" column="1"/>
+  </compounddef>
+</doxygen>

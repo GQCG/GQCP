@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_cee0e4a9be0398681472b1b3a9977ef8" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions</compoundname>
+    <innerfile refid="_cartesian_exponents_8cpp">CartesianExponents.cpp</innerfile>
+    <innerfile refid="_cartesian_g_t_o_8cpp">CartesianGTO.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/"/>
+  </compounddef>
+</doxygen>

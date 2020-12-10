@@ -1,0 +1,185 @@
+\hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{}\doxysection{G\+Q\+CP\+::Matrix\+Representation\+Evaluation\+Container$<$ \+\_\+\+Matrix $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container}\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+
+
+{\ttfamily \#include $<$Matrix\+Representation\+Evaluation\+Container.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Matrix\+Representation\+Evaluation\+Container$<$ \+\_\+\+Matrix $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_g_q_c_p_1_1_matrix_representation_evaluation_container__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}} = \+\_\+\+Matrix
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}} = typename \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Matrix\+::\+Scalar}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6b9ef0370563f0eea68afd8d1db51ddc}{Matrix\+Representation\+Evaluation\+Container}} (const size\+\_\+t dimension)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a01e94b367635ae325c4ae22c55ff8262}{add\+Columnwise}} (const size\+\_\+t column, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}} value)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ab16ce58d35ab786810dbde8115dffad2}{add\+Rowwise}} (const size\+\_\+t row, const double value)
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a2ec4dee0f5cbae2b7730d647c6729eea}{evaluation}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac70cfe74faa0933d129260dd8654edb5}{increment}} ()
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}{is\+Finished}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aac052cc33b05c34338e8b2ee46f7c637}{index}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}{end}}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}} \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix$>$\newline
+class G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container$<$ \+\_\+\+Matrix $>$}
+
+A class that can efficiently construct the (square) matrix representation of a mathematical operator.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix} & the type that is used as a matrix representation, i.\+e. a container that stores the matrix representation \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix}{Matrix}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}} =  \+\_\+\+Matrix}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}} =  typename \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Matrix\+::\+Scalar}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6b9ef0370563f0eea68afd8d1db51ddc}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6b9ef0370563f0eea68afd8d1db51ddc}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}}
+\index{MatrixRepresentationEvaluationContainer@{MatrixRepresentationEvaluationContainer}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixRepresentationEvaluationContainer()}{MatrixRepresentationEvaluationContainer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{Matrix\+Representation\+Evaluation\+Container}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dimension} & the dimension of the matrix representation (the number of elements in one row/column) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a01e94b367635ae325c4ae22c55ff8262}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a01e94b367635ae325c4ae22c55ff8262}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!addColumnwise@{addColumnwise}}
+\index{addColumnwise@{addColumnwise}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{addColumnwise()}{addColumnwise()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::add\+Columnwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{column,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & column index of the matrix \\
+\hline
+{\em value} & the value which is added to a given position in the matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ab16ce58d35ab786810dbde8115dffad2}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ab16ce58d35ab786810dbde8115dffad2}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!addRowwise@{addRowwise}}
+\index{addRowwise@{addRowwise}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{addRowwise()}{addRowwise()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::add\+Rowwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & row index of the matrix \\
+\hline
+{\em value} & the value which is added to a given position in the matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a2ec4dee0f5cbae2b7730d647c6729eea}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a2ec4dee0f5cbae2b7730d647c6729eea}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!evaluation@{evaluation}}
+\index{evaluation@{evaluation}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{evaluation()}{evaluation()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::evaluation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the evaluation that is stored 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac70cfe74faa0933d129260dd8654edb5}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac70cfe74faa0933d129260dd8654edb5}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!increment@{increment}}
+\index{increment@{increment}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{increment()}{increment()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Move to the next index in the iteration \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!isFinished@{isFinished}}
+\index{isFinished@{isFinished}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{isFinished()}{isFinished()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::is\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Tests if the iteration is finished, if true the index is reset to 0
+
+\begin{DoxyReturn}{Returns}
+true if the iteration is finished 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!end@{end}}
+\index{end@{end}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{end}{end}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::end}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aac052cc33b05c34338e8b2ee46f7c637}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aac052cc33b05c34338e8b2ee46f7c637}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!index@{index}}
+\index{index@{index}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::index = 0}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{matrix}{matrix}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}} \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{G\+Q\+C\+P\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::matrix}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_matrix_representation_evaluation_container_8hpp}{Matrix\+Representation\+Evaluation\+Container.\+hpp}}\end{DoxyCompactItemize}

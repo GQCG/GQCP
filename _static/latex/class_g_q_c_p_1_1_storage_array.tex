@@ -1,0 +1,268 @@
+\hypertarget{class_g_q_c_p_1_1_storage_array}{}\doxysection{G\+Q\+CP\+::Storage\+Array$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_storage_array}\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+
+
+{\ttfamily \#include $<$Storage\+Array.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Storage\+Array$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_g_q_c_p_1_1_storage_array__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} = \+\_\+\+Element
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} = \+\_\+\+Vectorizer
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_aa4796adbc9dcca9ac7e6f1f480e343c6}{Self}} = \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}, \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a0aade5a8ec10e2079a85e92afb2a3d92}{Storage\+Array}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a60c7738ff7d96cb95a742d46cbb9c90c}{elements}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a2169f2d6a312916bf31d08ca769f9c09}{vectorizer}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_af8f1cb9ce64ff5cff566a4e18a48f4d4}{Storage\+Array}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} \&element, const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a2169f2d6a312916bf31d08ca769f9c09}{vectorizer}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a83b18d73072f0a22c4850bb3f48893ec}{Storage\+Array}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a2169f2d6a312916bf31d08ca769f9c09}{vectorizer}})
+\item 
+{\footnotesize template$<$size\+\_\+t N$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a880c6a1f3e9a64f2585ff6905a9ce08f}{Storage\+Array}} (const std\+::array$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}, N $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a60c7738ff7d96cb95a742d46cbb9c90c}{elements}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a2169f2d6a312916bf31d08ca769f9c09}{vectorizer}})
+\item 
+{\footnotesize template$<$typename Z  = Vectorizer, typename  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+same$<$\+Z, Scalar\+Vectorizer$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a1afead824c6f09ba10cc74dbd9b4b3cb}{operator Element}} () const
+\item 
+{\footnotesize template$<$typename... Indices$>$ }\\const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_af5c33456e2f3996561c1e3f5e469c158}{operator()}} (const Indices \&... indices) const
+\item 
+{\footnotesize template$<$typename... Indices$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a63ba4fe0ff40dfd65bfcf222edb67db7}{operator()}} (const Indices \&... indices)
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a60c7738ff7d96cb95a742d46cbb9c90c}{elements}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ae1a8728a102c0db1e203b25b33711eed}{elements}} ()
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a2169f2d6a312916bf31d08ca769f9c09}{vectorizer}} () const
+\item 
+{\footnotesize template$<$typename Z  = Vectorizer$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{namespace_g_q_c_p_a75056d5799528c495b717e21cccc75f7}{Vector\+Vectorizer}} $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a2cb80d53a35c3842541cc95d5737f707}{as\+Vector}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a79bca4884e8981d1ba7a378178d311d0}{Number\+Of\+Axes}} = Vectorizer\+::\+Number\+Of\+Axes
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Element, typename \+\_\+\+Vectorizer$>$\newline
+class G\+Q\+C\+P\+::\+Storage\+Array$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$}
+
+A simple array data structure.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Element} & The type of element that this array stores. \\
+\hline
+{\em \+\_\+\+Vectorizer} & The type of the vectorizer that relates multiple tuple coordinates to a one-\/dimensional index. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}\label{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!Element@{Element}}
+\index{Element@{Element}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{Element}{Element}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} =  \+\_\+\+Element}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_aa4796adbc9dcca9ac7e6f1f480e343c6}\label{class_g_q_c_p_1_1_storage_array_aa4796adbc9dcca9ac7e6f1f480e343c6}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!Self@{Self}}
+\index{Self@{Self}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{Self}{Self}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_aa4796adbc9dcca9ac7e6f1f480e343c6}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}, \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}\label{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!Vectorizer@{Vectorizer}}
+\index{Vectorizer@{Vectorizer}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{Vectorizer}{Vectorizer}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} =  \+\_\+\+Vectorizer}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a0aade5a8ec10e2079a85e92afb2a3d92}\label{class_g_q_c_p_1_1_storage_array_a0aade5a8ec10e2079a85e92afb2a3d92}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!StorageArray@{StorageArray}}
+\index{StorageArray@{StorageArray}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{StorageArray()}{StorageArray()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} $>$ \&}]{elements,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&}]{vectorizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em elements} & The one-\/dimensional representation of the elements of the array. \\
+\hline
+{\em vectorizer} & The vectorizer that relates multiple tuple coordinates to a one-\/dimensional index. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_af8f1cb9ce64ff5cff566a4e18a48f4d4}\label{class_g_q_c_p_1_1_storage_array_af8f1cb9ce64ff5cff566a4e18a48f4d4}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!StorageArray@{StorageArray}}
+\index{StorageArray@{StorageArray}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{StorageArray()}{StorageArray()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} \&}]{element,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&}]{vectorizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an array with equal elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em elements} & The one-\/dimensional representation of the elements of the array. \\
+\hline
+{\em vectorizer} & The vectorizer that relates multiple tuple coordinates to a one-\/dimensional index. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a83b18d73072f0a22c4850bb3f48893ec}\label{class_g_q_c_p_1_1_storage_array_a83b18d73072f0a22c4850bb3f48893ec}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!StorageArray@{StorageArray}}
+\index{StorageArray@{StorageArray}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{StorageArray()}{StorageArray()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&}]{vectorizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an array with defaultly initialized elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vectorizer} & The vectorizer that relates multiple tuple coordinates to a one-\/dimensional index. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a880c6a1f3e9a64f2585ff6905a9ce08f}\label{class_g_q_c_p_1_1_storage_array_a880c6a1f3e9a64f2585ff6905a9ce08f}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!StorageArray@{StorageArray}}
+\index{StorageArray@{StorageArray}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{StorageArray()}{StorageArray()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+template$<$size\+\_\+t N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}} (\begin{DoxyParamCaption}\item[{const std\+::array$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}, N $>$ \&}]{elements,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}} \&}]{vectorizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create an array from a {\ttfamily std\+::array} and a vectorizer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em elements} & The one-\/dimensional representation of the elements of the array. \\
+\hline
+{\em vectorizer} & The vectorizer that relates multiple tuple coordinates to a one-\/dimensional index.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & The number of elements in the {\ttfamily std\+::array}. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a2cb80d53a35c3842541cc95d5737f707}\label{class_g_q_c_p_1_1_storage_array_a2cb80d53a35c3842541cc95d5737f707}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!asVector@{asVector}}
+\index{asVector@{asVector}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{asVector()}{asVector()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+template$<$typename Z  = Vectorizer$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{namespace_g_q_c_p_a75056d5799528c495b717e21cccc75f7}{Vector\+Vectorizer}}$>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::as\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convert this {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{Storage\+Array}}} to a {\ttfamily Vector}, if possible.
+
+\begin{DoxyNote}{Note}
+This method is only available for {\ttfamily Storage\+Arrays} that admit vector-\/like storage. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_ae1a8728a102c0db1e203b25b33711eed}\label{class_g_q_c_p_1_1_storage_array_ae1a8728a102c0db1e203b25b33711eed}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!elements@{elements}}
+\index{elements@{elements}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{elements()}{elements()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A writable vector of all elements that this array stores. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a60c7738ff7d96cb95a742d46cbb9c90c}\label{class_g_q_c_p_1_1_storage_array_a60c7738ff7d96cb95a742d46cbb9c90c}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!elements@{elements}}
+\index{elements@{elements}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{elements()}{elements()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+const std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only vector of all elements that this array stores. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a1afead824c6f09ba10cc74dbd9b4b3cb}\label{class_g_q_c_p_1_1_storage_array_a1afead824c6f09ba10cc74dbd9b4b3cb}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!operator Element@{operator Element}}
+\index{operator Element@{operator Element}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{operator Element()}{operator Element()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+template$<$typename Z  = Vectorizer, typename  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+same$<$\+Z, Scalar\+Vectorizer$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::operator \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+A conversion operator between a scalar array and the underlying scalar.
+
+For the enable\+\_\+if-\/part, check \href{https://stackoverflow.com/a/18101382}{\texttt{ https\+://stackoverflow.\+com/a/18101382}}. \mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a63ba4fe0ff40dfd65bfcf222edb67db7}\label{class_g_q_c_p_1_1_storage_array_a63ba4fe0ff40dfd65bfcf222edb67db7}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+template$<$typename... Indices$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Indices \&...}]{indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & A set of coordinates that accesses this array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The element that is stored at the given coordinate indices. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_af5c33456e2f3996561c1e3f5e469c158}\label{class_g_q_c_p_1_1_storage_array_af5c33456e2f3996561c1e3f5e469c158}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+template$<$typename... Indices$>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a25d46a7fbdcbedeb31475cf694edc40c}{Element}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Indices \&...}]{indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & A set of coordinates that accesses this array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The element that is stored at the given coordinate indices. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a2169f2d6a312916bf31d08ca769f9c09}\label{class_g_q_c_p_1_1_storage_array_a2169f2d6a312916bf31d08ca769f9c09}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!vectorizer@{vectorizer}}
+\index{vectorizer@{vectorizer}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{vectorizer()}{vectorizer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_ac25750c505083e8acf20527e578f163d}{Vectorizer}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::vectorizer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The vectorizer that relates multiple tuple coordinates to a one-\/dimensional index. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_storage_array_a79bca4884e8981d1ba7a378178d311d0}\label{class_g_q_c_p_1_1_storage_array_a79bca4884e8981d1ba7a378178d311d0}} 
+\index{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}!NumberOfAxes@{NumberOfAxes}}
+\index{NumberOfAxes@{NumberOfAxes}!GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$@{GQCP::StorageArray$<$ \_Element, \_Vectorizer $>$}}
+\doxysubsubsection{\texorpdfstring{NumberOfAxes}{NumberOfAxes}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Element , typename \+\_\+\+Vectorizer $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{G\+Q\+C\+P\+::\+Storage\+Array}}$<$ \+\_\+\+Element, \+\_\+\+Vectorizer $>$\+::Number\+Of\+Axes = Vectorizer\+::\+Number\+Of\+Axes\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_storage_array_8hpp}{Storage\+Array.\+hpp}}\end{DoxyCompactItemize}

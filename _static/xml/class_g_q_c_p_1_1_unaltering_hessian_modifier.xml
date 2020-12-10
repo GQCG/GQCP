@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_unaltering_hessian_modifier" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::UnalteringHessianModifier</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_hessian_modifier" prot="public" virt="non-virtual">GQCP::BaseHessianModifier</basecompoundref>
+    <includes refid="_unaltering_hessian_modifier_8hpp" local="no">UnalteringHessianModifier.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a81003869b0163039fea7cfe80c89ebb3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>SquareMatrix&lt;double&gt; GQCP::UnalteringHessianModifier::operator()</definition>
+        <argsstring>(const SquareMatrix&lt; double &gt; &amp;hessian) override</argsstring>
+        <name>operator()</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_hessian_modifier_1a8e94b709f06013e7bcdf29e9f6519d07">operator()</reimplements>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt; &amp;</type>
+          <declname>hessian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hessian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current indefinite Hessian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the given Hessian, i.e. do not alter the current hessian </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp" line="40" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::UnalteringHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_unaltering_hessian_modifier"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_base_hessian_modifier"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::UnalteringHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_unaltering_hessian_modifier"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::BaseHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_base_hessian_modifier"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp" line="27" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp" bodystart="27" bodyend="41"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a81003869b0163039fea7cfe80c89ebb3" prot="public" virt="virtual"><scope>GQCP::UnalteringHessianModifier</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_base_hessian_modifier_1a07e279d7354674fa0214a6b94e52c0ab" prot="public" virt="virtual"><scope>GQCP::UnalteringHessianModifier</scope><name>~BaseHessianModifier</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

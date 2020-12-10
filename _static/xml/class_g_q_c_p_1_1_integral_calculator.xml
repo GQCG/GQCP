@@ -1,0 +1,676 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_integral_calculator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::IntegralCalculator</compoundname>
+    <includes refid="_integral_calculator_8hpp" local="no">IntegralCalculator.hpp</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1ad04f586e4635103bc9f61fc573811eb3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Shell</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+          <param>
+            <type>typename IntegralScalar</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>static auto GQCP::IntegralCalculator::calculate</definition>
+        <argsstring>(BaseOneElectronIntegralEngine&lt; Shell, N, IntegralScalar &gt; &amp;engine, const ShellSet&lt; Shell &gt; &amp;left_shell_set, const ShellSet&lt; Shell &gt; &amp;right_shell_set) -&gt; std::array&lt; MatrixX&lt; IntegralScalar &gt;, N &gt;</argsstring>
+        <name>calculate</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" kindref="compound">BaseOneElectronIntegralEngine</ref>&lt; Shell, N, IntegralScalar &gt; &amp;</type>
+          <declname>engine</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; Shell &gt; &amp;</type>
+          <declname>left_shell_set</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; Shell &gt; &amp;</type>
+          <declname>right_shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate all one-electron integrals over the basis functions inside the given shell sets.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>engine</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>left_shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the set of shells that should appear on the left of the operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the set of shells that should appear on the right of the operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of shell the integral engine is able to handle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of components the operator has </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>IntegralScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of an integral </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="62" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="62" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1aab8c12c103101dad574031123584203a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Shell</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+          <param>
+            <type>typename IntegralScalar</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>static auto GQCP::IntegralCalculator::calculate</definition>
+        <argsstring>(BaseTwoElectronIntegralEngine&lt; Shell, N, IntegralScalar &gt; &amp;engine, const ShellSet&lt; Shell &gt; &amp;left_shell_set, const ShellSet&lt; Shell &gt; &amp;right_shell_set) -&gt; std::array&lt; Tensor&lt; IntegralScalar, 4 &gt;, N &gt;</argsstring>
+        <name>calculate</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" kindref="compound">BaseTwoElectronIntegralEngine</ref>&lt; Shell, N, IntegralScalar &gt; &amp;</type>
+          <declname>engine</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; Shell &gt; &amp;</type>
+          <declname>left_shell_set</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; Shell &gt; &amp;</type>
+          <declname>right_shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate all two-electron integrals over the basis functions inside the given shell sets.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>engine</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the engine that can calculate two-electron integrals over shells </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>left_shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the set of shells that should appear on the left of the operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the set of shells that should appear on the right of the operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of shell the integral engine is able to handle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of components the operator has </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>IntegralScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of an integral </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="114" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="114" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a22ede51fbb3db63443ccfc14bee0a049" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FQOneElectronOperator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; double &gt;</type>
+        <definition>static Matrix&lt;double&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <argsstring>(const FQOneElectronOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;left_scalar_basis, const ScalarBasis&lt; GTOShell &gt; &amp;right_scalar_basis)</argsstring>
+        <name>calculateLibintIntegrals</name>
+        <param>
+          <type>const FQOneElectronOperator &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>left_scalar_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>right_scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given (first-quantized) one-electron operator, over a left and right scalar basis, using Libint2.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized one-electron operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>left_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells that appear to the left of the operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shell sets that appear to the right of the operator over which the integrals should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>FQOneElectronOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the first-quantized one-electron operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matrix representation (integrals) of the given first-quantized operator in this scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="182" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="182" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a7bd1eea9e12d51c8212b2d5fdaa0df40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FQOneElectronOperator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>static SquareMatrix&lt;double&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <argsstring>(const FQOneElectronOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
+        <name>calculateLibintIntegrals</name>
+        <param>
+          <type>const FQOneElectronOperator &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using Libint2.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized one-electron operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells over which the integrals should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>FQOneElectronOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the first-quantized one-electron operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matrix representation (integrals) of the given first-quantized operator in this scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="210" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="210" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1ad0b15cb4f0dd307f1a946792384673f2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; double &gt;, 3 &gt;</type>
+        <definition>static std::array&lt;Matrix&lt;double&gt;, 3&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <argsstring>(const ElectronicDipoleOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;left_scalar_basis, const ScalarBasis&lt; GTOShell &gt; &amp;right_scalar_basis)</argsstring>
+        <name>calculateLibintIntegrals</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>left_scalar_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>right_scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given (first-quantized) one-electron operator, over a left and right scalar basis, using Libint2.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized one-electron operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>left_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells that should appear to the left of the operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells that should appear to the right of the operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matrix representation (integrals) of the given first-quantized operator in this scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="225" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="225" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a5bf2580e445a1a802155e0ba352a5a4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;, 3 &gt;</type>
+        <definition>static std::array&lt;SquareMatrix&lt;double&gt;, 3&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <argsstring>(const ElectronicDipoleOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
+        <name>calculateLibintIntegrals</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using Libint2.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized one-electron operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells over which the integrals should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matrix representation (integrals) of the given first-quantized operator in this scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="250" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="250" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a10887381671314dd68e323e62a83226f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
+        <definition>static SquareRankFourTensor&lt;double&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;fq_two_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
+        <name>calculateLibintIntegrals</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>fq_two_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given (first-quantized) two-electron operator, within a given scalar basis, using Libint2.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_two_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells over which the integrals should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matrix representation (integrals) of the given first-quantized operator in this scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="271" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="271" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a7ca1915303a249a751dc46fb4552617f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; double, 4 &gt;</type>
+        <definition>static Tensor&lt;double, 4&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;fq_two_op, const ScalarBasis&lt; GTOShell &gt; &amp;left_scalar_basis, const ScalarBasis&lt; GTOShell &gt; &amp;right_scalar_basis)</argsstring>
+        <name>calculateLibintIntegrals</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>fq_two_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>left_scalar_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>right_scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given (first-quantized) two-electron operator, over a left and right scalar basis, using Libint2.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_two_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>left_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells that should appear to the left of the operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells that should appear to the right of the operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matrix representation (integrals) of the given first-quantized operator in this scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="286" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="286" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1aac73e6f31105eac4c38cd187178f9519" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FQOneElectronOperator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>static SquareMatrix&lt;double&gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
+        <argsstring>(const FQOneElectronOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
+        <name>calculateLibcintIntegrals</name>
+        <param>
+          <type>const FQOneElectronOperator &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using libcint.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized one-electron operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells over which the integrals should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>FQOneElectronOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the first-quantized one-electron operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Only use this function for all-Cartesian ShellSets.</para>
+</simplesect>
+<simplesect kind="return"><para>the matrix representation of the overlap operator in this AO basis, using the libcint integral engine </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="321" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="321" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a96408c2f33740b4790122c63f2ecc965" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;, 3 &gt;</type>
+        <definition>static std::array&lt;SquareMatrix&lt;double&gt;, 3&gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
+        <argsstring>(const ElectronicDipoleOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
+        <name>calculateLibcintIntegrals</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
+          <declname>fq_one_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the integrals over the given electronic dipole operator, within a given scalar basis, using libcint.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_one_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the electronic dipole operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells over which the integrals should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Only use this function for all-Cartesian ShellSets.</para>
+</simplesect>
+<simplesect kind="return"><para>the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="341" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="341" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1ae24e36b858b4c464ce16b8483df25dda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
+        <definition>static SquareRankFourTensor&lt;double&gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;fq_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
+        <name>calculateLibcintIntegrals</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>fq_op</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>scalar_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the Coulomb repulsion energy integrals, within a given scalar basis, using Libcint.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first-quantized operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scalar_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar basis that contains the shells over which the integrals should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Only use this function for all-Cartesian ShellSets.</para>
+</simplesect>
+<simplesect kind="return"><para>the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="361" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="361" bodyend="368"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that calculates integrals over ShellSets: it loops over all shells in the given ShellSets. It just has two static member functions, for cleaner interface calls. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::IntegralCalculator</label>
+        <link refid="class_g_q_c_p_1_1_integral_calculator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="44" bodyend="369"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1ad04f586e4635103bc9f61fc573811eb3" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1aab8c12c103101dad574031123584203a" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1aac73e6f31105eac4c38cd187178f9519" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a96408c2f33740b4790122c63f2ecc965" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1ae24e36b858b4c464ce16b8483df25dda" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a22ede51fbb3db63443ccfc14bee0a049" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a7bd1eea9e12d51c8212b2d5fdaa0df40" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1ad0b15cb4f0dd307f1a946792384673f2" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a5bf2580e445a1a802155e0ba352a5a4e" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a10887381671314dd68e323e62a83226f" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a7ca1915303a249a751dc46fb4552617f" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

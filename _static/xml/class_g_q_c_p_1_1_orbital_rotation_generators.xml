@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_orbital_rotation_generators" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::OrbitalRotationGenerators</compoundname>
+    <includes refid="_orbital_rotation_generators_8hpp" local="no">OrbitalRotationGenerators.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_orbital_rotation_generators_1a6d68f99363edf5204fd081e2bd284c46" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::OrbitalRotationGenerators::number_of_spatial_orbitals</definition>
+        <argsstring></argsstring>
+        <name>number_of_spatial_orbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_orbital_rotation_generators_1afc865624029988628c792d44a3b9a4ca" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::OrbitalRotationGenerators::kappa_vector</definition>
+        <argsstring></argsstring>
+        <name>kappa_vector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="36" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_rotation_generators_1ac1acbcaa8a7d1d9d13e8adea6622f0c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::OrbitalRotationGenerators::OrbitalRotationGenerators</definition>
+        <argsstring>(const VectorX&lt; double &gt; &amp;kappa_vector)</argsstring>
+        <name>OrbitalRotationGenerators</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>kappa_vector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kappa_vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital rotation generators represented as a vector that corresponds to the strict upper/lower triangle of the kappa matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/OrbitalRotationGenerators.cpp" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_rotation_generators_1a3202721effa4b5079b9defafd0caf039" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::OrbitalRotationGenerators::OrbitalRotationGenerators</definition>
+        <argsstring>(const SquareMatrix&lt; double &gt; &amp;kappa_matrix)</argsstring>
+        <name>OrbitalRotationGenerators</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt; &amp;</type>
+          <declname>kappa_matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kappa_vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital rotation generators represented as the full antisymmetric matrix kappa </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/OrbitalRotationGenerators.cpp" bodystart="39" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_rotation_generators_1a05e28b5a48166bcae75fc9a99cad8430" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>SquareMatrix&lt; double &gt; GQCP::OrbitalRotationGenerators::asMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>asMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the antisymmetric orbital rotation generator matrix kappa </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="71" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/OrbitalRotationGenerators.cpp" bodystart="71" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_rotation_generators_1aee0ac01294b848cbe49b4ea29e99d8d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+        <definition>const VectorX&lt;double&gt;&amp; GQCP::OrbitalRotationGenerators::asVector</definition>
+        <argsstring>() const</argsstring>
+        <name>asVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the orbital rotation generators as the strict upper/lower triangle of the kappa matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="76" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_rotation_generators_1a3fd8a7162bed8e4b33863ec8429db5c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; double &gt;</type>
+        <definition>RTransformation&lt;double&gt; GQCP::OrbitalRotationGenerators::rotation</definition>
+        <argsstring>() const</argsstring>
+        <name>rotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The unitary transformation corresponds to these orbital rotation generators, i.e. exp(-kappa). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="81" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_rotation_generators_1a4e0cbcad858140e1fe49d40da3d57372" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::OrbitalRotationGenerators::numberOfSpatialOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfSpatialOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="86" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_rotation_generators_1a349b4e62d2f1b8a6f2a3f82bc377dc57" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref></type>
+        <definition>OrbitalRotationGenerators GQCP::OrbitalRotationGenerators::FromOccOcc</definition>
+        <argsstring>(const OrbitalRotationGenerators &amp;o_o_generators, const size_t K)</argsstring>
+        <name>FromOccOcc</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref> &amp;</type>
+          <declname>o_o_generators</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct orbital rotation generators by adding redundant (i.e. 0) occupied-virtual and virtual-virtual generators to the given occupied-occupied generators</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>o_o_generators</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the occupied-occupied orbital rotation generators </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the total number of spatial orbitals</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&apos;full&apos; orbital rotation generators from the given occupied-occupied generators</para>
+</simplesect>
+Construct orbital rotation generators by adding redundant (i.e. 0) occupied-virtual and virtual-virtual generators to the given occupied-occupied generators</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>o_o_generators</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the occupied-occupied orbital rotation generators </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&apos;full&apos; orbital rotation generators from the given occupied-occupied generators </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="63" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/OrbitalRotationGenerators.cpp" bodystart="55" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The real singlet orbital rotation generators kappa. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OrbitalRotationGenerators</label>
+        <link refid="class_g_q_c_p_1_1_orbital_rotation_generators"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/OrbitalRotationGenerators.hpp" bodystart="33" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a05e28b5a48166bcae75fc9a99cad8430" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1aee0ac01294b848cbe49b4ea29e99d8d9" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a349b4e62d2f1b8a6f2a3f82bc377dc57" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>FromOccOcc</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1afc865624029988628c792d44a3b9a4ca" prot="private" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>kappa_vector</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a6d68f99363edf5204fd081e2bd284c46" prot="private" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>number_of_spatial_orbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a4e0cbcad858140e1fe49d40da3d57372" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>numberOfSpatialOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1ac1acbcaa8a7d1d9d13e8adea6622f0c2" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>OrbitalRotationGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a3202721effa4b5079b9defafd0caf039" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>OrbitalRotationGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a3fd8a7162bed8e4b33863ec8429db5c2" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGenerators</scope><name>rotation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_r_h_f_density_matrix_damper" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::RHFDensityMatrixDamper</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; RHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_r_h_f_density_matrix_damper_8hpp" local="no">RHFDensityMatrixDamper.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a0c076e602b6970dcb89dad2a25d0d0a2" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a54ab4d24913a141614ab2f6dfaa2d997" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">RHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a0c076e602b6970dcb89dad2a25d0d0a2" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;::Environment =  RHFSCFEnvironment&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1abed79114baab258ddf1624a194ea4dab" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_constant_damper" kindref="compound">ConstantDamper</ref></type>
+        <definition>ConstantDamper GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;::damper</definition>
+        <argsstring></argsstring>
+        <name>damper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" line="45" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a85621537c09f6b719f8800d677ab256a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;::RHFDensityMatrixDamper</definition>
+        <argsstring>(const double alpha)</argsstring>
+        <name>RHFDensityMatrixDamper</name>
+        <param>
+          <type>const double</type>
+          <declname>alpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the damping factor </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" bodystart="56" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1abd279ab70ac09d3308dd8b8afdf95f46" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" line="67" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" bodystart="67" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1ad6b80419c3086f83c05f46038dec769d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a54ab4d24913a141614ab2f6dfaa2d997" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Replace the most recent density matrix with an accelerated one.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" line="77" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" bodystart="77" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that accelerates the density matrix (expressed in the scalar/AO basis) based on a constant damping accelerator.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent the expansion coefficient/elements of the transformation matrix: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; RHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::RHFDensityMatrixDamper&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; RHFSCFEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp" bodystart="37" bodyend="92"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1abed79114baab258ddf1624a194ea4dab" prot="private" virt="non-virtual"><scope>GQCP::RHFDensityMatrixDamper</scope><name>damper</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1abd279ab70ac09d3308dd8b8afdf95f46" prot="public" virt="non-virtual"><scope>GQCP::RHFDensityMatrixDamper</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; RHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::RHFDensityMatrixDamper</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a54ab4d24913a141614ab2f6dfaa2d997" prot="public" virt="non-virtual"><scope>GQCP::RHFDensityMatrixDamper</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1ad6b80419c3086f83c05f46038dec769d" prot="public" virt="non-virtual"><scope>GQCP::RHFDensityMatrixDamper</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; RHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::RHFDensityMatrixDamper</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a85621537c09f6b719f8800d677ab256a" prot="public" virt="non-virtual"><scope>GQCP::RHFDensityMatrixDamper</scope><name>RHFDensityMatrixDamper</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1a0c076e602b6970dcb89dad2a25d0d0a2" prot="public" virt="non-virtual"><scope>GQCP::RHFDensityMatrixDamper</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::RHFDensityMatrixDamper</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

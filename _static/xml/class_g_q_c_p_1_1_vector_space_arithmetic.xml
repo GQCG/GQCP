@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_vector_space_arithmetic" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::VectorSpaceArithmetic</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_c_r_t_p" prot="public" virt="non-virtual">GQCP::CRTP&lt; T &gt;</basecompoundref>
+    <includes refid="_vector_space_arithmetic_8hpp" local="no">VectorSpaceArithmetic.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>T &amp;</type>
+        <definition>virtual T&amp; GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;::operator+=</definition>
+        <argsstring>(const T &amp;rhs)=0</argsstring>
+        <name>operator+=</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_t2_amplitudes_1aceccc95a7c3c82a13ad6cb09cf77ed82">operator+=</reimplementedby>
+        <param>
+          <type>const T &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition-assignment, to be implemented in derived classes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="45" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>T &amp;</type>
+        <definition>virtual T&amp; GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;::operator*=</definition>
+        <argsstring>(const Scalar &amp;a)=0</argsstring>
+        <name>operator*=</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_linear_combination_1ac99cb8ad362edfa97cfc0e70fbb67396">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a8dd5c13f6d98c0835dd1db46fcbf412a">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1aebf277a6623597c7dd2b196c1907ddbe">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ad2641d7ed0bb28069712ad51522ac228">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_t2_amplitudes_1a10ae1614bffaae6a0bdf8755b8840d72">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_t2_amplitudes_1a10ae1614bffaae6a0bdf8755b8840d72">operator*=</reimplementedby>
+        <param>
+          <type>const Scalar &amp;</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Scalar multiplication-assignment, to be implemented in derived classes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="50" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;::operator-=</definition>
+        <argsstring>(const T &amp;rhs)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtraction-assignment, canonically implemented using addition-assignment with the negation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="69" column="7" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="69" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Negation, canonically implemented as scalar multiplication by (-1.0). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="109" column="7" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="109" bodyend="111"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a0a2a6d21024113554f979791e559e3ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend T</type>
+        <definition>T operator+</definition>
+        <argsstring>(T lhs, const T &amp;rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>T</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition, canonically implemented using addition-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="60" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="60" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a8c6ac2a457099f1f6070bc96b9700dfc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend T</type>
+        <definition>T operator-</definition>
+        <argsstring>(T lhs, const T &amp;rhs)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>T</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtraction, canonically implemented using subtraction-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="78" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a8e3087bdbccdfe1867cf641004f1583f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend T</type>
+        <definition>T operator*</definition>
+        <argsstring>(const Scalar &amp;a, T rhs)</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const Scalar &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Scalar multiplication, canonically implemented using scalar multiplication-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="87" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="87" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_vector_space_arithmetic_1ac0337d29a7eb98d1c3231a5a62fca84a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend T</type>
+        <definition>T operator*</definition>
+        <argsstring>(T lhs, const Scalar &amp;a)</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>T</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Scalar &amp;</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The commutative version of the previous scalar multiplication. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="95" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="95" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_vector_space_arithmetic_1a19f7c84ce690c4e61c836248af518fb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend T</type>
+        <definition>T operator/</definition>
+        <argsstring>(T lhs, const Scalar &amp;a)</argsstring>
+        <name>operator/</name>
+        <param>
+          <type>T</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const Scalar &amp;</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Scalar division, canonically implemented using scalar multiplication-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="102" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="102" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An (abstract) interface for types that support vector space arithmetic, i.e. linear combinations.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type for which vector space arithmetic should be implemented. It is given as a template argument, enabling <ref refid="class_g_q_c_p_1_1_c_r_t_p" kindref="compound">CRTP</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type (real or complex) of the scalar multiplication. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="1">
+        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="1">
+        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp" bodystart="36" bodyend="112"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a8e3087bdbccdfe1867cf641004f1583f" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator*</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1ac0337d29a7eb98d1c3231a5a62fca84a" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator*</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a0a2a6d21024113554f979791e559e3ae" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator+</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a8c6ac2a457099f1f6070bc96b9700dfc" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a19f7c84ce690c4e61c836248af518fb7" prot="public" virt="non-virtual"><scope>GQCP::VectorSpaceArithmetic</scope><name>operator/</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,44 @@
+\hypertarget{_scalar_function_8hpp}{}\doxysection{/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Functions/\+Scalar\+Function.hpp File Reference}
+\label{_scalar_function_8hpp}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/ScalarFunction.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/ScalarFunction.hpp}}
+{\ttfamily \#include \char`\"{}Mathematical/\+Representation/\+Matrix.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utilities/aliases.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utilities/type\+\_\+traits.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$boost/format.\+hpp$>$}\newline
+Include dependency graph for Scalar\+Function.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_scalar_function_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_scalar_function_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{G\+Q\+C\+P\+::\+Scalar\+Function\+Product$<$ T1, T2 $>$}}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{G\+Q\+C\+P\+::\+Scalar\+Function$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_g_q_c_p_a706c3a9a009dc8c9706ed57ac3ade708}{G\+Q\+C\+P\+::\+Is\+Scalar\+Function}} = enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+base\+\_\+of$<$ Scalar\+Function$<$ typename T\+::\+Valued, typename T\+::\+Scalar, T\+::\+Cols $>$, T $>$\+::value $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename S\+F1 , typename S\+F2 , typename  = Is\+Scalar\+Function$<$\+S\+F1$>$, typename  = Is\+Scalar\+Function$<$\+S\+F2$>$$>$ }\\Scalar\+Function\+Product$<$ S\+F1, S\+F2 $>$ \mbox{\hyperlink{namespace_g_q_c_p_aedfbb625c3100ad0071e828fbe82b56b}{G\+Q\+C\+P\+::operator$\ast$}} (const S\+F1 \&lhs, const S\+F2 \&rhs)
+\end{DoxyCompactItemize}

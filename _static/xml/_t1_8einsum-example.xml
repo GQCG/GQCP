@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_t1_8einsum-example" kind="example">
+    <compoundname>T1.einsum</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Contract this tensor with another one, using a NumPy &apos;einsum&apos;-like API.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand side of the contraction. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lhs_labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The labels for the axes of the tensor on the left-hand side of the contraction. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs_labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The labels for the axes of the tensor on the right-hand side of the contraction. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output_labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The labels for the the resulting/output tensor.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of axes that should be contracted over.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+(T2, &apos;ijkl&apos;, &apos;ia&apos;, &apos;jkla&apos;) will contract the first axis of T1 (with labels &apos;ijkl&apos;) with the first axis of T2 (with labels &apos;ia&apos;) (because of the matching index labels &apos;i&apos;) and return a tensor whose axes are labelled as &apos;jkla&apos;.</para>
+<para><simplesect kind="return"><para>The result of the tensor contraction. <programlisting filename="T1.einsum"></programlisting> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

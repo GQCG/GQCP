@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_ac9b26001e935366de9867feaaa02e62" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Processing/Properties</compoundname>
+    <innerfile refid="_base_electrical_response_solver_8hpp">BaseElectricalResponseSolver.hpp</innerfile>
+    <innerfile refid="_c_i_electrical_response_solver_8hpp">CIElectricalResponseSolver.hpp</innerfile>
+    <innerfile refid="_dyson_orbital_8hpp">DysonOrbital.hpp</innerfile>
+    <innerfile refid="expectation__values_8hpp">expectation_values.hpp</innerfile>
+    <innerfile refid="properties_8hpp">properties.hpp</innerfile>
+    <innerfile refid="_r_h_f_electrical_response_solver_8hpp">RHFElectricalResponseSolver.hpp</innerfile>
+    <innerfile refid="v_a_p1ro_g_electrical_response_solver_8hpp">vAP1roGElectricalResponseSolver.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/"/>
+  </compounddef>
+</doxygen>

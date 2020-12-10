@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1___unique__if" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::_Unique_if</compoundname>
+    <includes refid="memory_8hpp" local="no">memory.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1___unique__if_1a0e06014d672bd9285e03a606df122df4" prot="public" static="no">
+        <type>std::unique_ptr&lt; T &gt;</type>
+        <definition>using GQCP::_Unique_if&lt; T &gt;::_Single_object =  std::unique_ptr&lt;T&gt;</definition>
+        <argsstring></argsstring>
+        <name>_Single_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::_Unique_if&lt; T &gt;</label>
+        <link refid="struct_g_q_c_p_1_1___unique__if"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/memory.hpp" bodystart="40" bodyend="42"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1___unique__if_1a0e06014d672bd9285e03a606df122df4" prot="public" virt="non-virtual"><scope>GQCP::_Unique_if</scope><name>_Single_object</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

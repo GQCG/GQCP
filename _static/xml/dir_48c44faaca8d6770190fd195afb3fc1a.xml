@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_48c44faaca8d6770190fd195afb3fc1a" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid</compoundname>
+    <innerfile refid="_cubic_grid_8hpp">CubicGrid.hpp</innerfile>
+    <innerfile refid="_field_8hpp">Field.hpp</innerfile>
+    <innerfile refid="_weighted_grid_8hpp">WeightedGrid.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_cb50b33af0fa26949cfbf4953da1f9d6" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization</compoundname>
+    <innerfile refid="_base_hessian_modifier_8hpp">BaseHessianModifier.hpp</innerfile>
+    <innerfile refid="_iterative_identities_hessian_modifier_8hpp">IterativeIdentitiesHessianModifier.hpp</innerfile>
+    <innerfile refid="_minimization_environment_8hpp">MinimizationEnvironment.hpp</innerfile>
+    <innerfile refid="_minimizer_8hpp">Minimizer.hpp</innerfile>
+    <innerfile refid="_minimization_2_newton_step_update_8hpp">NewtonStepUpdate.hpp</innerfile>
+    <innerfile refid="_unaltering_hessian_modifier_8hpp">UnalteringHessianModifier.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/"/>
+  </compounddef>
+</doxygen>

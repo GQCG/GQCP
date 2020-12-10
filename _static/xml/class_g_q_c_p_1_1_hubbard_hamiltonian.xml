@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_hubbard_hamiltonian" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::HubbardHamiltonian</compoundname>
+    <includes refid="_hubbard_hamiltonian_8hpp" local="no">HubbardHamiltonian.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::HubbardHamiltonian&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_hubbard_hamiltonian_1a666cbfcf8e88630819f93a6b9bee13bb" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" kindref="member">Scalar</ref> &gt;</type>
+        <definition>HoppingMatrix&lt;Scalar&gt; GQCP::HubbardHamiltonian&lt; _Scalar &gt;::H</definition>
+        <argsstring></argsstring>
+        <name>H</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="43" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hubbard_hamiltonian_1a65992d8e2607b97c087faf98cd734c89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::HubbardHamiltonian&lt; _Scalar &gt;::HubbardHamiltonian</definition>
+        <argsstring>(const HoppingMatrix&lt; Scalar &gt; &amp;H)</argsstring>
+        <name>HubbardHamiltonian</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>H</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <computeroutput><ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian" kindref="compound">HubbardHamiltonian</ref></computeroutput> from a <computeroutput><ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref></computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>H</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Hubbard hopping matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="56" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hubbard_hamiltonian_1af537667dd48780aafdfb162596ddbf7a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, ScalarRSQOneElectronOperator&lt;double&gt; &gt; GQCP::HubbardHamiltonian&lt; _Scalar &gt;::core</definition>
+        <argsstring>() const</argsstring>
+        <name>core</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The core Hamiltonian (i.e. resulting from the Hubbard hopping operator) as a one-electron operator.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is only available for real scalars. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="70" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="70" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hubbard_hamiltonian_1a709582017c0488f9280ebc8aa9dafe60" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="namespace_g_q_c_p_1a57903db44d132d727d392d3533d1e682" kindref="member">ScalarRSQTwoElectronOperator</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, ScalarRSQTwoElectronOperator&lt;double&gt; &gt; GQCP::HubbardHamiltonian&lt; _Scalar &gt;::twoElectron</definition>
+        <argsstring>() const</argsstring>
+        <name>twoElectron</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is only available for real scalars. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="97" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="97" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hubbard_hamiltonian_1a67eb1916701002d94178b67ebe943782" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const HoppingMatrix&lt;Scalar&gt;&amp; GQCP::HubbardHamiltonian&lt; _Scalar &gt;::hoppingMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>hoppingMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The Hubbard hopping matrix for this Hubbard model Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="114" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hubbard_hamiltonian_1a33c4b3b4d0aca6159b67495008e7301b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::HubbardHamiltonian&lt; _Scalar &gt;::numberOfLatticeSites</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfLatticeSites</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of lattice sites corresponding used in this Hubbard model Hamiltonian </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="124" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="124" bodyend="124"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The Hubbard model Hamiltonian.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type for a hopping matrix element. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::HubbardHamiltonian&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_hubbard_hamiltonian"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp" bodystart="35" bodyend="125"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1af537667dd48780aafdfb162596ddbf7a" prot="public" virt="non-virtual"><scope>GQCP::HubbardHamiltonian</scope><name>core</name></member>
+      <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1a666cbfcf8e88630819f93a6b9bee13bb" prot="private" virt="non-virtual"><scope>GQCP::HubbardHamiltonian</scope><name>H</name></member>
+      <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1a67eb1916701002d94178b67ebe943782" prot="public" virt="non-virtual"><scope>GQCP::HubbardHamiltonian</scope><name>hoppingMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1a65992d8e2607b97c087faf98cd734c89" prot="public" virt="non-virtual"><scope>GQCP::HubbardHamiltonian</scope><name>HubbardHamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1a33c4b3b4d0aca6159b67495008e7301b" prot="public" virt="non-virtual"><scope>GQCP::HubbardHamiltonian</scope><name>numberOfLatticeSites</name></member>
+      <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" prot="public" virt="non-virtual"><scope>GQCP::HubbardHamiltonian</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1a709582017c0488f9280ebc8aa9dafe60" prot="public" virt="non-virtual"><scope>GQCP::HubbardHamiltonian</scope><name>twoElectron</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

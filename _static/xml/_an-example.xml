@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_an-example" kind="example">
+    <compoundname>An</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Partition a positive integer into its partitions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the integer whose partitions are sought </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the partition size</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a vector of the k-sized partitions</para>
+</simplesect>
+examples of a 3-way partitions of &apos;2&apos; is: {2, 0, 0} - {1, 1, 0} - {1, 0, 1} - {0, 2, 0} - {0, 1, 1} - {0, 0, 2} <programlisting filename="An"></programlisting> </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

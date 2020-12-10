@@ -1,0 +1,1552 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::QCModel::UHF</compoundname>
+    <includes refid="_q_c_model_2_h_f_2_u_h_f_8hpp" local="no">UHF.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::QCModel::UHF&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aae8701346dad59aca9376b2325c6e7c0" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; size_t &gt;</type>
+        <definition>SpinResolved&lt;size_t&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="52" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a39b17ad2e8f41adb65ef303394b0fefa" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::orbital_energies_alpha</definition>
+        <argsstring></argsstring>
+        <name>orbital_energies_alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="54" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aadfb544cd1effd1a083e17ad95e4ee59" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::orbital_energies_beta</definition>
+        <argsstring></argsstring>
+        <name>orbital_energies_beta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="55" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aa6b6d1c5171e7d69bd308d438bcdc934" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>UTransformation&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::C</definition>
+        <argsstring></argsstring>
+        <name>C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="58" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a29caa3e69d76adcfe02f045a8e7fcb37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCModel::UHF&lt; _Scalar &gt;::UHF</definition>
+        <argsstring>(const size_t N_alpha, const size_t N_beta, const VectorX&lt; double &gt; &amp;orbital_energies_alpha, const VectorX&lt; double &gt; &amp;orbital_energies_beta, const UTransformation&lt; Scalar &gt; &amp;C)</argsstring>
+        <name>UHF</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N_alpha</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_beta</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>orbital_energies_alpha</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>orbital_energies_beta</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A basic constructor that sets all the properties.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of alpha electrons </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of beta electrons </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_energies_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital energies for the alpha-spin-orbitals, sorted by ascending energy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_energies_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital energies for the beta-spin-orbitals, sorted by ascending energy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation between the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs and the atomic spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="75" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="75" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7accee8aa0875ec408b94c25b3379398" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCModel::UHF&lt; _Scalar &gt;::UHF</definition>
+        <argsstring>(const size_t N_alpha, const size_t N_beta, const UTransformation&lt; Scalar &gt; &amp;C)</argsstring>
+        <name>UHF</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N_alpha</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_beta</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A constructor that initializes the orbital energies to zeros.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of alpha electrons </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of beta electrons </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_energies_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital energies for the alpha-spin-orbitals, sorted by ascending energy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_energies_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the orbital energies for the beta-spin-orbitals, sorted by ascending energy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation between the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs and the atomic spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="112" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="112" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a149ea8d33bfc1652ebe95ce157b2f2ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCModel::UHF&lt; _Scalar &gt;::UHF</definition>
+        <argsstring>(const GQCP::QCModel::RHF&lt; Scalar &gt; &amp;rhf_model)</argsstring>
+        <name>UHF</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">GQCP::QCModel::RHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>rhf_model</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert an <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> wave function model to an <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> wave function model.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhf_model</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> wave function model </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="125" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="125" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6145ccdc3e1c697c9ee33e9f2d640c2a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SpinResolved1DM&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateOrthonormalBasis1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateOrthonormalBasis1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The (spin-resolved) <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 1-DM expressed in an orthonormal spin-orbital basis for these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="407" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="407" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1abbec73d25bdc19afa2663dbf7f901977" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SpinResolved2DM&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateOrthonormalBasis2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateOrthonormalBasis2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The (spin-resolved) <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 2-DM expressed in an orthonormal spin-orbital basis for these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters.</para>
+</simplesect>
+<simplesect kind="note"><para>We assume that the total number of alpha and beta orbitals is the same. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="423" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="423" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a983dff445ed9047b327b8cf8e5759800" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SpinResolved1DM&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateScalarBasis1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateScalarBasis1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The spin resolved <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 1-DM expressed in the underlying scalar basis for these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="436" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="436" bodyend="446"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a84db800972f82b1b576cca0a6add6608" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::Matrix&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateMixedSpinConservedAComponent</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const</argsstring>
+        <name>calculateMixedSpinConservedAComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma_bar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a mixed-spin component of the spin-conserved stability matrix A&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: A&apos;_I(sigma)A(sigma)J(sigma_bar)B(sigma_bar) = (A(sigma)I(sigma)|J(sigma_bar)B(sigma_bar)).</para>
+</simplesect>
+<simplesect kind="note"><para>Sigma_bar = alpha if sigma is beta and vice versa.</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-conserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-sigma component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma_bar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component, opposite to sigma.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The mixed spin sigma component of stability matrix A&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="465" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="465" bodyend="514"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a489a4cbb6c991415c89d5ad5cb87bb63" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::Matrix&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateMixedSpinConservedBComponent</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const</argsstring>
+        <name>calculateMixedSpinConservedBComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma_bar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a mixed-spin component of the spin-conserved stability matrix B&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: B&apos;_I(sigma)A(sigma)J(sigma_bar)B(sigma_bar) = (A(sigma)I(sigma)|B(sigma_bar)J(sigma_bar)).</para>
+</simplesect>
+<simplesect kind="note"><para>Sigma_bar = alpha if sigma is beta and vice versa.</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-conserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-sigma component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma_bar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component, opposite to sigma.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The mixed spin sigma component of stability matrix B&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="533" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="533" bodyend="582"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6cd586a84cfc3090c70d91bed87e7669" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::Matrix&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculatePureSpinConservedAComponent</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian, const Spin sigma) const</argsstring>
+        <name>calculatePureSpinConservedAComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a pure-spin component of the spin-conserved stability matrix A&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: A&apos;_I(sigma)A(sigma)J(sigma)B(sigma) = \delta_I(sigma)J(sigma) * F_B(sigma)A(sigma) - \delta_B(sigma)A(sigma) * F_I(sigma)J(sigma) + (A(sigma)I(sigma)||J(sigma)B(sigma)).</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-conserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-sigma component. This method creates a pure spin component, so all sigma&apos;s in the formula are either alpha or beta.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The pure spin sigma component of stability matrix A&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="598" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="598" bodyend="642"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad5b2d24aadaabff3c4a01aa06438ab2b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::Matrix&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculatePureSpinConservedBComponent</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian, const Spin sigma) const</argsstring>
+        <name>calculatePureSpinConservedBComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a pure-spin component of the spin-conserved stability matrix B&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: B&apos;_I(sigma)A(sigma)J(sigma)B(sigma) = (A(sigma)I(sigma)||B(sigma)J(sigma)).</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-conserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-sigma component. This method creates a pure spin component, so all sigma&apos;s in the formula are either alpha or beta.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The pure spin sigma component of stability matrix B&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="658" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="658" bodyend="691"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad037d2959319abda31b2bd81a21837b3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateSpinConservedA</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian) const</argsstring>
+        <name>calculateSpinConservedA</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the complete spin-conserved stability matrix A&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: A&apos; = (A&apos;_aaaa A&apos;_aabb) (A&apos;_bbaa A&apos;_bbbb).</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-conserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The complete stability matrix A&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="707" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="707" bodyend="732"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a4afcd6d2314d8686c1006c2a3cf86670" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateSpinConservedB</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian) const</argsstring>
+        <name>calculateSpinConservedB</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the complete spin-conserved stability matrix B&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: B&apos; = (B&apos;_aaaa B&apos;_aabb) (B&apos;_bbaa B&apos;_bbbb).</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-conserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The complete stability matrix B&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="748" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="748" bodyend="773"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ab4110a91d2fad1c2513ab1907f67e65e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::Matrix&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateSpinUnconservedAComponent</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const</argsstring>
+        <name>calculateSpinUnconservedAComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma_bar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a component of the spin-unconserved stability matrix A&apos;&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: A&apos;&apos;_I(sigma)A(sigma_bar)J(sigma)B(sigma_bar) = \delta_I(sigma)J(sigma) * F_B(sigma_bar)A(sigma_bar) - \delta_B(sigma_bar)A(sigma_bar) * F_I(sigma)J(sigma) - (A(sigma_bar)B(sigma_bar)|J(sigma)I(sigma)).</para>
+</simplesect>
+<simplesect kind="note"><para>Sigma_bar = alpha if sigma is beta and vice versa.</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-unconserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-sigma component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma_bar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component, opposite to sigma.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A component of stability matrix A&apos;&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.</para>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="792" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="792" bodyend="859"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a4cc124e0b340071251f88aff128ce9a5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::Matrix&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateSpinUnconservedBComponent</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const</argsstring>
+        <name>calculateSpinUnconservedBComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma_bar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a component of the spin-unconserved stability matrix B&apos;&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: B&apos;&apos;_I(sigma)A(sigma_bar)J(sigma_bar)B(sigma) = - (A(sigma_bar)J(sigma_bar)|B(sigma)I(sigma)).</para>
+</simplesect>
+<simplesect kind="note"><para>Sigma_bar = alpha if sigma is beta and vice versa.</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-unconserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-sigma component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma_bar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin component, opposite to sigma.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A component of stability matrix B&apos;&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="878" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="878" bodyend="928"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a750b9e5e34b9da895fe5e73f67ba3c1d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateSpinUnconservedA</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian) const</argsstring>
+        <name>calculateSpinUnconservedA</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the complete spin-unconserved stability matrix A&apos;&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: A&apos;&apos; = (A&apos;&apos;_abab 0 ) ( 0 A&apos;&apos;_baba).</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-unconserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The complete stability matrix A&apos;&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="944" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="944" bodyend="971"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a4e0e85f46fa1345abd149922c0f042ea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::MatrixX&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateSpinUnconservedB</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian) const</argsstring>
+        <name>calculateSpinUnconservedB</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct the complete spin-unconserved stability matrix B&apos;&apos;.</para>
+<para><simplesect kind="note"><para>The formula for this component is as follows: B&apos;&apos; = ( 0 B&apos;&apos;_abba) (B&apos;&apos;_baab 0 ).</para>
+</simplesect>
+<simplesect kind="note"><para>The name <computeroutput>Spin-unconserved</computeroutput>comes from the article &quot;Constraints and stability in Hartree-Fock theory&quot; by Seeger, R. and Pople J.A. (<ulink url="https://doi.org/10.1063/1.434318">https://doi.org/10.1063/1.434318</ulink>).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The complete stability matrix B&apos;&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="987" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="987" bodyend="1014"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a278630d7625fef1ee68835971eee43bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>UHFStabilityMatrices&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>UHFStabilityMatrices&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateStabilityMatrices</definition>
+        <argsstring>(const USQHamiltonian&lt; Scalar &gt; &amp;usq_hamiltonian) const</argsstring>
+        <name>calculateStabilityMatrices</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>usq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> stability matrices and return them.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second quantized Hamiltonian, expressed in the orthonormal, &apos;unrestricted&apos; spin orbital basis of the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs, which contains the necessary two-electron operators.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> stability matrices. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1024" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1024" bodyend="1027"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1ffef152842a933cad1f24e350e7a0b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>SpinResolved&lt;GQCP::MatrixX&lt;Scalar&gt; &gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::excitationEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>excitationEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-sigma component.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A matrix containing all the possible excitation energies of the wavefunction model, belonging to a certain spin component.</para>
+</simplesect>
+<simplesect kind="note"><para>The rows are determined by the number of virtual sigma orbitals, the columns by the number of occupied sigma orbitals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1038" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1038" bodyend="1068"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a384de2704664e8a2597ca859150c0c57" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const UTransformation&lt;Scalar&gt;&amp; GQCP::QCModel::UHF&lt; _Scalar &gt;::expansion</definition>
+        <argsstring>() const</argsstring>
+        <name>expansion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The transformation that expresses the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs in terms of the underlying AOs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1074" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1074" bodyend="1074"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad8831a061aa0fdb4b09689f3947fa814" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; size_t &gt;</type>
+        <definition>SpinResolved&lt;size_t&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::numberOfElectrons</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfElectrons</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of alpha and beta electrons that these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters describe, i.e. the number of occupied alpha- &amp; beta-spin-orbitals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1080" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1080" bodyend="1080"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7dc72c9793142dd8329fb2092cef37bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::UHF&lt; _Scalar &gt;::numberOfSpinOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfSpinOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the total number of spin-orbitals that these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters describe </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1086" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1086" bodyend="1089"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae9ea834e051059018203fba5ccc4c05e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCModel::UHF&lt; _Scalar &gt;::numberOfSpinOrbitals</definition>
+        <argsstring>(const Spin sigma) const</argsstring>
+        <name>numberOfSpinOrbitals</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>alpha or beta</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the number of sigma spin-orbitals that these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters describe </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1097" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1097" bodyend="1099"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1a6bcd60faad3d926e04bf69399fd2d5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; std::vector&lt; double &gt; &gt;</type>
+        <definition>SpinResolved&lt;std::vector&lt;double&gt; &gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::occupiedOrbitalEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>occupiedOrbitalEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The alpha or beta spin component.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The orbital energies belonging to the occupied orbitals of spin component sigma. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1107" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1107" bodyend="1134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a8a40121baf99bfc95b852da7fc516c89" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &gt;</type>
+        <definition>const SpinResolved&lt;VectorX&lt;double&gt; &gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::orbitalEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>orbitalEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The orbital energies of the alpha and beta orbitals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1140" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1140" bodyend="1140"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a76068b80c899b821548b7886bb23580d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_orbital_space" kindref="compound">SpinResolvedOrbitalSpace</ref></type>
+        <definition>SpinResolvedOrbitalSpace GQCP::QCModel::UHF&lt; _Scalar &gt;::orbitalSpace</definition>
+        <argsstring>() const</argsstring>
+        <name>orbitalSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The implicit alpha and beta occupied-virtual orbital spaces that are associated to these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1146" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1146" bodyend="1147"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6a63d3b6cf6eed04f8bf2495bde197b9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::spinOrbitalEnergiesBlocked</definition>
+        <argsstring>() const</argsstring>
+        <name>spinOrbitalEnergiesBlocked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1153" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1153" bodyend="1160"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a8e9dfcd62e4d1272b1e31df9f3cfff6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; std::vector&lt; double &gt; &gt;</type>
+        <definition>SpinResolved&lt;std::vector&lt;double&gt; &gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::virtualOrbitalEnergies</definition>
+        <argsstring>() const</argsstring>
+        <name>virtualOrbitalEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The alpha or beta spin component.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The orbital energies belonging to the virtual orbitals of spin component sigma. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1168" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1168" bodyend="1194"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1acda67b7591d0cb36c58c89ae718c289c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateElectronicEnergy</definition>
+        <argsstring>(const SpinResolved1DMComponent&lt; Scalar &gt; &amp;P_sigma, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;H_core_sigma, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;F_sigma)</argsstring>
+        <name>calculateElectronicEnergy</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>P_sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>H_core_sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>F_sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>P_sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spin-sigma density matrix in a scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>H_core_sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spin-sigma core Hamiltonian expressed in the same scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>F_sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spin-sigma Fock matrix in the same scalar basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> electronic energy for the sigma electrons </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="142" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="142" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1d4af354d02d32153fb0f28e2661f873" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static SquareMatrix&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateError</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;F_sigma, const SpinResolved1DMComponent&lt; Scalar &gt; &amp;D_sigma, const SquareMatrix&lt; Scalar &gt; &amp;S)</argsstring>
+        <name>calculateError</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>F_sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>D_sigma</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>F_sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the sigma-spin Fock matrix expressed in the AO basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>D_sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the sigma-spin density matrix in the AO basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the overlap matrix of the AO basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the sigma-spin error matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="168" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="168" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad9c0c78206d11404f885217dffbf3f4a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static SpinResolved1DM&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateOrthonormalBasis1DM</definition>
+        <argsstring>(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b)</argsstring>
+        <name>calculateOrthonormalBasis1DM</name>
+        <param>
+          <type>const size_t</type>
+          <declname>K_a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K_b</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate and return the (spin-resolved) <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 1-DM in an orthonormal spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K_a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of spatial orbitals for the alpha spin component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K_b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of spatial orbitals for the beta spin component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of beta electrons, i.e. the number of occupied beta spin-orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 1-DM in an orthonormal spin-orbital basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="183" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="183" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1affbf8ab242f1720396975fd178689679" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static SpinResolved2DM&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateOrthonormalBasis2DM</definition>
+        <argsstring>(const size_t K, const size_t N_a, const size_t N_b)</argsstring>
+        <name>calculateOrthonormalBasis2DM</name>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate and return the (spin-resolved) <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 2-DM in an orthonormal spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of spatial orbitals for the alpha and beta spin components. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of beta electrons, i.e. the number of occupied beta spin-orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 2-DM in an orthonormal spin-orbital basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="211" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="211" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aac71310a237c53ac4b08ad4b162d500a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static SpinResolved1DM&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateScalarBasis1DM</definition>
+        <argsstring>(const UTransformation&lt; Scalar &gt; &amp;C, const size_t N_a, const size_t N_b)</argsstring>
+        <name>calculateScalarBasis1DM</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 1-DM expressed in the underlying scalar basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation between the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> MOs and the atomic spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of beta electrons, i.e. the number of occupied beta spin-orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> 1-DM expressed in the underlying scalar basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="294" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="294" bodyend="302"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1abf606c860c37b7e21c1a4863ab37a7e9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a0f84799c58b7a75a614bc2de9deb9dda" kindref="member">ScalarUSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ScalarUSQOneElectronOperator&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateScalarBasisDirectMatrix</definition>
+        <argsstring>(const SpinResolved1DM&lt; Scalar &gt; &amp;P, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian)</argsstring>
+        <name>calculateScalarBasisDirectMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> direct (Coulomb) matrix for spin sigma.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>P_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> alpha density matrix expressed in the underlying scalar orbital basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>P_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> beta density matrix expressed in the (same) underlying scalar orbital basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in the (same) underlying scalar orbital basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> direct (Coulomb) matrix for spin sigma </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="314" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="314" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aa349056626205fc644c39025b77676e5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a0f84799c58b7a75a614bc2de9deb9dda" kindref="member">ScalarUSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ScalarUSQOneElectronOperator&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateScalarBasisExchangeMatrix</definition>
+        <argsstring>(const SpinResolved1DM&lt; Scalar &gt; &amp;P, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian)</argsstring>
+        <name>calculateScalarBasisExchangeMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> exchange matrix for spin sigma.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>P_sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> sigma density matrix expressed in the underlying scalar orbital basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in the (same) underlying scalar orbital basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> direct (Coulomb) matrix for spin sigma </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="339" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="339" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad436c94e6ef0136135f1e67c3908c018" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a0f84799c58b7a75a614bc2de9deb9dda" kindref="member">ScalarUSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ScalarUSQOneElectronOperator&lt;Scalar&gt; GQCP::QCModel::UHF&lt; _Scalar &gt;::calculateScalarBasisFockMatrix</definition>
+        <argsstring>(const SpinResolved1DM&lt; Scalar &gt; &amp;P, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian)</argsstring>
+        <name>calculateScalarBasisFockMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> density matrix in a scalar basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Hamiltonian expressed in the same scalar basis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> Fock matrix expressed in the scalar basis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="361" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="361" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ade463214e0cab998c0075412c63f0312" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved_orbital_space" kindref="compound">SpinResolvedOrbitalSpace</ref></type>
+        <definition>static SpinResolvedOrbitalSpace GQCP::QCModel::UHF&lt; _Scalar &gt;::orbitalSpace</definition>
+        <argsstring>(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b)</argsstring>
+        <name>orbitalSpace</name>
+        <param>
+          <type>const size_t</type>
+          <declname>K_a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K_b</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_a</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K_a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha spatial orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K_b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of beta spatial orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha electrons. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of beta electrons.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space for both the alpha and beta components that corresponds to these <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">UHF</ref> model parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="391" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="391" bodyend="397"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The unrestricted Hartree-Fock wave function model.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of the coefficients in the coefficient matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::QCModel::UHF&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="45" bodyend="1195"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aa6b6d1c5171e7d69bd308d438bcdc934" prot="private" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1acda67b7591d0cb36c58c89ae718c289c" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateElectronicEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1d4af354d02d32153fb0f28e2661f873" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateError</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a84db800972f82b1b576cca0a6add6608" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateMixedSpinConservedAComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a489a4cbb6c991415c89d5ad5cb87bb63" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateMixedSpinConservedBComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad9c0c78206d11404f885217dffbf3f4a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateOrthonormalBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6145ccdc3e1c697c9ee33e9f2d640c2a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateOrthonormalBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1affbf8ab242f1720396975fd178689679" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateOrthonormalBasis2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1abbec73d25bdc19afa2663dbf7f901977" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateOrthonormalBasis2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6cd586a84cfc3090c70d91bed87e7669" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculatePureSpinConservedAComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad5b2d24aadaabff3c4a01aa06438ab2b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculatePureSpinConservedBComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aac71310a237c53ac4b08ad4b162d500a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateScalarBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a983dff445ed9047b327b8cf8e5759800" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateScalarBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1abf606c860c37b7e21c1a4863ab37a7e9" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateScalarBasisDirectMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aa349056626205fc644c39025b77676e5" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateScalarBasisExchangeMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad436c94e6ef0136135f1e67c3908c018" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateScalarBasisFockMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad037d2959319abda31b2bd81a21837b3" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateSpinConservedA</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a4afcd6d2314d8686c1006c2a3cf86670" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateSpinConservedB</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a750b9e5e34b9da895fe5e73f67ba3c1d" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateSpinUnconservedA</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ab4110a91d2fad1c2513ab1907f67e65e" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateSpinUnconservedAComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a4e0e85f46fa1345abd149922c0f042ea" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateSpinUnconservedB</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a4cc124e0b340071251f88aff128ce9a5" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateSpinUnconservedBComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a278630d7625fef1ee68835971eee43bf" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateStabilityMatrices</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1ffef152842a933cad1f24e350e7a0b8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>excitationEnergies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a384de2704664e8a2597ca859150c0c57" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>expansion</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aae8701346dad59aca9376b2325c6e7c0" prot="private" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>N</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad8831a061aa0fdb4b09689f3947fa814" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>numberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7dc72c9793142dd8329fb2092cef37bf" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>numberOfSpinOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae9ea834e051059018203fba5ccc4c05e" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>numberOfSpinOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1a6bcd60faad3d926e04bf69399fd2d5" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>occupiedOrbitalEnergies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a39b17ad2e8f41adb65ef303394b0fefa" prot="private" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>orbital_energies_alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aadfb544cd1effd1a083e17ad95e4ee59" prot="private" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>orbital_energies_beta</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a8a40121baf99bfc95b852da7fc516c89" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>orbitalEnergies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ade463214e0cab998c0075412c63f0312" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>orbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a76068b80c899b821548b7886bb23580d" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>orbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6a63d3b6cf6eed04f8bf2495bde197b9" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>spinOrbitalEnergiesBlocked</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a29caa3e69d76adcfe02f045a8e7fcb37" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>UHF</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7accee8aa0875ec408b94c25b3379398" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>UHF</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a149ea8d33bfc1652ebe95ce157b2f2ce" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>UHF</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a8e9dfcd62e4d1272b1e31df9f3cfff6f" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>virtualOrbitalEnergies</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

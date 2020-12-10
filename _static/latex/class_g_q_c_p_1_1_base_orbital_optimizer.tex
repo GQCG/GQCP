@@ -1,0 +1,182 @@
+\hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer}{}\doxysection{G\+Q\+CP\+::Base\+Orbital\+Optimizer Class Reference}
+\label{class_g_q_c_p_1_1_base_orbital_optimizer}\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+
+
+{\ttfamily \#include $<$Base\+Orbital\+Optimizer.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Base\+Orbital\+Optimizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_base_orbital_optimizer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Base\+Orbital\+Optimizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_g_q_c_p_1_1_base_orbital_optimizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_acdc1b258aaac1e14f003163d19cee2c0}{Base\+Orbital\+Optimizer}} (const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a921777ec77da41074b306bab5834454c}{$\sim$\+Base\+Orbital\+Optimizer}} ()=default
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}{calculate\+New\+Rotation\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+\item 
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}{check\+For\+Convergence}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a33b25e7711aaa563cc0f4722152fb2b5}{prepare\+Convergence\+Checking}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian)=0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a053125eead499da4abf2088e75d47353}{number\+Of\+Iterations}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a2242ce4237417d082a387eab633f18b7}{optimize}} (\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&spinor\+\_\+basis, \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a0334372101297cb9e997d3981442439f}{is\+\_\+converged}} = false
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}} = 1.\+0e-\/08
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}} = 128
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a728ec120b0025ec997b6020b7ef588e3}{number\+\_\+of\+\_\+iterations}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The base class for orbital optimizers. Due to the generality of the nature of the orbital optimization problem, the main algorithm (see solve()) is implemented inside this base class 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_acdc1b258aaac1e14f003163d19cee2c0}\label{class_g_q_c_p_1_1_base_orbital_optimizer_acdc1b258aaac1e14f003163d19cee2c0}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!BaseOrbitalOptimizer@{BaseOrbitalOptimizer}}
+\index{BaseOrbitalOptimizer@{BaseOrbitalOptimizer}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{BaseOrbitalOptimizer()}{BaseOrbitalOptimizer()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::\+Base\+Orbital\+Optimizer (\begin{DoxyParamCaption}\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a921777ec77da41074b306bab5834454c}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a921777ec77da41074b306bab5834454c}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!````~BaseOrbitalOptimizer@{$\sim$BaseOrbitalOptimizer}}
+\index{````~BaseOrbitalOptimizer@{$\sim$BaseOrbitalOptimizer}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseOrbitalOptimizer()}{~BaseOrbitalOptimizer()}}
+{\footnotesize\ttfamily virtual G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::$\sim$\+Base\+Orbital\+Optimizer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}\label{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!calculateNewRotationMatrix@{calculateNewRotationMatrix}}
+\index{calculateNewRotationMatrix@{calculateNewRotationMatrix}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{calculateNewRotationMatrix()}{calculateNewRotationMatrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$double$>$ G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::calculate\+New\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ac7e61168011a697ef30a239b899e06c5}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7dff6c1818ec2325b7dcf5bdf9451832}{G\+Q\+C\+P\+::\+Jacobi\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!checkForConvergence@{checkForConvergence}}
+\index{checkForConvergence@{checkForConvergence}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{checkForConvergence()}{checkForConvergence()}}
+{\footnotesize\ttfamily virtual bool G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::check\+For\+Convergence (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the current Hamiltonian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the algorithm is considered to be converged 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ab0623fc9be4cf9c68821c2ea6d012acd}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a613899349c56b102563b2fe8dff886a6}{G\+Q\+C\+P\+::\+Jacobi\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a053125eead499da4abf2088e75d47353}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a053125eead499da4abf2088e75d47353}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!numberOfIterations@{numberOfIterations}}
+\index{numberOfIterations@{numberOfIterations}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{numberOfIterations()}{numberOfIterations()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::number\+Of\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of iterations that this optimizer has performed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a2242ce4237417d082a387eab633f18b7}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a2242ce4237417d082a387eab633f18b7}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!optimize@{optimize}}
+\index{optimize@{optimize}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::optimize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{spinor\+\_\+basis,  }\item[{\mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption})}
+
+Optimize the Hamiltonian by subsequently
+\begin{DoxyItemize}
+\item checking for convergence (see \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}{check\+For\+Convergence()}})
+\item rotating the Hamiltonian (and spinor basis) with a newly found rotation matrix (see \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}{calculate\+New\+Rotation\+Matrix()}})
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em spinor\+\_\+basis} & the initial spinor basis that contains the spinors to be optimized \\
+\hline
+{\em sq\+\_\+hamiltonian} & the initial (guess for the) Hamiltonian \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a33b25e7711aaa563cc0f4722152fb2b5}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a33b25e7711aaa563cc0f4722152fb2b5}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!prepareConvergenceChecking@{prepareConvergenceChecking}}
+\index{prepareConvergenceChecking@{prepareConvergenceChecking}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{prepareConvergenceChecking()}{prepareConvergenceChecking()}}
+{\footnotesize\ttfamily virtual void G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::prepare\+Convergence\+Checking (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Prepare this object (i.\+e. the context for the orbital optimization algorithm) to be able to check for convergence 
+
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a8ea385584daa8b470b2a9bfde1d2712b}{G\+Q\+C\+P\+::\+Newton\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a4ae385438afc93d40d1cbadfa031a48f}{G\+Q\+C\+P\+::\+Jacobi\+Orbital\+Optimizer}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!convergence\_threshold@{convergence\_threshold}}
+\index{convergence\_threshold@{convergence\_threshold}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{convergence\_threshold}{convergence\_threshold}}
+{\footnotesize\ttfamily double G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::convergence\+\_\+threshold = 1.\+0e-\/08\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a0334372101297cb9e997d3981442439f}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a0334372101297cb9e997d3981442439f}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!is\_converged@{is\_converged}}
+\index{is\_converged@{is\_converged}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{is\_converged}{is\_converged}}
+{\footnotesize\ttfamily bool G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::is\+\_\+converged = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}\label{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!maximum\_number\_of\_iterations@{maximum\_number\_of\_iterations}}
+\index{maximum\_number\_of\_iterations@{maximum\_number\_of\_iterations}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{maximum\_number\_of\_iterations}{maximum\_number\_of\_iterations}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::maximum\+\_\+number\+\_\+of\+\_\+iterations = 128\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a728ec120b0025ec997b6020b7ef588e3}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a728ec120b0025ec997b6020b7ef588e3}} 
+\index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!number\_of\_iterations@{number\_of\_iterations}}
+\index{number\_of\_iterations@{number\_of\_iterations}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
+\doxysubsubsection{\texorpdfstring{number\_of\_iterations}{number\_of\_iterations}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Base\+Orbital\+Optimizer\+::number\+\_\+of\+\_\+iterations = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+Orbital\+Optimization/\mbox{\hyperlink{_base_orbital_optimizer_8hpp}{Base\+Orbital\+Optimizer.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Q\+C\+Method/\+Orbital\+Optimization/\mbox{\hyperlink{_base_orbital_optimizer_8cpp}{Base\+Orbital\+Optimizer.\+cpp}}\end{DoxyCompactItemize}

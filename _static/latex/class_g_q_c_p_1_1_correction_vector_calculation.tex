@@ -1,0 +1,89 @@
+\hypertarget{class_g_q_c_p_1_1_correction_vector_calculation}{}\doxysection{G\+Q\+CP\+::Correction\+Vector\+Calculation Class Reference}
+\label{class_g_q_c_p_1_1_correction_vector_calculation}\index{GQCP::CorrectionVectorCalculation@{GQCP::CorrectionVectorCalculation}}
+
+
+{\ttfamily \#include $<$Correction\+Vector\+Calculation.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Correction\+Vector\+Calculation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_correction_vector_calculation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Correction\+Vector\+Calculation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_correction_vector_calculation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation_a48c74231f2206b48ee07077792b2939d}{Correction\+Vector\+Calculation}} (const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1, const double correction\+\_\+threshold=1.\+0e-\/12)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation_a0f61c24b2308938c66b306e4fa410f9e}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation_a120b466e0f888fbdddddc15a311830fd}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A step that calculates correction vectors by solving the residual equations. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_correction_vector_calculation_a48c74231f2206b48ee07077792b2939d}\label{class_g_q_c_p_1_1_correction_vector_calculation_a48c74231f2206b48ee07077792b2939d}} 
+\index{GQCP::CorrectionVectorCalculation@{GQCP::CorrectionVectorCalculation}!CorrectionVectorCalculation@{CorrectionVectorCalculation}}
+\index{CorrectionVectorCalculation@{CorrectionVectorCalculation}!GQCP::CorrectionVectorCalculation@{GQCP::CorrectionVectorCalculation}}
+\doxysubsubsection{\texorpdfstring{CorrectionVectorCalculation()}{CorrectionVectorCalculation()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Correction\+Vector\+Calculation\+::\+Correction\+Vector\+Calculation (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1},  }\item[{const double}]{correction\+\_\+threshold = {\ttfamily 1.0e-\/12} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+\_\+of\+\_\+requestested\+\_\+eigenpairs} & the number of eigenpairs that should be found by the algorithm \\
+\hline
+{\em correction\+\_\+threshold} & the threshold used in solving the (approximated) residue correction equation \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_correction_vector_calculation_a0f61c24b2308938c66b306e4fa410f9e}\label{class_g_q_c_p_1_1_correction_vector_calculation_a0f61c24b2308938c66b306e4fa410f9e}} 
+\index{GQCP::CorrectionVectorCalculation@{GQCP::CorrectionVectorCalculation}!description@{description}}
+\index{description@{description}!GQCP::CorrectionVectorCalculation@{GQCP::CorrectionVectorCalculation}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Correction\+Vector\+Calculation\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+a textual description of this algorithmic step 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_correction_vector_calculation_a120b466e0f888fbdddddc15a311830fd}\label{class_g_q_c_p_1_1_correction_vector_calculation_a120b466e0f888fbdddddc15a311830fd}} 
+\index{GQCP::CorrectionVectorCalculation@{GQCP::CorrectionVectorCalculation}!execute@{execute}}
+\index{execute@{execute}!GQCP::CorrectionVectorCalculation@{GQCP::CorrectionVectorCalculation}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Correction\+Vector\+Calculation\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate the correction vectors by solving the residual equations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & the environment that acts as a sort of calculation space \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_correction_vector_calculation_8hpp}{Correction\+Vector\+Calculation.\+hpp}}\end{DoxyCompactItemize}

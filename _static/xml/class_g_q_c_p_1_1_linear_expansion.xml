@@ -1,0 +1,995 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_linear_expansion" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::LinearExpansion</compoundname>
+    <includes refid="_linear_expansion_8hpp" local="no">LinearExpansion.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _ONVBasis</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" prot="public" static="no">
+        <type>_ONVBasis</type>
+        <definition>using GQCP::LinearExpansion&lt; _ONVBasis &gt;::ONVBasis =  _ONVBasis</definition>
+        <argsstring></argsstring>
+        <name>ONVBasis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_linear_expansion_1af2892b4c9cef845c3594617237330da3" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></type>
+        <definition>ONVBasis GQCP::LinearExpansion&lt; _ONVBasis &gt;::onv_basis</definition>
+        <argsstring></argsstring>
+        <name>onv_basis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="60" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_linear_expansion_1a15b722a5cc3336f3a034137108070782" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::m_coefficients</definition>
+        <argsstring></argsstring>
+        <name>m_coefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="63" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a52e82dd9a6012ff3c32f3188f490e11b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::LinearExpansion&lt; _ONVBasis &gt;::LinearExpansion</definition>
+        <argsstring>(const ONVBasis &amp;onv_basis, const VectorX&lt; double &gt; &amp;coefficients)</argsstring>
+        <name>LinearExpansion</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>coefficients</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a linear expansion inside the given ONV basis, with corresponding expansion coefficients.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ONV basis with respect to which the coefficients are defined </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coefficients</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The expansion coefficients. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="77" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="77" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a8aeb108a3332e5613d0b59ff035a12f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::LinearExpansion&lt; _ONVBasis &gt;::LinearExpansion</definition>
+        <argsstring>()=default</argsstring>
+        <name>LinearExpansion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="85" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ab91c392f4115f75dac383674522681dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::LinearExpansion&lt; _ONVBasis &gt;::coefficient</definition>
+        <argsstring>(const size_t i) const</argsstring>
+        <name>coefficient</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access a coefficient of the linear expansion.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index (address) of the coefficient that should be obtained.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The i-th expansion coefficient. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="378" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="378" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a15d454c6ec927c95f0aaa65f93d027cd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+        <definition>const VectorX&lt;double&gt;&amp; GQCP::LinearExpansion&lt; _ONVBasis &gt;::coefficients</definition>
+        <argsstring>() const</argsstring>
+        <name>coefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The expansion coefficients of this linear expansion wave function model. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="383" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="383" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1afcdf2d7ccdf24c12011320d98de2f2f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &amp;</type>
+        <definition>const ONVBasis&amp; GQCP::LinearExpansion&lt; _ONVBasis &gt;::onvBasis</definition>
+        <argsstring>() const</argsstring>
+        <name>onvBasis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The ONV basis that is related to this linear expansion wave function model. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="388" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="388" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae0f959f274efeec4108268f63fd81f73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::basisTransform</definition>
+        <argsstring>(const RTransformation&lt; double &gt; &amp;T)</argsstring>
+        <name>basisTransform</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; double &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given basis transformation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation between the old and the new restricted spin-orbital basis.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This method is only available for the full spin-resolved ONV basis. </para>
+</simplesect>
+<simplesect kind="note"><para>This algorithm was implemented from a description in Helgaker2000. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>The transformation of the expansion coefficients is adapted from Helgaker2000, chapter 11.9. For every orbital, a set of correction coefficients will be calculated (Delta C in Helgaker), to update the current coefficients.</para>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="404" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="404" bodyend="572"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aa86b6f1fe33fcdd2ae7309fd2f083b4e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value, G1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculate1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculate1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="585" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="585" bodyend="645"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ac551b8171a320a270b2adfa67cdba863" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, double &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value, double&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateNDMElement</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;bra_indices, const std::vector&lt; size_t &gt; &amp;ket_indices) const</argsstring>
+        <name>calculateNDMElement</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>bra_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>ket_indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate an element of the N-electron density matrix.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bra_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The indices of the orbitals that should be annihilated on the left (on the bra). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ket_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The indices of the orbitals that should be annihilated on the right (on the ket).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An element of the N-DM, as specified by the given bra and ket indices. <computeroutput>calculateNDMElement({0, 1}, {2, 1})</computeroutput> would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: <computeroutput>a^\dagger_0 a^\dagger_1 a_2 a_1</computeroutput>.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is only enabled for linear expansions related to spin-unresolved ONV bases. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="659" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="659" bodyend="732"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a03116cc358fad0dcddd365c8327f7983" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, SpinResolved1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateSpinResolved1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateSpinResolved1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the spin-resolved one-electron density matrix for a full spin-resolved wave function expansion.</para>
+<para><simplesect kind="return"><para>The spin-resolved 1-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="745" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="745" bodyend="856"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1abefcfaaf40b569a3ce1856974d4a739c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, SpinResolved2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateSpinResolved2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateSpinResolved2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the spin-resolved two-electron density matrix for a full spin-resolved wave function expansion.</para>
+<para><simplesect kind="return"><para>The spin-resolved 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="865" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="865" bodyend="1069"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a09d7046bb17f2f5b9341c03b229b7f9d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, Orbital1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculate1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculate1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the one-electron density matrix for a full spin-resolved wave function expansion.</para>
+<para><simplesect kind="return"><para>The orbital (total, spin-summed) 1-DM </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1078" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1078" bodyend="1078"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1acdf053e84e9f1f58e8c81d99218871d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, Orbital2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculate2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculate2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the two-electron density matrix for a full spin-resolved wave function expansion.</para>
+<para><simplesect kind="return"><para>The orbital (total, spin-summed) 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1087" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1087" bodyend="1087"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae5a3c06f9e78433e9a1852f358a9c8c5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SeniorityZeroONVBasis&gt;::value, Orbital1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculate1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculate1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.</para>
+<para><simplesect kind="return"><para>The orbital (total, spin-summed) 1-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1100" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1100" bodyend="1125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a91748f9fe8f0e9414dd904552e4c2184" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SeniorityZeroONVBasis&gt;::value, Orbital2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculate2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculate2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the two-electron density matrix for a seniority-zero wave function expansion.</para>
+<para><simplesect kind="return"><para>The orbital (total, spin-summed) 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1134" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1134" bodyend="1134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a063db549f477c06c1647c2fd32da1676" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SeniorityZeroONVBasis&gt;::value, SpinResolved1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateSpinResolved1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateSpinResolved1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.</para>
+<para><simplesect kind="return"><para>The spin-resolved 1-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1142" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1142" bodyend="1142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a131c1561b2bf514202c7cc92a1c8fcd9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SeniorityZeroONVBasis&gt;::value, SpinResolved2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateSpinResolved2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateSpinResolved2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the spin-resolved two-electron density matrix for a seniority-zero wave function expansion.</para>
+<para><simplesect kind="return"><para>The spin-resolved 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1151" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1151" bodyend="1208"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a534fd8d25045fc6a57b4a72b947b7a8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedSelectedONVBasis&gt;::value, SpinResolved1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateSpinResolved1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateSpinResolved1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the spin-resolved one-electron density matrix for a spin-resolved selected wave function expansion.</para>
+<para><simplesect kind="return"><para>The spin-resolved 1-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1221" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1221" bodyend="1292"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a7a0e1d0f84814472df8d34965d040d01" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedSelectedONVBasis&gt;::value, SpinResolved2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateSpinResolved2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateSpinResolved2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the spin-resolved two-electron density matrix for a spin-resolved selected wave function expansion.</para>
+<para><simplesect kind="return"><para>The spin-resolved 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1301" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1301" bodyend="1524"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1af98af92bf5e21b851e09b7540a1f611f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedSelectedONVBasis&gt;::value, Orbital1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculate1DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculate1DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the one-electron density matrix for a spin-resolved selected wave function expansion.</para>
+<para><simplesect kind="return"><para>The orbital (total, spin-summed) 1-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1533" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1533" bodyend="1533"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a10b0da70f8207fbb802a0f8f19cf64ca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedSelectedONVBasis&gt;::value, Orbital2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculate2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculate2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the two-electron density matrix for a spin-resolved selected wave function expansion.</para>
+<para><simplesect kind="return"><para>The orbital (total, spin-summed) 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1542" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1542" bodyend="1542"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a165ab1f366f554859e1d13eaf32488cf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::LinearExpansion&lt; _ONVBasis &gt;::calculateShannonEntropy</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateShannonEntropy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Entropy <simplesect kind="return"><para>The Shannon entropy (information content) of the wave function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1552" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1552" bodyend="1562"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a8658812e07c00b29e4fe91521a1557cc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, void &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, void&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::forEach</definition>
+        <argsstring>(const std::function&lt; void(const double, const SpinResolvedONV)&gt; &amp;callback) const</argsstring>
+        <name>forEach</name>
+        <param>
+          <type>const std::function&lt; void(const double, const SpinResolvedONV)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1575" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1575" bodyend="1587"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a31abc84daa8f3799c88be8c13896e888" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::LinearExpansion&lt; _ONVBasis &gt;::isApprox</definition>
+        <argsstring>(const LinearExpansion&lt; ONVBasis &gt; &amp;other, double tolerance=1e-10) const</argsstring>
+        <name>isApprox</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolerance</declname>
+          <defval>1e-10</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wave function for the comparison </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolerance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>tolerance for the comparison of coefficients</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if two wave functions are equal within a given tolerance </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1600" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1600" bodyend="1607"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ad7ba5f7d7f01a05389125133c01390c2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &gt;</type>
+        <definition>static LinearExpansion&lt;ONVBasis&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::Constant</definition>
+        <argsstring>(const ONVBasis &amp;onv_basis)</argsstring>
+        <name>Constant</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ONV basis with respect to which the coefficients are defined</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A constant <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="99" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="99" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a31eed6b90d90392547583e356e6771d2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &gt;</type>
+        <definition>static LinearExpansion&lt;ONVBasis&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::HartreeFock</definition>
+        <argsstring>(const ONVBasis &amp;onv_basis)</argsstring>
+        <name>HartreeFock</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a linear expansion that represents the Hartree-Fock wave function.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ONV basis with respect to which the coefficients are defined.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="115" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="115" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a915311fde7ac205d74f41472a6d5f273" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &gt;</type>
+        <definition>static LinearExpansion&lt;ONVBasis&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::Normalized</definition>
+        <argsstring>(const ONVBasis &amp;onv_basis, const VectorX&lt; double &gt; &amp;coefficients)</argsstring>
+        <name>Normalized</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
+          <declname>coefficients</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a normalized linear expansion inside a given ONV basis with possibly non-normalized coefficients.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ONV basis with respect to which the coefficients are defined. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coefficients</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the expansion coefficients</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A normalized <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="131" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="131" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1adee6d93d12a03bc5407b7fdc378ba8c0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &gt;</type>
+        <definition>static LinearExpansion&lt;ONVBasis&gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::Random</definition>
+        <argsstring>(const ONVBasis &amp;onv_basis)</argsstring>
+        <name>Random</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref> &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ONV basis with respect to which the coefficients are defined</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A random <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="146" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="146" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4bdb98135b0f9c49679f1849fe5e25f3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; Z &gt; &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, SpinResolvedSelectedONVBasis&gt;::value, LinearExpansion&lt;Z&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::FromGAMESSUS</definition>
+        <argsstring>(const std::string &amp;GAMESSUS_filename)</argsstring>
+        <name>FromGAMESSUS</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>GAMESSUS_filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a linear expansion by reading in a GAMESS-US file.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>GAMESSUS_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the GAMESS-US file that contains the spin-resolved selected wave function expansion.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The corresponding spin-resolved selected linear expansion from a given GAMESS-US file </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="163" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="163" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a2919b1b75dea60dabdb343b36545e581" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; Z &gt; &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, LinearExpansion&lt;Z&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::FromONVProjection</definition>
+        <argsstring>(const SpinResolvedONV &amp;onv, const RSpinOrbitalBasis&lt; double, GTOShell &gt; &amp;r_spinor_basis, const USpinOrbitalBasis&lt; double, GTOShell &gt; &amp;u_spinor_basis)</argsstring>
+        <name>FromONVProjection</name>
+        <param>
+          <type>const SpinResolvedONV &amp;</type>
+          <declname>onv</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>r_spinor_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kindref="compound">USpinOrbitalBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>u_spinor_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create the linear expansion of the given spin-resolved ONV that is expressed in the given <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kindref="compound">USpinOrbitalBasis</ref>, by projection onto the spin-resolved ONVs expressed with respect to the given <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r_spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u_spinor_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unrestricted spin-orbital basis against which the given ONV is expressed.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A linear expansion inside a spin-resolved ONV basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="279" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="279" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aa6f8e2d7f7c0e3f448482651ca19f350" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; Z &gt; &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value, LinearExpansion&lt;Z&gt; &gt; GQCP::LinearExpansion&lt; _ONVBasis &gt;::FromONVProjection</definition>
+        <argsstring>(const SpinUnresolvedONV &amp;onv_of, const GSpinorBasis&lt; double, GTOShell &gt; &amp;spinor_basis_on, const GSpinorBasis&lt; double, GTOShell &gt; &amp;spinor_basis_of)</argsstring>
+        <name>FromONVProjection</name>
+        <param>
+          <type>const SpinUnresolvedONV &amp;</type>
+          <declname>onv_of</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>spinor_basis_on</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>spinor_basis_of</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create the linear expansion of the given spin-unresolved ONV that is expressed in the given <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>, by projection onto the spin-resolved ONVs expressed with respect to another given <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_of</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A spin-unresolved ONV expressed with respect to a general spinor basis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spinor_basis_on</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The general spinor basis that is used to define the resulting linear expansion of ONVs against. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spinor_basis_of</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The general spinor basis against which the given ONV is expressed.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A linear expansion inside a spin-unresolved ONV basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="332" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="332" bodyend="364"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that represents a linear expansion inside an ONV basis.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_ONVBasis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of ONV basis. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::LinearExpansion&lt; _ONVBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_linear_expansion"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="52" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="52" bodyend="1608"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ae0f959f274efeec4108268f63fd81f73" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>basisTransform</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1aa86b6f1fe33fcdd2ae7309fd2f083b4e" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a09d7046bb17f2f5b9341c03b229b7f9d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ae5a3c06f9e78433e9a1852f358a9c8c5" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1af98af92bf5e21b851e09b7540a1f611f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1acdf053e84e9f1f58e8c81d99218871d4" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a91748f9fe8f0e9414dd904552e4c2184" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a10b0da70f8207fbb802a0f8f19cf64ca" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ac551b8171a320a270b2adfa67cdba863" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateNDMElement</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a165ab1f366f554859e1d13eaf32488cf" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateShannonEntropy</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a03116cc358fad0dcddd365c8327f7983" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a063db549f477c06c1647c2fd32da1676" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a534fd8d25045fc6a57b4a72b947b7a8b" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1abefcfaaf40b569a3ce1856974d4a739c" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a131c1561b2bf514202c7cc92a1c8fcd9" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a7a0e1d0f84814472df8d34965d040d01" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ab91c392f4115f75dac383674522681dc" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficient</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a15d454c6ec927c95f0aaa65f93d027cd" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ad7ba5f7d7f01a05389125133c01390c2" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Constant</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a8658812e07c00b29e4fe91521a1557cc" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>forEach</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a4bdb98135b0f9c49679f1849fe5e25f3" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromGAMESSUS</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a2919b1b75dea60dabdb343b36545e581" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1aa6f8e2d7f7c0e3f448482651ca19f350" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a31eed6b90d90392547583e356e6771d2" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>HartreeFock</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a31abc84daa8f3799c88be8c13896e888" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>isApprox</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a52e82dd9a6012ff3c32f3188f490e11b" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>LinearExpansion</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a8aeb108a3332e5613d0b59ff035a12f3" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>LinearExpansion</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a15b722a5cc3336f3a034137108070782" prot="private" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>m_coefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a915311fde7ac205d74f41472a6d5f273" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Normalized</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1af2892b4c9cef845c3594617237330da3" prot="private" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>onv_basis</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1afcdf2d7ccdf24c12011320d98de2f2f7" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>onvBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>ONVBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1adee6d93d12a03bc5407b7fdc378ba8c0" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Random</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

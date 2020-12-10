@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1units_1_1constants" kind="namespace" language="C++">
+    <compoundname>GQCP::units::constants</compoundname>
+    <innerclass refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014" prot="public">GQCP::units::constants::CODATA2014</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/units.hpp" line="25" column="1"/>
+  </compounddef>
+</doxygen>

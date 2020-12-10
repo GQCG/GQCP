@@ -1,0 +1,97 @@
+\hypertarget{class_g_q_c_p_1_1_r_h_f_electrical_response_solver}{}\doxysection{G\+Q\+CP\+::R\+H\+F\+Electrical\+Response\+Solver Class Reference}
+\label{class_g_q_c_p_1_1_r_h_f_electrical_response_solver}\index{GQCP::RHFElectricalResponseSolver@{GQCP::RHFElectricalResponseSolver}}
+
+
+{\ttfamily \#include $<$R\+H\+F\+Electrical\+Response\+Solver.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::R\+H\+F\+Electrical\+Response\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_r_h_f_electrical_response_solver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::R\+H\+F\+Electrical\+Response\+Solver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_g_q_c_p_1_1_r_h_f_electrical_response_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ab56617d25b917624f838da5f43966981}{R\+H\+F\+Electrical\+Response\+Solver}} (const size\+\_\+t N\+\_\+P)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ae4f6dd9e92efdd47486d432c293caf4c}{calculate\+Parameter\+Response\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_a80e820835840cd28d179b7cf25403e7f}{calculate\+Parameter\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ \&dipole\+\_\+op) const override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that is able to solve the electrical C\+P\+H\+F-\/equations for R\+HF 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ab56617d25b917624f838da5f43966981}\label{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ab56617d25b917624f838da5f43966981}} 
+\index{GQCP::RHFElectricalResponseSolver@{GQCP::RHFElectricalResponseSolver}!RHFElectricalResponseSolver@{RHFElectricalResponseSolver}}
+\index{RHFElectricalResponseSolver@{RHFElectricalResponseSolver}!GQCP::RHFElectricalResponseSolver@{GQCP::RHFElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{RHFElectricalResponseSolver()}{RHFElectricalResponseSolver()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+R\+H\+F\+Electrical\+Response\+Solver\+::\+R\+H\+F\+Electrical\+Response\+Solver (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{N\+\_\+P }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em N\+\_\+P} & the number of electron pairs \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ae4f6dd9e92efdd47486d432c293caf4c}\label{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ae4f6dd9e92efdd47486d432c293caf4c}} 
+\index{GQCP::RHFElectricalResponseSolver@{GQCP::RHFElectricalResponseSolver}!calculateParameterResponseConstant@{calculateParameterResponseConstant}}
+\index{calculateParameterResponseConstant@{calculateParameterResponseConstant}!GQCP::RHFElectricalResponseSolver@{GQCP::RHFElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateParameterResponseConstant()}{calculateParameterResponseConstant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ G\+Q\+C\+P\+::\+R\+H\+F\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{R\+S\+Q\+Hamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian parameters\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parameter response constant (k\+\_\+p), i.\+e. the second-\/order parameter partial derivative of the R\+HF energy function 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}{G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_a80e820835840cd28d179b7cf25403e7f}\label{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_a80e820835840cd28d179b7cf25403e7f}} 
+\index{GQCP::RHFElectricalResponseSolver@{GQCP::RHFElectricalResponseSolver}!calculateParameterResponseForce@{calculateParameterResponseForce}}
+\index{calculateParameterResponseForce@{calculateParameterResponseForce}!GQCP::RHFElectricalResponseSolver@{GQCP::RHFElectricalResponseSolver}}
+\doxysubsubsection{\texorpdfstring{calculateParameterResponseForce()}{calculateParameterResponseForce()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ G\+Q\+C\+P\+::\+R\+H\+F\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+R\+S\+Q\+One\+Electron\+Operator}}$<$ double $>$ \&}]{dipole\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dipole\+\_\+op} & the dipole integrals expressed in an orthonormal orbital basis\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parameter response force (F\+\_\+p) as an (Nx3)-\/matrix, i.\+e. the first-\/order parameter partial derivative of the perturbation derivative of the R\+HF energy function 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}{G\+Q\+C\+P\+::\+Base\+Electrical\+Response\+Solver}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Processing/\+Properties/\mbox{\hyperlink{_r_h_f_electrical_response_solver_8hpp}{R\+H\+F\+Electrical\+Response\+Solver.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Processing/\+Properties/\mbox{\hyperlink{_r_h_f_electrical_response_solver_8cpp}{R\+H\+F\+Electrical\+Response\+Solver.\+cpp}}\end{DoxyCompactItemize}

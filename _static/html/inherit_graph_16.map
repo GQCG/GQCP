@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_base_f_q_operator.html" title=" " alt="" coords="401,67,693,109"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_angular_momentum_operator.html" title=" " alt="" coords="757,107,1069,133"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_electronic_dipole_operator.html" title=" " alt="" coords="751,157,1074,184"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_electronic_spin_operator.html" title=" " alt="" coords="761,5,1064,32"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_linear_momentum_operator.html" title=" " alt="" coords="761,56,1064,83"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_base_f_q_operator.html" title=" " alt="" coords="5,429,348,470"/>
+<area shape="rect" id="node7" href="$class_g_q_c_p_1_1_base_scalar_f_q_operator.html" title=" " alt="" coords="406,429,689,470"/>
+<area shape="rect" id="node8" href="$class_g_q_c_p_1_1_coulomb_repulsion_operator.html" title=" " alt="" coords="751,411,1074,437"/>
+<area shape="rect" id="node9" href="$class_g_q_c_p_1_1_electronic_density_operator.html" title=" " alt="" coords="747,461,1079,488"/>
+<area shape="rect" id="node10" href="$class_g_q_c_p_1_1_electronic_spin__z_operator.html" title=" " alt="" coords="801,513,1024,554"/>
+<area shape="rect" id="node11" href="$class_g_q_c_p_1_1_kinetic_operator.html" title=" " alt="" coords="797,579,1029,605"/>
+<area shape="rect" id="node12" href="$class_g_q_c_p_1_1_nuclear_attraction_operator.html" title=" " alt="" coords="747,309,1079,336"/>
+<area shape="rect" id="node13" href="$class_g_q_c_p_1_1_overlap_operator.html" title=" " alt="" coords="797,360,1029,387"/>
+<area shape="rect" id="node14" href="$class_g_q_c_p_1_1_base_nuclear_operator.html" title=" " alt="" coords="411,259,683,285"/>
+<area shape="rect" id="node15" href="$class_g_q_c_p_1_1_nuclear_dipole_operator.html" title=" " alt="" coords="767,208,1059,235"/>
+<area shape="rect" id="node16" href="$class_g_q_c_p_1_1_nuclear_repulsion_operator.html" title=" " alt="" coords="751,259,1074,285"/>
+<area shape="rect" id="node17" href="$class_g_q_c_p_1_1_base_reference_dependent_operator.html" title=" " alt="" coords="396,150,699,191"/>
+</map>

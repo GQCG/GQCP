@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_libcint_interfacer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::LibcintInterfacer</compoundname>
+    <includes refid="_libcint_interfacer_8hpp" local="no">LibcintInterfacer.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1a9d42e7a68062a1218cb797fa87f9be36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1libcint_1_1_raw_container" kindref="compound">libcint::RawContainer</ref></type>
+        <definition>libcint::RawContainer GQCP::LibcintInterfacer::convert</definition>
+        <argsstring>(const ShellSet&lt; GTOShell &gt; &amp;shell_set) const</argsstring>
+        <name>convert</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <declname>shell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">GQCP::ShellSet</ref> whose information should be converted</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the information in a <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">GQCP::ShellSet</ref> as a <ref refid="class_g_q_c_p_1_1libcint_1_1_raw_container" kindref="compound">libcint::RawContainer</ref></para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shell_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">GQCP::ShellSet</ref> whose information should be converted</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the information in a <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">GQCP::ShellSet</ref> as a libcint::Container </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="83" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibcintInterfacer.cpp" bodystart="33" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1a20b8176235c9cac423b7d3a13eef690e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::LibcintInterfacer::setCommonOrigin</definition>
+        <argsstring>(libcint::RawContainer &amp;raw_container, const Vector&lt; double, 3 &gt; &amp;origin) const</argsstring>
+        <name>setCommonOrigin</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1libcint_1_1_raw_container" kindref="compound">libcint::RawContainer</ref> &amp;</type>
+          <declname>raw_container</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>origin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the origin for the calculation of all vector-related integrals</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>raw_container</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_g_q_c_p_1_1libcint_1_1_raw_container" kindref="compound">libcint::RawContainer</ref> that holds the data needed by libcint </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>origin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new origin for the calculation of all vector-related integrals </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="91" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibcintInterfacer.cpp" bodystart="116" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1a98c802563352cc392c100e92a1653e2d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1abf3608f80cd58b5801026056ec5edef0" kindref="member">Libcint1eFunction</ref></type>
+        <definition>Libcint1eFunction GQCP::LibcintInterfacer::oneElectronFunction</definition>
+        <argsstring>(const ElectronicDipoleOperator &amp;op) const</argsstring>
+        <name>oneElectronFunction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the electronic electric dipole operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Libcint one-electron function that corresponds to the electronic electric dipole operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="101" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="101" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1af49518493a037acddc67fdc17b8f3241" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1abf3608f80cd58b5801026056ec5edef0" kindref="member">Libcint1eFunction</ref></type>
+        <definition>Libcint1eFunction GQCP::LibcintInterfacer::oneElectronFunction</definition>
+        <argsstring>(const KineticOperator &amp;op) const</argsstring>
+        <name>oneElectronFunction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the kinetic operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Libcint one-electron function that corresponds to the kinetic operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="108" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1a746cb52ff139ef3ed144c13a80bbdf85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1abf3608f80cd58b5801026056ec5edef0" kindref="member">Libcint1eFunction</ref></type>
+        <definition>Libcint1eFunction GQCP::LibcintInterfacer::oneElectronFunction</definition>
+        <argsstring>(const NuclearAttractionOperator &amp;op) const</argsstring>
+        <name>oneElectronFunction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the nuclear attraction operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Libcint one-electron function that corresponds to the nuclear attraction operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="115" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1ac8e5ca75e5472adae5f0d943b890b278" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1abf3608f80cd58b5801026056ec5edef0" kindref="member">Libcint1eFunction</ref></type>
+        <definition>Libcint1eFunction GQCP::LibcintInterfacer::oneElectronFunction</definition>
+        <argsstring>(const OverlapOperator &amp;op) const</argsstring>
+        <name>oneElectronFunction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the overlap operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Libcint one-electron function that corresponds to the overlap operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="122" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="122" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1ac12ad664a5da14d88fe081e84b196b87" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1ab9e82f4c5fc3ac406b005fcbea227dfb" kindref="member">Libcint2eFunction</ref></type>
+        <definition>Libcint2eFunction GQCP::LibcintInterfacer::twoElectronFunction</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;op) const</argsstring>
+        <name>twoElectronFunction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Coulomb repulsion operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="129" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="129" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_interfacer_1abed14f8b3e85fad265ef1d569ef4eae6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1af6c0e3151a6af439a47e0812512aea6b" kindref="member">Libcint2eOptimizerFunction</ref></type>
+        <definition>Libcint2eOptimizerFunction GQCP::LibcintInterfacer::twoElectronOptimizerFunction</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;op) const</argsstring>
+        <name>twoElectronOptimizerFunction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Coulomb repulsion operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the Libcint two-electron optimizer function that corresponds to the Coulomb repulsion dipole operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="136" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="136" bodyend="136"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that takes care of the interfacing with the libcint library </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::LibcintInterfacer</label>
+        <link refid="class_g_q_c_p_1_1_libcint_interfacer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="74" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="74" bodyend="137"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1a9d42e7a68062a1218cb797fa87f9be36" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>convert</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1a98c802563352cc392c100e92a1653e2d" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>oneElectronFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1af49518493a037acddc67fdc17b8f3241" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>oneElectronFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1a746cb52ff139ef3ed144c13a80bbdf85" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>oneElectronFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1ac8e5ca75e5472adae5f0d943b890b278" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>oneElectronFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1a20b8176235c9cac423b7d3a13eef690e" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>setCommonOrigin</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1ac12ad664a5da14d88fe081e84b196b87" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>twoElectronFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_interfacer_1abed14f8b3e85fad265ef1d569ef4eae6" prot="public" virt="non-virtual"><scope>GQCP::LibcintInterfacer</scope><name>twoElectronOptimizerFunction</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

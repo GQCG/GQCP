@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_5db1d08ccadb80de9441dc8dbac69907" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Processing/Properties</compoundname>
+    <innerfile refid="_base_electrical_response_solver_8cpp">BaseElectricalResponseSolver.cpp</innerfile>
+    <innerfile refid="properties_8cpp">properties.cpp</innerfile>
+    <innerfile refid="_r_h_f_electrical_response_solver_8cpp">RHFElectricalResponseSolver.cpp</innerfile>
+    <innerfile refid="v_a_p1ro_g_electrical_response_solver_8cpp">vAP1roGElectricalResponseSolver.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Processing/Properties/"/>
+  </compounddef>
+</doxygen>

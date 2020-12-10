@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_hessian_modifier" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseHessianModifier</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier" prot="public" virt="non-virtual">GQCP::IterativeIdentitiesHessianModifier</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_unaltering_hessian_modifier" prot="public" virt="non-virtual">GQCP::UnalteringHessianModifier</derivedcompoundref>
+    <includes refid="_base_hessian_modifier_8hpp" local="no">BaseHessianModifier.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_hessian_modifier_1a07e279d7354674fa0214a6b94e52c0ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::BaseHessianModifier::~BaseHessianModifier</definition>
+        <argsstring>()=default</argsstring>
+        <name>~BaseHessianModifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/BaseHessianModifier.hpp" line="33" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_hessian_modifier_1a8e94b709f06013e7bcdf29e9f6519d07" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>virtual SquareMatrix&lt;double&gt; GQCP::BaseHessianModifier::operator()</definition>
+        <argsstring>(const SquareMatrix&lt; double &gt; &amp;hessian)=0</argsstring>
+        <name>operator()</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a82c62cd66ed7797b1af9775588ec72d3">operator()</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a81003869b0163039fea7cfe80c89ebb3">operator()</reimplementedby>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt; &amp;</type>
+          <declname>hessian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hessian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current indefinite Hessian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a modified Hessian that is made positive (for minimizers) or negative (for maximizers) definite </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/BaseHessianModifier.hpp" line="43" column="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base functor for Hessian modifiers </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::UnalteringHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_unaltering_hessian_modifier"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::IterativeIdentitiesHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::BaseHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_base_hessian_modifier"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseHessianModifier</label>
+        <link refid="class_g_q_c_p_1_1_base_hessian_modifier"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/BaseHessianModifier.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/BaseHessianModifier.hpp" bodystart="30" bodyend="44"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_hessian_modifier_1a8e94b709f06013e7bcdf29e9f6519d07" prot="public" virt="pure-virtual"><scope>GQCP::BaseHessianModifier</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_base_hessian_modifier_1a07e279d7354674fa0214a6b94e52c0ab" prot="public" virt="virtual"><scope>GQCP::BaseHessianModifier</scope><name>~BaseHessianModifier</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

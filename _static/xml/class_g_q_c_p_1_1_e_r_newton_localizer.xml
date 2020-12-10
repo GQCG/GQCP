@@ -1,0 +1,430 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_e_r_newton_localizer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ERNewtonLocalizer</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::NewtonOrbitalOptimizer</basecompoundref>
+    <includes refid="_e_r_newton_localizer_8hpp" local="no">ERNewtonLocalizer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_e_r_newton_localizer_1a07298fccdb56e9199268ec6af6e3d080" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+        <definition>OrbitalSpace GQCP::ERNewtonLocalizer::orbital_space</definition>
+        <argsstring></argsstring>
+        <name>orbital_space</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="33" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_newton_localizer_1a59125505e5873464449527cc1e8f47d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ERNewtonLocalizer::ERNewtonLocalizer</definition>
+        <argsstring>(const OrbitalSpace orbital_space, std::shared_ptr&lt; BaseHessianModifier &gt; hessian_modifier, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>ERNewtonLocalizer</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+          <declname>orbital_space</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_hessian_modifier" kindref="compound">BaseHessianModifier</ref> &gt;</type>
+          <declname>hessian_modifier</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the occupied-virtual orbital space </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hessian_modifier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the modifier functor that should be used when an indefinite Hessian is encountered </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convergence_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold used to check for convergence </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations that may be used to achieve convergence </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_newton_localizer_1a2a512ac9d603955917c5fffcf2929e3e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
+        <definition>SquareMatrix&lt; double &gt; GQCP::ERNewtonLocalizer::calculateGradientMatrix</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
+        <name>calculateGradientMatrix</name>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a91fddcff45c5d1298e9a6e5676ce4cb9">calculateGradientMatrix</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="55" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp" bodystart="48" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_newton_localizer_1ab95ca42113e2e839113f61349a7ba5af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
+        <definition>SquareRankFourTensor&lt; double &gt; GQCP::ERNewtonLocalizer::calculateHessianTensor</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
+        <name>calculateHessianTensor</name>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd">calculateHessianTensor</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="62" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp" bodystart="69" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_newton_localizer_1acfbbaaa60d27d064ae23539c8996f2ca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref></type>
+        <definition>OrbitalRotationGenerators GQCP::ERNewtonLocalizer::calculateNewFullOrbitalGenerators</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
+        <name>calculateNewFullOrbitalGenerators</name>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a917e48231bf397dcdc210590451113e5">calculateNewFullOrbitalGenerators</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Use gradient and Hessian information to determine a new direction for the &apos;full&apos; orbital rotation generators kappa. Note that a distinction is made between &apos;free&apos; generators, i.e. those that are calculated from the gradient and Hessian information and the &apos;full&apos; generators, which also include the redundant parameters (that can be set to zero). The &apos;full&apos; generators are used to calculate the total rotation matrix using the matrix exponential</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the new full set orbital generators, including the redundant parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="71" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp" bodystart="96" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_newton_localizer_1ac736fd3da99a293e336f759704944413" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::ERNewtonLocalizer::prepareOrbitalDerivativesCalculation</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
+        <name>prepareOrbitalDerivativesCalculation</name>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a5726b8a9e0b7477cd9ed7c7faa282018">prepareOrbitalDerivativesCalculation</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="76" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_newton_localizer_1ae17466a9719678c3263edf19f2c93872" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::ERNewtonLocalizer::calculateGradientMatrixElement</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j) const</argsstring>
+        <name>calculateGradientMatrixElement</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the row of the gradient &apos;matrix&apos; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the column of the gradient &apos;matrix&apos;</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the element (i,j) of the Edmiston-Ruedenberg localization index gradient </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="88" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp" bodystart="116" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_e_r_newton_localizer_1aa4868063120b4fb560a3d84b476ff3da" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::ERNewtonLocalizer::calculateHessianTensorElement</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j, const size_t k, const size_t l) const</argsstring>
+        <name>calculateHessianTensorElement</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first index of the Hessian &apos;tensor&apos; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second index of the Hessian &apos;tensor&apos; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the third index of the Hessian &apos;tensor&apos; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fourth index of the Hessian &apos;tensor&apos;</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="99" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp" bodystart="133" bodyend="156"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that localizes a set of orthonormal real spatial orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Newton steps. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::NewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ERNewtonLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_newton_localizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::NewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#gradient</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>#hessian</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ERNewtonLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_newton_localizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="6">
+        <label>GQCP::SquareMatrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MatrixX&lt; double  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp" bodystart="31" bodyend="100"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a2a512ac9d603955917c5fffcf2929e3e" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateGradientMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ae17466a9719678c3263edf19f2c93872" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateGradientMatrixElement</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1afdf8b122a17957cf67dcf4d7ad0df726" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateGradientVector</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a3c677c380a02d6ed3bccc718a704b8f8" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateHessianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ab95ca42113e2e839113f61349a7ba5af" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateHessianTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1aa4868063120b4fb560a3d84b476ff3da" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateHessianTensorElement</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1aa7bc61e43d13cc7c1c2905110738918c" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateNewFreeOrbitalGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1acfbbaaa60d27d064ae23539c8996f2ca" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateNewFullOrbitalGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac7e61168011a697ef30a239b899e06c5" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>calculateNewRotationMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ab0623fc9be4cf9c68821c2ea6d012acd" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>checkForConvergence</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>convergence_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a9b786e21bc708e260f84322ed239ff40" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>directionFromIndefiniteHessian</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a59125505e5873464449527cc1e8f47d0" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>ERNewtonLocalizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a7654786bd0428dd90feb1de31fc7fe4c" prot="protected" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>gradient</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a4b4f69a479c8d9f5df94fb0a150b5e37" prot="protected" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>hessian</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad31068b230ffb38e97432624120c4318" prot="protected" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>hessian_modifier</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>is_converged</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>maximum_number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>NewtonOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad3464e1f18027d579598c62ef854fff6" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>newtonStepIsWellDefined</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>numberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a07298fccdb56e9199268ec6af6e3d080" prot="private" virt="non-virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>orbital_space</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>prepareConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ac736fd3da99a293e336f759704944413" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>prepareOrbitalDerivativesCalculation</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>~BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac524dbf48349206dcc68774489d30a6d" prot="public" virt="virtual"><scope>GQCP::ERNewtonLocalizer</scope><name>~NewtonOrbitalOptimizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

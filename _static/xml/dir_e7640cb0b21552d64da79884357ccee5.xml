@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_e7640cb0b21552d64da79884357ccee5" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator</compoundname>
+    <innerfile refid="_constant_damper_8hpp">ConstantDamper.hpp</innerfile>
+    <innerfile refid="_d_i_i_s_8hpp">DIIS.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/"/>
+  </compounddef>
+</doxygen>

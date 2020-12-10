@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_q_c_structure" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::QCStructure</compoundname>
+    <includes refid="_q_c_structure_8hpp" local="no">QCStructure.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _QCModel</type>
+      </param>
+      <param>
+        <type>typename _Scalar</type>
+        <defval>double</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" prot="public" static="no">
+        <type>_QCModel</type>
+        <definition>using GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::QCModel =  _QCModel</definition>
+        <argsstring></argsstring>
+        <name>QCModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_structure_1a7b0d3e54a4c6e5fd5e1c21387b52053c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" kindref="member">Scalar</ref> &gt;</type>
+        <definition>std::vector&lt;Scalar&gt; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::energies</definition>
+        <argsstring></argsstring>
+        <name>energies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="47" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_structure_1af32afd01b7dd4dc90d490946146b35ef" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" kindref="member">QCModel</ref> &gt;</type>
+        <definition>std::vector&lt;QCModel&gt; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::model_parameters</definition>
+        <argsstring></argsstring>
+        <name>model_parameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="50" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1af00552d03eb740daaedac7b6c53ae8ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::QCStructure</definition>
+        <argsstring>(const std::vector&lt; Scalar &gt; &amp;energies, const std::vector&lt; QCModel &gt; &amp;model_parameters)</argsstring>
+        <name>QCStructure</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>energies</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" kindref="member">QCModel</ref> &gt; &amp;</type>
+          <declname>model_parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>energies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The electronic energies for the ground state and possibly for the excited states. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>model_parameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optimal model parameters for the ground state and possibly for the excited states. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="62" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1a917d86b1a78da0d70ed1390fe4bab7a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::energy</definition>
+        <argsstring>(const size_t i=0) const</argsstring>
+        <name>energy</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of an excited state.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The electronic energy corresponding to the i-th excited state. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="87" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1a5f1a68bdf40e8eec2fefbb893f43a32b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::groundStateEnergy</definition>
+        <argsstring>() const</argsstring>
+        <name>groundStateEnergy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The ground state electronic energy for this quantum chemical structure. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="92" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1a77d066e51a876b84b5d78a2b96f7f5b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" kindref="member">QCModel</ref> &amp;</type>
+        <definition>const QCModel&amp; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::parameters</definition>
+        <argsstring>(const size_t i=0) const</argsstring>
+        <name>parameters</name>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of an excited state.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The optimal model parameters corresponding to the i-th excited state. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="104" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="104" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1a38df33d901610edee4e7d0c6a97ce7bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" kindref="member">QCModel</ref> &amp;</type>
+        <definition>const QCModel&amp; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::groundStateParameters</definition>
+        <argsstring>() const</argsstring>
+        <name>groundStateParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The ground state model parameters for this quantum chemical structure. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="109" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="109" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A quantum chemical structure. It encapsulates (energy, optimal parameter)-pairs for the ground state, and possibly excited states.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_QCModel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the optimal model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the energy: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::QCStructure&lt; _QCModel, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_q_c_structure"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="36" bodyend="110"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1a7b0d3e54a4c6e5fd5e1c21387b52053c" prot="private" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>energies</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1a917d86b1a78da0d70ed1390fe4bab7a8" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>energy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1a5f1a68bdf40e8eec2fefbb893f43a32b" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>groundStateEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1a38df33d901610edee4e7d0c6a97ce7bf" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>groundStateParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1af32afd01b7dd4dc90d490946146b35ef" prot="private" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>model_parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1a77d066e51a876b84b5d78a2b96f7f5b7" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>QCModel</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1af00552d03eb740daaedac7b6c53ae8ff" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>QCStructure</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

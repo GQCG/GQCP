@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_c_c_s_d_solver" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::CCSDSolver</compoundname>
+    <includes refid="_c_c_s_d_solver_8hpp" local="no">CCSDSolver.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_c_c_s_d_solver_1af3c33168c19452304b640d89dedccc5e" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::CCSDSolver&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_solver_1abfe84a6387736ab7739d9d4fc4806c2f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_solver_1af3c33168c19452304b640d89dedccc5e" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>static IterativeAlgorithm&lt;CCSDEnvironment&lt;Scalar&gt; &gt; GQCP::CCSDSolver&lt; _Scalar &gt;::Plain</definition>
+        <argsstring>(const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>Plain</name>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold that is used in comparing the amplitudes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations the algorithm may perform</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a plain CCSD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp" line="56" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp" bodystart="56" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A factory class that can construct CCSD solvers in an easy way.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the amplitudes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::CCSDSolver&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_c_s_d_solver"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp" bodystart="40" bodyend="81"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_solver_1abfe84a6387736ab7739d9d4fc4806c2f" prot="public" virt="non-virtual"><scope>GQCP::CCSDSolver</scope><name>Plain</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_solver_1af3c33168c19452304b640d89dedccc5e" prot="public" virt="non-virtual"><scope>GQCP::CCSDSolver</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

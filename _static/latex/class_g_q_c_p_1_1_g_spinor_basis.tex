@@ -1,0 +1,482 @@
+\hypertarget{class_g_q_c_p_1_1_g_spinor_basis}{}\doxysection{G\+Q\+CP\+::G\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_g_spinor_basis}\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+
+
+{\ttfamily \#include $<$G\+Spinor\+Basis.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::G\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_spinor_basis__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::G\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_spinor_basis__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} = \+\_\+\+Expansion\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} = \+\_\+\+Shell
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_aad76bcfb2f9b07564621f91dd4c36bd4}{Base}} = \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{Simple\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$ $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac605d1a1c6a417c9dfe63329f0e894e4}{Primitive}} = typename Shell\+::\+Primitive
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} = typename Shell\+::\+Basis\+Function
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ae40fba6af5f08af4dd516bdb072bc507}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{Spin\+Resolved}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$$>$ \&scalar\+\_\+bases, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}{C}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_af07dc3114327e1708026c89dad13e8ef}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&alpha\+\_\+scalar\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&beta\+\_\+scalar\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}{C}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a831b047849c8af5734f56fde89e9b692}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&scalar\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}{C}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad87001892202e25bed0b75b80c316c3b}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&alpha\+\_\+scalar\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&beta\+\_\+scalar\+\_\+basis)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a7cdbaa05984076fa4ced02496734e0e6}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&scalar\+\_\+basis)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ae74073c7ae5fd36cb4c9ae9744415bd1}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&nuclear\+\_\+framework, const std\+::string \&basisset\+\_\+name)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a7c5f3e3058f54379889c149ddad85bde}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule, const std\+::string \&basisset\+\_\+name)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a2f38b86e3bf90218d22d7625f8fdd169}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&nuclear\+\_\+framework, const std\+::string \&basisset\+\_\+name\+\_\+alpha, const std\+::string \&basisset\+\_\+name\+\_\+beta)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a0b543fbfcf49f82f6869e8e5cf09819a}{G\+Spinor\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule, const std\+::string \&basisset\+\_\+name\+\_\+alpha, const std\+::string \&basisset\+\_\+name\+\_\+beta)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a9062fb369d11c2ede60ae0dd34d9cbd8}{number\+Of\+Coefficients}} (const \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}} \&sigma) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad71c2691865d2ba1ee0d038b81ceb8a8}{number\+Of\+Spinors}} () const
+\item 
+{\footnotesize template$<$typename F\+Q\+One\+Electron\+Operator $>$ }\\auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_aaf8591c62c2f9905264f8329fc2d5d37}{quantize}} (const F\+Q\+One\+Electron\+Operator \&fq\+\_\+one\+\_\+op) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{G\+S\+Q\+One\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ typename F\+Q\+One\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$, typename F\+Q\+One\+Electron\+Operator\+::\+Vectorizer $>$
+\item 
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_aa529a4a523093dca0af4104d3b8ee61b}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} \&fq\+\_\+one\+\_\+op) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{G\+S\+Q\+One\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Spin\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Electronic\+Spin\+Operator\+::\+Vectorizer}} $>$
+\item 
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a9b0e5186f7f5a95f713efca6028025c0}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&coulomb\+\_\+op) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_two_electron_operator}{G\+S\+Q\+Two\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}} $>$
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{Spin\+Resolved}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a29e97fd11c496f40147b63fcbf42a623}{scalar\+Bases}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{G\+Mulliken\+Partitioning}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_adf4e812f8804c98d441cea5ad8985dca}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} \&)$>$ \&selector) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{G\+Mulliken\+Partitioning}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a67766903b77d04018df2eb22c050e68a}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} \&)$>$ \&selector) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ab54024d72e1fbd81ae0d819787de297b}{From\+Restricted}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&r\+\_\+spinor\+\_\+basis)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac9e094db9455de1ad4823ac71af2c394}{From\+Unrestricted}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&u\+\_\+spinor\+\_\+basis)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Expansion\+Scalar, typename \+\_\+\+Shell$>$\newline
+class G\+Q\+C\+P\+::\+G\+Spinor\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$}
+
+A general spinor basis, i.\+e. a spinor basis without any restrictions on the expansion of the alpha and beta components of the spinors in terms of the underlying (possibly different) scalar bases.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Expansion\+Scalar} & The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals\+: real or complex. \\
+\hline
+{\em \+\_\+\+Shell} & The type of shell the underlying scalar bases contain.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+The individual columns of the coefficient matrix represent the spinors of this basis; they are not ordered by increasing single-\/particle energy. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_aad76bcfb2f9b07564621f91dd4c36bd4}\label{class_g_q_c_p_1_1_g_spinor_basis_aad76bcfb2f9b07564621f91dd4c36bd4}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!Base@{Base}}
+\index{Base@{Base}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_aad76bcfb2f9b07564621f91dd4c36bd4}{Base}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{Simple\+Spinor\+Basis}}$<$\+\_\+\+Expansion\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$\+\_\+\+Expansion\+Scalar, \+\_\+\+Shell$>$ $>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}\label{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!BasisFunction@{BasisFunction}}
+\index{BasisFunction@{BasisFunction}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{BasisFunction}{BasisFunction}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} =  typename Shell\+::\+Basis\+Function}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}\label{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!ExpansionScalar@{ExpansionScalar}}
+\index{ExpansionScalar@{ExpansionScalar}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{ExpansionScalar}{ExpansionScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} =  \+\_\+\+Expansion\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ac605d1a1c6a417c9dfe63329f0e894e4}\label{class_g_q_c_p_1_1_g_spinor_basis_ac605d1a1c6a417c9dfe63329f0e894e4}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac605d1a1c6a417c9dfe63329f0e894e4}{Primitive}} =  typename Shell\+::\+Primitive}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}\label{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} =  \+\_\+\+Shell}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}\label{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{G\+Transformation}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ae40fba6af5f08af4dd516bdb072bc507}\label{class_g_q_c_p_1_1_g_spinor_basis_ae40fba6af5f08af4dd516bdb072bc507}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{Spin\+Resolved}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$$>$ \&}]{scalar\+\_\+bases,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} \&}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}} from scalar bases that are not necessarily equal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar\+\_\+bases} & The scalar bases for the alpha and beta components of the spinors. \\
+\hline
+{\em C} & The transformation that relates the current set of spinors with the atomic spinors. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_af07dc3114327e1708026c89dad13e8ef}\label{class_g_q_c_p_1_1_g_spinor_basis_af07dc3114327e1708026c89dad13e8ef}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{alpha\+\_\+scalar\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{beta\+\_\+scalar\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} \&}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}} from scalar bases that are not necessarily equal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha\+\_\+scalar\+\_\+basis} & The scalar basis in which the alpha components of the spinors are expanded. \\
+\hline
+{\em beta\+\_\+scalar\+\_\+basis} & The scalar basis in which the beta components of the spinors are expanded. \\
+\hline
+{\em C} & The transformation that relates the current set of spinors with the atomic spinors. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a831b047849c8af5734f56fde89e9b692}\label{class_g_q_c_p_1_1_g_spinor_basis_a831b047849c8af5734f56fde89e9b692}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{scalar\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ac3b826302d446a0d413ab4ff5797148e}{Transformation}} \&}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a generalized spinor basis in which both underlying scalar bases are equal. $^\wedge$ 
+\begin{DoxyParams}{Parameters}
+{\em scalar\+\_\+basis} & The scalar basis in which both the alpha and beta components are expanded. \\
+\hline
+{\em C} & The transformation that relates the current set of spinors with the atomic spinors. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ad87001892202e25bed0b75b80c316c3b}\label{class_g_q_c_p_1_1_g_spinor_basis_ad87001892202e25bed0b75b80c316c3b}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{alpha\+\_\+scalar\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{beta\+\_\+scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (A\+Os).
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha\+\_\+scalar\+\_\+basis} & The scalar basis in which the alpha components of the spinors are expanded. \\
+\hline
+{\em beta\+\_\+scalar\+\_\+basis} & The scalar basis in which the beta components of the spinors are expanded. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a7cdbaa05984076fa4ced02496734e0e6}\label{class_g_q_c_p_1_1_g_spinor_basis_a7cdbaa05984076fa4ced02496734e0e6}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{scalar\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a generalized spinor basis in which both underlying scalar bases are equal, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (A\+Os).
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar\+\_\+basis} & The scalar basis in which both the alpha and beta components are expanded. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ae74073c7ae5fd36cb4c9ae9744415bd1}\label{class_g_q_c_p_1_1_g_spinor_basis_ae74073c7ae5fd36cb4c9ae9744415bd1}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework,  }\item[{const std\+::string \&}]{basisset\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework. The resulting spinor basis corresponds to the non-\/orthogonal atomic spinors (A\+Os).
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuclear\+\_\+framework} & The nuclear framework containing the nuclei on which the shells should be centered. \\
+\hline
+{\em basisset\+\_\+name} & The name of the basisset, e.\+g. \char`\"{}\+S\+T\+O-\/3\+G\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The normalization factors of the spherical (or axis-\/aligned Cartesian) G\+TO primitives are embedded in the contraction coefficients of the underlying shells. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a7c5f3e3058f54379889c149ddad85bde}\label{class_g_q_c_p_1_1_g_spinor_basis_a7c5f3e3058f54379889c149ddad85bde}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule,  }\item[{const std\+::string \&}]{basisset\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-\/orthogonal atomic spinors (A\+Os).
+
+
+\begin{DoxyParams}{Parameters}
+{\em molecule} & The molecule containing the nuclei on which the shells should be centered. \\
+\hline
+{\em basisset\+\_\+name} & The name of the basisset, e.\+g. \char`\"{}\+S\+T\+O-\/3\+G\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The normalization factors of the spherical (or axis-\/aligned Cartesian) G\+TO primitives are embedded in the contraction coefficients of the underlying shells. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a2f38b86e3bf90218d22d7625f8fdd169}\label{class_g_q_c_p_1_1_g_spinor_basis_a2f38b86e3bf90218d22d7625f8fdd169}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework,  }\item[{const std\+::string \&}]{basisset\+\_\+name\+\_\+alpha,  }\item[{const std\+::string \&}]{basisset\+\_\+name\+\_\+beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework. The resulting spinor basis corresponds to the non-\/orthogonal atomic spinors (A\+Os).
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuclear\+\_\+framework} & The nuclear framework containing the nuclei on which the shells should be centered. \\
+\hline
+{\em basisset\+\_\+name\+\_\+alpha} & The name of the basisset, e.\+g. \char`\"{}\+S\+T\+O-\/3\+G\char`\"{}, used for the expansion of the alpha component. \\
+\hline
+{\em basisset\+\_\+name\+\_\+beta} & The name of the basisset, e.\+g. \char`\"{}\+S\+T\+O-\/3\+G\char`\"{}, used for the expansion of the beta component.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The normalization factors of the spherical (or axis-\/aligned Cartesian) G\+TO primitives are embedded in the contraction coefficients of the underlying shells. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a0b543fbfcf49f82f6869e8e5cf09819a}\label{class_g_q_c_p_1_1_g_spinor_basis_a0b543fbfcf49f82f6869e8e5cf09819a}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!GSpinorBasis@{GSpinorBasis}}
+\index{GSpinorBasis@{GSpinorBasis}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{GSpinorBasis()}{GSpinorBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule,  }\item[{const std\+::string \&}]{basisset\+\_\+name\+\_\+alpha,  }\item[{const std\+::string \&}]{basisset\+\_\+name\+\_\+beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule. The resulting spinor basis corresponds to the non-\/orthogonal atomic spinors (A\+Os).
+
+
+\begin{DoxyParams}{Parameters}
+{\em molecule} & The molecule containing the nuclei on which the shells should be centered. \\
+\hline
+{\em basisset\+\_\+name\+\_\+alpha} & The name of the basisset, e.\+g. \char`\"{}\+S\+T\+O-\/3\+G\char`\"{}, used for the expansion of the alpha component. \\
+\hline
+{\em basisset\+\_\+name\+\_\+beta} & The name of the basisset, e.\+g. \char`\"{}\+S\+T\+O-\/3\+G\char`\"{}, used for the expansion of the beta component.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The normalization factors of the spherical (or axis-\/aligned Cartesian) G\+TO primitives are embedded in the contraction coefficients of the underlying shells. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ab54024d72e1fbd81ae0d819787de297b}\label{class_g_q_c_p_1_1_g_spinor_basis_ab54024d72e1fbd81ae0d819787de297b}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!FromRestricted@{FromRestricted}}
+\index{FromRestricted@{FromRestricted}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{FromRestricted()}{FromRestricted()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::From\+Restricted (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{R\+Spin\+Orbital\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{r\+\_\+spinor\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Convert a restricted spin-\/orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-\/blocked out.
+
+
+\begin{DoxyParams}{Parameters}
+{\em r\+\_\+spinor\+\_\+basis} & The restricted spinor basis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The restricted spinor basis as a generalized one. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ac9e094db9455de1ad4823ac71af2c394}\label{class_g_q_c_p_1_1_g_spinor_basis_ac9e094db9455de1ad4823ac71af2c394}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!FromUnrestricted@{FromUnrestricted}}
+\index{FromUnrestricted@{FromUnrestricted}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{FromUnrestricted()}{FromUnrestricted()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Spinor\+Basis}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::From\+Unrestricted (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{U\+Spin\+Orbital\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ \&}]{u\+\_\+spinor\+\_\+basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Convert an unrestricted spin-\/orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-\/blocked out.
+
+
+\begin{DoxyParams}{Parameters}
+{\em u\+\_\+spinor\+\_\+basis} & The unrestricted spinor basis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The generalized spinor basis corresponding to the unrestricted spin-\/orbital basis.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+We assume that the unrestricted spin-\/orbital basis has equal underlying scalar bases for the alpha-\/ and beta-\/spin-\/orbitals. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_adf4e812f8804c98d441cea5ad8985dca}\label{class_g_q_c_p_1_1_g_spinor_basis_adf4e812f8804c98d441cea5ad8985dca}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
+\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{G\+Mulliken\+Partitioning}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+M\+A\+RK\+: Mulliken partitioning Partition this set of generalized spinors according to the Mulliken partitioning scheme.
+
+
+\begin{DoxyParams}{Parameters}
+{\em selector} & A function that returns true for basis functions that should be included the Mulliken partitioning.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{G\+Mulliken\+Partitioning}}} for the A\+Os selected by the supplied selector function.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The underlying scalar bases are assumed to be equal. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a67766903b77d04018df2eb22c050e68a}\label{class_g_q_c_p_1_1_g_spinor_basis_a67766903b77d04018df2eb22c050e68a}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
+\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{G\+Mulliken\+Partitioning}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Partition this set of generalized spinors according to the Mulliken partitioning scheme.
+
+
+\begin{DoxyParams}{Parameters}
+{\em selector} & A function that returns true for shells that should be included the Mulliken partitioning.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{G\+Mulliken\+Partitioning}}} for the A\+Os selected by the supplied selector function.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The underlying scalar bases are assumed to be equal. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a9062fb369d11c2ede60ae0dd34d9cbd8}\label{class_g_q_c_p_1_1_g_spinor_basis_a9062fb369d11c2ede60ae0dd34d9cbd8}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!numberOfCoefficients@{numberOfCoefficients}}
+\index{numberOfCoefficients@{numberOfCoefficients}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfCoefficients()}{numberOfCoefficients()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::number\+Of\+Coefficients (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}} \&}]{sigma }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sigma} & Alpha or beta.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of coefficients that are used for the expansion of the requested spin-\/component of a spinor. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ad71c2691865d2ba1ee0d038b81ceb8a8}\label{class_g_q_c_p_1_1_g_spinor_basis_ad71c2691865d2ba1ee0d038b81ceb8a8}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!numberOfSpinors@{numberOfSpinors}}
+\index{numberOfSpinors@{numberOfSpinors}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfSpinors()}{numberOfSpinors()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::number\+Of\+Spinors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The number of spinors that are described by this generalized spinor basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a9b0e5186f7f5a95f713efca6028025c0}\label{class_g_q_c_p_1_1_g_spinor_basis_a9b0e5186f7f5a95f713efca6028025c0}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
+\index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{coulomb\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_two_electron_operator}{G\+S\+Q\+Two\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}}$>$ \hspace{0.3cm}{\ttfamily [inline]}}
+
+Quantize the Coulomb operator in this general spinor basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em coulomb\+\_\+op} & The first-\/quantized Coulomb operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The second-\/quantized operator corresponding to the Coulomb operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_aa529a4a523093dca0af4104d3b8ee61b}\label{class_g_q_c_p_1_1_g_spinor_basis_aa529a4a523093dca0af4104d3b8ee61b}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
+\index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{G\+S\+Q\+One\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Spin\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Electronic\+Spin\+Operator\+::\+Vectorizer}}$>$ \hspace{0.3cm}{\ttfamily [inline]}}
+
+Quantize the electronic spin operator in this general spinor basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & The (first-\/quantized) electronic spin operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The electronic spin operator expressed in this spinor basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_aaf8591c62c2f9905264f8329fc2d5d37}\label{class_g_q_c_p_1_1_g_spinor_basis_aaf8591c62c2f9905264f8329fc2d5d37}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
+\index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+template$<$typename F\+Q\+One\+Electron\+Operator $>$ \\
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const F\+Q\+One\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{G\+S\+Q\+One\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename F\+Q\+One\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, typename F\+Q\+One\+Electron\+Operator\+::\+Vectorizer$>$ \hspace{0.3cm}{\ttfamily [inline]}}
+
+Quantize a one-\/electron operator in this general spinor basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+one\+\_\+op} & a spin-\/independent first-\/quantized operator (i.\+e. whose two-\/component matrix operator form contains the same scalar operator in the upper-\/left and lower-\/right corners)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the second-\/quantized operator corresponding to the given spin-\/independent first-\/quantized operator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a29e97fd11c496f40147b63fcbf42a623}\label{class_g_q_c_p_1_1_g_spinor_basis_a29e97fd11c496f40147b63fcbf42a623}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!scalarBases@{scalarBases}}
+\index{scalarBases@{scalarBases}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{scalarBases()}{scalarBases()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{Spin\+Resolved}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}}$>$ $>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{G\+Q\+C\+P\+::\+G\+Spinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::scalar\+Bases (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The scalar bases for the alpha and beta components of the spinors. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Spinor\+Basis/\mbox{\hyperlink{_g_spinor_basis_8hpp}{G\+Spinor\+Basis.\+hpp}}\end{DoxyCompactItemize}

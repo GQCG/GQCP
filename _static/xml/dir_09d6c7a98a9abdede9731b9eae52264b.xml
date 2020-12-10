@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_09d6c7a98a9abdede9731b9eae52264b" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces</compoundname>
+    <innerfile refid="_libcint_interfacer_8cpp">LibcintInterfacer.cpp</innerfile>
+    <innerfile refid="_libint_interfacer_8cpp">LibintInterfacer.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/"/>
+  </compounddef>
+</doxygen>

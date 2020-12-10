@@ -1,0 +1,603 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::AP1roGJacobiOrbitalOptimizer</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" prot="public" virt="non-virtual">GQCP::JacobiOrbitalOptimizer</basecompoundref>
+    <includes refid="_a_p1ro_g_jacobi_orbital_optimizer_8hpp" local="no">AP1roGJacobiOrbitalOptimizer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ac4b36059c0bc869fc898aa34f4c2ea5d" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::AP1roGJacobiOrbitalOptimizer::N_P</definition>
+        <argsstring></argsstring>
+        <name>N_P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a5665c2b2c395921c3f502e4485814e77" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::A1</definition>
+        <argsstring></argsstring>
+        <name>A1</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="37" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ad6c25d563fa8ec5250be3600d061e029" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::B1</definition>
+        <argsstring></argsstring>
+        <name>B1</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="37" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a06cdaba0a1336bd85814d7b688c82a03" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::C1</definition>
+        <argsstring></argsstring>
+        <name>C1</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="37" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a33c45eb51f26a2e1add03670a37b6caa" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::A2</definition>
+        <argsstring></argsstring>
+        <name>A2</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="38" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a25ec639c4518914c8238168a2e113075" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::B2</definition>
+        <argsstring></argsstring>
+        <name>B2</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="38" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1af0e8e03c9e4f402b83fdde3d7d9176a0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::C2</definition>
+        <argsstring></argsstring>
+        <name>C2</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="38" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a6b6203e254170fd137b9799e190fd2d5" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::D2</definition>
+        <argsstring></argsstring>
+        <name>D2</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="38" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a84836cef71732631112ed586873aebd8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::E2</definition>
+        <argsstring></argsstring>
+        <name>E2</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="38" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1abb12bd1157cc2d90b5a7e6cb6fadb2a8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::A3</definition>
+        <argsstring></argsstring>
+        <name>A3</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="39" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a06cb3e9991771289f8b7935c687d8c2a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::B3</definition>
+        <argsstring></argsstring>
+        <name>B3</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="39" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ace999aa1cc6029ec28d3e4a7b0bb7bfb" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::C3</definition>
+        <argsstring></argsstring>
+        <name>C3</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="39" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a0a510e932bd478753d6aa93a27beae30" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::E</definition>
+        <argsstring></argsstring>
+        <name>E</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="41" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ae3d66b4aea0fb3490e660c2f5c4c81aa" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref></type>
+        <definition>AP1roGGeminalCoefficients GQCP::AP1roGJacobiOrbitalOptimizer::G</definition>
+        <argsstring></argsstring>
+        <name>G</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="42" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a0f8d2b629f638389d966f5db84400c10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer</definition>
+        <argsstring>(const size_t N_P, const size_t K, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>AP1roGJacobiOrbitalOptimizer</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of spatial orbitals </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convergence_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold used to check for convergence </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations that may be used to achieve convergence</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The initial guess for the geminal coefficients is zero </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp" bodystart="49" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a9e9f1749f5ab732836abac8e731efea5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer</definition>
+        <argsstring>(const AP1roGGeminalCoefficients &amp;G, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>AP1roGJacobiOrbitalOptimizer</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
+          <declname>G</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial geminal coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convergence_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold used to check for convergence </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations that may be used to achieve convergence </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ada3d09617b0f3008a8873a02259627d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t p, const size_t q) override</argsstring>
+        <name>calculateJacobiCoefficients</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a1d0903ec685d348fc47027d6d2cfe0bd">calculateJacobiCoefficients</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="74" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp" bodystart="74" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1af4c02c5f63b7224dce4345d6fbea2449" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t p, const size_t q) const override</argsstring>
+        <name>calculateOptimalRotationAngle</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a88fb6f7fd3ce8670e540b1f1e0e896cf">calculateOptimalRotationAngle</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of spatial orbital 2</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="83" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp" bodystart="163" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a1feb9cc0360904a0dc681756ef681e00" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const JacobiRotation &amp;jacobi_rotation) const override</argsstring>
+        <name>calculateScalarFunctionChange</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1adb16cd498fedf675dbc0ef1f9c538757">calculateScalarFunctionChange</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
+          <declname>jacobi_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the change in the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation would be used to rotate the given Hamiltonian</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current Hamiltonian </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>jacobi_rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Jacobi rotation.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation would be used to rotate the given Hamiltonian </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="91" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp" bodystart="253" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1adc5302895d7c2e72a6d807777f9426f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
+        <name>prepareJacobiSpecificConvergenceChecking</name>
+        <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1ab453b26fea4b3901b2483afa97b061b1">prepareJacobiSpecificConvergenceChecking</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence</para>
+<para>In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="98" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp" bodystart="297" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a959df5807353d1dcd9e9ad24cd7fcdcd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::electronicEnergy</definition>
+        <argsstring>() const</argsstring>
+        <name>electronicEnergy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the electronic energy calculated by this orbital optimizer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="106" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="106" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that is used to find a minimum of the electronic energy for AP1roG wave functions with respect to rotations of the underlying spatial orbital basis. By using analytical Jacobi rotations, and subsequently re-solving the AP1roG PSEs, a new orbital basis is found that results in a lower AP1roG energy</para>
+<para>Note that, since this algorithm does not use the PSE Lagrangian, a rotation can jump out of the AP1roG manifold, so this algorithm should be used with care </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::AP1roGJacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::JacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::AP1roGJacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::JacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp" bodystart="33" bodyend="107"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a5665c2b2c395921c3f502e4485814e77" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>A1</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a33c45eb51f26a2e1add03670a37b6caa" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>A2</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1abb12bd1157cc2d90b5a7e6cb6fadb2a8" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>A3</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a0f8d2b629f638389d966f5db84400c10" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>AP1roGJacobiOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a9e9f1749f5ab732836abac8e731efea5" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>AP1roGJacobiOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ad6c25d563fa8ec5250be3600d061e029" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>B1</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a25ec639c4518914c8238168a2e113075" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>B2</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a06cb3e9991771289f8b7935c687d8c2a" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>B3</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a06cdaba0a1336bd85814d7b688c82a03" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>C1</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1af0e8e03c9e4f402b83fdde3d7d9176a0" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>C2</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ace999aa1cc6029ec28d3e4a7b0bb7bfb" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>C3</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ada3d09617b0f3008a8873a02259627d4" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>calculateJacobiCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a7dff6c1818ec2325b7dcf5bdf9451832" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>calculateNewRotationMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a33ff7044eb3f0c3c18266205a38f1305" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>calculateOptimalJacobiParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1af4c02c5f63b7224dce4345d6fbea2449" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>calculateOptimalRotationAngle</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a1feb9cc0360904a0dc681756ef681e00" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>calculateScalarFunctionChange</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a613899349c56b102563b2fe8dff886a6" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>checkForConvergence</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a47db01d590dd175c7125a2f8d12546be" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>comparer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>convergence_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a6b6203e254170fd137b9799e190fd2d5" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>D2</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1afa2b23e301f0eee1ea111cde0cbf9231" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>dim</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a0a510e932bd478753d6aa93a27beae30" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>E</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a84836cef71732631112ed586873aebd8" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>E2</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1a959df5807353d1dcd9e9ad24cd7fcdcd" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>electronicEnergy</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ae3d66b4aea0fb3490e660c2f5c4c81aa" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>G</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>is_converged</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1acdb881443d205c747880aa88382f8e23" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>JacobiOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>maximum_number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1ac4b36059c0bc869fc898aa34f4c2ea5d" prot="private" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>N_P</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>numberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1acaae116e87a463b1d00d55bb32811737" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>optimal_jacobi_with_scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a7bfe81d67f87d94e11afbfcd8c6a2079" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>pair_type</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a4ae385438afc93d40d1cbadfa031a48f" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>prepareConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer_1adc5302895d7c2e72a6d807777f9426f9" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>prepareJacobiSpecificConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>~BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a498a290b456a8ea7f9549d17cde54c8e" prot="public" virt="virtual"><scope>GQCP::AP1roGJacobiOrbitalOptimizer</scope><name>~JacobiOrbitalOptimizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

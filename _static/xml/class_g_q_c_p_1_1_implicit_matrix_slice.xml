@@ -1,0 +1,678 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_implicit_matrix_slice" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ImplicitMatrixSlice</compoundname>
+    <includes refid="_implicit_matrix_slice_8hpp" local="no">ImplicitMatrixSlice.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_implicit_matrix_slice_1add305c92c235902e1541059c1eb75839" prot="private" static="no" mutable="no">
+        <type>std::map&lt; size_t, size_t &gt;</type>
+        <definition>std::map&lt;size_t, size_t&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::rows_implicit_to_dense</definition>
+        <argsstring></argsstring>
+        <name>rows_implicit_to_dense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="44" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a6b11eb020df629229e19ed4830c11b55" prot="private" static="no" mutable="no">
+        <type>std::map&lt; size_t, size_t &gt;</type>
+        <definition>std::map&lt;size_t, size_t&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::cols_implicit_to_dense</definition>
+        <argsstring></argsstring>
+        <name>cols_implicit_to_dense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="45" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a5980f2ac0b643900067e2615a32369ff" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt;</type>
+        <definition>MatrixX&lt;Scalar&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::M</definition>
+        <argsstring></argsstring>
+        <name>M</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="47" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1afa40af129ba899491054271b8cae6d3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::ImplicitMatrixSlice</definition>
+        <argsstring>(const std::map&lt; size_t, size_t &gt; &amp;rows_implicit_to_dense, const std::map&lt; size_t, size_t &gt; &amp;cols_implicit_to_dense, const MatrixX&lt; Scalar &gt; &amp;M)</argsstring>
+        <name>ImplicitMatrixSlice</name>
+        <param>
+          <type>const std::map&lt; size_t, size_t &gt; &amp;</type>
+          <declname>rows_implicit_to_dense</declname>
+        </param>
+        <param>
+          <type>const std::map&lt; size_t, size_t &gt; &amp;</type>
+          <declname>cols_implicit_to_dense</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize an <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&apos;s members.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rows_implicit_to_dense</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maps the row indices of the implicit matrix to the row indices of the dense representation of the slice </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cols_implicit_to_dense</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maps the column indices of the implicit matrix to the column indices of the dense representation of the slice </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the slice </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="62" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a0771fa9d0f5c2e4e83e60dab9d1bda71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::ImplicitMatrixSlice</definition>
+        <argsstring>(const std::map&lt; size_t, size_t &gt; &amp;rows_implicit_to_dense, const std::map&lt; size_t, size_t &gt; &amp;cols_implicit_to_dense)</argsstring>
+        <name>ImplicitMatrixSlice</name>
+        <param>
+          <type>const std::map&lt; size_t, size_t &gt; &amp;</type>
+          <declname>rows_implicit_to_dense</declname>
+        </param>
+        <param>
+          <type>const std::map&lt; size_t, size_t &gt; &amp;</type>
+          <declname>cols_implicit_to_dense</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize an <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&apos;s members, with a zero matrix for the dense representation of the slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rows_implicit_to_dense</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maps the row indices of the implicit matrix to the row indices of the dense representation of the slice </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cols_implicit_to_dense</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maps the column indices of the implicit matrix to the column indices of the dense representation of the slice </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="84" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="84" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1af0f9b6279f0d4960a6597882a2963bd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::ImplicitMatrixSlice</definition>
+        <argsstring>()</argsstring>
+        <name>ImplicitMatrixSlice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A default constructor setting everything to zero. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="92" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="92" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a2a98a04bc7cbcfda3b2c7c8a8d4b334c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::operator()</definition>
+        <argsstring>(const size_t row, const size_t col) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access an element of this implicit matrix slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the row number in the implicit encapsulating matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the column number in the implicit encapsulating matrix</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a read-only element of the implicit encapsulating matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="208" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="208" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1ad9ad2064d5c659aec8146c1b7cef0b44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &amp;</type>
+        <definition>Scalar&amp; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::operator()</definition>
+        <argsstring>(const size_t row, const size_t col)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access an element of this implicit matrix slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the row number in the implicit encapsulating matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the column number in the implicit encapsulating matrix</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a writable element of the implicit encapsulating matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="226" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="226" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const MatrixX&lt;Scalar&gt;&amp; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::asMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>asMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>this as a matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="243" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="243" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a6821fc7079d6e2cff3b8a9849bee4ef4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt;</type>
+        <definition>VectorX&lt;Scalar&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::asVector</definition>
+        <argsstring>() const</argsstring>
+        <name>asVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>this as a (column-major) vector </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="248" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="248" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a70eefd9bf58591279c903c7b0c6f5b66" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::map&lt; size_t, size_t &gt; &amp;</type>
+        <definition>const std::map&lt;size_t, size_t&gt;&amp; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::columnIndexMap</definition>
+        <argsstring>() const</argsstring>
+        <name>columnIndexMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the map between the column indices of the implicit matrix and the column indices of the dense representation of the slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="253" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="253" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a6df4decf4762ca9ce020b49e08728f45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::denseIndexOfColumn</definition>
+        <argsstring>(const size_t col) const</argsstring>
+        <name>denseIndexOfColumn</name>
+        <param>
+          <type>const size_t</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert an implicit column index to the column index in the dense representation of this slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the column number in the implicit encapsulating matrix</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the column index the dense representation of this slice. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="262" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="262" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1ad12f4e99ff37cc14b171db4456d80c9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::denseIndexOfRow</definition>
+        <argsstring>(const size_t row) const</argsstring>
+        <name>denseIndexOfRow</name>
+        <param>
+          <type>const size_t</type>
+          <declname>row</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert an implicit row index to the row index in the dense representation of this slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the row number in the implicit encapsulating matrix</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the row index the dense representation of this slice. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="271" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="271" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a2e40fa80fe0f68c539890c151c57c126" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::map&lt; size_t, size_t &gt; &amp;</type>
+        <definition>const std::map&lt;size_t, size_t&gt;&amp; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::rowIndexMap</definition>
+        <argsstring>() const</argsstring>
+        <name>rowIndexMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the map between the row indices of the implicit matrix and the row indices of the dense representation of the slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="276" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="276" bodyend="276"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a998e24f97b6c5e84b060bd08c463f35c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::FromBlockRanges</definition>
+        <argsstring>(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end, const MatrixX&lt; Scalar &gt; &amp;M)</argsstring>
+        <name>FromBlockRanges</name>
+        <param>
+          <type>const size_t</type>
+          <declname>row_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>row_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>col_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>col_end</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct an <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref> from a dense matrix block and corresponding index ranges.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based row index of the implicit matrix at which the block starts </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>row_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based row index of the implicit matrix at which the block ends (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based column index of the implicit matrix at which the block starts </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based column index of the implicit matrix at which the block ends (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the block</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit matrix slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="112" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="112" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a24e57055796a956464ad16f6fc5485b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::FromIndices</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;row_indices, const std::vector&lt; size_t &gt; &amp;col_indices, const MatrixX&lt; Scalar &gt; &amp;M)</argsstring>
+        <name>FromIndices</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>row_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>col_indices</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit matrix slice through a dense representation of the slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the row indices (in order) of the implicit matrix that the row indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the slice</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit matrix slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="134" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="134" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1aaf5cd7442fd79d7875a14b2c2f265140" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::ZeroFromBlockRanges</definition>
+        <argsstring>(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end)</argsstring>
+        <name>ZeroFromBlockRanges</name>
+        <param>
+          <type>const size_t</type>
+          <declname>row_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>row_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>col_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>col_end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a zero <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref> with given block ranges.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based row index of the implicit matrix at which the block starts </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>row_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based row index of the implicit matrix at which the block ends (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based column index of the implicit matrix at which the block starts </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the 0-based column index of the implicit matrix at which the block ends (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the block</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a zero implicit matrix slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="168" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="168" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_matrix_slice_1a541f0ab69cbdaa8282c384bae9534f3d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;::ZeroFromIndices</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;row_indices, const std::vector&lt; size_t &gt; &amp;col_indices)</argsstring>
+        <name>ZeroFromIndices</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>row_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>col_indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a zero-initialized implicit matrix slice from given allowed row and column indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the row indices (in order) of the implicit matrix that the row indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit matrix slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="187" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="187" bodyend="193"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A slice of a matrix that only exists implicitly.</para>
+<para>If the full matrix is unnecessary to know, and only a certain slice of the matrix is of interest, this class implements operator() that can be used with the row and column indices of the full matrix.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of one element of the encapsulating matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::ImplicitMatrixSlice&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_implicit_matrix_slice"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp" bodystart="38" bodyend="277"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a6821fc7079d6e2cff3b8a9849bee4ef4" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a6b11eb020df629229e19ed4830c11b55" prot="private" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>cols_implicit_to_dense</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a70eefd9bf58591279c903c7b0c6f5b66" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>columnIndexMap</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a6df4decf4762ca9ce020b49e08728f45" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>denseIndexOfColumn</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ad12f4e99ff37cc14b171db4456d80c9f" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>denseIndexOfRow</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a998e24f97b6c5e84b060bd08c463f35c" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>FromBlockRanges</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a24e57055796a956464ad16f6fc5485b3" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>FromIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1afa40af129ba899491054271b8cae6d3c" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>ImplicitMatrixSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a0771fa9d0f5c2e4e83e60dab9d1bda71" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>ImplicitMatrixSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1af0f9b6279f0d4960a6597882a2963bd4" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>ImplicitMatrixSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a5980f2ac0b643900067e2615a32369ff" prot="private" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>M</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a2a98a04bc7cbcfda3b2c7c8a8d4b334c" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ad9ad2064d5c659aec8146c1b7cef0b44" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a2e40fa80fe0f68c539890c151c57c126" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>rowIndexMap</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1add305c92c235902e1541059c1eb75839" prot="private" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>rows_implicit_to_dense</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a514de4b6de54f817d2d76ca80da80856" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1aaf5cd7442fd79d7875a14b2c2f265140" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>ZeroFromBlockRanges</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a541f0ab69cbdaa8282c384bae9534f3d" prot="public" virt="non-virtual"><scope>GQCP::ImplicitMatrixSlice</scope><name>ZeroFromIndices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

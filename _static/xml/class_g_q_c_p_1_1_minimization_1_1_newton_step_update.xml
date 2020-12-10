@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_minimization_1_1_newton_step_update" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Minimization::NewtonStepUpdate</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; _Environment &gt;</basecompoundref>
+    <includes refid="_minimization_2_newton_step_update_8hpp" local="no">NewtonStepUpdate.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+      <param>
+        <type>typename _Environment</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a0d85fe6730c6445b905a00963cfe116e" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a23edaea9c5f0af5be6d3677da67b2826" prot="public" static="no">
+        <type>_Environment</type>
+        <definition>using GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::Environment =  _Environment</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a9364e58c7624df4f6621f712a929b5f3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" line="59" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" bodystart="59" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a74bf63843f2f9eb8753f556b9dec2fee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate a new iteration of the variables and add them to the environment.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" line="69" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" bodystart="69" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that produces updated variables according to a Newton step.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the variables of the system of equations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the calculation environment </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" bodystart="42" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a9364e58c7624df4f6621f712a929b5f3" prot="public" virt="virtual"><scope>GQCP::Minimization::NewtonStepUpdate</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a23edaea9c5f0af5be6d3677da67b2826" prot="public" virt="non-virtual"><scope>GQCP::Minimization::NewtonStepUpdate</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a74bf63843f2f9eb8753f556b9dec2fee" prot="public" virt="virtual"><scope>GQCP::Minimization::NewtonStepUpdate</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a0d85fe6730c6445b905a00963cfe116e" prot="public" virt="non-virtual"><scope>GQCP::Minimization::NewtonStepUpdate</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::Minimization::NewtonStepUpdate</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

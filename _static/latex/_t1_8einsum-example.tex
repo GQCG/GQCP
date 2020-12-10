@@ -1,0 +1,28 @@
+\hypertarget{_t1_8einsum-example}{}\doxysection{T1.\+einsum}
+Contract this tensor with another one, using a Num\+Py \textquotesingle{}einsum\textquotesingle{}-\/like A\+PI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right-\/hand side of the contraction. \\
+\hline
+{\em lhs\+\_\+labels} & The labels for the axes of the tensor on the left-\/hand side of the contraction. \\
+\hline
+{\em rhs\+\_\+labels} & The labels for the axes of the tensor on the right-\/hand side of the contraction. \\
+\hline
+{\em output\+\_\+labels} & The labels for the the resulting/output tensor.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & The number of axes that should be contracted over.\\
+\hline
+\end{DoxyTemplParams}
+(T2, \textquotesingle{}ijkl\textquotesingle{}, \textquotesingle{}ia\textquotesingle{}, \textquotesingle{}jkla\textquotesingle{}) will contract the first axis of T1 (with labels \textquotesingle{}ijkl\textquotesingle{}) with the first axis of T2 (with labels \textquotesingle{}ia\textquotesingle{}) (because of the matching index labels \textquotesingle{}i\textquotesingle{}) and return a tensor whose axes are labelled as \textquotesingle{}jkla\textquotesingle{}.
+
+\begin{DoxyReturn}{Returns}
+The result of the tensor contraction.
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

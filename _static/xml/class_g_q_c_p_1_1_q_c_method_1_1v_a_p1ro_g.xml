@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::QCMethod::vAP1roG</compoundname>
+    <includes refid="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp" local="no">vAP1roG.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCMethod::vAP1roG::N_P</definition>
+        <argsstring></argsstring>
+        <name>N_P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" line="37" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::QCMethod::vAP1roG::K</definition>
+        <argsstring></argsstring>
+        <name>K</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" line="38" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt;</type>
+        <definition>RSQHamiltonian&lt;double&gt; GQCP::QCMethod::vAP1roG::sq_hamiltonian</definition>
+        <argsstring></argsstring>
+        <name>sq_hamiltonian</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" line="40" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::QCMethod::vAP1roG::vAP1roG</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
+        <name>vAP1roG</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N_P</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second-quantized Hamiltonian in an orthonormal basis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N_P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of electron pairs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" bodystart="52" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename NonLinearSolver</type>
+          </param>
+          <param>
+            <type>typename LinearSolver</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g" kindref="compound">GQCP::QCModel::vAP1roG</ref> &gt;</type>
+        <definition>QCStructure&lt;GQCP::QCModel::vAP1roG&gt; GQCP::QCMethod::vAP1roG::optimize</definition>
+        <argsstring>(NonLinearSolver &amp;non_linear_solver, NonLinearEquationEnvironment&lt; double &gt; &amp;non_linear_environment, LinearSolver &amp;linear_solver) const</argsstring>
+        <name>optimize</name>
+        <param>
+          <type>NonLinearSolver &amp;</type>
+          <declname>non_linear_solver</declname>
+        </param>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_non_linear_equation_environment" kindref="compound">NonLinearEquationEnvironment</ref>&lt; double &gt; &amp;</type>
+          <declname>non_linear_environment</declname>
+        </param>
+        <param>
+          <type>LinearSolver &amp;</type>
+          <declname>linear_solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Optimize the <ref refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kindref="compound">vAP1roG</ref> wave function model: find the parameters satisfy the given objective.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>NonLinearSolver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the non-linear equation solver that attempts to solve the PSEs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>LinearSolver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the linear equation solver that attempts to determine associated Lagrange multipliers</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>non_linear_solver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the solver that will try to optimize the geminal coefficients parameters </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>non_linear_environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space for the non-linear solver </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>linear_solver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the solver that will try to find the associated Lagrange multipliers </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" line="73" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" bodystart="73" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The variationally determined <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g" kindref="compound">AP1roG</ref> quantum chemical method. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::QCMethod::vAP1roG</label>
+        <link refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp" bodystart="35" bodyend="107"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::vAP1roG</scope><name>K</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::vAP1roG</scope><name>N_P</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::vAP1roG</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::vAP1roG</scope><name>sq_hamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::vAP1roG</scope><name>vAP1roG</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

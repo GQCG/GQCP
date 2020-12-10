@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_non_linear_equation_environment" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::NonLinearEquationEnvironment</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_optimization_environment" prot="public" virt="non-virtual">GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_non_linear_equation_environment_8hpp" local="no">NonLinearEquationEnvironment.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_non_linear_equation_environment_1abd44db00f3295cdde6bd78381dc712c6" prot="public" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>VectorFunction&lt;Scalar&gt; GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" line="42" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_non_linear_equation_environment_1ac710855dfb0a08029a42e77cddcab616" prot="public" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1afdcf4d963710902cad07f1c683df75bf" kindref="member">MatrixFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" kindref="member">Scalar</ref> &gt;</type>
+        <definition>MatrixFunction&lt;Scalar&gt; GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::J</definition>
+        <argsstring></argsstring>
+        <name>J</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" line="43" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_non_linear_equation_environment_1a6586fccf05711817cf7779f0851787a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::NonLinearEquationEnvironment</definition>
+        <argsstring>(const VectorX&lt; _Scalar &gt; &amp;initial_guess, const VectorFunction&lt; Scalar &gt; &amp;f, const MatrixFunction&lt; Scalar &gt; &amp;J)</argsstring>
+        <name>NonLinearEquationEnvironment</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; _Scalar &gt; &amp;</type>
+          <declname>initial_guess</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1afdcf4d963710902cad07f1c683df75bf" kindref="member">MatrixFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>J</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the optimization environment with an initial guess</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>initial_guess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the initial guess for the variables </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a callable function that produces a vector function that represents the system of equations at the given variables </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a callable function that produces a matrix that represents the Jacobian of the system of equations at the given variables </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An environment that can be used to solve non-linear systems of equations</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the variables of the system of equations </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_non_linear_equation_environment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_optimization_environment"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_non_linear_equation_environment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_optimization_environment"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp" bodystart="35" bodyend="62"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_environment_1abd44db00f3295cdde6bd78381dc712c6" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationEnvironment</scope><name>f</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationEnvironment</scope><name>Iterate</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_environment_1ac710855dfb0a08029a42e77cddcab616" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationEnvironment</scope><name>J</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a6586fccf05711817cf7779f0851787a2" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationEnvironment</scope><name>NonLinearEquationEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationEnvironment</scope><name>OptimizationEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationEnvironment</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_optimization_environment_1adb8d5b6dd10be21c085d1a6855d307db" prot="public" virt="non-virtual"><scope>GQCP::NonLinearEquationEnvironment</scope><name>variables</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

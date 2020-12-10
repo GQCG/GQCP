@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_libint_two_electron_integral_engine" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::LibintTwoElectronIntegralEngine</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralEngine&lt; GTOShell, _N, double &gt;</basecompoundref>
+    <includes refid="_libint_two_electron_integral_engine_8hpp" local="no">LibintTwoElectronIntegralEngine.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>_N</declname>
+        <defname>_N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a6c7aa9a8b4d585f95a0f211b89fa0fec" prot="public" static="no">
+        <type>double</type>
+        <definition>using GQCP::LibintTwoElectronIntegralEngine&lt; _N &gt;::IntegralScalar =  double</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" line="37" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1ae070c18450658740d68fbe07aa5580d6" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::LibintTwoElectronIntegralEngine&lt; _N &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <initializer>= _N</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" line="38" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a7af21aa45125b5c420c6585219e645ee" prot="private" static="no" mutable="no">
+        <type>libint2::Engine</type>
+        <definition>libint2::Engine GQCP::LibintTwoElectronIntegralEngine&lt; _N &gt;::libint2_engine</definition>
+        <argsstring></argsstring>
+        <name>libint2_engine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" line="42" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1af7ca68affd86021566f33cd0c6c544bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::LibintTwoElectronIntegralEngine&lt; _N &gt;::LibintTwoElectronIntegralEngine</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;op, const size_t max_nprim, const size_t max_l)</argsstring>
+        <name>LibintTwoElectronIntegralEngine</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_nprim</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>max_l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Coulomb repulsion operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_nprim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of primitives per contracted Gaussian shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum angular momentum of Gaussian shell </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" bodystart="55" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a2e36ffbf6a9acd7743f04b4ec7f81749" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" kindref="compound">BaseTwoElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a6c7aa9a8b4d585f95a0f211b89fa0fec" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1ae070c18450658740d68fbe07aa5580d6" kindref="member">N</ref> &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;BaseTwoElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::LibintTwoElectronIntegralEngine&lt; _N &gt;::calculate</definition>
+        <argsstring>(const GTOShell &amp;shell1, const GTOShell &amp;shell2, const GTOShell &amp;shell3, const GTOShell &amp;shell4) override</argsstring>
+        <name>calculate</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2b36d7ebbf6ee7aa876b6f15df77c18b">calculate</reimplements>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
+          <declname>shell1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
+          <declname>shell2</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
+          <declname>shell3</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
+          <declname>shell4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shell1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the third shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shell4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fourth shell</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This method is not marked const to allow the Engine&apos;s internals to be changed </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" line="71" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" bodystart="71" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A two-electron integral engine that uses libint as its backend</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of components the operator has </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; GTOShell, _N, double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::LibintTwoElectronIntegralEngine&lt; _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; GTOShell, _N, double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::LibintTwoElectronIntegralEngine&lt; _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp" bodystart="35" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a2e36ffbf6a9acd7743f04b4ec7f81749" prot="public" virt="virtual"><scope>GQCP::LibintTwoElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a6c7aa9a8b4d585f95a0f211b89fa0fec" prot="public" virt="non-virtual"><scope>GQCP::LibintTwoElectronIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a7af21aa45125b5c420c6585219e645ee" prot="private" virt="non-virtual"><scope>GQCP::LibintTwoElectronIntegralEngine</scope><name>libint2_engine</name></member>
+      <member refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1af7ca68affd86021566f33cd0c6c544bd" prot="public" virt="non-virtual"><scope>GQCP::LibintTwoElectronIntegralEngine</scope><name>LibintTwoElectronIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1ae070c18450658740d68fbe07aa5580d6" prot="public" virt="non-virtual"><scope>GQCP::LibintTwoElectronIntegralEngine</scope><name>N</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2750514840a71482b824e1c6f611b093" prot="public" virt="non-virtual"><scope>GQCP::LibintTwoElectronIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1ae5e5b288c06cc335f171292ca652eca2" prot="public" virt="virtual"><scope>GQCP::LibintTwoElectronIntegralEngine</scope><name>~BaseTwoElectronIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

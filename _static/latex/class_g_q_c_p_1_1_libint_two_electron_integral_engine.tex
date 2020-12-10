@@ -1,0 +1,125 @@
+\hypertarget{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{}\doxysection{G\+Q\+CP\+::Libint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+N $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_libint_two_electron_integral_engine}\index{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}}
+
+
+{\ttfamily \#include $<$Libint\+Two\+Electron\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Libint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_libint_two_electron_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Libint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_g_q_c_p_1_1_libint_two_electron_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a6c7aa9a8b4d585f95a0f211b89fa0fec}{Integral\+Scalar}} = double
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_af7ca68affd86021566f33cd0c6c544bd}{Libint\+Two\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer}{Base\+Two\+Electron\+Integral\+Buffer}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a6c7aa9a8b4d585f95a0f211b89fa0fec}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_ae070c18450658740d68fbe07aa5580d6}{N}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a2e36ffbf6a9acd7743f04b4ec7f81749}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&shell1, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&shell2, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&shell3, const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&shell4) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_ae070c18450658740d68fbe07aa5580d6}{N}} = \+\_\+N
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$size\+\_\+t \+\_\+N$>$\newline
+class G\+Q\+C\+P\+::\+Libint\+Two\+Electron\+Integral\+Engine$<$ \+\_\+\+N $>$}
+
+A two-\/electron integral engine that uses libint as its backend
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+N} & the number of components the operator has \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a6c7aa9a8b4d585f95a0f211b89fa0fec}\label{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a6c7aa9a8b4d585f95a0f211b89fa0fec}} 
+\index{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a6c7aa9a8b4d585f95a0f211b89fa0fec}{Integral\+Scalar}} =  double}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_two_electron_integral_engine_af7ca68affd86021566f33cd0c6c544bd}\label{class_g_q_c_p_1_1_libint_two_electron_integral_engine_af7ca68affd86021566f33cd0c6c544bd}} 
+\index{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}!LibintTwoElectronIntegralEngine@{LibintTwoElectronIntegralEngine}}
+\index{LibintTwoElectronIntegralEngine@{LibintTwoElectronIntegralEngine}!GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{LibintTwoElectronIntegralEngine()}{LibintTwoElectronIntegralEngine()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{Libint\+Two\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & the Coulomb repulsion operator \\
+\hline
+{\em max\+\_\+nprim} & the maximum number of primitives per contracted Gaussian shell \\
+\hline
+{\em max\+\_\+l} & the maximum angular momentum of Gaussian shell \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a2e36ffbf6a9acd7743f04b4ec7f81749}\label{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a2e36ffbf6a9acd7743f04b4ec7f81749}} 
+\index{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer}{Base\+Two\+Electron\+Integral\+Buffer}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_a6c7aa9a8b4d585f95a0f211b89fa0fec}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine_ae070c18450658740d68fbe07aa5580d6}{N}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{shell1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{shell2,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{shell3,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{shell4 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em shell1} & the first shell \\
+\hline
+{\em shell2} & the second shell \\
+\hline
+{\em shell3} & the third shell \\
+\hline
+{\em shell4} & the fourth shell\\
+\hline
+\end{DoxyParams}
+This method is not marked const to allow the Engine\textquotesingle{}s internals to be changed 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine_a2b36d7ebbf6ee7aa876b6f15df77c18b}{G\+Q\+C\+P\+::\+Base\+Two\+Electron\+Integral\+Engine$<$ G\+T\+O\+Shell, \+\_\+\+N, double $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_two_electron_integral_engine_ae070c18450658740d68fbe07aa5580d6}\label{class_g_q_c_p_1_1_libint_two_electron_integral_engine_ae070c18450658740d68fbe07aa5580d6}} 
+\index{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}!N@{N}}
+\index{N@{N}!GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$@{GQCP::LibintTwoElectronIntegralEngine$<$ \_N $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{G\+Q\+C\+P\+::\+Libint\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+N $>$\+::N = \+\_\+N\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libint_two_electron_integral_engine_8hpp}{Libint\+Two\+Electron\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

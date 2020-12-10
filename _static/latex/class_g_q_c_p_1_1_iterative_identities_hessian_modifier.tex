@@ -1,0 +1,81 @@
+\hypertarget{class_g_q_c_p_1_1_iterative_identities_hessian_modifier}{}\doxysection{G\+Q\+CP\+::Iterative\+Identities\+Hessian\+Modifier Class Reference}
+\label{class_g_q_c_p_1_1_iterative_identities_hessian_modifier}\index{GQCP::IterativeIdentitiesHessianModifier@{GQCP::IterativeIdentitiesHessianModifier}}
+
+
+{\ttfamily \#include $<$Iterative\+Identities\+Hessian\+Modifier.\+hpp$>$}
+
+
+
+Inheritance diagram for G\+Q\+CP\+::Iterative\+Identities\+Hessian\+Modifier\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{class_g_q_c_p_1_1_iterative_identities_hessian_modifier__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Q\+CP\+::Iterative\+Identities\+Hessian\+Modifier\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{class_g_q_c_p_1_1_iterative_identities_hessian_modifier__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_identities_hessian_modifier_ab627bc2b2da64c10d085b7991be66c5f}{Iterative\+Identities\+Hessian\+Modifier}} (const double alpha=2.\+0, const double beta=1.\+0e-\/03)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_identities_hessian_modifier_a82c62cd66ed7797b1af9775588ec72d3}{operator()}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&hessian) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Hessian modifier functor that uses multiples of the identity matrix to try to obtain a positive/negative definite Hessian
+
+This implements \mbox{\hyperlink{class_g_q_c_p_1_1_algorithm}{Algorithm}} 3.\+3 in Nocedal and Wright 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_identities_hessian_modifier_ab627bc2b2da64c10d085b7991be66c5f}\label{class_g_q_c_p_1_1_iterative_identities_hessian_modifier_ab627bc2b2da64c10d085b7991be66c5f}} 
+\index{GQCP::IterativeIdentitiesHessianModifier@{GQCP::IterativeIdentitiesHessianModifier}!IterativeIdentitiesHessianModifier@{IterativeIdentitiesHessianModifier}}
+\index{IterativeIdentitiesHessianModifier@{IterativeIdentitiesHessianModifier}!GQCP::IterativeIdentitiesHessianModifier@{GQCP::IterativeIdentitiesHessianModifier}}
+\doxysubsubsection{\texorpdfstring{IterativeIdentitiesHessianModifier()}{IterativeIdentitiesHessianModifier()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Iterative\+Identities\+Hessian\+Modifier\+::\+Iterative\+Identities\+Hessian\+Modifier (\begin{DoxyParamCaption}\item[{const double}]{alpha = {\ttfamily 2.0},  }\item[{const double}]{beta = {\ttfamily 1.0e-\/03} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & the increment factor used to obtain the next scaler tau \\
+\hline
+{\em beta} & the heuristic increment \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_iterative_identities_hessian_modifier_a82c62cd66ed7797b1af9775588ec72d3}\label{class_g_q_c_p_1_1_iterative_identities_hessian_modifier_a82c62cd66ed7797b1af9775588ec72d3}} 
+\index{GQCP::IterativeIdentitiesHessianModifier@{GQCP::IterativeIdentitiesHessianModifier}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::IterativeIdentitiesHessianModifier@{GQCP::IterativeIdentitiesHessianModifier}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ G\+Q\+C\+P\+::\+Iterative\+Identities\+Hessian\+Modifier\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \&}]{hessian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em hessian} & the current indefinite Hessian\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a modified Hessian that is made positive (for minimizers) or negative (for maximizers) definite 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier_a8e94b709f06013e7bcdf29e9f6519d07}{G\+Q\+C\+P\+::\+Base\+Hessian\+Modifier}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Minimization/\mbox{\hyperlink{_iterative_identities_hessian_modifier_8hpp}{Iterative\+Identities\+Hessian\+Modifier.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Mathematical/\+Optimization/\+Minimization/\mbox{\hyperlink{_iterative_identities_hessian_modifier_8cpp}{Iterative\+Identities\+Hessian\+Modifier.\+cpp}}\end{DoxyCompactItemize}

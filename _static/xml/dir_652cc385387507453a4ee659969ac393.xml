@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_652cc385387507453a4ee659969ac393" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized</compoundname>
+    <innerdir refid="dir_41ae741239889692afc314a7f1922409">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian</innerdir>
+    <innerfile refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp">EvaluatableScalarRSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_g_s_q_one_electron_operator_8hpp">GSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_g_s_q_two_electron_operator_8hpp">GSQTwoElectronOperator.hpp</innerfile>
+    <innerfile refid="_mixed_u_s_q_two_electron_operator_component_8hpp">MixedUSQTwoElectronOperatorComponent.hpp</innerfile>
+    <innerfile refid="_operator_traits_8hpp">OperatorTraits.hpp</innerfile>
+    <innerfile refid="_pure_u_s_q_two_electron_operator_component_8hpp">PureUSQTwoElectronOperatorComponent.hpp</innerfile>
+    <innerfile refid="_r_s_q_one_electron_operator_8hpp">RSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_r_s_q_two_electron_operator_8hpp">RSQTwoElectronOperator.hpp</innerfile>
+    <innerfile refid="_simple_s_q_one_electron_operator_8hpp">SimpleSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_simple_s_q_two_electron_operator_8hpp">SimpleSQTwoElectronOperator.hpp</innerfile>
+    <innerfile refid="_s_q_hamiltonian_8hpp">SQHamiltonian.hpp</innerfile>
+    <innerfile refid="_s_q_operator_storage_8hpp">SQOperatorStorage.hpp</innerfile>
+    <innerfile refid="_s_q_operator_storage_base_8hpp">SQOperatorStorageBase.hpp</innerfile>
+    <innerfile refid="_u_s_q_one_electron_operator_8hpp">USQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_u_s_q_one_electron_operator_component_8hpp">USQOneElectronOperatorComponent.hpp</innerfile>
+    <innerfile refid="_u_s_q_two_electron_operator_8hpp">USQTwoElectronOperator.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,870 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_tensor" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Tensor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Eigen::Tensor&lt; _Scalar, _Rank &gt;</basecompoundref>
+    <includes refid="_tensor_8hpp" local="no">Tensor.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>_Rank</declname>
+        <defname>_Rank</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::Tensor&lt; _Scalar, _Rank &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref> &gt;</type>
+        <definition>using GQCP::Tensor&lt; _Scalar, _Rank &gt;::Self =  Tensor&lt;Scalar, Rank&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_tensor_1a5d199f6660a9a70074c508f2c6a66b4e" prot="public" static="no">
+        <type>Eigen::Tensor&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref> &gt;</type>
+        <definition>using GQCP::Tensor&lt; _Scalar, _Rank &gt;::Base =  Eigen::Tensor&lt;Scalar, Rank&gt;</definition>
+        <argsstring></argsstring>
+        <name>Base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::Tensor&lt; _Scalar, _Rank &gt;::Rank</definition>
+        <argsstring></argsstring>
+        <name>Rank</name>
+        <initializer>= _Rank</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="53" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a4f661c1441222dccb0b170cdcc04a744" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>Z</declname>
+            <defname>Z</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; Z==4, <ref refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" kindref="member">Self</ref> &gt;</type>
+        <definition>static enable_if_t&lt;Z == 4, Self&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::FromBlock</definition>
+        <argsstring>(const Self &amp;T, const size_t i, const size_t j, const size_t k, const size_t l, const size_t cutoff=0)</argsstring>
+        <name>FromBlock</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" kindref="member">Self</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>l</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>cutoff</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a rank-4 tensor</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st starting index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd starting index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd starting index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>4th starting index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cutoff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>early cut-off of index iteration</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a rank-4 tensor from an other rank-4 tensor, starting from given indices </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="87" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="87" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_tensor_1a5d199f6660a9a70074c508f2c6a66b4e" kindref="member">Base</ref> &amp;</type>
+        <definition>const Base&amp; GQCP::Tensor&lt; _Scalar, _Rank &gt;::Eigen</definition>
+        <argsstring>() const</argsstring>
+        <name>Eigen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>This as a const <ref refid="namespace_eigen" kindref="compound">Eigen</ref> base. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="116" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a65b3e312701a619764a36cb9e5b77247" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_tensor_1a5d199f6660a9a70074c508f2c6a66b4e" kindref="member">Base</ref> &amp;</type>
+        <definition>Base&amp; GQCP::Tensor&lt; _Scalar, _Rank &gt;::Eigen</definition>
+        <argsstring>()</argsstring>
+        <name>Eigen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>This as a non-const <ref refid="namespace_eigen" kindref="compound">Eigen</ref> base. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="121" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a27c1c038c06c561f87d788f96d80a7db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>r</declname>
+            <defname>r</defname>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>s</declname>
+            <defname>s</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>Z</declname>
+            <defname>Z</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; Z==4, <ref refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" kindref="member">Self</ref> &amp; &gt;</type>
+        <definition>enable_if_t&lt;Z == 4, Self&amp;&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::addBlock</definition>
+        <argsstring>(const MatrixX&lt; Scalar &gt; &amp;M, const size_t i, const size_t j, const size_t k, const size_t l)</argsstring>
+        <name>addBlock</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a matrix to a this tensor starting from given indices</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indicates with which tensor index axis (0,1,2,3) the row index axis of the matrix should align </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indicates with which tensor index axis (0,1,2,3) the column index axis of the matrix should align</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 1st index axis of the tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 2nd index axis of the tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 3rd index axis of the tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 4th index axis of the tensor</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a reference to updated this</para>
+</simplesect>
+Example: Given a rank-4 tensor of dimensions (10,10,10,10), and a matrix M of dimensions (3,3) Input : &lt;2,0&gt; (M, 0, 2, 1, 3): &lt;2,0&gt; dictates that the row index axis of the matrix aligns with the 3rd index axis of the tensor (2nd starting from 0) and that the column index axis of the matrix aligns with the 1st index axis tensor (0th starting from 0) (0, 2, 1, 3) dictates the starting indexes to which the matrix is added, given the input &lt;2,0&gt; this means the indices of the 2nd (indicated by the &quot;2&quot;) and the 4th (indicated by the &quot;3&quot;) axes are held fixed because they do not correspond to the entries &lt;2,0&gt;. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="153" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="153" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1afaef2cb55ae37ca6174f956614e32411" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>Z</declname>
+            <defname>Z</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; Z==4, <ref refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" kindref="member">Self</ref> &amp; &gt;</type>
+        <definition>enable_if_t&lt;Z == 4, Self&amp;&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::addBlock</definition>
+        <argsstring>(const Self &amp;T, const size_t i, const size_t j, const size_t k, const size_t l)</argsstring>
+        <name>addBlock</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" kindref="member">Self</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a rank-4 tensor into this, starting from given indices</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a rank-4 tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 1st index axis of the tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 2nd index axis of the tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 3rd index axis of the tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting index for the 4th index axis of the tensor</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a reference to updated this </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="189" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="189" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a6a4c62ac97e943c971985487edde42c9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>Z</declname>
+            <defname>Z</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; Z==4, <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>enable_if_t&lt;Z == 4, Matrix&lt;Scalar&gt; &gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::pairWiseReduced</definition>
+        <argsstring>(const size_t start_i=0, const size_t start_j=0, const size_t start_k=0, const size_t start_l=0) const</argsstring>
+        <name>pairWiseReduced</name>
+        <param>
+          <type>const size_t</type>
+          <declname>start_i</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>start_j</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>start_k</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>start_l</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start_i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index at which the first rank should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>start_j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index at which the second rank should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>start_k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index at which the third rank should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>start_l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index at which the fourth rank should start</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a pair-wise reduced form of this rank-4 tensor. The elements of the tensor are put into the matrix such that M(m,n) = T(i,j,k,l)</para>
+</simplesect>
+in which m is calculated from i and j in a column-major way n is calculated from k and l in a column-major way </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="219" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="219" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a7f3fc273d404b00111e250639592e310" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>LHSRank</declname>
+            <defname>LHSRank</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>RHSRank</declname>
+            <defname>RHSRank</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref>, LHSRank+RHSRank - 2 *N &gt;</type>
+        <definition>Tensor&lt;Scalar, LHSRank + RHSRank - 2 * N&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::einsum</definition>
+        <argsstring>(const Tensor&lt; Scalar, RHSRank &gt; &amp;rhs, const std::string &amp;lhs_labels, const std::string &amp;rhs_labels, const std::string &amp;output_labels) const</argsstring>
+        <name>einsum</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref>, RHSRank &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>lhs_labels</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>rhs_labels</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_labels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="264" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="264" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1afbf2116f91e93cce546be34cfbe362c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>LHSRank</declname>
+            <defname>LHSRank</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>RHSRank</declname>
+            <defname>RHSRank</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref>, LHSRank+RHSRank - 2 *N &gt;</type>
+        <definition>Tensor&lt;Scalar, LHSRank + RHSRank - 2 * N&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::einsum</definition>
+        <argsstring>(std::string contraction_string, const Tensor&lt; Scalar, RHSRank &gt; &amp;rhs) const</argsstring>
+        <name>einsum</name>
+        <param>
+          <type>std::string</type>
+          <declname>contraction_string</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref>, RHSRank &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="350" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="350" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1ab0aac5a7270d58bb2739787076f320cf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>LHSRank</declname>
+            <defname>LHSRank</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref>, LHSRank+2 - 2 *N &gt;</type>
+        <definition>Tensor&lt;Scalar, LHSRank + 2 - 2 * N&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::einsum</definition>
+        <argsstring>(std::string contraction_string, const Matrix&lt; Scalar &gt; rhs) const</argsstring>
+        <name>einsum</name>
+        <param>
+          <type>std::string</type>
+          <declname>contraction_string</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref> &gt;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="395" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="395" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>Z</declname>
+            <defname>Z</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; Z==2, <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>const enable_if_t&lt;Z == 2, GQCP::Matrix&lt;Scalar&gt; &gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::asMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>asMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>This rank-two tensor as a matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="406" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="406" bodyend="412"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1ad617715dde3cdf405c91fc7e2ab4bba5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" kindref="member">Scalar</ref> &gt;</type>
+        <definition>GQCP::Matrix&lt;Scalar&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::reshape</definition>
+        <argsstring>(const size_t rows, const size_t cols) const</argsstring>
+        <name>reshape</name>
+        <param>
+          <type>const size_t</type>
+          <declname>rows</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>cols</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A numpy-like reshape function that turns a tensor into a matrix using C-like ordering (See numpy documentation: <ulink url="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">https://numpy.org/doc/stable/reference/generated/numpy.reshape.html</ulink>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rows</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix rows. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cols</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the matrix columns.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>This tensor as a matrix of the specified dimensions, ordered using C-like ordering. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="422" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="422" bodyend="460"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a0fbb66c2ec178b7c21441ef6aaf3362d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::Tensor&lt; _Scalar, _Rank &gt;::hasEqualDimensionsAs</definition>
+        <argsstring>(const Self &amp;other) const</argsstring>
+        <name>hasEqualDimensionsAs</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" kindref="member">Self</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other tensor</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if this tensor has the same dimensions as the other tensor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="472" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="472" bodyend="481"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1aedf5e3a286be6c44e3209f722cd42d14" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>Z</declname>
+            <defname>Z</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; Z==4, bool &gt;</type>
+        <definition>enable_if_t&lt;Z == 4, bool&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::isApprox</definition>
+        <argsstring>(const Self &amp;other, const double tolerance=1.0e-12) const</argsstring>
+        <name>isApprox</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" kindref="member">Self</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>tolerance</declname>
+          <defval>1.0e-12</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolerance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the tolerance for element-wise comparison</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if this is approximately equal to the other </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="491" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="491" bodyend="511"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::Tensor&lt; _Scalar, _Rank &gt;::numberOfElements</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfElements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The total number of elements in this tensor. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="517" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="517" bodyend="519"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>Z</declname>
+            <defname>Z</defname>
+            <defval><ref refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" kindref="member">Rank</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; Z==4 &gt;</type>
+        <definition>enable_if_t&lt;Z == 4&gt; GQCP::Tensor&lt; _Scalar, _Rank &gt;::print</definition>
+        <argsstring>(std::ostream &amp;output_stream=std::cout) const</argsstring>
+        <name>print</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>output_stream</declname>
+          <defval>std::cout</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Print the contents of this to an output stream</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output_stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the stream used for outputting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="528" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="528" bodyend="539"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An extension of the Eigen::Tensor class, with extra operations.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of one of the elements of the tensor. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Rank</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rank of the tensor, i.e. the number of axes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+We have decided to inherit from Eigen::Tensor, because we will use different hierarchies: see also: <ulink url="https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html">https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html</ulink>. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::Tensor&lt; _Scalar, _Rank &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Tensor&lt; _Scalar, _Rank &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp" bodystart="46" bodyend="540"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_tensor_1a27c1c038c06c561f87d788f96d80a7db" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1afaef2cb55ae37ca6174f956614e32411" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a5d199f6660a9a70074c508f2c6a66b4e" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>Base</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a65b3e312701a619764a36cb9e5b77247" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a7f3fc273d404b00111e250639592e310" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1afbf2116f91e93cce546be34cfbe362c6" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ab0aac5a7270d58bb2739787076f320cf" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a4f661c1441222dccb0b170cdcc04a744" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>FromBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0fbb66c2ec178b7c21441ef6aaf3362d" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>hasEqualDimensionsAs</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1aedf5e3a286be6c44e3209f722cd42d14" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>isApprox</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>numberOfElements</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a6a4c62ac97e943c971985487edde42c9" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>pairWiseReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>print</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>Rank</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ad617715dde3cdf405c91fc7e2ab4bba5" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>reshape</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1af3fe62d68eabe84eaa63f637a31fc65c" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a7c6ee05dda4be6978c7124701848c998" prot="public" virt="non-virtual"><scope>GQCP::Tensor</scope><name>Self</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_convergence_criterion" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::ConvergenceCriterion</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_compound_convergence_criterion" prot="public" virt="non-virtual">GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence" prot="public" virt="non-virtual">GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_residual_vector_convergence" prot="public" virt="non-virtual">GQCP::ResidualVectorConvergence&lt; _Environment &gt;</derivedcompoundref>
+    <includes refid="_convergence_criterion_8hpp" local="no">ConvergenceCriterion.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Environment</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_convergence_criterion_1af1d80b82ec0172943d13c50a48cc1cb3" prot="public" static="no">
+        <type>_Environment</type>
+        <definition>using GQCP::ConvergenceCriterion&lt; _Environment &gt;::Environment =  _Environment</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/ConvergenceCriterion.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/ConvergenceCriterion.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_convergence_criterion_1a4594ec2c922fcc9aafb6734e68fa158d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::ConvergenceCriterion&lt; _Environment &gt;::~ConvergenceCriterion</definition>
+        <argsstring>()=default</argsstring>
+        <name>~ConvergenceCriterion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/ConvergenceCriterion.hpp" line="43" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_convergence_criterion_1a5d2993454005779f8a6376c63aec430c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string GQCP::ConvergenceCriterion&lt; _Environment &gt;::description</definition>
+        <argsstring>() const =0</argsstring>
+        <name>description</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_compound_convergence_criterion_1a7915c59e6ba2fd2ac59aebf377b3b7b2">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_residual_vector_convergence_1a60eb61cd13e3663cdcca2c7a1f7a8dfd">description</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this convergence criterion. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/ConvergenceCriterion.hpp" line="53" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_convergence_criterion_1a84503e9b2b4bdd01188f21be512bc281" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool GQCP::ConvergenceCriterion&lt; _Environment &gt;::isFulfilled</definition>
+        <argsstring>(Environment &amp;environment)=0</argsstring>
+        <name>isFulfilled</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_compound_convergence_criterion_1a86066355bcaf6aa79b6d0152bbf4fe8f">isFulfilled</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a0be253e3c3a65055a4e2bdba68c34e54">isFulfilled</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_residual_vector_convergence_1aefd9d7262006ed781a52ee7238adc6b8">isFulfilled</reimplementedby>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_convergence_criterion_1af1d80b82ec0172943d13c50a48cc1cb3" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that this criterion can read from</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if this criterion is fulfilled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/ConvergenceCriterion.hpp" line="60" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A criterion that can check convergence by examining certain properties of the environment.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of the environment that this criterion can read from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
+      </node>
+      <node id="4">
+        <label>GQCP::ResidualVectorConvergence&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_residual_vector_convergence"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_compound_convergence_criterion"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::ConsecutiveIteratesNormConvergence&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/ConvergenceCriterion.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/ConvergenceCriterion.hpp" bodystart="33" bodyend="61"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_convergence_criterion_1a5d2993454005779f8a6376c63aec430c" prot="public" virt="pure-virtual"><scope>GQCP::ConvergenceCriterion</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_convergence_criterion_1af1d80b82ec0172943d13c50a48cc1cb3" prot="public" virt="non-virtual"><scope>GQCP::ConvergenceCriterion</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_convergence_criterion_1a84503e9b2b4bdd01188f21be512bc281" prot="public" virt="pure-virtual"><scope>GQCP::ConvergenceCriterion</scope><name>isFulfilled</name></member>
+      <member refid="class_g_q_c_p_1_1_convergence_criterion_1a4594ec2c922fcc9aafb6734e68fa158d" prot="public" virt="virtual"><scope>GQCP::ConvergenceCriterion</scope><name>~ConvergenceCriterion</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

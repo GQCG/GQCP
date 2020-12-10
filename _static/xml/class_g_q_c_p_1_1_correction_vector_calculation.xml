@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_correction_vector_calculation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::CorrectionVectorCalculation</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <includes refid="_correction_vector_calculation_8hpp" local="no">CorrectionVectorCalculation.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_correction_vector_calculation_1a6c9abd64d7c3af27945863f27d871ec4" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::CorrectionVectorCalculation::number_of_requested_eigenpairs</definition>
+        <argsstring></argsstring>
+        <name>number_of_requested_eigenpairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" line="35" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_correction_vector_calculation_1a62e7f197aabd8b5498ea1c571aa6717d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::CorrectionVectorCalculation::correction_threshold</definition>
+        <argsstring></argsstring>
+        <name>correction_threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_correction_vector_calculation_1a48c74231f2206b48ee07077792b2939d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::CorrectionVectorCalculation::CorrectionVectorCalculation</definition>
+        <argsstring>(const size_t number_of_requested_eigenpairs=1, const double correction_threshold=1.0e-12)</argsstring>
+        <name>CorrectionVectorCalculation</name>
+        <param>
+          <type>const size_t</type>
+          <declname>number_of_requested_eigenpairs</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>correction_threshold</declname>
+          <defval>1.0e-12</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>number_of_requestested_eigenpairs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of eigenpairs that should be found by the algorithm </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>correction_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold used in solving the (approximated) residue correction equation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" bodystart="48" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::CorrectionVectorCalculation::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" line="60" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_correction_vector_calculation_1a120b466e0f888fbdddddc15a311830fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::CorrectionVectorCalculation::execute</definition>
+        <argsstring>(EigenproblemEnvironment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the correction vectors by solving the residual equations.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the environment that acts as a sort of calculation space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" line="70" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" bodystart="70" bodyend="99"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A step that calculates correction vectors by solving the residual equations. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::CorrectionVectorCalculation</label>
+        <link refid="class_g_q_c_p_1_1_correction_vector_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::CorrectionVectorCalculation</label>
+        <link refid="class_g_q_c_p_1_1_correction_vector_calculation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" bodystart="32" bodyend="100"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a62e7f197aabd8b5498ea1c571aa6717d" prot="private" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>correction_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a48c74231f2206b48ee07077792b2939d" prot="public" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>CorrectionVectorCalculation</name></member>
+      <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e" prot="public" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; EigenproblemEnvironment &gt;::"><scope>GQCP::CorrectionVectorCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a120b466e0f888fbdddddc15a311830fd" prot="public" virt="virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a6c9abd64d7c3af27945863f27d871ec4" prot="private" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>number_of_requested_eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

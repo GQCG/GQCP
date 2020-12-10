@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_minimizer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Minimizer</compoundname>
+    <includes refid="_minimizer_8hpp" local="no">Minimizer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_minimizer_1ab04f2a789fa9e06a14b56c8da6450946" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::Minimizer&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_minimizer_1a3a798b44876f9fdd5685bced252a4a9b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimization_environment" kindref="compound">MinimizationEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimizer_1ab04f2a789fa9e06a14b56c8da6450946" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>static IterativeAlgorithm&lt;MinimizationEnvironment&lt;Scalar&gt; &gt; GQCP::Minimizer&lt; _Scalar &gt;::Newton</definition>
+        <argsstring>(const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>Newton</name>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the threshold that is used in comparing the density matrices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of iterations the algorithm may perform</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a Newton-step minimizer that uses the norm of the difference of two consecutive iterations of variables as a convergence criterion </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" line="53" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" bodystart="53" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A factory class that can construct minimizers in an easy way.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type that is used to represent the variables of function that is minimized </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Minimizer&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimizer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" bodystart="37" bodyend="64"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_minimizer_1a3a798b44876f9fdd5685bced252a4a9b" prot="public" virt="non-virtual"><scope>GQCP::Minimizer</scope><name>Newton</name></member>
+      <member refid="class_g_q_c_p_1_1_minimizer_1ab04f2a789fa9e06a14b56c8da6450946" prot="public" virt="non-virtual"><scope>GQCP::Minimizer</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

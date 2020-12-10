@@ -1,0 +1,57 @@
+\hypertarget{namespace_g_q_c_p_1_1elements}{}\doxysection{G\+Q\+CP\+::elements Namespace Reference}
+\label{namespace_g_q_c_p_1_1elements}\index{GQCP::elements@{GQCP::elements}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::string \& \mbox{\hyperlink{namespace_g_q_c_p_1_1elements_ac5dcc53a36a3732c4d8a15ffc954f002}{atomic\+Number\+To\+Element}} (const size\+\_\+t atomic\+\_\+number)
+\item 
+size\+\_\+t \mbox{\hyperlink{namespace_g_q_c_p_1_1elements_afbbf86dc79a97b10bb2c86a02826d013}{element\+To\+Atomic\+Number}} (const std\+::string \&symbol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ boost\+::bimap$<$ std\+::string, size\+\_\+t $>$\+::value\+\_\+type $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1elements_a00b3e1bbcc41a8e15b2591ac050f8006}{elements\+\_\+list}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1elements_ac5dcc53a36a3732c4d8a15ffc954f002}\label{namespace_g_q_c_p_1_1elements_ac5dcc53a36a3732c4d8a15ffc954f002}} 
+\index{GQCP::elements@{GQCP::elements}!atomicNumberToElement@{atomicNumberToElement}}
+\index{atomicNumberToElement@{atomicNumberToElement}!GQCP::elements@{GQCP::elements}}
+\doxysubsubsection{\texorpdfstring{atomicNumberToElement()}{atomicNumberToElement()}}
+{\footnotesize\ttfamily const std\+::string \& G\+Q\+C\+P\+::elements\+::atomic\+Number\+To\+Element (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{atomic\+\_\+number }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em atomic\+\_\+number} & the atomic number of an element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the symbol of the corresponding element 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1elements_afbbf86dc79a97b10bb2c86a02826d013}\label{namespace_g_q_c_p_1_1elements_afbbf86dc79a97b10bb2c86a02826d013}} 
+\index{GQCP::elements@{GQCP::elements}!elementToAtomicNumber@{elementToAtomicNumber}}
+\index{elementToAtomicNumber@{elementToAtomicNumber}!GQCP::elements@{GQCP::elements}}
+\doxysubsubsection{\texorpdfstring{elementToAtomicNumber()}{elementToAtomicNumber()}}
+{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::elements\+::element\+To\+Atomic\+Number (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{symbol }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em symbol} & the name of an element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the atomic number of the corresponding element 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1elements_a00b3e1bbcc41a8e15b2591ac050f8006}\label{namespace_g_q_c_p_1_1elements_a00b3e1bbcc41a8e15b2591ac050f8006}} 
+\index{GQCP::elements@{GQCP::elements}!elements\_list@{elements\_list}}
+\index{elements\_list@{elements\_list}!GQCP::elements@{GQCP::elements}}
+\doxysubsubsection{\texorpdfstring{elements\_list}{elements\_list}}
+{\footnotesize\ttfamily std\+::vector$<$boost\+::bimap$<$std\+::string, size\+\_\+t$>$\+::value\+\_\+type$>$ G\+Q\+C\+P\+::elements\+::elements\+\_\+list}
+
+Create a vector of bimap values, which provides .begin() and .end() iterators
+
+Adapted from \href{https://stackoverflow.com/a/20290421/7930415}{\texttt{ https\+://stackoverflow.\+com/a/20290421/7930415}} 

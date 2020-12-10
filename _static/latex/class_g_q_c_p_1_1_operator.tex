@@ -1,0 +1,231 @@
+\hypertarget{class_g_q_c_p_1_1_operator}{}\doxysection{G\+Q\+CP\+::Operator Class Reference}
+\label{class_g_q_c_p_1_1_operator}\index{GQCP::Operator@{GQCP::Operator}}
+
+
+{\ttfamily \#include $<$Operator.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Operator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{class_g_q_c_p_1_1_operator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_density_operator}{Electronic\+Density\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_ada6654c5287020ce46f39d2dea5e0cbf}{Electronic\+Density}} ()
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a728f7c30e7e9f6c7f16e6ed0b7cd5943}{Kinetic}} ()
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a18a056da0ee2446c39e7db2301523639}{Nuclear\+Attraction}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&nuclear\+\_\+framework)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_ae9d4528a06d5366bbb3406ff13792e92}{Nuclear\+Attraction}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_ad08e5c4315fed9cffc6ce111d92a2313}{Overlap}} ()
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{Electronic\+Spin\+\_\+z\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a9fca941eaaf9582c224a3dcb04740e73}{Electronic\+Spin\+\_\+z}} ()
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a926505d6d1fcd356dc3b7a2ae2b70c72}{Angular\+Momentum}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&reference=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::Zero())
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_acc6e78d49a5cd051a8abab888431f635}{Electronic\+Dipole}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&origin=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::Zero())
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a685577f87d959bdeba8704c1f82d7c36}{Electronic\+Spin}} ()
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_momentum_operator}{Linear\+Momentum\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_ae414e28e2038e24768cb8522ebf57c7e}{Linear\+Momentum}} ()
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a1c608e9830f1e160de0d9dc3101d0feb}{Coulomb}} ()
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_dipole_operator}{Nuclear\+Dipole\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a33d30f358782ec0bd2224cd100d7d930}{Nuclear\+Dipole}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&origin=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::Zero())
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_repulsion_operator}{Nuclear\+Repulsion\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_operator_a1b8ed96bc5cbec4d3405a2bce2d1fffc}{Nuclear\+Repulsion}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A factory class for easily creating various types of first-\/quantized operators. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a926505d6d1fcd356dc3b7a2ae2b70c72}\label{class_g_q_c_p_1_1_operator_a926505d6d1fcd356dc3b7a2ae2b70c72}} 
+\index{GQCP::Operator@{GQCP::Operator}!AngularMomentum@{AngularMomentum}}
+\index{AngularMomentum@{AngularMomentum}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{AngularMomentum()}{AngularMomentum()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Angular\+Momentum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{reference = {\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double,~3$>$\+:\+:Zero()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} about a reference point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em reference} & The reference point about which the angular momentum is defined.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a1c608e9830f1e160de0d9dc3101d0feb}\label{class_g_q_c_p_1_1_operator_a1c608e9830f1e160de0d9dc3101d0feb}} 
+\index{GQCP::Operator@{GQCP::Operator}!Coulomb@{Coulomb}}
+\index{Coulomb@{Coulomb}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{Coulomb()}{Coulomb()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Coulomb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}}.
+
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_ada6654c5287020ce46f39d2dea5e0cbf}\label{class_g_q_c_p_1_1_operator_ada6654c5287020ce46f39d2dea5e0cbf}} 
+\index{GQCP::Operator@{GQCP::Operator}!ElectronicDensity@{ElectronicDensity}}
+\index{ElectronicDensity@{ElectronicDensity}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{ElectronicDensity()}{ElectronicDensity()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_density_operator}{Electronic\+Density\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Electronic\+Density (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_density_operator}{Electronic\+Density\+Operator}}.
+
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_density_operator}{Electronic\+Density\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_acc6e78d49a5cd051a8abab888431f635}\label{class_g_q_c_p_1_1_operator_acc6e78d49a5cd051a8abab888431f635}} 
+\index{GQCP::Operator@{GQCP::Operator}!ElectronicDipole@{ElectronicDipole}}
+\index{ElectronicDipole@{ElectronicDipole}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{ElectronicDipole()}{ElectronicDipole()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Electronic\+Dipole (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{origin = {\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double,~3$>$\+:\+:Zero()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} with the given point as a reference.
+
+
+\begin{DoxyParams}{Parameters}
+{\em origin} & The origin of the dipole operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a685577f87d959bdeba8704c1f82d7c36}\label{class_g_q_c_p_1_1_operator_a685577f87d959bdeba8704c1f82d7c36}} 
+\index{GQCP::Operator@{GQCP::Operator}!ElectronicSpin@{ElectronicSpin}}
+\index{ElectronicSpin@{ElectronicSpin}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{ElectronicSpin()}{ElectronicSpin()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Electronic\+Spin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}}.
+
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a9fca941eaaf9582c224a3dcb04740e73}\label{class_g_q_c_p_1_1_operator_a9fca941eaaf9582c224a3dcb04740e73}} 
+\index{GQCP::Operator@{GQCP::Operator}!ElectronicSpin\_z@{ElectronicSpin\_z}}
+\index{ElectronicSpin\_z@{ElectronicSpin\_z}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{ElectronicSpin\_z()}{ElectronicSpin\_z()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{Electronic\+Spin\+\_\+z\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Electronic\+Spin\+\_\+z (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{Electronic\+Spin\+\_\+z\+Operator}}}.
+
+\begin{DoxyReturn}{Returns}
+An {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{Electronic\+Spin\+\_\+z\+Operator}}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a728f7c30e7e9f6c7f16e6ed0b7cd5943}\label{class_g_q_c_p_1_1_operator_a728f7c30e7e9f6c7f16e6ed0b7cd5943}} 
+\index{GQCP::Operator@{GQCP::Operator}!Kinetic@{Kinetic}}
+\index{Kinetic@{Kinetic}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{Kinetic()}{Kinetic()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Kinetic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}}.
+
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_ae414e28e2038e24768cb8522ebf57c7e}\label{class_g_q_c_p_1_1_operator_ae414e28e2038e24768cb8522ebf57c7e}} 
+\index{GQCP::Operator@{GQCP::Operator}!LinearMomentum@{LinearMomentum}}
+\index{LinearMomentum@{LinearMomentum}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{LinearMomentum()}{LinearMomentum()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_linear_momentum_operator}{Linear\+Momentum\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Linear\+Momentum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_linear_momentum_operator}{Linear\+Momentum\+Operator}}.
+
+\begin{DoxyReturn}{Returns}
+a \mbox{\hyperlink{class_g_q_c_p_1_1_linear_momentum_operator}{Linear\+Momentum\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_ae9d4528a06d5366bbb3406ff13792e92}\label{class_g_q_c_p_1_1_operator_ae9d4528a06d5366bbb3406ff13792e92}} 
+\index{GQCP::Operator@{GQCP::Operator}!NuclearAttraction@{NuclearAttraction}}
+\index{NuclearAttraction@{NuclearAttraction}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{NuclearAttraction()}{NuclearAttraction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Nuclear\+Attraction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} related to a molecule.
+
+
+\begin{DoxyParams}{Parameters}
+{\em molecule} & The molecule that contains the nuclear framework.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a18a056da0ee2446c39e7db2301523639}\label{class_g_q_c_p_1_1_operator_a18a056da0ee2446c39e7db2301523639}} 
+\index{GQCP::Operator@{GQCP::Operator}!NuclearAttraction@{NuclearAttraction}}
+\index{NuclearAttraction@{NuclearAttraction}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{NuclearAttraction()}{NuclearAttraction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Nuclear\+Attraction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} related to a nuclear framework.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuclear\+\_\+framework} & The nuclear framework.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a33d30f358782ec0bd2224cd100d7d930}\label{class_g_q_c_p_1_1_operator_a33d30f358782ec0bd2224cd100d7d930}} 
+\index{GQCP::Operator@{GQCP::Operator}!NuclearDipole@{NuclearDipole}}
+\index{NuclearDipole@{NuclearDipole}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{NuclearDipole()}{NuclearDipole()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_dipole_operator}{Nuclear\+Dipole\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Nuclear\+Dipole (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{origin = {\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double,~3$>$\+:\+:Zero()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_dipole_operator}{Nuclear\+Dipole\+Operator}} from a molecule and a reference point for the dipole.
+
+
+\begin{DoxyParams}{Parameters}
+{\em molecule} & The molecule that contains the nuclear framework. \\
+\hline
+{\em origin} & The origin of the dipole operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_dipole_operator}{Nuclear\+Dipole\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_a1b8ed96bc5cbec4d3405a2bce2d1fffc}\label{class_g_q_c_p_1_1_operator_a1b8ed96bc5cbec4d3405a2bce2d1fffc}} 
+\index{GQCP::Operator@{GQCP::Operator}!NuclearRepulsion@{NuclearRepulsion}}
+\index{NuclearRepulsion@{NuclearRepulsion}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{NuclearRepulsion()}{NuclearRepulsion()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_repulsion_operator}{Nuclear\+Repulsion\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Nuclear\+Repulsion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_repulsion_operator}{Nuclear\+Repulsion\+Operator}} from a molecule.
+
+
+\begin{DoxyParams}{Parameters}
+{\em molecule} & The molecule that contains the nuclear framework.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_repulsion_operator}{Nuclear\+Repulsion\+Operator}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_operator_ad08e5c4315fed9cffc6ce111d92a2313}\label{class_g_q_c_p_1_1_operator_ad08e5c4315fed9cffc6ce111d92a2313}} 
+\index{GQCP::Operator@{GQCP::Operator}!Overlap@{Overlap}}
+\index{Overlap@{Overlap}!GQCP::Operator@{GQCP::Operator}}
+\doxysubsubsection{\texorpdfstring{Overlap()}{Overlap()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} G\+Q\+C\+P\+::\+Operator\+::\+Overlap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create an \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}}.
+
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}}. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+First\+Quantized/\mbox{\hyperlink{_operator_8hpp}{Operator.\+hpp}}\end{DoxyCompactItemize}

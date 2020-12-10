@@ -1,0 +1,87 @@
+\hypertarget{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4}{}\doxysection{G\+Q\+CP\+::Operator\+Traits$<$ U\+S\+Q\+One\+Electron\+Operator\+Component$<$ Scalar, Vectorizer $>$ $>$ Struct Template Reference}
+\label{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4}\index{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}}
+
+
+{\ttfamily \#include $<$U\+S\+Q\+One\+Electron\+Operator\+Component.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Operator\+Traits$<$ U\+S\+Q\+One\+Electron\+Operator\+Component$<$ Scalar, Vectorizer $>$ $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_eec1b0a79df34043800754c5c5683235}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_abbec972d3265ffb0b0b17dbbce6aeb78}{Scalar\+Operator}} = \mbox{\hyperlink{namespace_g_q_c_p_ae63533275636c4067625f662a217726b}{Scalar\+U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$ Scalar $>$
+\item 
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a88efe429c610306c978d848eeead19cf}{Transformation}} = \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{U\+Transformation\+Component}}$<$ Scalar $>$
+\item 
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a59f6bd72d88eb59e56ab83c8975ec67f}{One\+DM}} = \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{Spin\+Resolved1\+D\+M\+Component}}$<$ Scalar $>$
+\item 
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_ae20c6e9bb6fa612a6a385debba6122b4}{Two\+DM}} = \mbox{\hyperlink{class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component}{Pure\+Spin\+Resolved2\+D\+M\+Component}}$<$ Scalar $>$
+\item 
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_af899586c0923f8e406121af9df033ae0}{Mulliken\+Partitioning}} = \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}$<$ Scalar $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Scalar, typename Vectorizer$>$\newline
+struct G\+Q\+C\+P\+::\+Operator\+Traits$<$ U\+S\+Q\+One\+Electron\+Operator\+Component$<$ Scalar, Vectorizer $>$ $>$}
+
+A type that provides compile-\/time information (traits) on {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}} that is otherwise not accessible through a public class alias.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & The scalar type used for a single parameter\+: real or complex. \\
+\hline
+{\em Vectorizer} & The type of the vectorizer that relates a one-\/dimensional storage of matrices to the tensor structure of one-\/electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_af899586c0923f8e406121af9df033ae0}\label{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_af899586c0923f8e406121af9df033ae0}} 
+\index{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}!MullikenPartitioning@{MullikenPartitioning}}
+\index{MullikenPartitioning@{MullikenPartitioning}!GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{MullikenPartitioning}{MullikenPartitioning}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Vectorizer $>$ \\
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{G\+Q\+C\+P\+::\+Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$ Scalar, Vectorizer $>$ $>$\+::\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_af899586c0923f8e406121af9df033ae0}{Mulliken\+Partitioning}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_partitioning_component}{U\+Mulliken\+Partitioning\+Component}}$<$Scalar$>$}
+
+\mbox{\Hypertarget{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a59f6bd72d88eb59e56ab83c8975ec67f}\label{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a59f6bd72d88eb59e56ab83c8975ec67f}} 
+\index{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}!OneDM@{OneDM}}
+\index{OneDM@{OneDM}!GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{OneDM}{OneDM}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Vectorizer $>$ \\
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{G\+Q\+C\+P\+::\+Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$ Scalar, Vectorizer $>$ $>$\+::\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a59f6bd72d88eb59e56ab83c8975ec67f}{One\+DM}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{Spin\+Resolved1\+D\+M\+Component}}$<$Scalar$>$}
+
+\mbox{\Hypertarget{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_abbec972d3265ffb0b0b17dbbce6aeb78}\label{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_abbec972d3265ffb0b0b17dbbce6aeb78}} 
+\index{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}!ScalarOperator@{ScalarOperator}}
+\index{ScalarOperator@{ScalarOperator}!GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarOperator}{ScalarOperator}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Vectorizer $>$ \\
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{G\+Q\+C\+P\+::\+Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$ Scalar, Vectorizer $>$ $>$\+::\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_abbec972d3265ffb0b0b17dbbce6aeb78}{Scalar\+Operator}} =  \mbox{\hyperlink{namespace_g_q_c_p_ae63533275636c4067625f662a217726b}{Scalar\+U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$Scalar$>$}
+
+\mbox{\Hypertarget{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a88efe429c610306c978d848eeead19cf}\label{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a88efe429c610306c978d848eeead19cf}} 
+\index{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Vectorizer $>$ \\
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{G\+Q\+C\+P\+::\+Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$ Scalar, Vectorizer $>$ $>$\+::\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_a88efe429c610306c978d848eeead19cf}{Transformation}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{U\+Transformation\+Component}}$<$Scalar$>$}
+
+\mbox{\Hypertarget{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_ae20c6e9bb6fa612a6a385debba6122b4}\label{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_ae20c6e9bb6fa612a6a385debba6122b4}} 
+\index{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}!TwoDM@{TwoDM}}
+\index{TwoDM@{TwoDM}!GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$@{GQCP::OperatorTraits$<$ USQOneElectronOperatorComponent$<$ Scalar, Vectorizer $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{TwoDM}{TwoDM}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Vectorizer $>$ \\
+using \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{G\+Q\+C\+P\+::\+Operator\+Traits}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{U\+S\+Q\+One\+Electron\+Operator\+Component}}$<$ Scalar, Vectorizer $>$ $>$\+::\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_ae20c6e9bb6fa612a6a385debba6122b4}{Two\+DM}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component}{Pure\+Spin\+Resolved2\+D\+M\+Component}}$<$Scalar$>$}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+Second\+Quantized/\mbox{\hyperlink{_u_s_q_one_electron_operator_component_8hpp}{U\+S\+Q\+One\+Electron\+Operator\+Component.\+hpp}}\end{DoxyCompactItemize}

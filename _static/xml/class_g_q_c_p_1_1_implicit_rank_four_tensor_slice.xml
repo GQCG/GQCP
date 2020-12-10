@@ -1,0 +1,796 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ImplicitRankFourTensorSlice</compoundname>
+    <includes refid="_implicit_rank_four_tensor_slice_8hpp" local="no">ImplicitRankFourTensorSlice.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a7f63f9c2fc5fb757b9da81669e953117" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::map&lt; size_t, size_t &gt; &gt;</type>
+        <definition>std::vector&lt;std::map&lt;size_t, size_t&gt; &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::indices_implicit_to_dense</definition>
+        <argsstring></argsstring>
+        <name>indices_implicit_to_dense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="44" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad298f46f301e3edf7af9de9447740a38" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref>, 4 &gt;</type>
+        <definition>Tensor&lt;Scalar, 4&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::T</definition>
+        <argsstring></argsstring>
+        <name>T</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="46" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a1b91cb03aafe2c29d45b4ec851d1617b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ImplicitRankFourTensorSlice</definition>
+        <argsstring>(const std::vector&lt; std::map&lt; size_t, size_t &gt;&gt; &amp;indices_implicit_to_dense, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
+        <name>ImplicitRankFourTensorSlice</name>
+        <param>
+          <type>const std::vector&lt; std::map&lt; size_t, size_t &gt;&gt; &amp;</type>
+          <declname>indices_implicit_to_dense</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref>, 4 &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize an <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&apos;s members.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indices_implicit_to_dense</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an array of maps, mapping the implicit tensor indices to these of the dense representation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the slice </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="60" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a9b95e2ddc70463be92e49cb9d4793948" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ImplicitRankFourTensorSlice</definition>
+        <argsstring>()</argsstring>
+        <name>ImplicitRankFourTensorSlice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A default constructor setting everything to zero. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="77" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="77" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ab4c2ba1210e77c3e0555312990714406" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::operator()</definition>
+        <argsstring>(const size_t index1, const size_t index2, const size_t index3, const size_t index4) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index1</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index2</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index3</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access an element of this implicit tensor slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first index of the implicit encapsulating tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second index of the implicit encapsulating tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the third index of the implicit encapsulating tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fourth index of the implicit encapsulating tensor</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a read-only element of the encapsulating tensor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="235" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="235" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a248b068a2b5bef6091c81140006d914b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &amp;</type>
+        <definition>Scalar&amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::operator()</definition>
+        <argsstring>(const size_t index1, const size_t index2, const size_t index3, const size_t index4)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index1</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index2</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index3</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>index4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Access an element of this implicit tensor slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first index of the implicit encapsulating tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second index of the implicit encapsulating tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the third index of the implicit encapsulating tensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fourth index of the implicit encapsulating tensor</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a writable element of the encapsulating tensor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="256" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="256" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad3d9b4fd6a44b4e39d9c781a8a0eed5a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>MatrixX&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::asMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>asMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>this as a (column-major) matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="275" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="275" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afbce215400fec88e7789e3d26259cbaf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref>, 4 &gt; &amp;</type>
+        <definition>const Tensor&lt;Scalar, 4&gt;&amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::asTensor</definition>
+        <argsstring>() const</argsstring>
+        <name>asTensor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>this as a tensor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="280" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="280" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a36c9b2dce1d651fbf9f60dcb1d5544a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>Axis</declname>
+            <defname>Axis</defname>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::denseIndexOf</definition>
+        <argsstring>(const size_t index) const</argsstring>
+        <name>denseIndexOf</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert an implicit axis index to the axis index in the dense representation of this slice.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the axis (0,1,2,3)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the implicit tensor index inside the given axis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the index of the dense representation of this slice for the given axis </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="292" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="292" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a324bac6ce6c4bad1ab4b273c3b5328c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; std::map&lt; size_t, size_t &gt; &gt; &amp;</type>
+        <definition>const std::vector&lt;std::map&lt;size_t, size_t&gt; &gt;&amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::indexMaps</definition>
+        <argsstring>() const</argsstring>
+        <name>indexMaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>an array of maps, mapping the implicit tensor indices to these of the dense representation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="297" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="297" bodyend="297"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ace48285d256f59a0ef0fa61a2133b18a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromBlockRanges</definition>
+        <argsstring>(const size_t axis1_start, const size_t axis1_end, const size_t axis2_start, const size_t axis2_end, const size_t axis3_start, const size_t axis3_end, const size_t axis4_start, const size_t axis4_end, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
+        <name>FromBlockRanges</name>
+        <param>
+          <type>const size_t</type>
+          <declname>axis1_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis1_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis2_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis2_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis3_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis3_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis4_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis4_end</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref>, 4 &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct an ImplicitRankFourTensor from a dense tensor block and corresponding index ranges.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the first axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis1_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the first axis should end (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the second axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the second axis should end (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the third axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the third axis should end (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the fourth axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the fourth axis should end (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the block</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit rank-four tensor slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="101" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="101" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afa4ffdf2f793c310305d46246cfcf3dc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromIndices</definition>
+        <argsstring>(const std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;axes_indices, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
+        <name>FromIndices</name>
+        <param>
+          <type>const std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;</type>
+          <declname>axes_indices</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref>, 4 &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit rank-four tensor slice through a dense representation of the slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axes_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an array where the i-th element represents the indices (in order) for the i-th tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the slice</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit rank-four tensor slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="128" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="128" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ae1beeb43ddba7afc818e4b54a802f71e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromIndices</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;axis1_indices, const std::vector&lt; size_t &gt; &amp;axis2_indices, const std::vector&lt; size_t &gt; &amp;axis3_indices, const std::vector&lt; size_t &gt; &amp;axis4_indices, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
+        <name>FromIndices</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis1_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis2_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis3_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis4_indices</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref>, 4 &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit rank-four tensor slice through a dense representation of the slice.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the first tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the second tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the third tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the fourth tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the slice</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit rank-four tensor slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="158" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="158" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad49d63f6bbc9ee0e1d10c7b35e66ef3c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ZeroFromBlockRanges</definition>
+        <argsstring>(const size_t axis1_start, const size_t axis1_end, const size_t axis2_start, const size_t axis2_end, const size_t axis3_start, const size_t axis3_end, const size_t axis4_start, const size_t axis4_end)</argsstring>
+        <name>ZeroFromBlockRanges</name>
+        <param>
+          <type>const size_t</type>
+          <declname>axis1_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis1_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis2_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis2_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis3_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis3_end</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis4_start</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis4_end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a zero ImplicitRankFourTensor from block index ranges.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the first axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis1_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the first axis should end (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the second axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the second axis should end (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the third axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the third axis should end (not included) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the fourth axis should start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the zero-based index of the implicit tensor at which the fourth axis should end (not included)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a zero implicit rank-four tensor slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="181" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="181" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a7b0333544660097fe2e3ac8df1699c03" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ZeroFromIndices</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;axis1_indices, const std::vector&lt; size_t &gt; &amp;axis2_indices, const std::vector&lt; size_t &gt; &amp;axis3_indices, const std::vector&lt; size_t &gt; &amp;axis4_indices)</argsstring>
+        <name>ZeroFromIndices</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis1_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis2_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis3_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>axis4_indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a zero-initialized implicit rank-four tensor slice from allowed axes indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the first tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the second tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the third tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices (in order) for the fourth tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a zero-initialized implicit rank-four tensor slice </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="206" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="206" bodyend="218"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A slice of a rank-four tensor that only exists implicitly.</para>
+<para>If the full tensor is unnecessary to know, and only a certain slice of the tensor is of interest, this class implements operator() that can be used with the indices of the full tensor. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="38" bodyend="298"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad3d9b4fd6a44b4e39d9c781a8a0eed5a" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afbce215400fec88e7789e3d26259cbaf" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>asTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a36c9b2dce1d651fbf9f60dcb1d5544a3" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>denseIndexOf</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ace48285d256f59a0ef0fa61a2133b18a" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromBlockRanges</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afa4ffdf2f793c310305d46246cfcf3dc" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ae1beeb43ddba7afc818e4b54a802f71e" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a1b91cb03aafe2c29d45b4ec851d1617b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ImplicitRankFourTensorSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a9b95e2ddc70463be92e49cb9d4793948" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ImplicitRankFourTensorSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a324bac6ce6c4bad1ab4b273c3b5328c2" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>indexMaps</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a7f63f9c2fc5fb757b9da81669e953117" prot="private" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>indices_implicit_to_dense</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ab4c2ba1210e77c3e0555312990714406" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a248b068a2b5bef6091c81140006d914b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad298f46f301e3edf7af9de9447740a38" prot="private" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>T</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad49d63f6bbc9ee0e1d10c7b35e66ef3c" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ZeroFromBlockRanges</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a7b0333544660097fe2e3ac8df1699c03" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ZeroFromIndices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

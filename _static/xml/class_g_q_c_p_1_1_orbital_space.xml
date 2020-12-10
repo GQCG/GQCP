@@ -1,0 +1,736 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_orbital_space" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::OrbitalSpace</compoundname>
+    <includes refid="_orbital_space_8hpp" local="no">OrbitalSpace.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_orbital_space_1a7ea9e492d3dadecbbac9e37cb602f47a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; size_t &gt;</type>
+        <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::occupied_indices</definition>
+        <argsstring></argsstring>
+        <name>occupied_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="42" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_orbital_space_1a42b3114390f136a8069157ff3bb8ba70" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; size_t &gt;</type>
+        <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::active_indices</definition>
+        <argsstring></argsstring>
+        <name>active_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="43" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_orbital_space_1ac6215bcf6782f659a7bbdf9a925c315a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; size_t &gt;</type>
+        <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::virtual_indices</definition>
+        <argsstring></argsstring>
+        <name>virtual_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="44" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_orbital_space_1ab335e2f39248ffc29b06a3dcb3d62803" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; size_t &gt;</type>
+        <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::all_indices</definition>
+        <argsstring></argsstring>
+        <name>all_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="46" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a0b5a700279bbf9e294d6451832b817b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::OrbitalSpace::OrbitalSpace</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;occupied_indices, const std::vector&lt; size_t &gt; &amp;active_indices, const std::vector&lt; size_t &gt; &amp;virtual_indices)</argsstring>
+        <name>OrbitalSpace</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>occupied_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>active_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>virtual_indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct an orbital space from occupied, active and virtual indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>occupied_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices of the orbitals that are considered occupied by the electrons </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>active_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices of the orbitals that are considered &apos;active&apos;, i.e. those spinor indices that are occupied in some set of configurations but not in others </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>virtual_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices of the orbitals that are considered virtual (i.e. unoccupied) by the electrons </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="39" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a0a664c69605bbb10c501298ec7d82739" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::OrbitalSpace::OrbitalSpace</definition>
+        <argsstring>(const std::vector&lt; size_t &gt; &amp;occupied_indices, const std::vector&lt; size_t &gt; &amp;virtual_indices)</argsstring>
+        <name>OrbitalSpace</name>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>occupied_indices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; size_t &gt; &amp;</type>
+          <declname>virtual_indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct an orbital space only from occupied and virtual indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>occupied_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices of the orbitals that are considered occupied by the electrons </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>virtual_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices of the orbitals that are considered virtual (i.e. unoccupied) by the electrons</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This constructor assumes that there are no active orbital indices</para>
+</simplesect>
+Construct an orbital space from occupied and virtual indices.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>occupied_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices of the orbitals that are considered occupied by the electrons </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>virtual_indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the indices of the orbitals that are considered virtual (i.e. unoccupied) by the electrons </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="69" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="59" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::OrbitalSpace::createRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType row_type, const OccupationType column_type, const MatrixX&lt; Scalar &gt; &amp;M) const</argsstring>
+        <name>createRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>row_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>column_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; Scalar &gt; &amp;</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense representation of the matrix slice.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type of the elements of the implicit matrix</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the rows </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>column_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the columns </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the matrix slice</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit matrix slice, according to the given occupation types</para>
+</simplesect>
+<simplesect kind="note"><para>For the representation of an occupied-virtual object (for example the T1-coupled-cluster amplitudes t_i^a), the following method can be called orbital_space.createRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_virtual, M), where <computeroutput>M</computeroutput> is supposed to be the dense matrix representation of the T1 amplitudes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="102" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="102" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a11e108ce916d6b9f43e0978ee35dc35f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::OrbitalSpace::createRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType axis1_type, const OccupationType axis2_type, const OccupationType axis3_type, const OccupationType axis4_type, const Tensor&lt; Scalar, 4 &gt; &amp;T) const</argsstring>
+        <name>createRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis1_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis2_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis3_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis4_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; Scalar, 4 &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type of the elements of the implicit tensor</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the first tensor axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the second tensor axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the third tensor axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the fourth tensor axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dense representation of the tensor slice</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an implicit rank-four tensor slice, according to the given occupation types</para>
+</simplesect>
+<simplesect kind="note"><para>For the representation of an occupied-occupied-virtual-virtual object (for example the T2-coupled-cluster amplitudes t_{ij}^{ab}), the following method can be called orbital_space.createRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, T), where <computeroutput>T</computeroutput> is supposed to be the dense tensor representation of the T2-amplitudes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="130" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="130" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1af55bd0e3e8eafebeb497533a33e11754" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::OrbitalSpace::description</definition>
+        <argsstring>() const</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a textual description of this orbital space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="145" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="119" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; size_t &gt; &amp;</type>
+        <definition>const std::vector&lt;size_t&gt;&amp; GQCP::OrbitalSpace::indices</definition>
+        <argsstring>() const</argsstring>
+        <name>indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>all the indices of the spinors </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="150" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="150" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a5f723800aca1fd0a2064798e2cb190cc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; size_t &gt; &amp;</type>
+        <definition>const std::vector&lt; size_t &gt; &amp; GQCP::OrbitalSpace::indices</definition>
+        <argsstring>(const OccupationType type) const</argsstring>
+        <name>indices</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the occupation type that the indices should belong to</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the indices that belong to the given occupation type </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="157" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="147" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a94054746984d5264a8db8be75ec36515" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::OrbitalSpace::initializeRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType row_type, const OccupationType column_type) const</argsstring>
+        <name>initializeRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>row_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>column_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type of the elements of the implicit matrix</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the rows </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>column_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the columns</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a zero-initialized implicit matrix slice, according to the given occupation types</para>
+</simplesect>
+<simplesect kind="note"><para>For the representation of an occupied-virtual object (for example the T1-coupled-cluster amplitudes t_i^a), the following method can be called orbital_space.initializeRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_virtual) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="173" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="173" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1ae0715f30727c67afad1a406b77d04e3f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; Scalar &gt;</type>
+        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::OrbitalSpace::initializeRepresentableObjectFor</definition>
+        <argsstring>(const OccupationType axis1_type, const OccupationType axis2_type, const OccupationType axis3_type, const OccupationType axis4_type) const</argsstring>
+        <name>initializeRepresentableObjectFor</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis1_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis2_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis3_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>axis4_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type of the elements of the implicit tensor</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis1_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the first tensor axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis2_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the second tensor axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis3_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the third tensor axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis4_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the spinor occupation type for the fourth tensor axis</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a zero-initialized implicit rank-four tensor slice, according to the given occupation types</para>
+</simplesect>
+<simplesect kind="note"><para>For the representation of an occupied-occupied-virtual-virtual object (for example the T2-coupled-cluster amplitudes t_{ij}^{ab}), the following method can be called orbital_space.createRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="201" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="201" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a6b56ebfb1e6121780b9874ebd9df4ec0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::OrbitalSpace::isIndex</definition>
+        <argsstring>(const OccupationType type, const size_t p) const</argsstring>
+        <name>isIndex</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an occupation type (k_occupied, k_active, k_virtual) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an orbital index</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>if the orbital at the given index is in the given orbital set </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="222" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="174" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a0db283ce4ba51869f4bce2c7db121ed4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::OrbitalSpace::numberOfExcitations</definition>
+        <argsstring>(const OccupationType from, const OccupationType to) const</argsstring>
+        <name>numberOfExcitations</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>to</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of orbitals that should be excited from </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>to</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type of orbitals that should be excited to</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the number of possible excitations between the two orbital sets </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="230" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="187" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::OrbitalSpace::numberOfOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the total number of orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="235" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="235" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a373451b0fd61fb610e876948084130c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::OrbitalSpace::numberOfOrbitals</definition>
+        <argsstring>(const OccupationType type) const</argsstring>
+        <name>numberOfOrbitals</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an occupation type (k_occupied, k_active, k_virtual)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the number of orbitals (i.e. spatial orbitals or spinors, depending on the context) that belong to the given occupation type </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="242" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="242" bodyend="242"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a22c967bc1d33a75341c86b1ca52b0532" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
+        <definition>OrbitalSpace GQCP::OrbitalSpace::Implicit</definition>
+        <argsstring>(const std::map&lt; OccupationType, size_t &gt; &amp;occupation_type_numbers)</argsstring>
+        <name>Implicit</name>
+        <param>
+          <type>const std::map&lt; <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref>, size_t &gt; &amp;</type>
+          <declname>occupation_type_numbers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an implicit orbital space with the given dimensions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>occupation_type_numbers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a map that links an occupation type (k_occupied, k_active, k_virtual) with the number of orbitals that are to be found in that orbital space</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>An &apos;implicit&apos; orbital space is one where all indices are sorted by increasing value, and the occupied indices are lower than the active indices, which are in turn lower than the virtual indices. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="81" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="74" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that encapsulates occupied, active and virtual orbital indices.</para>
+<para><simplesect kind="note"><para>The union of these three sets of indices is supposed to be the full set of orbital indices. </para>
+</simplesect>
+<simplesect kind="note"><para>This class is intended to be used in conjunction with restricted spin-orbital bases (<ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>) or general spinor bases (<ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>). </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OrbitalSpace</label>
+        <link refid="class_g_q_c_p_1_1_orbital_space"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="40" bodyend="243"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a42b3114390f136a8069157ff3bb8ba70" prot="private" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>active_indices</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1ab335e2f39248ffc29b06a3dcb3d62803" prot="private" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>all_indices</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>createRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a11e108ce916d6b9f43e0978ee35dc35f" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>createRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1af55bd0e3e8eafebeb497533a33e11754" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a22c967bc1d33a75341c86b1ca52b0532" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>Implicit</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>indices</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a5f723800aca1fd0a2064798e2cb190cc" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>indices</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a94054746984d5264a8db8be75ec36515" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>initializeRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1ae0715f30727c67afad1a406b77d04e3f" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>initializeRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a6b56ebfb1e6121780b9874ebd9df4ec0" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>isIndex</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a0db283ce4ba51869f4bce2c7db121ed4" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>numberOfExcitations</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a373451b0fd61fb610e876948084130c6" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a7ea9e492d3dadecbbac9e37cb602f47a" prot="private" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>occupied_indices</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a0b5a700279bbf9e294d6451832b817b3" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>OrbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a0a664c69605bbb10c501298ec7d82739" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>OrbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1ac6215bcf6782f659a7bbdf9a925c315a" prot="private" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>virtual_indices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

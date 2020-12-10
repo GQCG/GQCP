@@ -1,0 +1,82 @@
+\hypertarget{class_g_q_c_p_1_1_non_linear_equation_solver}{}\doxysection{G\+Q\+CP\+::Non\+Linear\+Equation\+Solver$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_non_linear_equation_solver}\index{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$@{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$Non\+Linear\+Equation\+Solver.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Non\+Linear\+Equation\+Solver$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{class_g_q_c_p_1_1_non_linear_equation_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Linear\+Solver  = decltype(\+Linear\+Equation\+Solver$<$\+Scalar$>$\+::\+Col\+Piv\+Householder\+Q\+R())$>$ }\\static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{Non\+Linear\+Equation\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver_a8fa8bd3c3e4cf9b433968460b15cc779}{Newton}} (const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128, const Linear\+Solver \&linear\+\_\+solver=Linear\+Equation\+Solver$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}{Scalar}} $>$\+::Col\+Piv\+Householder\+QR())
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+Non\+Linear\+Equation\+Solver$<$ \+\_\+\+Scalar $>$}
+
+A factory class that can construct solvers for non-\/linear systems of equations in an easy way.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type that is used to represent the variables of the system of equations \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}\label{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}} 
+\index{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$@{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::NonLinearEquationSolver$<$ \_Scalar $>$@{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver}{G\+Q\+C\+P\+::\+Non\+Linear\+Equation\+Solver}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_non_linear_equation_solver_a8fa8bd3c3e4cf9b433968460b15cc779}\label{class_g_q_c_p_1_1_non_linear_equation_solver_a8fa8bd3c3e4cf9b433968460b15cc779}} 
+\index{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$@{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$}!Newton@{Newton}}
+\index{Newton@{Newton}!GQCP::NonLinearEquationSolver$<$ \_Scalar $>$@{GQCP::NonLinearEquationSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Newton()}{Newton()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Linear\+Solver  = decltype(\+Linear\+Equation\+Solver$<$\+Scalar$>$\+::\+Col\+Piv\+Householder\+Q\+R())$>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{Non\+Linear\+Equation\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver}{G\+Q\+C\+P\+::\+Non\+Linear\+Equation\+Solver}}$<$ \+\_\+\+Scalar $>$\+::Newton (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128},  }\item[{const Linear\+Solver \&}]{linear\+\_\+solver = {\ttfamily LinearEquationSolver$<$\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_solver_af145fe12142f9942d1d9ec8a333f0199}{Scalar}}$>$\+:\+:ColPivHouseholderQR()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & the threshold that is used in comparing the iterates \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform \\
+\hline
+{\em linear\+\_\+solver} & the linear solver that is used in the Newton step update, this defaults to a Col\+Piv\+Householder\+QR linear equations solver.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Linear\+Solver} & the type of the linear solver used in the Newton step update, this defaults to the type of the Col\+Piv\+Householder\+QR linear equations solver\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+a Newton-\/step based non-\/linear system of equations solver that uses the norm of the difference of two consecutive iterations of variables as a convergence criterion 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Non\+Linear\+Equation/\mbox{\hyperlink{_non_linear_equation_solver_8hpp}{Non\+Linear\+Equation\+Solver.\+hpp}}\end{DoxyCompactItemize}

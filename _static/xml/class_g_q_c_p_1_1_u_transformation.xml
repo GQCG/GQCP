@@ -1,0 +1,401 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_u_transformation" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::UTransformation</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; UTransformationComponent&lt; _Scalar &gt;, UTransformation&lt; _Scalar &gt; &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable" prot="public" virt="non-virtual">GQCP::SpinResolvedBasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::SpinResolvedJacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_u_transformation_8hpp" local="no">UTransformation.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::UTransformation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_transformation_1aee032761c7d00110326eb36c77a49fa0" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::UTransformation&lt; _Scalar &gt;::Transformation =  UTransformation&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Transformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_transformation_1a3fc6764af11dd553eba4f81a7eb1d97f" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::UTransformation&lt; _Scalar &gt;::Self =  UTransformation&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_transformation_1afe0020816f13d44d1ef0259488538c57" prot="public" static="no">
+        <type>typename <ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_u_transformation_1a3fc6764af11dd553eba4f81a7eb1d97f" kindref="member">Self</ref> &gt;::<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
+        <definition>using GQCP::UTransformation&lt; _Scalar &gt;::ComponentType =  typename SpinResolvedBase&lt;UTransformationComponent&lt;Scalar&gt;, Self&gt;::Of</definition>
+        <argsstring></argsstring>
+        <name>ComponentType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_transformation_1a892cccce99627bf9deb70990ff18273c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static UTransformation&lt;Scalar&gt; GQCP::UTransformation&lt; _Scalar &gt;::FromRestricted</definition>
+        <argsstring>(const RTransformation&lt; Scalar &gt; &amp;T)</argsstring>
+        <name>FromRestricted</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref> from an <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>, leading to transformations for both spin components that are equal.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation that is equal for both the alpha and the beta spin-orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref></computeroutput> corresponding to the given <computeroutput><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref></computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="79" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="79" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_transformation_1aeddeb3d7d3b2c15a50d68f44ad7cc373" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static UTransformation&lt;Scalar&gt; GQCP::UTransformation&lt; _Scalar &gt;::Identity</definition>
+        <argsstring>(const size_t dim_alpha, const size_t dim_beta)</argsstring>
+        <name>Identity</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim_alpha</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>dim_beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an identity <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha spin-orbitals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dim_beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of beta spin-orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An identity <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="95" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="95" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_transformation_1ae980a34cd6bf7d0b7b6f424526104b1a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static UTransformation&lt;Scalar&gt; GQCP::UTransformation&lt; _Scalar &gt;::Identity</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>Identity</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an identity <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimension of the alpha and beta spin-orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An identity <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="111" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_transformation_1ac45d84a3dfcff24d67e751d96c327203" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static UTransformation&lt;Scalar&gt; GQCP::UTransformation&lt; _Scalar &gt;::Random</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>Random</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a random <computeroutput><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref></computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha or beta spin-orbitals (equal).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A random <computeroutput><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref></computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="121" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="121" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_transformation_1a6ddffe854f8564cea39e7edd151c57ea" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static UTransformation&lt;Scalar&gt; GQCP::UTransformation&lt; _Scalar &gt;::RandomUnitary</definition>
+        <argsstring>(const size_t dim)</argsstring>
+        <name>RandomUnitary</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a random unitary <computeroutput><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref></computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of alpha or beta spin-orbitals (equal).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A random unitary <computeroutput><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref></computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="137" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="137" bodyend="143"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_transformation_1af5d7afb90614dcbbb21dac514ac9a562" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::UTransformation&lt; _Scalar &gt;::isUnitary</definition>
+        <argsstring>(const double threshold) const</argsstring>
+        <name>isUnitary</name>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold used for checking unitarity.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>If this transformation matrix is considered to be unitary, within the given treshold. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="155" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_transformation_1ae7c8b82d4b613deb9e54fdafdf6a7a9d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" kindref="member">Scalar</ref> &gt;</type>
+        <definition>UTransformation&lt;Scalar&gt; GQCP::UTransformation&lt; _Scalar &gt;::inverse</definition>
+        <argsstring>() const</argsstring>
+        <name>inverse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The inverse of this transformation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="161" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="161" bodyend="170"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for a transformation coefficient: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; UTransformationComponent&lt; _Scalar &gt;, UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UTransformation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_transformation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="5">
+        <label>GQCP::SpinResolvedJacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::SpinResolvedBasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; UTransformationComponent&lt; _Scalar &gt;, UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UTransformation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_transformation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="5">
+        <label>GQCP::SpinResolvedJacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::SpinResolvedBasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="44" bodyend="190"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1afe0020816f13d44d1ef0259488538c57" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>ComponentType</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>FromEqual</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1a892cccce99627bf9deb70990ff18273c" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>FromRestricted</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1aeddeb3d7d3b2c15a50d68f44ad7cc373" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Identity</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1ae980a34cd6bf7d0b7b6f424526104b1a" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Identity</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1ae7c8b82d4b613deb9e54fdafdf6a7a9d" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>inverse</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1af5d7afb90614dcbbb21dac514ac9a562" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>isUnitary</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1a85f229e1b026703e0355e371ebd5622b" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>JacobiRotationType</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Of</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1ac45d84a3dfcff24d67e751d96c327203" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1a6ddffe854f8564cea39e7edd151c57ea" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>RandomUnitary</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="SpinResolvedBasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;::"><scope>GQCP::UTransformation</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="SpinResolvedJacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;::"><scope>GQCP::UTransformation</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="SpinResolvedBasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;::"><scope>GQCP::UTransformation</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d" prot="public" virt="virtual" ambiguityscope="SpinResolvedJacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;::"><scope>GQCP::UTransformation</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1a9a799d48140d4c8f232256403ae42a23" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1a3fc6764af11dd553eba4f81a7eb1d97f" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::UTransformation</scope><name>transform</name></member>
+      <member refid="class_g_q_c_p_1_1_u_transformation_1aee032761c7d00110326eb36c77a49fa0" prot="public" virt="non-virtual"><scope>GQCP::UTransformation</scope><name>Transformation</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable_1a740a28fb79d7744d3645efc0ac44f927" prot="public" virt="virtual"><scope>GQCP::UTransformation</scope><name>transformed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

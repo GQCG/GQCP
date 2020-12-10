@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1libcint_1_1_raw_container" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::libcint::RawContainer</compoundname>
+    <includes refid="_libcint_interfacer_8hpp" local="no">LibcintInterfacer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a5d3a92a2caa99cd819ec89abafce2ac9" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int GQCP::libcint::RawContainer::natm</definition>
+        <argsstring></argsstring>
+        <name>natm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="170" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1ac1fb52ad6e08166fdbf65edbb0fd448a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int GQCP::libcint::RawContainer::nbf</definition>
+        <argsstring></argsstring>
+        <name>nbf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="171" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1acca7f2e2f2236b467198b01efcd2b24c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int GQCP::libcint::RawContainer::nsh</definition>
+        <argsstring></argsstring>
+        <name>nsh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="172" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a256ca323e2e633b5d3a7b1223e52d1b6" prot="private" static="no" mutable="no">
+        <type>int *</type>
+        <definition>int* GQCP::libcint::RawContainer::libcint_atm</definition>
+        <argsstring></argsstring>
+        <name>libcint_atm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="174" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a17ac360b11205cd6785e44ac8b700a58" prot="private" static="no" mutable="no">
+        <type>int *</type>
+        <definition>int* GQCP::libcint::RawContainer::libcint_bas</definition>
+        <argsstring></argsstring>
+        <name>libcint_bas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="175" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1ae8fc7238df963c57c6ac4f3b9bfe93c1" prot="private" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* GQCP::libcint::RawContainer::libcint_env</definition>
+        <argsstring></argsstring>
+        <name>libcint_env</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="176" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a0af106fa7a5fef4e88dbdc8d0f68fd3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class GQCP::LibcintInterfacer</definition>
+        <argsstring></argsstring>
+        <name>GQCP::LibcintInterfacer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="252" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a0c166064cf5c7a6081097fef06855795" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::libcint::RawContainer::RawContainer</definition>
+        <argsstring>(const size_t natm, const size_t nbf, const size_t nsh)</argsstring>
+        <name>RawContainer</name>
+        <param>
+          <type>const size_t</type>
+          <declname>natm</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>nbf</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>nsh</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Allocate memory for the raw libcint arrays</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>natm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of atoms </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nbf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of basis functions </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nsh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of shells </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="191" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="191" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a93b0c05d09caa6c0465bf6830d55a86b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::libcint::RawContainer::~RawContainer</definition>
+        <argsstring>()</argsstring>
+        <name>~RawContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Deallocate the memory used by the raw libcint arrays </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="207" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="207" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a1cf520067c6239ab963bd40f775c4539" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const int *</type>
+        <definition>const int* GQCP::libcint::RawContainer::atmData</definition>
+        <argsstring>() const</argsstring>
+        <name>atmData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(a pointer to) the atomic data in this libcint container </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="221" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="221" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a98882bce153e0775eacadb6cbdd3f2e8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const int *</type>
+        <definition>const int* GQCP::libcint::RawContainer::basData</definition>
+        <argsstring>() const</argsstring>
+        <name>basData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(a pointer to) the basis data in this libcint container </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="226" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="226" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a879cbfec32cda6f56dbeab7f1e6018f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const double *</type>
+        <definition>const double* GQCP::libcint::RawContainer::envData</definition>
+        <argsstring>() const</argsstring>
+        <name>envData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(a pointer to) the environment data in this libcint container </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="231" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="231" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a624c001d1a870c14fe2368fb98d2927b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int GQCP::libcint::RawContainer::numberOfAtoms</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfAtoms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of atoms in this libcint container </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="236" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="236" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1aeb5441c826159782cfbe71f119c70f18" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int GQCP::libcint::RawContainer::numberOfBasisFunctions</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfBasisFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of basis functions in this libcint container </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="241" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="241" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1aaba9c0adb8f657706abee6c266fa1054" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int GQCP::libcint::RawContainer::numberOfShells</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfShells</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the number of shells in this libcint container </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="246" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="246" bodyend="246"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A wrapper that owns raw libcint &apos;atm&apos;, &apos;bas&apos; and &apos;env&apos; arrays</para>
+<para><simplesect kind="note"><para>The members are named after the libcint variables. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::libcint::RawContainer</label>
+        <link refid="class_g_q_c_p_1_1libcint_1_1_raw_container"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="168" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="168" bodyend="253"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a1cf520067c6239ab963bd40f775c4539" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>atmData</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a98882bce153e0775eacadb6cbdd3f2e8" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>basData</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a879cbfec32cda6f56dbeab7f1e6018f0" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>envData</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a0af106fa7a5fef4e88dbdc8d0f68fd3b" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>GQCP::LibcintInterfacer</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a256ca323e2e633b5d3a7b1223e52d1b6" prot="private" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>libcint_atm</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a17ac360b11205cd6785e44ac8b700a58" prot="private" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>libcint_bas</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1ae8fc7238df963c57c6ac4f3b9bfe93c1" prot="private" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>libcint_env</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a5d3a92a2caa99cd819ec89abafce2ac9" prot="private" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>natm</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1ac1fb52ad6e08166fdbf65edbb0fd448a" prot="private" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>nbf</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1acca7f2e2f2236b467198b01efcd2b24c" prot="private" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>nsh</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a624c001d1a870c14fe2368fb98d2927b" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>numberOfAtoms</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1aeb5441c826159782cfbe71f119c70f18" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>numberOfBasisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1aaba9c0adb8f657706abee6c266fa1054" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>numberOfShells</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a0c166064cf5c7a6081097fef06855795" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>RawContainer</name></member>
+      <member refid="class_g_q_c_p_1_1libcint_1_1_raw_container_1a93b0c05d09caa6c0465bf6830d55a86b" prot="public" virt="non-virtual"><scope>GQCP::libcint::RawContainer</scope><name>~RawContainer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

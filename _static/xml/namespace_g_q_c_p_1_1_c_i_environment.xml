@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1_c_i_environment" kind="namespace" language="C++">
+    <compoundname>GQCP::CIEnvironment</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1a4374650422c83e8e5379f74334455225" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Hamiltonian</type>
+          </param>
+          <param>
+            <type>typename ONVBasis</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref></type>
+        <definition>EigenproblemEnvironment GQCP::CIEnvironment::Dense</definition>
+        <argsstring>(const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis)</argsstring>
+        <name>Dense</name>
+        <param>
+          <type>const Hamiltonian &amp;</type>
+          <declname>hamiltonian</declname>
+        </param>
+        <param>
+          <type>const ONVBasis &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an environment suitable for solving dense CI eigenvalue problems for the given Hamiltonian and ONV basis.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Hamiltonian whose eigenproblem is trying to be solved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ONVBasis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of ONV basis in which the Hamiltonian should be represented.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A second-quantized Hamiltonian expressed in an orthonormal orbital basis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An ONV basis that spans a Fock (sub)space in which the Hamiltonian eigenproblem should be solved.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref></computeroutput> initialized suitable for solving dense CI eigenvalue problems for the given Hamiltonian and ONV basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="40" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" bodystart="40" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1ad65c2cc9f1c4f0b52e17435504f2df53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Hamiltonian</type>
+          </param>
+          <param>
+            <type>typename ONVBasis</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref></type>
+        <definition>EigenproblemEnvironment GQCP::CIEnvironment::Iterative</definition>
+        <argsstring>(const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis, const MatrixX&lt; double &gt; &amp;V)</argsstring>
+        <name>Iterative</name>
+        <param>
+          <type>const Hamiltonian &amp;</type>
+          <declname>hamiltonian</declname>
+        </param>
+        <param>
+          <type>const ONVBasis &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; double &gt; &amp;</type>
+          <declname>V</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an environment suitable for solving iterative CI eigenvalue problems for the given Hamiltonian and ONV basis.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Hamiltonian whose eigenproblem is trying to be solved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ONVBasis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of ONV basis in which the Hamiltonian should be represented.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A second-quantized Hamiltonian expressed in an orthonormal orbital basis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An ONV basis that spans a Fock (sub)space in which the Hamiltonian eigenproblem should be solved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A matrix of initial guess vectors, where each column of the matrix is an initial guess vector.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref></computeroutput> initialized suitable for solving iterative CI eigenvalue problems for the given Hamiltonian and ONV basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="61" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" bodystart="61" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="25" column="1"/>
+  </compounddef>
+</doxygen>

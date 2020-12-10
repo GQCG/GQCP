@@ -1,0 +1,74 @@
+\hypertarget{class_g_q_c_p_1_1_c_c_d_solver}{}\doxysection{G\+Q\+CP\+::C\+C\+D\+Solver$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_c_c_d_solver}\index{GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$C\+C\+D\+Solver.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::C\+C\+D\+Solver$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_g_q_c_p_1_1_c_c_d_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a246f6c40282aa89c88d0647df263d033}{Plain}} (const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+C\+C\+D\+Solver$<$ \+\_\+\+Scalar $>$}
+
+A factory class that can construct C\+CD solvers in an easy way.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type that is used to represent the amplitudes \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}\label{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}} 
+\index{GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver}{G\+Q\+C\+P\+::\+C\+C\+D\+Solver}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_d_solver_a246f6c40282aa89c88d0647df263d033}\label{class_g_q_c_p_1_1_c_c_d_solver_a246f6c40282aa89c88d0647df263d033}} 
+\index{GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}!Plain@{Plain}}
+\index{Plain@{Plain}!GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Plain()}{Plain()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver}{G\+Q\+C\+P\+::\+C\+C\+D\+Solver}}$<$ \+\_\+\+Scalar $>$\+::Plain (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & the threshold that is used in comparing the amplitudes \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a plain C\+CD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Q\+C\+Method/\+C\+C/\mbox{\hyperlink{_c_c_d_solver_8hpp}{C\+C\+D\+Solver.\+hpp}}\end{DoxyCompactItemize}

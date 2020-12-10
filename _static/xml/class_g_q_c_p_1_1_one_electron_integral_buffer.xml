@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_one_electron_integral_buffer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::OneElectronIntegralBuffer</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</basecompoundref>
+    <includes refid="_one_electron_integral_buffer_8hpp" local="no">OneElectronIntegralBuffer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _IntegralScalar</type>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>_N</declname>
+        <defname>_N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_one_electron_integral_buffer_1af776a3fcb1226b7d4b4df3eb0719ca69" prot="public" static="no">
+        <type>_IntegralScalar</type>
+        <definition>using GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::IntegralScalar =  _IntegralScalar</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_one_electron_integral_buffer_1acb1809260f5ae3f07068c188e48c6f48" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <initializer>= _N</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" line="42" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_one_electron_integral_buffer_1a1f559116f726f4cbfc1b5270507a6baa" prot="protected" static="no" mutable="no">
+        <type>std::array&lt; std::vector&lt; <ref refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1af776a3fcb1226b7d4b4df3eb0719ca69" kindref="member">IntegralScalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1acb1809260f5ae3f07068c188e48c6f48" kindref="member">N</ref> &gt;</type>
+        <definition>std::array&lt;std::vector&lt;IntegralScalar&gt;, N&gt; GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" line="46" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_one_electron_integral_buffer_1ac4a2ab3e8491b32f83a4026269bb8a66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::OneElectronIntegralBuffer</definition>
+        <argsstring>(const size_t nbf1, const size_t nbf2, const std::array&lt; std::vector&lt; IntegralScalar &gt;, N &gt; &amp;buffer)</argsstring>
+        <name>OneElectronIntegralBuffer</name>
+        <param>
+          <type>const size_t</type>
+          <declname>nbf1</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>nbf2</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; std::vector&lt; <ref refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1af776a3fcb1226b7d4b4df3eb0719ca69" kindref="member">IntegralScalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1acb1809260f5ae3f07068c188e48c6f48" kindref="member">N</ref> &gt; &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nbf1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of basis functions in the first shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nbf2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of basis functions in the second shell </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the calculated integrals </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" bodystart="58" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_one_electron_integral_buffer_1a9682e2dd597e7523148e243a935f0fde" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::areIntegralsAllZero</definition>
+        <argsstring>() const</argsstring>
+        <name>areIntegralsAllZero</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a5232fce397b298cb104338dcca2f4372">areIntegralsAllZero</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>if all the values of the calculated integrals are zero </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" line="70" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_one_electron_integral_buffer_1a2ba2d8bb28b1cfddaa32e2fd0200dcf0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1af776a3fcb1226b7d4b4df3eb0719ca69" kindref="member">IntegralScalar</ref></type>
+        <definition>virtual IntegralScalar GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::value</definition>
+        <argsstring>(const size_t i, const size_t f1, const size_t f2) const</argsstring>
+        <name>value</name>
+        <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a7bc13b7b9e41f521fee0b6e42010bf2f">value</reimplements>
+        <param>
+          <type>const size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>f1</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>f2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the component of the operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the basis function within shell 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the basis function within shell 2</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a value from this integral buffer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" line="79" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" bodystart="79" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base class to implement buffers for storing one-electron integrals</para>
+<para>An integral buffer facilitates placing integrals (see <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a507bcae75392dfa3711c5c94cecb26f5" kindref="member">emplace()</ref>) that were calculated over shells into the correct matrix representation of an operator in an orbital basis</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_IntegralScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar representation of an integral </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of components the corresponding operator has </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_one_electron_integral_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::OneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_one_electron_integral_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralBuffer.hpp" bodystart="39" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1a9682e2dd597e7523148e243a935f0fde" prot="public" virt="virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>areIntegralsAllZero</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1ad6b54c9052a08862e46ff33ae8454150" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>BaseOneElectronIntegralBuffer</name></member>
+      <member refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1a1f559116f726f4cbfc1b5270507a6baa" prot="protected" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>buffer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a507bcae75392dfa3711c5c94cecb26f5" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>emplace</name></member>
+      <member refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1af776a3fcb1226b7d4b4df3eb0719ca69" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1acb1809260f5ae3f07068c188e48c6f48" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>N</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1aa35cde54a1104ab16272a0642fcb5c3a" prot="protected" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>nbf1</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a3d261dcc128d01c14b848e4debec9493" prot="protected" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>nbf2</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1aa56618790db92694ff81073db85b1a59" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>numberOfBasisFunctionsInShell1</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a9da29ace8b56208361adda924956575c" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>numberOfBasisFunctionsInShell2</name></member>
+      <member refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1ac4a2ab3e8491b32f83a4026269bb8a66" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>OneElectronIntegralBuffer</name></member>
+      <member refid="class_g_q_c_p_1_1_one_electron_integral_buffer_1a2ba2d8bb28b1cfddaa32e2fd0200dcf0" prot="public" virt="virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>value</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a57d1a4399d5efc0ead4e673cc2184f06" prot="public" virt="virtual"><scope>GQCP::OneElectronIntegralBuffer</scope><name>~BaseOneElectronIntegralBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

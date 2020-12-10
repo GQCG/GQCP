@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_b003bc2eba300379a8aa313604c15910" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCModel/CI</compoundname>
+    <innerfile refid="_linear_expansion_8hpp">LinearExpansion.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/"/>
+  </compounddef>
+</doxygen>

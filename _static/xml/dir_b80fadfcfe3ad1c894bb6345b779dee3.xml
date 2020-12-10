@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_b80fadfcfe3ad1c894bb6345b779dee3" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis</compoundname>
+    <innerfile refid="_g_t_o_basis_set_8hpp">GTOBasisSet.hpp</innerfile>
+    <innerfile refid="_g_t_o_shell_8hpp">GTOShell.hpp</innerfile>
+    <innerfile refid="_scalar_basis_8hpp">ScalarBasis.hpp</innerfile>
+    <innerfile refid="_shell_set_8hpp">ShellSet.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/"/>
+  </compounddef>
+</doxygen>

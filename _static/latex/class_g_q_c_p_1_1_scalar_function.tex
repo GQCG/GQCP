@@ -1,0 +1,112 @@
+\hypertarget{class_g_q_c_p_1_1_scalar_function}{}\doxysection{G\+Q\+CP\+::Scalar\+Function$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_scalar_function}\index{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}}
+
+
+{\ttfamily \#include $<$Scalar\+Function.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Scalar\+Function$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{class_g_q_c_p_1_1_scalar_function__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_a7ffb7b8bd8a40c048d82737d0ae93e65}{Valued}} = \+\_\+\+Valued
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_ad77eaa1489e5194e620aa19c106c610c}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_a0f4c43609c40b1754b07aba9b69b66f6}{$\sim$\+Scalar\+Function}} ()=default
+\item 
+virtual \+\_\+\+Valued \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_a92e4862c14d2cf4574625dfba796eaf6}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Cols $>$ \&\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}) const =0
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const auto \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_af15098bae8bf5f1b9ee7f23f867839bf}{Cols}} = \+\_\+\+Cols
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Valued, typename \+\_\+\+Scalar, int \+\_\+\+Cols$>$\newline
+class G\+Q\+C\+P\+::\+Scalar\+Function$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$}
+
+A class template representing a mathematical scalar function through overriding operator()
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Valued} & the return type of the scalar function \\
+\hline
+{\em \+\_\+\+Scalar} & the type of the scalars of the input vector \\
+\hline
+{\em \+\_\+\+Cols} & the dimension of the input vector\+: an integer, or Eigen\+::\+Dynamic representing an unknown number of columns at compile time \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_ad77eaa1489e5194e620aa19c106c610c}\label{class_g_q_c_p_1_1_scalar_function_ad77eaa1489e5194e620aa19c106c610c}} 
+\index{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Valued , typename \+\_\+\+Scalar , int \+\_\+\+Cols$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{G\+Q\+C\+P\+::\+Scalar\+Function}}$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_ad77eaa1489e5194e620aa19c106c610c}{Scalar}} =  \+\_\+\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_a7ffb7b8bd8a40c048d82737d0ae93e65}\label{class_g_q_c_p_1_1_scalar_function_a7ffb7b8bd8a40c048d82737d0ae93e65}} 
+\index{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}!Valued@{Valued}}
+\index{Valued@{Valued}!GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Valued}{Valued}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Valued , typename \+\_\+\+Scalar , int \+\_\+\+Cols$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{G\+Q\+C\+P\+::\+Scalar\+Function}}$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_a7ffb7b8bd8a40c048d82737d0ae93e65}{Valued}} =  \+\_\+\+Valued}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_a0f4c43609c40b1754b07aba9b69b66f6}\label{class_g_q_c_p_1_1_scalar_function_a0f4c43609c40b1754b07aba9b69b66f6}} 
+\index{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}!````~ScalarFunction@{$\sim$ScalarFunction}}
+\index{````~ScalarFunction@{$\sim$ScalarFunction}!GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$ScalarFunction()}{~ScalarFunction()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Valued , typename \+\_\+\+Scalar , int \+\_\+\+Cols$>$ \\
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{G\+Q\+C\+P\+::\+Scalar\+Function}}$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$\+::$\sim$\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{Scalar\+Function}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_a92e4862c14d2cf4574625dfba796eaf6}\label{class_g_q_c_p_1_1_scalar_function_a92e4862c14d2cf4574625dfba796eaf6}} 
+\index{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Valued , typename \+\_\+\+Scalar , int \+\_\+\+Cols$>$ \\
+virtual \+\_\+\+Valued \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{G\+Q\+C\+P\+::\+Scalar\+Function}}$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Cols $>$ \&}]{x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the vector/point at which the scalar function is to be evaluated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the scalar function value at the given point 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_function_af15098bae8bf5f1b9ee7f23f867839bf}\label{class_g_q_c_p_1_1_scalar_function_af15098bae8bf5f1b9ee7f23f867839bf}} 
+\index{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}!Cols@{Cols}}
+\index{Cols@{Cols}!GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$@{GQCP::ScalarFunction$<$ \_Valued, \_Scalar, \_Cols $>$}}
+\doxysubsubsection{\texorpdfstring{Cols}{Cols}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Valued , typename \+\_\+\+Scalar , int \+\_\+\+Cols$>$ \\
+const auto \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{G\+Q\+C\+P\+::\+Scalar\+Function}}$<$ \+\_\+\+Valued, \+\_\+\+Scalar, \+\_\+\+Cols $>$\+::Cols = \+\_\+\+Cols\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Functions/\mbox{\hyperlink{_scalar_function_8hpp}{Scalar\+Function.\+hpp}}\end{DoxyCompactItemize}

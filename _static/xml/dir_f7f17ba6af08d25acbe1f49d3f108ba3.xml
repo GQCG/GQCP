@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_f7f17ba6af08d25acbe1f49d3f108ba3" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Basis/Transformations</compoundname>
+    <innerfile refid="_jacobi_rotation_8cpp">JacobiRotation.cpp</innerfile>
+    <innerfile refid="_orbital_rotation_generators_8cpp">OrbitalRotationGenerators.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Basis/Transformations/"/>
+  </compounddef>
+</doxygen>

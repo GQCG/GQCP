@@ -1,0 +1,350 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::Operator</compoundname>
+    <includes refid="_operator_8hpp" local="no">Operator.hpp</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1ada6654c5287020ce46f39d2dea5e0cbf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_electronic_density_operator" kindref="compound">ElectronicDensityOperator</ref></type>
+        <definition>static ElectronicDensityOperator GQCP::Operator::ElectronicDensity</definition>
+        <argsstring>()</argsstring>
+        <name>ElectronicDensity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <ref refid="class_g_q_c_p_1_1_electronic_density_operator" kindref="compound">ElectronicDensityOperator</ref>.</para>
+<para><simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_electronic_density_operator" kindref="compound">ElectronicDensityOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="53" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a728f7c30e7e9f6c7f16e6ed0b7cd5943" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref></type>
+        <definition>static KineticOperator GQCP::Operator::Kinetic</definition>
+        <argsstring>()</argsstring>
+        <name>Kinetic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>.</para>
+<para><simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="60" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a18a056da0ee2446c39e7db2301523639" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref></type>
+        <definition>static NuclearAttractionOperator GQCP::Operator::NuclearAttraction</definition>
+        <argsstring>(const NuclearFramework &amp;nuclear_framework)</argsstring>
+        <name>NuclearAttraction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
+          <declname>nuclear_framework</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> related to a nuclear framework.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nuclear_framework</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclear framework.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="69" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1ae9d4528a06d5366bbb3406ff13792e92" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref></type>
+        <definition>static NuclearAttractionOperator GQCP::Operator::NuclearAttraction</definition>
+        <argsstring>(const Molecule &amp;molecule)</argsstring>
+        <name>NuclearAttraction</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> related to a molecule.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule that contains the nuclear framework.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="78" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1ad08e5c4315fed9cffc6ce111d92a2313" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref></type>
+        <definition>static OverlapOperator GQCP::Operator::Overlap</definition>
+        <argsstring>()</argsstring>
+        <name>Overlap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>.</para>
+<para><simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="85" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a9fca941eaaf9582c224a3dcb04740e73" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" kindref="compound">ElectronicSpin_zOperator</ref></type>
+        <definition>static ElectronicSpin_zOperator GQCP::Operator::ElectronicSpin_z</definition>
+        <argsstring>()</argsstring>
+        <name>ElectronicSpin_z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" kindref="compound">ElectronicSpin_zOperator</ref></computeroutput>.</para>
+<para><simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" kindref="compound">ElectronicSpin_zOperator</ref></computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="92" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a926505d6d1fcd356dc3b7a2ae2b70c72" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref></type>
+        <definition>static AngularMomentumOperator GQCP::Operator::AngularMomentum</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;reference=Vector&lt; double, 3 &gt;::Zero())</argsstring>
+        <name>AngularMomentum</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>reference</declname>
+          <defval><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;::Zero()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref> about a reference point.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference point about which the angular momentum is defined.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="105" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1acc6e78d49a5cd051a8abab888431f635" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref></type>
+        <definition>static ElectronicDipoleOperator GQCP::Operator::ElectronicDipole</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;origin=Vector&lt; double, 3 &gt;::Zero())</argsstring>
+        <name>ElectronicDipole</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>origin</declname>
+          <defval><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;::Zero()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> with the given point as a reference.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>origin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The origin of the dipole operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="114" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a685577f87d959bdeba8704c1f82d7c36" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref></type>
+        <definition>static ElectronicSpinOperator GQCP::Operator::ElectronicSpin</definition>
+        <argsstring>()</argsstring>
+        <name>ElectronicSpin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref>.</para>
+<para><simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="121" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1ae414e28e2038e24768cb8522ebf57c7e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref></type>
+        <definition>static LinearMomentumOperator GQCP::Operator::LinearMomentum</definition>
+        <argsstring>()</argsstring>
+        <name>LinearMomentum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref>.</para>
+<para><simplesect kind="return"><para>a <ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="128" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="128" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a1c608e9830f1e160de0d9dc3101d0feb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref></type>
+        <definition>static CoulombRepulsionOperator GQCP::Operator::Coulomb</definition>
+        <argsstring>()</argsstring>
+        <name>Coulomb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>.</para>
+<para><simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="140" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="140" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a33d30f358782ec0bd2224cd100d7d930" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" kindref="compound">NuclearDipoleOperator</ref></type>
+        <definition>static NuclearDipoleOperator GQCP::Operator::NuclearDipole</definition>
+        <argsstring>(const Molecule &amp;molecule, const Vector&lt; double, 3 &gt; &amp;origin=Vector&lt; double, 3 &gt;::Zero())</argsstring>
+        <name>NuclearDipole</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>origin</declname>
+          <defval><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;::Zero()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" kindref="compound">NuclearDipoleOperator</ref> from a molecule and a reference point for the dipole.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule that contains the nuclear framework. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>origin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The origin of the dipole operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" kindref="compound">NuclearDipoleOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="155" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a1b8ed96bc5cbec4d3405a2bce2d1fffc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" kindref="compound">NuclearRepulsionOperator</ref></type>
+        <definition>static NuclearRepulsionOperator GQCP::Operator::NuclearRepulsion</definition>
+        <argsstring>(const Molecule &amp;molecule)</argsstring>
+        <name>NuclearRepulsion</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" kindref="compound">NuclearRepulsionOperator</ref> from a molecule.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule that contains the nuclear framework.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" kindref="compound">NuclearRepulsionOperator</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="164" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="164" bodyend="164"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A factory class for easily creating various types of first-quantized operators. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Operator</label>
+        <link refid="class_g_q_c_p_1_1_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="42" bodyend="165"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_operator_1a926505d6d1fcd356dc3b7a2ae2b70c72" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>AngularMomentum</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1a1c608e9830f1e160de0d9dc3101d0feb" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>Coulomb</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1ada6654c5287020ce46f39d2dea5e0cbf" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicDensity</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1acc6e78d49a5cd051a8abab888431f635" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicDipole</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1a685577f87d959bdeba8704c1f82d7c36" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicSpin</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1a9fca941eaaf9582c224a3dcb04740e73" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicSpin_z</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1a728f7c30e7e9f6c7f16e6ed0b7cd5943" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>Kinetic</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1ae414e28e2038e24768cb8522ebf57c7e" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>LinearMomentum</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1a18a056da0ee2446c39e7db2301523639" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>NuclearAttraction</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1ae9d4528a06d5366bbb3406ff13792e92" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>NuclearAttraction</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1a33d30f358782ec0bd2224cd100d7d930" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>NuclearDipole</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1a1b8ed96bc5cbec4d3405a2bce2d1fffc" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>NuclearRepulsion</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1ad08e5c4315fed9cffc6ce111d92a2313" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>Overlap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

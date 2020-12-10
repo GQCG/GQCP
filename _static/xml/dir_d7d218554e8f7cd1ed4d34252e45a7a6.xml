@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_d7d218554e8f7cd1ed4d34252e45a7a6" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/QCMethod</compoundname>
+    <innerdir refid="dir_9a96a826b53cf3dfd8fbccad27600922">/__w/GQCP/GQCP/gqcp/include/QCMethod/CC</innerdir>
+    <innerdir refid="dir_1898ac9af35c6d8ed6376f04110e77c0">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI</innerdir>
+    <innerdir refid="dir_d14101abff67e2743de1df9a6546494d">/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals</innerdir>
+    <innerdir refid="dir_a7d87e49902b2c5159a2bbbbea962fdc">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF</innerdir>
+    <innerdir refid="dir_c420f6fb1685b911a015070b057c8638">/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization</innerdir>
+    <innerdir refid="dir_0c23a740dd611875c73a047a28765302">/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2</innerdir>
+    <innerfile refid="_q_c_structure_8hpp">QCStructure.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/"/>
+  </compounddef>
+</doxygen>

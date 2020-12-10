@@ -1,0 +1,124 @@
+\hypertarget{class_g_q_c_p_1_1_r_mulliken_partitioning}{}\doxysection{G\+Q\+CP\+::R\+Mulliken\+Partitioning$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_r_mulliken_partitioning}\index{GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$R\+Mulliken\+Partitioning.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::R\+Mulliken\+Partitioning$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_g_q_c_p_1_1_r_mulliken_partitioning__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_a5da5ed983abdb3b352b02d2c52c5d862}{R\+Mulliken\+Partitioning}} (const std\+::vector$<$ size\+\_\+t $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad1d0007c4fb7c462815a4a0436592072}{indices}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}} $>$ \&C)
+\item 
+const std\+::vector$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad1d0007c4fb7c462815a4a0436592072}{indices}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_a6b824ff394330b068bd01ff6b22258e3}{number\+Of\+Orbitals}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_a5d1211c20ef5124b72cb1ea5eb817262}{partition\+Matrix}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_a3e62e414ddbbc62d6dcbbca8f97e026b}{projection\+Matrix}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class G\+Q\+C\+P\+::\+R\+Mulliken\+Partitioning$<$ \+\_\+\+Scalar $>$}
+
+A restricted Mulliken-\/based partitioning of an AO basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Scalar} & The scalar type used to represent an element of the Mulliken projection matrix\+: real or complex. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}\label{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}} 
+\index{GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{G\+Q\+C\+P\+::\+R\+Mulliken\+Partitioning}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_mulliken_partitioning_a5da5ed983abdb3b352b02d2c52c5d862}\label{class_g_q_c_p_1_1_r_mulliken_partitioning_a5da5ed983abdb3b352b02d2c52c5d862}} 
+\index{GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}!RMullikenPartitioning@{RMullikenPartitioning}}
+\index{RMullikenPartitioning@{RMullikenPartitioning}!GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{RMullikenPartitioning()}{RMullikenPartitioning()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{G\+Q\+C\+P\+::\+R\+Mulliken\+Partitioning}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{R\+Mulliken\+Partitioning}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{indices,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}} $>$ \&}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a restricted Mulliken partitioning from a set of included AO indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & A set of indices that correspond to the A\+Os that are included in the Mulliken-\/partitioning of an AO basis. \\
+\hline
+{\em C} & The transformation that relates the atomic spin-\/orbitals to the set of current restricted spin-\/orbitals. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_mulliken_partitioning_ad1d0007c4fb7c462815a4a0436592072}\label{class_g_q_c_p_1_1_r_mulliken_partitioning_ad1d0007c4fb7c462815a4a0436592072}} 
+\index{GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}!indices@{indices}}
+\index{indices@{indices}!GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{indices()}{indices()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const std\+::vector$<$size\+\_\+t$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{G\+Q\+C\+P\+::\+R\+Mulliken\+Partitioning}}$<$ \+\_\+\+Scalar $>$\+::indices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+M\+A\+RK\+: General information \begin{DoxyReturn}{Returns}
+The set of indices that correspond to the A\+Os that are included in the Mulliken-\/partitioning of an AO basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_mulliken_partitioning_a6b824ff394330b068bd01ff6b22258e3}\label{class_g_q_c_p_1_1_r_mulliken_partitioning_a6b824ff394330b068bd01ff6b22258e3}} 
+\index{GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}!numberOfOrbitals@{numberOfOrbitals}}
+\index{numberOfOrbitals@{numberOfOrbitals}!GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{numberOfOrbitals()}{numberOfOrbitals()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{G\+Q\+C\+P\+::\+R\+Mulliken\+Partitioning}}$<$ \+\_\+\+Scalar $>$\+::number\+Of\+Orbitals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The number of orbitals that this Mulliken partitioning is related to. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_mulliken_partitioning_a5d1211c20ef5124b72cb1ea5eb817262}\label{class_g_q_c_p_1_1_r_mulliken_partitioning_a5d1211c20ef5124b72cb1ea5eb817262}} 
+\index{GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}!partitionMatrix@{partitionMatrix}}
+\index{partitionMatrix@{partitionMatrix}!GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{partitionMatrix()}{partitionMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{G\+Q\+C\+P\+::\+R\+Mulliken\+Partitioning}}$<$ \+\_\+\+Scalar $>$\+::partition\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+M\+A\+RK\+: Partitioning and projecting \begin{DoxyReturn}{Returns}
+The partition matrix \textquotesingle{}P\+\_\+A\textquotesingle{} related to this Mulliken partitioning. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_mulliken_partitioning_a3e62e414ddbbc62d6dcbbca8f97e026b}\label{class_g_q_c_p_1_1_r_mulliken_partitioning_a3e62e414ddbbc62d6dcbbca8f97e026b}} 
+\index{GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}!projectionMatrix@{projectionMatrix}}
+\index{projectionMatrix@{projectionMatrix}!GQCP::RMullikenPartitioning$<$ \_Scalar $>$@{GQCP::RMullikenPartitioning$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{projectionMatrix()}{projectionMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{R\+Transformation}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning_ad33c9b688af44a2a6a08f83df941c00b}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{G\+Q\+C\+P\+::\+R\+Mulliken\+Partitioning}}$<$ \+\_\+\+Scalar $>$\+::projection\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The Mulliken projection, defined as C$^\wedge$\{-\/1\} P\+\_\+A C, where C is the transformation matrix and P\+\_\+A is the partition matrix. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Mulliken\+Partitioning/\mbox{\hyperlink{_r_mulliken_partitioning_8hpp}{R\+Mulliken\+Partitioning.\+hpp}}\end{DoxyCompactItemize}
