@@ -59,8 +59,10 @@ public:
      *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
-        const auto& P = environment.density_matrices.back();  // The most recent density matrix.
-        const auto F = QCModel::GHF<double>::calculateScalarBasisFockMatrix(P, environment.sq_hamiltonian);
+
+        const auto& P = environment.density_matrices.back();  // the most recent density matrix
+        const auto F = QCModel::GHF<Scalar>::calculateScalarBasisFockMatrix(P, environment.sq_hamiltonian);
+
         environment.fock_matrices.push_back(F.parameters());
     }
 };

@@ -48,9 +48,9 @@ public:
 public:
     size_t N;  // The total number of electrons.
 
-    std::deque<double> electronic_energies;
+    std::deque<Scalar> electronic_energies;
 
-    std::deque<VectorX<double>> orbital_energies;
+    std::deque<VectorX<Scalar>> orbital_energies;
 
     ScalarGSQOneElectronOperator<Scalar> S;  // The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
 
