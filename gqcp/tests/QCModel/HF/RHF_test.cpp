@@ -29,8 +29,8 @@
  */
 BOOST_AUTO_TEST_CASE(RHF_1DM_invalid_argument) {
 
-    const size_t K = 5;          // the number of spatial orbitals
-    const size_t N_invalid = 3;  // the number of electrons must be even
+    const size_t K = 5;          // The number of spatial orbitals.
+    const size_t N_invalid = 3;  // The number of electrons must be even.
     const size_t N_valid = 4;
 
     BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N_invalid), std::invalid_argument);
@@ -39,12 +39,12 @@ BOOST_AUTO_TEST_CASE(RHF_1DM_invalid_argument) {
 
 
 /**
- *  Check if GQCP::QCModel::RHF::calculateOrthonormalBasis1DM() yields a correct 1-DM for an example
+ *  Check if GQCP::QCModel::RHF::calculateOrthonormalBasis1DM() yields a correct 1-DM for an example.
  */
 BOOST_AUTO_TEST_CASE(RHF_1DM_matrix) {
 
-    const size_t K = 5;  // the number of spatial orbitals
-    const size_t N = 6;  // the number of electrons
+    const size_t K = 5;  // The number of spatial orbitals.
+    const size_t N = 6;  // The number of electrons.
     GQCP::Orbital1DM<double> D_ref {K};
     // clang-format off
     D_ref << 2, 0, 0, 0, 0,
@@ -59,13 +59,13 @@ BOOST_AUTO_TEST_CASE(RHF_1DM_matrix) {
 
 
 /**
- *  Check if the RHF HOMO and LUMO indices are correctly implemented
+ *  Check if the RHF HOMO and LUMO indices are correctly implemented.
  */
 BOOST_AUTO_TEST_CASE(HOMO_LUMO_index) {
 
-    // For K=7 and N=10, the index of the HOMO should be 4
-    const size_t K = 7;   // number of spatial orbitals
-    const size_t N = 10;  // number of electrons
+    // For K=7 and N=10, the index of the HOMO should be 4.
+    const size_t K = 7;   // The number of spatial orbitals.
+    const size_t N = 10;  // The number of electrons.
 
     BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::homoIndex(N), 4);
     BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::lumoIndex(K, N), 5);
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(RHF_DMs) {
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spin_orbital_basis.overlap().parameters());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spin_orbital_basis.overlap());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
 

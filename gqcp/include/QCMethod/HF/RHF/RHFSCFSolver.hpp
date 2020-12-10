@@ -36,7 +36,7 @@ namespace GQCP {
 /**
  *  A factory class that can construct RHF SCF solvers in an easy way.
  * 
- *  @tparam _Scalar             the scalar type that is used for the coefficient matrix/expansion coefficients
+ *  @tparam _Scalar             The scalar type that is used for the coefficient matrix/expansion coefficients: real or complex.
  */
 template <typename _Scalar>
 class RHFSCFSolver {
@@ -50,15 +50,15 @@ public:
      */
 
     /**
-     *  @param alpha                                the damping factor
-     *  @param threshold                            the threshold that is used in comparing the density matrices
-     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     *  @param alpha                                The damping factor.
+     *  @param threshold                            The threshold that is used in comparing the density matrices.
+     *  @param maximum_number_of_iterations         The maximum number of iterations the algorithm may perform.
      * 
-     *  @return a density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
+     *  @return A density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
      */
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> DensityDamped(const double alpha, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
-        // Create the iteration cycle that effectively 'defines' a damped RHF SCF solver
+        // Create the iteration cycle that effectively 'defines' a damped RHF SCF solver.
         StepCollection<RHFSCFEnvironment<Scalar>> damped_rhf_scf_cycle {};
         damped_rhf_scf_cycle
             .add(RHFDensityMatrixCalculation<Scalar>())
@@ -67,7 +67,7 @@ public:
             .add(RHFFockMatrixDiagonalization<Scalar>())
             .add(RHFElectronicEnergyCalculation<Scalar>());
 
-        // Create a convergence criterion on the norm of subsequent density matrices
+        // Create a convergence criterion on the norm of subsequent density matrices.
         const std::function<std::deque<Orbital1DM<Scalar>>(const RHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<Orbital1DM<Scalar>, RHFSCFEnvironment<Scalar>>;
@@ -78,25 +78,25 @@ public:
 
 
     /**
-     *  @param minimum_subspace_dimension           the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
-     *  @param maximum_subspace_dimension           the maximum number of Fock matrices that can be handled by DIIS
-     *  @param threshold                            the threshold that is used in comparing the density matrices
-     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     *  @param minimum_subspace_dimension           The minimum number of Fock matrices that have to be in the subspace before enabling DIIS.
+     *  @param maximum_subspace_dimension           The maximum number of Fock matrices that can be handled by DIIS.
+     *  @param threshold                            The threshold that is used in comparing the density matrices.
+     *  @param maximum_number_of_iterations         The maximum number of iterations the algorithm may perform.
      * 
-     *  @return a DIIS RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
+     *  @return A DIIS RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
      */
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> DIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
-        // Create the iteration cycle that effectively 'defines' a DIIS RHF SCF solver
+        // Create the iteration cycle that effectively 'defines' a DIIS RHF SCF solver.
         StepCollection<RHFSCFEnvironment<Scalar>> diis_rhf_scf_cycle {};
         diis_rhf_scf_cycle
             .add(RHFDensityMatrixCalculation<Scalar>())
             .add(RHFFockMatrixCalculation<Scalar>())
             .add(RHFErrorCalculation<Scalar>())
-            .add(RHFFockMatrixDIIS<Scalar>(minimum_subspace_dimension, maximum_subspace_dimension))  // this also calculates the next coefficient matrix
+            .add(RHFFockMatrixDIIS<Scalar>(minimum_subspace_dimension, maximum_subspace_dimension))  // This also calculates the next coefficient matrix.
             .add(RHFElectronicEnergyCalculation<Scalar>());
 
-        // Create a convergence criterion on the norm of subsequent density matrices
+        // Create a convergence criterion on the norm of subsequent density matrices.
         const std::function<std::deque<Orbital1DM<Scalar>>(const RHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<Orbital1DM<Scalar>, RHFSCFEnvironment<Scalar>>;
@@ -107,14 +107,14 @@ public:
 
 
     /**
-     *  @param threshold                            the threshold that is used in comparing the density matrices
-     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     *  @param threshold                            The threshold that is used in comparing the density matrices.
+     *  @param maximum_number_of_iterations         The maximum number of iterations the algorithm may perform.
      * 
-     *  @return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
+     *  @return A plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
      */
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
-        // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver
+        // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver.
         StepCollection<RHFSCFEnvironment<Scalar>> plain_rhf_scf_cycle {};
         plain_rhf_scf_cycle
             .add(RHFDensityMatrixCalculation<Scalar>())
@@ -122,7 +122,7 @@ public:
             .add(RHFFockMatrixDiagonalization<Scalar>())
             .add(RHFElectronicEnergyCalculation<Scalar>());
 
-        // Create a convergence criterion on the norm of subsequent density matrices
+        // Create a convergence criterion on the norm of subsequent density matrices.
         const auto density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<Orbital1DM<Scalar>, RHFSCFEnvironment<Scalar>>;

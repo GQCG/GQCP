@@ -47,7 +47,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step
      */
     std::string description() const override {
         return "Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.";
@@ -57,11 +57,11 @@ public:
     /**
      *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
-        const auto& F = environment.fock_matrices.back().parameters();  // the most recent scalar/AO basis Fock matrix
+        const auto& F = environment.fock_matrices.back().parameters();  // The most recent scalar/AO basis Fock matrix.
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S.parameters()};

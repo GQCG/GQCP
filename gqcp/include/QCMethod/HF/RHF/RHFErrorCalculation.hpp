@@ -46,7 +46,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the current error vector and add it to the environment.";
@@ -56,16 +56,16 @@ public:
     /**
      *  Calculate the current error vector and add it to the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
-        // Read F, D and S from the environment
+        // Read F, D and S from the environment.
         const auto& D = environment.density_matrices.back();
-        const auto& S = environment.S.parameters();
-        const auto& F = environment.fock_matrices.back().parameters();
+        const auto& S = environment.S;
+        const auto& F = environment.fock_matrices.back();
 
-        // Calculate the error and write it to the environment (as a vector)
+        // Calculate the error and write it to the environment (as a vector).
         const auto error_matrix = QCModel::RHF<Scalar>::calculateError(F, D, S);
         environment.error_vectors.push_back(error_matrix.pairWiseReduced());
     }

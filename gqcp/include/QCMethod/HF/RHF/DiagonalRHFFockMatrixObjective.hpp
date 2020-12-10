@@ -27,7 +27,7 @@ namespace GQCP {
 /**
  *  An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters represent the canonical RHF coefficients.
  * 
- *  @tparam _Scalar                 the type of scalar used for the expansion coefficients
+ *  @tparam _Scalar                 The type of scalar used for the expansion coefficients: real or complex.
  */
 template <typename _Scalar>
 class DiagonalRHFFockMatrixObjective {
@@ -37,8 +37,8 @@ public:
 
 
 private:
-    double precision;                       // the precision with which the diagonality of the Fock matrix should be checked
-    RSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in a scalar basis
+    double precision;                       // The precision with which the diagonality of the Fock matrix should be checked.
+    RSQHamiltonian<Scalar> sq_hamiltonian;  // The Hamiltonian expressed in a scalar basis.
 
 
 public:
@@ -47,7 +47,7 @@ public:
      */
 
     /**
-     *  @param sq_hamiltonian       the Hamiltonian expressed in a scalar basis
+     *  @param sq_hamiltonian       The Hamiltonian expressed in a scalar basis.
      */
     DiagonalRHFFockMatrixObjective(const RSQHamiltonian<Scalar>& sq_hamiltonian, const double precision = 1.0e-08) :
         precision {precision},
@@ -59,20 +59,20 @@ public:
      */
 
     /**
-     *  @param rhf_parameters           the RHF model parameters that are considered to be optimized
+     *  @param rhf_parameters           The RHF model parameters that are considered to be optimized.
      * 
-     *  @return if this objective is satisfied with the given optimized model parameters
+     *  @return If this objective is satisfied with the given optimized model parameters.
      */
     bool isSatisfiedWith(const QCModel::RHF<Scalar>& rhf_parameters) const {
 
-        // Prepare the calculation of the Fock matrix in the spinor basis
+        // Prepare the calculation of the Fock matrix in the spinor basis.
         const auto N_P = rhf_parameters.numberOfElectronPairs();
         const auto C = rhf_parameters.expansion();
         const auto D = QCModel::RHF<Scalar>::calculateScalarBasis1DM(C, 2 * N_P);
 
-        // Calculate the Fock matrix in the orthonormal spinor and check if it is diagonal
-        auto F_orthonormal = QCModel::RHF<Scalar>::calculateScalarBasisFockMatrix(D, this->sq_hamiltonian);  // the converged Fock matrix (expressed in the scalar orbital basis)
-        F_orthonormal.transform(C);                                                                          // now in the orthonormal spinor basis
+        // Calculate the Fock matrix in the orthonormal spinor and check if it is diagonal.
+        auto F_orthonormal = QCModel::RHF<Scalar>::calculateScalarBasisFockMatrix(D, this->sq_hamiltonian);  // The converged Fock matrix (expressed in the scalar orbital basis).
+        F_orthonormal.transform(C);                                                                          // Now in the orthonormal spinor basis.
         return F_orthonormal.parameters().isDiagonal(this->precision);
     }
 };
