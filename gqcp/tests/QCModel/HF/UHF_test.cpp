@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(UHF_DMs) {
 
     const auto N_a = molecule.numberOfElectronPairs();  // The number of alpha electrons.
     const auto N_b = molecule.numberOfElectronPairs();  // The number of beta electrons.
-    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_a, N_b, hamiltonian, u_spin_orbital_basis.overlap().alpha().parameters());
+    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_a, N_b, hamiltonian, u_spin_orbital_basis.overlap().alpha().parameters());  // The alpha and beta overlap matrices are equal.
     auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
 
     const auto uhf_qc_structure = GQCP::QCMethod::UHF<double>().optimize(plain_uhf_scf_solver, uhf_environment);

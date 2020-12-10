@@ -137,7 +137,7 @@ public:
      *  @param H_core_sigma         the spin-sigma core Hamiltonian expressed in the same scalar basis
      *  @param F_sigma              the spin-sigma Fock matrix in the same scalar basis
      *
-     *  @return the UHF electronic energy for the sigma electrons
+     *  @return The UHF electronic energy for the sigma electrons.
      */
     static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarUSQOneElectronOperatorComponent<Scalar>& H_core_sigma, const ScalarUSQOneElectronOperatorComponent<Scalar>& F_sigma) {
 
@@ -309,11 +309,11 @@ public:
      *  @param P_beta               the UHF beta density matrix expressed in the (same) underlying scalar orbital basis
      *  @param sq_hamiltonian       the Hamiltonian expressed in the (same) underlying scalar orbital basis
      * 
-     *  @return the UHF direct (Coulomb) matrix for spin sigma
+     *  @return The UHF direct (Coulomb) matrix for spin sigma.
      */
     static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // Get the two-electron parameters
+        // Get the two-electron parameters.
         const auto& g_a = sq_hamiltonian.twoElectron().alphaAlpha().parameters();
         const auto& g_b = sq_hamiltonian.twoElectron().betaBeta().parameters();
 
@@ -322,7 +322,7 @@ public:
         const auto J_alpha = g_a.template einsum<2>("ijkl,kl->ij", P.alpha()).asMatrix();
         const auto J_beta = g_b.template einsum<2>("ijkl,kl->ij", P.beta()).asMatrix();
 
-        // Calculate the total J tensor
+        // Calculate the total J tensor.
         const auto J = J_alpha + J_beta;
 
         return ScalarUSQOneElectronOperator<Scalar> {J, J};
@@ -335,11 +335,11 @@ public:
      *  @param P_sigma              the UHF sigma density matrix expressed in the underlying scalar orbital basis
      *  @param sq_hamiltonian       the Hamiltonian expressed in the (same) underlying scalar orbital basis
      * 
-     *  @return the UHF direct (Coulomb) matrix for spin sigma
+     *  @return The UHF direct (Coulomb) matrix for spin sigma.
      */
     static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // Get the two-electron parameters
+        // Get the two-electron parameters.
         const auto& g_a = sq_hamiltonian.twoElectron().alphaAlpha().parameters();
         const auto& g_b = sq_hamiltonian.twoElectron().betaBeta().parameters();
 
@@ -358,15 +358,15 @@ public:
      *  @param P                    the RHF density matrix in a scalar basis
      *  @param sq_hamiltonian       the Hamiltonian expressed in the same scalar basis
      *
-     *  @return the RHF Fock matrix expressed in the scalar basis
+     *  @return The UHF Fock matrix expressed in the scalar basis of the AOs.
      */
     static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
-        // H_core is always the same
+        // H_core is always the same.
         const auto& H_core = sq_hamiltonian.core();
 
-        // Get the alpha and beta parameters of the coulomb and exchange matrices
+        // Get the alpha and beta parameters of the coulomb and exchange matrices.
         const auto J_a = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).alpha().parameters();
         const auto J_b = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).beta().parameters();
 
@@ -374,7 +374,7 @@ public:
         const auto K_b = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).beta().parameters();
 
 
-        // Generate the alpha and beta Fock matrix and put the in a USQOneElectronOperator
+        // Generate the alpha and beta Fock matrix and put them in a USQOneElectronOperator.
         const auto F_a = H_core.alpha().parameters() + J_a - K_a;
         const auto F_b = H_core.beta().parameters() + J_b - K_b;
 
