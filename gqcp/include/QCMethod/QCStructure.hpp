@@ -27,70 +27,86 @@ namespace GQCP {
 
 
 /**
- *  A quantum chemical structure. It consists of the ground state (and possibly excited states) energy and the associated optimal quantum chemical parameters associated to a model.
+ *  A quantum chemical structure. It encapsulates (energy, optimal parameter)-pairs for the ground state, and possibly excited states.
+ * 
+ *  @tparam _QCModel                The type of the optimal model parameters.
+ *  @tparam _Scalar                 The scalar type of the energy: real or complex.
  */
-template <typename _QCModel>
+template <typename _QCModel, typename _Scalar = double>
 class QCStructure {
 public:
+    // The type of the optimal model parameters.
     using QCModel = _QCModel;
+
+    // The scalar type of the energy: real or complex.
+    using Scalar = _Scalar;
 
 
 private:
-    std::vector<double> energies;           // the ground (and possibly excited) state electronic energies
-    std::vector<QCModel> model_parameters;  // the ground (and possibly excited) state model parameters
+    // The electronic energies for the ground state and possibly for the excited states.
+    std::vector<Scalar> energies;
+
+    // The optimal model parameters for the ground state and possibly for the excited states.
+    std::vector<QCModel> model_parameters;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  @param energies                 the ground (and possibly excited) state electronic energies
-     *  @param model_parameters         the ground (and possibly excited) state model parameters
+     *  @param energies                 The electronic energies for the ground state and possibly for the excited states.
+     *  @param model_parameters         The optimal model parameters for the ground state and possibly for the excited states.
      */
-    QCStructure(const std::vector<double>& energies, const std::vector<QCModel>& model_parameters) :
+    QCStructure(const std::vector<Scalar>& energies, const std::vector<QCModel>& model_parameters) :
         energies {energies},
         model_parameters {model_parameters} {
+
         const auto n = energies.size();
 
         if (n < 1) {
-            throw std::invalid_argument("QCStructure(const std::vector<double>&, const std::vector<QCModel>&): You have given an empty number of energies.");
+            throw std::invalid_argument("QCStructure(const std::vector<Scalar>&, const std::vector<QCModel>&): You have given an empty number of energies.");
         }
 
         if (n != model_parameters.size()) {
-            throw std::invalid_argument("QCStructure(const std::vector<double>&, const std::vector<QCModel>&): The number of energies and sets of parameters do not match.");
+            throw std::invalid_argument("QCStructure(const std::vector<Scalar>&, const std::vector<QCModel>&): The number of energies and sets of parameters do not match.");
         }
     }
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Energy
      */
 
     /**
-     *  @param i            the index of the i-th excited state
+     *  @param i            The index of an excited state.
      * 
-     *  @return the electronic energy corresponding to the i-th excited state
+     *  @return The electronic energy corresponding to the i-th excited state.
      */
-    double energy(const size_t i = 0) const { return this->energies[i]; }
+    Scalar energy(const size_t i = 0) const { return this->energies[i]; }
 
     /**
-     *  @return the ground state electronic energy for this quantum chemical structure
+     *  @return The ground state electronic energy for this quantum chemical structure.
      */
-    double groundStateEnergy() const { return this->energy(); }
+    Scalar groundStateEnergy() const { return this->energy(); }
+
+
+    /*
+     *  MARK: Parameters
+     */
 
     /**
-     *  @return the ground state model parameters for this quantum chemical structure
-     */
-    const QCModel& groundStateParameters() const { return this->parameters(); }
-
-    /**
-     *  @param i            the index of the i-th excited state
+     *  @param i            The index of an excited state.
      * 
-     *  @return the parameters corresponding to the i-th excited state
+     *  @return The optimal model parameters corresponding to the i-th excited state.
      */
     const QCModel& parameters(const size_t i = 0) const { return this->model_parameters[i]; }
+
+    /**
+     *  @return The ground state model parameters for this quantum chemical structure.
+     */
+    const QCModel& groundStateParameters() const { return this->parameters(); }
 };
 
 

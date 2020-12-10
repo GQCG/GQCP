@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/literals.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/operators.h>
@@ -129,8 +130,11 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
 void bindSQHamiltonians(py::module& module) {
 
     bindSQHamiltonian<RSQHamiltonian<double>, RSpinOrbitalBasis<double, GTOShell>>(module, "RSQHamiltonian", "A second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
+
     bindSQHamiltonian<USQHamiltonian<double>, USpinOrbitalBasis<double, GTOShell>>(module, "USQHamiltonian", "A second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
-    bindSQHamiltonian<GSQHamiltonian<double>, GSpinorBasis<double, GTOShell>>(module, "GSQHamiltonian", "A second-quantized Hamiltonian expressed in a generalized spinor basis.");
+
+    bindSQHamiltonian<GSQHamiltonian<double>, GSpinorBasis<double, GTOShell>>(module, "GSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a generalized spinor basis.");
+    bindSQHamiltonian<GSQHamiltonian<complex>, GSpinorBasis<complex, GTOShell>>(module, "GSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a generalized spinor basis.");
 }
 
 

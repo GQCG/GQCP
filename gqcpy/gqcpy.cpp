@@ -37,7 +37,7 @@ void bindGTOShell(py::module& module);
 
 
 // Basis - SpinorBasis
-void bindGSpinorBasis(py::module& module);
+void bindGSpinorBases(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
 void bindRSpinOrbitalBasis(py::module& module);
@@ -45,7 +45,7 @@ void bindUSpinOrbitalBasis(py::module& module);
 
 
 // Basis - Transformations
-void bindGTransformation(py::module& module);
+void bindGTransformations(py::module& module);
 void bindRTransformation(py::module& module);
 void bindUTransformation(py::module& module);
 void bindUTransformationComponent(py::module& module);
@@ -155,9 +155,9 @@ void bindQCMethodvAP1roG(py::module& module);
 
 
 // QCMethod - HF - GHF
-void bindQCMethodGHF(py::module& module);
-void bindGHFSCFEnvironment(py::module& module);
-void bindGHFSCFSolver(py::module& module);
+void bindQCMethodsGHF(py::module& module);
+void bindGHFSCFEnvironments(py::module& module);
+void bindGHFSCFSolvers(py::module& module);
 
 
 // QCMethod - HF - RHF
@@ -234,7 +234,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Basis - SpinorBasis
-    gqcpy::bindGSpinorBasis(module);
+    gqcpy::bindGSpinorBases(module);
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
     gqcpy::bindRSpinOrbitalBasis(module);
@@ -242,7 +242,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Basis - Transformations
-    gqcpy::bindGTransformation(module);
+    gqcpy::bindGTransformations(module);
     gqcpy::bindRTransformation(module);
     gqcpy::bindUTransformation(module);
     gqcpy::bindUTransformationComponent(module);
@@ -352,9 +352,9 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCMethod - HF - GHF
-    gqcpy::bindQCMethodGHF(module);
-    gqcpy::bindGHFSCFEnvironment(module);
-    gqcpy::bindGHFSCFSolver(module);
+    gqcpy::bindQCMethodsGHF(module);
+    gqcpy::bindGHFSCFEnvironments(module);
+    gqcpy::bindGHFSCFSolvers(module);
 
 
     // QCMethod - HF - RHF
