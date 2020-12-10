@@ -35,7 +35,7 @@ jobs:
       run: |
         mkdir build && cd build
         cmake .. -DBUILD_DOCS=TRUE
-        make -j 1 VERBOSE=1 && make docs
+        make docs
 
     # Build the website
     - name: Build website
