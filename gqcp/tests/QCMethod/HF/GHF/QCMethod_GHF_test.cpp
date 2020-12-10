@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
     const auto N = molecule.numberOfElectrons();
 
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
-    const auto S = g_spinor_basis.overlap().parameters();
+    const auto S = g_spinor_basis.overlap();
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     const auto N = molecule.numberOfElectrons();
 
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
-    const auto S = g_spinor_basis.overlap().parameters();
+    const auto S = g_spinor_basis.overlap();
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
     const auto N = molecule.numberOfElectrons();
 
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
-    const auto S = g_spinor_basis.overlap().parameters();
+    const auto S = g_spinor_basis.overlap();
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 

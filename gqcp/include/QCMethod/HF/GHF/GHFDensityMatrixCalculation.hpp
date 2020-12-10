@@ -46,7 +46,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the current GHF density matrix and place it in the environment.";
@@ -55,10 +55,10 @@ public:
     /**
      *  Calculate the current GHF density matrix and place it in the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
-        const auto& C = environment.coefficient_matrices.back();  // the most recent coefficient matrix
+        const auto& C = environment.coefficient_matrices.back();  // The most recent coefficient matrix.
         const auto P = QCModel::GHF<double>::calculateScalarBasis1DM(C, environment.N);
         environment.density_matrices.push_back(P);
     }

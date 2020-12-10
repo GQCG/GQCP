@@ -117,7 +117,7 @@ public:
      * 
      *  @return The RHF error matrix.
      */
-    static SquareMatrix<Scalar> calculateError(const ScalarRSQOneElectronOPerator<Scalar>& F, const Orbital1DM<Scalar>& D, const ScalarRSQOneElectronOperator<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const ScalarRSQOneElectronOperator<Scalar>& F, const Orbital1DM<Scalar>& D, const ScalarRSQOneElectronOperator<Scalar>& S) {
         return F.parameters() * D * S.parameters() - S.parameters() * D * F.parameters();
     }
 

@@ -37,7 +37,7 @@ namespace GQCP {
  * 
  *  We can basically view it as a compile-time type-safe std::map with all possible information that can be encountered in an GHF SCF algorithm.
  * 
- *  @tparam _Scalar             the scalar type that is used for the coefficient matrix/expansion coefficients
+ *  @tparam _Scalar             The scalar type that is used for the coefficient matrix/expansion coefficients: real or complex.
  */
 template <typename _Scalar>
 class GHFSCFEnvironment {
@@ -46,20 +46,20 @@ public:
 
 
 public:
-    size_t N;  // the total number of electrons
+    size_t N;  // The total number of electrons.
 
     std::deque<double> electronic_energies;
 
     std::deque<VectorX<double>> orbital_energies;
 
-    ScalarGSQOneElectronOperator<Scalar> S;  // the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
+    ScalarGSQOneElectronOperator<Scalar> S;  // The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
 
     std::deque<GTransformation<Scalar>> coefficient_matrices;
-    std::deque<G1DM<Scalar>> density_matrices;                       // expressed in the scalar (AO) basis
-    std::deque<ScalarGSQOneElectronOperator<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
-    std::deque<VectorX<Scalar>> error_vectors;                       // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
+    std::deque<G1DM<Scalar>> density_matrices;                       // Expressed in the scalar (AO) basis.
+    std::deque<ScalarGSQOneElectronOperator<Scalar>> fock_matrices;  // Expressed in the scalar (AO) basis.
+    std::deque<VectorX<Scalar>> error_vectors;                       // Expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly.
 
-    GSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
+    GSQHamiltonian<Scalar> sq_hamiltonian;  // The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
 
 
 public:
@@ -68,14 +68,14 @@ public:
      */
 
     /**
-     *  A constructor that initializes the environment with an initial guess for the coefficient matrix
+     *  A constructor that initializes the environment with an initial guess for the coefficient matrix.
      * 
-     *  @param N                    the total number of electrons
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
-     *  @param S                    the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
+     *  @param N                    The total number of electrons.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
+     *  @param S                    The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
      *  @param C_initial            The initial coefficient matrix.
      */
-    GHFSCFEnvironment(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const GTransformation<Scalar>& C_initial) :
+    GHFSCFEnvironment(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S, const GTransformation<Scalar>& C_initial) :
         N {N},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
@@ -89,16 +89,16 @@ public:
     /**
      *  Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.
      * 
-     *  @param N                    the total number of electrons
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
-     *  @param S                    the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
+     *  @param N                    The total number of electrons.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
+     *  @param S                    The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
      */
-    static GHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
+    static GHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();  // spin-blocked, in AO basis
+        const auto& H_core = sq_hamiltonian.core().parameters();  // Spin-blocked, in AO basis.
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S.parameters()};
         const GTransformation<Scalar> C_initial {generalized_eigensolver.eigenvectors()};
 
         return GHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);

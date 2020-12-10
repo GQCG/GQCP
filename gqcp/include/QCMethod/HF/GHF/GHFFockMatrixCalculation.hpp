@@ -46,7 +46,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the current GHF Fock matrix (expressed in the scalar/AO basis) and place it in the environment.";
@@ -56,10 +56,10 @@ public:
     /**
      *  Calculate the current GHF Fock matrix (expressed in the scalar/AO basis) and place it in the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
-        const auto& P = environment.density_matrices.back();  // the most recent density matrix
+        const auto& P = environment.density_matrices.back();  // The most recent density matrix.
         const auto F = QCModel::GHF<double>::calculateScalarBasisFockMatrix(P, environment.sq_hamiltonian);
         environment.fock_matrices.push_back(F.parameters());
     }
