@@ -35,8 +35,8 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         // CONSTRUCTORS
 
-        .def(py::init([](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
-                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, SquareMatrix<double>(S), UTransformationComponent<double>(C_alpha_initial), UTransformationComponent<double>(C_beta_initial));
+        .def(py::init([](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
+                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, UTransformationComponent<double>(C_alpha_initial), UTransformationComponent<double>(C_beta_initial));
              }),
              py::arg("N_alpha"),
              py::arg("N_beta"),
@@ -46,8 +46,8 @@ void bindUHFSCFEnvironment(py::module& module) {
              py::arg("C_beta_initial"),
              "A constructor that initializes the environment with initial guesses for the alpha and beta coefficient matrices.")
 
-        .def(py::init([](const QCModel::RHF<double>& rhf_parameters, const USQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                 return UHFSCFEnvironment<double>(rhf_parameters, sq_hamiltonian, SquareMatrix<double>(S));
+        .def(py::init([](const QCModel::RHF<double>& rhf_parameters, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S) {
+                 return UHFSCFEnvironment<double>(rhf_parameters, sq_hamiltonian, S);
              }),
              py::arg("rhf_parameters"),
              py::arg("sq_hamiltonian"),
@@ -56,28 +56,26 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         .def_static(
             "WithCoreGuess",
-            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, SquareMatrix<double>(S));
+            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S) {
+                return UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, S);
             },
             "Initialize an UHF SCF environment with initial coefficient matrices (equal for alpha and beta) that is obtained by diagonalizing the core Hamiltonian matrix.")
 
 
         // Bind read-write members/properties, exposing intermediary environment variables to the Python interface.
-        .def_readwrite("N_alpha", &UHFSCFEnvironment<double>::N_alpha)
-        .def_readwrite("N_beta", &UHFSCFEnvironment<double>::N_beta)
+        .def_readwrite("N", &UHFSCFEnvironment<double>::N)
 
         .def_readwrite("electronic_energies", &UHFSCFEnvironment<double>::electronic_energies)
 
-        .def_readwrite("orbital_energies_alpha", &UHFSCFEnvironment<double>::orbital_energies_alpha)
-        .def_readwrite("orbital_energies_beta", &UHFSCFEnvironment<double>::orbital_energies_beta)
+        .def_readwrite("orbital_energies", &UHFSCFEnvironment<double>::orbital_energies)
 
         .def_property(
             "S",
             [](const UHFSCFEnvironment<double>& environment) {
                 return environment.S;
             },
-            [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& S) {
-                environment.S = SquareMatrix<double>(S);
+            [](UHFSCFEnvironment<double>& environment, const ScalarUSQOneElectronOperator<double>& S) {
+                environment.S = ScalarUSQOneElectronOperator<double>(S);
             })
 
 
@@ -87,12 +85,9 @@ void bindUHFSCFEnvironment(py::module& module) {
             &UHFSCFEnvironment<double>::density_matrices)
 
         .def_readonly(
-            "error_vectors_alpha",
-            &UHFSCFEnvironment<double>::error_vectors_alpha)
+            "error_vectors",
+            &UHFSCFEnvironment<double>::error_vectors)
 
-        .def_readonly(
-            "error_vectors_beta",
-            &UHFSCFEnvironment<double>::error_vectors_beta)
 
         // Define getters for non-native components
         .def(
@@ -204,14 +199,22 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         .def("replace_current_error_vectors_alpha",
              [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_alpha) {
-                 environment.error_vectors_alpha.pop_back();
-                 environment.error_vectors_alpha.push_back(SquareMatrix<double>(new_error_vectors_alpha));
+                 const auto last_spinResolved_error = environment.error_vectors.back();
+                 const auto last_error_vector_beta = last_spinResolved_error.beta();
+                 SpinResolved<VectorX<double>> new_error {new_error_vectors_alpha, last_error_vector_beta};
+
+                 environment.error_vectors.pop_back();
+                 environment.error_vectors.push_back(new_error);
              })
 
         .def("replace_current_error_vectors_beta",
              [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_beta) {
-                 environment.error_vectors_beta.pop_back();
-                 environment.error_vectors_beta.push_back(SquareMatrix<double>(new_error_vectors_beta));
+                 const auto last_spinResolved_error = environment.error_vectors.back();
+                 const auto last_error_vector_alpha = last_spinResolved_error.alpha();
+                 SpinResolved<VectorX<double>> new_error {last_error_vector_alpha, new_error_vectors_beta};
+
+                 environment.error_vectors.pop_back();
+                 environment.error_vectors.push_back(new_error);
              });
 }
 
