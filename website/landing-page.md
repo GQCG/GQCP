@@ -27,3 +27,5 @@ Gone are the days of providing input files or writing executables, with `gqcpy` 
 
 
 ## The GQCP development team
+
+Here's a list of the GQCG members that contributed to this project.
