@@ -34,7 +34,7 @@ namespace QCModel {
 /**
  *  The generalized Hartree-Fock wave function model.
  * 
- *  @tparam _Scalar             the type of scalar that is used for the expansion of the spinors in their underlying scalar basis
+ *  @tparam _Scalar             The type of scalar that is used for the expansion of the spinors in their underlying scalar basis.
  */
 template <typename _Scalar>
 class GHF {
@@ -44,11 +44,11 @@ public:
 
 
 private:
-    size_t N;  // the number of electrons
+    size_t N;  // The number of electrons.
 
-    VectorX<double> orbital_energies;  // sorted in ascending energies
-    // The transformation that expresses the GHF MOs in terms of the atomic spinors.
-    GTransformation<Scalar> C;
+    VectorX<double> orbital_energies;  // The energies sorted in ascending order.
+
+    GTransformation<Scalar> C;  // The transformation that expresses the GHF MOs in terms of the atomic spinors.
 
 public:
     /*
@@ -56,11 +56,11 @@ public:
      */
 
     /**
-     *  The standard member-wise constructor
+     *  The standard member-wise constructor.
      * 
-     *  @param N                    the number of electrons
+     *  @param N                    The number of electrons.
      *  @param C                    The transformation that expresses the GHF MOs in terms of the atomic spinors.
-     *  @param orbital_energies     the GHF MO energies
+     *  @param orbital_energies     The GHF MO energies.
      */
     GHF(const size_t N, const VectorX<double>& orbital_energies, const GTransformation<Scalar>& C) :
         N {N},
@@ -69,7 +69,7 @@ public:
 
 
     /**
-     *  Default constructor setting everything to zero
+     *  Default constructor setting everything to zero.
      */
     GHF() :
         GHF(0, VectorX<double>::Zero(0), GTransformation<Scalar>::Zero(0, 0)) {}
@@ -80,23 +80,23 @@ public:
      */
 
     /**
-     *  @param F                the Fock matrix expressed in the scalar bases
-     *  @param D                the GHF density matrix in the same scalar bases
-     *  @param S                the (spin-blocked) overlap matrix of the scalar bases
+     *  @param F                The Fock operator expressed in the scalar bases.
+     *  @param D                The GHF density matrix in the same scalar bases.
+     *  @param S                The (spin-blocked) overlap operator of the scalar bases.
      * 
-     *  @return the GHF error matrix
+     *  @return The GHF error matrix.
      */
-    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F, const G1DM<Scalar>& P, const SquareMatrix<Scalar>& S) {
-        return F * P * S - S * P * F;
+    static SquareMatrix<Scalar> calculateError(const ScalarGSQOneElectronOperator<Scalar>& F, const G1DM<Scalar>& P, const ScalarGSQOneElectronOperator<Scalar>& S) {
+        return F.parameters() * P * S.parameters() - S.parameters() * P * F.parameters();
     }
 
 
     /**
-     *  @param P                the (spin-blocked) GHF density matrix in the scalar bases
-     *  @param H_core           the (spin-blocked) core Hamiltonian expressed in the same scalar bases
-     *  @param F                the (spin-blocked) Fock matrix in the same scalar bases
+     *  @param P                The (spin-blocked) GHF density matrix in the scalar bases.
+     *  @param H_core           The (spin-blocked) core Hamiltonian expressed in the same scalar bases.
+     *  @param F                The (spin-blocked) Fock matrix in the same scalar bases.
      *
-     *  @return the GHF electronic energy
+     *  @return The GHF electronic energy.
      */
     static double calculateElectronicEnergy(const G1DM<Scalar>& P, const ScalarGSQOneElectronOperator<Scalar>& H_core, const ScalarGSQOneElectronOperator<Scalar>& F) {
 
@@ -108,8 +108,8 @@ public:
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), P.rows(), P.cols()};
         Tensor<Scalar, 2> Z_tensor = Tensor<Scalar, 2>(Z_t);
 
-        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5).
-        //      0.5 D(mu nu) Z(mu nu)
+        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5):
+        //      0.5 D(mu nu) Z(mu nu).
         // See knowdes: https://gqcg-res.github.io/knowdes/general-hartree-fock-theory.html
 
         Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij, ij ->", P);
@@ -120,28 +120,28 @@ public:
 
 
     /**
-     *  @param C            the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
-     *  @param N            the number of electrons
+     *  @param C            The coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases.
+     *  @param N            The number of electrons.
      *
-     *  @return the GHF 1-DM expressed in the underlying scalar basis
+     *  @return The GHF 1-DM expressed in the underlying scalar basis.
      */
     static G1DM<Scalar> calculateScalarBasis1DM(const GTransformation<Scalar>& C, const size_t N) {
 
         const size_t M = C.dimension();
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
 
-        // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
+        // Transform the 1-DM in an orthonormal basis to the underlying scalar basis.
         return C.matrix().conjugate() * P_orthonormal * C.matrix().transpose();
     }
 
 
     /**
-     *  Calculate the GHF direct (Coulomb) matrix.
+     *  Calculate the GHF direct (Coulomb) operator.
      * 
-     *  @param P                    the GHF density matrix expressed in the underlying scalar orbital basis
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
+     *  @param P                    The GHF density matrix expressed in the underlying scalar orbital basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
      * 
-     *  @return the GHF direct (Coulomb) matrix
+     *  @return The GHF direct (Coulomb) operator.
      * 
      *  @note The scalar bases for the alpha- and beta-components must be the same.
      */
@@ -149,7 +149,7 @@ public:
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
-        const auto M = P.dimension();  // the total number of basis functions
+        const auto M = P.dimension();  // The total number of basis functions.
         G1DM<Scalar> P_aa = G1DM<Scalar>::Zero(M);
         P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
 
@@ -157,7 +157,7 @@ public:
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
         // Specify the contraction pairs for the direct contractions:
-        //      P(rho lambda) (mu nu|rho lambda)
+        //      P(rho lambda) (mu nu|rho lambda).
         // See knowdes: https://gqcg-res.github.io/knowdes/derivation-of-the-ghf-scf-equations-through-lagrange-multipliers.html
         const auto& g = sq_hamiltonian.twoElectron().parameters();
         const auto Ja = g.template einsum<2>("ijkl,kl->ij", P_aa).asMatrix();
@@ -169,18 +169,18 @@ public:
 
 
     /**
-     *  Calculate the GHF exchange matrix.
+     *  Calculate the GHF exchange operator.
      * 
-     *  @param P                     the GHF density matrix expressed in the underlying scalar orbital bases
-     *  @param sq_hamiltonian        the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
+     *  @param P                     The GHF density matrix expressed in the underlying scalar orbital bases.
+     *  @param sq_hamiltonian        The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
      * 
-     *  @return the UHF direct (Coulomb) matrix for spin sigma
+     *  @return The GHF direct (Coulomb) operator for spin sigma.
      */
     static ScalarGSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const G1DM<Scalar>& P, const GSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
-        const auto M = P.dimension();  // the total number of basis functions
+        const auto M = P.dimension();  // The total number of basis functions.
 
         G1DM<Scalar> P_aa = G1DM<Scalar>::Zero(M);
         P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
@@ -196,7 +196,7 @@ public:
 
 
         // Specify the contraction pairs for the exchange contractions:
-        //      P(lambda rho) (mu rho|lambda nu)
+        //      P(lambda rho) (mu rho|lambda nu).
         const auto& g = sq_hamiltonian.twoElectron().parameters();
         const auto K_aa = g.template einsum<2>("ijkl,kj->il", P_aa).asMatrix();
         const auto K_ab = g.template einsum<2>("ijkl,kj->il", P_ba).asMatrix();
@@ -209,12 +209,12 @@ public:
 
 
     /**
-     *  Calculate the GHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
+     *  Calculate the GHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals.
      *
-     *  @param P                    the (spin-blocked) GHF density matrix in the scalar bases
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
+     *  @param P                    The (spin-blocked) GHF density matrix in the scalar bases.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
      *
-     *  @return the GHF Fock matrix expressed in the scalar basis
+     *  @return The GHF Fock operator expressed in the scalar basis.
      */
     static ScalarGSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const G1DM<Scalar>& P, const GSQHamiltonian<Scalar>& sq_hamiltonian) {
 
@@ -236,7 +236,7 @@ public:
      */
     static G1DM<Scalar> calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
 
-        // The 1-DM for GHF looks like (for M=5, N=3)
+        // The 1-DM for GHF looks like (for M=5, N=3):
         //    1  0  0  0  0
         //    0  1  0  0  0
         //    0  0  1  0  0
@@ -288,10 +288,10 @@ public:
 
 
     /**
-     *  @param M            the number of spinors
-     *  @param N            the number of electrons
+     *  @param M            The number of spinors.
+     *  @param N            The number of electrons.
      * 
-     *  @return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these GHF model parameters
+     *  @return The implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these GHF model parameters.
      */
     static OrbitalSpace orbitalSpace(const size_t M, const size_t N) {
 
@@ -304,18 +304,18 @@ public:
      */
 
     /**
-     *  @param spin_op                      the electronic spin operator
-     *  @param S                            the (spin-blocked) overlap matrix of the underlying AO bases
+     *  @param spin_op                      The electronic spin operator.
+     *  @param S                            The (spin-blocked) overlap matrix of the underlying AO bases.
      * 
-     *  @return the expectation value of the electronic spin operator
+     *  @return The expectation value of the electronic spin operator.
      */
-    Vector<complex, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op, const SquareMatrix<Scalar>& S) const {
+    Vector<complex, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op, const ScalarGSQOneElectronOperator<Scalar>& S) const {
 
         // Prepare some variables.
         const auto M = this->numberOfSpinors();
         const auto C_alpha = this->expansion().alpha();
         const auto C_beta = this->expansion().beta();
-        const SquareMatrix<complex> S_AO = S.topLeftCorner(M / 2, M / 2);  // assume equal for alpha and beta
+        const SquareMatrix<complex> S_AO = S.parameters().topLeftCorner(M / 2, M / 2);  // Assume equal for alpha and beta.
 
         // Calculate overlaps between the alpha- and beta-spinors.
         const MatrixX<complex> overlap_aa = C_alpha.adjoint() * S_AO * C_alpha;
@@ -323,22 +323,22 @@ public:
         const MatrixX<complex> overlap_ba = overlap_ab.adjoint();
         const MatrixX<complex> overlap_bb = C_beta.adjoint() * S_AO * C_beta;
 
-        // Create the orbital space for the GHF wavefunction model
+        // Create the orbital space for the GHF wavefunction model.
         const GQCP::OrbitalSpace orbital_space = this->orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons());
 
         // A KISS implementation of the expectation value of S, from knowdes. (https://gqcg-res.github.io/knowdes/spin-expectation-values-for-ghf.html)
         complex s_x {0.0};
-        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // loop over occupied spinors
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // Loop over the occupied spinors.
             s_x += overlap_ab(I, I).real();
         }
 
         complex s_y {0.0};
-        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // loop over occupied spinors
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // Loop over the occupied spinors.
             s_y += overlap_ba(I, I).imag();
         }
 
         complex s_z {0.0};
-        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // loop over occupied spinors
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // Loop over the occupied spinors.
             s_z += 0.5 * (overlap_aa(I, I) - overlap_bb(I, I));
         }
 
@@ -439,7 +439,7 @@ public:
             }
         }
 
-        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor.
         auto A_iajb = A_iajb_slice.asTensor();
 
         // Add the previously calculated F values on the correct positions.
@@ -491,7 +491,7 @@ public:
             }
         }
 
-        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor.
         auto B_iajb = B_iajb_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
@@ -502,7 +502,7 @@ public:
 
 
     /**
-     *  @return the GHF 1-DM in the scalar/AO basis related to these optimal GHF parameters
+     *  @return The GHF 1-DM in the scalar/AO basis related to these optimal GHF parameters.
      */
     G1DM<Scalar> calculateScalarBasis1DM() const {
 
@@ -529,12 +529,12 @@ public:
     const GTransformation<Scalar>& expansion() const { return this->C; }
 
     /**
-     *  @return the number of electrons that these GHF model parameters describe
+     *  @return The number of electrons that these GHF model parameters describe.
      */
     size_t numberOfElectrons() const { return this->N; }
 
     /**
-     *  @return the number of spinors that these GHF model parameters describe
+     *  @return The number of spinors that these GHF model parameters describe.
      */
     size_t numberOfSpinors() const { return this->orbital_energies.size(); }
 
@@ -559,14 +559,14 @@ public:
 
 
     /**
-     *  @return the orbital energies
+     *  @return The orbital energies.
      */
     const VectorX<double>& orbitalEnergies() const { return this->orbital_energies; }
 
     /**
-     *  @param i                the index of the orbital
+     *  @param i                The index of the orbital.
      * 
-     *  @return the i-th orbital energy
+     *  @return The i-th orbital energy.
      */
     double orbitalEnergy(const size_t i) const { return this->orbital_energies(i); }
 
