@@ -33,10 +33,10 @@
  */
 BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
 
-    // List the reference data
+    // List the reference data.
     const double ref_total_energy = -74.942080055631;
 
-    GQCP::VectorX<double> ref_orbital_energies {7};  // the STO-3G basisset has 7 basis functions for water
+    GQCP::VectorX<double> ref_orbital_energies {7};  // The STO-3G basisset has 7 basis functions for water.
     ref_orbital_energies << -20.26289322, -1.20969863, -0.54796582, -0.43652631, -0.38758791, 0.47762043, 0.5881361;
 
     GQCP::SquareMatrix<double> ref_C_matrix {7};
@@ -57,19 +57,19 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     const auto N_beta = water.numberOfElectronPairs();
 
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
+    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);  // In an AO basis.
 
-    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap().alpha().parameters());  // The alpha and beta overlap matrices are equal.
+    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());  // The alpha and beta overlap matrices are equal.
     auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
     plain_uhf_scf_solver.perform(uhf_environment);
 
 
-    // Check the calculated results with the reference
+    // Check the calculated results with the reference.
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies.back().alpha(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies.back().beta(), 1.0e-06));
 
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha().matrix(), 1.0e-05));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta().matrix(), 1.0e-05));
@@ -81,10 +81,10 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
  */
 BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
 
-    // List the reference data
+    // List the reference data.
     const double ref_total_energy = -74.942080055631;
 
-    GQCP::VectorX<double> ref_orbital_energies {7};  // the STO-3G basisset has 7 basis functions for water
+    GQCP::VectorX<double> ref_orbital_energies {7};  // The STO-3G basisset has 7 basis functions for water.
     ref_orbital_energies << -20.26289322, -1.20969863, -0.54796582, -0.43652631, -0.38758791, 0.47762043, 0.5881361;
 
     GQCP::SquareMatrix<double> ref_C_matrix {7};
@@ -105,19 +105,19 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     const auto N_beta = water.numberOfElectronPairs();
 
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
+    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);  // In an AO basis.
 
-    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap().alpha().parameters());  // The alpha and beta overlap matrices are equal.
+    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());  // The alpha and beta overlap matrices are equal.
     auto diis_uhf_scf_solver = GQCP::UHFSCFSolver<double>::DIIS();
     diis_uhf_scf_solver.perform(uhf_environment);
 
 
-    // Check the calculated results with the reference
+    // Check the calculated results with the reference.
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies.back().alpha(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies.back().beta(), 1.0e-06));
 
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha().matrix(), 1.0e-05));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta().matrix(), 1.0e-05));

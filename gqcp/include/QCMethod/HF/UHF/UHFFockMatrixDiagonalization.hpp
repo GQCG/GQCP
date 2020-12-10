@@ -47,7 +47,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrices. Add the associated coefficient matrices and orbital energies to the environment.";
@@ -57,28 +57,29 @@ public:
     /**
      *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrices. Add the associated coefficient matrices and orbital energies to the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
-        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis alpha & beta Fock matrix
+        const auto& F = environment.fock_matrices.back();  // The most recent scalar/AO basis alpha & beta Fock matrix.
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F.alpha().parameters(), environment.S.parameters()};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F.alpha().parameters(), environment.S.alpha().parameters()};
         const UTransformationComponent<Scalar>& C_alpha {generalized_eigensolver_alpha.eigenvectors()};
 
         const auto& orbital_energies_alpha = generalized_eigensolver_alpha.eigenvalues();
-        environment.orbital_energies_alpha.push_back(orbital_energies_alpha);
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F.beta().parameters(), environment.S.parameters()};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F.beta().parameters(), environment.S.beta().parameters()};
         const UTransformationComponent<Scalar>& C_beta {generalized_eigensolver_beta.eigenvectors()};
 
-        const UTransformation<Scalar>& C {C_alpha, C_beta};
-        environment.coefficient_matrices.push_back(C);
-
         const auto& orbital_energies_beta = generalized_eigensolver_beta.eigenvalues();
-        environment.orbital_energies_beta.push_back(orbital_energies_beta);
+
+        const UTransformation<Scalar>& C {C_alpha, C_beta};
+        const SpinResolved<VectorX<double>> mo_energies {orbital_energies_alpha, orbital_energies_beta};
+
+        environment.coefficient_matrices.push_back(C);
+        environment.orbital_energies.push_back(mo_energies);
     }
 };
 

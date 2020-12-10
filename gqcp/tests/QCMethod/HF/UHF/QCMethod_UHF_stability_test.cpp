@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
     const auto N_beta = molecule.numberOfElectronPairs();
 
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto S = spinor_basis.overlap().alpha().parameters();  // The alpha and beta overlap matrices are equal.
+    const auto S = spinor_basis.overlap();  // The alpha and beta overlap matrices are equal.
 
     const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE(H4_stability_test) {
     const auto N_beta = molecule.numberOfElectronPairs();
 
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
-    const auto S = spinor_basis.overlap().alpha().parameters();  // The alpha and beta overlap matrices are equal.
+    const auto S = spinor_basis.overlap();  // The alpha and beta overlap matrices are equal.
 
     const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 

@@ -46,7 +46,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment.";
@@ -56,11 +56,11 @@ public:
     /**
      *  Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
-        const auto& P = environment.density_matrices.back();  // the most recent alpha and beta density matrix
+        const auto& P = environment.density_matrices.back();  // The most recent alpha and beta density matrix.
 
         const auto F = QCModel::UHF<double>::calculateScalarBasisFockMatrix(P, environment.sq_hamiltonian);
 

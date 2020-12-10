@@ -45,10 +45,10 @@ public:
 
 
 private:
-    size_t minimum_subspace_dimension;  // the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
-    size_t maximum_subspace_dimension;  // the maximum number of Fock matrices that can be handled by DIIS
+    size_t minimum_subspace_dimension;  // The minimum number of Fock matrices that have to be in the subspace before enabling DIIS.
+    size_t maximum_subspace_dimension;  // The maximum number of Fock matrices that can be handled by DIIS.
 
-    DIIS<Scalar> diis;  // the DIIS accelerator
+    DIIS<Scalar> diis;  // The DIIS accelerator.
 
 
 public:
@@ -57,8 +57,8 @@ public:
      */
 
     /**
-     *  @param minimum_subspace_dimension       the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
-     *  @param maximum_subspace_dimension       the maximum number of Fock matrices that can be handled by DIIS
+     *  @param minimum_subspace_dimension       The minimum number of Fock matrices that have to be in the subspace before enabling DIIS.
+     *  @param maximum_subspace_dimension       The maximum number of Fock matrices that can be handled by DIIS.
      */
     UHFFockMatrixDIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6) :
         minimum_subspace_dimension {minimum_subspace_dimension},
@@ -70,7 +70,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the accelerated alpha- and beta- Fock matrices, and perform a diagonalization step on them.";
@@ -80,11 +80,11 @@ public:
     /**
      *  Calculate the accelerated alpha- and beta- Fock matrices, and perform a diagonalization step on them.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
-        if (environment.error_vectors_alpha.size() < this->minimum_subspace_dimension) {  // the beta dimension will be the same
+        if (environment.error_vectors.size() < this->minimum_subspace_dimension) {  // The beta dimension will be the same.
 
             // No acceleration is possible, so calculate the regular Fock matrices and diagonalize them.
             UHFFockMatrixCalculation<Scalar>().execute(environment);
@@ -93,11 +93,10 @@ public:
         }
 
         // Convert the deques in the environment to vectors that can be accepted by the DIIS accelerator. The total number of elements we can use in DIIS is either the maximum subspace dimension or the number of available error matrices.
-        const auto n = std::min(this->maximum_subspace_dimension, environment.error_vectors_alpha.size());
-        const std::vector<VectorX<Scalar>> error_vectors_alpha {environment.error_vectors_alpha.end() - n, environment.error_vectors_alpha.end()};  // the n-th last alpha error vectors
-        const std::vector<VectorX<Scalar>> error_vectors_beta {environment.error_vectors_beta.end() - n, environment.error_vectors_beta.end()};     // the n-th last beta error vectors
+        const auto n = std::min(this->maximum_subspace_dimension, environment.error_vectors.size());
+        const std::vector<SpinResolved<VectorX<Scalar>>> error_vectors {environment.error_vectors.end() - n, environment.error_vectors.end()};  // The n-th last alpha error vectors.
 
-        const std::vector<ScalarUSQOneElectronOperator<Scalar>> fock_matrices {environment.fock_matrices.end() - n, environment.fock_matrices.end()};  // the n-th last Fock matrices
+        const std::vector<ScalarUSQOneElectronOperator<Scalar>> fock_matrices {environment.fock_matrices.end() - n, environment.fock_matrices.end()};  // The n-th last Fock matrices.
 
         std::vector<SquareMatrix<Scalar>> alpha_fock_matrices;
         std::vector<SquareMatrix<Scalar>> beta_fock_matrices;
@@ -107,13 +106,21 @@ public:
             beta_fock_matrices.push_back(fock_matrices[i].beta().parameters());
         }
 
+        std::vector<VectorX<Scalar>> alpha_error_vectors;
+        std::vector<VectorX<Scalar>> beta_error_vectors;
+
+        for (size_t i = 0; i < error_vectors.size(); i++) {
+            alpha_error_vectors.push_back(error_vectors[i].alpha());
+            beta_error_vectors.push_back(error_vectors[i].beta());
+        }
+
         // Calculate the accelerated Fock matrices and do a diagonalization step on them.
-        const auto F_alpha_accelerated = this->diis.accelerate(alpha_fock_matrices, error_vectors_alpha);
-        const auto F_beta_accelerated = this->diis.accelerate(beta_fock_matrices, error_vectors_alpha);
+        const auto F_alpha_accelerated = this->diis.accelerate(alpha_fock_matrices, alpha_error_vectors);
+        const auto F_beta_accelerated = this->diis.accelerate(beta_fock_matrices, beta_error_vectors);
 
         const ScalarUSQOneElectronOperator<Scalar> F_accelerated {F_alpha_accelerated, F_beta_accelerated};
 
-        environment.fock_matrices.push_back(F_accelerated);  // the diagonalization step can only read from the environment //FIXME
+        environment.fock_matrices.push_back(F_accelerated);  // The diagonalization step can only read from the environment.
 
         UHFFockMatrixDiagonalization<Scalar>().execute(environment);
 
