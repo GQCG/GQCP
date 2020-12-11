@@ -54,8 +54,8 @@ void bindRHFSCFEnvironment(py::module& module) {
             [](const RHFSCFEnvironment<double>& environment) {
                 return environment.S;
             },
-            [](RHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& S) {
-                environment.S = ScalarRSQOneElectronOperator<double>(S);
+            [](RHFSCFEnvironment<double>& environment, const ScalarRSQOneElectronOperator<double>& S) {
+                environment.S = S;
             })
 
 

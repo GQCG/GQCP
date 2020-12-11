@@ -75,7 +75,7 @@ void bindUHFSCFEnvironment(py::module& module) {
                 return environment.S;
             },
             [](UHFSCFEnvironment<double>& environment, const ScalarUSQOneElectronOperator<double>& S) {
-                environment.S = ScalarUSQOneElectronOperator<double>(S);
+                environment.S = S;
             })
 
 

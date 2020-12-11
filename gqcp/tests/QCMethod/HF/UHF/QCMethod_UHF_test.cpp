@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);  // In an AO basis.
 
-    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());  // The alpha and beta overlap matrices are equal.
+    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());
     auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
     plain_uhf_scf_solver.perform(uhf_environment);
 
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);  // In an AO basis.
 
-    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());  // The alpha and beta overlap matrices are equal.
+    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());
     auto diis_uhf_scf_solver = GQCP::UHFSCFSolver<double>::DIIS();
     diis_uhf_scf_solver.perform(uhf_environment);
 

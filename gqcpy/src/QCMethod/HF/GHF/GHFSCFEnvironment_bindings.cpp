@@ -54,7 +54,6 @@ void bindQCModelGHFSCFEnvironmentInterface(Class& py_class) {
         .def_static(
             "WithCoreGuess",
             [](const size_t N, const GSQHamiltonian<Scalar>& hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S) {
-                // Use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix.
                 return GHFSCFEnvironment<Scalar>::WithCoreGuess(N, hamiltonian, S);
             },
             "Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.")
@@ -76,8 +75,7 @@ void bindQCModelGHFSCFEnvironmentInterface(Class& py_class) {
                 return environment.S;
             },
             [](GHFSCFEnvironment<Scalar>& environment, ScalarGSQOneElectronOperator<Scalar>& S) {
-                // Use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix.
-                environment.S = ScalarGSQOneElectronOperator<Scalar>(S);
+                environment.S = S;
             })
 
 

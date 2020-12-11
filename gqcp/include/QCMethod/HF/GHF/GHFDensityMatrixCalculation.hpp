@@ -59,7 +59,7 @@ public:
      */
     void execute(Environment& environment) override {
 
-        const auto& C = environment.coefficient_matrices.back();  // the most recent coefficient matrix
+        const auto& C = environment.coefficient_matrices.back();  // The most recent coefficient matrix.
         const auto P = QCModel::GHF<Scalar>::calculateScalarBasis1DM(C, environment.N);
       
         environment.density_matrices.push_back(P);

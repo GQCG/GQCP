@@ -60,7 +60,7 @@ public:
      */
     void execute(Environment& environment) override {
 
-        const auto& P = environment.density_matrices.back();  // the most recent density matrix
+        const auto& P = environment.density_matrices.back();  // The most recent density matrix.
         const auto F = QCModel::GHF<Scalar>::calculateScalarBasisFockMatrix(P, environment.sq_hamiltonian);
 
         environment.fock_matrices.push_back(F.parameters());
