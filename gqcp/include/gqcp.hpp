@@ -187,7 +187,6 @@
 #include "Processing/Properties/expectation_values.hpp"
 #include "Processing/Properties/properties.hpp"
 #include "Processing/Properties/vAP1roGElectricalResponseSolver.hpp"
-#include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 #include "QCMethod/CC/CCD.hpp"
 #include "QCMethod/CC/CCDAmplitudesUpdate.hpp"
 #include "QCMethod/CC/CCDEnergyCalculation.hpp"
