@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_1) {
 }
 
 /**
- *  Test the algorithm for the Dyson amplitudes against manually calculated coefficients for two (normalized) toy wave functions.
+ *  Test the algorithm for the Dyson amplitudes against manually calculated coefficients for two (normalized) toy wave functions where each spin component has more than one electron. This is to check whether the sign of the Dyson amplitudes are correct.
  */
 BOOST_AUTO_TEST_CASE(dyson_amplitudes_2) {
 
