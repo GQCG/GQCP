@@ -113,12 +113,13 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_unresolved) {
     GQCP::VectorX<double> coeffs_J = GQCP::VectorX<double>::Zero(3);
     coeffs_J << 0.11975192, 0.63780725, 0.61806136;
 
-    const GQCP::SpinUnresolvedONVBasis onv_basis_J {K, N};
-    const GQCP::SpinUnresolvedONVBasis onv_basis_I {K, N - 1};
+    const GQCP::SpinUnresolvedONVBasis onv_basis_J {K, N};      // The reference ONV basis.
+    const GQCP::SpinUnresolvedONVBasis onv_basis_I {K, N - 1};  // An ONV basis with one less electron.
 
     const auto linear_expansion_J = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>(onv_basis_J, coeffs_J);
     const auto linear_expansion_I = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>(onv_basis_I, coeffs_I);
 
+    // Calculate the Dyson orbital and check with manual calculations.
     const auto dyson_orbital = GQCP::DysonOrbital<double>::TransitionAmplitudes(linear_expansion_J, linear_expansion_I);
     const auto& dyson_coefficients = dyson_orbital.amplitudes();
 
