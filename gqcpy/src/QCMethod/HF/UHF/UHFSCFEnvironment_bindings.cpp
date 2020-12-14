@@ -36,7 +36,7 @@ void bindUHFSCFEnvironment(py::module& module) {
         // CONSTRUCTORS
 
         .def(py::init([](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S, const UTransformation<double>& C_initial) {
-                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, UTransformation<double>(C_initial));
+                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, C_initial);
              }),
              py::arg("N_alpha"),
              py::arg("N_beta"),

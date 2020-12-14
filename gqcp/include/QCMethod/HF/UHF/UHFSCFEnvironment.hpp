@@ -99,7 +99,7 @@ public:
     UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) :
         UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
                           sq_hamiltonian, S,
-                          UTransformation<Scalar> {rhf_parameters.expansion().matrix(), rhf_parameters.expansion().matrix()}) {}
+                          UTransformation<Scalar>::FromEqual(rhf_parameters.expansion().matrix())) {}
 
 
     /*
