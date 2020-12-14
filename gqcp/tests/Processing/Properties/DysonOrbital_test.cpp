@@ -98,3 +98,31 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_2) {
     BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-06));
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-06));
 }
+
+BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_unresolved) {
+
+    // Set up the manually calculated references.
+    GQCP::Vector<double, 3> reference_amplitudes {0.49666958935692024, 0.332773392216452, -0.7910269806599591};
+
+    // Set up the toy linear expansions.
+    const size_t K = 3;
+    const size_t N = 2;
+
+    GQCP::VectorX<double> coeffs_I = GQCP::VectorX<double>::Zero(3);
+    coeffs_I << 0.89044211, 0.36096181, 0.71094162;
+    GQCP::VectorX<double> coeffs_J = GQCP::VectorX<double>::Zero(3);
+    coeffs_J << 0.11975192, 0.63780725, 0.61806136;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis_J {K, N};
+    const GQCP::SpinUnresolvedONVBasis onv_basis_I {K, N - 1};
+
+    const auto linear_expansion_J = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>(onv_basis_J, coeffs_I);
+    const auto linear_expansion_I = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>(onv_basis_I, coeffs_J);
+
+    const auto dyson_orbital = GQCP::DysonOrbital<double>::TransitionAmplitudes(linear_expansion_J, linear_expansion_I);
+    const auto& dyson_coefficients = dyson_orbital.amplitudes();
+
+    std::cout << "J: " << onv_basis_J.constructONVFromAddress(2) << "\tI: " << onv_basis_I.constructONVFromAddress(2) << std::endl;
+
+    BOOST_CHECK(dyson_coefficients.isApprox(reference_amplitudes));
+}

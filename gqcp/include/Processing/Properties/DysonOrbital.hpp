@@ -87,7 +87,7 @@ public:
 
         if ((onv_basis1.alpha().numberOfElectrons() - onv_basis2.alpha().numberOfElectrons() != 0) && (onv_basis1.beta().numberOfElectrons() - onv_basis2.beta().numberOfElectrons() != 1)) {
             if ((onv_basis1.alpha().numberOfElectrons() - onv_basis2.alpha().numberOfElectrons() != 1) && (onv_basis1.beta().numberOfElectrons() - onv_basis2.beta().numberOfElectrons() != 0)) {
-                throw std::runtime_error("DysonOrbital::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion1.");
+                throw std::runtime_error("DysonOrbital::TransitionAmplitudes(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion1.");
             }
         }
 
@@ -155,6 +155,65 @@ public:
                 target_onv_basis1.transformONVToNextPermutation(onv);
             }
         }  // Target address (It) loop.
+
+        return DysonOrbital<Scalar>(dyson_coeffs);
+    }
+
+    /**
+     *  Create a Dyson orbital from the formula for its amplitudes `<N_1|a_p|N>`.
+     * 
+     *  @param linear_expansion1        The N-electron wave function in a spin-unresolved ONV basis.
+     *  @param linear_expansion2        The N-1-electron wave function in a spin-unresolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.
+     *
+     *  @return A Dyson orbital incorporating Dyson amplitudes.
+     */
+    static DysonOrbital<Scalar> TransitionAmplitudes(const LinearExpansion<SpinUnresolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinUnresolvedONVBasis>& linear_expansion2) {
+
+        // Initialize environment variables.
+
+        const auto onv_basis1 = linear_expansion1.onvBasis();
+        const auto onv_basis2 = linear_expansion2.onvBasis();
+
+        if (onv_basis1.numberOfElectrons() - onv_basis2.numberOfElectrons() != 1) {
+            throw std::runtime_error("DysonOrbital::TransitionAmplitudes(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-unresolved ONV basis with one fewer electron than linear_expansion1.");
+        }
+
+        const auto& ci_coeffs1 = linear_expansion1.coefficients();
+        const auto& ci_coeffs2 = linear_expansion2.coefficients();
+
+        VectorX<double> dyson_coeffs = VectorX<double>::Zero(onv_basis1.numberOfOrbitals());
+
+        // The actual algorithm to determine the Dyson amplitudes.
+
+        SpinUnresolvedONV onv = onv_basis1.constructONVFromAddress(0);
+
+        for (size_t J = 0; J < onv_basis1.dimension(); J++) {              // I loops over addresses of the N-electron ONV basis.
+            int sign = -1;                                                 // Total phase factor of all the annihilations that have occurred.
+            for (size_t e = 0; e < onv_basis1.numberOfElectrons(); e++) {  // Loop over electrons in the ONV.
+
+                // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1) ONV basis.
+                sign *= -1;
+                size_t p = onv.occupationIndexOf(e);
+                onv.annihilate(p);
+
+                // Now, we calculate the overlap in the (N-1)-ONV basis.
+                // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' ONV basis.
+                size_t address = onv_basis2.addressOf(onv.unsignedRepresentation());
+
+                double coeff = 0;
+
+                std::cout << "p: " << p << "\t< " << address << " | " << J << " >\t" << sign * ci_coeffs1(J) * ci_coeffs2(address) << std::endl;
+
+                coeff += sign * ci_coeffs1(J) * ci_coeffs2(address);  // Access the indices of the coefficient vectors.
+
+                dyson_coeffs(p) += coeff;
+                onv.create(p);  // Allow the iteration to continue with the original ONV.
+            }
+
+            if (J < onv_basis1.dimension() - 1) {  // Prevent the last permutation from occurring.
+                onv_basis1.transformONVToNextPermutation(onv);
+            }
+        }  // J loop.
 
         return DysonOrbital<Scalar>(dyson_coeffs);
     }
