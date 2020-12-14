@@ -144,8 +144,7 @@ public:
                 size_t address = target_onv_basis2.addressOf(onv.unsignedRepresentation());
 
                 double coeff = 0;
-                for (size_t Ip = 0; Ip < passive_onv_basis1.dimension(); Ip++) {  // Ip loops over the addresses of the passive ONV basis.
-
+                for (size_t Ip = 0; Ip < passive_onv_basis1.dimension(); Ip++) {                                                             // Ip loops over the addresses of the passive ONV basis.
                     coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);  // Access the indices of the coefficient vectors.
                 }
                 dyson_coeffs(p) += coeff;
