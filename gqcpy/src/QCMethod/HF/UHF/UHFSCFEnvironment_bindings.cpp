@@ -36,7 +36,7 @@ void bindUHFSCFEnvironment(py::module& module) {
         // CONSTRUCTORS
 
         .def(py::init([](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S, const UTransformation<double>& C_initial) {
-                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, UTransformationComponent<double>(C_alpha_initial), UTransformationComponent<double>(C_beta_initial));
+                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, UTransformation<double>(C_initial));
              }),
              py::arg("N_alpha"),
              py::arg("N_beta"),
@@ -145,75 +145,27 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         // Bind methods for the replacement of the most current iterates.
         .def("replace_current_coefficient_matrix_alpha",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_coefficient_matrix_alpha) {
-                 const auto last_spin_resolved_C = environment.coefficient_matrices.back();
-                 const auto last_C_beta = last_spin_resolved_C.beta();
+             [](UHFSCFEnvironment<double>& environment, const UTransformation<double>& new_coefficient_matrices) {
                  environment.coefficient_matrices.pop_back();
-                 environment.coefficient_matrices.push_back(UTransformation<double>(UTransformationComponent<double>(new_coefficient_matrix_alpha), last_C_beta));
+                 environment.coefficient_matrices.push_back(new_coefficient_matrices);
              })
 
-        .def("replace_current_coefficient_matrix_beta",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_coefficient_matrix_beta) {
-                 const auto last_spin_resolved_C = environment.coefficient_matrices.back();
-                 const auto last_C_alpha = last_spin_resolved_C.alpha();
-                 environment.coefficient_matrices.pop_back();
-                 environment.coefficient_matrices.push_back(UTransformation<double>(last_C_alpha, UTransformationComponent<double>(new_coefficient_matrix_beta)));
-             })
-
-        .def("replace_current_density_matrix_alpha",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_density_matrix_alpha) {
-                 const auto last_spin_resolved_density = environment.density_matrices.back();
-                 const auto last_density_matrix_beta = last_spin_resolved_density.beta();
+        .def("replace_current_density_matrices",
+             [](UHFSCFEnvironment<double>& environment, const SpinResolved1DM<double>& new_density_matrices) {
                  environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(SpinResolved1DM<double>(new_density_matrix_alpha, last_density_matrix_beta));
+                 environment.density_matrices.push_back(new_density_matrices);
              })
 
-        .def("replace_current_density_matrix_beta",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_density_matrix_beta) {
-                 const auto last_spin_resolved_density = environment.density_matrices.back();
-                 const auto last_density_matrix_alpha = last_spin_resolved_density.beta();
-                 environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(SpinResolved1DM<double>(last_density_matrix_alpha, new_density_matrix_beta));
-             })
-
-        .def("replace_current_fock_matrix_alpha",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_alpha) {
-                 const auto last_USQ_Fock = environment.fock_matrices.back();
-                 const auto last_fock_matrix_beta = last_USQ_Fock.beta().parameters();
-                 ScalarUSQOneElectronOperator<double> new_fock {new_fock_matrix_alpha, last_fock_matrix_beta};
-
+        .def("replace_current_fock_matrices",
+             [](UHFSCFEnvironment<double>& environment, const ScalarUSQOneElectronOperator<double>& new_fock_matrices) {
                  environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(new_fock);
+                 environment.fock_matrices.push_back(new_fock_matrices);
              })
 
-        .def("replace_current_fock_matrix_beta",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_beta) {
-                 const auto last_USQ_Fock = environment.fock_matrices.back();
-                 const auto last_fock_matrix_alpha = last_USQ_Fock.alpha().parameters();
-                 ScalarUSQOneElectronOperator<double> new_fock {last_fock_matrix_alpha, new_fock_matrix_beta};
-
-                 environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(new_fock);
-             })
-
-        .def("replace_current_error_vectors_alpha",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_alpha) {
-                 const auto last_spinResolved_error = environment.error_vectors.back();
-                 const auto last_error_vector_beta = last_spinResolved_error.beta();
-                 SpinResolved<VectorX<double>> new_error {new_error_vectors_alpha, last_error_vector_beta};
-
+        .def("replace_current_error_vectors",
+             [](UHFSCFEnvironment<double>& environment, const SpinResolved<VectorX<double>>& new_error_vectors) {
                  environment.error_vectors.pop_back();
-                 environment.error_vectors.push_back(new_error);
-             })
-
-        .def("replace_current_error_vectors_beta",
-             [](UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_beta) {
-                 const auto last_spinResolved_error = environment.error_vectors.back();
-                 const auto last_error_vector_alpha = last_spinResolved_error.alpha();
-                 SpinResolved<VectorX<double>> new_error {last_error_vector_alpha, new_error_vectors_beta};
-
-                 environment.error_vectors.pop_back();
-                 environment.error_vectors.push_back(new_error);
+                 environment.error_vectors.push_back(new_error_vectors);
              });
 }
 
