@@ -25,7 +25,7 @@
 /**
  *  Test the algorithm for the Dyson amplitudes against manually calculated coefficients for two (normalized) toy wave functions.
  */
-BOOST_AUTO_TEST_CASE(dyson_amplitudes_1) {
+BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_resolved_1) {
 
     // Set up the manually calculated references.
     GQCP::Vector<double, 2> reference_amplitudes_alpha {0.39739531532399996, 0.9116729926689999};
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_1) {
 /**
  *  Test the algorithm for the Dyson amplitudes against manually calculated coefficients for two (normalized) toy wave functions where each spin component has more than one electron. This is to check whether the sign of the Dyson amplitudes are correct.
  */
-BOOST_AUTO_TEST_CASE(dyson_amplitudes_2) {
+BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_resolved_2) {
 
     // Set up the manually calculated references.
     GQCP::Vector<double, 3> reference_amplitudes_alpha {0.578739438503937, -0.11202006721497709, -0.8605609287217918};
