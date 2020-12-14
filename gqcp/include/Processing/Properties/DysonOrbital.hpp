@@ -130,7 +130,7 @@ public:
         // By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.
         SpinUnresolvedONV onv = target_onv_basis1.constructONVFromAddress(0);
 
-        for (size_t It = 0; It < target_onv_basis1.dimension(); It++) {           // It loops over addresses of the target ONV basis.
+        for (size_t Jt = 0; Jt < target_onv_basis1.dimension(); Jt++) {           // Jt loops over addresses of the target ONV basis.
             int sign = -1;                                                        // Total phase factor of all the annihilations that have occurred.
             for (size_t e = 0; e < target_onv_basis1.numberOfElectrons(); e++) {  // Loop over electrons in the ONV.
 
@@ -144,17 +144,17 @@ public:
                 size_t address = target_onv_basis2.addressOf(onv.unsignedRepresentation());
 
                 double coeff = 0;
-                for (size_t Ip = 0; Ip < passive_onv_basis1.dimension(); Ip++) {                                                             // Ip loops over the addresses of the passive ONV basis.
-                    coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);  // Access the indices of the coefficient vectors.
+                for (size_t Jp = 0; Jp < passive_onv_basis1.dimension(); Jp++) {                                                             // Jp loops over the addresses of the passive ONV basis.
+                    coeff += sign * ci_coeffs1(Jt * target_mod + Jp * passive_mod1) * ci_coeffs2(address * target_mod + Jp * passive_mod2);  // Access the indices of the coefficient vectors.
                 }
                 dyson_coeffs(p) += coeff;
                 onv.create(p);  // Allow the iteration to continue with the original ONV.
             }
 
-            if (It < target_onv_basis1.dimension() - 1) {  // Prevent the last permutation from occurring.
+            if (Jt < target_onv_basis1.dimension() - 1) {  // Prevent the last permutation from occurring.
                 target_onv_basis1.transformONVToNextPermutation(onv);
             }
-        }  // Target address (It) loop.
+        }  // Target address (Jt) loop.
 
         return DysonOrbital<Scalar>(dyson_coeffs);
     }
@@ -185,9 +185,13 @@ public:
 
         // The actual algorithm to determine the Dyson amplitudes.
 
+        // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons.
+        // We therefore iterate over the ONVs of the N-electron ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p').
+        // By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.
         SpinUnresolvedONV onv = onv_basis1.constructONVFromAddress(0);
+        double coeff = 0;
 
-        for (size_t J = 0; J < onv_basis1.dimension(); J++) {              // I loops over addresses of the N-electron ONV basis.
+        for (size_t J = 0; J < onv_basis1.dimension(); J++) {              // J loops over addresses of the N-electron spin-unresolved ONV basis.
             int sign = -1;                                                 // Total phase factor of all the annihilations that have occurred.
             for (size_t e = 0; e < onv_basis1.numberOfElectrons(); e++) {  // Loop over electrons in the ONV.
 
@@ -197,14 +201,10 @@ public:
                 onv.annihilate(p);
 
                 // Now, we calculate the overlap in the (N-1)-ONV basis.
-                // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' ONV basis.
+                // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the (N-1)-electron ONV basis.
                 size_t address = onv_basis2.addressOf(onv.unsignedRepresentation());
 
-                double coeff = 0;
-
-                std::cout << "p: " << p << "\t< " << address << " | " << J << " >\t" << sign * ci_coeffs1(J) * ci_coeffs2(address) << std::endl;
-
-                coeff += sign * ci_coeffs1(J) * ci_coeffs2(address);  // Access the indices of the coefficient vectors.
+                coeff = sign * ci_coeffs1(J) * ci_coeffs2(address);  // Access the indices of the coefficient vectors.
 
                 dyson_coeffs(p) += coeff;
                 onv.create(p);  // Allow the iteration to continue with the original ONV.
