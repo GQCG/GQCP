@@ -76,7 +76,7 @@ public:
      *  Create a Dyson orbital from the formula for its amplitudes `<N_1|a_p|N>`.
      * 
      *  @param linear_expansion_J        The N-electron wave function in a spin-resolved ONV basis.
-     *  @param linear_expansion_I        The N-1-electron wave function in a spin-resolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.
+     *  @param linear_expansion_I        The (N-1)-electron wave function in a spin-resolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.
      *
      *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
@@ -127,7 +127,7 @@ public:
 
         // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons.
         // We therefore iterate over the ONVs of the 'target' ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p').
-        // By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.
+        // By calculating the overlap in the (N-1)-electron ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.
         SpinUnresolvedONV onv = target_onv_basis_J.constructONVFromAddress(0);
 
         for (size_t Jt = 0; Jt < target_onv_basis_J.dimension(); Jt++) {           // Jt loops over addresses of the target ONV basis.
@@ -139,8 +139,8 @@ public:
                 size_t p = onv.occupationIndexOf(e);
                 onv.annihilate(p);
 
-                // Now, we calculate the overlap in the (N-1)-'target' ONV basis.
-                // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' ONV basis.
+                // Now, we calculate the overlap in the (N-1)-electron 'target' ONV basis.
+                // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' (N-1)-electron ONV basis.
                 size_t address = target_onv_basis_I.addressOf(onv.unsignedRepresentation());
 
                 double coeff = 0;
@@ -163,7 +163,7 @@ public:
      *  Create a Dyson orbital from the formula for its amplitudes `<N_1|a_p|N>`.
      * 
      *  @param linear_expansion_J        The N-electron wave function in a spin-unresolved ONV basis.
-     *  @param linear_expansion_I        The N-1-electron wave function in a spin-unresolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.
+     *  @param linear_expansion_I        The (N-1)-electron wave function in a spin-unresolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.
      *
      *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
@@ -187,7 +187,7 @@ public:
 
         // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons.
         // We therefore iterate over the ONVs of the N-electron ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p').
-        // By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.
+        // By calculating the overlap in the (N-1)-electron ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.
         SpinUnresolvedONV onv = onv_basis_J.constructONVFromAddress(0);
         double coeff = 0;
 
@@ -195,12 +195,12 @@ public:
             int sign = -1;                                                  // Total phase factor of all the annihilations that have occurred.
             for (size_t e = 0; e < onv_basis_J.numberOfElectrons(); e++) {  // Loop over electrons in the ONV.
 
-                // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1) ONV basis.
+                // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-electron ONV basis.
                 sign *= -1;
                 size_t p = onv.occupationIndexOf(e);
                 onv.annihilate(p);
 
-                // Now, we calculate the overlap in the (N-1)-ONV basis.
+                // Now, we calculate the overlap in the (N-1)-electron ONV basis.
                 // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the (N-1)-electron ONV basis.
                 size_t address = onv_basis_I.addressOf(onv.unsignedRepresentation());
 
