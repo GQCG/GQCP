@@ -34,7 +34,7 @@ namespace QCMethod {
 /**
  *  The generalized Hartree-Fock quantum chemical method.
  * 
- *  @tparam _Scalar             the type of scalar that is used for the expansion of the spinors in their underlying scalar basis
+ *  @tparam _Scalar             The type of scalar that is used for the expansion of the spinors in their underlying scalar basis.
  */
 template <typename _Scalar>
 class GHF {
@@ -51,10 +51,10 @@ public:
     /**
      *  Optimize the GHF wave function model: find the parameters satisfy the given objective.
      * 
-     *  @tparam Solver              the type of the solver
+     *  @tparam Solver              The type of the solver.
      * 
-     *  @param solver               the solver that will try to optimize the parameters
-     *  @param environment          the environment, which acts as a sort of calculation space for the solver
+     *  @param solver               The solver that will try to optimize the parameters.
+     *  @param environment          The environment, which acts as a sort of calculation space for the solver.
      */
     template <typename Solver>
     QCStructure<QCModel::GHF<Scalar>, Scalar> optimize(Solver& solver, GHFSCFEnvironment<Scalar>& environment) const {

@@ -36,7 +36,7 @@ namespace GQCP {
 /**
  *  A factory class that can construct UHF SCF solvers in an easy way.
  * 
- *  @tparam _Scalar             the scalar type that is used for the coefficient matrix/expansion coefficients
+ *  @tparam _Scalar             The scalar type that is used for the coefficient matrix/expansion coefficients.
  */
 template <typename _Scalar>
 class UHFSCFSolver {
@@ -50,12 +50,12 @@ public:
      */
 
     /**
-     *  @param minimum_subspace_dimension           the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
-     *  @param maximum_subspace_dimension           the maximum number of Fock matrices that can be handled by DIIS
-     *  @param threshold                            the threshold that is used in comparing both the alpha and beta density matrices
-     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     *  @param minimum_subspace_dimension           The minimum number of Fock matrices that have to be in the subspace before enabling DIIS.
+     *  @param maximum_subspace_dimension           The maximum number of Fock matrices that can be handled by DIIS.
+     *  @param threshold                            The threshold that is used in comparing both the alpha and beta density matrices.
+     *  @param maximum_number_of_iterations         The maximum number of iterations the algorithm may perform.
      * 
-     *  @return a DIIS UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion
+     *  @return A DIIS UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.
      */
     static IterativeAlgorithm<UHFSCFEnvironment<Scalar>> DIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
@@ -65,10 +65,10 @@ public:
             .add(UHFDensityMatrixCalculation<Scalar>())
             .add(UHFFockMatrixCalculation<Scalar>())
             .add(UHFErrorCalculation<Scalar>())
-            .add(UHFFockMatrixDIIS<Scalar>(minimum_subspace_dimension, maximum_subspace_dimension))  // this also calculates the next coefficient matrix
+            .add(UHFFockMatrixDIIS<Scalar>(minimum_subspace_dimension, maximum_subspace_dimension))  // This also calculates the next coefficient matrix.
             .add(UHFElectronicEnergyCalculation<Scalar>());
 
-        // Create a convergence criterion on the norm of subsequent density matrices
+        // Create a convergence criterion on the norm of subsequent density matrices.
         const std::function<std::deque<SpinResolved1DM<Scalar>>(const UHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolved1DM<Scalar>, UHFSCFEnvironment<Scalar>>;
@@ -79,14 +79,14 @@ public:
 
 
     /**
-     *  @param threshold                            the threshold that is used in comparing both the alpha and beta density matrices
-     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     *  @param threshold                            The threshold that is used in comparing both the alpha and beta density matrices.
+     *  @param maximum_number_of_iterations         The maximum number of iterations the algorithm may perform.
      * 
-     *  @return a plain UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion
+     *  @return A plain UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.
      */
     static IterativeAlgorithm<UHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
-        // Create the iteration cycle that effectively 'defines' a plain UHF SCF solver
+        // Create the iteration cycle that effectively 'defines' a plain UHF SCF solver.
         StepCollection<UHFSCFEnvironment<Scalar>> plain_uhf_scf_cycle {};
         plain_uhf_scf_cycle
             .add(UHFDensityMatrixCalculation<Scalar>())
@@ -94,7 +94,7 @@ public:
             .add(UHFFockMatrixDiagonalization<Scalar>())
             .add(UHFElectronicEnergyCalculation<Scalar>());
 
-        // Create a convergence criterion on the norm of subsequent density matrices
+        // Create a convergence criterion on the norm of subsequent density matrices.
         const std::function<std::deque<SpinResolved1DM<Scalar>>(const UHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolved1DM<Scalar>, UHFSCFEnvironment<Scalar>>;

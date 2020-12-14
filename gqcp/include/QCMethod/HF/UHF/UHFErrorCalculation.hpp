@@ -46,7 +46,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the current alpha- and beta- error vectors and add them to the environment.";
@@ -56,26 +56,24 @@ public:
     /**
      *  Calculate the current alpha- and beta- error vectors and add them to the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
         // Read F, D and S from the environment.
-        const auto& S = environment.S.parameters();
+        const auto& S = environment.S;
 
-        const auto& F_alpha = environment.fock_matrices.back().alpha().parameters();
-        const auto& F_beta = environment.fock_matrices.back().beta().parameters();
+        const auto& F = environment.fock_matrices.back();
 
-        const auto& D_alpha = environment.density_matrices.back().alpha();
-        const auto& D_beta = environment.density_matrices.back().beta();
-
+        const auto& D = environment.density_matrices.back();
 
         // Calculate the errors and write them to the environment (as a vector).
-        const auto error_matrix_alpha = QCModel::UHF<Scalar>::calculateError(F_alpha, D_alpha, S);
-        const auto error_matrix_beta = QCModel::UHF<Scalar>::calculateError(F_beta, D_beta, S);
+        const auto error_matrices = QCModel::UHF<Scalar>::calculateError(F, D, S);
 
-        environment.error_vectors_alpha.push_back(error_matrix_alpha.pairWiseReduced());
-        environment.error_vectors_beta.push_back(error_matrix_beta.pairWiseReduced());
+        // Transform the error matrices to error vectors.
+        const auto error_vectors = SpinResolved<VectorX<Scalar>> {error_matrices.alpha().pairWiseReduced(), error_matrices.beta().pairWiseReduced()};
+
+        environment.error_vectors.push_back(error_vectors);
     }
 };
 

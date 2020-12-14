@@ -39,7 +39,7 @@ namespace GQCP {
  * 
  *  We can basically view it as a compile-time type-safe std::map with all possible information that can be encountered in an UHF SCF algorithm.
  * 
- *  @tparam _Scalar             the scalar type that is used for the coefficient matrix/expansion coefficients
+ *  @tparam _Scalar             The scalar type that is used for the coefficient matrix/expansion coefficients: real or complex.
  */
 template <typename _Scalar>
 class UHFSCFEnvironment {
@@ -48,26 +48,23 @@ public:
 
 
 public:
-    size_t N_alpha;  // the number of alpha electrons (the number of occupied alpha-spin-orbitals)
-    size_t N_beta;   // the number of beta electrons (the number of occupied beta-spin-orbitals)
+    SpinResolved<size_t> N;  // The number of alpha and beta electrons (the number of occupied alpha-spin-orbitals).
 
     std::deque<double> electronic_energies;
 
-    std::deque<VectorX<double>> orbital_energies_alpha;
-    std::deque<VectorX<double>> orbital_energies_beta;
+    std::deque<SpinResolved<VectorX<double>>> orbital_energies;  // The alpha and beta MO energies.
 
-    ScalarUSQOneElectronOperatorComponent<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
+    ScalarUSQOneElectronOperator<Scalar> S;  // The overlap operator (of the scalar (AO) basis).
 
-    std::deque<UTransformation<Scalar>> coefficient_matrices;
+    std::deque<UTransformation<Scalar>> coefficient_matrices;  // The alpha and beta coefficient matrices.
 
-    std::deque<SpinResolved1DM<double>> density_matrices;  // expressed in the scalar (AO) basis
+    std::deque<SpinResolved1DM<double>> density_matrices;  // Expressed in the scalar (AO) basis.
 
-    std::deque<ScalarUSQOneElectronOperator<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
+    std::deque<ScalarUSQOneElectronOperator<Scalar>> fock_matrices;  // Expressed in the scalar (AO) basis.
 
-    std::deque<VectorX<Scalar>> error_vectors_alpha;  // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
-    std::deque<VectorX<Scalar>> error_vectors_beta;   // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
+    std::deque<SpinResolved<VectorX<Scalar>>> error_vectors;  // Expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly.
 
-    RSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
+    USQHamiltonian<Scalar> sq_hamiltonian;  // The Hamiltonian expressed in the scalar (AO) basis.
 
 
 public:
@@ -78,32 +75,31 @@ public:
     /**
      *  A constructor that initializes the environment with initial guesses for the alpha and beta coefficient matrices.
      * 
-     *  @param N_alpha                  the number of alpha electrons (the number of occupied alpha-spin-orbitals)
-     *  @param N_beta                   the number of beta electrons (the number of occupied beta-spin-orbitals)
-     *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
-     *  @param S                        the overlap matrix (of the scalar (AO) basis)
+     *  @param N_alpha                  The number of alpha electrons (the number of occupied alpha-spin-orbitals).
+     *  @param N_beta                   The number of beta electrons (the number of occupied beta-spin-orbitals).
+     *  @param sq_hamiltonian           The Hamiltonian expressed in the scalar (AO) basis.
+     *  @param S                        The overlap matrix (of the scalar (AO) basis).
      *  @param C_alpha_initial          The initial coefficient matrix for the alpha spin-orbitals.
      *  @param C_beta_initial           The initial coefficient matrix for the beta spin-orbitals.
      */
-    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const UTransformationComponent<Scalar>& C_alpha_initial, const UTransformationComponent<Scalar>& C_beta_initial) :
-        N_alpha {N_alpha},
-        N_beta {N_beta},
+    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S, const UTransformation<Scalar>& C_initial) :
+        N {N_alpha, N_beta},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
-        coefficient_matrices {UTransformation<Scalar> {C_alpha_initial, C_beta_initial}} {}
+        coefficient_matrices {C_initial} {}
 
 
     /**
      *  A constructor that initializes the environment from converged RHF model parameters.
      * 
-     *  @param rhf_parameters           the converged RHF model parameters
-     *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
-     *  @param S                        the overlap matrix (of the scalar (AO) basis)
+     *  @param rhf_parameters           The converged RHF model parameters.
+     *  @param sq_hamiltonian           The Hamiltonian expressed in the scalar (AO) basis.
+     *  @param S                        The overlap operator (of the scalar (AO) basis).
      */
-    UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) :
+    UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) :
         UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
                           sq_hamiltonian, S,
-                          rhf_parameters.expansion().matrix(), rhf_parameters.expansion().matrix()) {}
+                          UTransformation<Scalar>::FromEqual(rhf_parameters.expansion().matrix())) {}
 
 
     /*
@@ -113,20 +109,23 @@ public:
     /**
      *  Initialize an UHF SCF environment with initial coefficient matrices (equal for alpha and beta) that is obtained by diagonalizing the core Hamiltonian matrix.
      * 
-     *  @param N_alpha                  the number of alpha electrons (the number of occupied alpha-spin-orbitals)
-     *  @param N_beta                   the number of beta electrons (the number of occupied beta-spin-orbitals)
-     *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
-     *  @param S                        the overlap matrix (of the scalar (AO) basis)
+     *  @param N_alpha                  The number of alpha electrons (the number of occupied alpha-spin-orbitals).
+     *  @param N_beta                   The number of beta electrons (the number of occupied beta-spin-orbitals).
+     *  @param sq_hamiltonian           The Hamiltonian expressed in the scalar (AO) basis.
+     *  @param S                        The overlap matrix (of the scalar (AO) basis).
      */
-    static UHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
+    static UHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();  // in AO basis
+        const auto& H_core = sq_hamiltonian.core();  // In AO basis.
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
-        const UTransformationComponent<Scalar> C_initial {generalized_eigensolver.eigenvectors()};  // for both alpha and beta
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_a {H_core.alpha().parameters(), S.alpha().parameters()};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_b {H_core.beta().parameters(), S.beta().parameters()};
+        const UTransformationComponent<Scalar> C_initial_a {generalized_eigensolver_a.eigenvectors()};
+        const UTransformationComponent<Scalar> C_initial_b {generalized_eigensolver_b.eigenvectors()};
+        const UTransformation<Scalar> C_initial {C_initial_a, C_initial_b};
 
-        return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial, C_initial);
+        return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial);
     }
 };
 

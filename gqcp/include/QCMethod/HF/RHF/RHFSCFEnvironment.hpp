@@ -37,7 +37,7 @@ namespace GQCP {
  * 
  *  We can basically view it as a compile-time type-safe std::map with all possible information that can be encountered in an RHF SCF algorithm.
  * 
- *  @tparam _Scalar             the scalar type that is used for the coefficient matrix/expansion coefficients
+ *  @tparam _Scalar             The scalar type that is used for the coefficient matrix/expansion coefficients: real or complex.
  */
 template <typename _Scalar>
 class RHFSCFEnvironment {
@@ -46,20 +46,20 @@ public:
 
 
 public:
-    size_t N;  // the total number of electrons
+    size_t N;  // The total number of electrons.
 
     std::deque<double> electronic_energies;
 
     std::deque<VectorX<double>> orbital_energies;
 
-    ScalarRSQOneElectronOperator<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
+    ScalarRSQOneElectronOperator<Scalar> S;  // The overlap matrix (of the scalar (AO) basis).
 
     std::deque<RTransformation<Scalar>> coefficient_matrices;
-    std::deque<Orbital1DM<Scalar>> density_matrices;                 // expressed in the scalar (AO) basis
-    std::deque<ScalarRSQOneElectronOperator<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
-    std::deque<VectorX<Scalar>> error_vectors;                       // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
+    std::deque<Orbital1DM<Scalar>> density_matrices;                 // Expressed in the scalar (AO) basis.
+    std::deque<ScalarRSQOneElectronOperator<Scalar>> fock_matrices;  // Expressed in the scalar (AO) basis.
+    std::deque<VectorX<Scalar>> error_vectors;                       // Expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly.
 
-    RSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
+    RSQHamiltonian<Scalar> sq_hamiltonian;  // The Hamiltonian expressed in the scalar (AO) basis.
 
 
 public:
@@ -68,20 +68,20 @@ public:
      */
 
     /**
-     *  A constructor that initializes the environment with an initial guess for the coefficient matrix
+     *  A constructor that initializes the environment with an initial guess for the coefficient matrix.
      * 
-     *  @param N                    the total number of electrons
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis
-     *  @param S                    the overlap matrix (of the scalar (AO) basis)
+     *  @param N                    The total number of electrons.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis.
+     *  @param S                    The overlap matrix (of the scalar (AO) basis).
      *  @param C_initial            The initial coefficient matrix.
      */
-    RHFSCFEnvironment(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const RTransformation<Scalar>& C_initial) :
+    RHFSCFEnvironment(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S, const RTransformation<Scalar>& C_initial) :
         N {N},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
         coefficient_matrices {C_initial} {
 
-        if (this->N % 2 != 0) {  // if the total number of electrons is odd
+        if (this->N % 2 != 0) {  // If the total number of electrons is odd.
             throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const RSQHamiltonian<Scalar>&, const SquareMatrix<Scalar>&, const RTransformation<Scalar>&): You have given an odd number of electrons.");
         }
     }
@@ -94,16 +94,16 @@ public:
     /**
      *  Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.
      * 
-     *  @param N                    the total number of electrons
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis
-     *  @param S                    the overlap matrix (of the scalar (AO) basis)
+     *  @param N                    The total number of electrons.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis.
+     *  @param S                    The overlap operator (of the scalar (AO) basis).
      */
-    static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
+    static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();  // in AO basis
+        const auto& H_core = sq_hamiltonian.core().parameters();  // In AO basis.
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S.parameters()};
         const RTransformation<Scalar> C_initial {generalized_eigensolver.eigenvectors()};
 
         return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);

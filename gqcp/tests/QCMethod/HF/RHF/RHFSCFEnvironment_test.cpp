@@ -28,19 +28,19 @@
  */
 BOOST_AUTO_TEST_CASE(constructor) {
 
-    // Check a correct constructor with an even number of electrons
+    // Check a correct constructor with an even number of electrons.
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    const auto K = sq_hamiltonian.numberOfOrbitals();                                 // the number of spatial orbitals
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // In an AO basis.
+    const auto K = sq_hamiltonian.numberOfOrbitals();                                 // The number of spatial orbitals.
 
-    BOOST_CHECK_NO_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters(),
+    BOOST_CHECK_NO_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap(),
                                                                                GQCP::RTransformation<double>::Random(K)));
 
 
-    // Check if a faulty constructor with an odd number of electron throws
+    // Check if a faulty constructor with an odd number of electron throws.
     auto h2_ion = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2_ion.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters(),
+    BOOST_CHECK_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2_ion.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap(),
                                                                             GQCP::RTransformation<double>::Random(K)),
                       std::invalid_argument);
 }

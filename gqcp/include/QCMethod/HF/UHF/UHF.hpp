@@ -34,7 +34,7 @@ namespace QCMethod {
 /**
  *  The unrestricted Hartree-Fock quantum chemical method.
  * 
- *  @tparam _Scalar             the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
+ *  @tparam _Scalar             The type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis: real or complex.
  */
 template <typename _Scalar>
 class UHF {
@@ -51,10 +51,10 @@ public:
     /**
      *  Optimize the UHF wave function model.
      * 
-     *  @tparam Solver              the type of the solver
+     *  @tparam Solver              The type of the solver.
      * 
-     *  @param solver               the solver that will try to optimize the parameters
-     *  @param environment          the environment, which acts as a sort of calculation space for the solver
+     *  @param solver               The solver that will try to optimize the parameters.
+     *  @param environment          The environment, which acts as a sort of calculation space for the solver.
      */
     template <typename Solver>
     QCStructure<QCModel::UHF<Scalar>> optimize(Solver& solver, UHFSCFEnvironment<Scalar>& environment) const {
@@ -66,12 +66,10 @@ public:
         // Furthermore, the current UHF SCF solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state.
         const auto& E_electronic = environment.electronic_energies.back();
         const auto& C = environment.coefficient_matrices.back();
-        const auto& orbital_energies_alpha = environment.orbital_energies_alpha.back();
-        const auto& orbital_energies_beta = environment.orbital_energies_beta.back();
-        const auto& N_alpha = environment.N_alpha;
-        const auto& N_beta = environment.N_beta;
+        const auto& orbital_energies = environment.orbital_energies.back();
+        const auto& N = environment.N;
 
-        const QCModel::UHF<Scalar> uhf_parameters {N_alpha, N_beta, orbital_energies_alpha, orbital_energies_beta, C};
+        const QCModel::UHF<Scalar> uhf_parameters {N.alpha(), N.beta(), orbital_energies.alpha(), orbital_energies.beta(), C};
 
         return QCStructure<QCModel::UHF<Scalar>>({E_electronic}, {uhf_parameters});
     }

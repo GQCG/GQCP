@@ -47,7 +47,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the current electronic UHF energy and place it in the environment.";
@@ -57,21 +57,18 @@ public:
     /**
      *  Calculate the current electronic UHF energy and place it in the environment.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
-        const auto& H_core = environment.sq_hamiltonian.core();  // the core Hamiltonian matrix: in zero-field calculations, alpha and beta are equal
+        const auto& H_core = environment.sq_hamiltonian.core();  // The core Hamiltonian matrix: in zero-field calculations, alpha and beta are equal.
 
-        const auto& P = environment.density_matrices.back();  // the most recent alpha & beta density matrix
+        const auto& P = environment.density_matrices.back();  // The most recent alpha & beta density matrix.
 
         const auto& F = environment.fock_matrices.back();  // the most recent alpha and beta Fock matrices
 
+        const auto E_electronic = QCModel::UHF<double>::calculateElectronicEnergy(P, H_core, F);
 
-        const auto E_electronic_alpha = QCModel::UHF<double>::calculateElectronicEnergy(P.alpha(), H_core, F.alpha().parameters());
-        const auto E_electronic_beta = QCModel::UHF<double>::calculateElectronicEnergy(P.beta(), H_core, F.beta().parameters());
-
-        const auto E_electronic = E_electronic_alpha + E_electronic_beta;
         environment.electronic_energies.push_back(E_electronic);
     }
 };

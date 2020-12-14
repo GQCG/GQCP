@@ -45,10 +45,10 @@ public:
 
 
 private:
-    size_t minimum_subspace_dimension;  // the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
-    size_t maximum_subspace_dimension;  // the maximum number of Fock matrices that can be handled by DIIS
+    size_t minimum_subspace_dimension;  // The minimum number of Fock matrices that have to be in the subspace before enabling DIIS.
+    size_t maximum_subspace_dimension;  // The maximum number of Fock matrices that can be handled by DIIS.
 
-    DIIS<Scalar> diis;  // the DIIS accelerator
+    DIIS<Scalar> diis;  // The DIIS accelerator.
 
 
 public:
@@ -57,8 +57,8 @@ public:
      */
 
     /**
-     *  @param minimum_subspace_dimension       the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
-     *  @param maximum_subspace_dimension       the maximum number of Fock matrices that can be handled by DIIS
+     *  @param minimum_subspace_dimension       The minimum number of Fock matrices that have to be in the subspace before enabling DIIS.
+     *  @param maximum_subspace_dimension       The maximum number of Fock matrices that can be handled by DIIS.
      */
     GHFFockMatrixDIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6) :
         minimum_subspace_dimension {minimum_subspace_dimension},
@@ -70,7 +70,7 @@ public:
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Calculate the accelerated Fock matrix, and perform a diagonalization step on it.";
@@ -80,7 +80,7 @@ public:
     /**
      *  Calculate the accelerated Fock matrix, and perform a diagonalization step on it.
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              The environment that acts as a sort of calculation space.
      */
     void execute(Environment& environment) override {
 
@@ -94,15 +94,15 @@ public:
 
         // Convert the deques in the environment to vectors that can be accepted by the DIIS accelerator. The total number of elements we can use in DIIS is either the maximum subspace dimension or the number of available error matrices.
         const auto n = std::min(this->maximum_subspace_dimension, environment.error_vectors.size());
-        const std::vector<VectorX<Scalar>> error_vectors {environment.error_vectors.end() - n, environment.error_vectors.end()};                       // the n-th last error vectors
-        const std::vector<ScalarGSQOneElectronOperator<Scalar>> fock_matrices {environment.fock_matrices.end() - n, environment.fock_matrices.end()};  // the n-th last Fock matrices
+        const std::vector<VectorX<Scalar>> error_vectors {environment.error_vectors.end() - n, environment.error_vectors.end()};                       // The n-th last error vectors.
+        const std::vector<ScalarGSQOneElectronOperator<Scalar>> fock_matrices {environment.fock_matrices.end() - n, environment.fock_matrices.end()};  // The n-th last Fock matrices.
 
-        // Calculate the accelerated Fock matrix and do a diagonalization step on it
+        // Calculate the accelerated Fock matrix and do a diagonalization step on it.
         const auto F_accelerated = this->diis.accelerate(fock_matrices, error_vectors);
 
-        environment.fock_matrices.push_back(F_accelerated);  // the diagonalization step can only read from the environment
+        environment.fock_matrices.push_back(F_accelerated);  // The diagonalization step can only read from the environment.
         GHFFockMatrixDiagonalization<Scalar>().execute(environment);
-        environment.fock_matrices.pop_back();  // the accelerated/extrapolated Fock matrix should not be used in further extrapolation steps, as it is not created from a density matrix
+        environment.fock_matrices.pop_back();  // The accelerated/extrapolated Fock matrix should not be used in further extrapolation steps, as it is not created from a density matrix.
     }
 };
 

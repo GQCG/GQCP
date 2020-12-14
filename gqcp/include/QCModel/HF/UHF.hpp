@@ -49,13 +49,11 @@ public:
 
 
 private:
-    SpinResolved<size_t> N;  // the number of alpha and beta electrons
+    SpinResolved<size_t> N;  // The number of alpha and beta electrons.
 
-    VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
-    VectorX<double> orbital_energies_beta;   // sorted by ascending energy
+    SpinResolved<VectorX<double>> orbital_energies;  // The alpha and beta MO energies sorted by ascending order.
 
-    // The transformation between the UHF MOs and the atomic spin-orbitals.
-    UTransformation<Scalar> C;
+    UTransformation<Scalar> C;  // The transformation between the UHF MOs and the atomic spin-orbitals.
 
 
 public:
@@ -66,21 +64,20 @@ public:
     /**
      *  A basic constructor that sets all the properties.
      * 
-     *  @param N_alpha                                  the number of alpha electrons
-     *  @param N_beta                                   the number of beta electrons
-     *  @param orbital_energies_alpha                   the orbital energies for the alpha-spin-orbitals, sorted by ascending energy
-     *  @param orbital_energies_beta                    the orbital energies for the beta-spin-orbitals, sorted by ascending energy
+     *  @param N_alpha                                  The number of alpha electrons.
+     *  @param N_beta                                   The number of beta electrons.
+     *  @param orbital_energies_alpha                   The orbital energies for the alpha-spin-orbitals, sorted by ascending energy.
+     *  @param orbital_energies_beta                    The orbital energies for the beta-spin-orbitals, sorted by ascending energy.
      *  @param C                                        The transformation between the UHF MOs and the atomic spin-orbitals.
      */
     UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformation<Scalar>& C) :
         N {N_alpha, N_beta},
-        orbital_energies_alpha {orbital_energies_alpha},
-        orbital_energies_beta {orbital_energies_beta},
+        orbital_energies {orbital_energies_alpha, orbital_energies_beta},
         C {C} {
 
         // Check for valid arguments.
-        const auto K_alpha = C.alpha().numberOfOrbitals();  // number of alpha spatial orbitals
-        const auto K_beta = C.beta().numberOfOrbitals();    // number of beta spatial orbitals
+        const auto K_alpha = C.alpha().numberOfOrbitals();  // The number of alpha spatial orbitals.
+        const auto K_beta = C.beta().numberOfOrbitals();    // The number of beta spatial orbitals.
 
         if (N_alpha > K_alpha) {
             throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const UTransformation<Scalar>&): The number of given alpha electrons cannot be larger than the number of alpha spatial orbitals.");
@@ -103,10 +100,10 @@ public:
     /**
      *  A constructor that initializes the orbital energies to zeros.
      * 
-     *  @param N_alpha                                  the number of alpha electrons
-     *  @param N_beta                                   the number of beta electrons
-     *  @param orbital_energies_alpha                   the orbital energies for the alpha-spin-orbitals, sorted by ascending energy
-     *  @param orbital_energies_beta                    the orbital energies for the beta-spin-orbitals, sorted by ascending energy
+     *  @param N_alpha                                  The number of alpha electrons.
+     *  @param N_beta                                   The number of beta electrons.
+     *  @param orbital_energies_alpha                   The orbital energies for the alpha-spin-orbitals, sorted by ascending energy.
+     *  @param orbital_energies_beta                    The orbital energies for the beta-spin-orbitals, sorted by ascending energy.
      *  @param C                                        The transformation between the UHF MOs and the atomic spin-orbitals.
      */
     UHF(const size_t N_alpha, const size_t N_beta, const UTransformation<Scalar>& C) :
@@ -120,7 +117,7 @@ public:
     /**
      *  Convert an RHF wave function model to an UHF wave function model.
      * 
-     *  @param rhf_model            an RHF wave function model
+     *  @param rhf_model            A RHF wave function model
      */
     UHF(const GQCP::QCModel::RHF<Scalar>& rhf_model) :
         UHF(rhf_model.numberOfElectrons(Spin::alpha), rhf_model.numberOfElectrons(Spin::beta),
@@ -133,40 +130,50 @@ public:
      */
 
     /**
-     *  @param P_sigma              the spin-sigma density matrix in a scalar basis
-     *  @param H_core_sigma         the spin-sigma core Hamiltonian expressed in the same scalar basis
-     *  @param F_sigma              the spin-sigma Fock matrix in the same scalar basis
+     *  @param P              The spin-sigma density matrix in a scalar basis.
+     *  @param H_core        The spin-sigma core Hamiltonian expressed in the same scalar basis.
+     *  @param F              The spin-sigma Fock matrix in the same scalar basis.
      *
-     *  @return the UHF electronic energy for the sigma electrons
+     *  @return The UHF electronic energy.
      */
-    static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarRSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarRSQOneElectronOperator<Scalar>& F_sigma) {
+    static double calculateElectronicEnergy(const SpinResolved1DM<Scalar>& P, const ScalarUSQOneElectronOperator<Scalar>& H_core, const ScalarUSQOneElectronOperator<Scalar>& F) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
-        const auto Z_sigma = H_core_sigma + F_sigma;
+        const auto Z = H_core + F;
 
         // Convert the matrix Z to a GQCP::Tensor<double, 2> Z_tensor.
         // Einsum is only implemented for a tensor + a matrix, not for 2 matrices.
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_sigma_t {Z_sigma.parameters().data(), Z_sigma.parameters().rows(), Z_sigma.parameters().cols()};
-        Tensor<Scalar, 2> Z_sigma_tensor = Tensor<Scalar, 2>(Z_sigma_t);
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_alpha_t {Z.alpha().parameters().data(), Z.alpha().parameters().rows(), Z.alpha().parameters().cols()};
+        Tensor<Scalar, 2> Z_alpha_tensor = Tensor<Scalar, 2>(Z_alpha_t);
 
-        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5).
-        //      0.5 P_sigma(mu nu) P_sigma(mu nu)
-        Tensor<Scalar, 0> contraction = 0.5 * Z_sigma_tensor.template einsum<2>("ij,ji->", P_sigma);
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_beta_t {Z.beta().parameters().data(), Z.beta().parameters().rows(), Z.beta().parameters().cols()};
+        Tensor<Scalar, 2> Z_beta_tensor = Tensor<Scalar, 2>(Z_beta_t);
+
+        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5):
+        //      0.5 P_sigma(mu nu) P_sigma(mu nu).
+        Tensor<Scalar, 0> contraction_alpha = 0.5 * Z_alpha_tensor.template einsum<2>("ij,ji->", P.alpha());
+
+        Tensor<Scalar, 0> contraction_beta = 0.5 * Z_beta_tensor.template einsum<2>("ij,ji->", P.beta());
 
         // As the double contraction of two rank-2 tensors is a scalar (a tensor of rank 0), we should access the value as (0).
-        return contraction(0);
+        return contraction_alpha(0) + contraction_beta(0);
     }
 
 
     /**
-     *  @param F_sigma                  the sigma-spin Fock matrix expressed in the AO basis
-     *  @param D_sigma                  the sigma-spin density matrix in the AO basis
-     *  @param S                        the overlap matrix of the AO basis
+     *  @param F                  The Fock operators expressed in the AO basis.
+     *  @param D                  The density matrices in the AO basis.
+     *  @param S                  The overlap operator of the AO basis.
      * 
-     *  @return the sigma-spin error matrix
+     *  @return The error matrices.
      */
-    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F_sigma, const SpinResolved1DMComponent<Scalar>& D_sigma, const SquareMatrix<Scalar>& S) {
-        return QCModel::RHF<Scalar>::calculateError(F_sigma, D_sigma, S);
+    static SpinResolved<SquareMatrix<Scalar>> calculateError(const ScalarUSQOneElectronOperator<Scalar>& F, const SpinResolved1DM<Scalar>& D, const ScalarUSQOneElectronOperator<Scalar>& S) {
+
+        // Calculate the alpha and beta error vectors separately.
+        const auto error_vector_alpha = F.alpha().parameters() * D.alpha() * S.alpha().parameters() - S.alpha().parameters() * D.alpha() * F.alpha().parameters();
+        const auto error_vector_beta = F.beta().parameters() * D.beta() * S.beta().parameters() - S.beta().parameters() * D.beta() * F.beta().parameters();
+
+        return SpinResolved<SquareMatrix<Scalar>> {error_vector_alpha, error_vector_beta};
     }
 
 
@@ -182,7 +189,7 @@ public:
      */
     static SpinResolved1DM<Scalar> calculateOrthonormalBasis1DM(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
 
-        // The (alpha) 1-DM for UHF looks like (for K_alpha=5, N_alpha=3)
+        // The (alpha) 1-DM for UHF looks like (for K_alpha=5, N_alpha=3):
         //    1  0  0  0  0
         //    0  1  0  0  0
         //    0  0  1  0  0
@@ -303,25 +310,25 @@ public:
 
 
     /**
-     *  Calculate the UHF direct (Coulomb) matrix for spin sigma.
+     *  Calculate the UHF direct (Coulomb) operator.
      * 
-     *  @param P_alpha              the UHF alpha density matrix expressed in the underlying scalar orbital basis
-     *  @param P_beta               the UHF beta density matrix expressed in the (same) underlying scalar orbital basis
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the (same) underlying scalar orbital basis
+     *  @param P                    The UHF alpha density matrix expressed in the underlying scalar orbital basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
      * 
-     *  @return the UHF direct (Coulomb) matrix for spin sigma
+     *  @return The UHF direct (Coulomb) operator.
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // Get the two-electron parameters
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        // Get the two-electron parameters.
+        const auto& g_a = sq_hamiltonian.twoElectron().alphaAlpha().parameters();
+        const auto& g_b = sq_hamiltonian.twoElectron().betaBeta().parameters();
 
         // Specify the contraction pairs for the direct contractions:
-        //      (mu nu|rho lambda) P(rho lambda)
-        const auto J_alpha = g.template einsum<2>("ijkl,kl->ij", P.alpha()).asMatrix();
-        const auto J_beta = g.template einsum<2>("ijkl,kl->ij", P.beta()).asMatrix();
+        //      (mu nu|rho lambda) P(rho lambda).
+        const auto J_alpha = g_a.template einsum<2>("ijkl,kl->ij", P.alpha()).asMatrix();
+        const auto J_beta = g_b.template einsum<2>("ijkl,kl->ij", P.beta()).asMatrix();
 
-        // Calculate the total J tensor
+        // Calculate the total J tensor.
         const auto J = J_alpha + J_beta;
 
         return ScalarUSQOneElectronOperator<Scalar> {J, J};
@@ -329,42 +336,43 @@ public:
 
 
     /**
-     *  Calculate the UHF exchange matrix for spin sigma.
+     *  Calculate the UHF exchange operator.
      * 
-     *  @param P_sigma              the UHF sigma density matrix expressed in the underlying scalar orbital basis
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the (same) underlying scalar orbital basis
+     *  @param P                    The UHF sigma density matrix expressed in the underlying scalar orbital basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
      * 
-     *  @return the UHF direct (Coulomb) matrix for spin sigma
+     *  @return The UHF direct (Coulomb) operator.
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // Get the two-electron parameters
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        // Get the two-electron parameters.
+        const auto& g_a = sq_hamiltonian.twoElectron().alphaAlpha().parameters();
+        const auto& g_b = sq_hamiltonian.twoElectron().betaBeta().parameters();
 
         // Specify the contraction pairs for the exchange contraction:
-        //      (mu rho|lambda nu) P(lambda rho)
-        const auto K_alpha = g.template einsum<2>("ijkl,kj->il", P.alpha()).asMatrix();
-        const auto K_beta = g.template einsum<2>("ijkl,kj->il", P.beta()).asMatrix();
+        //      (mu rho|lambda nu) P(lambda rho).
+        const auto K_alpha = g_a.template einsum<2>("ijkl,kj->il", P.alpha()).asMatrix();
+        const auto K_beta = g_b.template einsum<2>("ijkl,kj->il", P.beta()).asMatrix();
 
         return ScalarUSQOneElectronOperator<Scalar> {K_alpha, K_beta};
     }
 
 
     /**
-     *  Calculate the UHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
+     *  Calculate the UHF Fock operator F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals.
      *
-     *  @param P                    the RHF density matrix in a scalar basis
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the same scalar basis
+     *  @param P                    The UHF density matrices in a scalar basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the same scalar basis.
      *
-     *  @return the RHF Fock matrix expressed in the scalar basis
+     *  @return The UHF Fock operator expressed in the scalar basis of the AOs.
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
-        // H_core is always the same
-        const auto& H_core = sq_hamiltonian.core().parameters();
+        // F_sigma = H_core + (J_alpha + J_beta) - K_sigma.
+        // H_core is always the same.
+        const auto& H_core = sq_hamiltonian.core();
 
-        // Get the alpha and beta parameters of the coulomb and exchange matrices
+        // Get the alpha and beta parameters of the coulomb and exchange matrices.
         const auto J_a = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).alpha().parameters();
         const auto J_b = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).beta().parameters();
 
@@ -372,9 +380,9 @@ public:
         const auto K_b = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).beta().parameters();
 
 
-        // Generate the alpha and beta Fock matrix and put the in a USQOneElectronOperator
-        const auto F_a = H_core + J_a - K_a;
-        const auto F_b = H_core + J_b - K_b;
+        // Generate the alpha and beta Fock matrix and put them in a USQOneElectronOperator.
+        const auto F_a = H_core.alpha().parameters() + J_a - K_a;
+        const auto F_b = H_core.beta().parameters() + J_b - K_b;
 
         return ScalarUSQOneElectronOperator<Scalar> {F_a, F_b};
     }
@@ -917,7 +925,7 @@ public:
             }
         }
 
-        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor.
         auto B_iajb = B_iajb_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
@@ -1028,8 +1036,6 @@ public:
 
 
     /**
-     *  @param sigma                The spin-sigma component. 
-     * 
      *  @return A matrix containing all the possible excitation energies of the wavefunction model, belonging to a certain spin component. 
      * 
      *  @note       The rows are determined by the number of virtual sigma orbitals, the columns by the number of occupied sigma orbitals.
@@ -1077,11 +1083,11 @@ public:
     /**
      *  @return The number of alpha and beta electrons that these UHF model parameters describe, i.e. the number of occupied alpha- & beta-spin-orbitals.
      */
-    SpinResolved<size_t> numberOfElectrons() const { return SpinResolved<size_t> {this->N.alpha(), this->N.beta()}; }
+    SpinResolved<size_t> numberOfElectrons() const { return this->N; }
 
 
     /**
-     *  @return the total number of spin-orbitals that these UHF model parameters describe
+     *  @return The total number of spin-orbitals that these UHF model parameters describe.
      */
     size_t numberOfSpinOrbitals() const {
 
@@ -1090,9 +1096,9 @@ public:
 
 
     /**
-     *  @param sigma            alpha or beta
+     *  @param sigma            Alpha or beta.
      * 
-     *  @return the number of sigma spin-orbitals that these UHF model parameters describe
+     *  @return The number of sigma spin-orbitals that these UHF model parameters describe.
      */
     size_t numberOfSpinOrbitals(const Spin sigma) const {
         return this->expansion().component(sigma).numberOfOrbitals();
@@ -1100,8 +1106,6 @@ public:
 
 
     /**
-     *  @param sigma            The alpha or beta spin component.
-     * 
      *  @return The orbital energies belonging to the occupied orbitals of spin component sigma.
      */
     SpinResolved<std::vector<double>> occupiedOrbitalEnergies() const {
@@ -1137,7 +1141,7 @@ public:
     /**   
      *  @return The orbital energies of the alpha and beta orbitals.
      */
-    const SpinResolved<VectorX<double>> orbitalEnergies() const { return SpinResolved<VectorX<double>> {this->orbital_energies_alpha, this->orbital_energies_beta}; }
+    const SpinResolved<VectorX<double>> orbitalEnergies() const { return this->orbital_energies; }
 
 
     /**
@@ -1148,7 +1152,7 @@ public:
 
 
     /**
-     *  @return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies
+     *  @return All the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.
      */
     VectorX<double> spinOrbitalEnergiesBlocked() const {
 
@@ -1161,8 +1165,6 @@ public:
 
 
     /**
-     *  @param sigma            The alpha or beta spin component.
-     * 
      *  @return The orbital energies belonging to the virtual orbitals of spin component sigma.
      */
     SpinResolved<std::vector<double>> virtualOrbitalEnergies() const {

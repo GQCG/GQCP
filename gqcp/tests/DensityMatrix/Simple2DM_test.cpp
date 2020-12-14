@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_b
     const auto K = hamiltonian.numberOfOrbitals();
 
     // Do the RHF SCF calculation to retrieve the RHF MOs.
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, S.parameters());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, S);
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
 

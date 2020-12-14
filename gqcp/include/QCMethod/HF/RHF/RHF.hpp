@@ -34,7 +34,7 @@ namespace QCMethod {
 /**
  *  The restricted Hartree-Fock quantum chemical method
  * 
- *  @tparam _Scalar             the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
+ *  @tparam _Scalar             The type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis: real or complex.
  */
 template <typename _Scalar>
 class RHF {
@@ -51,12 +51,12 @@ public:
     /**
      *  Optimize the RHF wave function model: find the parameters satisfy the given objective.
      * 
-     *  @tparam QCObjective         the type of the objective
-     *  @tparam Solver              the type of the solver
+     *  @tparam QCObjective         The type of the objective.
+     *  @tparam Solver              The type of the solver.
      * 
-     *  @param objective            the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
-     *  @param solver               the solver that will try to optimize the parameters
-     *  @param environment          the environment, which acts as a sort of calculation space for the solver
+     *  @param objective            The objective that should be fulfilled in order to consider the model's parameters as 'optimal'.
+     *  @param solver               The solver that will try to optimize the parameters.
+     *  @param environment          The environment, which acts as a sort of calculation space for the solver.
      */
     template <typename QCObjective, typename Solver>
     QCStructure<QCModel::RHF<Scalar>> optimize(const QCObjective& objective, Solver& solver, RHFSCFEnvironment<Scalar>& environment) const {
@@ -73,7 +73,7 @@ public:
 
         const QCModel::RHF<Scalar> rhf_parameters {N_P, orbital_energies, C};
 
-        // Now that we have constructed an instance of the QCModel, we should check if the objective is fulfilled
+        // Now that we have constructed an instance of the QCModel, we should check if the objective is fulfilled.
         if (!objective.isSatisfiedWith(rhf_parameters)) {
             throw std::runtime_error("QCModel::RHF::optimize(const QCObjective&, Solver&, RHFSCFEnvironment<Scalar>&): The solver produced a solution that does not fulfill the objective.");
         }
