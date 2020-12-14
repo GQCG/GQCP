@@ -35,15 +35,14 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         // CONSTRUCTORS
 
-        .def(py::init([](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
+        .def(py::init([](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S, const UTransformation<double>& C_initial) {
                  return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, UTransformationComponent<double>(C_alpha_initial), UTransformationComponent<double>(C_beta_initial));
              }),
              py::arg("N_alpha"),
              py::arg("N_beta"),
              py::arg("sq_hamiltonian"),
              py::arg("S"),
-             py::arg("C_alpha_initial"),
-             py::arg("C_beta_initial"),
+             py::arg("C_initial"),
              "A constructor that initializes the environment with initial guesses for the alpha and beta coefficient matrices.")
 
         .def(py::init([](const QCModel::RHF<double>& rhf_parameters, const USQHamiltonian<double>& sq_hamiltonian, const ScalarUSQOneElectronOperator<double>& S) {

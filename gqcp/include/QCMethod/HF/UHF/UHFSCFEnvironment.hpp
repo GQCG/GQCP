@@ -82,11 +82,11 @@ public:
      *  @param C_alpha_initial          The initial coefficient matrix for the alpha spin-orbitals.
      *  @param C_beta_initial           The initial coefficient matrix for the beta spin-orbitals.
      */
-    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S, const UTransformationComponent<Scalar>& C_alpha_initial, const UTransformationComponent<Scalar>& C_beta_initial) :
+    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S, const UTransformation<Scalar>& C_initial) :
         N {N_alpha, N_beta},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
-        coefficient_matrices {UTransformation<Scalar> {C_alpha_initial, C_beta_initial}} {}
+        coefficient_matrices {C_initial} {}
 
 
     /**
@@ -99,7 +99,7 @@ public:
     UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) :
         UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
                           sq_hamiltonian, S,
-                          rhf_parameters.expansion().matrix(), rhf_parameters.expansion().matrix()) {}
+                          UTransformation<Scalar> {rhf_parameters.expansion().matrix(), rhf_parameters.expansion().matrix()}) {}
 
 
     /*
@@ -123,8 +123,9 @@ public:
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_b {H_core.beta().parameters(), S.beta().parameters()};
         const UTransformationComponent<Scalar> C_initial_a {generalized_eigensolver_a.eigenvectors()};
         const UTransformationComponent<Scalar> C_initial_b {generalized_eigensolver_b.eigenvectors()};
+        const UTransformation<Scalar> C_initial {C_initial_a, C_initial_b};
 
-        return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial_a, C_initial_b);
+        return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial);
     }
 };
 
