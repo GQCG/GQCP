@@ -99,6 +99,9 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_resolved_2) {
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-06));
 }
 
+/**
+ *  Test the algorithm for the Dyson amplitudes against manually calculated coefficients for two (normalized) toy wave functions with more than one electron.
+ */
 BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_unresolved) {
 
     // Set up the manually calculated references.
