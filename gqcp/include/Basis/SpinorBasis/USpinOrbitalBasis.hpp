@@ -338,13 +338,31 @@ public:
         using ResultOperator = ScalarUSQTwoElectronOperator<ResultScalar>;
 
         // Determine the matrix representation of the four spin-components of the second-quantized Coulomb operator.
-        const auto g_aa_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->alpha().scalarBasis(), this->alpha().scalarBasis());
-        const auto g_ab_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->alpha().scalarBasis(), this->beta().scalarBasis());
-        const auto g_ba_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->beta().scalarBasis(), this->alpha().scalarBasis());
-        const auto g_bb_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->beta().scalarBasis(), this->beta().scalarBasis());
+        const auto g_aa_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->alpha().scalarBasis(), this->alpha().scalarBasis());  // 'par' for 'parameters'
+        const auto g_ab_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->alpha().scalarBasis(), this->beta().scalarBasis());   // 'par' for 'parameters'
+        const auto g_ba_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->beta().scalarBasis(), this->alpha().scalarBasis());   // 'par' for 'parameters'
+        const auto g_bb_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->beta().scalarBasis(), this->beta().scalarBasis());    // 'par' for 'parameters'
+
+        auto g_aa = SquareRankFourTensor<ResultScalar>::Zero(g_aa_par.dimension(0));
+        auto g_ab = SquareRankFourTensor<ResultScalar>::Zero(g_ab_par.dimension(0));
+        auto g_ba = SquareRankFourTensor<ResultScalar>::Zero(g_ba_par.dimension(0));
+        auto g_bb = SquareRankFourTensor<ResultScalar>::Zero(g_bb_par.dimension(0));
+
+        for (size_t i = 0; i < g_aa_par.dimension(0); i++) {
+            for (size_t j = 0; j < g_aa_par.dimension(1); j++) {
+                for (size_t k = 0; k < g_aa_par.dimension(2); k++) {
+                    for (size_t l = 0; l < g_aa_par.dimension(3); l++) {
+                        g_aa(i, j, k, l) = g_aa_par(i, j, k, l);
+                        g_ab(i, j, k, l) = g_ab_par(i, j, k, l);
+                        g_ba(i, j, k, l) = g_ba_par(i, j, k, l);
+                        g_bb(i, j, k, l) = g_bb_par(i, j, k, l);
+                    }
+                }
+            }
+        }
 
         // We have previously calculated the representations in the AO basis, so we'll still have to transform these representations to the current spin-orbitals.
-        ResultOperator g {g_aa_par, g_ab_par, g_ba_par, g_bb_par};
+        ResultOperator g {g_aa, g_ab, g_ba, g_bb};
         g.transform(this->expansion());  // Now, g is expressed in the current spin-orbital basis.
 
         return g;
