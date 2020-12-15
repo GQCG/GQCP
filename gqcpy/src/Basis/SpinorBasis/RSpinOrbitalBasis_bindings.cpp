@@ -80,15 +80,6 @@ void bindRSpinOrbitalBasisInterface(Class& py_class) {
      *  MARK: Quantization of first-quantized operators
      */
 
-    // py_class
-    //     .def(
-    //         "quantizeDipoleOperator",
-    //         [](const RSpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis, const Vector<double, 3>& origin) {
-    //             return spin_orbital_basis.quantize(Operator::ElectronicDipole(origin));
-    //         },
-    //         py::arg("origin") = Vector<double, 3>::Zero(), "Return the electronic dipole operator expressed in this spinor basis.");
-
-
     // Expose some quantization API to the Python class;
     bindSpinorBasisQuantizationInterface(py_class);
 
@@ -106,6 +97,14 @@ void bindRSpinOrbitalBases(py::module& module) {
 
     // Define the Python class for `RSpinOrbitalBasis_d`.
     py::class_<RSpinOrbitalBasis<double, GTOShell>> py_RSpinOrbitalBasis_d {module, "RSpinOrbitalBasis_d", "A class that represents a real, restricted spinor basis with underlying GTO shells."};
+
+    py_RSpinOrbitalBasis_d
+        .def(
+            "quantizeDipoleOperator",
+            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const Vector<double, 3>& origin) {
+                return spin_orbital_basis.quantize(Operator::ElectronicDipole(origin));
+            },
+            py::arg("origin") = Vector<double, 3>::Zero(), "Return the electronic dipole operator expressed in this spinor basis.");
 
     bindRSpinOrbitalBasisInterface(py_RSpinOrbitalBasis_d);
 

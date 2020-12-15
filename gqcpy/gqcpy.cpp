@@ -40,8 +40,8 @@ void bindGTOShell(py::module& module);
 void bindGSpinorBases(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
-void bindRSpinOrbitalBasis(py::module& module);
-void bindUSpinOrbitalBasis(py::module& module);
+void bindRSpinOrbitalBases(py::module& module);
+void bindUSpinOrbitalBases(py::module& module);
 
 
 // Basis - Transformations
@@ -237,8 +237,8 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindGSpinorBases(module);
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
-    gqcpy::bindRSpinOrbitalBasis(module);
-    gqcpy::bindUSpinOrbitalBasis(module);
+    gqcpy::bindRSpinOrbitalBases(module);
+    gqcpy::bindUSpinOrbitalBases(module);
 
 
     // Basis - Transformations
