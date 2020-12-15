@@ -1,11 +1,12 @@
 **Short description**
-A clear and concise description of what is (to be) done in this PR.
+
+Provide a clear and concise description of what is (to be) done in this pull request.
 
 **Related issues**
-The open (and possibly closed) issues that are related to this PR.
 
-**Additional context**
-Add any other context about the problem here.
+Link to the open (and possibly closed) issues that are related to this pull request. If this pull request fully closes an issue, please use GitHub's closing keywords. 
 
-**Don't forget:**
-- [ ] if new files are created: update the Doxygen file, the collective gqcp.hpp header and the CMake files
+**To do**
+
+- [ ] (if applicable, when creating new source files): don't forget to update the Doxygen file, the collective `gqcp.hpp` include header and the CMake files
+- [ ] Add other smaller task to be completed as a Markdown task list
