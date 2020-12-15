@@ -17,6 +17,7 @@
 
 #include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 #include "Utilities/aliases.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -38,7 +39,7 @@ using namespace GQCP;
  *  @param py_class             The Pybind11 `class_` that should obtain APIs related to `GHFSCFEnvironment`.
  */
 template <typename Class>
-void bindQCModelGHFSCFEnvironmentInterface(Class& py_class) {
+void bindQCMethodGHFSCFEnvironmentInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
@@ -48,7 +49,7 @@ void bindQCModelGHFSCFEnvironmentInterface(Class& py_class) {
     py_class
 
         /*
-         *  MARK: Named constructors
+         *  MARK: Named constructors specific to GHF
          */
 
         .def_static(
@@ -60,14 +61,8 @@ void bindQCModelGHFSCFEnvironmentInterface(Class& py_class) {
 
 
         /*
-         *  MARK: Read-write members & properties
+         *  MARK: Read-write members & properties specific to GHF
          */
-
-        .def_readwrite("N", &GHFSCFEnvironment<Scalar>::N)
-
-        .def_readwrite("electronic_energies", &GHFSCFEnvironment<Scalar>::electronic_energies)
-
-        .def_readwrite("orbital_energies", &GHFSCFEnvironment<Scalar>::orbital_energies)
 
         .def_property(
             "S",
@@ -78,30 +73,8 @@ void bindQCModelGHFSCFEnvironmentInterface(Class& py_class) {
                 environment.S = S;
             })
 
-
         /*
-         *  MARK: Read-only 'getters'
-         */
-
-        .def_readonly(
-            "coefficient_matrices",
-            &GHFSCFEnvironment<Scalar>::coefficient_matrices)
-
-        .def_readonly(
-            "density_matrices",
-            &GHFSCFEnvironment<Scalar>::density_matrices)
-
-        .def_readonly(
-            "fock_matrices",
-            &GHFSCFEnvironment<Scalar>::fock_matrices)
-
-        .def_readonly(
-            "error_vectors",
-            &GHFSCFEnvironment<Scalar>::error_vectors)
-
-
-        /*
-         *  MARK: Replacements
+         *  MARK: Replacements specific to GHF
          */
 
         .def("replace_current_coefficient_matrix",
@@ -138,13 +111,15 @@ void bindGHFSCFEnvironments(py::module& module) {
     // Provide bindings for real-valued GHF SCF environments.
     py::class_<GHFSCFEnvironment<double>> py_GHFSCFEnvironment_d {module, "GHFSCFEnvironment_d", "An algorithm environment that can be used with real-valued GHF SCF solvers."};
 
-    bindQCModelGHFSCFEnvironmentInterface(py_GHFSCFEnvironment_d);
+    bindQCMethodGHFSCFEnvironmentInterface(py_GHFSCFEnvironment_d);
+    bindQCMethodHartreeFockSCFEnvironmentInterface(py_GHFSCFEnvironment_d);
 
 
     // Provide bindings for complex-valued GHF SCF environments.
     py::class_<GHFSCFEnvironment<complex>> py_GHFSCFEnvironment_cd {module, "GHFSCFEnvironment_cd", "An algorithm environment that can be used with complex-valued GHF SCF solvers."};
 
-    bindQCModelGHFSCFEnvironmentInterface(py_GHFSCFEnvironment_cd);
+    bindQCMethodGHFSCFEnvironmentInterface(py_GHFSCFEnvironment_cd);
+    bindQCMethodHartreeFockSCFEnvironmentInterface(py_GHFSCFEnvironment_cd);
 }
 
 

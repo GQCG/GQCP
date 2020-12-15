@@ -64,7 +64,7 @@ public:
         const ScalarRSQOneElectronOperator<Scalar> F {environment.fock_matrices.back()};  // The most recent Fock matrix.
         const auto& H_core = environment.sq_hamiltonian.core();                           // The core Hamiltonian matrix.
 
-        const auto E_electronic = QCModel::RHF<double>::calculateElectronicEnergy(D, H_core, F);
+        const auto E_electronic = QCModel::RHF<Scalar>::calculateElectronicEnergy(D, H_core, F);
         environment.electronic_energies.push_back(E_electronic);
     }
 };

@@ -67,7 +67,7 @@ public:
 
         const auto& F = environment.fock_matrices.back();  // the most recent alpha and beta Fock matrices
 
-        const auto E_electronic = QCModel::UHF<double>::calculateElectronicEnergy(P, H_core, F);
+        const auto E_electronic = QCModel::UHF<Scalar>::calculateElectronicEnergy(P, H_core, F);
 
         environment.electronic_energies.push_back(E_electronic);
     }

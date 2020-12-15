@@ -136,7 +136,7 @@ public:
      *
      *  @return The UHF electronic energy.
      */
-    static double calculateElectronicEnergy(const SpinResolved1DM<Scalar>& P, const ScalarUSQOneElectronOperator<Scalar>& H_core, const ScalarUSQOneElectronOperator<Scalar>& F) {
+    static Scalar calculateElectronicEnergy(const SpinResolved1DM<Scalar>& P, const ScalarUSQOneElectronOperator<Scalar>& H_core, const ScalarUSQOneElectronOperator<Scalar>& F) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z = H_core + F;

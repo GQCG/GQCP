@@ -76,7 +76,7 @@ public:
         const auto& orbital_energies_beta = generalized_eigensolver_beta.eigenvalues();
 
         const UTransformation<Scalar>& C {C_alpha, C_beta};
-        const SpinResolved<VectorX<double>> mo_energies {orbital_energies_alpha, orbital_energies_beta};
+        const SpinResolved<VectorX<Scalar>> mo_energies {orbital_energies_alpha, orbital_energies_beta};
 
         environment.coefficient_matrices.push_back(C);
         environment.orbital_energies.push_back(mo_energies);

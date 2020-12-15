@@ -50,15 +50,15 @@ public:
 public:
     SpinResolved<size_t> N;  // The number of alpha and beta electrons (the number of occupied alpha-spin-orbitals).
 
-    std::deque<double> electronic_energies;
+    std::deque<Scalar> electronic_energies;
 
-    std::deque<SpinResolved<VectorX<double>>> orbital_energies;  // The alpha and beta MO energies.
+    std::deque<SpinResolved<VectorX<Scalar>>> orbital_energies;  // The alpha and beta MO energies.
 
     ScalarUSQOneElectronOperator<Scalar> S;  // The overlap operator (of the scalar (AO) basis).
 
     std::deque<UTransformation<Scalar>> coefficient_matrices;  // The alpha and beta coefficient matrices.
 
-    std::deque<SpinResolved1DM<double>> density_matrices;  // Expressed in the scalar (AO) basis.
+    std::deque<SpinResolved1DM<Scalar>> density_matrices;  // Expressed in the scalar (AO) basis.
 
     std::deque<ScalarUSQOneElectronOperator<Scalar>> fock_matrices;  // Expressed in the scalar (AO) basis.
 

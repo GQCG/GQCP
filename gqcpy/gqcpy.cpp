@@ -161,16 +161,16 @@ void bindGHFSCFSolvers(py::module& module);
 
 
 // QCMethod - HF - RHF
-void bindDiagonalRHFFockMatrixObjective(py::module& module);
-void bindQCMethodRHF(py::module& module);
-void bindRHFSCFEnvironment(py::module& module);
-void bindRHFSCFSolver(py::module& module);
+void bindDiagonalRHFFockMatrixObjectives(py::module& module);
+void bindQCMethodsRHF(py::module& module);
+void bindRHFSCFEnvironments(py::module& module);
+void bindRHFSCFSolvers(py::module& module);
 
 
 // QCMethod - HF - UHF
-void bindQCMethodUHF(py::module& module);
-void bindUHFSCFEnvironment(py::module& module);
-void bindUHFSCFSolver(py::module& module);
+void bindQCMethodsUHF(py::module& module);
+void bindUHFSCFEnvironments(py::module& module);
+void bindUHFSCFSolvers(py::module& module);
 
 
 // QCMethod
@@ -358,16 +358,16 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCMethod - HF - RHF
-    gqcpy::bindDiagonalRHFFockMatrixObjective(module);
-    gqcpy::bindQCMethodRHF(module);
-    gqcpy::bindRHFSCFEnvironment(module);
-    gqcpy::bindRHFSCFSolver(module);
+    gqcpy::bindDiagonalRHFFockMatrixObjectives(module);
+    gqcpy::bindQCMethodsRHF(module);
+    gqcpy::bindRHFSCFEnvironments(module);
+    gqcpy::bindRHFSCFSolvers(module);
 
 
     // QCMethod - HF - UHF
-    gqcpy::bindQCMethodUHF(module);
-    gqcpy::bindUHFSCFEnvironment(module);
-    gqcpy::bindUHFSCFSolver(module);
+    gqcpy::bindQCMethodsUHF(module);
+    gqcpy::bindUHFSCFEnvironments(module);
+    gqcpy::bindUHFSCFSolvers(module);
 
 
     // QCMethod

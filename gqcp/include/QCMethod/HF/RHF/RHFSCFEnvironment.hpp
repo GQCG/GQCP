@@ -48,9 +48,9 @@ public:
 public:
     size_t N;  // The total number of electrons.
 
-    std::deque<double> electronic_energies;
+    std::deque<Scalar> electronic_energies;
 
-    std::deque<VectorX<double>> orbital_energies;
+    std::deque<VectorX<Scalar>> orbital_energies;
 
     ScalarRSQOneElectronOperator<Scalar> S;  // The overlap matrix (of the scalar (AO) basis).
 
