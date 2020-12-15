@@ -105,8 +105,12 @@ void bindQCStructures(py::module& module) {
 
     bindQCStructure<QCModel::GHF<double>>(module, "GHF_d", "A quantum chemical structure for real GHF parameters.");
     bindQCStructure<QCModel::GHF<complex>, complex>(module, "GHF_cd", "A quantum chemical structure for complex GHF parameters.");
-    bindQCStructure<QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
-    bindQCStructure<QCModel::UHF<double>>(module, "UHF", "A quantum chemical structure for UHF parameters.");
+
+    bindQCStructure<QCModel::RHF<double>>(module, "RHF_d", "A quantum chemical structure for real RHF parameters.");
+    bindQCStructure<QCModel::RHF<complex>, complex>(module, "RHF_cd", "A quantum chemical structure for complex RHF parameters.");
+
+    bindQCStructure<QCModel::UHF<double>>(module, "UHF_d", "A quantum chemical structure for real UHF parameters.");
+    bindQCStructure<QCModel::UHF<complex>, complex>(module, "UHF_cd", "A quantum chemical structure for complex UHF parameters.");
 
     bindQCStructure<QCModel::CCSD<double>>(module, "CCSD", "A quantum chemical structure for CCSD parameters.");
     bindQCStructure<QCModel::CCD<double>>(module, "CCD", "A quantum chemical structure for CCD parameters.");

@@ -54,8 +54,8 @@ void bindQCMethodUHFInterface(Class& py_class) {
 
         .def_static(
             "optimize",
-            [](IterativeAlgorithm<UHFSCFEnvironment<double>>& solver, UHFSCFEnvironment<double>& environment) {
-                return QCMethod::UHF<double>().optimize(solver, environment);
+            [](IterativeAlgorithm<UHFSCFEnvironment<Scalar>>& solver, UHFSCFEnvironment<Scalar>& environment) {
+                return QCMethod::UHF<Scalar>().optimize(solver, environment);
             },
             py::arg("solver"),
             py::arg("environment"),

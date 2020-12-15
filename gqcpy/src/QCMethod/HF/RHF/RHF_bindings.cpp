@@ -55,8 +55,8 @@ void bindQCMethodRHFInterface(Class& py_class) {
 
         .def_static(
             "optimize",
-            [](const DiagonalRHFFockMatrixObjective<double>& objective, IterativeAlgorithm<RHFSCFEnvironment<double>>& solver, RHFSCFEnvironment<double>& environment) {
-                return QCMethod::RHF<double>().optimize(objective, solver, environment);
+            [](const DiagonalRHFFockMatrixObjective<Scalar>& objective, IterativeAlgorithm<RHFSCFEnvironment<Scalar>>& solver, RHFSCFEnvironment<Scalar>& environment) {
+                return QCMethod::RHF<Scalar>().optimize(objective, solver, environment);
             },
             "Optimize the RHF wave function model: find the parameters satisfy the given objective.");
 }
