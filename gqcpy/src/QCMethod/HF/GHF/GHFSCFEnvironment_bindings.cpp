@@ -118,6 +118,14 @@ void bindGHFSCFEnvironments(py::module& module) {
     // Provide bindings for complex-valued GHF SCF environments.
     py::class_<GHFSCFEnvironment<complex>> py_GHFSCFEnvironment_cd {module, "GHFSCFEnvironment_cd", "An algorithm environment that can be used with complex-valued GHF SCF solvers."};
 
+    py_GHFSCFEnvironment_cd
+        .def_static(
+            "WithCoreGuessMadeComplex",
+            [](const size_t N, const GSQHamiltonian<complex>& hamiltonian, const ScalarGSQOneElectronOperator<complex>& S) {
+                return GHFSCFEnvironment<complex>::WithCoreGuessMadeComplex(N, hamiltonian, S);
+            },
+            "Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.");
+
     bindQCMethodGHFSCFEnvironmentInterface(py_GHFSCFEnvironment_cd);
     bindQCMethodHartreeFockSCFEnvironmentInterface(py_GHFSCFEnvironment_cd);
 }

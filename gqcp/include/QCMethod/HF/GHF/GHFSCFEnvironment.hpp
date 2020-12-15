@@ -23,6 +23,7 @@
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <Eigen/Dense>
 
@@ -102,6 +103,36 @@ public:
         const GTransformation<Scalar> C_initial {generalized_eigensolver.eigenvectors()};
 
         return GHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
+    }
+
+    /**
+     *  Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     * 
+     *  @param N                    The total number of electrons.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
+     *  @param S                    The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
+     */
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, complex>::value, GHFSCFEnvironment<complex>> WithCoreGuessMadeComplex(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S) {
+
+        const auto& H_core = sq_hamiltonian.core().parameters();  // Spin-blocked, in AO basis.
+
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S.parameters()};
+        auto C_initial {generalized_eigensolver.eigenvectors()};
+
+        const complex x(0, 0.1);
+
+        for (size_t i = 0; i < C_initial.cols(); i++) {
+            C_initial(0, i) += x;
+        }
+        for (size_t j = 0; j < C_initial.rows(); j++) {
+            C_initial(j, 0) -= x;
+        }
+
+        const GTransformation<Scalar> C_initial_complex {C_initial};
+        std::cout << C_initial_complex.matrix() << std::endl;
+        return GHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial_complex);
     }
 };
 
