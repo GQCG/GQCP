@@ -62,15 +62,15 @@ void bindRHFSCFObjectiveInterface(Class& py_class) {
 void bindDiagonalRHFFockMatrixObjectives(py::module& module) {
 
     // Provide Python bindings for real-valued RHF objective.
-    py::class_<DiagonalRHFFockMatrixObjective<double>> py_QCMethodDiagonalRHFFockMatrixObjective_d {module, "QCMethodDiagonalRHFFockMatrixObjective_d", "The (real) RHF diagonal Fock matrix objective."};
+    py::class_<DiagonalRHFFockMatrixObjective<double>> py_DiagonalRHFFockMatrixObjective_d {module, "DiagonalRHFFockMatrixObjective_d", "The (real) RHF diagonal Fock matrix objective."};
 
-    bindRHFSCFObjectiveInterface(py_QCMethodDiagonalRHFFockMatrixObjective_d);
+    bindRHFSCFObjectiveInterface(py_DiagonalRHFFockMatrixObjective_d);
 
 
     // Provide Python bindings for complex-valued RHF objective.
-    py::class_<DiagonalRHFFockMatrixObjective<complex>> py_QCMethodDiagonalRHFFockMatrixObjective_cd {module, "QCMethodDiagonalRHFFockMatrixObjective_cd", "The (complex) RHF diagonal Fock matrix objective."};
+    py::class_<DiagonalRHFFockMatrixObjective<complex>> py_DiagonalRHFFockMatrixObjective_cd {module, "DiagonalRHFFockMatrixObjective_cd", "The (complex) RHF diagonal Fock matrix objective."};
 
-    bindRHFSCFObjectiveInterface(py_QCMethodDiagonalRHFFockMatrixObjective_cd);
+    bindRHFSCFObjectiveInterface(py_DiagonalRHFFockMatrixObjective_cd);
 }
 
 
