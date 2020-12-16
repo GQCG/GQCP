@@ -117,6 +117,14 @@ void bindRHFSCFEnvironments(py::module& module) {
     // Provide bindings for complex-valued RHF SCF environments.
     py::class_<RHFSCFEnvironment<complex>> py_RHFSCFEnvironment_cd {module, "RHFSCFEnvironment_cd", "An algorithm environment that can be used with complex-valued RHF SCF solvers."};
 
+    py_RHFSCFEnvironment_cd
+        .def_static(
+            "WithCoreGuessMadeComplex",
+            [](const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S) {
+                return RHFSCFEnvironment<Scalar>::WithCoreGuessMadeComplex(N, sq_hamiltonian, S);
+            },
+            "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.");
+
     bindQCMethodRHFSCFEnvironmentInterface(py_RHFSCFEnvironment_cd);
     bindQCMethodHartreeFockSCFEnvironmentInterface(py_RHFSCFEnvironment_cd);
 }

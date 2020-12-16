@@ -127,6 +127,42 @@ public:
 
         return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial);
     }
+
+
+    /**
+     *  Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     * 
+     *  @param N_alpha                  The number of alpha electrons (the number of occupied alpha-spin-orbitals).
+     *  @param N_beta                   The number of beta electrons (the number of occupied beta-spin-orbitals).
+     *  @param sq_hamiltonian           The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a USpinOrbitalBasis.
+     *  @param S                        The overlap operator (of both scalar (AO) bases).
+     */
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, complex>::value, UHFSCFEnvironment<complex>> WithCoreGuessMadeComplex(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) {
+
+        const auto& H_core = sq_hamiltonian.core().parameters();  // In AO basis.
+
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_a {H_core.alpha().parameters(), S.alpha().parameters()};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_b {H_core.beta().parameters(), S.beta().parameters()};
+        auto C_initial_a {generalized_eigensolver_a.eigenvectors()};
+        auto C_initial_b {generalized_eigensolver_b.eigenvectors()};
+
+        const complex x(0, 0.1);
+
+        for (size_t i = 0; i < C_initial.cols(); i++) {
+            C_initial_a(0, i) += x;
+            C_initial_b(0, i) += x;
+        }
+        for (size_t j = 0; j < C_initial.rows(); j++) {
+            C_initial_a(j, 0) -= x;
+            C_initial_b(j, 0) -= x;
+        }
+
+        const UTransformation<Scalar> C_initial_complex {C_initial_a, C_initial_b};
+
+        return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial_complex);
+    }
 };
 
 

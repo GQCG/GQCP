@@ -137,6 +137,14 @@ void bindUHFSCFEnvironments(py::module& module) {
     // Provide bindings for complex-valued UHF SCF environments.
     py::class_<UHFSCFEnvironment<complex>> py_UHFSCFEnvironment_cd {module, "UHFSCFEnvironment_cd", "An algorithm environment that can be used with complex-valued UHF SCF solvers."};
 
+    py_UHFSCFEnvironment_cd
+        .def_static(
+            "WithCoreGuessMadeComplex",
+            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) {
+                return UHFSCFEnvironment<Scalar>::WithCoreGuessMadeComplex(N_alpha, N_beta, sq_hamiltonian, S);
+            },
+            "Initialize an UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements");
+
     bindQCMethodUHFSCFEnvironmentInterface(py_UHFSCFEnvironment_cd);
     bindQCMethodHartreeFockSCFEnvironmentInterface(py_UHFSCFEnvironment_cd);
 }

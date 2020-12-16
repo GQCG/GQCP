@@ -131,7 +131,7 @@ public:
         }
 
         const GTransformation<Scalar> C_initial_complex {C_initial};
-        std::cout << C_initial_complex.matrix() << std::endl;
+
         return GHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial_complex);
     }
 };

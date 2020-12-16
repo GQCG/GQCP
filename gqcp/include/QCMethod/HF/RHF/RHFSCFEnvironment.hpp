@@ -23,6 +23,7 @@
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <Eigen/Dense>
 
@@ -107,6 +108,37 @@ public:
         const RTransformation<Scalar> C_initial {generalized_eigensolver.eigenvectors()};
 
         return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
+    }
+
+
+    /**
+     *  Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     * 
+     *  @param N                    The total number of electrons.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a RSpinOrbitalBasis.
+     *  @param S                    The overlap operator (of both scalar (AO) bases).
+     */
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, complex>::value, RHFSCFEnvironment<complex>> WithCoreGuessMadeComplex(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S) {
+
+        const auto& H_core = sq_hamiltonian.core().parameters();  // In AO basis.
+
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S.parameters()};
+        auto C_initial {generalized_eigensolver.eigenvectors()};
+
+        const complex x(0, 0.1);
+
+        for (size_t i = 0; i < C_initial.cols(); i++) {
+            C_initial(0, i) += x;
+        }
+        for (size_t j = 0; j < C_initial.rows(); j++) {
+            C_initial(j, 0) -= x;
+        }
+
+        const RTransformation<Scalar> C_initial_complex {C_initial};
+
+        return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial_complex);
     }
 };
 
