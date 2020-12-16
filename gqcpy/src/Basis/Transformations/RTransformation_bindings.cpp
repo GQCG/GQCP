@@ -37,11 +37,16 @@ using namespace GQCP;
 void bindRTransformation(py::module& module) {
 
     // Define the Python class for `RTransformation_d`.
-    py::class_<RTransformation<double>> py_RTransformation_d {module, "RTransformation_d", "A 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals."};
-
+    py::class_<RTransformation<double>> py_RTransformation_d {module, "RTransformation_d", "A (real)'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals."};
 
     // Expose the `SimpleTransformation` API to the Python class.
     bindSimpleTransformationInterface(py_RTransformation_d);
+
+    // Define the Python class for `RTransformation_cd`.
+    py::class_<RTransformation<complex>> py_RTransformation_cd {module, "RTransformation_cd", "A (complex) 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals."};
+
+    // Expose the `SimpleTransformation` API to the Python class.
+    bindSimpleTransformationInterface(py_RTransformation_cd);
 }
 
 

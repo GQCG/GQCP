@@ -38,7 +38,7 @@ using namespace GQCP;
  */
 void bindUTransformation(py::module& module) {
 
-    // Define the Python class for `UTransformation`.
+    // Define the Python class for `UTransformation_d`.
     py::class_<UTransformation<double>> py_UTransformation_d {module, "UTransformation_d", "A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases."};
 
     // Expose the `SpinResolvedBase` API to Python.
@@ -49,6 +49,18 @@ void bindUTransformation(py::module& module) {
 
     // Add some APIs related to operations on `BasisTransformable` objects.
     bindBasisTransformableOperationsInterface(py_UTransformation_d);
+
+    // Define the Python class for `UTransformation_cd`.
+    py::class_<UTransformation<complex>> py_UTransformation_cd {module, "UTransformation_cd", "A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases."};
+
+    // Expose the `SpinResolvedBase` API to Python.
+    bindSpinResolvedBaseInterface(py_UTransformation_cd);
+
+    // Expose the `BasisTransformable` API to Python.
+    bindBasisTransformableInterface(py_UTransformation_cd);
+
+    // Add some APIs related to operations on `BasisTransformable` objects.
+    bindBasisTransformableOperationsInterface(py_UTransformation_cd);
 }
 
 
