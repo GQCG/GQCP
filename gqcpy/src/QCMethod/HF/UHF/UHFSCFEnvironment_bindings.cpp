@@ -140,15 +140,15 @@ void bindUHFSCFEnvironments(py::module& module) {
     py_UHFSCFEnvironment_cd
         .def_static(
             "WithCoreGuessMadeComplex",
-            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) {
-                return UHFSCFEnvironment<Scalar>::WithCoreGuessMadeComplex(N_alpha, N_beta, sq_hamiltonian, S);
+            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<complex>& sq_hamiltonian, const ScalarUSQOneElectronOperator<complex>& S) {
+                return UHFSCFEnvironment<complex>::WithCoreGuessMadeComplex(N_alpha, N_beta, sq_hamiltonian, S);
             },
             "Initialize an UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements")
 
         .def_static(
             "WithCoreGuessMadeComplex",
-            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
-                return UHFSCFEnvironment<Scalar>::WithCoreGuessMadeComplex(N_alpha, N_beta, sq_hamiltonian, S, transformation_function);
+            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<complex>& sq_hamiltonian, const ScalarUSQOneElectronOperator<complex>& S, const std::function<Eigen::Matrix<complex, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<complex, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
+                return UHFSCFEnvironment<complex>::WithCoreGuessMadeComplex(N_alpha, N_beta, sq_hamiltonian, S, transformation_function);
             },
             "Initialize an UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently using a given transformation function to transform it into a complex valued matrix.");
 

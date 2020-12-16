@@ -140,7 +140,7 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, complex>::value, UHFSCFEnvironment<complex>> WithCoreGuessMadeComplex(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();  // In AO basis.
+        const auto& H_core = sq_hamiltonian.core();  // In AO basis.
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_a {H_core.alpha().parameters(), S.alpha().parameters()};
@@ -150,16 +150,16 @@ public:
 
         const complex x(0, 0.1);
 
-        for (size_t i = 0; i < C_initial.cols(); i++) {
+        for (size_t i = 0; i < C_initial_a.cols(); i++) {
             C_initial_a(0, i) += x;
             C_initial_b(0, i) += x;
         }
-        for (size_t j = 0; j < C_initial.rows(); j++) {
+        for (size_t j = 0; j < C_initial_b.rows(); j++) {
             C_initial_a(j, 0) -= x;
             C_initial_b(j, 0) -= x;
         }
 
-        const UTransformation<Scalar> C_initial_complex {C_initial_a, C_initial_b};
+        const UTransformation<Scalar> C_initial_complex {UTransformationComponent<Scalar> {C_initial_a}, UTransformationComponent<Scalar> {C_initial_b}};
 
         return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial_complex);
     }
@@ -177,7 +177,7 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, complex>::value, UHFSCFEnvironment<complex>> WithCoreGuessMadeComplex(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();  // In AO basis.
+        const auto& H_core = sq_hamiltonian.core();  // In AO basis.
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_a {H_core.alpha().parameters(), S.alpha().parameters()};
@@ -185,7 +185,7 @@ public:
         auto C_initial_a {generalized_eigensolver_a.eigenvectors()};
         auto C_initial_b {generalized_eigensolver_b.eigenvectors()};
 
-        const UTransformation<Scalar> C_initial_complex {transformation_function(C_initial_a), transformation_function(C_initial_b)};
+        const UTransformation<Scalar> C_initial_complex {UTransformationComponent<Scalar> {transformation_function(C_initial_a)}, UTransformationComponent<Scalar> {transformation_function(C_initial_b)}};
 
         return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial_complex);
     }
