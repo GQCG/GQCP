@@ -123,7 +123,14 @@ void bindRHFSCFEnvironments(py::module& module) {
             [](const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S) {
                 return RHFSCFEnvironment<Scalar>::WithCoreGuessMadeComplex(N, sq_hamiltonian, S);
             },
-            "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.");
+            "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.")
+
+        .def_static(
+            "WithCoreGuessMadeComplex",
+            [](const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
+                return RHFSCFEnvironment<Scalar>::WithCoreGuessMadeComplex(N, sq_hamiltonian, S, transformation_function);
+            },
+            "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently using a given transformation function to transform it into a complex valued matrix.");
 
     bindQCMethodRHFSCFEnvironmentInterface(py_RHFSCFEnvironment_cd);
     bindQCMethodHartreeFockSCFEnvironmentInterface(py_RHFSCFEnvironment_cd);

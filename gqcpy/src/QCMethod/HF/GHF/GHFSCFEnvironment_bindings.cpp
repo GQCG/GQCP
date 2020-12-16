@@ -124,7 +124,14 @@ void bindGHFSCFEnvironments(py::module& module) {
             [](const size_t N, const GSQHamiltonian<complex>& hamiltonian, const ScalarGSQOneElectronOperator<complex>& S) {
                 return GHFSCFEnvironment<complex>::WithCoreGuessMadeComplex(N, hamiltonian, S);
             },
-            "Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.");
+            "Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.")
+
+        .def_static(
+            "WithCoreGuessMadeComplex",
+            [](const size_t N, const GSQHamiltonian<complex>& hamiltonian, const ScalarGSQOneElectronOperator<complex>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
+                return GHFSCFEnvironment<complex>::WithCoreGuessMadeComplex(N, hamiltonian, S, transformation_function);
+            },
+            "Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently using a given transformation function to transform it into a complex valued matrix.");
 
     bindQCMethodGHFSCFEnvironmentInterface(py_GHFSCFEnvironment_cd);
     bindQCMethodHartreeFockSCFEnvironmentInterface(py_GHFSCFEnvironment_cd);
