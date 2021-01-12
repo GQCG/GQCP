@@ -22,33 +22,28 @@
 #include "Mathematical/Representation/Tensor.hpp"
 
 
-BOOST_AUTO_TEST_CASE(constructor_assignment) {
-
-    // A small check to see if the interface of the constructor and assignment operator works as expected
-
-    Eigen::Tensor<double, 3> A {2, 2, 2};
-    Eigen::Tensor<double, 3> B {2, 2, 2};
-
-    GQCP::Tensor<double, 3> T1 {A + B};
-    GQCP::Tensor<double, 3> T2 = 2 * B;
-}
-
-
+/**
+ *  Check if `hasEqualDimensionsAs` is correctly implemented.
+ */
 BOOST_AUTO_TEST_CASE(hasEqualDimensionsAs) {
 
-    GQCP::Tensor<double, 4> T1 {1, 2, 3, 4};
-    GQCP::Tensor<double, 4> T2 {1, 2, 3, 4};
-    GQCP::Tensor<double, 4> T3 {2, 2, 3, 4};
+    const GQCP::Tensor<double, 4> T1 {1, 2, 3, 4};
+    const GQCP::Tensor<double, 4> T2 {1, 2, 3, 4};
+    const GQCP::Tensor<double, 4> T3 {2, 2, 3, 4};
 
     BOOST_CHECK(T1.hasEqualDimensionsAs(T2));
     BOOST_CHECK(!T1.hasEqualDimensionsAs(T3));
 }
 
 
+/**
+ *  Check if the `FromBlock` named constructor works as expected.
+ */
 BOOST_AUTO_TEST_CASE(FromBlock) {
 
-    // Create an example tensor
-    long dim1 = 3;
+    const long dim1 = 3;
+
+    // Create an example tensor.
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -60,10 +55,10 @@ BOOST_AUTO_TEST_CASE(FromBlock) {
         }
     }
 
-    // Create subtensor and check with manual reference
+    // Create subtensor and check with manual reference.
     auto T2 = GQCP::Tensor<double, 4>::FromBlock(T1, 1, 1, 1, 1);
 
-    long dim2 = 2;
+    const long dim2 = 2;
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
             for (size_t k = 0; k < dim2; k++) {
@@ -76,34 +71,40 @@ BOOST_AUTO_TEST_CASE(FromBlock) {
 }
 
 
+/**
+ *  Check if `isApprox` handles errors correctly.
+ */
 BOOST_AUTO_TEST_CASE(isApprox_throws) {
 
-    // Check for a throw if the dimensions aren't compatible
-    GQCP::Tensor<double, 4> M {2, 2, 2, 2};   // don't need to set them to zeros to check dimensions
-    GQCP::Tensor<double, 4> T1 {2, 2, 3, 2};  // don't need to set them to zeros to check dimensions
+    // Check for a throw if the dimensions aren't compatible.
+    GQCP::Tensor<double, 4> M {2, 2, 2, 2};
+    GQCP::Tensor<double, 4> T1 {2, 2, 3, 2};
     BOOST_CHECK_THROW(M.isApprox(T1), std::invalid_argument);
 
 
-    // Check for no throw if correct tensors are given
+    // Check for no throw if correct tensors are given.
     GQCP::Tensor<double, 4> T2 {2, 2, 2, 2};
     BOOST_CHECK_NO_THROW(M.isApprox(T2));
 }
 
 
+/**
+ *  Check if `isApprox` behaves as expected.
+ */
 BOOST_AUTO_TEST_CASE(isApprox_example) {
 
     GQCP::Tensor<double, 4> M {2, 2, 2, 2};
     GQCP::Tensor<double, 4> T {2, 2, 2, 2};
 
 
-    // Fill the two compatible tensors with random data and check if they're not equal
+    // Fill the two compatible tensors with random data and check if they're not equal.
     M.setRandom();
     T.setRandom();
 
-    BOOST_CHECK(!M.isApprox(T));  // probability of random tensors being equal approaches zero
+    BOOST_CHECK(!M.isApprox(T));  // The probability of random tensors being equal approaches zero.
 
 
-    // Fill the two compatible tensors with the same data and check if they're equal
+    // Fill the two compatible tensors with the same data and check if they're equal.
     M.setZero();
     T.setZero();
     M(0, 1, 0, 0) = 0.5;
@@ -113,6 +114,9 @@ BOOST_AUTO_TEST_CASE(isApprox_example) {
 }
 
 
+/**
+ *  Check if the `print` API is available.
+ */
 BOOST_AUTO_TEST_CASE(print) {
 
     GQCP::Tensor<double, 4> T {2, 2, 2, 2};
@@ -128,9 +132,12 @@ BOOST_AUTO_TEST_CASE(print) {
 }
 
 
+/**
+ *  Check if the pair-wise reshaping behaves as expected.
+ */
 BOOST_AUTO_TEST_CASE(pairWiseReduced) {
 
-    // Create an example 2x2x2x2 tensor
+    // Create an example 2x2x2x2 tensor.
     GQCP::Tensor<double, 4> T1 {2, 2, 2, 2};
 
     for (size_t i = 0; i < 2; i++) {
@@ -143,7 +150,7 @@ BOOST_AUTO_TEST_CASE(pairWiseReduced) {
         }
     }
 
-    // Test default pairWiseReduced behavior
+    // Test the default `pairWiseReduced` behavior on the 2x2x2x2 tensor.
     GQCP::MatrixX<double> M1_ref1 {4, 4};
     // clang-format off
     M1_ref1 <<  0,  2,  1,  3,
@@ -155,7 +162,7 @@ BOOST_AUTO_TEST_CASE(pairWiseReduced) {
     BOOST_CHECK(M1_ref1.isApprox(T1.pairWiseReduced(), 1.0e-12));
 
 
-    // Test non-default pairWiseReduced behavior
+    // Test non-default `pairWiseReduced` behavior on the 2x2x2x2 tensor.
     GQCP::MatrixX<double> M1_ref2 {2, 4};
     // clang-format off
     M1_ref2 <<  4,  6,  5,  7,
@@ -166,7 +173,7 @@ BOOST_AUTO_TEST_CASE(pairWiseReduced) {
     std::cout << T1.pairWiseReduced(0, 1, 0, 0) << std::endl;
 
 
-    // Create an example 3x3x3x3 tensor
+    // Create an example 3x3x3x3 tensor.
     GQCP::Tensor<double, 4> T2 {3, 3, 3, 3};
     for (size_t i = 0; i < 3; i++) {
         for (size_t j = 0; j < 3; j++) {
@@ -191,14 +198,18 @@ BOOST_AUTO_TEST_CASE(pairWiseReduced) {
               72, 75, 78, 73, 76, 79, 74, 77, 80;
     // clang-format on
 
+    // Check the default behavior of the 3x3x3x3 tensor.
     BOOST_CHECK(M2_ref.isApprox(T2.pairWiseReduced(), 1.0e-12));
 }
 
 
+/**
+ *  Check if the `addBlock` API works as expected for adding tensors.
+ */
 BOOST_AUTO_TEST_CASE(addBlock_tensor) {
 
-    // Create an example 3x3x3x3 tensor
-    long dim1 = 3;
+    // Create an example 3x3x3x3 tensor.
+    const long dim1 = 3;
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -210,8 +221,8 @@ BOOST_AUTO_TEST_CASE(addBlock_tensor) {
         }
     }
 
-    // Create an example 2x2x2x2 tensor
-    long dim2 = 2;
+    // Create an example 2x2x2x2 tensor.
+    const long dim2 = 2;
     GQCP::Tensor<double, 4> T2 {dim2, dim2, dim2, dim2};
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -223,7 +234,7 @@ BOOST_AUTO_TEST_CASE(addBlock_tensor) {
         }
     }
 
-    // Add the smaller tensor and test if addition went correctly
+    // Add the smaller tensor as a block to the larger tensor and test if the addition went correctly.
     T1.addBlock(T2, 0, 0, 0, 0);
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -237,10 +248,13 @@ BOOST_AUTO_TEST_CASE(addBlock_tensor) {
 }
 
 
+/**
+ *  Check if the `addBlock` API works as expected for adding matrices.
+ */
 BOOST_AUTO_TEST_CASE(addBlock_matrix) {
 
-    // Create an example 3x3x3x3 tensor
-    long dim1 = 3;
+    // Create an example 3x3x3x3 tensor.
+    const long dim1 = 3;
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -252,8 +266,8 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
         }
     }
 
-    // Create an example 2x2 matrix
-    size_t dim2 = 2;
+    // Create an example 2x2 matrix.
+    const size_t dim2 = 2;
     GQCP::MatrixX<double> M = GQCP::MatrixX<double>::Zero(dim2, dim2);
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -261,11 +275,11 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
         }
     }
 
-    // Copy the tensor
+    // Copy the tensors in order to support two test cases.
     auto T2 = T1;
     auto T3 = T1;
 
-    // Add the matrix to the tensor and test if addition went correctly
+    // Add the matrix to one block of the the tensor and test if the addition went correctly.
     T2.addBlock<0, 1>(M, 0, 0, 0, 0);
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -273,7 +287,7 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
         }
     }
 
-    // Add the matrix to the tensor and test if addition went correctly
+    // Add the matrix to another block of the tensor and test if the addition went correctly.
     T3.addBlock<2, 1>(M, 0, 0, 0, 0);
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -282,13 +296,14 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
     }
 }
 
+
 /**
  *  Check if the einsum API for contraction over a single index works as expected.
  */
 BOOST_AUTO_TEST_CASE(einsum_one_index) {
 
     // Create an example rank 4 tensor.
-    long dim1 = 2;
+    const long dim1 = 2;
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -301,7 +316,7 @@ BOOST_AUTO_TEST_CASE(einsum_one_index) {
     }
 
     // Create an example Rank 2 tensor.
-    long dim2 = 2;
+    const long dim2 = 2;
     GQCP::Tensor<double, 2> T2 {dim2, dim2};
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -338,11 +353,13 @@ BOOST_AUTO_TEST_CASE(einsum_one_index) {
     reference_tensor.addBlock<2, 3>(reference_block_2, 1, 0, 0, 0);
     reference_tensor.addBlock<2, 3>(reference_block_2, 1, 1, 0, 0);
 
+    // Check if the einsum API works as expected for the contraction over one axis.
     const auto output = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
     const auto output2 = T1.einsum<1>("ijkl,ia->jkla", T2);
 
     BOOST_CHECK(reference_tensor.isApprox(output, 1e-12));
     BOOST_CHECK(reference_tensor.isApprox(output2, 1e-12));
+
 
     // Test the same for contraction with a matrix.
     // Create a matrix containing the same values as T2.
@@ -357,13 +374,14 @@ BOOST_AUTO_TEST_CASE(einsum_one_index) {
     BOOST_CHECK(reference_tensor.isApprox(output3, 1e-12));
 }
 
+
 /**
  *  Check if the einsum API for contraction over two indices works as expected.
  */
 BOOST_AUTO_TEST_CASE(einsum_two_indices) {
 
     // Create an example rank 4 tensor.
-    long dim1 = 2;
+    const long dim1 = 2;
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -376,7 +394,7 @@ BOOST_AUTO_TEST_CASE(einsum_two_indices) {
     }
 
     // Create an example Rank 2 tensor.
-    long dim2 = 2;
+    const long dim2 = 2;
     GQCP::Tensor<double, 2> T2 {dim2, dim2};
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -392,11 +410,14 @@ BOOST_AUTO_TEST_CASE(einsum_two_indices) {
                   131,  155;
     // clang-format on
 
+
+    // Check if the einsum API works as expected for the contraction over two axes.
     const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
     const auto output2 = T1.einsum<2>("ijkl,jk->il", T2);
 
     BOOST_CHECK(reference.isApprox(output.asMatrix(), 1.0e-12));
     BOOST_CHECK(reference.isApprox(output2.asMatrix(), 1e-12));
+
 
     // Test the same for the matrix contraction.
     // Create a matrix containing the same values as T2.
@@ -411,13 +432,14 @@ BOOST_AUTO_TEST_CASE(einsum_two_indices) {
     BOOST_CHECK(reference.isApprox(output3.asMatrix(), 1e-12));
 }
 
+
 /**
  *  Check if the einsum API for contraction over all indices works as expected.
  */
 BOOST_AUTO_TEST_CASE(einsum_all_indices) {
 
     // Create an example rank 4 tensor.
-    long dim1 = 2;
+    const long dim1 = 2;
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -430,7 +452,7 @@ BOOST_AUTO_TEST_CASE(einsum_all_indices) {
     }
 
     // Create an example Rank 2 tensor.
-    long dim2 = 2;
+    const long dim2 = 2;
     GQCP::Tensor<double, 2> T2 {dim2, dim2};
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
@@ -446,6 +468,7 @@ BOOST_AUTO_TEST_CASE(einsum_all_indices) {
         }
     }
 
+
     // We test both einsum notations and the contraction of a tensor with a matrix.
     // Reference values were calculated with numpy.einsum().
     const auto output = T1.einsum<4>(T1, "ijkl", "ijkl", "");
@@ -456,6 +479,7 @@ BOOST_AUTO_TEST_CASE(einsum_all_indices) {
     BOOST_CHECK_EQUAL(output2(0), 1096);
     BOOST_CHECK_EQUAL(output3(0), 62);
 }
+
 
 /**
  *  Test the numpy-like reshape method and check whether it behaves correctly.
@@ -488,6 +512,7 @@ BOOST_AUTO_TEST_CASE(reshape_square) {
     // Check whether the reshape API behaves as expected and turns the tensor into the reference matrix.
     BOOST_CHECK(reference.isApprox(T1.reshape(4, 4), 1e-12));
 }
+
 
 /**
  *  Test the numpy-like reshape method and check whether it behaves correctly for rectangular matrices.

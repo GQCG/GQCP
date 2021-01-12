@@ -22,96 +22,113 @@
 #include "Mathematical/Representation/Matrix.hpp"
 
 
-BOOST_AUTO_TEST_CASE(constructor_assignment) {
-
-    // A small check to see if the interface of the constructor and assignment operator works as expected
-
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(3, 3);
-    GQCP::MatrixX<double> B = GQCP::MatrixX<double>::Random(3, 3);
-
-    GQCP::MatrixX<double> M1 {A * B};
-    GQCP::MatrixX<double> M2 = A + B;
-    GQCP::MatrixX<double> M3 = 2 * A;
-}
-
-
+/**
+ *  Test the named constructor `FromFile` for VectorX.
+ */
 BOOST_AUTO_TEST_CASE(Vector_FromFile) {
 
-    size_t rows = 4;
+    const size_t rows = 4;
 
-    // Check that there's an error when a wrong path is supplied
-    BOOST_CHECK_THROW(GQCP::VectorX<double>::FromFile("data/small_vector.dat", rows), std::runtime_error);  // should be 'datA'
+    // Check that there's an error when a wrong path is supplied.
+    BOOST_CHECK_THROW(GQCP::VectorX<double>::FromFile("data/small_vector.dat", rows), std::runtime_error);  // Should be 'datA'.
 
 
-    // Check that there's no error when a correct path is supplied
+    // Check that there's no error when a correct path is supplied.
     BOOST_CHECK_NO_THROW(GQCP::VectorX<double>::FromFile("data/small_vector.data", rows));
 
 
-    // Check that there's an error when trying to read in tensor data into a vector
+    // Check that there's an error when trying to read in tensor data into a vector.
     BOOST_CHECK_THROW(GQCP::VectorX<double>::FromFile("ref_data/h2o_sto-3g_two_electron_horton.data", rows), std::runtime_error);
 
 
-    // Test the read function on a small example
+    // Test the read function on a small example.
     GQCP::VectorX<double> v_ref {rows};
     v_ref << 1.5, -0.2, 0.002, 8.3314;
 
-    auto v = GQCP::VectorX<double>::FromFile("data/small_vector.data", rows);
+    const auto v = GQCP::VectorX<double>::FromFile("data/small_vector.data", rows);
 
     BOOST_CHECK(v.isApprox(v_ref, 1.0e-15));
 }
 
 
+/**
+ *  Test the named constructor `FromFile` for MatrixX.
+ */
 BOOST_AUTO_TEST_CASE(Matrix_FromFile) {
 
     size_t rows = 2;
     size_t cols = 2;
 
-    // Check that there's an error when a wrong path is supplied
-    BOOST_CHECK_THROW(GQCP::Matrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.dat", rows, cols), std::runtime_error);  // should be 'datA'
+    // Check that there's an error when a wrong path is supplied.
+    BOOST_CHECK_THROW(GQCP::MatrixX<double>::FromFile("data/h2o_sto-3g_kinetic_horton.dat", rows, cols), std::runtime_error);  // Should be 'datA'.
 
 
-    // Check that there's no error when a correct path is supplied
-    BOOST_CHECK_NO_THROW(GQCP::Matrix<double>::FromFile("data/small_one_ints.data", rows, cols));
+    // Check that there's no error when a correct path is supplied.
+    BOOST_CHECK_NO_THROW(GQCP::MatrixX<double>::FromFile("data/small_one_ints.data", rows, cols));
 
 
-    // Check that there's an error when trying to read in tensor data into a matrix
-    BOOST_CHECK_THROW(GQCP::Matrix<double>::FromFile("data/h2o_sto-3g_two_electron_horton.data", rows, cols), std::runtime_error);  // can't read in two-electron data in a matrix
+    // Check that there's an error when trying to read in tensor data into a matrix.
+    BOOST_CHECK_THROW(GQCP::MatrixX<double>::FromFile("data/h2o_sto-3g_two_electron_horton.data", rows, cols), std::runtime_error);  // Can't read in two-electron data in a matrix.
 
 
-    // Test the read function on a small example mimicking the one-electron integrals
+    // Test the read function on a small example mimicking the one-electron integrals.
     GQCP::MatrixX<double> M_ref {rows, cols};
     // clang-format off
     M_ref << 2.1,  1.1,
              1.1, -3.4;
     // clang-format on
 
-    auto M = GQCP::Matrix<double>::FromFile("data/small_one_ints.data", rows, cols);
+    const auto M = GQCP::MatrixX<double>::FromFile("data/small_one_ints.data", rows, cols);
 
     BOOST_CHECK(M.isApprox(M_ref, 1.0e-8));
 }
 
 
+/**
+ *  Check a Vector's `isEqualEigenvectorAs` method.
+ */
 BOOST_AUTO_TEST_CASE(isEqualEigenvectorAs) {
 
     // Test isEqualEigenvectorAs with an example.
-    GQCP::Vector<double, 3> a {2, 3, 1};
-    GQCP::Vector<double, 3> b {2, 3, 1};
-    GQCP::Vector<double, 3> c {-2, -3, -1};
-    GQCP::Vector<double, 3> d {2, 3, 0};
-
+    const GQCP::Vector<double, 3> a {2, 3, 1};
+    const GQCP::Vector<double, 3> b {2, 3, 1};
+    const GQCP::Vector<double, 3> c {-2, -3, -1};
+    const GQCP::Vector<double, 3> d {2, 3, 0};
 
     BOOST_CHECK(a.isEqualEigenvectorAs(b, 1.0e-6));
-    BOOST_CHECK(a.isEqualEigenvectorAs(c, 1.0e-6));
-    BOOST_CHECK(b.isEqualEigenvectorAs(c, 1.0e-6));
+    BOOST_CHECK(a.isEqualEigenvectorAs(c, 1.0e-6));  // Eigenvectors are equal up to their sign.
+    BOOST_CHECK(b.isEqualEigenvectorAs(c, 1.0e-6));  // Eigenvectors are equal up to their sign.
 
     BOOST_CHECK(!a.isEqualEigenvectorAs(d, 1.0e-6));
     BOOST_CHECK(!c.isEqualEigenvectorAs(d, 1.0e-6));
 }
 
 
+/**
+ *  Check the argument parsing for `hasEqualSetsOfEigenvectorsAs`.
+ */
+BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_throws) {
+
+    // Check for throws if the dimensions aren't compatible.
+    const GQCP::MatrixX<double> C1 {3, 3};
+    const GQCP::MatrixX<double> C2 {3, 2};
+
+    BOOST_CHECK_THROW(C1.hasEqualSetsOfEigenvectorsAs(C2, 1.0e-6), std::invalid_argument);
+
+
+    // Check for no throw if the dimensions are compatible
+    const GQCP::MatrixX<double> C3 {3, 3};
+
+    BOOST_CHECK_NO_THROW(C1.hasEqualSetsOfEigenvectorsAs(C3, 1.0e-6));
+}
+
+
+/**
+ *  Check a Matrix' `hasEqualSetsOfEigenvectorsAs` method.
+ */
 BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_example) {
 
-    // Test hasEqualSetsOfEigenvectorsAs with an example
+    // Test hasEqualSetsOfEigenvectorsAs with an example.
     GQCP::MatrixX<double> eigenvectors1 {2, 2};
     GQCP::MatrixX<double> eigenvectors2 {2, 2};
     GQCP::MatrixX<double> eigenvectors3 {2, 2};
@@ -137,25 +154,13 @@ BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_example) {
     BOOST_CHECK(!eigenvectors1.hasEqualSetsOfEigenvectorsAs(eigenvectors4, 1.0e-6));
 }
 
-BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_throws) {
 
-    // Check for throws if the dimensions aren't compatible.
-    GQCP::MatrixX<double> C1 {3, 3};
-    GQCP::MatrixX<double> C2 {3, 2};
-
-    BOOST_CHECK_THROW(C1.hasEqualSetsOfEigenvectorsAs(C2, 1.0e-6), std::invalid_argument);
-
-
-    // Check for no throw if the dimensions are compatible
-    GQCP::MatrixX<double> C3 {3, 3};
-
-    BOOST_CHECK_NO_THROW(C1.hasEqualSetsOfEigenvectorsAs(C3, 1.0e-6));
-}
-
-
+/**
+ *  Check if `CartesianDirection` may be given to the call operator.
+ */
 BOOST_AUTO_TEST_CASE(operator_call_CartesianDirection) {
 
-    GQCP::Vector<size_t, 3> v {1, 2, 8};
+    const GQCP::Vector<size_t, 3> v {1, 2, 8};
 
     BOOST_CHECK(v(GQCP::CartesianDirection::x) == 1);
     BOOST_CHECK(v(GQCP::CartesianDirection::y) == 2);
@@ -163,20 +168,26 @@ BOOST_AUTO_TEST_CASE(operator_call_CartesianDirection) {
 }
 
 
+/**
+ *  Check if a `MatrixX` may be printed.
+ */
 BOOST_AUTO_TEST_CASE(print) {
 
-    GQCP::MatrixX<double> M = GQCP::MatrixX<double>::Random(2, 2);
+    const GQCP::MatrixX<double> M = GQCP::MatrixX<double>::Random(2, 2);
 
     std::ofstream file;
     file.open("print_output_stream_test.output");
 
-    M.print();  // to std::cout
-    M.print(file);
+    M.print();      // To std::cout.
+    M.print(file);  // To the given file.
 
     file.close();
 }
 
 
+/**
+ *  Check if the minor of a matrix is correctly implemented.
+ */
 BOOST_AUTO_TEST_CASE(calculateMinor) {
 
     GQCP::MatrixX<double> A {3, 4};
@@ -203,6 +214,9 @@ BOOST_AUTO_TEST_CASE(calculateMinor) {
 }
 
 
+/**
+ *  Check if pair-wise reshaping a matrix to a vector is correctly implemented.
+ */
 BOOST_AUTO_TEST_CASE(pairWiseReduced) {
 
     GQCP::MatrixX<double> M {4, 4};
@@ -214,14 +228,14 @@ BOOST_AUTO_TEST_CASE(pairWiseReduced) {
     // clang-format on
 
 
-    // Test default behavior
+    // Test default behavior.
     GQCP::VectorX<double> v_ref_1 {16};
     v_ref_1 << 0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15;
 
     BOOST_CHECK(v_ref_1.isApprox(M.pairWiseReduced(), 1.0e-12));
 
 
-    // Test non-default behavior
+    // Test non-default behavior.
     GQCP::VectorX<double> v_ref_2 {9};
     v_ref_2 << 5, 9, 13, 6, 10, 14, 7, 11, 15;
 
@@ -230,16 +244,16 @@ BOOST_AUTO_TEST_CASE(pairWiseReduced) {
 
 
 /**
- *  Check the construction of a MatrixX from a given column-major vector
+ *  Check the construction of a MatrixX from a given column-major vector.
  */
 BOOST_AUTO_TEST_CASE(FromColumnMajorVector) {
 
-    // Construct a vector that is supposed to be in column-major ordering
+    // Construct a vector that is supposed to be in column-major ordering.
     GQCP::VectorX<double> a {6};
     a << 1, 4, 2, 5, 3, 6;
 
 
-    // Initialize the reference matrix and check the result
+    // Initialize the reference matrix and check the result.
     GQCP::MatrixX<double> A_ref {2, 3};
     // clang-format off
     A_ref << 1, 2, 3,
@@ -247,22 +261,22 @@ BOOST_AUTO_TEST_CASE(FromColumnMajorVector) {
     // clang-format on
 
 
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::FromColumnMajorVector(a, 2, 3);
+    const auto A = GQCP::MatrixX<double>::FromColumnMajorVector(a, 2, 3);
     BOOST_CHECK(A.isApprox(A_ref, 1.0e-08));
 }
 
 
 /**
- *  Check the construction of a MatrixX from a given row-major vector
+ *  Check the construction of a MatrixX from a given row-major vector.
  */
 BOOST_AUTO_TEST_CASE(FromRowMajorVector) {
 
-    // Construct a vector that is supposed to be in column-major ordering
+    // Construct a vector that is supposed to be in column-major ordering.
     GQCP::VectorX<double> a {6};
     a << 1, 2, 3, 4, 5, 6;
 
 
-    // Initialize the reference matrix and check the result
+    // Initialize the reference matrix and check the result.
     GQCP::MatrixX<double> A_ref {2, 3};
     // clang-format off
     A_ref << 1, 2, 3,
