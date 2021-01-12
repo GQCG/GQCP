@@ -29,20 +29,22 @@
  */
 BOOST_AUTO_TEST_CASE(generate) {
 
-    // Create an STO-3G basisset on (a toy geometry of) H2O
-    GQCP::Nucleus h1 {1, 0.0, 0.0, 0.0};
-    GQCP::Nucleus o {8, 0.0, 0.0, 1.0};
-    GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
+    // Create an STO-3G basisset on (a toy geometry of) H2O.
+    const GQCP::Nucleus h1 {1, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus o {8, 0.0, 0.0, 1.0};
+    const GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
+    const GQCP::Molecule molecule {{h1, o, h2}};
 
-    GQCP::ShellSet<GQCP::GTOShell> ref_shellset {
+    const auto shellset = GQCP::GTOBasisSet("STO-3G").generate(molecule);
+
+
+    // Initialize the reference result and check if the generated result is correct.
+    const GQCP::ShellSet<GQCP::GTOShell> ref_shellset {
         GQCP::GTOShell(0, h1, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false),
         GQCP::GTOShell(0, o, {130.7093200, 23.8088610, 6.4436083}, {0.15432897, 0.53532814, 0.44463454}, false),
         GQCP::GTOShell(0, o, {5.0331513, 1.1695961, 0.3803890}, {-0.09996723, 0.39951283, 0.70011547}, false),
         GQCP::GTOShell(1, o, {5.0331513, 1.1695961, 0.3803890}, {0.15591627, 0.60768372, 0.39195739}, false),
         GQCP::GTOShell(0, h2, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false)};
 
-
-    GQCP::Molecule molecule {{h1, o, h2}};
-    const auto shellset = GQCP::GTOBasisSet("STO-3G").generate(molecule);
     BOOST_CHECK(ref_shellset.asVector() == shellset.asVector());
 }

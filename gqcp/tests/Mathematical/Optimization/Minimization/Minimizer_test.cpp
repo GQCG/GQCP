@@ -24,11 +24,11 @@
 
 
 /*
- *  TEST FUNCTION DEFINITIONS
+ *  MARK: Definitions for test functions
  */
 
 /**
- *  Implement a simple scalar function that returns x.x
+ *  A simple scalar function that returns x.x.
  */
 double f(const GQCP::VectorX<double>& x) {
     return x.squaredNorm();
@@ -36,7 +36,7 @@ double f(const GQCP::VectorX<double>& x) {
 
 
 /**
- *  Implement the gradient of the scalar function
+ *  The gradient of the scalar function f.
  */
 GQCP::VectorX<double> grad(const GQCP::VectorX<double>& x) {
     return 2 * x;
@@ -44,7 +44,7 @@ GQCP::VectorX<double> grad(const GQCP::VectorX<double>& x) {
 
 
 /**
- *  Implement the Hessian of the scalar function
+ *  The Hessian of the scalar function f.
  */
 GQCP::SquareMatrix<double> H(const GQCP::VectorX<double>& x) {
     return 2 * GQCP::SquareMatrix<double>::Identity(x.size());
@@ -52,16 +52,15 @@ GQCP::SquareMatrix<double> H(const GQCP::VectorX<double>& x) {
 
 
 /*
- *  BOOST UNIT TESTS
+ *  MARK: The actual unit tests.
  */
 
-
 /**
- *  Check the minimzation of the function f(x) = x.x
+ *  Check the minimzation of the function f(x) = x.x.
  */
 BOOST_AUTO_TEST_CASE(minimization_example) {
 
-    // Test that the previous implementations actually work by checking the values at x=(1,1)
+    // Test that the test function implementations are actually correct by checking the values at x=(1,1).
     GQCP::VectorX<double> x_test {2};
     x_test << 1, 1;
 
@@ -79,14 +78,14 @@ BOOST_AUTO_TEST_CASE(minimization_example) {
     BOOST_REQUIRE(H_test.isApprox(H(x_test), 1.0e-8));
 
 
-    // Do the numerical optimization and check the result
-    GQCP::VectorX<double> x0 {2};
+    // Do the numerical optimization using a Newton minimizer and check the result.
+    GQCP::VectorX<double> x0 {2};  // The initial guess.
     x0 << 4, 2;
 
-    GQCP::MinimizationEnvironment<double> minimization_environment(x0, grad, H);
+    GQCP::MinimizationEnvironment<double> minimization_environment {x0, grad, H};
     auto minimizer = GQCP::Minimizer<double>::Newton();
     minimizer.perform(minimization_environment);
     const auto& solution = minimization_environment.variables.back();
 
-    BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical minimizer of f(x) is x=(0,0)
+    BOOST_CHECK(solution.isZero(1.0e-08));  // The analytical minimizer of f(x) is x=(0,0).
 }

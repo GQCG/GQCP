@@ -24,18 +24,24 @@
 #include <Eigen/Dense>
 
 
+/**
+ *  Check if an iterative identities Hessian modifier produces a positive definite Hessian.
+ */
 BOOST_AUTO_TEST_CASE(becomes_positive_definite) {
 
-    GQCP::SquareMatrix<double> A {2};  // is an indefinite matrix: eigenvalues are approx. -1.7 and 4.7
+    // Provide an indefinite matrix. Its eigenvalues are approximately. -1.7 and 4.7
+    GQCP::SquareMatrix<double> A {2};
     // clang-format off
     A << -1.0, -2.0,
          -2.0,  4.0;
     // clang-format on
 
 
-    GQCP::IterativeIdentitiesHessianModifier hessian_modifier {};  // default values for the parameters
-    auto modified_hessian = hessian_modifier(A);
+    // Create a Hessian modifier and supply the indefinite matrix.
+    GQCP::IterativeIdentitiesHessianModifier hessian_modifier {};  // Use default values for the parameters.
+    const auto modified_hessian = hessian_modifier(A);
 
+    // Check if the modified Hessian is positive definite.
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver {modified_hessian};
-    BOOST_CHECK(solver.eigenvalues().minCoeff() > 0);  // all eigenvalues should be positive!
+    BOOST_CHECK(solver.eigenvalues().minCoeff() > 0);  // A positive definite Hessian has all positive eigenvalues!
 }

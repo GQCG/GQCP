@@ -21,9 +21,10 @@
 
 #include "Basis/Transformations/JacobiRotation.hpp"
 
-#include <iostream>
 
-
+/**
+ *  Check the constructor of JacobiRotation.
+ */
 BOOST_AUTO_TEST_CASE(JacobiRotation_constructor) {
 
     // Check if a correct constructor works.

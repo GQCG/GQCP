@@ -24,11 +24,11 @@
 
 
 /*
- *  TEST FUNCTION DEFINITIONS
+ *  MARK: Definitions for test functions
  */
 
 /**
- *  Implement a simple vector function that returns (x.x, 2x.x)
+ *  A simple vector function that returns (x.x, 2x.x).
  */
 GQCP::VectorX<double> f(const GQCP::VectorX<double>& x) {
 
@@ -44,7 +44,7 @@ GQCP::VectorX<double> f(const GQCP::VectorX<double>& x) {
 
 
 /**
- *  Implement the Jacobian of the previous function
+ *  The Jacobian of the vector function f.
  */
 GQCP::SquareMatrix<double> J(const GQCP::VectorX<double>& x) {
 
@@ -60,7 +60,7 @@ GQCP::SquareMatrix<double> J(const GQCP::VectorX<double>& x) {
 
 
 /*
- *  BOOST UNIT TESTS
+ *  MARK: The actual unit tests.
  */
 
 /**
@@ -68,7 +68,7 @@ GQCP::SquareMatrix<double> J(const GQCP::VectorX<double>& x) {
  */
 BOOST_AUTO_TEST_CASE(nl_syseq_example) {
 
-    // Test that the implementations of the toy functions actually work by checking the values at x=(1,1)
+    // Test that the test function implementations are actually correct by checking the values at x=(1,1).
     GQCP::VectorX<double> f_test {2};
     f_test << 2, 4;
 
@@ -85,8 +85,8 @@ BOOST_AUTO_TEST_CASE(nl_syseq_example) {
     BOOST_REQUIRE(J_test.isApprox(J(x_test), 1.0e-08));
 
 
-    // Do the numerical optimization and check the result
-    GQCP::VectorX<double> x {2};
+    // Do the numerical optimization and check the result.
+    GQCP::VectorX<double> x {2};  // The initial guess.
     x << 3, 2;
 
     GQCP::NonLinearEquationEnvironment<double> non_linear_environment {x, f, J};
@@ -94,5 +94,5 @@ BOOST_AUTO_TEST_CASE(nl_syseq_example) {
     non_linear_solver.perform(non_linear_environment);
     const auto& solution = non_linear_environment.variables.back();
 
-    BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical solution of f(x) = (0,0) is x=(0,0)
+    BOOST_CHECK(solution.isZero(1.0e-08));  // The analytical solution of f(x) = (0,0) is x=(0,0).
 }
