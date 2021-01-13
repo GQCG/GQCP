@@ -1,7 +1,7 @@
 ![GQCP](media/logo.jpg)
 
 ![Github Actions build](https://img.shields.io/github/workflow/status/GQCG/GQCP/Docker%20deploy)
-[![site](https://img.shields.io/badge/home-GQCP-5077AB.svg)](https://gqcg.github.io/GQCP/)
+[![site](https://img.shields.io/badge/home-GQCP-5077AB.svg)](https://gqcg.github.io/GQCP/landing-page.html)
 [![docs](https://img.shields.io/badge/docs-latest-5077AB.svg?logo=read%20the%20docs)](https://gqcg.github.io/GQCP/docs/documentation)
 [![obtain latest](https://img.shields.io/badge/Docker-latest-green.svg)](https://hub.docker.com/repository/docker/gqcg/gqcp)
 [![Try out with Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GQCG/GQCP/blob/develop/gqcpy/examples/Try-out-Colab.ipynb)
