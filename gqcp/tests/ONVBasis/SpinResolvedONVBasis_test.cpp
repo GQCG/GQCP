@@ -26,7 +26,7 @@
 
 
 /**
- *  Test the SpinResolvedONVBasis constructor
+ *  Test if the SpinResolvedONVBasis constructor throws when necessary.
  */
 BOOST_AUTO_TEST_CASE(ProductONVBasis_constructor) {
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(ProductONVBasis_constructor) {
 
 
 /**
- *  Check if the static SpinResolvedONVBasis basis dimension calculation is correct and if it can throw errors
+ *  Check if the static SpinResolvedONVBasis basis dimension calculation is correct and if it can throw errors.
  */
 BOOST_AUTO_TEST_CASE(ProductONVBasis_dimension) {
 
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(ProductONVBasis_dimension) {
 /**
  *  Check if the dense evaluation of a restricted one-electron operator matches between a full spin-resolved ONV basis and its 'selected' equivalent.
  * 
- *  The test system is a H_6 in an STO-3G basisset.
+ *  The test system is H_6 in an STO-3G basisset.
  */
 BOOST_AUTO_TEST_CASE(evaluate_RSQOneElectronOperator_dense) {
 
