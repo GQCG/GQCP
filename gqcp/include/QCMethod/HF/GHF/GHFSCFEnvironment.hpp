@@ -106,7 +106,7 @@ public:
     }
 
     /**
-     *  Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     *  Initialize a GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from the off-diagonal elements.
      * 
      *  @param N                    The total number of electrons.
      *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
@@ -119,9 +119,9 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S.parameters()};
-        auto C_initial {generalized_eigensolver.eigenvectors()};
+        SquareMatrix<complex> C_initial {generalized_eigensolver.eigenvectors()};
 
-        const complex x(0, 0.1);
+        const complex x {0, 0.1};
 
         for (size_t i = 0; i < C_initial.cols(); i++) {
             C_initial(0, i) += x;
@@ -137,7 +137,7 @@ public:
 
 
     /**
-     *  Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently using a given transformation function to transform it into a complex valued matrix.
+     *  Initialize a GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.
      * 
      *  @param N                            The total number of electrons.
      *  @param sq_hamiltonian               The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
