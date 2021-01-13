@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(dense) {
     const GQCP::MatrixX<double> ref_lowest_eigenvectors = self_adjoint_eigensolver.eigenvectors().topLeftCorner(dim, number_of_requested_eigenpairs);
 
     // Create eigenpairs for the reference eigenpairs.
-    const std::vector<GQCP::Eigenpair<double>> ref_eigenpairs {number_of_requested_eigenpairs};
+    std::vector<GQCP::Eigenpair<double>> ref_eigenpairs {number_of_requested_eigenpairs};
     for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {
         ref_eigenpairs[i] = GQCP::Eigenpair<double>(ref_lowest_eigenvalues(i), ref_lowest_eigenvectors.col(i));
     }
