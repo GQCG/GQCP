@@ -88,11 +88,13 @@ public:
      */
 
     /**
-     *  Initialize an GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.
+     *  Initialize a GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.
      * 
      *  @param N                    The total number of electrons.
      *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
      *  @param S                    The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
+     * 
+     *  @return A GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.
      */
     static GHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S) {
 
@@ -111,28 +113,30 @@ public:
      *  @param N                    The total number of electrons.
      *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
      *  @param S                    The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
+     * 
+     *  @return A GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from the off-diagonal elements.
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, complex>::value, GHFSCFEnvironment<complex>> WithCoreGuessMadeComplex(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S) {
+    static enable_if_t<std::is_same<Z, complex>::value, GHFSCFEnvironment<complex>> WithComplexlyTransformedCoreGuess(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();  // Spin-blocked, in AO basis.
+        // Set up the lambda function used to transform the coefficient matrix.
+        const auto transformation_function = [](SquareMatrix<complex> C_initial) {
+            // Define the complex constant used to transform the initial coefficient matrix.
+            const complex x {0, 0.1};
 
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S.parameters()};
-        SquareMatrix<complex> C_initial {generalized_eigensolver.eigenvectors()};
+            // Add/subtract the small complex value from the off-diagonal elements of the initial coefficient matrix.
+            for (size_t i = 0; i < C_initial.cols(); i++) {
+                C_initial(0, i) += x;
+            }
+            for (size_t j = 0; j < C_initial.rows(); j++) {
+                C_initial(j, 0) -= x;
+            }
 
-        const complex x {0, 0.1};
+            // Return the updated coefficient matrix.
+            return C_initial;
+        };
 
-        for (size_t i = 0; i < C_initial.cols(); i++) {
-            C_initial(0, i) += x;
-        }
-        for (size_t j = 0; j < C_initial.rows(); j++) {
-            C_initial(j, 0) -= x;
-        }
-
-        const GTransformation<Scalar> C_initial_complex {C_initial};
-
-        return GHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial_complex);
+        return GHFSCFEnvironment<complex>::WithTransformedCoreGuess(N, sq_hamiltonian, S, transformation_function);
     }
 
 
@@ -143,9 +147,10 @@ public:
      *  @param sq_hamiltonian               The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
      *  @param S                            The overlap operator (of both scalar (AO) bases), expressed in spin-blocked notation.
      *  @param transformation_function      A function that transforms the normal core guess in a complex one.
+     * 
+     *  @return A GHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.
      */
-    template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, complex>::value, GHFSCFEnvironment<complex>> WithCoreGuessMadeComplex(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
+    static GHFSCFEnvironment<Scalar> WithTransformedCoreGuess(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarGSQOneElectronOperator<Scalar>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
 
         const auto& H_core = sq_hamiltonian.core().parameters();  // Spin-blocked, in AO basis.
 
