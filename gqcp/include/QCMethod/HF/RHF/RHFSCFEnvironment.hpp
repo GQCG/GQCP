@@ -152,7 +152,7 @@ public:
      *  @param N                            The total number of electrons.
      *  @param sq_hamiltonian               The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a RSpinOrbitalBasis.
      *  @param S                            The overlap operator (of both scalar (AO) bases).
-     *  @param transformation_function      A function that transforms the normal core guess in a complex one.
+     *  @param transformation_function      A function that transforms the core guess.
      * 
      *  @return An RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.
      */

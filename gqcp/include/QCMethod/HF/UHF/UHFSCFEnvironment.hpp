@@ -172,7 +172,7 @@ public:
      *  @param N_beta                       The number of beta electrons (the number of occupied beta-spin-orbitals).
      *  @param sq_hamiltonian               The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a USpinOrbitalBasis.
      *  @param S                            The overlap operator (of both scalar (AO) bases).
-     *  @param transformation_function      A function that transforms the normal core guess in a complex one.
+     *  @param transformation_function      A function that transforms the alpha and beta core guesses.
      * 
      *  @return A UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.
      */
