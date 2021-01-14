@@ -50,15 +50,15 @@ public:
 public:
     SpinResolved<size_t> N;  // The number of alpha and beta electrons (the number of occupied alpha-spin-orbitals).
 
-    std::deque<double> electronic_energies;
+    std::deque<Scalar> electronic_energies;
 
-    std::deque<SpinResolved<VectorX<double>>> orbital_energies;  // The alpha and beta MO energies.
+    std::deque<SpinResolved<VectorX<Scalar>>> orbital_energies;  // The alpha and beta MO energies.
 
     ScalarUSQOneElectronOperator<Scalar> S;  // The overlap operator (of the scalar (AO) basis).
 
     std::deque<UTransformation<Scalar>> coefficient_matrices;  // The alpha and beta coefficient matrices.
 
-    std::deque<SpinResolved1DM<double>> density_matrices;  // Expressed in the scalar (AO) basis.
+    std::deque<SpinResolved1DM<Scalar>> density_matrices;  // Expressed in the scalar (AO) basis.
 
     std::deque<ScalarUSQOneElectronOperator<Scalar>> fock_matrices;  // Expressed in the scalar (AO) basis.
 
@@ -107,12 +107,14 @@ public:
      */
 
     /**
-     *  Initialize an UHF SCF environment with initial coefficient matrices (equal for alpha and beta) that is obtained by diagonalizing the core Hamiltonian matrix.
+     *  Initialize a UHF SCF environment with initial coefficient matrices (equal for alpha and beta) that is obtained by diagonalizing the core Hamiltonian matrix.
      * 
      *  @param N_alpha                  The number of alpha electrons (the number of occupied alpha-spin-orbitals).
      *  @param N_beta                   The number of beta electrons (the number of occupied beta-spin-orbitals).
      *  @param sq_hamiltonian           The Hamiltonian expressed in the scalar (AO) basis.
      *  @param S                        The overlap matrix (of the scalar (AO) basis).
+     * 
+     *  @return A UHF SCF environment with initial coefficient matrices (equal for alpha and beta) that is obtained by diagonalizing the core Hamiltonian matrix.
      */
     static UHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) {
 
@@ -126,6 +128,68 @@ public:
         const UTransformation<Scalar> C_initial {C_initial_a, C_initial_b};
 
         return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial);
+    }
+
+
+    /**
+     *  Initialize a UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     * 
+     *  @param N_alpha                  The number of alpha electrons (the number of occupied alpha-spin-orbitals).
+     *  @param N_beta                   The number of beta electrons (the number of occupied beta-spin-orbitals).
+     *  @param sq_hamiltonian           The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a USpinOrbitalBasis.
+     *  @param S                        The overlap operator (of both scalar (AO) bases).
+     * 
+     *  @return A UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     */
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, complex>::value, UHFSCFEnvironment<complex>> WithComplexlyTransformedCoreGuess(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S) {
+
+        // Set up the lambda function used to transform the coefficient matrix.
+        const auto transformation_function = [](SquareMatrix<complex> C_initial) {
+            // Define the complex constant used to transform the initial coefficient matrix.
+            const complex x {0, 0.1};
+
+            // Add/subtract the small complex value from the off-diagonal elements of the initial coefficient matrix.
+            for (size_t i = 0; i < C_initial.cols(); i++) {
+                C_initial(0, i) += x;
+            }
+            for (size_t j = 0; j < C_initial.rows(); j++) {
+                C_initial(j, 0) -= x;
+            }
+
+            // Return the updated coefficient matrix.
+            return C_initial;
+        };
+
+        return UHFSCFEnvironment<complex>::WithTransformedCoreGuess(N_alpha, N_beta, sq_hamiltonian, S, transformation_function);
+    }
+
+
+    /**
+     *  Initialize a UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix subsequently applying the given unary transformation function.
+     * 
+     *  @param N_alpha                      The number of alpha electrons (the number of occupied alpha-spin-orbitals).
+     *  @param N_beta                       The number of beta electrons (the number of occupied beta-spin-orbitals).
+     *  @param sq_hamiltonian               The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a USpinOrbitalBasis.
+     *  @param S                            The overlap operator (of both scalar (AO) bases).
+     *  @param transformation_function      A function that transforms the alpha and beta core guesses.
+     * 
+     *  @return A UHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.
+     */
+    template <typename Z = Scalar>
+    static UHFSCFEnvironment<Scalar> WithTransformedCoreGuess(const size_t N_alpha, const size_t N_beta, const USQHamiltonian<Scalar>& sq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
+
+        const auto& H_core = sq_hamiltonian.core();  // In AO basis.
+
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_a {H_core.alpha().parameters(), S.alpha().parameters()};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_b {H_core.beta().parameters(), S.beta().parameters()};
+        auto C_initial_a {generalized_eigensolver_a.eigenvectors()};
+        auto C_initial_b {generalized_eigensolver_b.eigenvectors()};
+
+        const UTransformation<Scalar> C_initial_complex {UTransformationComponent<Scalar> {transformation_function(C_initial_a)}, UTransformationComponent<Scalar> {transformation_function(C_initial_b)}};
+
+        return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial_complex);
     }
 };
 

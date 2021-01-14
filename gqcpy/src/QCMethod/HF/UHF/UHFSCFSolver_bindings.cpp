@@ -16,6 +16,8 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
+#include "Utilities/aliases.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -28,30 +30,21 @@ namespace py = pybind11;
 using namespace GQCP;
 
 
-void bindUHFSCFSolver(py::module& module) {
-    py::class_<UHFSCFSolver<double>>(module, "UHFSCFSolver", "An unrestricted Hartree-Fock self-consistent field solver factory.")
+/*
+ *  Add Python bindings for UHF SCF solvers.
+ */
+void bindUHFSCFSolvers(py::module& module) {
 
-        // PUBLIC METHODS
+    // Provide bindings for real-valued UHF SCF solvers.
+    py::class_<UHFSCFSolver<double>> py_UHFSCFSolver_d {module, "UHFSCFSolver_d", "A factory that can create real-valued UHF SCF solvers."};
 
-        .def_static(
-            "DIIS",
-            [](const size_t minimum_subspace_dimension, const size_t maximum_subspace_dimension, const double threshold, const size_t maximum_number_of_iterations) {
-                return UHFSCFSolver<double>::DIIS(minimum_subspace_dimension, maximum_subspace_dimension, threshold, maximum_number_of_iterations);
-            },
-            py::arg("minimum_subspace_dimension") = 6,
-            py::arg("maximum_subspace_dimension") = 6,
-            py::arg("threshold") = 1.0e-08,
-            py::arg("maximum_number_of_iterations") = 128,
-            "Return a DIIS UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.")
+    bindHartreeFockSCFSolverInterface(py_UHFSCFSolver_d);
 
-        .def_static(
-            "Plain",
-            [](const double threshold, const size_t maximum_number_of_iterations) {
-                return UHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
-            },
-            py::arg("threshold") = 1.0e-08,
-            py::arg("maximum_number_of_iterations") = 128,
-            "Plain UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.");
+
+    // Provide bindings for complex-valued UHF SCF solvers.
+    py::class_<UHFSCFSolver<complex>> py_UHFSCFSolver_cd {module, "UHFSCFSolver_cd", "A factory that can create complex-valued UHF SCF solvers."};
+
+    bindHartreeFockSCFSolverInterface(py_UHFSCFSolver_cd);
 }
 
 

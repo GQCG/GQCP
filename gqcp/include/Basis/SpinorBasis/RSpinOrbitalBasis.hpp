@@ -138,7 +138,19 @@ public:
 
         const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());  // in AO/scalar basis
 
-        ResultOperator op {one_op_par};   // op for 'operator'
+        auto g_par = SquareRankFourTensor<ResultScalar>::Zero(one_op_par.dimension(0));  // 'par' for 'parameters'
+
+        for (size_t i = 0; i < one_op_par.dimension(0); i++) {
+            for (size_t j = 0; j < one_op_par.dimension(1); j++) {
+                for (size_t k = 0; k < one_op_par.dimension(2); k++) {
+                    for (size_t l = 0; l < one_op_par.dimension(3); l++) {
+                        g_par(i, j, k, l) = one_op_par(i, j, k, l);
+                    }
+                }
+            }
+        }
+
+        ResultOperator op {g_par};        // op for 'operator'
         op.transform(this->expansion());  // now in spatial/spin-orbital basis
         return op;
     }

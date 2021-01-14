@@ -19,6 +19,7 @@
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
+#include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
@@ -67,8 +68,14 @@ void bindFunctionalSteps(py::module& module) {
     bindFunctionalStep<EigenproblemEnvironment>(module, "EigenproblemEnvironment", "A functional step that uses an EigenproblemEnvironment.");
     bindFunctionalStep<NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "A functional step that uses a NonLinearEquationEnvironment.");
 
-    bindFunctionalStep<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "A functional step that uses an RHFSCFEnvironment.");
-    bindFunctionalStep<UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "A functional step that uses an UHFSCFEnvironment.");
+    bindFunctionalStep<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment_d", "A functional step that uses a real RHFSCFEnvironment.");
+    bindFunctionalStep<RHFSCFEnvironment<complex>>(module, "RHFSCFEnvironment_cd", "A functional step that uses a complex RHFSCFEnvironment.");
+
+    bindFunctionalStep<UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment_d", "A functional step that uses a real UHFSCFEnvironment.");
+    bindFunctionalStep<UHFSCFEnvironment<complex>>(module, "UHFSCFEnvironment_cd", "A functional step that uses a complex UHFSCFEnvironment.");
+
+    bindFunctionalStep<GHFSCFEnvironment<double>>(module, "GHFSCFEnvironment_d", "A functional step that uses a real GHFSCFEnvironment.");
+    bindFunctionalStep<GHFSCFEnvironment<complex>>(module, "GHFSCFEnvironment_cd", "A functional step that uses a complex GHFSCFEnvironment.");
 
     bindFunctionalStep<CCSDEnvironment<double>>(module, "CCSDEnvironment", "A functional step that uses an CCSDEnvironment.");
 }

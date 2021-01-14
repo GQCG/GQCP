@@ -187,7 +187,7 @@ public:
      *  @return A second-quantized molecular Hamiltonian.
      */
     template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinOrbitalBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinOrbitalBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());
@@ -208,7 +208,7 @@ public:
      *  @return A second-quantized molecular Hamiltonian.
      */
     template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, UnrestrictedSpinOrbitalTag>::value, Self> Molecular(const USpinOrbitalBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, UnrestrictedSpinOrbitalTag>::value, Self> Molecular(const USpinOrbitalBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());

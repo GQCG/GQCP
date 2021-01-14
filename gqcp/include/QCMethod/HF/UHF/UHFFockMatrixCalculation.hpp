@@ -62,7 +62,7 @@ public:
 
         const auto& P = environment.density_matrices.back();  // The most recent alpha and beta density matrix.
 
-        const auto F = QCModel::UHF<double>::calculateScalarBasisFockMatrix(P, environment.sq_hamiltonian);
+        const auto F = QCModel::UHF<Scalar>::calculateScalarBasisFockMatrix(P, environment.sq_hamiltonian);
 
         environment.fock_matrices.push_back(F);
     }

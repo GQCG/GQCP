@@ -51,7 +51,7 @@ public:
 private:
     SpinResolved<size_t> N;  // The number of alpha and beta electrons.
 
-    SpinResolved<VectorX<double>> orbital_energies;  // The alpha and beta MO energies sorted by ascending order.
+    SpinResolved<VectorX<Scalar>> orbital_energies;  // The alpha and beta MO energies sorted by ascending order.
 
     UTransformation<Scalar> C;  // The transformation between the UHF MOs and the atomic spin-orbitals.
 
@@ -70,7 +70,7 @@ public:
      *  @param orbital_energies_beta                    The orbital energies for the beta-spin-orbitals, sorted by ascending energy.
      *  @param C                                        The transformation between the UHF MOs and the atomic spin-orbitals.
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformation<Scalar>& C) :
+    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<Scalar>& orbital_energies_alpha, const VectorX<Scalar>& orbital_energies_beta, const UTransformation<Scalar>& C) :
         N {N_alpha, N_beta},
         orbital_energies {orbital_energies_alpha, orbital_energies_beta},
         C {C} {
@@ -108,8 +108,8 @@ public:
      */
     UHF(const size_t N_alpha, const size_t N_beta, const UTransformation<Scalar>& C) :
         UHF(N_alpha, N_beta,
-            GQCP::VectorX<double>::Zero(C.component(Spin::alpha).numberOfOrbitals()),
-            GQCP::VectorX<double>::Zero(C.component(Spin::beta).numberOfOrbitals()),
+            GQCP::VectorX<Scalar>::Zero(C.component(Spin::alpha).numberOfOrbitals()),
+            GQCP::VectorX<Scalar>::Zero(C.component(Spin::beta).numberOfOrbitals()),
             C) {
     }
 
@@ -136,7 +136,7 @@ public:
      *
      *  @return The UHF electronic energy.
      */
-    static double calculateElectronicEnergy(const SpinResolved1DM<Scalar>& P, const ScalarUSQOneElectronOperator<Scalar>& H_core, const ScalarUSQOneElectronOperator<Scalar>& F) {
+    static Scalar calculateElectronicEnergy(const SpinResolved1DM<Scalar>& P, const ScalarUSQOneElectronOperator<Scalar>& H_core, const ScalarUSQOneElectronOperator<Scalar>& F) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z = H_core + F;
@@ -1108,7 +1108,7 @@ public:
     /**
      *  @return The orbital energies belonging to the occupied orbitals of spin component sigma.
      */
-    SpinResolved<std::vector<double>> occupiedOrbitalEnergies() const {
+    SpinResolved<std::vector<Scalar>> occupiedOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals of the spin components.
         const auto orbital_space = this->orbitalSpace();
@@ -1116,8 +1116,8 @@ public:
         const auto& n_occ_b = orbital_space.beta().numberOfOrbitals(OccupationType::k_occupied);
 
 
-        std::vector<double> mo_energies_a;  // We use a std::vector in order to be able to slice the vector later on.
-        std::vector<double> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<Scalar> mo_energies_a;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<Scalar> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
 
         for (int i = 0; i < this->numberOfSpinOrbitals(Spin::alpha); i++) {
             mo_energies_a.push_back(this->orbitalEnergies().alpha()[i]);
@@ -1127,21 +1127,21 @@ public:
         }
 
         // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
-        std::vector<double> mo_energies_occupied_a;
-        std::vector<double> mo_energies_occupied_b;
+        std::vector<Scalar> mo_energies_occupied_a;
+        std::vector<Scalar> mo_energies_occupied_b;
 
         // Add the values with indices smaller than the occupied orbital indices, to the new vector.
         std::copy(mo_energies_a.begin(), mo_energies_a.begin() + n_occ_a, std::back_inserter(mo_energies_occupied_a));
         std::copy(mo_energies_b.begin(), mo_energies_b.begin() + n_occ_b, std::back_inserter(mo_energies_occupied_b));
 
-        return SpinResolved<std::vector<double>> {mo_energies_occupied_a, mo_energies_occupied_b};
+        return SpinResolved<std::vector<Scalar>> {mo_energies_occupied_a, mo_energies_occupied_b};
     }
 
 
     /**   
      *  @return The orbital energies of the alpha and beta orbitals.
      */
-    const SpinResolved<VectorX<double>> orbitalEnergies() const { return this->orbital_energies; }
+    const SpinResolved<VectorX<Scalar>> orbitalEnergies() const { return this->orbital_energies; }
 
 
     /**
@@ -1154,9 +1154,9 @@ public:
     /**
      *  @return All the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.
      */
-    VectorX<double> spinOrbitalEnergiesBlocked() const {
+    VectorX<Scalar> spinOrbitalEnergiesBlocked() const {
 
-        GQCP::VectorX<double> total_orbital_energies {this->numberOfSpinOrbitals()};
+        GQCP::VectorX<Scalar> total_orbital_energies {this->numberOfSpinOrbitals()};
         total_orbital_energies.head(this->numberOfSpinOrbitals(Spin::alpha)) = this->orbitalEnergies().alpha();
         total_orbital_energies.tail(this->numberOfSpinOrbitals(Spin::beta)) = this->orbitalEnergies().beta();
 
@@ -1167,7 +1167,7 @@ public:
     /**
      *  @return The orbital energies belonging to the virtual orbitals of spin component sigma.
      */
-    SpinResolved<std::vector<double>> virtualOrbitalEnergies() const {
+    SpinResolved<std::vector<Scalar>> virtualOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals of the spin components.
         const auto orbital_space = this->orbitalSpace();
@@ -1175,8 +1175,8 @@ public:
         const auto& n_occ_b = orbital_space.beta().numberOfOrbitals(OccupationType::k_occupied);
 
 
-        std::vector<double> mo_energies_a;  // We use a std::vector in order to be able to slice the vector later on.
-        std::vector<double> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<Scalar> mo_energies_a;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<Scalar> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
 
         for (int i = 0; i < this->numberOfSpinOrbitals(Spin::alpha); i++) {
             mo_energies_a.push_back(this->orbitalEnergies().alpha()[i]);
@@ -1186,13 +1186,13 @@ public:
         }
 
         // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
-        std::vector<double> mo_energies_virtual_a;
-        std::vector<double> mo_energies_virtual_b;
+        std::vector<Scalar> mo_energies_virtual_a;
+        std::vector<Scalar> mo_energies_virtual_b;
 
         std::copy(mo_energies_a.begin() + n_occ_a, mo_energies_a.end(), std::back_inserter(mo_energies_virtual_a));
         std::copy(mo_energies_b.begin() + n_occ_b, mo_energies_b.end(), std::back_inserter(mo_energies_virtual_b));
 
-        return SpinResolved<std::vector<double>> {mo_energies_virtual_a, mo_energies_virtual_b};
+        return SpinResolved<std::vector<Scalar>> {mo_energies_virtual_a, mo_energies_virtual_b};
     }
 };
 

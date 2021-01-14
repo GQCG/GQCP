@@ -115,7 +115,11 @@ void bindIterativeAlgorithms(py::module& module) {
     bindIterativeAlgorithm<NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An algorithm that performs iterations using a NonLinearEquationEnvironment.");
 
     bindIterativeAlgorithm<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
+    bindIterativeAlgorithm<RHFSCFEnvironment<complex>>(module, "RHFSCFEnvironment_cd", "An algorithm that performs iterations using a complex RHFSCFEnvironment.");
+
     bindIterativeAlgorithm<UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm that performs iterations using an UHFSCFEnvironment.");
+    bindIterativeAlgorithm<UHFSCFEnvironment<complex>>(module, "UHFSCFEnvironment_cd", "An algorithm that performs iterations using a complex UHFSCFEnvironment.");
+
     bindIterativeAlgorithm<GHFSCFEnvironment<double>>(module, "GHFSCFEnvironment_d", "An algorithm that performs iterations using a real GHFSCFEnvironment.");
     bindIterativeAlgorithm<GHFSCFEnvironment<complex>>(module, "GHFSCFEnvironment_cd", "An algorithm that performs iterations using a complex GHFSCFEnvironment.");
 
