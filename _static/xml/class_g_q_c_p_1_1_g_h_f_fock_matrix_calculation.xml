@@ -46,7 +46,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+<para><simplesect kind="return"><para>A textual description of this algorithmic step. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -72,7 +72,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment that acts as a sort of calculation space </para>
+<para>The environment that acts as a sort of calculation space. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="61" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="61" bodyend="65"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="61" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="61" bodyend="67"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -122,7 +122,7 @@
         <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="36" bodyend="66"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp" bodystart="36" bodyend="68"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a403f07618f9898875bc0e9abd8c0e9b0" prot="public" virt="non-virtual"><scope>GQCP::GHFFockMatrixCalculation</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFFockMatrixCalculation</scope><name>description</name></member>

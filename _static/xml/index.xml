@@ -622,7 +622,8 @@
     <member refid="class_g_q_c_p_1_1_dyson_orbital_1ae74740687f622d0b540a726029c1eb55" kind="function"><name>DysonOrbital</name></member>
     <member refid="class_g_q_c_p_1_1_dyson_orbital_1a35dce26692bb4d12ead43e446bc513b4" kind="function"><name>DysonOrbital</name></member>
     <member refid="class_g_q_c_p_1_1_dyson_orbital_1a6d3711598ea059f5ba90f7f5d6db0309" kind="function"><name>amplitudes</name></member>
-    <member refid="class_g_q_c_p_1_1_dyson_orbital_1a4f69bbf55143f93aa0e24a5cd956f9ae" kind="function"><name>TransitionAmplitudes</name></member>
+    <member refid="class_g_q_c_p_1_1_dyson_orbital_1a66695dfeffe0965391dbc9aa540d2735" kind="function"><name>TransitionAmplitudes</name></member>
+    <member refid="class_g_q_c_p_1_1_dyson_orbital_1a3439c96ed4059e5c9f0466ba14190125" kind="function"><name>TransitionAmplitudes</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_eigenpair" kind="class"><name>GQCP::Eigenpair</name>
     <member refid="class_g_q_c_p_1_1_eigenpair_1a0e5fc05a28bbb597ac2b5b70831013bc" kind="typedef"><name>Scalar</name></member>
@@ -750,7 +751,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a9da8300d6e5d0c8979dbedc0a3cbce56" kind="variable"><name>C</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a94148afa6f002a6e596e94ea828a170f" kind="function"><name>GHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ae98e1ccfc4a780464894f855cef235d4" kind="function"><name>GHF</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a5804b5f358e0e690fd3fc32c11913c63" kind="function"><name>calculateExpectationValueOf</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a1c45714677f58679db6c27a712a16d5c" kind="function"><name>calculateExpectationValueOf</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a92d639f5a65e3f777c452eb464231d38" kind="function"><name>excitationEnergies</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a414a85b05e97c2bd453cba49cbf79ecd" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a5a08f0a8a07d38d8eee3f6b7d929dc82" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
@@ -766,7 +767,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a31ac81cd613daccdfec917d3506aed04" kind="function"><name>orbitalEnergy</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a15ffcb7dc80f9405e87df0d5b7712c1e" kind="function"><name>orbitalSpace</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a791e086366d30eac524d123e695173d1" kind="function"><name>virtualOrbitalEnergies</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a239fbbace2de1d66e9ddcf321565313a" kind="function"><name>calculateError</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a8781eab7eddf7f4b2361ad2686d5fd66" kind="function"><name>calculateError</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a7b0757202a3dc3cfe0f444d52d83c4b1" kind="function"><name>calculateElectronicEnergy</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a86c8caefafaf95457a8cd24a8b0d9930" kind="function"><name>calculateScalarBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1aef5200acafc8904a67df2bc21c620e06" kind="function"><name>calculateScalarBasisDirectMatrix</name></member>
@@ -827,8 +828,10 @@
     <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1ac585b9edd1ad75b09e1730dd9c119ba6" kind="variable"><name>fock_matrices</name></member>
     <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1afdd16936c4508e7504c4cc2fd9092e34" kind="variable"><name>error_vectors</name></member>
     <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1a4da7c31dd6e8ccba06ffe51fc29504b8" kind="variable"><name>sq_hamiltonian</name></member>
-    <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1a876df83325d868806d89511f28433096" kind="function"><name>GHFSCFEnvironment</name></member>
-    <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1a3b5468345924e0c5733f4ca7eb705da8" kind="function"><name>WithCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1adf38fc29ab5d275c7a953081fc4c434e" kind="function"><name>GHFSCFEnvironment</name></member>
+    <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1af751cb37a4cf47c232a2bc4503a129d6" kind="function"><name>WithCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1af56fa9bae779fab7c6b01f5f151d8d6e" kind="function"><name>WithComplexlyTransformedCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1ac82ef42866fc6043e090afb82aae49a6" kind="function"><name>WithTransformedCoreGuess</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_g_h_f_s_c_f_solver" kind="class"><name>GQCP::GHFSCFSolver</name>
     <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_solver_1abb0474d262ee7efc3fe2642bce4c0272" kind="typedef"><name>Scalar</name></member>
@@ -1851,14 +1854,14 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f" kind="class"><name>GQCP::QCMethod::RHF</name>
     <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a255f35a444f1803dd44ab183bab92b04" kind="function"><name>optimize</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a40c99d66b008157929a3956f81e6ab05" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kind="class"><name>GQCP::QCModel::RHF</name>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adc2d191ddd486bdfb5a6494e39bce7f6" kind="typedef"><name>Scalar</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a37419b0d868f0712f78de4bd27e46d96" kind="variable"><name>N_P</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aa7f348bc7b0ac7e342fcffc90ca76a13" kind="variable"><name>orbital_energies</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ab69e16a79c4118456db56a8f3e8c220b" kind="variable"><name>orbital_energies</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad76d8e49344b8b5fa7d9b3bf4b5e9330" kind="variable"><name>C</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a84e4b3c89ab347b1c2b09c0873fc41da" kind="function"><name>RHF</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a62de0e924b548aa50e0c754e9a365665" kind="function"><name>RHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a1383beff6bf900d017b7a0ad846a0c9e" kind="function"><name>RHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a89649bd02764ba547142edeb4021fdc8" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5267a344a0fea282ccfa8e2c85c43a9e" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
@@ -1876,15 +1879,15 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" kind="function"><name>numberOfElectrons</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a99ec917c56a86b39b21e64a5296dfec3" kind="function"><name>numberOfElectrons</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" kind="function"><name>numberOfSpatialOrbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a272ad0b15b221c485a93eb3f6d5f95e1" kind="function"><name>occupiedOrbitalEnergies</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a3fccaa3e895acd05ab044dc13aeedb53" kind="function"><name>orbitalEnergies</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1abab62b713a8a4196e53ca7d0767721f7" kind="function"><name>orbitalEnergy</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1afcaea7ce4793b3efc87dd3493d13a119" kind="function"><name>occupiedOrbitalEnergies</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a9229a77cbba926f5c3c0b74546d5ca9d" kind="function"><name>orbitalEnergies</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a11ef4ff3a43c40c298e60ecdc1ac7fc9" kind="function"><name>orbitalEnergy</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kind="function"><name>orbitalSpace</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a6d5567781b825611f493d0adb8c07c7b" kind="function"><name>spinOrbitalEnergiesBlocked</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a328e1105a61b617e902ffc4376e230f0" kind="function"><name>spinOrbitalEnergiesInterleaved</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5f7583c9cd9b3ad35def604d08b686ec" kind="function"><name>virtualOrbitalEnergies</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad6d4795860638caa2a89c613c9b0d839" kind="function"><name>calculateElectronicEnergy</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25b1a7fed931bb3d2d3ca484a4c08113" kind="function"><name>calculateError</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a16af427d913aa7e76c5f1a13af920965" kind="function"><name>spinOrbitalEnergiesBlocked</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ab0c4f2db950d3905ac6e6ef13f500887" kind="function"><name>spinOrbitalEnergiesInterleaved</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8a73cf9847c13f3f7828d03a31708f30" kind="function"><name>virtualOrbitalEnergies</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a7e32e7b47f3099d4954a8b6fbfd5d684" kind="function"><name>calculateElectronicEnergy</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a80e2103050ccbf2b204f094fd2824510" kind="function"><name>calculateError</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5180203a16f4c24b55ceb9418dcd783a" kind="function"><name>calculateOrbitalHessianElement</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8449e4ff511bccc0ccba03003dfb751e" kind="function"><name>calculateOrbitalHessianTensor</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5be5ab69528f74147bd132ab4ccc8dcd" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
@@ -1952,16 +1955,18 @@
   <compound refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kind="class"><name>GQCP::RHFSCFEnvironment</name>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kind="typedef"><name>Scalar</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ad49f785370948aa7bec1ddea134624f7" kind="variable"><name>N</name></member>
-    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a97480e4230840a6b6dc6798150ca3ba4" kind="variable"><name>electronic_energies</name></member>
-    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a01bcb34b6a4db6814ee9bb52f5fbd445" kind="variable"><name>orbital_energies</name></member>
+    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ae782773a13a5e08d70e2fe42179123af" kind="variable"><name>electronic_energies</name></member>
+    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa4f3bf10ed1142262d6619a2b7d9e966" kind="variable"><name>orbital_energies</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1add20bb14d9f5b011ee0063de4da7fc2f" kind="variable"><name>S</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa2909b00768242926eb8b8fe1b6d9cbc" kind="variable"><name>coefficient_matrices</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a11ddbb78f3f9cc70ff4ec86af7b1d2a7" kind="variable"><name>density_matrices</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8419febdaf0708d21529b2227738c09e" kind="variable"><name>fock_matrices</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a1aa03ff9f68802ea58270ad6cdbbdd07" kind="variable"><name>error_vectors</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1af6c4ccafc2f589dd9281618813d8c75f" kind="variable"><name>sq_hamiltonian</name></member>
-    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8107359ad862cd6dda3e372b2caa4d6e" kind="function"><name>RHFSCFEnvironment</name></member>
-    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1adedcee3bc027a18aa4f031d4e453a3f2" kind="function"><name>WithCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a60ee8ad457d9f4354a85fd82cc915e73" kind="function"><name>RHFSCFEnvironment</name></member>
+    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa2882e673b5c3da8d7cd3337fe14dd68" kind="function"><name>WithCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ac92a33045e0414e0cf776af4f18d4062" kind="function"><name>WithComplexlyTransformedCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a52f2de599d09b4683d936dfa6517276b" kind="function"><name>WithTransformedCoreGuess</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver" kind="class"><name>GQCP::RHFSCFSolver</name>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aa8d8b39701bb5828989c99ba55bb88de" kind="typedef"><name>Scalar</name></member>
@@ -2322,8 +2327,8 @@
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad806906fb1a4760234aaec2c19c4d2f4" kind="function"><name>operator+=</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aef1abfcc4f1b119bcbcc42adbabe68db" kind="function"><name>operator-=</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a549c426ee8aff2229728c1dd153d8b25" kind="function"><name>FromHubbard</name></member>
-    <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a68a1a435964ac94d351e9b9462610eaf" kind="function"><name>Molecular</name></member>
-    <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a4bd21e025ee47308d107aae8253cad12" kind="function"><name>Molecular</name></member>
+    <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a11f4d2bfa0f8d2fda1e58aea4416af04" kind="function"><name>Molecular</name></member>
+    <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a6fc3562f19b18a955a7e1e7c8ad857ac" kind="function"><name>Molecular</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a1d921704d5557be179a967b4be47fa29" kind="function"><name>Molecular</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a885418972b6a0e608bdcab54aa4f66b3" kind="function"><name>Random</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a62d5e77135791639f73c6e1ac5b497f4" kind="function"><name>FromFCIDUMP</name></member>
@@ -2521,13 +2526,16 @@
     <member refid="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" kind="function"><name>numberOfElements</name></member>
     <member refid="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" kind="function"><name>print</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f" kind="class"><name>GQCP::QCMethod::UHF</name>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a7d9df7748fa0da0c0181db6e8e6caf85" kind="function"><name>optimize</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kind="class"><name>GQCP::QCModel::UHF</name>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kind="typedef"><name>Scalar</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aae8701346dad59aca9376b2325c6e7c0" kind="variable"><name>N</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a39b17ad2e8f41adb65ef303394b0fefa" kind="variable"><name>orbital_energies_alpha</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aadfb544cd1effd1a083e17ad95e4ee59" kind="variable"><name>orbital_energies_beta</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a9579667824869a7eee226760264118d5" kind="variable"><name>orbital_energies</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aa6b6d1c5171e7d69bd308d438bcdc934" kind="variable"><name>C</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a29caa3e69d76adcfe02f045a8e7fcb37" kind="function"><name>UHF</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1abab5b28edf4c1f0a58dc7157706be939" kind="function"><name>UHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7accee8aa0875ec408b94c25b3379398" kind="function"><name>UHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a149ea8d33bfc1652ebe95ce157b2f2ce" kind="function"><name>UHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6145ccdc3e1c697c9ee33e9f2d640c2a" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
@@ -2549,24 +2557,20 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad8831a061aa0fdb4b09689f3947fa814" kind="function"><name>numberOfElectrons</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7dc72c9793142dd8329fb2092cef37bf" kind="function"><name>numberOfSpinOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae9ea834e051059018203fba5ccc4c05e" kind="function"><name>numberOfSpinOrbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1a6bcd60faad3d926e04bf69399fd2d5" kind="function"><name>occupiedOrbitalEnergies</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a8a40121baf99bfc95b852da7fc516c89" kind="function"><name>orbitalEnergies</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a528c375f5b0f5b60ddd695e6b6a06d88" kind="function"><name>occupiedOrbitalEnergies</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a2752efa5fc84c3f8d35e47cc60e23ef9" kind="function"><name>orbitalEnergies</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a76068b80c899b821548b7886bb23580d" kind="function"><name>orbitalSpace</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6a63d3b6cf6eed04f8bf2495bde197b9" kind="function"><name>spinOrbitalEnergiesBlocked</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a8e9dfcd62e4d1272b1e31df9f3cfff6f" kind="function"><name>virtualOrbitalEnergies</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1acda67b7591d0cb36c58c89ae718c289c" kind="function"><name>calculateElectronicEnergy</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1d4af354d02d32153fb0f28e2661f873" kind="function"><name>calculateError</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aff3fd6b5b62d3a8f2bbc68847dee1121" kind="function"><name>spinOrbitalEnergiesBlocked</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1acb96a71df02fde660f441d682680c32a" kind="function"><name>virtualOrbitalEnergies</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ac0fa1294c9de2a55a1340b7dd691d216" kind="function"><name>calculateElectronicEnergy</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a9437c28c31d71850d8370a7ab21b5eb6" kind="function"><name>calculateError</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad9c0c78206d11404f885217dffbf3f4a" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1affbf8ab242f1720396975fd178689679" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aac71310a237c53ac4b08ad4b162d500a" kind="function"><name>calculateScalarBasis1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1abf606c860c37b7e21c1a4863ab37a7e9" kind="function"><name>calculateScalarBasisDirectMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aa349056626205fc644c39025b77676e5" kind="function"><name>calculateScalarBasisExchangeMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad436c94e6ef0136135f1e67c3908c018" kind="function"><name>calculateScalarBasisFockMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a934d852fa46c859b4b3b728847ddfdf3" kind="function"><name>calculateScalarBasisDirectMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ab57a0fc113bf7c056ff8355e3d1c75e5" kind="function"><name>calculateScalarBasisExchangeMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a2d63fb3a02eed78294ec4786d4bed2b9" kind="function"><name>calculateScalarBasisFockMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ade463214e0cab998c0075412c63f0312" kind="function"><name>orbitalSpace</name></member>
-  </compound>
-  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f" kind="class"><name>GQCP::QCMethod::UHF</name>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a8f33c11bf40de149681324708bcb9d43" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation" kind="class"><name>GQCP::UHFDensityMatrixCalculation</name>
     <member refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1abaf6e6f44484ca9af1897314f5f2623a" kind="typedef"><name>Scalar</name></member>
@@ -2610,21 +2614,20 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kind="class"><name>GQCP::UHFSCFEnvironment</name>
     <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1afa66e61ff154f8b0fa8bb17ec0825358" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1ae7fa9499776722270b8060f21ec758c9" kind="variable"><name>N_alpha</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a220a6bf2f6d05bf2c681d84c884389c8" kind="variable"><name>N_beta</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a574a7c1af1be722a8c964f9a6782dd89" kind="variable"><name>electronic_energies</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1af7b7c602039c675d570912d39e397415" kind="variable"><name>orbital_energies_alpha</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a5713a9786a61d85748e629829cfa320f" kind="variable"><name>orbital_energies_beta</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1af5bb95e1d13e77404f3a6d6738240b07" kind="variable"><name>S</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a52cd91e5da87f74541424c64b4abff2b" kind="variable"><name>N</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a4e26f9a73e2b888da19d7ff2296c8335" kind="variable"><name>electronic_energies</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a46da6bdf231994ebcdf4353de69e2e1b" kind="variable"><name>orbital_energies</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a28dd53d0a8c477d4359714d27685fba4" kind="variable"><name>S</name></member>
     <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a882bc4cc1e34b50d23a7db9d4a58d891" kind="variable"><name>coefficient_matrices</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a48e8e19dc7acbf43c911c5457ecb3d6f" kind="variable"><name>density_matrices</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a4c1ab2a08439f77870ba66e1cb5bbdca" kind="variable"><name>density_matrices</name></member>
     <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a0f5f070c7bc52ea98ed1d89117104c99" kind="variable"><name>fock_matrices</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1adc48bd968a6df7ecfeb8b3d212930302" kind="variable"><name>error_vectors_alpha</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a3806448d9d5dc9a8c7ae97aee26d681a" kind="variable"><name>error_vectors_beta</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1af4df3ff73535d8ac6820897f1ed5272a" kind="variable"><name>sq_hamiltonian</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a5fabcaedca46ccad3a4fcd3d6216427c" kind="function"><name>UHFSCFEnvironment</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1aa8d635d985eea31bafb69566cd88acdf" kind="function"><name>UHFSCFEnvironment</name></member>
-    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1afabe0a8853a8c31689d3372feaff784b" kind="function"><name>WithCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a93c1f0bb1a00de972b2602acf17cae59" kind="variable"><name>error_vectors</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1acf78d41999c4c6470089ec0ef3f84a0b" kind="variable"><name>sq_hamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1ae3451ef8114bfd9aecf19c866455dff2" kind="function"><name>UHFSCFEnvironment</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a616b4932eba592e7aafcd1b16fe0f0b1" kind="function"><name>UHFSCFEnvironment</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a8d617f7039bd614a38b5acc0bf9acaa9" kind="function"><name>WithCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a1150a8ea514a6e7f67a77d2498192925" kind="function"><name>WithComplexlyTransformedCoreGuess</name></member>
+    <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1af8505ec9774adc76f95e1653fd52e7d9" kind="function"><name>WithTransformedCoreGuess</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver" kind="class"><name>GQCP::UHFSCFSolver</name>
     <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1aeea978898b8c8c57a9741f0e5a38fd78" kind="typedef"><name>Scalar</name></member>
@@ -2752,13 +2755,6 @@
   <compound refid="class_g_q_c_p_1_1_u_transformation_component" kind="class"><name>GQCP::UTransformationComponent</name>
     <member refid="class_g_q_c_p_1_1_u_transformation_component_1acd11a67d9ae1fb88b980cb91f668a57e" kind="typedef"><name>Scalar</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCMethod::vAP1roG</name>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" kind="variable"><name>N_P</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" kind="variable"><name>K</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" kind="variable"><name>sq_hamiltonian</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" kind="function"><name>vAP1roG</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" kind="function"><name>optimize</name></member>
-  </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCModel::vAP1roG</name>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a6377a0cf43e0687e60a2b804fd4d3f0d" kind="variable"><name>G</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a808536e31ebf0b7f9cf3244f3fc56bc2" kind="variable"><name>multipliers</name></member>
@@ -2777,6 +2773,13 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1af8da613c00b56e12c072a16b5a3bc12f" kind="function"><name>calculateMultiplierResponseForceConstant</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1ac6097016fcd926adb640aab4bd4ec014" kind="function"><name>calculateNumber2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a7c6e8708db3023d08e3d4948fa04aecb" kind="function"><name>calculatePair2DM</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCMethod::vAP1roG</name>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" kind="variable"><name>N_P</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" kind="variable"><name>K</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" kind="variable"><name>sq_hamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" kind="function"><name>vAP1roG</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver" kind="class"><name>GQCP::vAP1roGElectricalResponseSolver</name>
     <member refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_1ad931e3c8282ffd72c211f45c09eb6772" kind="variable"><name>vap1rog</name></member>

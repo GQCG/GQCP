@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -35,11 +35,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="49" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="49" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="50" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a97480e4230840a6b6dc6798150ca3ba4" prot="public" static="no" mutable="no">
-        <type>std::deque&lt; double &gt;</type>
-        <definition>std::deque&lt;double&gt; GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::electronic_energies</definition>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ae782773a13a5e08d70e2fe42179123af" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt;</type>
+        <definition>std::deque&lt;Scalar&gt; GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::electronic_energies</definition>
         <argsstring></argsstring>
         <name>electronic_energies</name>
         <briefdescription>
@@ -48,11 +48,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="51" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="52" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a01bcb34b6a4db6814ee9bb52f5fbd445" prot="public" static="no" mutable="no">
-        <type>std::deque&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &gt;</type>
-        <definition>std::deque&lt;VectorX&lt;double&gt; &gt; GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::orbital_energies</definition>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa4f3bf10ed1142262d6619a2b7d9e966" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>std::deque&lt;VectorX&lt;Scalar&gt; &gt; GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::orbital_energies</definition>
         <argsstring></argsstring>
         <name>orbital_energies</name>
         <briefdescription>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="53" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="53" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="54" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1add20bb14d9f5b011ee0063de4da7fc2f" prot="public" static="no" mutable="no">
         <type><ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt;</type>
@@ -74,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="55" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="56" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa2909b00768242926eb8b8fe1b6d9cbc" prot="public" static="no" mutable="no">
         <type>std::deque&lt; <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="57" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="57" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="58" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a11ddbb78f3f9cc70ff4ec86af7b1d2a7" prot="public" static="no" mutable="no">
         <type>std::deque&lt; <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="58" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="59" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8419febdaf0708d21529b2227738c09e" prot="public" static="no" mutable="no">
         <type>std::deque&lt; <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="59" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="59" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="60" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a1aa03ff9f68802ea58270ad6cdbbdd07" prot="public" static="no" mutable="no">
         <type>std::deque&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="60" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="60" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="61" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1af6c4ccafc2f589dd9281618813d8c75f" prot="public" static="no" mutable="no">
         <type><ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt;</type>
@@ -139,14 +139,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="62" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="62" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="63" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="63" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8107359ad862cd6dda3e372b2caa4d6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a60ee8ad457d9f4354a85fd82cc915e73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::RHFSCFEnvironment</definition>
-        <argsstring>(const size_t N, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const SquareMatrix&lt; Scalar &gt; &amp;S, const RTransformation&lt; Scalar &gt; &amp;C_initial)</argsstring>
+        <argsstring>(const size_t N, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;S, const RTransformation&lt; Scalar &gt; &amp;C_initial)</argsstring>
         <name>RHFSCFEnvironment</name>
         <param>
           <type>const size_t</type>
@@ -157,7 +157,7 @@
           <declname>sq_hamiltonian</declname>
         </param>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>S</declname>
         </param>
         <param>
@@ -167,13 +167,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>A constructor that initializes the environment with an initial guess for the coefficient matrix</para>
+<para>A constructor that initializes the environment with an initial guess for the coefficient matrix.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>N</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the total number of electrons </para>
+<para>The total number of electrons. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -181,7 +181,7 @@
 <parametername>sq_hamiltonian</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the Hamiltonian expressed in the scalar (AO) basis </para>
+<para>The Hamiltonian expressed in the scalar (AO) basis. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -189,7 +189,7 @@
 <parametername>S</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the overlap matrix (of the scalar (AO) basis) </para>
+<para>The overlap matrix (of the scalar (AO) basis). </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -205,14 +205,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="78" bodyend="87"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="79" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="79" bodyend="88"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1adedcee3bc027a18aa4f031d4e453a3f2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa2882e673b5c3da8d7cd3337fe14dd68" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">RHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt;</type>
         <definition>static RHFSCFEnvironment&lt;Scalar&gt; GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::WithCoreGuess</definition>
-        <argsstring>(const size_t N, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const SquareMatrix&lt; Scalar &gt; &amp;S)</argsstring>
+        <argsstring>(const size_t N, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;S)</argsstring>
         <name>WithCoreGuess</name>
         <param>
           <type>const size_t</type>
@@ -223,7 +223,7 @@
           <declname>sq_hamiltonian</declname>
         </param>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>S</declname>
         </param>
         <briefdescription>
@@ -235,7 +235,7 @@
 <parametername>N</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the total number of electrons </para>
+<para>The total number of electrons. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -243,7 +243,7 @@
 <parametername>sq_hamiltonian</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the Hamiltonian expressed in the scalar (AO) basis </para>
+<para>The Hamiltonian expressed in the scalar (AO) basis. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -251,15 +251,149 @@
 <parametername>S</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the overlap matrix (of the scalar (AO) basis) </para>
+<para>The overlap operator (of the scalar (AO) basis).</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para>An RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix. </para>
+</simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="101" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="101" bodyend="110"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="104" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="104" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ac92a33045e0414e0cf776af4f18d4062" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">RHFSCFEnvironment</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref> &gt; &gt;</type>
+        <definition>static enable_if_t&lt;std::is_same&lt;Z, complex&gt;::value, RHFSCFEnvironment&lt;complex&gt; &gt; GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::WithComplexlyTransformedCoreGuess</definition>
+        <argsstring>(const size_t N, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;S)</argsstring>
+        <name>WithComplexlyTransformedCoreGuess</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total number of electrons. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The overlap operator (of both scalar (AO) bases).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="126" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="126" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a52f2de599d09b4683d936dfa6517276b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">RHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static RHFSCFEnvironment&lt;Scalar&gt; GQCP::RHFSCFEnvironment&lt; _Scalar &gt;::WithTransformedCoreGuess</definition>
+        <argsstring>(const size_t N, const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarRSQOneElectronOperator&lt; Scalar &gt; &amp;S, const std::function&lt; Eigen::Matrix&lt; Scalar, Eigen::Dynamic, Eigen::Dynamic &gt;(const Eigen::Matrix&lt; Scalar, Eigen::Dynamic, Eigen::Dynamic &gt; &amp;)&gt; &amp;transformation_function)</argsstring>
+        <name>WithTransformedCoreGuess</name>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac74434aa85c700f6f803449fc115242c" kindref="member">ScalarRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const std::function&lt; Eigen::Matrix&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref>, Eigen::Dynamic, Eigen::Dynamic &gt;(const Eigen::Matrix&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" kindref="member">Scalar</ref>, Eigen::Dynamic, Eigen::Dynamic &gt; &amp;)&gt; &amp;</type>
+          <declname>transformation_function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total number of electrons. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The overlap operator (of both scalar (AO) bases). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transformation_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A function that transforms the core guess.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="160" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="160" bodyend="171"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -272,7 +406,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar type that is used for the coefficient matrix/expansion coefficients </para>
+<para>The scalar type that is used for the coefficient matrix/expansion coefficients: real or complex. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -359,20 +493,22 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="43" bodyend="111"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="44" bodyend="172"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa2909b00768242926eb8b8fe1b6d9cbc" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>coefficient_matrices</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a11ddbb78f3f9cc70ff4ec86af7b1d2a7" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>density_matrices</name></member>
-      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a97480e4230840a6b6dc6798150ca3ba4" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>electronic_energies</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ae782773a13a5e08d70e2fe42179123af" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>electronic_energies</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a1aa03ff9f68802ea58270ad6cdbbdd07" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>error_vectors</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8419febdaf0708d21529b2227738c09e" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>fock_matrices</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ad49f785370948aa7bec1ddea134624f7" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>N</name></member>
-      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a01bcb34b6a4db6814ee9bb52f5fbd445" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>orbital_energies</name></member>
-      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8107359ad862cd6dda3e372b2caa4d6e" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>RHFSCFEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa4f3bf10ed1142262d6619a2b7d9e966" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>orbital_energies</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a60ee8ad457d9f4354a85fd82cc915e73" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>RHFSCFEnvironment</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1add20bb14d9f5b011ee0063de4da7fc2f" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>S</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a7c88e02dfa16731feda1a2f61e65b7fe" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1af6c4ccafc2f589dd9281618813d8c75f" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>sq_hamiltonian</name></member>
-      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1adedcee3bc027a18aa4f031d4e453a3f2" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>WithCoreGuess</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1ac92a33045e0414e0cf776af4f18d4062" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>WithComplexlyTransformedCoreGuess</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa2882e673b5c3da8d7cd3337fe14dd68" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>WithCoreGuess</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a52f2de599d09b4683d936dfa6517276b" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFEnvironment</scope><name>WithTransformedCoreGuess</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

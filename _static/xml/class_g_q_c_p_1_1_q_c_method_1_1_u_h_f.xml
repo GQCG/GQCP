@@ -24,14 +24,14 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a8f33c11bf40de149681324708bcb9d43" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a7d9df7748fa0da0c0181db6e8e6caf85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Solver</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">QCModel::UHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>QCStructure&lt;QCModel::UHF&lt;Scalar&gt; &gt; GQCP::QCMethod::UHF&lt; _Scalar &gt;::optimize</definition>
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">QCModel::UHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kindref="member">Scalar</ref> &gt;</type>
+        <definition>QCStructure&lt;QCModel::UHF&lt;Scalar&gt;, Scalar&gt; GQCP::QCMethod::UHF&lt; _Scalar &gt;::optimize</definition>
         <argsstring>(Solver &amp;solver, UHFSCFEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
         <param>
@@ -51,7 +51,7 @@
 <parametername>Solver</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of the solver</para>
+<para>The type of the solver.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -60,7 +60,7 @@
 <parametername>solver</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the solver that will try to optimize the parameters </para>
+<para>The solver that will try to optimize the parameters. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -68,7 +68,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment, which acts as a sort of calculation space for the solver </para>
+<para>The environment, which acts as a sort of calculation space for the solver. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" line="60" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" bodystart="60" bodyend="77"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" line="60" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" bodystart="60" bodyend="75"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -88,7 +88,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis </para>
+<para>The type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis: real or complex. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -100,9 +100,9 @@
         <link refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" bodystart="40" bodyend="78"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" bodystart="40" bodyend="76"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a8f33c11bf40de149681324708bcb9d43" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::UHF</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a7d9df7748fa0da0c0181db6e8e6caf85" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::UHF</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::UHF</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

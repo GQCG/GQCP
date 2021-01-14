@@ -51,7 +51,7 @@
 <parametername>Solver</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of the solver</para>
+<para>The type of the solver.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -60,7 +60,7 @@
 <parametername>solver</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the solver that will try to optimize the parameters </para>
+<para>The solver that will try to optimize the parameters. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -68,7 +68,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment, which acts as a sort of calculation space for the solver </para>
+<para>The environment, which acts as a sort of calculation space for the solver. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -88,7 +88,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of scalar that is used for the expansion of the spinors in their underlying scalar basis </para>
+<para>The type of scalar that is used for the expansion of the spinors in their underlying scalar basis. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>

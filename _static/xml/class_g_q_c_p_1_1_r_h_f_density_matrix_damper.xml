@@ -70,7 +70,7 @@
 <parametername>alpha</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the damping factor </para>
+<para>The damping factor. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -88,7 +88,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+<para><simplesect kind="return"><para>A textual description of this algorithmic step. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -114,7 +114,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment that acts as a sort of calculation space </para>
+<para>The environment that acts as a sort of calculation space. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>

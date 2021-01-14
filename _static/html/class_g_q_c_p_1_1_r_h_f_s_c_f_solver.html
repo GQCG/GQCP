@@ -105,7 +105,7 @@ class GQCP::RHFSCFSolver&lt; _Scalar &gt;</h3>
 <p>A factory class that can construct RHF SCF solvers in an easy way.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">_Scalar</td><td>the scalar type that is used for the coefficient matrix/expansion coefficients </td></tr>
+    <tr><td class="paramname">_Scalar</td><td>The scalar type that is used for the coefficient matrix/expansion coefficients: real or complex. </td></tr>
   </table>
   </dd>
 </dl>
@@ -170,13 +170,13 @@ template&lt;typename _Scalar &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">alpha</td><td>the damping factor </td></tr>
-    <tr><td class="paramname">threshold</td><td>the threshold that is used in comparing the density matrices </td></tr>
-    <tr><td class="paramname">maximum_number_of_iterations</td><td>the maximum number of iterations the algorithm may perform</td></tr>
+    <tr><td class="paramname">alpha</td><td>The damping factor. </td></tr>
+    <tr><td class="paramname">threshold</td><td>The threshold that is used in comparing the density matrices. </td></tr>
+    <tr><td class="paramname">maximum_number_of_iterations</td><td>The maximum number of iterations the algorithm may perform.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion. </dd></dl>
 
 </div>
 </div>
@@ -229,14 +229,14 @@ template&lt;typename _Scalar &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">minimum_subspace_dimension</td><td>the minimum number of Fock matrices that have to be in the subspace before enabling <a class="el" href="class_g_q_c_p_1_1_d_i_i_s.html">DIIS</a> </td></tr>
-    <tr><td class="paramname">maximum_subspace_dimension</td><td>the maximum number of Fock matrices that can be handled by <a class="el" href="class_g_q_c_p_1_1_d_i_i_s.html">DIIS</a> </td></tr>
-    <tr><td class="paramname">threshold</td><td>the threshold that is used in comparing the density matrices </td></tr>
-    <tr><td class="paramname">maximum_number_of_iterations</td><td>the maximum number of iterations the algorithm may perform</td></tr>
+    <tr><td class="paramname">minimum_subspace_dimension</td><td>The minimum number of Fock matrices that have to be in the subspace before enabling <a class="el" href="class_g_q_c_p_1_1_d_i_i_s.html">DIIS</a>. </td></tr>
+    <tr><td class="paramname">maximum_subspace_dimension</td><td>The maximum number of Fock matrices that can be handled by <a class="el" href="class_g_q_c_p_1_1_d_i_i_s.html">DIIS</a>. </td></tr>
+    <tr><td class="paramname">threshold</td><td>The threshold that is used in comparing the density matrices. </td></tr>
+    <tr><td class="paramname">maximum_number_of_iterations</td><td>The maximum number of iterations the algorithm may perform.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="class_g_q_c_p_1_1_d_i_i_s.html">DIIS</a> RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_g_q_c_p_1_1_d_i_i_s.html">DIIS</a> RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion. </dd></dl>
 
 </div>
 </div>
@@ -277,12 +277,12 @@ template&lt;typename _Scalar &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">threshold</td><td>the threshold that is used in comparing the density matrices </td></tr>
-    <tr><td class="paramname">maximum_number_of_iterations</td><td>the maximum number of iterations the algorithm may perform</td></tr>
+    <tr><td class="paramname">threshold</td><td>The threshold that is used in comparing the density matrices. </td></tr>
+    <tr><td class="paramname">maximum_number_of_iterations</td><td>The maximum number of iterations the algorithm may perform.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion. </dd></dl>
 
 </div>
 </div>

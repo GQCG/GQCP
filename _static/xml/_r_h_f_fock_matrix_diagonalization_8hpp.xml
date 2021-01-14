@@ -779,6 +779,8 @@
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="162" relation="include">
@@ -1740,7 +1742,7 @@
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="62" refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_diagonalization_1a5bd9e2c124638cd3ac62ef0d9eb346a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_diagonalization_1a5bd9e2c124638cd3ac62ef0d9eb346a7" kindref="member">execute</ref>(<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">Environment</ref>&amp;<sp/>environment)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>F<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8419febdaf0708d21529b2227738c09e" kindref="member">fock_matrices</ref>.back().parameters();<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>most<sp/>recent<sp/>scalar/AO<sp/>basis<sp/>Fock<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>F<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8419febdaf0708d21529b2227738c09e" kindref="member">fock_matrices</ref>.back().parameters();<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>most<sp/>recent<sp/>scalar/AO<sp/>basis<sp/>Fock<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>MatrixType<sp/>=<sp/>Eigen::Matrix&lt;Scalar,<sp/>Eigen::Dynamic,<sp/>Eigen::Dynamic&gt;;</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::GeneralizedSelfAdjointEigenSolver&lt;MatrixType&gt;<sp/>generalized_eigensolver<sp/>{F,<sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1add20bb14d9f5b011ee0063de4da7fc2f" kindref="member">S</ref>.parameters()};</highlight></codeline>
@@ -1748,7 +1750,7 @@
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>orbital_energies<sp/>=<sp/>generalized_eigensolver.eigenvalues();</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa2909b00768242926eb8b8fe1b6d9cbc" kindref="member">coefficient_matrices</ref>.push_back(C);</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a01bcb34b6a4db6814ee9bb52f5fbd445" kindref="member">orbital_energies</ref>.push_back(orbital_energies);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1aa4f3bf10ed1142262d6619a2b7d9e966" kindref="member">orbital_energies</ref>.push_back(orbital_energies);</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>

@@ -125,14 +125,14 @@ $(function() {
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">     *  MARK: Named constructors</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_dyson_orbital.html#a4f69bbf55143f93aa0e24a5cd956f9ae">   83</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html">DysonOrbital&lt;Scalar&gt;</a> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html#a4f69bbf55143f93aa0e24a5cd956f9ae">TransitionAmplitudes</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion&lt;SpinResolvedONVBasis&gt;</a>&amp; linear_expansion1, <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion&lt;SpinResolvedONVBasis&gt;</a>&amp; linear_expansion2) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_dyson_orbital.html#a66695dfeffe0965391dbc9aa540d2735">   83</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html">DysonOrbital&lt;Scalar&gt;</a> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html#a66695dfeffe0965391dbc9aa540d2735">TransitionAmplitudes</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion&lt;SpinResolvedONVBasis&gt;</a>&amp; linear_expansion_J, <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion&lt;SpinResolvedONVBasis&gt;</a>&amp; linear_expansion_I) {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> onv_basis1 = linear_expansion1.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#afcdf2d7ccdf24c12011320d98de2f2f7">onvBasis</a>();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> onv_basis2 = linear_expansion2.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#afcdf2d7ccdf24c12011320d98de2f2f7">onvBasis</a>();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> onv_basis_J = linear_expansion_J.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#afcdf2d7ccdf24c12011320d98de2f2f7">onvBasis</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> onv_basis_I = linear_expansion_I.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#afcdf2d7ccdf24c12011320d98de2f2f7">onvBasis</a>();</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">if</span> ((onv_basis1.alpha().numberOfElectrons() - onv_basis2.alpha().numberOfElectrons() != 0) &amp;&amp; (onv_basis1.beta().numberOfElectrons() - onv_basis2.beta().numberOfElectrons() != 1)) {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">if</span> ((onv_basis1.alpha().numberOfElectrons() - onv_basis2.alpha().numberOfElectrons() != 1) &amp;&amp; (onv_basis1.beta().numberOfElectrons() - onv_basis2.beta().numberOfElectrons() != 0)) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;DysonOrbital::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion1.&quot;</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">if</span> ((onv_basis_J.alpha().numberOfElectrons() - onv_basis_I.alpha().numberOfElectrons() != 0) &amp;&amp; (onv_basis_J.beta().numberOfElectrons() - onv_basis_I.beta().numberOfElectrons() != 1)) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">if</span> ((onv_basis_J.alpha().numberOfElectrons() - onv_basis_I.alpha().numberOfElectrons() != 1) &amp;&amp; (onv_basis_J.beta().numberOfElectrons() - onv_basis_I.beta().numberOfElectrons() != 0)) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;DysonOrbital::TransitionAmplitudes(LinearExpansion, LinearExpansion): linear_expansion_I is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion_J.&quot;</span>);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            }</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
@@ -141,81 +141,131 @@ $(function() {
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="comment">// The &#39;passive&#39; ONV basis is the ONV basis that is equal for both wave functions.</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">// The &#39;target&#39; ONV basis has an electron difference of one.</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">// We initialize the variables for the case in which they differ in one beta electron, if this isn&#39;t the case, we will update it later.</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keyword">auto</span> passive_onv_basis1 = onv_basis1.alpha();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keyword">auto</span> passive_onv_basis2 = onv_basis2.alpha();</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keyword">auto</span> target_onv_basis1 = onv_basis1.beta();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">auto</span> target_onv_basis2 = onv_basis2.beta();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keyword">auto</span> passive_onv_basis_J = onv_basis_J.alpha();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keyword">auto</span> passive_onv_basis_I = onv_basis_I.alpha();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keyword">auto</span> target_onv_basis_J = onv_basis_J.beta();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">auto</span> target_onv_basis_I = onv_basis_I.beta();</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="comment">// Mod variables relate to the modification of the address jump in coefficient index according to the ordering of the spin ONVs.</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordtype">size_t</span> passive_mod1 = target_onv_basis1.dimension();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">size_t</span> passive_mod2 = target_onv_basis2.dimension();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordtype">size_t</span> passive_mod_J = target_onv_basis_J.dimension();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">size_t</span> passive_mod_I = target_onv_basis_I.dimension();</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordtype">size_t</span> target_mod = 1;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="comment">// If instead the ONV bases differ by one alpha electron we re-assign the variables to match the algorithm.</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">if</span> ((onv_basis1.alpha().numberOfElectrons() - onv_basis2.alpha().numberOfElectrons() == 1) &amp;&amp; (onv_basis1.beta().numberOfElectrons() - onv_basis2.beta().numberOfElectrons() == 0)) {</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            passive_onv_basis1 = target_onv_basis1;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            passive_onv_basis2 = target_onv_basis2;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            target_onv_basis1 = onv_basis1.alpha();</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            target_onv_basis2 = onv_basis2.alpha();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">if</span> ((onv_basis_J.alpha().numberOfElectrons() - onv_basis_I.alpha().numberOfElectrons() == 1) &amp;&amp; (onv_basis_J.beta().numberOfElectrons() - onv_basis_I.beta().numberOfElectrons() == 0)) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            passive_onv_basis_J = target_onv_basis_J;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            passive_onv_basis_I = target_onv_basis_I;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            target_onv_basis_J = onv_basis_J.alpha();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            target_onv_basis_I = onv_basis_I.alpha();</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            passive_mod1 = 1;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            passive_mod2 = 1;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            target_mod = passive_onv_basis1.dimension();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            passive_mod_J = 1;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            passive_mod_I = 1;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            target_mod = passive_onv_basis_J.dimension();</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        }</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ci_coeffs1 = linear_expansion1.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a15d454c6ec927c95f0aaa65f93d027cd">coefficients</a>();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ci_coeffs2 = linear_expansion2.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a15d454c6ec927c95f0aaa65f93d027cd">coefficients</a>();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ci_coeffs_J = linear_expansion_J.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a15d454c6ec927c95f0aaa65f93d027cd">coefficients</a>();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ci_coeffs_I = linear_expansion_I.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a15d454c6ec927c95f0aaa65f93d027cd">coefficients</a>();</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;double&gt;</a> dyson_coeffs = <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;double&gt;::Zero</a>(onv_basis1.alpha().numberOfOrbitals());</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;double&gt;</a> dyson_coeffs = <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;double&gt;::Zero</a>(onv_basis_J.alpha().numberOfOrbitals());</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="comment">// The actual algorithm to determine the Dyson amplitudes.</span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="comment">// Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons.</span></div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="comment">// We therefore iterate over the ONVs of the &#39;target&#39; ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called &#39;p&#39;).</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">// By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  &#39;p&#39;-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        SpinUnresolvedONV onv = target_onv_basis1.constructONVFromAddress(0);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">// By calculating the overlap in the (N-1)-electron ONV basis, we can calculate the contributions to the  &#39;p&#39;-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        SpinUnresolvedONV onv = target_onv_basis_J.constructONVFromAddress(0);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> It = 0; It &lt; target_onv_basis1.dimension(); It++) {           <span class="comment">// It loops over addresses of the target ONV basis.</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordtype">int</span> sign = -1;                                                        <span class="comment">// Total phase factor of all the annihilations that have occurred.</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> e = 0; e &lt; target_onv_basis1.numberOfElectrons(); e++) {  <span class="comment">// Loop over electrons in the ONV.</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> Jt = 0; Jt &lt; target_onv_basis_J.dimension(); Jt++) {           <span class="comment">// Jt loops over addresses of the target ONV basis.</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordtype">int</span> sign = -1;                                                         <span class="comment">// Total phase factor of all the annihilations that have occurred.</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> e = 0; e &lt; target_onv_basis_J.numberOfElectrons(); e++) {  <span class="comment">// Loop over electrons in the ONV.</span></div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <span class="comment">// Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-&#39;target&#39; ONV basis.</span></div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                sign *= -1;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                <span class="keywordtype">size_t</span> p = onv.occupationIndexOf(e);</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                onv.annihilate(p);</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <span class="comment">// Now, we calculate the overlap in the (N-1)-&#39;target&#39; ONV basis.</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="comment">// In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the &#39;target&#39; ONV basis.</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="keywordtype">size_t</span> address = target_onv_basis2.addressOf(onv.unsignedRepresentation());</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <span class="comment">// Now, we calculate the overlap in the (N-1)-electron &#39;target&#39; ONV basis.</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="comment">// In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the &#39;target&#39; (N-1)-electron ONV basis.</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="keywordtype">size_t</span> address = target_onv_basis_I.addressOf(onv.unsignedRepresentation());</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="keywordtype">double</span> coeff = 0;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> Ip = 0; Ip &lt; passive_onv_basis1.dimension(); Ip++) {  <span class="comment">// Ip loops over the addresses of the passive ONV basis.</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);  <span class="comment">// Access the indices of the coefficient vectors.</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                dyson_coeffs(p) += coeff;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                onv.create(p);  <span class="comment">// Allow the iteration to continue with the original ONV.</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">if</span> (It &lt; target_onv_basis1.dimension() - 1) {  <span class="comment">// Prevent the last permutation from occurring.</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                target_onv_basis1.transformONVToNextPermutation(onv);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }  <span class="comment">// Target address (It) loop.</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html">DysonOrbital&lt;Scalar&gt;</a>(dyson_coeffs);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">     *  MARK: Access</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_dyson_orbital.html#a6d3711598ea059f5ba90f7f5d6db0309">  170</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;</a>&amp; <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html#a6d3711598ea059f5ba90f7f5d6db0309">amplitudes</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;m_amplitudes; }</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;};</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> Jp = 0; Jp &lt; passive_onv_basis_J.dimension(); Jp++) {                                                                <span class="comment">// Jp loops over the addresses of the passive ONV basis.</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    coeff += sign * ci_coeffs_J(Jt * target_mod + Jp * passive_mod_J) * ci_coeffs_I(address * target_mod + Jp * passive_mod_I);  <span class="comment">// Access the indices of the coefficient vectors.</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                dyson_coeffs(p) += coeff;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                onv.create(p);  <span class="comment">// Allow the iteration to continue with the original ONV.</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keywordflow">if</span> (Jt &lt; target_onv_basis_J.dimension() - 1) {  <span class="comment">// Prevent the last permutation from occurring.</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                target_onv_basis_J.transformONVToNextPermutation(onv);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        }  <span class="comment">// Target address (Jt) loop.</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html">DysonOrbital&lt;Scalar&gt;</a>(dyson_coeffs);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_dyson_orbital.html#a3439c96ed4059e5c9f0466ba14190125">  170</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html">DysonOrbital&lt;Scalar&gt;</a> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html#a3439c96ed4059e5c9f0466ba14190125">TransitionAmplitudes</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion&lt;SpinUnresolvedONVBasis&gt;</a>&amp; linear_expansion_J, <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion&lt;SpinUnresolvedONVBasis&gt;</a>&amp; linear_expansion_I) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="comment">// Initialize environment variables.</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> onv_basis_J = linear_expansion_J.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#afcdf2d7ccdf24c12011320d98de2f2f7">onvBasis</a>();</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> onv_basis_I = linear_expansion_I.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#afcdf2d7ccdf24c12011320d98de2f2f7">onvBasis</a>();</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> (onv_basis_J.numberOfElectrons() - onv_basis_I.numberOfElectrons() != 1) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;DysonOrbital::TransitionAmplitudes(LinearExpansion, LinearExpansion): linear_expansion_I is not expressed in a spin-unresolved ONV basis with one fewer electron than linear_expansion_J.&quot;</span>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ci_coeffs_J = linear_expansion_J.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a15d454c6ec927c95f0aaa65f93d027cd">coefficients</a>();</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ci_coeffs_I = linear_expansion_I.<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a15d454c6ec927c95f0aaa65f93d027cd">coefficients</a>();</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;double&gt;</a> dyson_coeffs = <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;double&gt;::Zero</a>(onv_basis_J.numberOfOrbitals());</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="comment">// The actual algorithm to determine the Dyson amplitudes.</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="comment">// Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons.</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// We therefore iterate over the ONVs of the N-electron ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called &#39;p&#39;).</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="comment">// By calculating the overlap in the (N-1)-electron ONV basis, we can calculate the contributions to the  &#39;p&#39;-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital.</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        SpinUnresolvedONV onv = onv_basis_J.constructONVFromAddress(0);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordtype">double</span> coeff = 0;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> J = 0; J &lt; onv_basis_J.dimension(); J++) {              <span class="comment">// J loops over addresses of the N-electron spin-unresolved ONV basis.</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="keywordtype">int</span> sign = -1;                                                  <span class="comment">// Total phase factor of all the annihilations that have occurred.</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> e = 0; e &lt; onv_basis_J.numberOfElectrons(); e++) {  <span class="comment">// Loop over electrons in the ONV.</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="comment">// Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-electron ONV basis.</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                sign *= -1;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordtype">size_t</span> p = onv.occupationIndexOf(e);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                onv.annihilate(p);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="comment">// Now, we calculate the overlap in the (N-1)-electron ONV basis.</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <span class="comment">// In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the (N-1)-electron ONV basis.</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="keywordtype">size_t</span> address = onv_basis_I.addressOf(onv.unsignedRepresentation());</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                coeff = sign * ci_coeffs_J(J) * ci_coeffs_I(address);  <span class="comment">// Access the indices of the coefficient vectors.</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                dyson_coeffs(p) += coeff;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                onv.create(p);  <span class="comment">// Allow the iteration to continue with the original ONV.</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordflow">if</span> (J &lt; onv_basis_J.dimension() - 1) {  <span class="comment">// Prevent the last permutation from occurring.</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                onv_basis_J.transformONVToNextPermutation(onv);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        }  <span class="comment">// Loop over J ONVs.</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html">DysonOrbital&lt;Scalar&gt;</a>(dyson_coeffs);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">     *  MARK: Access</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_dyson_orbital.html#a6d3711598ea059f5ba90f7f5d6db0309">  228</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;</a>&amp; <a class="code" href="class_g_q_c_p_1_1_dyson_orbital.html#a6d3711598ea059f5ba90f7f5d6db0309">amplitudes</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;m_amplitudes; }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;};</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_a4f69bbf55143f93aa0e24a5cd956f9ae"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#a4f69bbf55143f93aa0e24a5cd956f9ae">GQCP::DysonOrbital::TransitionAmplitudes</a></div><div class="ttdeci">static DysonOrbital&lt; Scalar &gt; TransitionAmplitudes(const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion1, const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion2)</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:83</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_linear_expansion_html"><div class="ttname"><a href="class_g_q_c_p_1_1_linear_expansion.html">GQCP::LinearExpansion</a></div><div class="ttdef"><b>Definition:</b> LinearExpansion.hpp:52</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_a3439c96ed4059e5c9f0466ba14190125"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#a3439c96ed4059e5c9f0466ba14190125">GQCP::DysonOrbital::TransitionAmplitudes</a></div><div class="ttdeci">static DysonOrbital&lt; Scalar &gt; TransitionAmplitudes(const LinearExpansion&lt; SpinUnresolvedONVBasis &gt; &amp;linear_expansion_J, const LinearExpansion&lt; SpinUnresolvedONVBasis &gt; &amp;linear_expansion_I)</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:170</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html">GQCP::DysonOrbital</a></div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:33</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_a35dce26692bb4d12ead43e446bc513b4"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#a35dce26692bb4d12ead43e446bc513b4">GQCP::DysonOrbital::DysonOrbital</a></div><div class="ttdeci">DysonOrbital(const VectorX&lt; Scalar &gt; &amp;amplitudes)</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:68</div></div>
@@ -224,9 +274,10 @@ $(function() {
 <div class="ttc" id="a_linear_expansion_8hpp_html"><div class="ttname"><a href="_linear_expansion_8hpp.html">LinearExpansion.hpp</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_ad20ca1028404ebbe14abb2500daf1248"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#ad20ca1028404ebbe14abb2500daf1248">GQCP::DysonOrbital::DysonOrbital</a></div><div class="ttdeci">DysonOrbital()=default</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_ab24fe534fef5bc4f0f5a75a290c5f7d2"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#ab24fe534fef5bc4f0f5a75a290c5f7d2">GQCP::DysonOrbital::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:36</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_a66695dfeffe0965391dbc9aa540d2735"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#a66695dfeffe0965391dbc9aa540d2735">GQCP::DysonOrbital::TransitionAmplitudes</a></div><div class="ttdeci">static DysonOrbital&lt; Scalar &gt; TransitionAmplitudes(const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion_J, const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion_I)</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:83</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_ae74740687f622d0b540a726029c1eb55"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#ae74740687f622d0b540a726029c1eb55">GQCP::DysonOrbital::DysonOrbital</a></div><div class="ttdeci">DysonOrbital(const size_t K)</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:59</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_linear_expansion_html_a15d454c6ec927c95f0aaa65f93d027cd"><div class="ttname"><a href="class_g_q_c_p_1_1_linear_expansion.html#a15d454c6ec927c95f0aaa65f93d027cd">GQCP::LinearExpansion::coefficients</a></div><div class="ttdeci">const VectorX&lt; double &gt; &amp; coefficients() const</div><div class="ttdef"><b>Definition:</b> LinearExpansion.hpp:383</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_a6d3711598ea059f5ba90f7f5d6db0309"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#a6d3711598ea059f5ba90f7f5d6db0309">GQCP::DysonOrbital::amplitudes</a></div><div class="ttdeci">const VectorX&lt; Scalar &gt; &amp; amplitudes() const</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:170</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_dyson_orbital_html_a6d3711598ea059f5ba90f7f5d6db0309"><div class="ttname"><a href="class_g_q_c_p_1_1_dyson_orbital.html#a6d3711598ea059f5ba90f7f5d6db0309">GQCP::DysonOrbital::amplitudes</a></div><div class="ttdeci">const VectorX&lt; Scalar &gt; &amp; amplitudes() const</div><div class="ttdef"><b>Definition:</b> DysonOrbital.hpp:228</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

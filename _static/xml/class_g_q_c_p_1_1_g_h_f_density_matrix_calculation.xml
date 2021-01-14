@@ -46,7 +46,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+<para><simplesect kind="return"><para>A textual description of this algorithmic step. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -72,7 +72,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment that acts as a sort of calculation space </para>
+<para>The environment that acts as a sort of calculation space. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" line="60" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" bodystart="60" bodyend="64"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" line="60" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" bodystart="60" bodyend="66"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -122,7 +122,7 @@
         <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" bodystart="36" bodyend="65"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp" bodystart="36" bodyend="67"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_1a7d9a82b402d3de3d91b4cf002f455706" prot="public" virt="non-virtual"><scope>GQCP::GHFDensityMatrixCalculation</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFDensityMatrixCalculation</scope><name>description</name></member>

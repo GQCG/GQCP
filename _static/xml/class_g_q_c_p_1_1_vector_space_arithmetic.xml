@@ -40,6 +40,7 @@
         <name>operator*=</name>
         <reimplementedby refid="class_g_q_c_p_1_1_linear_combination_1ac99cb8ad362edfa97cfc0e70fbb67396">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a8dd5c13f6d98c0835dd1db46fcbf412a">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a8dd5c13f6d98c0835dd1db46fcbf412a">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1aebf277a6623597c7dd2b196c1907ddbe">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ad2641d7ed0bb28069712ad51522ac228">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb">operator*=</reimplementedby>

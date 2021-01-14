@@ -684,7 +684,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="335" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="335" bodyend="351"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="335" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="335" bodyend="369"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1adfac25a81350065376e8951e605c84e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning" kindref="compound">UMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -714,7 +714,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="365" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="365" bodyend="368"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="383" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="383" bodyend="386"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a8e4ec2e18ade56c8188b1413474b3884" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning" kindref="compound">UMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -744,7 +744,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="378" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="378" bodyend="381"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="396" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="396" bodyend="399"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -860,7 +860,7 @@
         <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="47" bodyend="401"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="47" bodyend="419"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>alpha</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>alpha</name></member>

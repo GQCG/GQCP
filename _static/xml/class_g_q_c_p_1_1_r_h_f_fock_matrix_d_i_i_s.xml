@@ -102,7 +102,7 @@
 <parametername>minimum_subspace_dimension</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the minimum number of Fock matrices that have to be in the subspace before enabling <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> </para>
+<para>The minimum number of Fock matrices that have to be in the subspace before enabling <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -110,7 +110,7 @@
 <parametername>maximum_subspace_dimension</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the maximum number of Fock matrices that can be handled by <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> </para>
+<para>The maximum number of Fock matrices that can be handled by <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -128,7 +128,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+<para><simplesect kind="return"><para>A textual description of this algorithmic step. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -154,7 +154,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment that acts as a sort of calculation space </para>
+<para>The environment that acts as a sort of calculation space. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>

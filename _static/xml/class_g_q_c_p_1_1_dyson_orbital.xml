@@ -123,22 +123,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" line="170" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" bodystart="170" bodyend="170"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" line="228" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" bodystart="228" bodyend="228"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_dyson_orbital_1a4f69bbf55143f93aa0e24a5cd956f9ae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_dyson_orbital_1a66695dfeffe0965391dbc9aa540d2735" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_dyson_orbital" kindref="compound">DysonOrbital</ref>&lt; <ref refid="class_g_q_c_p_1_1_dyson_orbital_1ab24fe534fef5bc4f0f5a75a290c5f7d2" kindref="member">Scalar</ref> &gt;</type>
         <definition>static DysonOrbital&lt;Scalar&gt; GQCP::DysonOrbital&lt; _Scalar &gt;::TransitionAmplitudes</definition>
-        <argsstring>(const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion1, const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion2)</argsstring>
+        <argsstring>(const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion_J, const LinearExpansion&lt; SpinResolvedONVBasis &gt; &amp;linear_expansion_I)</argsstring>
         <name>TransitionAmplitudes</name>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; SpinResolvedONVBasis &gt; &amp;</type>
-          <declname>linear_expansion1</declname>
+          <declname>linear_expansion_J</declname>
         </param>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; SpinResolvedONVBasis &gt; &amp;</type>
-          <declname>linear_expansion2</declname>
+          <declname>linear_expansion_I</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -146,7 +146,7 @@
 <para>Create a Dyson orbital from the formula for its amplitudes <computeroutput>&lt;N_1|a_p|N&gt;</computeroutput>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>linear_expansion1</parametername>
+<parametername>linear_expansion_J</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The N-electron wave function in a spin-resolved ONV basis. </para>
@@ -154,10 +154,10 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>linear_expansion2</parametername>
+<parametername>linear_expansion_I</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The N-1-electron wave function in a spin-resolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.</para>
+<para>The (N-1)-electron wave function in a spin-resolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -167,7 +167,49 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" line="83" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" bodystart="83" bodyend="161"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" line="83" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" bodystart="83" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_dyson_orbital_1a3439c96ed4059e5c9f0466ba14190125" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_dyson_orbital" kindref="compound">DysonOrbital</ref>&lt; <ref refid="class_g_q_c_p_1_1_dyson_orbital_1ab24fe534fef5bc4f0f5a75a290c5f7d2" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static DysonOrbital&lt;Scalar&gt; GQCP::DysonOrbital&lt; _Scalar &gt;::TransitionAmplitudes</definition>
+        <argsstring>(const LinearExpansion&lt; SpinUnresolvedONVBasis &gt; &amp;linear_expansion_J, const LinearExpansion&lt; SpinUnresolvedONVBasis &gt; &amp;linear_expansion_I)</argsstring>
+        <name>TransitionAmplitudes</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; SpinUnresolvedONVBasis &gt; &amp;</type>
+          <declname>linear_expansion_J</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; SpinUnresolvedONVBasis &gt; &amp;</type>
+          <declname>linear_expansion_I</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a Dyson orbital from the formula for its amplitudes <computeroutput>&lt;N_1|a_p|N&gt;</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>linear_expansion_J</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The N-electron wave function in a spin-unresolved ONV basis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>linear_expansion_I</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (N-1)-electron wave function in a spin-unresolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A Dyson orbital incorporating Dyson amplitudes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" line="170" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" bodystart="170" bodyend="219"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -191,7 +233,7 @@
         <link refid="class_g_q_c_p_1_1_dyson_orbital"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" bodystart="33" bodyend="171"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp" bodystart="33" bodyend="229"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_dyson_orbital_1a6d3711598ea059f5ba90f7f5d6db0309" prot="public" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>amplitudes</name></member>
       <member refid="class_g_q_c_p_1_1_dyson_orbital_1ad20ca1028404ebbe14abb2500daf1248" prot="public" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>DysonOrbital</name></member>
@@ -199,7 +241,8 @@
       <member refid="class_g_q_c_p_1_1_dyson_orbital_1a35dce26692bb4d12ead43e446bc513b4" prot="public" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>DysonOrbital</name></member>
       <member refid="class_g_q_c_p_1_1_dyson_orbital_1a0641578e0fb5694b9f41786cf3aa99a4" prot="private" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>m_amplitudes</name></member>
       <member refid="class_g_q_c_p_1_1_dyson_orbital_1ab24fe534fef5bc4f0f5a75a290c5f7d2" prot="public" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>Scalar</name></member>
-      <member refid="class_g_q_c_p_1_1_dyson_orbital_1a4f69bbf55143f93aa0e24a5cd956f9ae" prot="public" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>TransitionAmplitudes</name></member>
+      <member refid="class_g_q_c_p_1_1_dyson_orbital_1a66695dfeffe0965391dbc9aa540d2735" prot="public" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>TransitionAmplitudes</name></member>
+      <member refid="class_g_q_c_p_1_1_dyson_orbital_1a3439c96ed4059e5c9f0466ba14190125" prot="public" virt="non-virtual"><scope>GQCP::DysonOrbital</scope><name>TransitionAmplitudes</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

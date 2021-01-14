@@ -51,7 +51,7 @@
 <parametername>alpha</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the damping factor </para>
+<para>The damping factor. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -59,7 +59,7 @@
 <parametername>threshold</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the threshold that is used in comparing the density matrices </para>
+<para>The threshold that is used in comparing the density matrices. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -67,11 +67,11 @@
 <parametername>maximum_number_of_iterations</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the maximum number of iterations the algorithm may perform</para>
+<para>The maximum number of iterations the algorithm may perform.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>a density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion </para>
+<simplesect kind="return"><para>A density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -112,7 +112,7 @@
 <parametername>minimum_subspace_dimension</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the minimum number of Fock matrices that have to be in the subspace before enabling <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> </para>
+<para>The minimum number of Fock matrices that have to be in the subspace before enabling <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -120,7 +120,7 @@
 <parametername>maximum_subspace_dimension</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the maximum number of Fock matrices that can be handled by <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> </para>
+<para>The maximum number of Fock matrices that can be handled by <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -128,7 +128,7 @@
 <parametername>threshold</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the threshold that is used in comparing the density matrices </para>
+<para>The threshold that is used in comparing the density matrices. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -136,11 +136,11 @@
 <parametername>maximum_number_of_iterations</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the maximum number of iterations the algorithm may perform</para>
+<para>The maximum number of iterations the algorithm may perform.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>a <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion </para>
+<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -171,7 +171,7 @@
 <parametername>threshold</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the threshold that is used in comparing the density matrices </para>
+<para>The threshold that is used in comparing the density matrices. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -179,11 +179,11 @@
 <parametername>maximum_number_of_iterations</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the maximum number of iterations the algorithm may perform</para>
+<para>The maximum number of iterations the algorithm may perform.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion </para>
+<simplesect kind="return"><para>A plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -201,7 +201,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar type that is used for the coefficient matrix/expansion coefficients </para>
+<para>The scalar type that is used for the coefficient matrix/expansion coefficients: real or complex. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>

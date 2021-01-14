@@ -74,7 +74,7 @@
 <parametername>sq_hamiltonian</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the Hamiltonian expressed in a scalar basis </para>
+<para>The Hamiltonian expressed in a scalar basis. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -101,11 +101,11 @@
 <parametername>rhf_parameters</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the RHF model parameters that are considered to be optimized</para>
+<para>The RHF model parameters that are considered to be optimized.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>if this objective is satisfied with the given optimized model parameters </para>
+<simplesect kind="return"><para>If this objective is satisfied with the given optimized model parameters. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -123,7 +123,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of scalar used for the expansion coefficients </para>
+<para>The type of scalar used for the expansion coefficients: real or complex. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>

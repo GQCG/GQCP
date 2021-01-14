@@ -46,7 +46,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>a textual description of this algorithmic step </para>
+<para><simplesect kind="return"><para>A textual description of this algorithmic step. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -72,7 +72,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment that acts as a sort of calculation space </para>
+<para>The environment that acts as a sort of calculation space. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" line="62" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" bodystart="62" bodyend="82"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" line="62" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" bodystart="62" bodyend="83"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -122,7 +122,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" bodystart="37" bodyend="83"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp" bodystart="37" bodyend="84"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_1a91159c90c3ba61e434fbc8ade3143a3a" prot="public" virt="non-virtual"><scope>GQCP::UHFFockMatrixDiagonalization</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::UHFFockMatrixDiagonalization</scope><name>description</name></member>

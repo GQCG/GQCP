@@ -862,7 +862,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="170" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="170" bodyend="176"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a68a1a435964ac94d351e9b9462610eaf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a11f4d2bfa0f8d2fda1e58aea4416af04" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -871,10 +871,10 @@
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
         <definition>static enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
-        <argsstring>(const RSpinOrbitalBasis&lt; double, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
+        <argsstring>(const RSpinOrbitalBasis&lt; Scalar, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
         <name>Molecular</name>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
           <declname>spinor_basis</declname>
         </param>
         <param>
@@ -910,7 +910,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="190" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="190" bodyend="200"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a4bd21e025ee47308d107aae8253cad12" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a6fc3562f19b18a955a7e1e7c8ad857ac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -919,10 +919,10 @@
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a4e2fa2707828e181d1a0dbe949627abf" kindref="member">UnrestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
         <definition>static enable_if_t&lt;std::is_same&lt;Z, UnrestrictedSpinOrbitalTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
-        <argsstring>(const USpinOrbitalBasis&lt; double, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
+        <argsstring>(const USpinOrbitalBasis&lt; Scalar, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
         <name>Molecular</name>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kindref="compound">USpinOrbitalBasis</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kindref="compound">USpinOrbitalBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
           <declname>spinor_basis</declname>
         </param>
         <param>
@@ -1300,8 +1300,8 @@
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a27495850582382747dd2e64c4674d7e7" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>h</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a609f706c461a51aab832587559d6ba98" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>h_contributions</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>JacobiRotationType</name></member>
-      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a68a1a435964ac94d351e9b9462610eaf" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
-      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a4bd21e025ee47308d107aae8253cad12" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a11f4d2bfa0f8d2fda1e58aea4416af04" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a6fc3562f19b18a955a7e1e7c8ad857ac" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a1d921704d5557be179a967b4be47fa29" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a9beb3656dcb386bb52a74e74f7723ad2" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>OneDM</name></member>

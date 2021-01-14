@@ -813,6 +813,8 @@
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="162" relation="include">
@@ -1752,8 +1754,8 @@
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="61" refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_calculation_1abbb99cd112516b1f97b5925410cfb407" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_calculation_1abbb99cd112516b1f97b5925410cfb407" kindref="member">execute</ref>(<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">Environment</ref>&amp;<sp/>environment)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>D<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a11ddbb78f3f9cc70ff4ec86af7b1d2a7" kindref="member">density_matrices</ref>.back();<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>most<sp/>recent<sp/>density<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" kindref="member">QCModel::RHF&lt;double&gt;::calculateScalarBasisFockMatrix</ref>(D,<sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1af6c4ccafc2f589dd9281618813d8c75f" kindref="member">sq_hamiltonian</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>D<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a11ddbb78f3f9cc70ff4ec86af7b1d2a7" kindref="member">density_matrices</ref>.back();<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>most<sp/>recent<sp/>density<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" kindref="member">QCModel::RHF&lt;Scalar&gt;::calculateScalarBasisFockMatrix</ref>(D,<sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1af6c4ccafc2f589dd9281618813d8c75f" kindref="member">sq_hamiltonian</ref>);</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment_1a8419febdaf0708d21529b2227738c09e" kindref="member">fock_matrices</ref>.push_back(F.parameters());</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="66"><highlight class="normal">};</highlight></codeline>

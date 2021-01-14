@@ -24,7 +24,7 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a255f35a444f1803dd44ab183bab92b04" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a40c99d66b008157929a3956f81e6ab05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename QCObjective</type>
@@ -33,8 +33,8 @@
             <type>typename Solver</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>QCStructure&lt;QCModel::RHF&lt;Scalar&gt; &gt; GQCP::QCMethod::RHF&lt; _Scalar &gt;::optimize</definition>
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" kindref="member">Scalar</ref> &gt;</type>
+        <definition>QCStructure&lt;QCModel::RHF&lt;Scalar&gt;, Scalar&gt; GQCP::QCMethod::RHF&lt; _Scalar &gt;::optimize</definition>
         <argsstring>(const QCObjective &amp;objective, Solver &amp;solver, RHFSCFEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
         <param>
@@ -58,7 +58,7 @@
 <parametername>QCObjective</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of the objective </para>
+<para>The type of the objective. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -66,7 +66,7 @@
 <parametername>Solver</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of the solver</para>
+<para>The type of the solver.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -75,7 +75,7 @@
 <parametername>objective</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the objective that should be fulfilled in order to consider the model&apos;s parameters as &apos;optimal&apos; </para>
+<para>The objective that should be fulfilled in order to consider the model&apos;s parameters as &apos;optimal&apos;. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -83,7 +83,7 @@
 <parametername>solver</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the solver that will try to optimize the parameters </para>
+<para>The solver that will try to optimize the parameters. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -91,7 +91,7 @@
 <parametername>environment</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the environment, which acts as a sort of calculation space for the solver </para>
+<para>The environment, which acts as a sort of calculation space for the solver. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -111,7 +111,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis </para>
+<para>The type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis: real or complex. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -125,7 +125,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp" bodystart="40" bodyend="82"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a255f35a444f1803dd44ab183bab92b04" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::RHF</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a40c99d66b008157929a3956f81e6ab05" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::RHF</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::RHF</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

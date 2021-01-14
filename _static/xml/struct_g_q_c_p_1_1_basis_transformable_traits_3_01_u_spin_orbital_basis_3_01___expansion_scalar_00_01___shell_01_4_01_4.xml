@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="421" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="421" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="439" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="439" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -37,7 +37,7 @@
         <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="418" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="418" bodyend="422"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="436" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="436" bodyend="440"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a896f011b2349157cdf51629c38b6f725" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</scope><name>Transformation</name></member>
     </listofallmembers>

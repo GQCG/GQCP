@@ -1067,6 +1067,8 @@
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="162" relation="include">
@@ -1748,14 +1750,16 @@
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="61" refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a3d1a38e9b8f836c00d7af37efaa0013f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a3d1a38e9b8f836c00d7af37efaa0013f" kindref="member">execute</ref>(<ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment" kindref="compound">Environment</ref>&amp;<sp/>environment)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>P<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1a6588a668e65673983fee3abde285266f" kindref="member">density_matrices</ref>.back();<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>most<sp/>recent<sp/>density<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad853c9a44e776b6fe37dd1f1800192df" kindref="member">QCModel::GHF&lt;Scalar&gt;::calculateScalarBasisFockMatrix</ref>(P,<sp/>environment.<ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1a4da7c31dd6e8ccba06ffe51fc29504b8" kindref="member">sq_hamiltonian</ref>);</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1ac585b9edd1ad75b09e1730dd9c119ba6" kindref="member">fock_matrices</ref>.push_back(F.parameters());</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="66"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>P<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1a6588a668e65673983fee3abde285266f" kindref="member">density_matrices</ref>.back();<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>most<sp/>recent<sp/>density<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad853c9a44e776b6fe37dd1f1800192df" kindref="member">QCModel::GHF&lt;Scalar&gt;::calculateScalarBasisFockMatrix</ref>(P,<sp/>environment.<ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1a4da7c31dd6e8ccba06ffe51fc29504b8" kindref="member">sq_hamiltonian</ref>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment_1ac585b9edd1ad75b09e1730dd9c119ba6" kindref="member">fock_matrices</ref>.push_back(F.parameters());</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp"/>
   </compounddef>
