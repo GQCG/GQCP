@@ -30,7 +30,7 @@
  *  Check the RMP2 energy correction with results from crawdad (http://sirius.chem.vt.edu/~crawdad/programming/project4/h2o_sto3g/output.txt).
  *  The test system is H2O in an STO-3G basisset.
  */
-BOOST_AUTO_TEST_CASE(crawdad_sto3g_molecule) {
+BOOST_AUTO_TEST_CASE(crawdad_sto3g_H2O) {
 
     const double ref_energy_correction = -0.049149636120;
 
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(crawdad_sto3g_molecule) {
  *  Check the RMP2 energy correction with results from crawdad (http://sirius.chem.vt.edu/~crawdad/programming/project4/h2o_sto3g/output.txt).
  *  The test system is CH4 in an STO-3G basisset.
  */
-BOOST_AUTO_TEST_CASE(crawdad_sto3g_molecule) {
+BOOST_AUTO_TEST_CASE(crawdad_sto3g_CH4) {
 
     const double ref_energy_correction = -0.056046676165;
 
