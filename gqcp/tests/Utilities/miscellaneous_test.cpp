@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(grayCodeOf) {
  */
 BOOST_AUTO_TEST_CASE(vectorIndex) {
 
-    const size_t cols = 11;
+    size_t cols = 11;
     const size_t skipped = 2;
     BOOST_CHECK_EQUAL(GQCP::vectorIndex(0, 2, cols, skipped), 0);
     BOOST_CHECK_EQUAL(GQCP::vectorIndex(1, 2, cols, skipped), 9);
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(vectorIndex) {
 BOOST_AUTO_TEST_CASE(matrixIndex) {
 
     size_t cols = 11;
-    size_t skipped = 2;
+    const size_t skipped = 2;
 
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(0, cols, skipped), 0);
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(9, cols, skipped), 1);
