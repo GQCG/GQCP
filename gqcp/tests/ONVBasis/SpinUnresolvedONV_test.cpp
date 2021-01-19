@@ -36,7 +36,7 @@
 BOOST_AUTO_TEST_CASE(ONV_constructor) {
 
     // Create SpinUnresolvedONV. We consider in total 10 bits, with 5 set bits distributed as "0000011111" = 31
-    const GQCP::SpinUnresolvedONV onv1 {10, 5, 31};
+    GQCP::SpinUnresolvedONV onv1 {10, 5, 31};
 
     // Create SpinUnresolvedONV basis with 10 orbitals and 5 electrons, and check if its first ONV is the one we just constructed.
     const GQCP::SpinUnresolvedONVBasis onv_basis {10, 5};

@@ -258,7 +258,7 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
 
 
     // Construct the reference Fockian matrix.
-    const GQCP::SquareMatrix<double> F_ref {2};
+    GQCP::SquareMatrix<double> F_ref {2};
     // clang-format off
     F_ref << -1.00,  1.00,
               1.00, -1.00;
@@ -333,5 +333,5 @@ BOOST_AUTO_TEST_CASE(dissociatedMoleculeParameters) {
     const GQCP::Molecule molecule {nuclei, +1};
 
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, NO));
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, nuclei));
 }
