@@ -445,7 +445,7 @@ BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
     //  In this instance electron weights at index 2 and 3 should be shifted.
     //  Initial weight contributions were 1 and 1 respectively,
     //  these should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively.
-    //  The total shift is thus 3, and the sign should remain the same (flips twice)
+    //  The total shift is thus 3, and the sign should remain the same (flips twice).
     onv_basis.shiftUntilNextUnoccupiedOrbital<1>(onv, address_shift, q, e, sign);
 
     BOOST_CHECK(address_shift == 3);
@@ -492,7 +492,7 @@ BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
     //  In this instance the electron weight at index 1 should be shifted.
     //  Initial weight contribution is 1,
     //  This should be shifted to 0, the difference is 1.
-    //  The sign changes (flips once)
+    //  The sign changes (flips once).
     onv_basis.shiftUntilPreviousUnoccupiedOrbital<1>(onv, address_shift, q, e, sign);
 
     BOOST_CHECK(address_shift == -1);
@@ -503,7 +503,7 @@ BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
     sign = 1;
     address_shift = 0;
     onv = onv_basis.constructONVFromAddress(9);  // 11100
-    // test shift if we plan on creating two electrons and start from orbital index 2
+    // Test shift if we plan on creating two electrons and start from orbital index 2.
     e = 0;  // count starts at 1 (translates to orbital index 2)
     q = 2;  // index starts at orbital index 2
 
@@ -511,7 +511,7 @@ BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
     //  In this instance the electron weight at index 2 should be shifted.
     //  Initial weight contribution is 2,
     //  This should be shifted to 0, the difference is 2.
-    //  The sign changes (flips once)
+    //  The sign changes (flips once).
     onv_basis.shiftUntilPreviousUnoccupiedOrbital<2>(onv, address_shift, q, e, sign);
 
     BOOST_CHECK(address_shift == -2);

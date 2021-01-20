@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(FromOccOcc) {
     // Initialize a test set of orbital rotation generators for an occupied-occupied orbital space.
     GQCP::VectorX<double> kappa {3};
     kappa << 1, 2, 3;
-    const GQCP::OrbitalRotationGenerators occ_occ_generators {kappa};  // 3 (doubly-)occupied spatial orbitals
+    const GQCP::OrbitalRotationGenerators occ_occ_generators {kappa};  // 3 (doubly-)occupied spatial orbitals.
 
     // Construct the total generators in a larger orbital space.
     const auto full_generators = GQCP::OrbitalRotationGenerators::FromOccOcc(occ_occ_generators, 4);  // 4 total spatial orbitals.
