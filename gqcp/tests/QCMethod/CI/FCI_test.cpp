@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // The dimension of this ONV basis is 100.
 
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(FCI_rotated_diagonal_sum) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE(FCI_rotated_diagonal_sum) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // The dimension of this ONV basis is 100.
 
 
     // Evaluate the diagonal of the FCI Hamiltonian matrix.
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -140,16 +140,16 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // The dimension of this ONV basis is 100.
 
 
-    // Create a dense solver and corresponding environment and put them together in the QCMethod
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
-    // Check our result with the reference
+    // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -181,10 +181,10 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // The dimension of this ONV basis is 100.
 
-    // Create a Davidson solver and corresponding environment and put them together in the QCMethod
-    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // initial guess
+    // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
+    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply an initial guess.
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
@@ -210,7 +210,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -222,17 +222,17 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::SpinResolvedONVBasis onv_basis(K, N_P, N_P);  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis(K, N_P, N_P);  // The dimension of this ONV basis is 100.
 
 
-    // Create a Davidson solver and corresponding environment and put them together in the QCMethod
-    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // initial guess
+    // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
+    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply an initial guess.
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
-    // Check our result with the reference
+    // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
@@ -251,7 +251,7 @@ BOOST_AUTO_TEST_CASE(FCI_H6_dense_vs_Davidson) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -263,23 +263,23 @@ BOOST_AUTO_TEST_CASE(FCI_H6_dense_vs_Davidson) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // The dimension of this ONV basis is 100.
 
 
-    // Create a dense solver and corresponding environment and put them together in the QCMethod
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto dense_environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto dense_solver = GQCP::EigenproblemSolver::Dense();
     const auto dense_electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
 
 
-    // Create a Davidson solver and corresponding environment and put them together in the QCMethod
-    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // initial guess
+    // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
+    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply initial guess.
     auto davidson_environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();
     const auto davidson_electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
 
 
-    // Check if the dense and Davidson energies are equal
+    // Check if the dense and Davidson energies are equal.
     BOOST_CHECK(std::abs(dense_electronic_energy - davidson_electronic_energy) < 1.0e-08);
 }
 
@@ -363,11 +363,11 @@ BOOST_AUTO_TEST_CASE(naturals) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // The dimension of this ONV basis is 100.
 
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.

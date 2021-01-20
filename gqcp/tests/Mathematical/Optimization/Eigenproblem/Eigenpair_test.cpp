@@ -22,9 +22,12 @@
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 
 
+/**
+ *  Check if `isEqualTo` behaves correctly for `Eigenpair`s.
+ */
 BOOST_AUTO_TEST_CASE(isEqualTo) {
 
-    // Create some test eigenvectors
+    // Create some test eigenvectors.
     GQCP::VectorX<double> u1 {2};
     u1 << 1, 0;
     GQCP::VectorX<double> u2 {2};
@@ -34,20 +37,19 @@ BOOST_AUTO_TEST_CASE(isEqualTo) {
     GQCP::VectorX<double> w {3};
     w << 1, 0, 0;
 
-
-    // Test isEqualTo for some eigenpairs
+    // Create some test eigenpairs.
     GQCP::Eigenpair<double> eigenpair1 {1, u1};
     GQCP::Eigenpair<double> eigenpair2 {1, u2};
     GQCP::Eigenpair<double> eigenpair3 {2, u1};
     GQCP::Eigenpair<double> eigenpair4 {1, v};
     GQCP::Eigenpair<double> eigenpair5 {1, w};
 
+    // Test `isEqualTo` for the eigenpairs.
     BOOST_CHECK(eigenpair1.isEqualTo(eigenpair1));
-    BOOST_CHECK(eigenpair1.isEqualTo(eigenpair2));  // eigenvectors are equal up to their sign
+    BOOST_CHECK(eigenpair1.isEqualTo(eigenpair2));  // Eigenvectors are equal up to their sign.
 
-    BOOST_CHECK(!eigenpair1.isEqualTo(eigenpair3));  // 1 != 2
-    BOOST_CHECK(!eigenpair1.isEqualTo(eigenpair4));  // u1 != v
+    BOOST_CHECK(!eigenpair1.isEqualTo(eigenpair3));  // The eigenvalues are different.
+    BOOST_CHECK(!eigenpair1.isEqualTo(eigenpair4));  // The eigenvectors are different.
 
-
-    BOOST_CHECK_THROW(eigenpair1.isEqualTo(eigenpair5), std::invalid_argument);  // can't compare eigenvectors of different dimensions
+    BOOST_CHECK_THROW(eigenpair1.isEqualTo(eigenpair5), std::invalid_argument);  // We can't compare eigenvectors of different dimensions.
 }

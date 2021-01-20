@@ -172,8 +172,7 @@ BOOST_AUTO_TEST_CASE(create) {
 
 
 /**
- *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions
- *  
+ *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions.
  */
 BOOST_AUTO_TEST_CASE(leftTranslateUntilVerticalArc) {
 

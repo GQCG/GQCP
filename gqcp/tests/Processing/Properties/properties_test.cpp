@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
     const double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
-    BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // From CCCBDB, require a correct RHF solution to be found
+    BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // From CCCBDB, require a correct RHF solution to be found.
 
 
     // Calculate the RHF 1-DM and the dipole operator in RHF MO basis.

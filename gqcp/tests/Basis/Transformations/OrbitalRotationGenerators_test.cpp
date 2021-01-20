@@ -22,15 +22,23 @@
 #include "Basis/Transformations/OrbitalRotationGenerators.hpp"
 
 
+/**
+ *  Check the OrbitalRotationGenerators constructor.
+ */
 BOOST_AUTO_TEST_CASE(constructor) {
 
-    const GQCP::VectorX<double> kappa {4};  // not a triangular number
+    // Check if the constructor throws upon receiving an argument of wrong dimensions.
+    const GQCP::VectorX<double> kappa {4};  // '4' is not a triangular number.
     BOOST_CHECK_THROW(GQCP::OrbitalRotationGenerators generators {kappa}, std::invalid_argument);
 }
 
 
+/**
+ *  Check if the `asMatrix` API correctly converts OrbitalRotationGenerators to their matrix representation.
+ */
 BOOST_AUTO_TEST_CASE(asMatrix) {
 
+    // Set up the raw orbital rotation generators and their matrix representation.
     GQCP::VectorX<double> kappa {3};
     kappa << 1, 2, 3;
 
@@ -41,18 +49,25 @@ BOOST_AUTO_TEST_CASE(asMatrix) {
                     2,  3,  0;
     // clang-format on
 
-    GQCP::OrbitalRotationGenerators generators(kappa);
+
+    // Check if the wrapper object behaves correctly.
+    const GQCP::OrbitalRotationGenerators generators {kappa};
     BOOST_CHECK(generators.asMatrix().isApprox(kappa_matrix));
 }
 
 
+/**
+ *  Check if the `FromOccOcc` named constructor behaves correctly.
+ */
 BOOST_AUTO_TEST_CASE(FromOccOcc) {
 
+    // Initialize a test set of orbital rotation generators for an occupied-occupied orbital space.
     GQCP::VectorX<double> kappa {3};
     kappa << 1, 2, 3;
-    GQCP::OrbitalRotationGenerators occ_occ_generators {kappa};  // 3 occupied spatial orbitals
+    const GQCP::OrbitalRotationGenerators occ_occ_generators {kappa};  // 3 (doubly-)occupied spatial orbitals.
 
-    auto full_generators = GQCP::OrbitalRotationGenerators::FromOccOcc(occ_occ_generators, 4);  // 4 total spatial orbitals
+    // Construct the total generators in a larger orbital space.
+    const auto full_generators = GQCP::OrbitalRotationGenerators::FromOccOcc(occ_occ_generators, 4);  // 4 total spatial orbitals.
 
     GQCP::SquareMatrix<double> full_kappa_matrix {4};
     // clang-format off

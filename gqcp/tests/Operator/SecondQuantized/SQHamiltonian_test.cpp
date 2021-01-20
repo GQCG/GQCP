@@ -26,7 +26,7 @@
 
 
 /*
- *  HELPER FUNCTIONS
+ *  MARK: Auxiliary functions
  */
 
 /**
@@ -79,9 +79,8 @@ GQCP::ScalarRSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
 
 
 /*
- *  UNIT TESTS - CONSTRUCTORS
+ *  MARK: Actual unit tests
  */
-
 
 /**
  *  Check if the constructor works as expected.
@@ -96,37 +95,34 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
 
     // Check if a correct constructor works.
-    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core, g));
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> hamiltonian(h_core, g));
 
 
     // Check if wrong arguments result in a throw.
     const auto h_core_faulty = GQCP::ScalarRSQOneElectronOperator<double>::Random(K + 1);
     const auto g_faulty = GQCP::ScalarRSQTwoElectronOperator<double>::Random(K + 1);
 
-    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core, g_faulty), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core_faulty, g), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> hamiltonian(h_core, g_faulty), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> hamiltonian(h_core_faulty, g), std::invalid_argument);
 
-    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core_faulty, g_faulty));
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> hamiltonian(h_core_faulty, g_faulty));
 }
 
 
-/*
- *  UNIT TESTS - NAMED CONSTRUCTORS
+/**
+ *  Check if the molecular Hamiltonian is correctly set up, with a reference fround in Szabo.
  */
+BOOST_AUTO_TEST_CASE(Molecular) {
 
-BOOST_AUTO_TEST_CASE(constructMolecularHamiltonianParameters) {
+    // Set up the molecular Hamiltonian in the AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
 
-    // Set up a basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-
-
-    // Check if we can construct the molecular Hamiltonian
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    auto g = sq_hamiltonian.twoElectron().parameters();
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto g = hamiltonian.twoElectron().parameters();
 
 
-    // Check with reference values from Szabo
+    // Provide the reference overlap and core Hamiltonian matrices.
     GQCP::SquareMatrix<double> ref_S {2};
     // clang-format off
     ref_S << 1.0,    0.6593,
@@ -139,8 +135,8 @@ BOOST_AUTO_TEST_CASE(constructMolecularHamiltonianParameters) {
                   -0.9584, -1.1204;
     // clang-format on
 
-    BOOST_CHECK(spinor_basis.overlap().parameters().isApprox(ref_S, 1.0e-04));
-    BOOST_CHECK(sq_hamiltonian.core().parameters().isApprox(ref_H_core, 1.0e-04));
+    BOOST_CHECK(spin_orbital_basis.overlap().parameters().isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(hamiltonian.core().parameters().isApprox(ref_H_core, 1.0e-04));
 
     BOOST_CHECK(std::abs(g(0, 0, 0, 0) - 0.7746) < 1.0e-04);
     BOOST_CHECK(std::abs(g(0, 0, 0, 0) - g(1, 1, 1, 1)) < 1.0e-12);
@@ -151,116 +147,124 @@ BOOST_AUTO_TEST_CASE(constructMolecularHamiltonianParameters) {
 }
 
 
+/**
+ *  Check if the FCIDUMP reader works as expected.
+ */
 BOOST_AUTO_TEST_CASE(FCIDUMP_reader) {
 
-    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
-    // Check if the one-electron integrals are read in correctly from a previous implementation
-    GQCP::SquareMatrix<double> h_SO = fcidump_ham_par.core().parameters();
+    // Check if the one-electron integrals are read in correctly.
+    const auto& h = hamiltonian.core().parameters();
 
-    BOOST_CHECK(std::abs(h_SO(0, 0) - (-8.34082)) < 1.0e-5);
-    BOOST_CHECK(std::abs(h_SO(5, 1) - 0.381418) < 1.0e-6);
-    BOOST_CHECK(std::abs(h_SO(14, 0) - 0.163205) < 1.0e-6);
-    BOOST_CHECK(std::abs(h_SO(13, 6) - (-5.53204e-16)) < 1.0e-16);
-    BOOST_CHECK(std::abs(h_SO(15, 11) - (-0.110721)) < 1.0e-6);
+    BOOST_CHECK(std::abs(h(0, 0) - (-8.34082)) < 1.0e-5);
+    BOOST_CHECK(std::abs(h(5, 1) - 0.381418) < 1.0e-6);
+    BOOST_CHECK(std::abs(h(14, 0) - 0.163205) < 1.0e-6);
+    BOOST_CHECK(std::abs(h(13, 6) - (-5.53204e-16)) < 1.0e-16);
+    BOOST_CHECK(std::abs(h(15, 11) - (-0.110721)) < 1.0e-6);
 
 
-    // Check if the two-electron integrals are read in correctly from a previous implementation
-    GQCP::SquareRankFourTensor<double> g_SO = fcidump_ham_par.twoElectron().parameters();
+    // Check if the two-electron integrals are read in correctly from a previous implementation.
+    const auto& g = hamiltonian.twoElectron().parameters();
 
-    BOOST_CHECK(std::abs(g_SO(2, 5, 4, 4) - 0.0139645) < 1.0e-6);
-    BOOST_CHECK(std::abs(g_SO(2, 6, 3, 0) - 5.16622e-18) < 1.0e-17);
-    BOOST_CHECK(std::abs(g_SO(3, 1, 3, 0) - (-0.0141251)) < 1.0e-6);
-    BOOST_CHECK(std::abs(g_SO(4, 6, 4, 6) - 0.0107791) < 1.0e-6);
-    BOOST_CHECK(std::abs(g_SO(4, 15, 11, 1) - (9.33375e-19)) < 1.0e-17);
-    BOOST_CHECK(std::abs(g_SO(6, 10, 5, 9) - (-3.81422e-18)) < 1.0e-17);
-    BOOST_CHECK(std::abs(g_SO(7, 7, 2, 1) - (-0.031278)) < 1.0e-6);
-    BOOST_CHECK(std::abs(g_SO(8, 15, 9, 9) - (-2.80093e-17)) < 1.0e-16);
-    BOOST_CHECK(std::abs(g_SO(9, 14, 0, 9) - 0.00161985) < 1.0e-7);
-    BOOST_CHECK(std::abs(g_SO(10, 1, 4, 3) - 0.00264603) < 1.0e-7);
-    BOOST_CHECK(std::abs(g_SO(11, 4, 9, 3) - (-0.0256623)) < 1.0e-6);
-    BOOST_CHECK(std::abs(g_SO(12, 9, 0, 4) - 0.0055472) < 1.0e-6);
-    BOOST_CHECK(std::abs(g_SO(13, 15, 15, 13) - 0.00766898) < 1.0e-7);
-    BOOST_CHECK(std::abs(g_SO(14, 2, 12, 3) - 0.0104266) < 1.0e-7);
-    BOOST_CHECK(std::abs(g_SO(15, 5, 10, 10) - 0.00562608) < 1.0e-7);
+    BOOST_CHECK(std::abs(g(2, 5, 4, 4) - 0.0139645) < 1.0e-6);
+    BOOST_CHECK(std::abs(g(2, 6, 3, 0) - 5.16622e-18) < 1.0e-17);
+    BOOST_CHECK(std::abs(g(3, 1, 3, 0) - (-0.0141251)) < 1.0e-6);
+    BOOST_CHECK(std::abs(g(4, 6, 4, 6) - 0.0107791) < 1.0e-6);
+    BOOST_CHECK(std::abs(g(4, 15, 11, 1) - (9.33375e-19)) < 1.0e-17);
+    BOOST_CHECK(std::abs(g(6, 10, 5, 9) - (-3.81422e-18)) < 1.0e-17);
+    BOOST_CHECK(std::abs(g(7, 7, 2, 1) - (-0.031278)) < 1.0e-6);
+    BOOST_CHECK(std::abs(g(8, 15, 9, 9) - (-2.80093e-17)) < 1.0e-16);
+    BOOST_CHECK(std::abs(g(9, 14, 0, 9) - 0.00161985) < 1.0e-7);
+    BOOST_CHECK(std::abs(g(10, 1, 4, 3) - 0.00264603) < 1.0e-7);
+    BOOST_CHECK(std::abs(g(11, 4, 9, 3) - (-0.0256623)) < 1.0e-6);
+    BOOST_CHECK(std::abs(g(12, 9, 0, 4) - 0.0055472) < 1.0e-6);
+    BOOST_CHECK(std::abs(g(13, 15, 15, 13) - 0.00766898) < 1.0e-7);
+    BOOST_CHECK(std::abs(g(14, 2, 12, 3) - 0.0104266) < 1.0e-7);
+    BOOST_CHECK(std::abs(g(15, 5, 10, 10) - 0.00562608) < 1.0e-7);
 }
 
 
+/**
+ *  Check if the FCIDUMP reader behaves like HORTON.
+ */
 BOOST_AUTO_TEST_CASE(FCIDUMP_reader_HORTON) {
 
-    // Check the same reference value that HORTON does
-    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/h2_psi4_horton.FCIDUMP");
+    // Check the same reference value that HORTON does.
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/h2_psi4_horton.FCIDUMP");
 
-    GQCP::SquareRankFourTensor<double> g_SO = fcidump_ham_par.twoElectron().parameters();
-    BOOST_CHECK(std::abs(g_SO(6, 5, 1, 0) - 0.0533584656) < 1.0e-7);
+    const auto& g = hamiltonian.twoElectron().parameters();
+    BOOST_CHECK(std::abs(g(6, 5, 1, 0) - 0.0533584656) < 1.0e-7);
 }
 
 
-/*
- *  UNIT TESTS - METHODS
+/**
+ *  Check the Fockian and super-Fockian routines for correct error handling.
  */
-
 BOOST_AUTO_TEST_CASE(calculate_generalized_Fock_matrix_and_super_invalid_arguments) {
 
-    // Initialize toy HamiltonianParameters
-    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2);
-    GQCP::SquareRankFourTensor<double> g {2};
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(h), GQCP::ScalarRSQTwoElectronOperator<double>(g)};
+    // Initialize a toy Hamiltonian.
+    const GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2);
+    const GQCP::SquareRankFourTensor<double> g {2};
+    const GQCP::RSQHamiltonian<double> hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(h), GQCP::ScalarRSQTwoElectronOperator<double>(g)};
 
 
-    // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCP::Orbital1DM<double> D_valid = GQCP::Orbital1DM<double>::Zero(2);
-    GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
+    // Create valid and invalid density matrices (with respect to the dimensions of the orbital basis).
+    const GQCP::Orbital1DM<double> D_valid = GQCP::Orbital1DM<double>::Zero(2);
+    const GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
 
-    GQCP::Orbital2DM<double> d_valid {2};
-    GQCP::Orbital2DM<double> d_invalid {3};
-
-
-    // Test a faulty function calls
-    BOOST_REQUIRE_THROW(sq_hamiltonian.calculateFockianMatrix(D_invalid, d_valid), std::invalid_argument);
-    BOOST_REQUIRE_THROW(sq_hamiltonian.calculateFockianMatrix(D_valid, d_invalid), std::invalid_argument);
-
-    BOOST_REQUIRE_THROW(sq_hamiltonian.calculateSuperFockianMatrix(D_invalid, d_valid), std::invalid_argument);
-    BOOST_REQUIRE_THROW(sq_hamiltonian.calculateSuperFockianMatrix(D_valid, d_invalid), std::invalid_argument);
+    const GQCP::Orbital2DM<double> d_valid {2};
+    const GQCP::Orbital2DM<double> d_invalid {3};
 
 
-    // Test correct function calls
-    sq_hamiltonian.calculateFockianMatrix(D_valid, d_valid);
-    sq_hamiltonian.calculateSuperFockianMatrix(D_valid, d_valid);
+    // Test faulty function calls.
+    BOOST_REQUIRE_THROW(hamiltonian.calculateFockianMatrix(D_invalid, d_valid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(hamiltonian.calculateFockianMatrix(D_valid, d_invalid), std::invalid_argument);
+
+    BOOST_REQUIRE_THROW(hamiltonian.calculateSuperFockianMatrix(D_invalid, d_valid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(hamiltonian.calculateSuperFockianMatrix(D_valid, d_invalid), std::invalid_argument);
+
+
+    // Test correct function calls.
+    hamiltonian.calculateFockianMatrix(D_valid, d_valid);
+    hamiltonian.calculateSuperFockianMatrix(D_valid, d_valid);
 }
 
 
+/**
+ *  Check the Fockian and super-Fockian routines for correct implementation.
+ */
 BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
 
-    // We test the function by a manual calculation of nonsensical toy 1- and 2-DMs and one- and two-electron integrals
-    // Set up the toy 1- and 2-DMs
+    // We test the function by a manual calculation of toy 1- and 2-DMs and one- and two-electron integrals.
+    // Set up the toy 1- and 2-DMs.
     GQCP::Orbital1DM<double> D {2};
     // clang-format off
     D << 0, 1,
          1, 0;
     // clang-format on
 
-    auto d = calculateToy2DM();
+    const auto d = calculateToy2DM();
 
-    // Set up the toy Hamiltonian
+    // Set up the toy Hamiltonian.
     GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2);
     // clang-format off
     h << 1, 0,
          0, 1;
     // clang-format on
 
-    auto g = calculateToyTwoElectronIntegrals();
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(h), g};
+    const auto g = calculateToyTwoElectronIntegrals();
+    const GQCP::RSQHamiltonian<double> hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(h), g};
 
 
-    // Construct the reference Fockian matrix
+    // Construct the reference Fockian matrix.
     GQCP::SquareMatrix<double> F_ref {2};
     // clang-format off
     F_ref << -1.00,  1.00,
               1.00, -1.00;
     // clang-format on
 
-    // Construct the reference super generalized Fock matrix
+    // Construct the reference super generalized Fock matrix.
     GQCP::SquareRankFourTensor<double> G_ref {2};
     G_ref.setZero();
     for (size_t p = 0; p < 2; p++) {
@@ -286,8 +290,8 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
     }
 
 
-    BOOST_CHECK(F_ref.isApprox(sq_hamiltonian.calculateFockianMatrix(D, d), 1.0e-12));
-    BOOST_CHECK(G_ref.isApprox(sq_hamiltonian.calculateSuperFockianMatrix(D, d), 1.0e-12));
+    BOOST_CHECK(F_ref.isApprox(hamiltonian.calculateFockianMatrix(D, d), 1.0e-12));
+    BOOST_CHECK(G_ref.isApprox(hamiltonian.calculateSuperFockianMatrix(D, d), 1.0e-12));
 }
 
 
@@ -306,28 +310,28 @@ BOOST_AUTO_TEST_CASE(calculateEdmistonRuedenbergLocalizationIndex) {
         g_op(p, p, p, p) = 2 * static_cast<float>(p);
     }
 
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(H_op), GQCP::ScalarRSQTwoElectronOperator<double>(g_op)};
+    GQCP::RSQHamiltonian<double> hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(H_op), GQCP::ScalarRSQTwoElectronOperator<double>(g_op)};
 
 
     // Check the values for the Edmiston-Ruedenberg localization index.
-    const auto orbital_space1 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 3}});  // 3 occupied spatial orbitals
-    const auto orbital_space2 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 4}});  // 3 occupied spatial orbitals
+    const auto orbital_space1 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 3}});  // 3 occupied spatial orbitals.
+    const auto orbital_space2 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 4}});  // 3 occupied spatial orbitals.
 
-    BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space1) - 6.0) < 1.0e-08);
-    BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space2) - 12.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space1) - 6.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space2) - 12.0) < 1.0e-08);
 }
 
 
 /**
- *  Test if we can succesfully initialize NO+ at long intra molecular distance.
+ *  Test if we can succesfully initialize NO+ at long intra molecular distance. This test was used to determine a bug fix.
  */
 BOOST_AUTO_TEST_CASE(dissociatedMoleculeParameters) {
 
-    GQCP::Nucleus N {7, 3.5, 0, 0};
-    GQCP::Nucleus O {8, -3.5, 0, 0};
-    std::vector<GQCP::Nucleus> nuclei {N, O};
-    GQCP::Molecule NO {nuclei, +1};
+    const GQCP::Nucleus N {7, 3.5, 0, 0};
+    const GQCP::Nucleus O {8, -3.5, 0, 0};
+    const std::vector<GQCP::Nucleus> nuclei {N, O};
+    const GQCP::Molecule molecule {nuclei, +1};
 
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {NO, "STO-3G"};
-    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, NO));
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, nuclei));
 }

@@ -23,7 +23,7 @@
 
 
 /**
- *  Check a few conversions from element symbol to atomic number
+ *  Check a few conversions from element symbol to atomic number.
  */
 BOOST_AUTO_TEST_CASE(elementToAtomicNumber) {
 
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(elementToAtomicNumber) {
 
 
 /**
- *  Check a few conversions from atomic number to element symbol
+ *  Check a few conversions from atomic number to element symbol.
  */
 BOOST_AUTO_TEST_CASE(atomicNumberToElement) {
 

@@ -25,11 +25,11 @@
 
 
 /*
- *  UTILITIES
+ *  MARK: Utilities for the unit tests
  */
 
 /**
- *  A functor to compare two doubles with respect to a tolerance
+ *  A functor to compare two doubles with respect to a tolerance.
  */
 struct approx {
 public:
@@ -47,30 +47,34 @@ public:
 
 
 /*
- *  UNIT TESTS
+ *  MARK: The actual unit tests
  */
 
+/**
+ *  Check if the interfacing between libint2::Atom and GQCP::Nucleus works as expected.
+ */
 BOOST_AUTO_TEST_CASE(nuclei_to_libint) {
 
-    std::vector<GQCP::Nucleus> GQCP_nuclei = {
+    // Initialize a set of GQCP nuclei and libint atoms.
+    const std::vector<GQCP::Nucleus> GQCP_nuclei {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
         {4, 0, 0, 5}};
 
-    std::vector<libint2::Atom> ref_libint_atoms = {
+    const std::vector<libint2::Atom> ref_libint_atoms {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
         {4, 0, 0, 5}};
 
 
-    // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCP ones
-    auto test_libint_atoms = GQCP::LibintInterfacer::get().interface(GQCP_nuclei);
+    // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCP nuclei.
+    const auto test_libint_atoms = GQCP::LibintInterfacer::get().interface(GQCP_nuclei);
 
 
     /**
-     *  Implement a function object to compare (libint_atom) == (libint_atom)
+     *  A functor that compares compare (libint_atom) == (libint_atom)
      */
     struct LibintAtomEqual {
         double tolerance;
@@ -86,51 +90,86 @@ BOOST_AUTO_TEST_CASE(nuclei_to_libint) {
     };
 
 
-    // Check if the interfacing between the Atom types works
+    // Check if the interfacing between the atom types behaves correctly.
     BOOST_CHECK((ref_libint_atoms.size() == test_libint_atoms.size()) &&
                 std::equal(ref_libint_atoms.begin(), ref_libint_atoms.end(), test_libint_atoms.begin(), LibintAtomEqual(1.0e-08)));
 }
 
 
+/**
+ *  Check if the interfacing between a GQCP::GTOShell and a libint2::Shell works as expected.
+ */
 BOOST_AUTO_TEST_CASE(Shell_to_libint) {
 
-    // Create a GQCP::GTOShell
-    GQCP::Nucleus h {1, 0.0, 0.0, 0.0};
-    GQCP::GTOShell shell {0, h, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false};  // a Cartesian s-type shell on the H-atom
+    // Create a GQCP::GTOShell. A Cartesian s-type shell on an H atom.
+    const GQCP::Nucleus h {1, 0.0, 0.0, 0.0};
+    const GQCP::GTOShell shell {0, h, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false};
 
-    // Create the reference libint2::GTOShell (indirectly, because we want to refrain from renorm() being called
+    // Create the reference libint2::GTOShell (indirectly, because we want to refrain from renorm() being called.
     libint2::Shell ref_libint_shell {};
     ref_libint_shell.alpha = {3.42525091, 0.62391373, 0.16885540};
     ref_libint_shell.contr = {{0, false, {0.15432897, 0.53532814, 0.44463454}}};
     ref_libint_shell.O = {0.0, 0.0, 0.0};
 
 
-    // Check if the interfacing from a GQCP::GTOShell to a libint2::GTOShell works
-    // Note that this function also tests LibintInterfacer::undoRenorm()
-    auto libint_shell = GQCP::LibintInterfacer::get().interface(shell);
+    // Check if the interfacing from a GQCP::GTOShell to a libint2::GTOShell works.
+    // Note that this function also tests LibintInterfacer::undoRenorm().
+    const auto libint_shell = GQCP::LibintInterfacer::get().interface(shell);
 
     BOOST_CHECK(std::equal(ref_libint_shell.alpha.begin(), ref_libint_shell.alpha.end(),
-                           libint_shell.alpha.begin(), approx()));  // check Gaussian exponents
+                           libint_shell.alpha.begin(), approx()));  // Check the Gaussian exponents.
     BOOST_CHECK(std::equal(ref_libint_shell.contr[0].coeff.begin(), ref_libint_shell.contr[0].coeff.end(),
-                           libint_shell.contr[0].coeff.begin(), approx()));     // check contraction coefficients
-    BOOST_CHECK(ref_libint_shell.contr[0].pure == libint_shell.contr[0].pure);  // check if both shells have the same type
+                           libint_shell.contr[0].coeff.begin(), approx()));     // Check the contraction coefficients.
+    BOOST_CHECK(ref_libint_shell.contr[0].pure == libint_shell.contr[0].pure);  // Check if both shells have the same type.
     BOOST_CHECK(std::equal(ref_libint_shell.O.begin(), ref_libint_shell.O.end(),
-                           libint_shell.O.begin(), approx()));  // check the center
+                           libint_shell.O.begin(), approx()));  // Check the center.
 }
 
 
+/**
+ *  Check if the interfacing between a libint2::Shell and a GQCP::GTOShell works as expected.
+ */
+BOOST_AUTO_TEST_CASE(libint_Shell_to_Shell) {
+
+    // Make some libint Shells.
+    libint2::Shell libint_s_shell {};
+    libint_s_shell.alpha = {1.0, 2.0};
+    libint_s_shell.contr = {{0, true, {0.5, -0.5}}};
+    libint_s_shell.O = {0.0, 0.0, 0.0};
+
+    libint2::Shell libint_d_shell {};
+    libint_d_shell.alpha = {4.0, 8.0};
+    libint_d_shell.contr = {{2, false, {1.5, -1.5}}};
+    libint_d_shell.O = {0.0, 0.0, 0.0};
+
+
+    // Create the reference GQCP Shells.
+    const GQCP::GTOShell ref_s_shell {0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true};
+    const GQCP::GTOShell ref_d_shell {2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false};
+
+
+    // Convert the libint2::Shells to GQCP::GTOShells and check if they match the references.
+    const bool undo_renorm = false;
+    const auto s_shell = GQCP::LibintInterfacer::get().interface(libint_s_shell, {GQCP::Nucleus()}, undo_renorm)[0];
+    const auto d_shell = GQCP::LibintInterfacer::get().interface(libint_d_shell, {GQCP::Nucleus()}, undo_renorm)[0];
+
+    BOOST_CHECK(ref_s_shell == s_shell);
+    BOOST_CHECK(ref_d_shell == d_shell);
+}
+
+
+/**
+ *  Check if the interfacing between a GQCP::ShellSet and a libint2::BasisSet works as expected.
+ */
 BOOST_AUTO_TEST_CASE(ShellSet_to_BasisSet) {
 
-    // Since we can't really create an initialized libint2::BasisSet except when using a molecule and a basisset name, we can only test if the shells are correctly placed and if the initialization 'hack' does what is expected
-
-
-    // Make a test ShellSet
-    GQCP::GTOShell s {0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true};
-    GQCP::GTOShell d {2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false};
+    // Initialize a GQCP::ShellSet.
+    const GQCP::GTOShell s {0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true};   // An s-type shell.
+    const GQCP::GTOShell d {2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false};  // A d-type shell.
     GQCP::ShellSet<GQCP::GTOShell> shellset {s, d};
 
 
-    // Make the reference BasisSet
+    // Initialize the reference libint2::BasisSet.
     libint2::BasisSet ref_libint_basisset {};
     ref_libint_basisset.push_back(libint2::Shell());
     ref_libint_basisset[0].alpha = {1.0, 2.0};
@@ -143,81 +182,45 @@ BOOST_AUTO_TEST_CASE(ShellSet_to_BasisSet) {
     ref_libint_basisset[1].O = {0.0, 0.0, 0.0};
 
 
-    // Check if the interfacing works
+    // Check if the interfacing works.
     auto libint_basisset = GQCP::LibintInterfacer::get().interface(shellset);
 
     for (size_t i = 0; i < ref_libint_basisset.size(); i++) {
         BOOST_CHECK(std::equal(ref_libint_basisset[i].alpha.begin(), ref_libint_basisset[i].alpha.end(),
-                               libint_basisset[i].alpha.begin(), approx()));  // check Gaussian exponents
+                               libint_basisset[i].alpha.begin(), approx()));  // Check the Gaussian exponents.
         BOOST_CHECK(std::equal(ref_libint_basisset[i].contr[0].coeff.begin(), ref_libint_basisset[i].contr[0].coeff.end(),
                                libint_basisset[i].contr[0].coeff.begin(), approx()));           // check contraction coefficients
         BOOST_CHECK(ref_libint_basisset[i].contr[0].pure == libint_basisset[i].contr[0].pure);  // check if both shells have the same type
         BOOST_CHECK(std::equal(ref_libint_basisset[i].O.begin(), ref_libint_basisset[i].O.end(),
                                libint_basisset[i].O.begin(), approx()));  // check the center
     }
-
-    // Check if the initialization 'hack' did something
-    BOOST_CHECK(libint_basisset.nbf() != -1);
-    BOOST_CHECK(libint_basisset.max_nprim() != 0);
-    BOOST_CHECK(libint_basisset.max_l() != -1);
 }
 
 
-BOOST_AUTO_TEST_CASE(libint_Shell_to_Shell) {
-
-    // Make some libint Shells
-    libint2::Shell libint_s_shell {};
-    libint_s_shell.alpha = {1.0, 2.0};
-    libint_s_shell.contr = {{0, true, {0.5, -0.5}}};
-    libint_s_shell.O = {0.0, 0.0, 0.0};
-
-    libint2::Shell libint_d_shell {};
-    libint_d_shell.alpha = {4.0, 8.0};
-    libint_d_shell.contr = {{2, false, {1.5, -1.5}}};
-    libint_d_shell.O = {0.0, 0.0, 0.0};
-
-
-    // Create the reference GQCP Shells
-    GQCP::GTOShell ref_s_shell {0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true};
-    GQCP::GTOShell ref_d_shell {2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false};
-
-
-    // Test the libint2::GTOShell to GQCP::GTOShell interfacing
-    bool undo_renorm = false;
-    auto s_shell = GQCP::LibintInterfacer::get().interface(libint_s_shell, {GQCP::Nucleus()}, undo_renorm)[0];
-    auto d_shell = GQCP::LibintInterfacer::get().interface(libint_d_shell, {GQCP::Nucleus()}, undo_renorm)[0];
-
-    BOOST_CHECK(ref_s_shell == s_shell);
-    BOOST_CHECK(ref_d_shell == d_shell);
-}
-
-
+/**
+ *  Check if a libint2::BasisSet is correctly converted to a vector of GQCP::GTOShells.
+ */
 BOOST_AUTO_TEST_CASE(BasisSet_to_ShellSet) {
 
-    // Note that this function also tests std::vector<GTOShell> LibintInterfacer::interface(const libint2::GTOShell& libint_shell, const std::vector<Nucleus>& nuclei) const;
+    // Create a reference STO-3G shell set on (a weird geometry of) H2O.
+    const GQCP::Nucleus h1 {1, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus o {8, 0.0, 0.0, 1.0};
+    const GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
+    const std::vector<GQCP::Nucleus> nuclei {h1, o, h2};
+    const bool pure = false;  // We'll use an STO-3G basis set, which represents Cartesian shells.
 
-
-    // Create a reference STO-3G shell set on (a weird geometry of) H2O
-    GQCP::Nucleus h1 {1, 0.0, 0.0, 0.0};
-    GQCP::Nucleus o {8, 0.0, 0.0, 1.0};
-    GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
-    std::vector<GQCP::Nucleus> nuclei {h1, o, h2};
-    bool pure = false;  // STO-3G represents Cartesian shells
-
-    GQCP::ShellSet<GQCP::GTOShell> ref_shellset {
+    const GQCP::ShellSet<GQCP::GTOShell> ref_shellset {
         GQCP::GTOShell(0, h1, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, pure),
         GQCP::GTOShell(0, o, {130.7093200, 23.8088610, 6.4436083}, {0.15432897, 0.53532814, 0.44463454}, pure),
         GQCP::GTOShell(0, o, {5.0331513, 1.1695961, 0.3803890}, {-0.09996723, 0.39951283, 0.70011547}, pure),
         GQCP::GTOShell(1, o, {5.0331513, 1.1695961, 0.3803890}, {0.15591627, 0.60768372, 0.39195739}, pure),
         GQCP::GTOShell(0, h2, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, pure)};
 
-    GQCP::Molecule h2o {{h1, o, h2}};
 
+    // Create a libint2::BasisSet and check if it is correctly converted to a vector of GQCP::GTOShells.
+    const auto libint_atoms = GQCP::LibintInterfacer::get().interface(nuclei);
+    const libint2::BasisSet libint_basisset {"STO-3G", libint_atoms};
 
-    // Construct the corresponding libint2::BasisSet
-    auto libint_atoms = GQCP::LibintInterfacer::get().interface(nuclei);
-    libint2::BasisSet libint_basisset {"STO-3G", libint_atoms};
-    auto shells = GQCP::LibintInterfacer::get().interface(libint_basisset, nuclei);
-
+    const auto shells = GQCP::LibintInterfacer::get().interface(libint_basisset, nuclei);
     BOOST_CHECK(ref_shellset.asVector() == shells);
 }

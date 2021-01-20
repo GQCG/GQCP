@@ -34,32 +34,22 @@ BOOST_AUTO_TEST_CASE(constructor) {
 }
 
 
-BOOST_AUTO_TEST_CASE(constructor_assignment) {
-
-    // A small check to see if the interface of the constructor and assignment operator works as expected
-
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(3);
-    GQCP::SquareMatrix<double> B = GQCP::SquareMatrix<double>::Random(3);
-
-    GQCP::SquareMatrix<double> M1 {A * B};
-    GQCP::SquareMatrix<double> M2 = A + B;
-    GQCP::SquareMatrix<double> M3 = 2 * A;
-
-    GQCP::SquareMatrix<double> M4 {M1 * M2};
-    GQCP::SquareMatrix<double> M5 = M2 + M3;
-    GQCP::SquareMatrix<double> M6 = 4 * M2;
-}
-
-
+/**
+ *  Check if invalid arguments for `FromStrictTriangle` are correctly handled.
+ */
 BOOST_AUTO_TEST_CASE(FromStrictTriangle_invalid) {
 
-    GQCP::VectorX<double> a_invalid {4};
-    BOOST_CHECK_THROW(GQCP::SquareMatrix<double>::FromStrictTriangle(a_invalid), std::invalid_argument);  // 4 is not a triangular number
+    GQCP::VectorX<double> a_invalid {4};  // '4' is not a triangular number.
+    BOOST_CHECK_THROW(GQCP::SquareMatrix<double>::FromStrictTriangle(a_invalid), std::invalid_argument);
 }
 
 
+/**
+ *  Check if `FromStrictTriangle` works as expected.
+ */
 BOOST_AUTO_TEST_CASE(FromStrictTriangle) {
 
+    // A test with dimension 3.
     GQCP::VectorX<double> a {3};
     a << 1, 2, 3;
 
@@ -73,6 +63,7 @@ BOOST_AUTO_TEST_CASE(FromStrictTriangle) {
     BOOST_CHECK(A_ref.isApprox(GQCP::SquareMatrix<double>::FromStrictTriangle(a), 1.0e-12));
 
 
+    // A test with dimension 5.
     GQCP::VectorX<double> b {6};
     b << 1, 2, 3, 4, 5, 6;
 
@@ -88,6 +79,9 @@ BOOST_AUTO_TEST_CASE(FromStrictTriangle) {
 }
 
 
+/**
+ *  Check if `SymmetricFromUpperTriangle` works as expected.
+ */
 BOOST_AUTO_TEST_CASE(FromTriangle) {
 
     GQCP::VectorX<double> upper_triangle {6};
@@ -104,6 +98,9 @@ BOOST_AUTO_TEST_CASE(FromTriangle) {
 }
 
 
+/**
+ *  Check if the pairwise reshaping of a square matrix is implemented as expected.
+ */
 BOOST_AUTO_TEST_CASE(pairWiseStrictReduced) {
 
     GQCP::SquareMatrix<double> A {3};
@@ -134,6 +131,9 @@ BOOST_AUTO_TEST_CASE(pairWiseStrictReduced) {
 }
 
 
+/**
+ *  Check if the permanent is correctly implemented through a combinatorial algorithm.
+ */
 BOOST_AUTO_TEST_CASE(calculatePermanentCombinatorial) {
 
     GQCP::SquareMatrix<double> A {2};
@@ -154,6 +154,9 @@ BOOST_AUTO_TEST_CASE(calculatePermanentCombinatorial) {
 }
 
 
+/**
+ *  Check if the permanent is correctly implemented through Ryser's algorithm.
+ */
 BOOST_AUTO_TEST_CASE(calculatePermanentRyser) {
 
     GQCP::SquareMatrix<double> A {2};
@@ -178,9 +181,15 @@ BOOST_AUTO_TEST_CASE(calculatePermanentRyser) {
 }
 
 
+/**
+ *  Check if the LU decomposition without pivoting is correctly implemented.
+ *  
+ */
 BOOST_AUTO_TEST_CASE(noPivotLUDecompose) {
 
-    // Reference data from https://stackoverflow.com/questions/41150997/perform-lu-decomposition-without-pivoting-in-matlab
+    // A test case taken from (https://stackoverflow.com/questions/41150997/perform-lu-decomposition-without-pivoting-in-matlab).
+
+    // Initialize the test matrices.
     GQCP::SquareMatrix<double> A {3};
     GQCP::SquareMatrix<double> L_ref {3};
     GQCP::SquareMatrix<double> U_ref {3};
@@ -188,7 +197,7 @@ BOOST_AUTO_TEST_CASE(noPivotLUDecompose) {
     A << 7, 6, 10,
          3, 8, 7,
          3, 5, 5;
-    
+
     L_ref <<  1.0000, 0,      0,
               0.4286, 1,      0,
               0.4286, 0.4474, 1;
@@ -207,7 +216,9 @@ BOOST_AUTO_TEST_CASE(noPivotLUDecompose) {
     BOOST_CHECK(L.isApprox(L_ref, 1.0e-4));
 
 
-    // Reference data from https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/
+    // A test case taken from (https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/).
+
+    // Initialize the test matrices.
     GQCP::SquareMatrix<double> A2 {3};
     GQCP::SquareMatrix<double> L_ref2 {3};
     GQCP::SquareMatrix<double> U_ref2 {3};
@@ -237,7 +248,7 @@ BOOST_AUTO_TEST_CASE(noPivotLUDecompose) {
 
 
 /*
- *  Check if `selfAdjoint` works as expected.
+ *  Check if `isSelfAdjoint` works as expected.
  */
 BOOST_AUTO_TEST_CASE(selfAdjoint) {
 
