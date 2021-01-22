@@ -611,8 +611,13 @@ void bindScalarSQOneElectronOperatorParameterInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
+    using Scalar = typename Type::Scalar;
 
     py_class
+
+        .def(py::init<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>())
+
+
         .def(
             "parameters",
             [](const Type& op) {
