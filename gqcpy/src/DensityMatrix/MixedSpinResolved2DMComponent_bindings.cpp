@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/MixedSpinResolved2DMComponent.hpp"
+#include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -37,6 +38,14 @@ void bindMixedSpinResolved2DMComponent(py::module& module) {
 
     // Define the Python class for `MixedSpinResolved2DMComponent`.
     py::class_<MixedSpinResolved2DMComponent<double>> py_MixedSpinResolved2DMComponent_d {module, "MixedSpinResolved2DMComponent_d", "One of the mixed (i.e. alpha-beta or beta-alpha) spin components of a spin-resolved 2-DM."};
+
+
+    py_MixedSpinResolved2DMComponent_d
+        .def(
+            "asArray",
+            [](const MixedSpinResolved2DMComponent<double>& d) {
+                return asNumpyArray(d.Eigen());
+            });
 }
 
 
