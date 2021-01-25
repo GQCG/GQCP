@@ -1551,14 +1551,15 @@ public:
      */
     double calculateShannonEntropy() const {
 
-        // Sum over the ONV basis dimension, and only include the term if c_k != 0
-        // We might as well replace all coefficients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
-        Eigen::ArrayXd coefficients_replaced = this->m_coefficients.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c; });  // replace 0 by 1
+        // Sum over the ONV basis dimension, and only include the term if |c_k|^2 != 0. This avoids any NaN errors.
+        // We might as well replace all coefficients that are 0 by 1, since log(1) = 0, which would have no influence on the final entropy value.
+        Eigen::ArrayXd c2_not_replaced = this->coefficients().array().square();
+        Eigen::ArrayXd c2 = c2_not_replaced.unaryExpr(
+            [](const double c) {
+                return c < 1.0e-18 ? 1 : c;  // Replace zeroes by ones.
+            });
 
-        Eigen::ArrayXd coefficients_squared = coefficients_replaced.square();
-        Eigen::ArrayXd log_coefficients_squared = coefficients_squared.log();  // natural logarithm (ln)
-
-        return -1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
+        return -1 / std::log(2) * (c2 * c2.log()).sum();  // Apply the log prefactor to change to log2.
     }
 
 

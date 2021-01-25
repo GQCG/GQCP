@@ -144,7 +144,14 @@ void bindSQHamiltonians(py::module& module) {
 
     bindSQHamiltonian<RSQHamiltonian<complex>, RSpinOrbitalBasis<complex, GTOShell>>(module, "RSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
 
-    bindSQHamiltonian<USQHamiltonian<double>, USpinOrbitalBasis<double, GTOShell>>(module, "USQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
+    auto py_USQHamiltonian_d = bindSQHamiltonian<USQHamiltonian<double>, USpinOrbitalBasis<double, GTOShell>>(module, "USQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
+    py_USQHamiltonian_d
+        .def_static(
+            "FromRestricted",
+            [](const RSQHamiltonian<double>& r_hamiltonian) {
+                return USQHamiltonian<double>::FromRestricted(r_hamiltonian);
+            });
+
     bindSQHamiltonian<USQHamiltonian<complex>, USpinOrbitalBasis<complex, GTOShell>>(module, "USQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
 
     bindSQHamiltonian<GSQHamiltonian<double>, GSpinorBasis<double, GTOShell>>(module, "GSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a generalized spinor basis.");

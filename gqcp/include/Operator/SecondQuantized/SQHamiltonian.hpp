@@ -158,16 +158,16 @@ public:
      */
 
     /**
-     *  Create an `SQHamiltonian` from a `HubbardHamiltonian`.
+     *  Create an `RSQHamiltonian` from a `HubbardHamiltonian`.
      * 
      *  @param hubbard_hamiltonian              The Hubbard model Hamiltonian.
      *
-     *  @return An SQHamiltonian generated from the given Hubbard model Hamiltonian.
+     *  @return An `RSQHamiltonian` generated from the given Hubbard model Hamiltonian.
      *
      *  @note This named constructor is only available for real matrix representations.
      */
     template <typename Z1 = Scalar, typename Z2 = SpinorTag>
-    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>::value, SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>::value, SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator>> FromHubbard(const HubbardHamiltonian<double>& hubbard_hamiltonian) {
 
         const auto h = hubbard_hamiltonian.core();
         const auto g = hubbard_hamiltonian.twoElectron();
@@ -176,7 +176,24 @@ public:
     }
 
 
-    // FIXME: These APIs should be moved to SpinorBasis.
+    /**
+     *  Create a `USQHamiltonian` from an `RSQHamiltonian`.
+     * 
+     *  @param r_hamiltonian            The Hamiltonian expressed in a restricted spin-orbital basis.
+     *
+     *  @return An `USQHamiltonian` generated from the given `RSQHamiltonian`.
+     */
+    template <typename Z = SpinorTag>
+    static enable_if_t<std::is_same<Z, UnrestrictedSpinorTag>::value, SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator>> FromRestricted(const SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarRSQTwoElectronOperator<Scalar>>& r_hamiltonian) {
+
+        const auto h_u = ScalarUSQOneElectronOperator<Scalar>::FromRestricted(r_hamiltonian.core());
+        const auto g_u = ScalarUSQTwoElectronOperator<Scalar>::FromRestricted(r_hamiltonian.twoElectron());
+
+        return Self {h_u, g_u};
+    }
+
+
+    // FIXME: The following APIs should be moved to SpinorBasis.
 
     /**
      *  Quantize the molecular Hamiltonian in a restricted spin-orbital basis.

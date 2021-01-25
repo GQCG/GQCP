@@ -144,6 +144,8 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
 
     py_class
 
+        .def(py::init<const ComponentType&, const ComponentType&>())
+
         .def_property(
             "alpha",
             [](const Type& spin_resolved_object) {
