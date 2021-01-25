@@ -219,6 +219,13 @@ void bindLinearExpansion<SpinResolvedONVBasis>(py::module& module, const std::st
         // PUBLIC METHODS
 
         .def(
+            "calculateShannonEntropy",
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateShannonEntropy();
+            },
+            "Return the Shannon entropy (information content) of the wave function.")
+
+        .def(
             "calculate1DM",
             [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion) {
                 return linear_expansion.calculate1DM();
