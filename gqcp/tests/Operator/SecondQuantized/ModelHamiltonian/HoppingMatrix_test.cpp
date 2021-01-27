@@ -43,6 +43,9 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
  */
 BOOST_AUTO_TEST_CASE(triangle_adjacency_matrix) {
 
+    const double t = 1.0;
+    const double U = 2.0;
+
     GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3);
     // clang-format off
     H_ref << U, -t, -t,
@@ -58,8 +61,6 @@ BOOST_AUTO_TEST_CASE(triangle_adjacency_matrix) {
          1, 0, 1,
          1, 1, 0;
     // clang-format on
-    const double t = 1.0;
-    const double U = 2.0;
     const GQCP::HoppingMatrix<double> H(A, t, U);
 
     BOOST_CHECK(H_ref.isApprox(H));
