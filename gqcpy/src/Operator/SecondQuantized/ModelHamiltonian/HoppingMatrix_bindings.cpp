@@ -57,8 +57,18 @@ void bindHoppingMatrix(py::module& module) {
             "matrix",
             [](const HoppingMatrix<double>& H) {
                 return H.matrix().Eigen();
-            });
-    ;
+            },
+            "Return a read-only reference to the matrix representation of this hopping matrix.")
+
+        /*
+         *  MARK: General information
+         */
+        .def(
+            "numberOfLatticeSites",
+            [](const HoppingMatrix<double>& H) {
+                return H.numberOfLatticeSites();
+            },
+            "Return the number of lattice sites corresponding used in this hopping matrix.");
 }
 
 
