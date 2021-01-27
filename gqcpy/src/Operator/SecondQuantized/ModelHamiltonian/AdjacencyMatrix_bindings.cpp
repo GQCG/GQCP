@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -29,36 +29,37 @@ namespace py = pybind11;
 using namespace GQCP;
 
 
-void bindHoppingMatrix(py::module& module) {
-    py::class_<HoppingMatrix<double>>(module, "HoppingMatrix", "The Hubbard hopping matrix.")
+void bindAdjacencyMatrix(py::module& module) {
+    py::class_<AdjacencyMatrix>(module, "AdjacencyMatrix", "An adjacency matrix for an undirected graph.")
 
         /*
          *  MARK: Constructors
          */
-
-        .def(py::init<const AdjacencyMatrix&, const double, const double>(),
-             py::arg("A"),
-             py::arg("t"),
-             py::arg("U"),
-             "Return the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.")
+        .def(py::init<>([](const Eigen::Matrix<size_t, Eigen::Dynamic, Eigen::Dynamic>& A) {
+            return AdjacencyMatrix(A);
+        }))
 
         .def_static(
-            "FromCSLine",
-            [](const std::string& cs_line) {
-                return HoppingMatrix<double>::FromCSLine(cs_line);
-            },
-            py::arg("csline"),
-            "Return the hopping matrix that corresponds to the given comma-separated line.")
+            "Cyclic",
+            &AdjacencyMatrix::Cyclic,
+            py::arg("n"),
+            "Return an `AdjacencyMatrix` that corresponds to a cyclical undirected graph with n vertices.")
+
+        .def_static(
+            "Linear",
+            &AdjacencyMatrix::Linear,
+            py::arg("n"),
+            "Return an `AdjacencyMatrix` that corresponds to a linear undirected graph with n vertices.")
+
 
         /*
          *  MARK: Access
          */
         .def(
             "matrix",
-            [](const HoppingMatrix<double>& H) {
-                return H.matrix().Eigen();
+            [](const AdjacencyMatrix& A) {
+                return A.matrix().Eigen();
             });
-    ;
 }
 
 

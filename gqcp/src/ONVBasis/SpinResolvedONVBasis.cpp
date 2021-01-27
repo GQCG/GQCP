@@ -377,7 +377,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHami
     // Prepare some variables.
     const auto dim_alpha = this->alpha().dimension();
     const auto dim_beta = this->beta().dimension();
-    const auto& H = hamiltonian.hoppingMatrix();
+    const auto& H = hamiltonian.hoppingMatrix().matrix();
 
 
     // Calculate the diagonal contributions resulting from the two-electron on-site interactions by iterating over all ONVs.

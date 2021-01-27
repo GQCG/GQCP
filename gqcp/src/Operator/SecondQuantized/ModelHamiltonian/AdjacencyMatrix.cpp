@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param A        An adjacency matrix, represented as a `SquareMatrix`.
  */
 AdjacencyMatrix::AdjacencyMatrix(const SquareMatrix<size_t>& A) :
-    SquareMatrix<size_t>(A) {
+    A {A} {
 
     if (!A.isSymmetric()) {
         throw std::invalid_argument("AdjacencyMatrix::AdjacencyMatrix(const SquareMatrix<size_t>&): The given matrix must be symmetric.");
@@ -56,15 +56,15 @@ AdjacencyMatrix::AdjacencyMatrix(const SquareMatrix<size_t>& A) :
 /**
  *  The default constructor.
  */
-AdjacencyMatrix::AdjacencyMatrix() :
-    SquareMatrix<size_t>() {}
+// AdjacencyMatrix::AdjacencyMatrix() :
+//     SquareMatrix<size_t>() {}
 
 
 /**
  *  A constructor required for compatibility with Pybind11. In its 'Eigen' bindings (eigen.h), it makes a call "Type(fits.rows, fits.cols)". This constructor should be called there.
  */
-AdjacencyMatrix::AdjacencyMatrix(const size_t cols, const size_t rows) :
-    SquareMatrix<size_t>(MatrixX<size_t>(cols, rows)) {}
+// AdjacencyMatrix::AdjacencyMatrix(const size_t cols, const size_t rows) :
+//     SquareMatrix<size_t>(MatrixX<size_t>(cols, rows)) {}
 
 
 /*
@@ -82,8 +82,8 @@ AdjacencyMatrix AdjacencyMatrix::Cyclic(const size_t n) {
 
     auto A = AdjacencyMatrix::Linear(n);
 
-    A(0, n - 1) = 1;
-    A(n - 1, 0) = 1;
+    A.matrix()(0, n - 1) = 1;
+    A.matrix()(n - 1, 0) = 1;
 
     return A;
 }

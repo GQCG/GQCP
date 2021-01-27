@@ -27,8 +27,11 @@ namespace GQCP {
 /**
  *  An adjacency matrix for an undirected graph.
  */
-class AdjacencyMatrix:
-    public SquareMatrix<size_t> {
+class AdjacencyMatrix {
+private:
+    // The matrix representation of the adjacency matrix.
+    SquareMatrix<size_t> A;
+
 
 public:
     /*
@@ -42,15 +45,10 @@ public:
      */
     AdjacencyMatrix(const SquareMatrix<size_t>& A);
 
-    /**
-     *  The default constructor.
-     */
-    AdjacencyMatrix();
-
-    /**
-     *  A constructor required for compatibility with Pybind11. In its 'Eigen' bindings (eigen.h), it makes a call "Type(fits.rows, fits.cols)". This constructor should be called there.
-     */
-    AdjacencyMatrix(const size_t cols, const size_t rows);
+    // /**
+    //  *  The default constructor.
+    //  */
+    // AdjacencyMatrix();
 
 
     /*
@@ -70,6 +68,21 @@ public:
      *  @return An `AdjacencyMatrix` that corresponds to a linear undirected graph with n vertices.
      */
     static AdjacencyMatrix Linear(const size_t n);
+
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     *  @return A read-only reference to the matrix representation of this adjacency matrix.
+     */
+    const SquareMatrix<size_t>& matrix() const { return this->A; }
+
+    /**
+     *  @return A writable reference to the matrix representation of this adjacency matrix.
+     */
+    SquareMatrix<size_t>& matrix() { return this->A; }
 };
 
 

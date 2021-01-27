@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(C3) {
              1, 1, 0;
     // clang-format on
 
-    BOOST_CHECK(GQCP::AdjacencyMatrix::Cyclic(3).isApprox(A_ref));
+    BOOST_CHECK(GQCP::AdjacencyMatrix::Cyclic(3).matrix().isApprox(A_ref));
 }
 
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(P4) {
              0, 0, 1, 0;
     // clang-format on
 
-    BOOST_CHECK(GQCP::AdjacencyMatrix::Linear(4).isApprox(A_ref));
+    BOOST_CHECK(GQCP::AdjacencyMatrix::Linear(4).matrix().isApprox(A_ref));
 }
 
 
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(P6) {
              0, 0, 0, 0, 1, 0;
     // clang-format on
 
-    BOOST_CHECK(GQCP::AdjacencyMatrix::Linear(6).isApprox(A_ref));
+    BOOST_CHECK(GQCP::AdjacencyMatrix::Linear(6).matrix().isApprox(A_ref));
 }
 
 
@@ -93,5 +93,5 @@ BOOST_AUTO_TEST_CASE(C6) {
              1, 0, 0, 0, 1, 0;
     // clang-format on
 
-    BOOST_CHECK(GQCP::AdjacencyMatrix::Cyclic(6).isApprox(A_ref));
+    BOOST_CHECK(GQCP::AdjacencyMatrix::Cyclic(6).matrix().isApprox(A_ref));
 }
