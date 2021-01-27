@@ -45,11 +45,6 @@ public:
      */
     AdjacencyMatrix(const SquareMatrix<size_t>& A);
 
-    // /**
-    //  *  The default constructor.
-    //  */
-    // AdjacencyMatrix();
-
 
     /*
      *  MARK: Named constructors

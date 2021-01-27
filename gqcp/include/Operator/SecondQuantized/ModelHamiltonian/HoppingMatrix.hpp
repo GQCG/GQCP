@@ -61,20 +61,6 @@ public:
     }
 
 
-    // /**
-    //  *  The default constructor.
-    //  */
-    // HoppingMatrix() :
-    //     SquareMatrix<Scalar>() {}
-
-
-    // /**
-    //  *  A constructor required for compatibility with Pybind11. In its 'Eigen' bindings (eigen.h), it makes a call "Type(fits.rows, fits.cols)". This constructor should be called there.
-    //  */
-    // HoppingMatrix(const size_t cols, const size_t rows) :
-    //     SquareMatrix<Scalar>(MatrixX<Scalar>(cols, rows)) {}
-
-
     /**
      *  Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.
      *
@@ -141,7 +127,7 @@ public:
      */
 
     /**
-     *  @return the number of lattice sites corresponding used in this hopping matrix
+     *  @return The number of lattice sites corresponding used in this hopping matrix.
      */
     size_t numberOfLatticeSites() const { return this->matrix().dimension(); }
 
