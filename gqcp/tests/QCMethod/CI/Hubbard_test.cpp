@@ -101,13 +101,7 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
     // Create the adjacency matrix for a four-site chain.
     const auto K = 4;    // The number of lattice sites.
     const auto N_P = 2;  // The number of electron pairs.
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K);
-    // clang-format off
-    A << 0, 1, 0, 0,
-         1, 0, 1, 0,
-         0, 1, 0, 1,
-         0, 0, 1, 0;
-    // clang-format on
+    const auto A = GQCP::AdjacencyMatrix::Linear(K);
 
     // Set the reference results.
     const double t = 1.0;
@@ -140,18 +134,10 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
  */
 BOOST_AUTO_TEST_CASE(six_site_ring) {
 
-    // Create the adjacency matrix for a four-site chain.
+    // Create the adjacency matrix for a six-site ring.
     const auto K = 6;    // The number of lattice sites.
     const auto N_P = 3;  // The number of electron pairs.
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K);
-    // clang-format off
-    A << 0, 1, 0, 0, 0, 1,
-         1, 0, 1, 0, 0, 0,
-         0, 1, 0, 1, 0, 0,
-         0, 0, 1, 0, 1, 0,
-         0, 0, 0, 1, 0, 1,
-         1, 0, 0, 0, 1, 0;
-    // clang-format on
+    const auto A = GQCP::AdjacencyMatrix::Cyclic(K);
 
 
     // Set the reference results.

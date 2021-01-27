@@ -109,6 +109,7 @@ void bindOperator(py::module& module);
 
 
 // Operator - SecondQuantized - ModelHamiltonian
+void bindAdjacencyMatrix(py::module& module);
 void bindHoppingMatrix(py::module& module);
 void bindHubbardHamiltonian(py::module& module);
 
@@ -306,6 +307,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Operator - SecondQuantized - ModelHamiltonian
+    gqcpy::bindAdjacencyMatrix(module);
     gqcpy::bindHoppingMatrix(module);
     gqcpy::bindHubbardHamiltonian(module);
 
