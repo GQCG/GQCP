@@ -138,7 +138,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="168">
+      <node id="169">
         <label>QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp</label>
       </node>
       <node id="51">
@@ -214,7 +214,7 @@
         <childnode refid="87" relation="include">
         </childnode>
       </node>
-      <node id="172">
+      <node id="173">
         <label>Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp</label>
         <link refid="_spin_resolved_orbital_space_8hpp"/>
         <childnode refid="159" relation="include">
@@ -319,11 +319,11 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="166" relation="include">
-        </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="167" relation="include">
         </childnode>
         <childnode refid="171" relation="include">
+        </childnode>
+        <childnode refid="172" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -461,6 +461,12 @@
         <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="166">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="28" relation="include">
         </childnode>
       </node>
       <node id="161">
@@ -741,7 +747,7 @@
       <node id="34">
         <label>fstream</label>
       </node>
-      <node id="167">
+      <node id="168">
         <label>QCModel/HF/RHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
         <childnode refid="159" relation="include">
@@ -758,7 +764,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="168" relation="include">
+        <childnode refid="169" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
@@ -962,7 +968,7 @@
         <childnode refid="96" relation="include">
         </childnode>
       </node>
-      <node id="170">
+      <node id="171">
         <label>QCMethod/QCStructure.hpp</label>
         <link refid="_q_c_structure_8hpp"/>
         <childnode refid="21" relation="include">
@@ -1051,10 +1057,10 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="171">
+      <node id="172">
         <label>QCModel/HF/UHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="172" relation="include">
+        <childnode refid="173" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
@@ -1072,9 +1078,9 @@
         </childnode>
         <childnode refid="147" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="168" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
@@ -1170,7 +1176,7 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="166">
+      <node id="167">
         <label>QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
         <link refid="_u_h_f_s_c_f_environment_8hpp"/>
         <childnode refid="42" relation="include">
@@ -1185,11 +1191,11 @@
         </childnode>
         <childnode refid="147" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="168" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="169" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
       </node>
       <node id="122">
@@ -1212,7 +1218,7 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="173">
+      <node id="174">
         <label>QCModel/HF/StabilityMatrices/UHFStabilityMatrices.hpp</label>
       </node>
       <node id="11">
@@ -1346,6 +1352,8 @@
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="28" relation="include">
         </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
       </node>
       <node id="26">
         <label>cstdlib</label>
@@ -1388,7 +1396,7 @@
         <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="169">
+      <node id="170">
         <label>deque</label>
       </node>
       <node id="97">

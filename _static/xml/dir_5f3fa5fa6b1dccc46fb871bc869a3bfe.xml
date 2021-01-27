@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_5f3fa5fa6b1dccc46fb871bc869a3bfe" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized</compoundname>
+    <innerdir refid="dir_27a8bd7aa1fd2f94b0b67c5ed1d90b94">/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/ModelHamiltonian</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/"/>
+  </compounddef>
+</doxygen>

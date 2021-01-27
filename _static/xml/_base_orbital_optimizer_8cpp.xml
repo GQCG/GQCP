@@ -419,6 +419,12 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
+      <node id="161">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
       <node id="156">
         <label>Mathematical/Representation/ImplicitMatrixSlice.hpp</label>
         <link refid="_implicit_matrix_slice_8hpp"/>
@@ -701,7 +707,7 @@
         <label>DensityMatrix/DensityMatrixTraits.hpp</label>
         <link refid="_density_matrix_traits_8hpp"/>
       </node>
-      <node id="161">
+      <node id="162">
         <label>Basis/Transformations/transform.hpp</label>
         <link refid="transform_8hpp"/>
         <childnode refid="3" relation="include">
@@ -1059,7 +1065,7 @@
         <link refid="_base_orbital_optimizer_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="162" relation="include">
         </childnode>
       </node>
       <node id="106">
@@ -1209,6 +1215,8 @@
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
         </childnode>
       </node>
       <node id="15">

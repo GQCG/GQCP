@@ -3,6 +3,7 @@
   <compounddef id="dir_e66c48a337996579237deb7f7b98352d" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Operator</compoundname>
     <innerdir refid="dir_9aa0c11a544b6d3157e2ad5a8a14999b">/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized</innerdir>
+    <innerdir refid="dir_5f3fa5fa6b1dccc46fb871bc869a3bfe">/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized</innerdir>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

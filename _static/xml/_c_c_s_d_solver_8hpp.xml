@@ -39,11 +39,11 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="175" relation="include">
+        <childnode refid="176" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="176" relation="include">
+        <childnode refid="177" relation="include">
         </childnode>
       </node>
       <node id="135">
@@ -95,7 +95,7 @@
         <childnode refid="86" relation="include">
         </childnode>
       </node>
-      <node id="176">
+      <node id="177">
         <label>QCMethod/CC/CCSDIntermediatesUpdate.hpp</label>
         <link refid="_c_c_s_d_intermediates_update_8hpp"/>
         <childnode refid="10" relation="include">
@@ -103,7 +103,7 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="175">
+      <node id="176">
         <label>QCMethod/CC/CCSDEnergyCalculation.hpp</label>
         <link refid="_c_c_s_d_energy_calculation_8hpp"/>
         <childnode refid="10" relation="include">
@@ -137,14 +137,14 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="171">
+      <node id="172">
         <label>QCModel/CC/CCD.hpp</label>
         <link refid="_q_c_model_2_c_c_2_c_c_d_8hpp"/>
         <childnode refid="164" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="173" relation="include">
         </childnode>
       </node>
       <node id="125">
@@ -504,6 +504,12 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
+      <node id="171">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
       <node id="166">
         <label>Mathematical/Representation/ImplicitMatrixSlice.hpp</label>
         <link refid="_implicit_matrix_slice_8hpp"/>
@@ -815,16 +821,16 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="173">
+      <node id="174">
         <label>QCModel/CC/CCSD.hpp</label>
         <link refid="_q_c_model_2_c_c_2_c_c_s_d_8hpp"/>
         <childnode refid="164" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="174" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="173" relation="include">
         </childnode>
       </node>
       <node id="57">
@@ -1271,7 +1277,7 @@
         <childnode refid="96" relation="include">
         </childnode>
       </node>
-      <node id="174">
+      <node id="175">
         <label>QCModel/CC/T1Amplitudes.hpp</label>
         <link refid="_t1_amplitudes_8hpp"/>
         <childnode refid="164" relation="include">
@@ -1341,6 +1347,8 @@
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="32">
@@ -1556,7 +1564,7 @@
         <childnode refid="101" relation="include">
         </childnode>
       </node>
-      <node id="172">
+      <node id="173">
         <label>QCModel/CC/T2Amplitudes.hpp</label>
         <link refid="_t2_amplitudes_8hpp"/>
         <childnode refid="164" relation="include">
@@ -1629,13 +1637,13 @@
         <link refid="_c_c_s_d_environment_8hpp"/>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
-        </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
         <childnode refid="174" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="173" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>

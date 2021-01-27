@@ -258,141 +258,144 @@ $(function() {
 <div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#a957455e43a3f0991500024376713cfec">  284</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a957455e43a3f0991500024376713cfec">isHermitian</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> threshold = 1.0e-08)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a0b63025d8fd5ed7c7cfdb6da82a1f68d">isSelfAdjoint</a>(threshold); }</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">     *  MARK: Algebraic manipulations</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
-<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#a41e7131c842e8e9cea385be462d8d309">  296</a></span>&#160;    std::array&lt;Self, 2&gt; <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a41e7131c842e8e9cea385be462d8d309">noPivotLUDecompose</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> M = this-&gt;<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a37d881f47fe4a016e5549e3ac22e7aea">dimension</a>();</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">Self</a> L = <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ae3551bb3ac15b2560846f7a5956d1d90">Self::Zero</a>(M);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">Self</a> U = <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ae3551bb3ac15b2560846f7a5956d1d90">Self::Zero</a>(M);</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="comment">// Algorithm from &quot;https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/&quot;</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; M; i++) {</div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#a323cfd30a36adbf412f6f02d8a009cd3">  290</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a323cfd30a36adbf412f6f02d8a009cd3">isSymmetric</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> threshold = 1.0e-08)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (*this).transpose().isApprox(*<span class="keyword">this</span>, threshold); }</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">     *  MARK: Algebraic manipulations</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#a41e7131c842e8e9cea385be462d8d309">  302</a></span>&#160;    std::array&lt;Self, 2&gt; <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a41e7131c842e8e9cea385be462d8d309">noPivotLUDecompose</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> M = this-&gt;<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a37d881f47fe4a016e5549e3ac22e7aea">dimension</a>();</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            <span class="comment">// Systematically solve for the entries of the upper triangular matrix U:</span></div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            <span class="comment">//  U_ik = A_ik - (LU)_ik</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = i; k &lt; M; k++) {</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                <span class="comment">// Summation of L(i, j) * U(j, k)</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                <span class="keywordtype">double</span> sum = 0.0;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; i; j++) {</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                    sum += (L(i, j) * U(j, k));</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">Self</a> L = <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ae3551bb3ac15b2560846f7a5956d1d90">Self::Zero</a>(M);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">Self</a> U = <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ae3551bb3ac15b2560846f7a5956d1d90">Self::Zero</a>(M);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="comment">// Algorithm from &quot;https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/&quot;</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; M; i++) {</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <span class="comment">// Systematically solve for the entries of the upper triangular matrix U:</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            <span class="comment">//  U_ik = A_ik - (LU)_ik</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = i; k &lt; M; k++) {</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160; </div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                <span class="comment">// Evaluating U(i, k)</span></div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                U(i, k) = this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(i, k) - sum;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            <span class="comment">// Systematically solve for the entries of the lower triangular matrix L:</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            <span class="comment">//  L_ik = (A_ik - (LU)_ik) / U_kk</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = i; k &lt; M; k++) {</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                <span class="keywordflow">if</span> (i == k) {</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                    L(i, i) = 1;  <span class="comment">// diagonal as 1</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                    <span class="comment">// Summation of L(k, j) * U(j, i)</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                    <span class="keywordtype">double</span> sum = 0.0;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; i; j++) {</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                        sum += (L(k, j) * U(j, i));</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                    }</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                <span class="comment">// Summation of L(i, j) * U(j, k)</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                <span class="keywordtype">double</span> sum = 0.0;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; i; j++) {</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                    sum += (L(i, j) * U(j, k));</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                }</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                <span class="comment">// Evaluating U(i, k)</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                U(i, k) = this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(i, k) - sum;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            }</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            <span class="comment">// Systematically solve for the entries of the lower triangular matrix L:</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            <span class="comment">//  L_ik = (A_ik - (LU)_ik) / U_kk</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = i; k &lt; M; k++) {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                <span class="keywordflow">if</span> (i == k) {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                    L(i, i) = 1;  <span class="comment">// diagonal as 1</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                    <span class="comment">// Evaluating L(k, i)</span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                    L(k, i) = (this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(k, i) - sum) / U(i, i);</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                }</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            }</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        }</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                    <span class="comment">// Summation of L(k, j) * U(j, i)</span></div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                    <span class="keywordtype">double</span> sum = 0.0;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; i; j++) {</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                        sum += (L(k, j) * U(j, i));</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                    }</div>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <span class="comment">// Test if the decomposition was stable</span></div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">Self</a> A = L * U;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        <span class="keywordflow">if</span> (A.isApprox(*<span class="keyword">this</span>)) {</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            <span class="keywordflow">return</span> std::array&lt;Self, 2&gt;({L, U});</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;SquareMatrix&lt;Scalar&gt;::noPivotLUDecompose(): The decomposition was not stable&quot;</span>);</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        }</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    }</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
-<div class="line"><a name="l00362"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#a8e16efb3d9cb08a8ba04db0abc88c66a">  362</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;</a> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a8e16efb3d9cb08a8ba04db0abc88c66a">pairWiseStrictReduced</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160; </div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> dim = this-&gt;<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a37d881f47fe4a016e5549e3ac22e7aea">dimension</a>();</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;</a> m = <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;::Zero</a>((dim * (dim - 1) / 2));  <span class="comment">// strictly lower triangle has dim(dim-1)/2 parameters</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        <span class="keywordtype">size_t</span> vector_index = 0;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> q = 0; q &lt; dim; q++) {          <span class="comment">// &quot;column major&quot; ordering for, so we do p first, then q</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> p = q + 1; p &lt; dim; p++) {  <span class="comment">// strict lower triangle means p &gt; q</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                m(vector_index) = this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(p, q);</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                vector_index++;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;            }</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        }</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="keywordflow">return</span> m;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    }</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160; </div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">     *  MARK: Permanents</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160; </div>
-<div class="line"><a name="l00387"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">  387</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">calculatePermanentCombinatorial</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="comment">// The recursion ends when the given &#39;matrix&#39; is just a number</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="keywordflow">if</span> ((this-&gt;rows() == 1) &amp;&amp; (this-&gt;cols() == 1)) {</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(0, 0);</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        }</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="keywordtype">size_t</span> j = 0;  <span class="comment">// develop by the first column</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keywordtype">double</span> value = 0.0;</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; this-&gt;rows(); i++) {</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            value += this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(i, j) * <a class="code" href="class_g_q_c_p_1_1_square_matrix.html">SquareMatrix&lt;Scalar&gt;</a>(this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a947bdbdcb3639ef34328379d6ac44efc">calculateMinor</a>(i, j)).<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">calculatePermanentCombinatorial</a>();  <span class="comment">// need to convert because &#39;minor&#39; is a base function and isn&#39;t guaranteed to be square</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                    <span class="comment">// Evaluating L(k, i)</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                    L(k, i) = (this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(k, i) - sum) / U(i, i);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                }</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            }</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        }</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        <span class="comment">// Test if the decomposition was stable</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">Self</a> A = L * U;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="keywordflow">if</span> (A.isApprox(*<span class="keyword">this</span>)) {</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="keywordflow">return</span> std::array&lt;Self, 2&gt;({L, U});</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;SquareMatrix&lt;Scalar&gt;::noPivotLUDecompose(): The decomposition was not stable&quot;</span>);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        }</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    }</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
+<div class="line"><a name="l00368"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#a8e16efb3d9cb08a8ba04db0abc88c66a">  368</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;</a> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a8e16efb3d9cb08a8ba04db0abc88c66a">pairWiseStrictReduced</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> dim = this-&gt;<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a37d881f47fe4a016e5549e3ac22e7aea">dimension</a>();</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;</a> m = <a class="code" href="class_g_q_c_p_1_1_matrix.html">VectorX&lt;Scalar&gt;::Zero</a>((dim * (dim - 1) / 2));  <span class="comment">// strictly lower triangle has dim(dim-1)/2 parameters</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="keywordtype">size_t</span> vector_index = 0;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> q = 0; q &lt; dim; q++) {          <span class="comment">// &quot;column major&quot; ordering for, so we do p first, then q</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> p = q + 1; p &lt; dim; p++) {  <span class="comment">// strict lower triangle means p &gt; q</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                m(vector_index) = this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(p, q);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                vector_index++;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            }</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        }</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="keywordflow">return</span> m;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    }</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">     *  MARK: Permanents</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; </div>
+<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">  393</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">calculatePermanentCombinatorial</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="comment">// The recursion ends when the given &#39;matrix&#39; is just a number</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <span class="keywordflow">if</span> ((this-&gt;rows() == 1) &amp;&amp; (this-&gt;cols() == 1)) {</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(0, 0);</div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        }</div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        <span class="keywordflow">return</span> value;</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    }</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; </div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160; </div>
-<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#af4bae3858d82278f0a0ada4382b8c9f9">  409</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#af4bae3858d82278f0a0ada4382b8c9f9">calculatePermanentRyser</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        <span class="keywordtype">size_t</span> n = this-&gt;<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a37d881f47fe4a016e5549e3ac22e7aea">dimension</a>();</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        <span class="comment">// Loop over all submatrices of A</span></div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        <span class="keywordtype">double</span> value = 0.0;  <span class="comment">// value of the permanent</span></div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        <span class="keywordtype">size_t</span> number_of_submatrices = boost::numeric::converter&lt;size_t, double&gt;::convert(std::pow(2, n));</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> S = 1; S &lt; number_of_submatrices; S++) {  <span class="comment">// there are no &#39;chosen columns&#39; in S=0</span></div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160; </div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;            <span class="comment">// Generate the current submatrix through the Gray code of S: if the bit is 1, the column is chosen</span></div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;            <span class="keywordtype">size_t</span> gray_code_value = <a class="code" href="namespace_g_q_c_p.html#a66b68f0876efe8c6a350a8a653216007">grayCodeOf</a>(S);</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            <span class="keywordtype">size_t</span> k = __builtin_popcountll(gray_code_value);  <span class="comment">// number of columns</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            <a class="code" href="class_g_q_c_p_1_1_matrix.html">MatrixX&lt;Scalar&gt;</a> X = <a class="code" href="class_g_q_c_p_1_1_matrix.html">MatrixX&lt;Scalar&gt;::Zero</a>(n, k);</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            <span class="keywordtype">size_t</span> j = 0;                                         <span class="comment">// the column index in X</span></div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            <span class="keywordflow">while</span> (gray_code_value != 0) {                        <span class="comment">// loop over the set bits in the Gray code</span></div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                <span class="keywordtype">size_t</span> index = __builtin_ctzll(gray_code_value);  <span class="comment">// the index in the original matrix</span></div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                X.col(j) = this-&gt;col(index);</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                gray_code_value ^= gray_code_value &amp; -gray_code_value;  <span class="comment">// flip the first set bit</span></div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                j++;</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            }</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        <span class="keywordtype">size_t</span> j = 0;  <span class="comment">// develop by the first column</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        <span class="keywordtype">double</span> value = 0.0;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; this-&gt;rows(); i++) {</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            value += this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">operator()</a>(i, j) * <a class="code" href="class_g_q_c_p_1_1_square_matrix.html">SquareMatrix&lt;Scalar&gt;</a>(this-&gt;<a class="code" href="class_g_q_c_p_1_1_matrix.html#a947bdbdcb3639ef34328379d6ac44efc">calculateMinor</a>(i, j)).<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">calculatePermanentCombinatorial</a>();  <span class="comment">// need to convert because &#39;minor&#39; is a base function and isn&#39;t guaranteed to be square</span></div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        }</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160; </div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        <span class="keywordflow">return</span> value;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    }</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
+<div class="line"><a name="l00415"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_square_matrix.html#af4bae3858d82278f0a0ada4382b8c9f9">  415</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#af4bae3858d82278f0a0ada4382b8c9f9">calculatePermanentRyser</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; </div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        <span class="keywordtype">size_t</span> n = this-&gt;<a class="code" href="class_g_q_c_p_1_1_square_matrix.html#a37d881f47fe4a016e5549e3ac22e7aea">dimension</a>();</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160; </div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        <span class="comment">// Loop over all submatrices of A</span></div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        <span class="keywordtype">double</span> value = 0.0;  <span class="comment">// value of the permanent</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        <span class="keywordtype">size_t</span> number_of_submatrices = boost::numeric::converter&lt;size_t, double&gt;::convert(std::pow(2, n));</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> S = 1; S &lt; number_of_submatrices; S++) {  <span class="comment">// there are no &#39;chosen columns&#39; in S=0</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160; </div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            <span class="comment">// Generate the current submatrix through the Gray code of S: if the bit is 1, the column is chosen</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <span class="keywordtype">size_t</span> gray_code_value = <a class="code" href="namespace_g_q_c_p.html#a66b68f0876efe8c6a350a8a653216007">grayCodeOf</a>(S);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            <span class="keywordtype">size_t</span> k = __builtin_popcountll(gray_code_value);  <span class="comment">// number of columns</span></div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160; </div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;            <a class="code" href="class_g_q_c_p_1_1_matrix.html">MatrixX&lt;Scalar&gt;</a> X = <a class="code" href="class_g_q_c_p_1_1_matrix.html">MatrixX&lt;Scalar&gt;::Zero</a>(n, k);</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;            <span class="keywordtype">size_t</span> j = 0;                                         <span class="comment">// the column index in X</span></div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;            <span class="keywordflow">while</span> (gray_code_value != 0) {                        <span class="comment">// loop over the set bits in the Gray code</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                <span class="keywordtype">size_t</span> index = __builtin_ctzll(gray_code_value);  <span class="comment">// the index in the original matrix</span></div>
 <div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160; </div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            <span class="comment">// Calculate the product of all the row sums and multiply by the sign</span></div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;            <span class="keywordtype">double</span> product_of_rowsums = X.array().rowwise().sum().prod();</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160; </div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <span class="keywordtype">size_t</span> t = n - k;  <span class="comment">// number of deleted columns</span></div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            <span class="keywordtype">int</span> sign = std::pow(-1, t);</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            value += sign * product_of_rowsums;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        }</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160; </div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        <span class="keywordflow">return</span> value;</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    }</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;};</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160; </div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160; </div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                X.col(j) = this-&gt;col(index);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160; </div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                gray_code_value ^= gray_code_value &amp; -gray_code_value;  <span class="comment">// flip the first set bit</span></div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;                j++;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            }</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160; </div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;            <span class="comment">// Calculate the product of all the row sums and multiply by the sign</span></div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            <span class="keywordtype">double</span> product_of_rowsums = X.array().rowwise().sum().prod();</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160; </div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;            <span class="keywordtype">size_t</span> t = n - k;  <span class="comment">// number of deleted columns</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            <span class="keywordtype">int</span> sign = std::pow(-1, t);</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;            value += sign * product_of_rowsums;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        }</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160; </div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        <span class="keywordflow">return</span> value;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    }</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;};</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160; </div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160; </div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_af916a1d7dab54e720134c9445f32b2ea"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#af916a1d7dab54e720134c9445f32b2ea">GQCP::SquareMatrix::FromStrictTriangle</a></div><div class="ttdeci">static Self FromStrictTriangle(const VectorX&lt; Scalar &gt; &amp;v)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:115</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_afce67055c3293379cc196854bb235e75"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#afce67055c3293379cc196854bb235e75">GQCP::SquareMatrix::PartitionMatrix</a></div><div class="ttdeci">static Self PartitionMatrix(const size_t start, const size_t range, const size_t M)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:175</div></div>
@@ -401,11 +404,12 @@ $(function() {
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a71c12ab57ae3a136b19c67270a138c02"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a71c12ab57ae3a136b19c67270a138c02">GQCP::SquareMatrix::SquareMatrix</a></div><div class="ttdeci">SquareMatrix(const size_t rows, const size_t cols)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:74</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html_a1457a824d08dadcac6a081f036d4eaa5"><div class="ttname"><a href="namespace_g_q_c_p.html#a1457a824d08dadcac6a081f036d4eaa5">GQCP::strictTriangularRootOf</a></div><div class="ttdeci">size_t strictTriangularRootOf(const size_t x)</div><div class="ttdef"><b>Definition:</b> miscellaneous.cpp:226</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a0762291135e1043da5582add757a5240"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a0762291135e1043da5582add757a5240">GQCP::SquareMatrix::PartitionMatrix</a></div><div class="ttdeci">static Self PartitionMatrix(const std::vector&lt; size_t &gt; &amp;indices, const size_t M)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:152</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a323cfd30a36adbf412f6f02d8a009cd3"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a323cfd30a36adbf412f6f02d8a009cd3">GQCP::SquareMatrix::isSymmetric</a></div><div class="ttdeci">bool isSymmetric(const double threshold=1.0e-08) const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:290</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_ad2771d96e3cff714f68dbdb5c7420021"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">GQCP::SquareMatrix::calculatePermanentCombinatorial</a></div><div class="ttdeci">double calculatePermanentCombinatorial() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:387</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_ad2771d96e3cff714f68dbdb5c7420021"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#ad2771d96e3cff714f68dbdb5c7420021">GQCP::SquareMatrix::calculatePermanentCombinatorial</a></div><div class="ttdeci">double calculatePermanentCombinatorial() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:393</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_ae3551bb3ac15b2560846f7a5956d1d90"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#ae3551bb3ac15b2560846f7a5956d1d90">GQCP::SquareMatrix&lt; Scalar &gt;::Zero</a></div><div class="ttdeci">static Self Zero(const size_t dim)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:262</div></div>
 <div class="ttc" id="amiscellaneous_8hpp_html"><div class="ttname"><a href="miscellaneous_8hpp.html">miscellaneous.hpp</a></div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_af4bae3858d82278f0a0ada4382b8c9f9"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#af4bae3858d82278f0a0ada4382b8c9f9">GQCP::SquareMatrix::calculatePermanentRyser</a></div><div class="ttdeci">double calculatePermanentRyser() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:409</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_af4bae3858d82278f0a0ada4382b8c9f9"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#af4bae3858d82278f0a0ada4382b8c9f9">GQCP::SquareMatrix::calculatePermanentRyser</a></div><div class="ttdeci">double calculatePermanentRyser() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:415</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_af9a12d2f0b3447800c1743b503233cab"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#af9a12d2f0b3447800c1743b503233cab">GQCP::SquareMatrix::RandomSymmetric</a></div><div class="ttdeci">static Self RandomSymmetric(const size_t dim)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:201</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_matrix_html"><div class="ttname"><a href="class_g_q_c_p_1_1_matrix.html">GQCP::Matrix</a></div><div class="ttdef"><b>Definition:</b> Matrix.hpp:46</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_aade211ea90d7a106a08db23939e20ecc"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#aade211ea90d7a106a08db23939e20ecc">GQCP::SquareMatrix::SquareMatrix</a></div><div class="ttdeci">SquareMatrix(const Eigen::MatrixBase&lt; DerivedExpression &gt; &amp;expression)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:101</div></div>
@@ -414,12 +418,12 @@ $(function() {
 <div class="ttc" id="aclass_g_q_c_p_1_1_matrix_html_a820960c1c3ad2c124d6be1ccd0eec021"><div class="ttname"><a href="class_g_q_c_p_1_1_matrix.html#a820960c1c3ad2c124d6be1ccd0eec021">GQCP::Matrix::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:49</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a0ccee967e25408559c5b06c2e8d1b2fd"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a0ccee967e25408559c5b06c2e8d1b2fd">GQCP::SquareMatrix::SquareMatrix</a></div><div class="ttdeci">SquareMatrix(const MatrixX&lt; Scalar &gt; &amp;M)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:83</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_matrix_html_a3caff939907e085c41fe8f49b6f73e8b"><div class="ttname"><a href="class_g_q_c_p_1_1_matrix.html#a3caff939907e085c41fe8f49b6f73e8b">GQCP::Matrix::operator()</a></div><div class="ttdeci">enable_if_t&lt; Self::is_vector &amp;&amp;(Rows==3), Z &gt; operator()(const CartesianDirection direction) const</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:274</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a8e16efb3d9cb08a8ba04db0abc88c66a"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a8e16efb3d9cb08a8ba04db0abc88c66a">GQCP::SquareMatrix::pairWiseStrictReduced</a></div><div class="ttdeci">VectorX&lt; Scalar &gt; pairWiseStrictReduced() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:362</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a8e16efb3d9cb08a8ba04db0abc88c66a"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a8e16efb3d9cb08a8ba04db0abc88c66a">GQCP::SquareMatrix::pairWiseStrictReduced</a></div><div class="ttdeci">VectorX&lt; Scalar &gt; pairWiseStrictReduced() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:368</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a7b4e7cb4f0a489ff6595054f133f1861"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a7b4e7cb4f0a489ff6595054f133f1861">GQCP::SquareMatrix::RandomUnitary</a></div><div class="ttdeci">static Self RandomUnitary(const size_t dim)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:216</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html">GQCP::SquareMatrix</a></div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:39</div></div>
 <div class="ttc" id="a_matrix_8hpp_html"><div class="ttname"><a href="_matrix_8hpp.html">Matrix.hpp</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_aa6a5cf30d688d7b21a2605b4a46d2ca9"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#aa6a5cf30d688d7b21a2605b4a46d2ca9">GQCP::SquareMatrix::Identity</a></div><div class="ttdeci">static Self Identity(const size_t dim)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:143</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a41e7131c842e8e9cea385be462d8d309"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a41e7131c842e8e9cea385be462d8d309">GQCP::SquareMatrix::noPivotLUDecompose</a></div><div class="ttdeci">std::array&lt; Self, 2 &gt; noPivotLUDecompose() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:296</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a41e7131c842e8e9cea385be462d8d309"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a41e7131c842e8e9cea385be462d8d309">GQCP::SquareMatrix::noPivotLUDecompose</a></div><div class="ttdeci">std::array&lt; Self, 2 &gt; noPivotLUDecompose() const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:302</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html_a66b68f0876efe8c6a350a8a653216007"><div class="ttname"><a href="namespace_g_q_c_p.html#a66b68f0876efe8c6a350a8a653216007">GQCP::grayCodeOf</a></div><div class="ttdeci">size_t grayCodeOf(const size_t S)</div><div class="ttdef"><b>Definition:</b> miscellaneous.cpp:165</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a3a3e9592b9d14e30e923ebd49f177177"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a3a3e9592b9d14e30e923ebd49f177177">GQCP::SquareMatrix::SquareMatrix</a></div><div class="ttdeci">SquareMatrix(const size_t dim)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:65</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_a0b63025d8fd5ed7c7cfdb6da82a1f68d"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#a0b63025d8fd5ed7c7cfdb6da82a1f68d">GQCP::SquareMatrix::isSelfAdjoint</a></div><div class="ttdeci">bool isSelfAdjoint(const double threshold=1.0e-08) const</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:278</div></div>

@@ -99,7 +99,7 @@
         <childnode refid="68" relation="include">
         </childnode>
       </node>
-      <node id="162">
+      <node id="163">
         <label>Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp</label>
       </node>
       <node id="37">
@@ -421,6 +421,12 @@
         <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="156">
@@ -1039,9 +1045,9 @@
         <link refid="_base_electrical_response_solver_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
-        </childnode>
         <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="163" relation="include">
         </childnode>
       </node>
       <node id="19">
@@ -1197,7 +1203,7 @@
         <childnode refid="68" relation="include">
         </childnode>
       </node>
-      <node id="161">
+      <node id="162">
         <label>Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp</label>
       </node>
       <node id="64">
@@ -1212,6 +1218,8 @@
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
         </childnode>
       </node>
       <node id="14">

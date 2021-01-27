@@ -145,6 +145,7 @@
       <member refid="class_g_q_c_p_1_1_square_matrix_1a957455e43a3f0991500024376713cfec" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>isHermitian</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1a643652b7fcd93870c6eeee96b106a7bc" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>isPositiveSemiDefinite</name></member>
       <member refid="class_g_q_c_p_1_1_square_matrix_1a0b63025d8fd5ed7c7cfdb6da82a1f68d" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>isSelfAdjoint</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a323cfd30a36adbf412f6f02d8a009cd3" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>isSymmetric</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_square_matrix_1a41e7131c842e8e9cea385be462d8d309" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>noPivotLUDecompose</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4119731fc8031d5bcaecba3db59297bb" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>numberOfOrbitals</name></member>

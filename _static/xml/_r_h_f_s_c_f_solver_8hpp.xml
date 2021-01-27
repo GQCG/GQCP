@@ -28,14 +28,14 @@
         <childnode refid="62" relation="include">
         </childnode>
       </node>
-      <node id="176">
+      <node id="177">
         <label>QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
         <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="56">
@@ -123,7 +123,7 @@
         <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="180">
+      <node id="181">
         <label>Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp</label>
       </node>
       <node id="74">
@@ -155,7 +155,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="171">
+      <node id="172">
         <label>QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp</label>
       </node>
       <node id="78">
@@ -311,7 +311,7 @@
         <childnode refid="85" relation="include">
         </childnode>
       </node>
-      <node id="173">
+      <node id="174">
         <label>Mathematical/Optimization/Accelerator/ConstantDamper.hpp</label>
         <link refid="_constant_damper_8hpp"/>
       </node>
@@ -362,9 +362,7 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
-        </childnode>
-        <childnode refid="174" relation="include">
+        <childnode refid="173" relation="include">
         </childnode>
         <childnode refid="175" relation="include">
         </childnode>
@@ -372,7 +370,9 @@
         </childnode>
         <childnode refid="177" relation="include">
         </childnode>
-        <childnode refid="181" relation="include">
+        <childnode refid="178" relation="include">
+        </childnode>
+        <childnode refid="182" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
@@ -494,6 +494,12 @@
         <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="170">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
       <node id="165">
@@ -628,16 +634,16 @@
         <childnode refid="55" relation="include">
         </childnode>
       </node>
-      <node id="172">
+      <node id="173">
         <label>QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
         <link refid="_r_h_f_density_matrix_damper_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="64">
@@ -786,7 +792,7 @@
       <node id="36">
         <label>fstream</label>
       </node>
-      <node id="170">
+      <node id="171">
         <label>QCModel/HF/RHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
         <childnode refid="163" relation="include">
@@ -803,7 +809,7 @@
         </childnode>
         <childnode refid="68" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
@@ -822,7 +828,7 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -911,14 +917,14 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="175">
+      <node id="176">
         <label>QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
         <link refid="_r_h_f_error_calculation_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="21">
@@ -1357,7 +1363,7 @@
         <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="179">
+      <node id="180">
         <label>Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp</label>
       </node>
       <node id="96">
@@ -1372,6 +1378,8 @@
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
         </childnode>
       </node>
       <node id="28">
@@ -1512,18 +1520,18 @@
         <childnode refid="67" relation="include">
         </childnode>
       </node>
-      <node id="177">
+      <node id="178">
         <label>QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
         <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="178" relation="include">
+        <childnode refid="179" relation="include">
         </childnode>
-        <childnode refid="181" relation="include">
+        <childnode refid="182" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
@@ -1558,12 +1566,12 @@
         <childnode refid="77" relation="include">
         </childnode>
       </node>
-      <node id="178">
+      <node id="179">
         <label>Mathematical/Optimization/Accelerator/DIIS.hpp</label>
         <link refid="_d_i_i_s_8hpp"/>
-        <childnode refid="179" relation="include">
-        </childnode>
         <childnode refid="180" relation="include">
+        </childnode>
+        <childnode refid="181" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
@@ -1711,7 +1719,7 @@
         <childnode refid="45" relation="include">
         </childnode>
       </node>
-      <node id="181">
+      <node id="182">
         <label>QCMethod/HF/RHF/RHFFockMatrixDiagonalization.hpp</label>
         <link refid="_r_h_f_fock_matrix_diagonalization_8hpp"/>
         <childnode refid="6" relation="include">
@@ -1751,14 +1759,14 @@
         <childnode refid="76" relation="include">
         </childnode>
       </node>
-      <node id="174">
+      <node id="175">
         <label>QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
         <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="124">

@@ -68,7 +68,7 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="223">
+      <node id="225">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorage.hpp</label>
         <link refid="_s_q_operator_storage_8hpp"/>
         <childnode refid="2" relation="include">
@@ -148,16 +148,16 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="243">
+      <node id="245">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/AngularMomentumOperator.hpp</label>
         <link refid="_angular_momentum_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="117" relation="include">
         </childnode>
-        <childnode refid="231" relation="include">
+        <childnode refid="233" relation="include">
         </childnode>
-        <childnode refid="244" relation="include">
+        <childnode refid="246" relation="include">
         </childnode>
       </node>
       <node id="28">
@@ -196,7 +196,7 @@
         <childnode refid="102" relation="include">
         </childnode>
       </node>
-      <node id="227">
+      <node id="229">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp</label>
         <link refid="_libcint_two_electron_integral_buffer_8hpp"/>
         <childnode refid="2" relation="include">
@@ -271,6 +271,8 @@
         </childnode>
         <childnode refid="220" relation="include">
         </childnode>
+        <childnode refid="221" relation="include">
+        </childnode>
         <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
@@ -306,19 +308,19 @@
         <childnode refid="155" relation="include">
         </childnode>
       </node>
-      <node id="252">
+      <node id="254">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/LinearMomentumOperator.hpp</label>
         <link refid="_linear_momentum_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="123" relation="include">
         </childnode>
-        <childnode refid="231" relation="include">
+        <childnode refid="233" relation="include">
         </childnode>
-        <childnode refid="253" relation="include">
+        <childnode refid="255" relation="include">
         </childnode>
       </node>
-      <node id="230">
+      <node id="232">
         <label>/__w/GQCP/GQCP/gqcp/include/Molecule/Molecule.hpp</label>
         <link refid="_molecule_8hpp"/>
         <childnode refid="2" relation="include">
@@ -339,11 +341,11 @@
         </childnode>
         <childnode refid="144" relation="include">
         </childnode>
-        <childnode refid="231" relation="include">
+        <childnode refid="233" relation="include">
         </childnode>
         <childnode refid="76" relation="include">
         </childnode>
-        <childnode refid="232" relation="include">
+        <childnode refid="234" relation="include">
         </childnode>
       </node>
       <node id="110">
@@ -410,7 +412,7 @@
         <childnode refid="90" relation="include">
         </childnode>
       </node>
-      <node id="254">
+      <node id="256">
         <label>/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp</label>
         <link refid="literals_8hpp"/>
         <childnode refid="2" relation="include">
@@ -578,7 +580,7 @@
         <childnode refid="185" relation="include">
         </childnode>
       </node>
-      <node id="229">
+      <node id="231">
         <label>/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp</label>
         <link refid="_nuclear_framework_8hpp"/>
         <childnode refid="2" relation="include">
@@ -589,19 +591,19 @@
         </childnode>
         <childnode refid="102" relation="include">
         </childnode>
-        <childnode refid="230" relation="include">
+        <childnode refid="232" relation="include">
         </childnode>
+        <childnode refid="235" relation="include">
+        </childnode>
+        <childnode refid="242" relation="include">
+        </childnode>
+      </node>
+      <node id="239">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
+        <link refid="_nuclear_repulsion_operator_8hpp"/>
         <childnode refid="233" relation="include">
         </childnode>
         <childnode refid="240" relation="include">
-        </childnode>
-      </node>
-      <node id="237">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
-        <link refid="_nuclear_repulsion_operator_8hpp"/>
-        <childnode refid="231" relation="include">
-        </childnode>
-        <childnode refid="238" relation="include">
         </childnode>
       </node>
       <node id="162">
@@ -636,6 +638,16 @@
         <childnode refid="120" relation="include">
         </childnode>
         <childnode refid="126" relation="include">
+        </childnode>
+      </node>
+      <node id="220">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="221" relation="include">
+        </childnode>
+        <childnode refid="222" relation="include">
         </childnode>
       </node>
       <node id="173">
@@ -742,7 +754,7 @@
         <childnode refid="147" relation="include">
         </childnode>
       </node>
-      <node id="247">
+      <node id="249">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseReferenceDependentOperator.cpp</label>
         <link refid="_base_reference_dependent_operator_8cpp"/>
       </node>
@@ -816,16 +828,16 @@
         <childnode refid="103" relation="include">
         </childnode>
       </node>
-      <node id="228">
+      <node id="230">
         <label>/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp</label>
         <link refid="_nucleus_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="127" relation="include">
         </childnode>
-        <childnode refid="229" relation="include">
+        <childnode refid="231" relation="include">
         </childnode>
-        <childnode refid="241" relation="include">
+        <childnode refid="243" relation="include">
         </childnode>
       </node>
       <node id="73">
@@ -848,17 +860,17 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="222">
+      <node id="224">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQOperatorStorageBase.hpp</label>
         <link refid="_s_q_operator_storage_base_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="148" relation="include">
         </childnode>
-        <childnode refid="223" relation="include">
+        <childnode refid="225" relation="include">
         </childnode>
       </node>
-      <node id="241">
+      <node id="243">
         <label>/__w/GQCP/GQCP/gqcp/src/Molecule/Nucleus.cpp</label>
         <link refid="_nucleus_8cpp"/>
       </node>
@@ -880,12 +892,12 @@
         <childnode refid="69" relation="include">
         </childnode>
       </node>
-      <node id="234">
+      <node id="236">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearAttractionOperator.hpp</label>
         <link refid="_nuclear_attraction_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="231" relation="include">
+        <childnode refid="233" relation="include">
         </childnode>
       </node>
       <node id="217">
@@ -1006,18 +1018,18 @@
         <childnode refid="145" relation="include">
         </childnode>
       </node>
-      <node id="233">
+      <node id="235">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
         <link refid="_base_nuclear_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="234" relation="include">
-        </childnode>
-        <childnode refid="235" relation="include">
+        <childnode refid="236" relation="include">
         </childnode>
         <childnode refid="237" relation="include">
         </childnode>
         <childnode refid="239" relation="include">
+        </childnode>
+        <childnode refid="241" relation="include">
         </childnode>
       </node>
       <node id="181">
@@ -1098,19 +1110,23 @@
         <childnode refid="190" relation="include">
         </childnode>
       </node>
-      <node id="242">
+      <node id="244">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</label>
         <link refid="_base_reference_dependent_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="243" relation="include">
-        </childnode>
         <childnode refid="245" relation="include">
-        </childnode>
-        <childnode refid="235" relation="include">
         </childnode>
         <childnode refid="247" relation="include">
         </childnode>
+        <childnode refid="237" relation="include">
+        </childnode>
+        <childnode refid="249" relation="include">
+        </childnode>
+      </node>
+      <node id="222">
+        <label>/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.cpp</label>
+        <link refid="_adjacency_matrix_8cpp"/>
       </node>
       <node id="17">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/expectation_values.hpp</label>
@@ -1188,14 +1204,14 @@
         <childnode refid="87" relation="include">
         </childnode>
       </node>
-      <node id="225">
+      <node id="227">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp</label>
         <link refid="_base_two_electron_integral_buffer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="226" relation="include">
+        <childnode refid="228" relation="include">
         </childnode>
-        <childnode refid="227" relation="include">
+        <childnode refid="229" relation="include">
         </childnode>
       </node>
       <node id="174">
@@ -1230,7 +1246,7 @@
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="231">
+      <node id="233">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp</label>
         <link refid="_operator_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1358,16 +1374,16 @@
         <childnode refid="33" relation="include">
         </childnode>
       </node>
-      <node id="250">
+      <node id="252">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
         <link refid="_electronic_spin_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="231" relation="include">
+        <childnode refid="233" relation="include">
         </childnode>
         <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="251" relation="include">
+        <childnode refid="253" relation="include">
         </childnode>
       </node>
       <node id="108">
@@ -1515,13 +1531,13 @@
         </childnode>
         <childnode refid="178" relation="include">
         </childnode>
-        <childnode refid="221" relation="include">
+        <childnode refid="223" relation="include">
         </childnode>
-        <childnode refid="224" relation="include">
+        <childnode refid="226" relation="include">
         </childnode>
-        <childnode refid="228" relation="include">
+        <childnode refid="230" relation="include">
         </childnode>
-        <childnode refid="242" relation="include">
+        <childnode refid="244" relation="include">
         </childnode>
         <childnode refid="91" relation="include">
         </childnode>
@@ -1567,21 +1583,21 @@
         </childnode>
         <childnode refid="150" relation="include">
         </childnode>
-        <childnode refid="221" relation="include">
+        <childnode refid="223" relation="include">
         </childnode>
-        <childnode refid="224" relation="include">
+        <childnode refid="226" relation="include">
         </childnode>
         <childnode refid="148" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="222" relation="include">
+        <childnode refid="224" relation="include">
         </childnode>
         <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="248" relation="include">
+        <childnode refid="250" relation="include">
         </childnode>
-        <childnode refid="254" relation="include">
+        <childnode refid="256" relation="include">
         </childnode>
       </node>
       <node id="172">
@@ -1636,7 +1652,7 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/BaseElectricalResponseSolver.cpp</label>
         <link refid="_base_electrical_response_solver_8cpp"/>
       </node>
-      <node id="248">
+      <node id="250">
         <label>/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp</label>
         <link refid="aliases_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1649,15 +1665,15 @@
         </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="249" relation="include">
+        <childnode refid="251" relation="include">
         </childnode>
         <childnode refid="150" relation="include">
         </childnode>
-        <childnode refid="243" relation="include">
-        </childnode>
-        <childnode refid="250" relation="include">
+        <childnode refid="245" relation="include">
         </childnode>
         <childnode refid="252" relation="include">
+        </childnode>
+        <childnode refid="254" relation="include">
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
@@ -1894,16 +1910,16 @@
         <childnode refid="78" relation="include">
         </childnode>
       </node>
-      <node id="245">
+      <node id="247">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDipoleOperator.hpp</label>
         <link refid="_electronic_dipole_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="119" relation="include">
         </childnode>
-        <childnode refid="231" relation="include">
+        <childnode refid="233" relation="include">
         </childnode>
-        <childnode refid="246" relation="include">
+        <childnode refid="248" relation="include">
         </childnode>
       </node>
       <node id="13">
@@ -1952,7 +1968,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="226">
+      <node id="228">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseTwoElectronIntegralEngine.hpp</label>
         <link refid="_base_two_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1984,7 +2000,7 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="240">
+      <node id="242">
         <label>/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp</label>
         <link refid="_nuclear_framework_8cpp"/>
       </node>
@@ -2008,7 +2024,7 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="220">
+      <node id="221">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="2" relation="include">
@@ -2020,7 +2036,7 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp</label>
         <link refid="_a_p1ro_g_8cpp"/>
       </node>
-      <node id="238">
+      <node id="240">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/NuclearRepulsionOperator.cpp</label>
         <link refid="_nuclear_repulsion_operator_8cpp"/>
       </node>
@@ -2108,7 +2124,7 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.cpp</label>
         <link refid="_primitive_kinetic_energy_integral_engine_8cpp"/>
       </node>
-      <node id="253">
+      <node id="255">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/LinearMomentumOperator.cpp</label>
         <link refid="_linear_momentum_operator_8cpp"/>
       </node>
@@ -2184,7 +2200,7 @@
         <childnode refid="136" relation="include">
         </childnode>
       </node>
-      <node id="239">
+      <node id="241">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseNuclearOperator.cpp</label>
         <link refid="_base_nuclear_operator_8cpp"/>
       </node>
@@ -2328,18 +2344,18 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="236">
+      <node id="238">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/NuclearDipoleOperator.cpp</label>
         <link refid="_nuclear_dipole_operator_8cpp"/>
       </node>
-      <node id="235">
+      <node id="237">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearDipoleOperator.hpp</label>
         <link refid="_nuclear_dipole_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="231" relation="include">
+        <childnode refid="233" relation="include">
         </childnode>
-        <childnode refid="236" relation="include">
+        <childnode refid="238" relation="include">
         </childnode>
       </node>
       <node id="155">
@@ -2420,11 +2436,11 @@
         <childnode refid="67" relation="include">
         </childnode>
       </node>
-      <node id="232">
+      <node id="234">
         <label>/__w/GQCP/GQCP/gqcp/src/Molecule/Molecule.cpp</label>
         <link refid="_molecule_8cpp"/>
       </node>
-      <node id="244">
+      <node id="246">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/AngularMomentumOperator.cpp</label>
         <link refid="_angular_momentum_operator_8cpp"/>
       </node>
@@ -2578,12 +2594,12 @@
         <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="224">
+      <node id="226">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp</label>
         <link refid="_tensor_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="225" relation="include">
+        <childnode refid="227" relation="include">
         </childnode>
         <childnode refid="177" relation="include">
         </childnode>
@@ -2632,14 +2648,14 @@
         <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="221">
+      <node id="223">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp</label>
         <link refid="_storage_array_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="218" relation="include">
         </childnode>
-        <childnode refid="222" relation="include">
+        <childnode refid="224" relation="include">
         </childnode>
       </node>
       <node id="127">
@@ -2688,7 +2704,7 @@
         <childnode refid="96" relation="include">
         </childnode>
       </node>
-      <node id="249">
+      <node id="251">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
         <childnode refid="2" relation="include">
@@ -2697,7 +2713,7 @@
         </childnode>
         <childnode refid="142" relation="include">
         </childnode>
-        <childnode refid="223" relation="include">
+        <childnode refid="225" relation="include">
         </childnode>
         <childnode refid="185" relation="include">
         </childnode>
@@ -2728,7 +2744,7 @@
         <childnode refid="75" relation="include">
         </childnode>
       </node>
-      <node id="251">
+      <node id="253">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/ElectronicSpinOperator.cpp</label>
         <link refid="_electronic_spin_operator_8cpp"/>
       </node>
@@ -2806,7 +2822,7 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp</label>
         <link refid="_g_t_o_basis_set_8cpp"/>
       </node>
-      <node id="246">
+      <node id="248">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/ElectronicDipoleOperator.cpp</label>
         <link refid="_electronic_dipole_operator_8cpp"/>
       </node>

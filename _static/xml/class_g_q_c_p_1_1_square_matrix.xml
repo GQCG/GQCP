@@ -3,7 +3,6 @@
   <compounddef id="class_g_q_c_p_1_1_square_matrix" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SquareMatrix</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_matrix" prot="public" virt="non-virtual">GQCP::Matrix&lt; _Scalar &gt;</basecompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_hopping_matrix" prot="public" virt="non-virtual">GQCP::HoppingMatrix&lt; _Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_simple1_d_m" prot="public" virt="non-virtual">GQCP::Simple1DM&lt; _Scalar, _DerivedDM &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_simple1_d_m" prot="public" virt="non-virtual">GQCP::Simple1DM&lt; _Scalar, G1DM&lt; _Scalar &gt; &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_simple1_d_m" prot="public" virt="non-virtual">GQCP::Simple1DM&lt; _Scalar, Orbital1DM&lt; _Scalar &gt; &gt;</derivedcompoundref>
@@ -239,6 +238,27 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="284" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="284" bodyend="284"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a323cfd30a36adbf412f6f02d8a009cd3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::SquareMatrix&lt; _Scalar &gt;::isSymmetric</definition>
+        <argsstring>(const double threshold=1.0e-08) const</argsstring>
+        <name>isSymmetric</name>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>If this square matrix is symmetric. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="290" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="290" bodyend="290"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a41e7131c842e8e9cea385be462d8d309" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_matrix_1a6d1e1e6a379620ae791c3ab385580e40" kindref="member">Self</ref>, 2 &gt;</type>
         <definition>std::array&lt;Self, 2&gt; GQCP::SquareMatrix&lt; _Scalar &gt;::noPivotLUDecompose</definition>
@@ -255,7 +275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="296" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="296" bodyend="346"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="302" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="302" bodyend="352"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a8e16efb3d9cb08a8ba04db0abc88c66a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_matrix_1a820960c1c3ad2c124d6be1ccd0eec021" kindref="member">Scalar</ref> &gt;</type>
@@ -275,7 +295,7 @@ in which m is calculated from i and j in a column-major way, with the restrictio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="362" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="362" bodyend="377"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="368" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="368" bodyend="383"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1ad2771d96e3cff714f68dbdb5c7420021" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -291,7 +311,7 @@ in which m is calculated from i and j in a column-major way, with the restrictio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="387" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="387" bodyend="401"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="393" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="393" bodyend="407"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1af4bae3858d82278f0a0ada4382b8c9f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -307,7 +327,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="409" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="409" bodyend="443"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="415" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="415" bodyend="449"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -630,49 +650,43 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="8">
+      <node id="7">
         <label>Simple1DM&lt; _Scalar, Orbital1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="10">
+      <node id="9">
         <label>Simple1DM&lt; _Scalar, SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::HoppingMatrix&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_hopping_matrix"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
+      <node id="5">
         <label>Simple1DM&lt; _Scalar, G1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="13">
+      <node id="12">
         <label>GQCP::SpinResolved1DMComponent&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component"/>
-        <childnode refid="12" relation="public-inheritance">
+        <childnode refid="11" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="7">
+      <node id="6">
         <label>GQCP::G1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g1_d_m"/>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="4">
         <label>GQCP::Simple1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="12">
+      <node id="11">
         <label>Simple1DM&lt; _Scalar, SpinResolved1DMComponent&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
@@ -681,10 +695,10 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
       <node id="3">
         <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
-      <node id="9">
+      <node id="8">
         <label>GQCP::Orbital1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="8" relation="public-inheritance">
+        <childnode refid="7" relation="public-inheritance">
         </childnode>
       </node>
       <node id="1">
@@ -699,10 +713,10 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="11">
+      <node id="10">
         <label>GQCP::SpinDensity1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_density1_d_m"/>
-        <childnode refid="10" relation="public-inheritance">
+        <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
@@ -723,7 +737,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="39" bodyend="444"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="39" bodyend="450"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_matrix_1a931ab808381a0ad8eedbc5f2f123651d" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>areEqualEigenvaluesAs</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1aee293d22d945960b87ac42b0b36fe9ec" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>Base</name></member>
@@ -745,6 +759,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
       <member refid="class_g_q_c_p_1_1_square_matrix_1a957455e43a3f0991500024376713cfec" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isHermitian</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1a643652b7fcd93870c6eeee96b106a7bc" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isPositiveSemiDefinite</name></member>
       <member refid="class_g_q_c_p_1_1_square_matrix_1a0b63025d8fd5ed7c7cfdb6da82a1f68d" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isSelfAdjoint</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1a323cfd30a36adbf412f6f02d8a009cd3" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isSymmetric</name></member>
       <member refid="class_g_q_c_p_1_1_square_matrix_1a41e7131c842e8e9cea385be462d8d309" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>noPivotLUDecompose</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1a3caff939907e085c41fe8f49b6f73e8b" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1a3079a6b39d8762808e23b1c09c86459e" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>operator()</name></member>

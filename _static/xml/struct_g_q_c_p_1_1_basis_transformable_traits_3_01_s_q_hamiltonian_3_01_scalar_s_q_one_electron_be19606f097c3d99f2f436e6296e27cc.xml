@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="782" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="782" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="799" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="799" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -37,7 +37,7 @@
         <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="779" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="779" bodyend="783"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="796" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="796" bodyend="800"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc_1a4e48bd0a1d67d7a010a3524bac709f9c" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</scope><name>Transformation</name></member>
     </listofallmembers>

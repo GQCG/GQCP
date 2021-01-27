@@ -146,7 +146,7 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="167">
+      <node id="168">
         <label>QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp</label>
       </node>
       <node id="47">
@@ -222,7 +222,7 @@
         <childnode refid="94" relation="include">
         </childnode>
       </node>
-      <node id="170">
+      <node id="171">
         <label>Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp</label>
         <link refid="_spin_resolved_orbital_space_8hpp"/>
         <childnode refid="159" relation="include">
@@ -271,7 +271,7 @@
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="169" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
@@ -469,6 +469,12 @@
         <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="166">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
       <node id="161">
@@ -749,7 +755,7 @@
       <node id="18">
         <label>fstream</label>
       </node>
-      <node id="166">
+      <node id="167">
         <label>QCModel/HF/RHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
         <childnode refid="159" relation="include">
@@ -766,7 +772,7 @@
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="168" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
@@ -1025,10 +1031,10 @@
         <childnode refid="97" relation="include">
         </childnode>
       </node>
-      <node id="169">
+      <node id="170">
         <label>QCModel/HF/UHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
@@ -1046,9 +1052,9 @@
         </childnode>
         <childnode refid="150" relation="include">
         </childnode>
-        <childnode refid="166" relation="include">
+        <childnode refid="167" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
@@ -1159,11 +1165,11 @@
         </childnode>
         <childnode refid="150" relation="include">
         </childnode>
-        <childnode refid="166" relation="include">
+        <childnode refid="167" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="168" relation="include">
+        <childnode refid="169" relation="include">
         </childnode>
       </node>
       <node id="129">
@@ -1186,7 +1192,7 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="171">
+      <node id="172">
         <label>QCModel/HF/StabilityMatrices/UHFStabilityMatrices.hpp</label>
       </node>
       <node id="41">
@@ -1320,6 +1326,8 @@
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="30" relation="include">
         </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
       </node>
       <node id="15">
         <label>cstdlib</label>
@@ -1362,7 +1370,7 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="168">
+      <node id="169">
         <label>deque</label>
       </node>
       <node id="104">

@@ -91,7 +91,7 @@
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="160" relation="include">
+        <childnode refid="161" relation="include">
         </childnode>
       </node>
       <node id="119">
@@ -431,6 +431,12 @@
         <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="35" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -1204,6 +1210,8 @@
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="35" relation="include">
         </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
       </node>
       <node id="13">
         <label>cstdlib</label>
@@ -1403,7 +1411,7 @@
         <childnode refid="95" relation="include">
         </childnode>
       </node>
-      <node id="160">
+      <node id="161">
         <label>QCModel/CC/T2Amplitudes.hpp</label>
         <link refid="_t2_amplitudes_8hpp"/>
         <childnode refid="2" relation="include">

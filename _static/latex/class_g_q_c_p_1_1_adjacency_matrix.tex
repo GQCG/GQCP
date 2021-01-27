@@ -1,0 +1,106 @@
+\hypertarget{class_g_q_c_p_1_1_adjacency_matrix}{}\doxysection{G\+Q\+CP\+::Adjacency\+Matrix Class Reference}
+\label{class_g_q_c_p_1_1_adjacency_matrix}\index{GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}}
+
+
+{\ttfamily \#include $<$Adjacency\+Matrix.\+hpp$>$}
+
+
+
+Collaboration diagram for G\+Q\+CP\+::Adjacency\+Matrix\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{class_g_q_c_p_1_1_adjacency_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_ad11ff9daab3cb7993f8c444de32336dc}{Adjacency\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ size\+\_\+t $>$ \&A)
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_ad631fd090e551662a6572a622b67ea31}{matrix}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_aba3952092aaea7e68c30cc8a2e65b99c}{matrix}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}} \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_a9842a7431178b39e4cc171c6545f83c8}{Cyclic}} (const size\+\_\+t n)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}} \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_a1eb42859809cc2046b18e79d32883fff}{Linear}} (const size\+\_\+t n)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An adjacency matrix for an undirected graph. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_adjacency_matrix_ad11ff9daab3cb7993f8c444de32336dc}\label{class_g_q_c_p_1_1_adjacency_matrix_ad11ff9daab3cb7993f8c444de32336dc}} 
+\index{GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}!AdjacencyMatrix@{AdjacencyMatrix}}
+\index{AdjacencyMatrix@{AdjacencyMatrix}!GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}}
+\doxysubsubsection{\texorpdfstring{AdjacencyMatrix()}{AdjacencyMatrix()}}
+{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Adjacency\+Matrix\+::\+Adjacency\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ size\+\_\+t $>$ \&}]{A }\end{DoxyParamCaption})}
+
+Create an {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}}} its representation as a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & An adjacency matrix, represented as a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_adjacency_matrix_a9842a7431178b39e4cc171c6545f83c8}\label{class_g_q_c_p_1_1_adjacency_matrix_a9842a7431178b39e4cc171c6545f83c8}} 
+\index{GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}!Cyclic@{Cyclic}}
+\index{Cyclic@{Cyclic}!GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}}
+\doxysubsubsection{\texorpdfstring{Cyclic()}{Cyclic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}} G\+Q\+C\+P\+::\+Adjacency\+Matrix\+::\+Cyclic (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of vertices.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}}} that corresponds to a cyclical undirected graph with n vertices. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_adjacency_matrix_a1eb42859809cc2046b18e79d32883fff}\label{class_g_q_c_p_1_1_adjacency_matrix_a1eb42859809cc2046b18e79d32883fff}} 
+\index{GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}!Linear@{Linear}}
+\index{Linear@{Linear}!GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}}
+\doxysubsubsection{\texorpdfstring{Linear()}{Linear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}} G\+Q\+C\+P\+::\+Adjacency\+Matrix\+::\+Linear (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of vertices.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}}} that corresponds to a linear undirected graph with n vertices. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_adjacency_matrix_aba3952092aaea7e68c30cc8a2e65b99c}\label{class_g_q_c_p_1_1_adjacency_matrix_aba3952092aaea7e68c30cc8a2e65b99c}} 
+\index{GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}!matrix@{matrix}}
+\index{matrix@{matrix}!GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$size\+\_\+t$>$\& G\+Q\+C\+P\+::\+Adjacency\+Matrix\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A writable reference to the matrix representation of this adjacency matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_adjacency_matrix_ad631fd090e551662a6572a622b67ea31}\label{class_g_q_c_p_1_1_adjacency_matrix_ad631fd090e551662a6572a622b67ea31}} 
+\index{GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}!matrix@{matrix}}
+\index{matrix@{matrix}!GQCP::AdjacencyMatrix@{GQCP::AdjacencyMatrix}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$size\+\_\+t$>$\& G\+Q\+C\+P\+::\+Adjacency\+Matrix\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only reference to the matrix representation of this adjacency matrix. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Operator/\+Second\+Quantized/\+Model\+Hamiltonian/\mbox{\hyperlink{_adjacency_matrix_8hpp}{Adjacency\+Matrix.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Operator/\+Second\+Quantized/\+Model\+Hamiltonian/\mbox{\hyperlink{_adjacency_matrix_8cpp}{Adjacency\+Matrix.\+cpp}}\end{DoxyCompactItemize}

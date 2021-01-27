@@ -120,7 +120,7 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="166">
+      <node id="167">
         <label>Mathematical/Optimization/NonLinearEquation/step.hpp</label>
         <link refid="step_8hpp"/>
         <childnode refid="15" relation="include">
@@ -425,6 +425,12 @@
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="160">
@@ -1073,7 +1079,7 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="165">
+      <node id="166">
         <label>utility</label>
       </node>
       <node id="109">
@@ -1213,6 +1219,8 @@
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="165" relation="include">
         </childnode>
       </node>
       <node id="12">
@@ -1610,7 +1618,7 @@
         <link refid="_newton_orbital_optimizer_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="166" relation="include">
+        <childnode refid="167" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -1632,7 +1640,7 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="165" relation="include">
+        <childnode refid="166" relation="include">
         </childnode>
       </node>
       <node id="133">

@@ -82,7 +82,7 @@
       <node id="29">
         <label>functional</label>
       </node>
-      <node id="171">
+      <node id="172">
         <label>ONVBasis/SeniorityZeroONVBasis.hpp</label>
       </node>
       <node id="115">
@@ -241,7 +241,7 @@
         <childnode refid="123" relation="include">
         </childnode>
       </node>
-      <node id="169">
+      <node id="170">
         <label>boost/range/adaptors.hpp</label>
       </node>
       <node id="36">
@@ -260,7 +260,7 @@
         <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="168">
+      <node id="169">
         <label>boost/dynamic_bitset.hpp</label>
       </node>
       <node id="50">
@@ -428,6 +428,12 @@
         <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="156">
@@ -1096,7 +1102,7 @@
       <node id="41">
         <label>array</label>
       </node>
-      <node id="162">
+      <node id="163">
         <label>QCModel/Geminals/AP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp"/>
         <childnode refid="156" relation="include">
@@ -1105,7 +1111,7 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="163" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
       </node>
       <node id="34">
@@ -1170,7 +1176,7 @@
         <childnode refid="79" relation="include">
         </childnode>
       </node>
-      <node id="164">
+      <node id="165">
         <label>QCModel/CI/LinearExpansion.hpp</label>
         <link refid="_linear_expansion_8hpp"/>
         <childnode refid="46" relation="include">
@@ -1193,19 +1199,19 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="165" relation="include">
-        </childnode>
         <childnode refid="166" relation="include">
         </childnode>
         <childnode refid="167" relation="include">
+        </childnode>
+        <childnode refid="168" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="168" relation="include">
-        </childnode>
         <childnode refid="169" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -1259,6 +1265,8 @@
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="16" relation="include">
         </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
       </node>
       <node id="14">
         <label>cstdlib</label>
@@ -1272,15 +1280,15 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="167">
+      <node id="168">
         <label>ONVBasis/SpinResolvedSelectedONVBasis.hpp</label>
       </node>
-      <node id="170">
+      <node id="171">
         <label>QCModel/Geminals/GeminalCoefficientsInterface.hpp</label>
         <link refid="_geminal_coefficients_interface_8hpp"/>
-        <childnode refid="171" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
-        <childnode refid="164" relation="include">
+        <childnode refid="165" relation="include">
         </childnode>
       </node>
       <node id="93">
@@ -1289,7 +1297,7 @@
         <childnode refid="65" relation="include">
         </childnode>
       </node>
-      <node id="165">
+      <node id="166">
         <label>ONVBasis/SpinResolvedONV.hpp</label>
       </node>
       <node id="77">
@@ -1355,7 +1363,7 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="161">
+      <node id="162">
         <label>QCModel/Geminals/vAP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp"/>
         <childnode refid="118" relation="include">
@@ -1366,9 +1374,9 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="162" relation="include">
-        </childnode>
         <childnode refid="163" relation="include">
+        </childnode>
+        <childnode refid="164" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -1376,7 +1384,7 @@
         <link refid="v_a_p1ro_g_electrical_response_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="162" relation="include">
         </childnode>
       </node>
       <node id="98">
@@ -1502,10 +1510,10 @@
       <node id="28">
         <label>algorithm</label>
       </node>
-      <node id="166">
+      <node id="167">
         <label>ONVBasis/SpinResolvedONVBasis.hpp</label>
       </node>
-      <node id="163">
+      <node id="164">
         <label>QCModel/Geminals/AP1roGGeminalCoefficients.hpp</label>
         <link refid="_a_p1ro_g_geminal_coefficients_8hpp"/>
         <childnode refid="154" relation="include">
@@ -1514,9 +1522,9 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="164" relation="include">
+        <childnode refid="165" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="58">

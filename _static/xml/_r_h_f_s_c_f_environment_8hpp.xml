@@ -435,6 +435,12 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
+      <node id="160">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
       <node id="155">
         <label>Mathematical/Representation/ImplicitMatrixSlice.hpp</label>
         <link refid="_implicit_matrix_slice_8hpp"/>
@@ -789,7 +795,7 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="160" relation="include">
+        <childnode refid="161" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -1226,6 +1232,8 @@
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
       </node>
       <node id="10">
         <label>cstdlib</label>
@@ -1268,7 +1276,7 @@
         <childnode refid="65" relation="include">
         </childnode>
       </node>
-      <node id="160">
+      <node id="161">
         <label>deque</label>
       </node>
       <node id="109">

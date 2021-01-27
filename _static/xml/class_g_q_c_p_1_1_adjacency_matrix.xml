@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_adjacency_matrix" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::AdjacencyMatrix</compoundname>
+    <includes refid="_adjacency_matrix_8hpp" local="no">AdjacencyMatrix.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_adjacency_matrix_1a60dfe6eb932ff9fcccf9db4f14f05afa" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; size_t &gt;</type>
+        <definition>SquareMatrix&lt;size_t&gt; GQCP::AdjacencyMatrix::A</definition>
+        <argsstring></argsstring>
+        <name>A</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="33" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1ad11ff9daab3cb7993f8c444de32336dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::AdjacencyMatrix::AdjacencyMatrix</definition>
+        <argsstring>(const SquareMatrix&lt; size_t &gt; &amp;A)</argsstring>
+        <name>AdjacencyMatrix</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; size_t &gt; &amp;</type>
+          <declname>A</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an <computeroutput><ref refid="class_g_q_c_p_1_1_adjacency_matrix" kindref="compound">AdjacencyMatrix</ref></computeroutput> its representation as a <computeroutput><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref></computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An adjacency matrix, represented as a <computeroutput><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.cpp" bodystart="33" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1ad631fd090e551662a6572a622b67ea31" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; size_t &gt; &amp;</type>
+        <definition>const SquareMatrix&lt;size_t&gt;&amp; GQCP::AdjacencyMatrix::matrix</definition>
+        <argsstring>() const</argsstring>
+        <name>matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the matrix representation of this adjacency matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="75" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1aba3952092aaea7e68c30cc8a2e65b99c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; size_t &gt; &amp;</type>
+        <definition>SquareMatrix&lt;size_t&gt;&amp; GQCP::AdjacencyMatrix::matrix</definition>
+        <argsstring>()</argsstring>
+        <name>matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the matrix representation of this adjacency matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="80" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1a9842a7431178b39e4cc171c6545f83c8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_adjacency_matrix" kindref="compound">AdjacencyMatrix</ref></type>
+        <definition>AdjacencyMatrix GQCP::AdjacencyMatrix::Cyclic</definition>
+        <argsstring>(const size_t n)</argsstring>
+        <name>Cyclic</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of vertices.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_adjacency_matrix" kindref="compound">AdjacencyMatrix</ref></computeroutput> that corresponds to a cyclical undirected graph with n vertices. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="58" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.cpp" bodystart="65" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1a1eb42859809cc2046b18e79d32883fff" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_adjacency_matrix" kindref="compound">AdjacencyMatrix</ref></type>
+        <definition>AdjacencyMatrix GQCP::AdjacencyMatrix::Linear</definition>
+        <argsstring>(const size_t n)</argsstring>
+        <name>Linear</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of vertices.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_adjacency_matrix" kindref="compound">AdjacencyMatrix</ref></computeroutput> that corresponds to a linear undirected graph with n vertices. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="65" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.cpp" bodystart="83" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An adjacency matrix for an undirected graph. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::AdjacencyMatrix</label>
+        <link refid="class_g_q_c_p_1_1_adjacency_matrix"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" bodystart="30" bodyend="81"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a60dfe6eb932ff9fcccf9db4f14f05afa" prot="private" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>A</name></member>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1ad11ff9daab3cb7993f8c444de32336dc" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>AdjacencyMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a9842a7431178b39e4cc171c6545f83c8" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>Cyclic</name></member>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a1eb42859809cc2046b18e79d32883fff" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>Linear</name></member>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1ad631fd090e551662a6572a622b67ea31" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1aba3952092aaea7e68c30cc8a2e65b99c" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>matrix</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

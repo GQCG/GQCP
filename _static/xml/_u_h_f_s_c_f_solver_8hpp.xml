@@ -38,7 +38,7 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="183">
+      <node id="184">
         <label>QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
         <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
         <childnode refid="10" relation="include">
@@ -123,7 +123,7 @@
         <childnode refid="86" relation="include">
         </childnode>
       </node>
-      <node id="182">
+      <node id="183">
         <label>Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp</label>
       </node>
       <node id="46">
@@ -155,7 +155,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="172">
+      <node id="173">
         <label>QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp</label>
       </node>
       <node id="55">
@@ -231,7 +231,7 @@
         <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="174">
+      <node id="175">
         <label>Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp</label>
         <link refid="_spin_resolved_orbital_space_8hpp"/>
         <childnode refid="164" relation="include">
@@ -239,14 +239,14 @@
         <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="177">
+      <node id="178">
         <label>QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
         <link refid="_u_h_f_error_calculation_8hpp"/>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
       </node>
       <node id="52">
@@ -271,18 +271,18 @@
         <childnode refid="55" relation="include">
         </childnode>
       </node>
-      <node id="179">
+      <node id="180">
         <label>QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
         <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="180" relation="include">
+        <childnode refid="181" relation="include">
         </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="184" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
@@ -500,6 +500,12 @@
         <childnode refid="32" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="171">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="32" relation="include">
         </childnode>
       </node>
       <node id="166">
@@ -792,7 +798,7 @@
       <node id="38">
         <label>fstream</label>
       </node>
-      <node id="171">
+      <node id="172">
         <label>QCModel/HF/RHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
         <childnode refid="164" relation="include">
@@ -809,7 +815,7 @@
         </childnode>
         <childnode refid="63" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="173" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -1052,14 +1058,14 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="178">
+      <node id="179">
         <label>QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
         <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -1073,15 +1079,15 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="176" relation="include">
-        </childnode>
         <childnode refid="177" relation="include">
         </childnode>
         <childnode refid="178" relation="include">
         </childnode>
         <childnode refid="179" relation="include">
         </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="180" relation="include">
+        </childnode>
+        <childnode refid="184" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -1128,7 +1134,7 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="176">
+      <node id="177">
         <label>QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
         <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
         <childnode refid="10" relation="include">
@@ -1137,13 +1143,13 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
       </node>
-      <node id="173">
+      <node id="174">
         <label>QCModel/HF/UHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="174" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -1161,9 +1167,9 @@
         </childnode>
         <childnode refid="155" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
-        <childnode refid="175" relation="include">
+        <childnode refid="176" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -1274,7 +1280,7 @@
         </childnode>
         <childnode refid="155" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
@@ -1301,7 +1307,7 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="175">
+      <node id="176">
         <label>QCModel/HF/StabilityMatrices/UHFStabilityMatrices.hpp</label>
       </node>
       <node id="14">
@@ -1422,7 +1428,7 @@
         <childnode refid="86" relation="include">
         </childnode>
       </node>
-      <node id="181">
+      <node id="182">
         <label>Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp</label>
       </node>
       <node id="83">
@@ -1437,6 +1443,8 @@
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
         </childnode>
       </node>
       <node id="30">
@@ -1607,12 +1615,12 @@
         <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="180">
+      <node id="181">
         <label>Mathematical/Optimization/Accelerator/DIIS.hpp</label>
         <link refid="_d_i_i_s_8hpp"/>
-        <childnode refid="181" relation="include">
-        </childnode>
         <childnode refid="182" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
@@ -1885,7 +1893,7 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
       </node>
       <node id="133">

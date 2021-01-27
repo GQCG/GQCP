@@ -9,6 +9,14 @@
   <compound refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_n_0e_4" kind="struct"><name>GQCP::_Unique_if&lt; T[N]&gt;</name>
     <member refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_n_0e_4_1ab7b5d6f9d781008bdf1865918ee8202b" kind="typedef"><name>_Known_bound</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_adjacency_matrix" kind="class"><name>GQCP::AdjacencyMatrix</name>
+    <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a60dfe6eb932ff9fcccf9db4f14f05afa" kind="variable"><name>A</name></member>
+    <member refid="class_g_q_c_p_1_1_adjacency_matrix_1ad11ff9daab3cb7993f8c444de32336dc" kind="function"><name>AdjacencyMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_adjacency_matrix_1ad631fd090e551662a6572a622b67ea31" kind="function"><name>matrix</name></member>
+    <member refid="class_g_q_c_p_1_1_adjacency_matrix_1aba3952092aaea7e68c30cc8a2e65b99c" kind="function"><name>matrix</name></member>
+    <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a9842a7431178b39e4cc171c6545f83c8" kind="function"><name>Cyclic</name></member>
+    <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a1eb42859809cc2046b18e79d32883fff" kind="function"><name>Linear</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_algorithm" kind="class"><name>GQCP::Algorithm</name>
     <member refid="class_g_q_c_p_1_1_algorithm_1ae7d57842d40e6d4595cad18e75056a95" kind="typedef"><name>Environment</name></member>
     <member refid="class_g_q_c_p_1_1_algorithm_1aa73ded280612ff4a154f975a0358ea87" kind="variable"><name>steps</name></member>
@@ -939,11 +947,12 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_hopping_matrix" kind="class"><name>GQCP::HoppingMatrix</name>
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_hopping_matrix_1ad3e98f4014c3a9f1fc95f1c901a93345" kind="variable"><name>H</name></member>
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1a8daeb4c172ded5405bbc91a230dfcbf1" kind="function"><name>HoppingMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_hopping_matrix_1a6b159b48db10550f12569373104a1d94" kind="function"><name>HoppingMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_hopping_matrix_1af8c2b048619c52e21824a24c71b2a564" kind="function"><name>HoppingMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_hopping_matrix_1a529ce0833ae29bdbebe6bd2e274a29ff" kind="function"><name>HoppingMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_hopping_matrix_1af3ce1020d95b1b7be0325e624cf4eb61" kind="function"><name>HoppingMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1acb5b4f6d12e5b217c09c52b35ab086a8" kind="function"><name>numberOfLatticeSites</name></member>
+    <member refid="class_g_q_c_p_1_1_hopping_matrix_1af894c587dcbd9fae85352c83cd182141" kind="function"><name>matrix</name></member>
+    <member refid="class_g_q_c_p_1_1_hopping_matrix_1af33eefc8ebc1a1cc5846ffc02175ea99" kind="function"><name>matrix</name></member>
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1a1a557f7dd9e1cb28a53a638a674d6464" kind="function"><name>FromCSLine</name></member>
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1a79cab3d4b8302d57cdd8c0fc115d0c04" kind="function"><name>Random</name></member>
   </compound>
@@ -2326,7 +2335,8 @@
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a5d99b8e0b87b7a592eaf67c4e9616714" kind="function"><name>operator-=</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad806906fb1a4760234aaec2c19c4d2f4" kind="function"><name>operator+=</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aef1abfcc4f1b119bcbcc42adbabe68db" kind="function"><name>operator-=</name></member>
-    <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a549c426ee8aff2229728c1dd153d8b25" kind="function"><name>FromHubbard</name></member>
+    <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a3bee3b2bf283739e76650913a157bba7" kind="function"><name>FromHubbard</name></member>
+    <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ac283b1f7779667fe1b7ac8db0028526f" kind="function"><name>FromRestricted</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a11f4d2bfa0f8d2fda1e58aea4416af04" kind="function"><name>Molecular</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a6fc3562f19b18a955a7e1e7c8ad857ac" kind="function"><name>Molecular</name></member>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a1d921704d5557be179a967b4be47fa29" kind="function"><name>Molecular</name></member>
@@ -2389,6 +2399,7 @@
     <member refid="class_g_q_c_p_1_1_square_matrix_1a37d881f47fe4a016e5549e3ac22e7aea" kind="function"><name>dimension</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a0b63025d8fd5ed7c7cfdb6da82a1f68d" kind="function"><name>isSelfAdjoint</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a957455e43a3f0991500024376713cfec" kind="function"><name>isHermitian</name></member>
+    <member refid="class_g_q_c_p_1_1_square_matrix_1a323cfd30a36adbf412f6f02d8a009cd3" kind="function"><name>isSymmetric</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a41e7131c842e8e9cea385be462d8d309" kind="function"><name>noPivotLUDecompose</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a8e16efb3d9cb08a8ba04db0abc88c66a" kind="function"><name>pairWiseStrictReduced</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1ad2771d96e3cff714f68dbdb5c7420021" kind="function"><name>calculatePermanentCombinatorial</name></member>
@@ -2755,6 +2766,13 @@
   <compound refid="class_g_q_c_p_1_1_u_transformation_component" kind="class"><name>GQCP::UTransformationComponent</name>
     <member refid="class_g_q_c_p_1_1_u_transformation_component_1acd11a67d9ae1fb88b980cb91f668a57e" kind="typedef"><name>Scalar</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCMethod::vAP1roG</name>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" kind="variable"><name>N_P</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" kind="variable"><name>K</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" kind="variable"><name>sq_hamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" kind="function"><name>vAP1roG</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" kind="function"><name>optimize</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCModel::vAP1roG</name>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a6377a0cf43e0687e60a2b804fd4d3f0d" kind="variable"><name>G</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a808536e31ebf0b7f9cf3244f3fc56bc2" kind="variable"><name>multipliers</name></member>
@@ -2773,13 +2791,6 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1af8da613c00b56e12c072a16b5a3bc12f" kind="function"><name>calculateMultiplierResponseForceConstant</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1ac6097016fcd926adb640aab4bd4ec014" kind="function"><name>calculateNumber2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a7c6e8708db3023d08e3d4948fa04aecb" kind="function"><name>calculatePair2DM</name></member>
-  </compound>
-  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCMethod::vAP1roG</name>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" kind="variable"><name>N_P</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" kind="variable"><name>K</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" kind="variable"><name>sq_hamiltonian</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" kind="function"><name>vAP1roG</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver" kind="class"><name>GQCP::vAP1roGElectricalResponseSolver</name>
     <member refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_1ad931e3c8282ffd72c211f45c09eb6772" kind="variable"><name>vap1rog</name></member>
@@ -3292,6 +3303,8 @@
   </compound>
   <compound refid="_mixed_u_s_q_two_electron_operator_component_8hpp" kind="file"><name>MixedUSQTwoElectronOperatorComponent.hpp</name>
   </compound>
+  <compound refid="_adjacency_matrix_8hpp" kind="file"><name>AdjacencyMatrix.hpp</name>
+  </compound>
   <compound refid="_hopping_matrix_8hpp" kind="file"><name>HoppingMatrix.hpp</name>
   </compound>
   <compound refid="_hubbard_hamiltonian_8hpp" kind="file"><name>HubbardHamiltonian.hpp</name>
@@ -3576,6 +3589,8 @@
   </compound>
   <compound refid="_nuclear_repulsion_operator_8cpp" kind="file"><name>NuclearRepulsionOperator.cpp</name>
   </compound>
+  <compound refid="_adjacency_matrix_8cpp" kind="file"><name>AdjacencyMatrix.cpp</name>
+  </compound>
   <compound refid="_base_electrical_response_solver_8cpp" kind="file"><name>BaseElectricalResponseSolver.cpp</name>
   </compound>
   <compound refid="properties_8cpp" kind="file"><name>properties.cpp</name>
@@ -3642,9 +3657,9 @@
   </compound>
   <compound refid="dir_cee0e4a9be0398681472b1b3a9977ef8" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions</name>
   </compound>
-  <compound refid="dir_d258e53cc9882d4f53db1685bedb6902" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals</name>
-  </compound>
   <compound refid="dir_d14101abff67e2743de1df9a6546494d" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals</name>
+  </compound>
+  <compound refid="dir_d258e53cc9882d4f53db1685bedb6902" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals</name>
   </compound>
   <compound refid="dir_f4550bdbdce8a93f628c6d1de55d3b14" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals</name>
   </compound>
@@ -3684,6 +3699,8 @@
   </compound>
   <compound refid="dir_838be35ecc4d18c05ee53fd1decc5f49" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/Minimization</name>
   </compound>
+  <compound refid="dir_27a8bd7aa1fd2f94b0b67c5ed1d90b94" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/ModelHamiltonian</name>
+  </compound>
   <compound refid="dir_41ae741239889692afc314a7f1922409" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian</name>
   </compound>
   <compound refid="dir_3f7661081dfd8038b3f615272e600c89" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Molecule</name>
@@ -3722,9 +3739,9 @@
   </compound>
   <compound refid="dir_b3f9e05ef3b87da55cd8694d21261357" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCMethod</name>
   </compound>
-  <compound refid="dir_ce923ae59ac6788e723b6592a9fb6365" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCModel</name>
-  </compound>
   <compound refid="dir_0ecbb0c9c32418df8456265f5a86051e" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCModel</name>
+  </compound>
+  <compound refid="dir_ce923ae59ac6788e723b6592a9fb6365" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCModel</name>
   </compound>
   <compound refid="dir_66be7ac6eb7ceb82711fb2d51260f40c" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QuantumChemical</name>
   </compound>
@@ -3738,17 +3755,19 @@
   </compound>
   <compound refid="dir_b80fadfcfe3ad1c894bb6345b779dee3" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis</name>
   </compound>
-  <compound refid="dir_652cc385387507453a4ee659969ac393" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized</name>
+  <compound refid="dir_5f3fa5fa6b1dccc46fb871bc869a3bfe" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized</name>
   </compound>
-  <compound refid="dir_ebd31c0b96f80963a9338155166dec6c" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis</name>
+  <compound refid="dir_652cc385387507453a4ee659969ac393" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized</name>
   </compound>
   <compound refid="dir_f5c41286cd86757b29ad27f984e6b6af" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis</name>
   </compound>
+  <compound refid="dir_ebd31c0b96f80963a9338155166dec6c" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis</name>
+  </compound>
   <compound refid="dir_d404669e0d4bf6387b4b6b921299d848" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src</name>
   </compound>
-  <compound refid="dir_f7f17ba6af08d25acbe1f49d3f108ba3" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Basis/Transformations</name>
-  </compound>
   <compound refid="dir_42d2bf22de42726412f541b62b70e361" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations</name>
+  </compound>
+  <compound refid="dir_f7f17ba6af08d25acbe1f49d3f108ba3" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Basis/Transformations</name>
   </compound>
   <compound refid="dir_cb77ee1e6cf10d494adbc9ec9af98407" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF</name>
   </compound>

@@ -6,6 +6,7 @@
     <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; _Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; double &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; size_t &gt;</derivedcompoundref>
     <includes refid="_matrix_8hpp" local="no">Matrix.hpp</includes>
     <templateparamlist>
       <param>
@@ -932,61 +933,49 @@ in which m is calculated from i and j in a column-major way </para>
 We have decided to inherit from Eigen::Matrix, because we will use different hierarchies: see also: <ulink url="https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html">https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html</ulink> </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="8">
+      <node id="7">
         <label>Simple1DM&lt; _Scalar, Orbital1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
-        <label>GQCP::HoppingMatrix&lt; Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_hopping_matrix"/>
-        <childnode refid="17" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="10">
+      <node id="9">
         <label>Simple1DM&lt; _Scalar, SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::HoppingMatrix&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_hopping_matrix"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="17">
+      <node id="16">
         <label>SquareMatrix&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_square_matrix"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="5">
         <label>Simple1DM&lt; _Scalar, G1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="16">
+      <node id="15">
         <label>GQCP::Orbital1DM&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="15" relation="public-inheritance">
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>GQCP::SpinResolved1DMComponent&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::G1DM&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g1_d_m"/>
+        <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
       <node id="13">
-        <label>GQCP::SpinResolved1DMComponent&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component"/>
-        <childnode refid="12" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>GQCP::G1DM&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_g1_d_m"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="14">
         <label>SquareMatrix&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_square_matrix"/>
         <childnode refid="1" relation="public-inheritance">
@@ -998,31 +987,31 @@ We have decided to inherit from Eigen::Matrix, because we will use different hie
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="4">
         <label>GQCP::Simple1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="12">
+      <node id="11">
         <label>Simple1DM&lt; _Scalar, SpinResolved1DMComponent&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="15">
+      <node id="14">
         <label>GQCP::Simple1DM&lt; double, Orbital1DM&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
-        <childnode refid="14" relation="public-inheritance">
+        <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
         <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
-      <node id="9">
+      <node id="8">
         <label>GQCP::Orbital1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="8" relation="public-inheritance">
+        <childnode refid="7" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
@@ -1031,10 +1020,16 @@ We have decided to inherit from Eigen::Matrix, because we will use different hie
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="11">
+      <node id="17">
+        <label>SquareMatrix&lt; size_t &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
         <label>GQCP::SpinDensity1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_density1_d_m"/>
-        <childnode refid="10" relation="public-inheritance">
+        <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
