@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp"
 
 
 namespace GQCP {
@@ -74,16 +75,16 @@ public:
     /**
      *  Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.
      *
-     *  @param A        The Hubbard adjacency matrix, specifying the connectivity of the Hubbard lattice.
+     *  @param A        The adjacency matrix specifying the connectivity of the Hubbard lattice.
      *  @param t        The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term.
      *  @param U        The Hubbard parameter U.
      *
      *  @note This constructor is only available in the real case (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
     template <typename Z = Scalar>
-    HoppingMatrix(const SquareMatrix<double>& A, const double t, const double U,
+    HoppingMatrix(const AdjacencyMatrix& A, const double t, const double U,
                   typename std::enable_if<std::is_same<Z, double>::value>::type* = 0) :
-        HoppingMatrix(U * SquareMatrix<double>::Identity(A.dimension()) - t * A) {}
+        HoppingMatrix(U * SquareMatrix<double>::Identity(A.dimension()) - t * A.cast<double>()) {}
 
 
     /*
