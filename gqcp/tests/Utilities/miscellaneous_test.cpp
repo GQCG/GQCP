@@ -22,6 +22,9 @@
 #include "Utilities/miscellaneous.hpp"
 
 
+/**
+ *  Check if the Gray code is correctly implemented.
+ */
 BOOST_AUTO_TEST_CASE(grayCodeOf) {
 
     BOOST_CHECK(GQCP::grayCodeOf(0) == 0);    // "0000" (0)
@@ -43,10 +46,13 @@ BOOST_AUTO_TEST_CASE(grayCodeOf) {
 }
 
 
+/**
+ *  Check if `vectorIndex` behaves correctly.
+ */
 BOOST_AUTO_TEST_CASE(vectorIndex) {
 
     size_t cols = 11;
-    size_t skipped = 2;
+    const size_t skipped = 2;
     BOOST_CHECK_EQUAL(GQCP::vectorIndex(0, 2, cols, skipped), 0);
     BOOST_CHECK_EQUAL(GQCP::vectorIndex(1, 2, cols, skipped), 9);
 
@@ -57,10 +63,13 @@ BOOST_AUTO_TEST_CASE(vectorIndex) {
 }
 
 
+/**
+ *  Check if `matrixIndex` behaves correctly.
+ */
 BOOST_AUTO_TEST_CASE(matrixIndex) {
 
     size_t cols = 11;
-    size_t skipped = 2;
+    const size_t skipped = 2;
 
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(0, cols, skipped), 0);
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(9, cols, skipped), 1);
@@ -85,22 +94,22 @@ BOOST_AUTO_TEST_CASE(matrixIndex) {
 BOOST_AUTO_TEST_CASE(generatePartitionsOf) {
 
     // 2-way partition '2'.
-    std::vector<std::vector<size_t>> ref_partitions1 {{2, 0}, {1, 1}, {0, 2}};
+    const std::vector<std::vector<size_t>> ref_partitions1 {{2, 0}, {1, 1}, {0, 2}};
     BOOST_CHECK(GQCP::generatePartitionsOf(2, 2) == ref_partitions1);
 
 
     // 3-way partition '2'.
-    std::vector<std::vector<size_t>> ref_partitions2 {{2, 0, 0}, {1, 1, 0}, {1, 0, 1}, {0, 2, 0}, {0, 1, 1}, {0, 0, 2}};
+    const std::vector<std::vector<size_t>> ref_partitions2 {{2, 0, 0}, {1, 1, 0}, {1, 0, 1}, {0, 2, 0}, {0, 1, 1}, {0, 0, 2}};
     BOOST_CHECK(GQCP::generatePartitionsOf(2, 3) == ref_partitions2);
 
 
     // 3-way partition '3'.
-    std::vector<std::vector<size_t>> ref_partitions3 {{3, 0, 0}, {2, 1, 0}, {2, 0, 1}, {1, 2, 0}, {1, 1, 1}, {1, 0, 2}, {0, 3, 0}, {0, 2, 1}, {0, 1, 2}, {0, 0, 3}};
+    const std::vector<std::vector<size_t>> ref_partitions3 {{3, 0, 0}, {2, 1, 0}, {2, 0, 1}, {1, 2, 0}, {1, 1, 1}, {1, 0, 2}, {0, 3, 0}, {0, 2, 1}, {0, 1, 2}, {0, 0, 3}};
     BOOST_CHECK(GQCP::generatePartitionsOf(3, 3) == ref_partitions3);
 
 
     // 4-way partition '2'.
-    std::vector<std::vector<size_t>> ref_partitions4 {{2, 0, 0, 0}, {1, 1, 0, 0}, {1, 0, 1, 0}, {1, 0, 0, 1}, {0, 2, 0, 0}, {0, 1, 1, 0}, {0, 1, 0, 1}, {0, 0, 2, 0}, {0, 0, 1, 1}, {0, 0, 0, 2}};
+    const std::vector<std::vector<size_t>> ref_partitions4 {{2, 0, 0, 0}, {1, 1, 0, 0}, {1, 0, 1, 0}, {1, 0, 0, 1}, {0, 2, 0, 0}, {0, 1, 1, 0}, {0, 1, 0, 1}, {0, 0, 2, 0}, {0, 0, 1, 1}, {0, 0, 0, 2}};
     BOOST_CHECK(GQCP::generatePartitionsOf(2, 4) == ref_partitions4);
 }
 
@@ -111,32 +120,35 @@ BOOST_AUTO_TEST_CASE(generatePartitionsOf) {
 BOOST_AUTO_TEST_CASE(generateUniquePartitionsOf) {
 
     // 2-way partition '4'.
-    std::vector<std::vector<size_t>> ref_partitions1 {{4, 0}, {3, 1}, {2, 2}};
+    const std::vector<std::vector<size_t>> ref_partitions1 {{4, 0}, {3, 1}, {2, 2}};
     BOOST_CHECK(GQCP::generateUniquePartitionsOf(4, 2) == ref_partitions1);
 
 
     // 3-way partition '2'.
-    std::vector<std::vector<size_t>> ref_partitions2 {{2, 0, 0}, {1, 1, 0}};
+    const std::vector<std::vector<size_t>> ref_partitions2 {{2, 0, 0}, {1, 1, 0}};
     BOOST_CHECK(GQCP::generateUniquePartitionsOf(2, 3) == ref_partitions2);
 
 
     // 3-way partition '3'.
-    std::vector<std::vector<size_t>> ref_partitions3 {{3, 0, 0}, {2, 1, 0}, {1, 1, 1}};
+    const std::vector<std::vector<size_t>> ref_partitions3 {{3, 0, 0}, {2, 1, 0}, {1, 1, 1}};
     BOOST_CHECK(GQCP::generateUniquePartitionsOf(3, 3) == ref_partitions3);
 
 
     // 5-way partition '5'.
-    std::vector<std::vector<size_t>> ref_partitions4 {{5, 0, 0, 0, 0},
-                                                      {4, 1, 0, 0, 0},
-                                                      {3, 2, 0, 0, 0},
-                                                      {3, 1, 1, 0, 0},
-                                                      {2, 2, 1, 0, 0},
-                                                      {2, 1, 1, 1, 0},
-                                                      {1, 1, 1, 1, 1}};
+    const std::vector<std::vector<size_t>> ref_partitions4 {{5, 0, 0, 0, 0},
+                                                            {4, 1, 0, 0, 0},
+                                                            {3, 2, 0, 0, 0},
+                                                            {3, 1, 1, 0, 0},
+                                                            {2, 2, 1, 0, 0},
+                                                            {2, 1, 1, 1, 0},
+                                                            {1, 1, 1, 1, 1}};
     BOOST_CHECK(GQCP::generateUniquePartitionsOf(5, 5) == ref_partitions4);
 }
 
 
+/**
+ *  Check the implementation of `triangularRoot` and `strictTriangularRoot`.
+ */
 BOOST_AUTO_TEST_CASE(triangularRoot_strictTriangularRoot) {
 
     BOOST_CHECK(GQCP::triangularRootOf(6) == 3);
@@ -147,23 +159,29 @@ BOOST_AUTO_TEST_CASE(triangularRoot_strictTriangularRoot) {
 }
 
 
+/**
+ *  Check if `validateAndOpen` handles errors correctly.
+ */
 BOOST_AUTO_TEST_CASE(validateAndOpen) {
 
-    // Make sure we get an error when a nonsense path is given (i.e. no extension)
+    // Make sure we get an error when a nonsense path is given (i.e. no extension).
     BOOST_REQUIRE_THROW(GQCP::validateAndOpen("this is a nonsense data path", "data"), std::invalid_argument);
 
-    // Make sure we get an error when a path with a wrong extension is given
+    // Make sure we get an error when a path with a wrong extension is given.
     BOOST_REQUIRE_THROW(GQCP::validateAndOpen("data/small_vector.data", "xyz"), std::invalid_argument);
 
-    // Make sure we don't get an error when a correct path is given
+    // Make sure we don't get an error when a correct path is given.
     BOOST_REQUIRE_NO_THROW(GQCP::validateAndOpen("data/h2o.xyz", "xyz"));
 }
 
 
+/**
+ *  Check if `findElementIndex` is correct.
+ */
 BOOST_AUTO_TEST_CASE(findElementIndex) {
 
-    std::vector<int> vector {1, 2, 3};
+    const std::vector<int> vector {1, 2, 3};
 
-    BOOST_REQUIRE_THROW(GQCP::findElementIndex(vector, 0), std::out_of_range);  // 0 is not in the vector
+    BOOST_REQUIRE_THROW(GQCP::findElementIndex(vector, 0), std::out_of_range);  // 0 is not in the vector.
     BOOST_CHECK_EQUAL(GQCP::findElementIndex(vector, 2), 1);
 }

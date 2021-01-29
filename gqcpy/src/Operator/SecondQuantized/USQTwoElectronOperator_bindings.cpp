@@ -40,11 +40,17 @@ using namespace GQCP;
  */
 void bindUSQTwoElectronOperator(py::module& module) {
 
-    // Define the Python class for `USQTwoElectronOperator`.
+    // Define the Python class for real `USQTwoElectronOperator`.
     py::class_<ScalarUSQTwoElectronOperator<double>> py_ScalarUSQTwoElectronOperator_d {module, "ScalarUSQTwoElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized two-electron operator' suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the tensor representation of its parameters for both spin components and both mixed spin components, which are (usually) integrals over first-quantized operators."};
 
     // Expose the `DoublySpinResolvedBase` API to the Python class.
     bindDoublySpinResolvedBaseInterface(py_ScalarUSQTwoElectronOperator_d);
+
+    // Define the Python class for complex `USQTwoElectronOperator`.
+    py::class_<ScalarUSQTwoElectronOperator<complex>> py_ScalarUSQTwoElectronOperator_cd {module, "ScalarUSQTwoElectronOperator_cd", "A class that represents a (complex) 'unrestricted second-quantized two-electron operator' suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the tensor representation of its parameters for both spin components and both mixed spin components, which are (usually) integrals over first-quantized operators."};
+
+    // Expose the `DoublySpinResolvedBase` API to the Python class.
+    bindDoublySpinResolvedBaseInterface(py_ScalarUSQTwoElectronOperator_cd);
 }
 
 

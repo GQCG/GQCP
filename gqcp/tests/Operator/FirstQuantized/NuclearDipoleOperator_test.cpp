@@ -22,13 +22,15 @@
 #include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 
 
+/**
+ *  Check the nuclear dipole moment for a toy nuclear framework.
+ */
 BOOST_AUTO_TEST_CASE(NuclearDipole) {
 
-    // Check the nuclear dipole moment for a toy molecule
-    GQCP::Nucleus H {1, 0, 1, 2};
-    GQCP::Nucleus O {8, 2, 4, 8};
-    GQCP::NuclearFramework nuclear_framework {{H, O}};
+    const GQCP::Nucleus H {1, 0, 1, 2};
+    const GQCP::Nucleus O {8, 2, 4, 8};
+    const GQCP::NuclearFramework nuclear_framework {{H, O}};
 
-    const auto dipole = GQCP::NuclearDipoleOperator(nuclear_framework).value();
-    BOOST_CHECK(dipole.isApprox(GQCP::Vector<double, 3> {16, 33, 66}));
+    const auto dipole_moment = GQCP::NuclearDipoleOperator(nuclear_framework).value();
+    BOOST_CHECK(dipole_moment.isApprox(GQCP::Vector<double, 3> {16, 33, 66}));
 }

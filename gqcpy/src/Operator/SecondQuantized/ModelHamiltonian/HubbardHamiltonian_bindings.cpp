@@ -17,7 +17,6 @@
 
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -32,10 +31,38 @@ using namespace GQCP;
 void bindHubbardHamiltonian(py::module& module) {
     py::class_<HubbardHamiltonian<double>>(module, "HubbardHamiltonian", "The Hubbard model Hamiltonian.")
 
-        // CONSTRUCTORS
+        /*
+         *  MARK: Constructors
+         */
 
         .def(py::init<const HoppingMatrix<double>&>(),
-             py::arg("H"));
+             py::arg("H"))
+
+
+        /*
+         *  MARK: Integral access
+         */
+
+        .def(
+            "core",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.core();
+            },
+            "Return the core Hamiltonian (i.e. resulting from the Hubbard hopping operator) as a one-electron operator.")
+
+        .def(
+            "twoElectron",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.twoElectron();
+            },
+            "Return the two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator.")
+
+        .def(
+            "hoppingMatrix",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.hoppingMatrix();
+            },
+            "Return the Hubbard hopping matrix for this Hubbard model Hamiltonian.");
 }
 
 

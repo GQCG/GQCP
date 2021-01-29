@@ -28,7 +28,7 @@
 
 
 /*
- *  DENSE DOCI CALCULATIONS
+ *  MARK: Dense DOCI calculations
  */
 
 /**
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(DOCI_BeH_cation_dense) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(DOCI_LiH_dense) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
@@ -101,7 +101,7 @@ BOOST_AUTO_TEST_CASE(DOCI_Li2_dense) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/li2_321g_klaas.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 6 electrons, so 3 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
@@ -122,7 +122,7 @@ BOOST_AUTO_TEST_CASE(DOCI_Li2_dense) {
 
 
 /*
- *  DOCI CALCULATIONS WITH AN ITERATIVE (DAVIDSON) SOLVER
+ *  MARK: Davidson DOCI calculations
  */
 
 
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(DOCI_h2o_sto3g_Davidson) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/h2o_sto3g_klaas.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 10 electrons, so 5 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
@@ -198,7 +198,7 @@ BOOST_AUTO_TEST_CASE(DOCI_N2_STO_3G_Davidson) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/n2_sto-3g_klaas.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 14 electrons, so 7 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
@@ -229,7 +229,7 @@ BOOST_AUTO_TEST_CASE(DOCI_LiH_6_31G_Davidson) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
@@ -260,7 +260,7 @@ BOOST_AUTO_TEST_CASE(DOCI_Li2_3_21G_Davidson) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/li2_321g_klaas.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 6 electrons, so 3 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
@@ -291,7 +291,7 @@ BOOST_AUTO_TEST_CASE(DOCI_H2O_6_31G_Davidson) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/h2o_631g_klaas.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 10 electrons, so 5 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.

@@ -22,27 +22,27 @@
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 
+/**
+ *  Check the internuclear repulsion energy for H2 from a reference value calculated by HORTON.
+ */
 BOOST_AUTO_TEST_CASE(NuclearRepulsion_h2) {
 
-    // We have a reference internuclear repulsion energy from HORTON
-    double ref_internuclear_repulsion_energy = 0.714285658963;
+    const double ref_internuclear_repulsion_energy = 0.714285658963;
 
-    // Create the dihydrogen nuclear framework
-    auto h2 = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
-
-    // Test the calculation of the nuclear repulsion energy for hydrogen
-    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(h2).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
+    // Create the dihydrogen nuclear framework.
+    const auto molecule = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
+    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(molecule).value() - ref_internuclear_repulsion_energy) < 1.0e-07);
 }
 
 
+/**
+ *  Check the internuclear repulsion energy for H2O from a reference value calculated by HORTON.
+ */
 BOOST_AUTO_TEST_CASE(NuclearRepulsion_h2o) {
 
-    // We have reference internuclear repulsion energy from HORTON
-    double ref_internuclear_repulsion_energy = 8.00236693455;
+    const double ref_internuclear_repulsion_energy = 8.00236693455;
 
-    // Create the water nuclear framework
-    auto water = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
-
-    // Test the calculation of the nuclear repulsion energy
-    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(water).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
+    // Create the water nuclear framework.
+    const auto molecule = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
+    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(molecule).value() - ref_internuclear_repulsion_energy) < 1.0e-07);
 }

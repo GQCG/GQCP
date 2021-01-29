@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp"
 
 
 namespace GQCP {
@@ -30,12 +31,15 @@ namespace GQCP {
  *  @tparam _Scalar         The scalar type of the elements of the hopping matrix.
  */
 template <typename _Scalar>
-class HoppingMatrix:
-    public SquareMatrix<_Scalar> {
-
+class HoppingMatrix {
 public:
     // The scalar type of the elements of the hopping matrix.
     using Scalar = _Scalar;
+
+
+private:
+    // The matrix representation of the hopping matrix.
+    SquareMatrix<Scalar> H;
 
 
 public:
@@ -49,7 +53,7 @@ public:
      *  @param H        The Hubbard hopping matrix, represented as a `SquareMatrix`.
      */
     HoppingMatrix(const SquareMatrix<Scalar>& H) :
-        SquareMatrix<Scalar>(H) {
+        H {H} {
 
         if (!H.isHermitian()) {
             throw std::invalid_argument("HoppingMatrix::HoppingMatrix(const SquareMatrix<Scalar>&): The given hopping matrix must be Hermitian.");
@@ -58,32 +62,18 @@ public:
 
 
     /**
-     *  The default constructor.
-     */
-    HoppingMatrix() :
-        SquareMatrix<Scalar>() {}
-
-
-    /**
-     *  A constructor required for compatibility with Pybind11. In its 'Eigen' bindings (eigen.h), it makes a call "Type(fits.rows, fits.cols)". This constructor should be called there.
-     */
-    HoppingMatrix(const size_t cols, const size_t rows) :
-        SquareMatrix<Scalar>(MatrixX<Scalar>(cols, rows)) {}
-
-
-    /**
      *  Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.
      *
-     *  @param A        The Hubbard adjacency matrix, specifying the connectivity of the Hubbard lattice.
+     *  @param A        The adjacency matrix specifying the connectivity of the Hubbard lattice.
      *  @param t        The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term.
      *  @param U        The Hubbard parameter U.
      *
      *  @note This constructor is only available in the real case (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
     template <typename Z = Scalar>
-    HoppingMatrix(const SquareMatrix<double>& A, const double t, const double U,
+    HoppingMatrix(const AdjacencyMatrix& A, const double t, const double U,
                   typename std::enable_if<std::is_same<Z, double>::value>::type* = 0) :
-        HoppingMatrix(U * SquareMatrix<double>::Identity(A.dimension()) - t * A) {}
+        HoppingMatrix(U * SquareMatrix<double>::Identity(A.matrix().dimension()) - t * A.matrix().cast<double>()) {}
 
 
     /*
@@ -115,7 +105,7 @@ public:
 
         // Map the std::vector<double> into a VectorX<double> to be used into an other constructor
         GQCP::VectorX<double> upper_triangle = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
-        return GQCP::HoppingMatrix<double>::SymmetricFromUpperTriangle(upper_triangle);
+        return GQCP::SquareMatrix<double>::SymmetricFromUpperTriangle(upper_triangle);
     }
 
 
@@ -129,7 +119,7 @@ public:
      *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Random(const size_t K) { return HoppingMatrix::RandomSymmetric(K); }
+    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Random(const size_t K) { return SquareMatrix<double>::RandomSymmetric(K); }
 
 
     /*
@@ -137,9 +127,24 @@ public:
      */
 
     /**
-     *  @return the number of lattice sites corresponding used in this hopping matrix
+     *  @return The number of lattice sites corresponding used in this hopping matrix.
      */
-    size_t numberOfLatticeSites() const { return this->dimension(); }
+    size_t numberOfLatticeSites() const { return this->matrix().dimension(); }
+
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     *  @return A read-only reference to the matrix representation of this hopping matrix.
+     */
+    const SquareMatrix<Scalar>& matrix() const { return this->H; }
+
+    /**
+     *  @return A writable reference to the matrix representation of this hopping matrix.
+     */
+    SquareMatrix<Scalar>& matrix() { return this->H; }
 };
 
 

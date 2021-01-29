@@ -48,7 +48,7 @@ public:
 private:
     size_t N_P;  // The number of electron pairs.
 
-    VectorX<double> orbital_energies;  // The orbital energies sorted in ascending order.
+    VectorX<Scalar> orbital_energies;  // The orbital energies sorted in ascending order.
 
     // The transformation that expresses the RHF MOs in terms of the atomic spinors.
     RTransformation<Scalar> C;
@@ -66,7 +66,7 @@ public:
      *  @param C                    The transformation that expresses the RHF MOs in terms of the atomic spinors.
      *  @param orbital_energies     The RHF MO energies.
      */
-    RHF(const size_t N_P, const VectorX<double>& orbital_energies, const RTransformation<double>& C) :
+    RHF(const size_t N_P, const VectorX<Scalar>& orbital_energies, const RTransformation<Scalar>& C) :
         N_P {N_P},
         orbital_energies {orbital_energies},
         C(C) {}
@@ -76,7 +76,7 @@ public:
      *  Default constructor setting everything to zero.
      */
     RHF() :
-        RHF(0.0, RTransformation<double>::Zero(0), VectorX<double>::Zero(0)) {}
+        RHF(0.0, RTransformation<Scalar>::Zero(0), VectorX<Scalar>::Zero(0)) {}
 
 
     /*
@@ -91,7 +91,7 @@ public:
      *
      *  @return The RHF electronic energy.
      */
-    static double calculateElectronicEnergy(const Orbital1DM<Scalar>& D, const ScalarRSQOneElectronOperator<Scalar>& H_core, const ScalarRSQOneElectronOperator<Scalar>& F) {
+    static Scalar calculateElectronicEnergy(const Orbital1DM<Scalar>& D, const ScalarRSQOneElectronOperator<Scalar>& H_core, const ScalarRSQOneElectronOperator<Scalar>& F) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z = H_core + F;
@@ -675,18 +675,18 @@ public:
     /**
      *  @return The orbital energies belonging to the occupied orbitals.
      */
-    std::vector<double> occupiedOrbitalEnergies() const {
+    std::vector<Scalar> occupiedOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals.
         const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
-        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<Scalar> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {
             mo_energies.push_back(this->orbitalEnergy(i));
         }
 
         // Add the values with indices smaller than the occupied orbital indices, to the new vector.
-        std::vector<double> mo_energies_occupied;
+        std::vector<Scalar> mo_energies_occupied;
         std::copy(mo_energies.begin(), mo_energies.begin() + n_occ, std::back_inserter(mo_energies_occupied));
         return mo_energies_occupied;
     }
@@ -695,14 +695,14 @@ public:
     /**
      *  @return All the spatial orbital energies.
      */
-    const VectorX<double>& orbitalEnergies() const { return this->orbital_energies; }
+    const VectorX<Scalar>& orbitalEnergies() const { return this->orbital_energies; }
 
     /**
      *  @param i            The index of the orbital.
      * 
      *  @return The i-th orbital energy.
      */
-    double orbitalEnergy(const size_t i) const { return this->orbital_energies(i); }
+    Scalar orbitalEnergy(const size_t i) const { return this->orbital_energies(i); }
 
     /**
      *  @return The implicit occupied-virtual orbital space that is associated to these RHF model parameters.
@@ -712,11 +712,11 @@ public:
     /**
      *  @return All the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.
      */
-    VectorX<double> spinOrbitalEnergiesBlocked() const {
+    VectorX<Scalar> spinOrbitalEnergiesBlocked() const {
 
         const auto K = this->numberOfSpatialOrbitals();
 
-        GQCP::VectorX<double> total_orbital_energies {2 * K};
+        GQCP::VectorX<Scalar> total_orbital_energies {2 * K};
         total_orbital_energies.head(K) = this->orbitalEnergies();
         total_orbital_energies.tail(K) = this->orbitalEnergies();
 
@@ -727,11 +727,11 @@ public:
     /**
      *  @return All the spin-orbital energies, with the alpha and beta-spinorbital energies interleaved.
      */
-    VectorX<double> spinOrbitalEnergiesInterleaved() const {
+    VectorX<Scalar> spinOrbitalEnergiesInterleaved() const {
 
         const auto K = this->numberOfSpatialOrbitals();
 
-        GQCP::VectorX<double> total_orbital_energies {2 * K};
+        GQCP::VectorX<Scalar> total_orbital_energies {2 * K};
         for (size_t p = 0; p < K; p++) {
             total_orbital_energies(2 * p) = this->orbitalEnergy(p);
             total_orbital_energies(2 * p + 1) = this->orbitalEnergy(p);
@@ -744,18 +744,18 @@ public:
     /**
      *  @return The orbital energies belonging to the virtual orbitals.
      */
-    std::vector<double> virtualOrbitalEnergies() const {
+    std::vector<Scalar> virtualOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals.
         const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
-        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<Scalar> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {
             mo_energies.push_back(this->orbitalEnergy(i));
         }
 
         // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
-        std::vector<double> mo_energies_virtual;
+        std::vector<Scalar> mo_energies_virtual;
         std::copy(mo_energies.begin() + n_occ, mo_energies.end(), std::back_inserter(mo_energies_virtual));
         return mo_energies_virtual;
     }

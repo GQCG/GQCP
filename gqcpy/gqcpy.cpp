@@ -40,8 +40,8 @@ void bindGTOShell(py::module& module);
 void bindGSpinorBases(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
-void bindRSpinOrbitalBasis(py::module& module);
-void bindUSpinOrbitalBasis(py::module& module);
+void bindRSpinOrbitalBases(py::module& module);
+void bindUSpinOrbitalBases(py::module& module);
 
 
 // Basis - Transformations
@@ -109,6 +109,7 @@ void bindOperator(py::module& module);
 
 
 // Operator - SecondQuantized - ModelHamiltonian
+void bindAdjacencyMatrix(py::module& module);
 void bindHoppingMatrix(py::module& module);
 void bindHubbardHamiltonian(py::module& module);
 
@@ -161,16 +162,16 @@ void bindGHFSCFSolvers(py::module& module);
 
 
 // QCMethod - HF - RHF
-void bindDiagonalRHFFockMatrixObjective(py::module& module);
-void bindQCMethodRHF(py::module& module);
-void bindRHFSCFEnvironment(py::module& module);
-void bindRHFSCFSolver(py::module& module);
+void bindDiagonalRHFFockMatrixObjectives(py::module& module);
+void bindQCMethodsRHF(py::module& module);
+void bindRHFSCFEnvironments(py::module& module);
+void bindRHFSCFSolvers(py::module& module);
 
 
 // QCMethod - HF - UHF
-void bindQCMethodUHF(py::module& module);
-void bindUHFSCFEnvironment(py::module& module);
-void bindUHFSCFSolver(py::module& module);
+void bindQCMethodsUHF(py::module& module);
+void bindUHFSCFEnvironments(py::module& module);
+void bindUHFSCFSolvers(py::module& module);
 
 
 // QCMethod
@@ -237,8 +238,8 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindGSpinorBases(module);
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
-    gqcpy::bindRSpinOrbitalBasis(module);
-    gqcpy::bindUSpinOrbitalBasis(module);
+    gqcpy::bindRSpinOrbitalBases(module);
+    gqcpy::bindUSpinOrbitalBases(module);
 
 
     // Basis - Transformations
@@ -306,6 +307,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Operator - SecondQuantized - ModelHamiltonian
+    gqcpy::bindAdjacencyMatrix(module);
     gqcpy::bindHoppingMatrix(module);
     gqcpy::bindHubbardHamiltonian(module);
 
@@ -358,16 +360,16 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCMethod - HF - RHF
-    gqcpy::bindDiagonalRHFFockMatrixObjective(module);
-    gqcpy::bindQCMethodRHF(module);
-    gqcpy::bindRHFSCFEnvironment(module);
-    gqcpy::bindRHFSCFSolver(module);
+    gqcpy::bindDiagonalRHFFockMatrixObjectives(module);
+    gqcpy::bindQCMethodsRHF(module);
+    gqcpy::bindRHFSCFEnvironments(module);
+    gqcpy::bindRHFSCFSolvers(module);
 
 
     // QCMethod - HF - UHF
-    gqcpy::bindQCMethodUHF(module);
-    gqcpy::bindUHFSCFEnvironment(module);
-    gqcpy::bindUHFSCFSolver(module);
+    gqcpy::bindQCMethodsUHF(module);
+    gqcpy::bindUHFSCFEnvironments(module);
+    gqcpy::bindUHFSCFSolvers(module);
 
 
     // QCMethod

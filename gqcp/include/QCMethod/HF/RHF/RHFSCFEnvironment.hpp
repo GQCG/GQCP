@@ -23,6 +23,7 @@
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <Eigen/Dense>
 
@@ -48,9 +49,9 @@ public:
 public:
     size_t N;  // The total number of electrons.
 
-    std::deque<double> electronic_energies;
+    std::deque<Scalar> electronic_energies;
 
-    std::deque<VectorX<double>> orbital_energies;
+    std::deque<VectorX<Scalar>> orbital_energies;
 
     ScalarRSQOneElectronOperator<Scalar> S;  // The overlap matrix (of the scalar (AO) basis).
 
@@ -97,6 +98,8 @@ public:
      *  @param N                    The total number of electrons.
      *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis.
      *  @param S                    The overlap operator (of the scalar (AO) basis).
+     * 
+     *  @return An RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.
      */
     static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S) {
 
@@ -107,6 +110,64 @@ public:
         const RTransformation<Scalar> C_initial {generalized_eigensolver.eigenvectors()};
 
         return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
+    }
+
+
+    /**
+     *  Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     * 
+     *  @param N                    The total number of electrons.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a RSpinOrbitalBasis.
+     *  @param S                    The overlap operator (of both scalar (AO) bases).
+     * 
+     *  @return An RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently adding/subtracting a small complex value from certain elements.
+     */
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, complex>::value, RHFSCFEnvironment<complex>> WithComplexlyTransformedCoreGuess(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S) {
+
+        // Set up the lambda function used to transform the coefficient matrix.
+        const auto transformation_function = [](SquareMatrix<complex> C_initial) {
+            // Define the complex constant used to transform the initial coefficient matrix.
+            const complex x {0, 0.1};
+
+            // Add/subtract the small complex value from the off-diagonal elements of the initial coefficient matrix.
+            for (size_t i = 0; i < C_initial.cols(); i++) {
+                C_initial(0, i) += x;
+            }
+            for (size_t j = 0; j < C_initial.rows(); j++) {
+                C_initial(j, 0) -= x;
+            }
+
+            // Return the updated coefficient matrix.
+            return C_initial;
+        };
+
+        return RHFSCFEnvironment<complex>::WithTransformedCoreGuess(N, sq_hamiltonian, S, transformation_function);
+    }
+
+
+    /**
+     *  Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.
+     * 
+     *  @param N                            The total number of electrons.
+     *  @param sq_hamiltonian               The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a RSpinOrbitalBasis.
+     *  @param S                            The overlap operator (of both scalar (AO) bases).
+     *  @param transformation_function      A function that transforms the core guess.
+     * 
+     *  @return An RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix and subsequently applying the given unary transformation function.
+     */
+    template <typename Z = Scalar>
+    static RHFSCFEnvironment<Scalar> WithTransformedCoreGuess(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& S, const std::function<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>(const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&)>& transformation_function) {
+
+        const auto& H_core = sq_hamiltonian.core().parameters();  // In AO basis.
+
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S.parameters()};
+        auto C_initial {generalized_eigensolver.eigenvectors()};
+
+        const RTransformation<Scalar> C_initial_complex {transformation_function(C_initial)};
+
+        return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial_complex);
     }
 };
 

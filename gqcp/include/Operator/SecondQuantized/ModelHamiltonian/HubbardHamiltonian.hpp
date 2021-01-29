@@ -71,7 +71,7 @@ public:
 
         // Prepare some variables.
         const auto K = this->numberOfLatticeSites();
-        const auto& H = this->hoppingMatrix();
+        const auto& H = this->hoppingMatrix().matrix();
         auto h = ScalarRSQOneElectronOperator<double>::Zero(K);
 
         // The one-electron hopping terms can be found on the off-diagonal elements of the hopping matrix.
@@ -97,11 +97,12 @@ public:
     enable_if_t<std::is_same<Z, double>::value, ScalarRSQTwoElectronOperator<double>> twoElectron() const {
 
         const auto K = this->numberOfLatticeSites();
+        const auto& H = this->hoppingMatrix().matrix();
         SquareRankFourTensor<double> g_par = SquareRankFourTensor<double>::Zero(K);
 
         // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
         for (size_t p = 0; p < K; p++) {
-            g_par(p, p, p, p) = this->hoppingMatrix()(p, p);
+            g_par(p, p, p, p) = H(p, p);
         }
 
         return ScalarRSQTwoElectronOperator<double> {g_par};

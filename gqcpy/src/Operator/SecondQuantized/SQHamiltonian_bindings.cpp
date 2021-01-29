@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/aliases.hpp"
 #include "Utilities/literals.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
@@ -41,7 +42,7 @@ using namespace GQCP;
  *  @param description          The description of the Python class.
  */
 template <typename Hamiltonian, typename SpinorBasis>
-void bindSQHamiltonian(py::module& module, const std::string& name, const std::string& description) {
+py::class_<Hamiltonian> bindSQHamiltonian(py::module& module, const std::string& name, const std::string& description) {
 
     // Alias some types related to the given Hamiltonian.
     using Transformation = typename Hamiltonian::Transformation;
@@ -121,6 +122,9 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
 
     // Expose the `BasisTransformable` interface.
     bindBasisTransformableInterface(py_Hamiltonian);
+
+
+    return py_Hamiltonian;
 }
 
 
@@ -129,9 +133,26 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
  */
 void bindSQHamiltonians(py::module& module) {
 
-    bindSQHamiltonian<RSQHamiltonian<double>, RSpinOrbitalBasis<double, GTOShell>>(module, "RSQHamiltonian", "A second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
+    auto py_RSQHamiltonian_d = bindSQHamiltonian<RSQHamiltonian<double>, RSpinOrbitalBasis<double, GTOShell>>(module, "RSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
+    py_RSQHamiltonian_d
+        .def_static(
+            "FromHubbard",
+            [](const HubbardHamiltonian<double>& hubbard_hamiltonian) {
+                return RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+            });
 
-    bindSQHamiltonian<USQHamiltonian<double>, USpinOrbitalBasis<double, GTOShell>>(module, "USQHamiltonian", "A second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
+
+    bindSQHamiltonian<RSQHamiltonian<complex>, RSpinOrbitalBasis<complex, GTOShell>>(module, "RSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
+
+    auto py_USQHamiltonian_d = bindSQHamiltonian<USQHamiltonian<double>, USpinOrbitalBasis<double, GTOShell>>(module, "USQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
+    py_USQHamiltonian_d
+        .def_static(
+            "FromRestricted",
+            [](const RSQHamiltonian<double>& r_hamiltonian) {
+                return USQHamiltonian<double>::FromRestricted(r_hamiltonian);
+            });
+
+    bindSQHamiltonian<USQHamiltonian<complex>, USpinOrbitalBasis<complex, GTOShell>>(module, "USQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
 
     bindSQHamiltonian<GSQHamiltonian<double>, GSpinorBasis<double, GTOShell>>(module, "GSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a generalized spinor basis.");
     bindSQHamiltonian<GSQHamiltonian<complex>, GSpinorBasis<complex, GTOShell>>(module, "GSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a generalized spinor basis.");

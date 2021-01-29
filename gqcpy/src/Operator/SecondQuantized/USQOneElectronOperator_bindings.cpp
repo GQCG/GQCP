@@ -39,16 +39,26 @@ using namespace GQCP;
 void bindUSQOneElectronOperator(py::module& module) {
 
     // Define the Python classes for `USQOneElectronOperator` and expose its APIs.
-    py::class_<ScalarUSQOneElectronOperator<double>> py_ScalarUSQOneElectronOperator_d {module, "USQOneElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
+    py::class_<ScalarUSQOneElectronOperator<double>> py_ScalarUSQOneElectronOperator_d {module, "ScalarUSQOneElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
 
     bindSpinResolvedBaseInterface(py_ScalarUSQOneElectronOperator_d);
     bindSQOneElectronOperatorInterface(py_ScalarUSQOneElectronOperator_d);
+
+    py::class_<ScalarUSQOneElectronOperator<complex>> py_ScalarUSQOneElectronOperator_cd {module, "ScalarUSQOneElectronOperator_cd", "A class that represents a (complex) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
+
+    bindSpinResolvedBaseInterface(py_ScalarUSQOneElectronOperator_cd);
+    bindSQOneElectronOperatorInterface(py_ScalarUSQOneElectronOperator_cd);
 
 
     py::class_<VectorUSQOneElectronOperator<double>> py_VectorUSQOneElectronOperator_d {module, "VectorUSQOneElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
 
     bindSpinResolvedBaseInterface(py_VectorUSQOneElectronOperator_d);
     bindSQOneElectronOperatorInterface(py_VectorUSQOneElectronOperator_d);
+
+    py::class_<VectorUSQOneElectronOperator<complex>> py_VectorUSQOneElectronOperator_cd {module, "VectorUSQOneElectronOperator_cd", "A class that represents a (complex) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
+
+    bindSpinResolvedBaseInterface(py_VectorUSQOneElectronOperator_cd);
+    bindSQOneElectronOperatorInterface(py_VectorUSQOneElectronOperator_cd);
 }
 
 

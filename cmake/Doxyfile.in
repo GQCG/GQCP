@@ -853,6 +853,8 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/ONVBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Operator" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Operator/FirstQuantized" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Operator/SecondQuantized" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Operator/SecondQuantized/ModelHamiltonian" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/Properties" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod" \

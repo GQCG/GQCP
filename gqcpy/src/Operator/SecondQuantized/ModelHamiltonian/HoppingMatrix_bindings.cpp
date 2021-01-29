@@ -32,24 +32,43 @@ using namespace GQCP;
 void bindHoppingMatrix(py::module& module) {
     py::class_<HoppingMatrix<double>>(module, "HoppingMatrix", "The Hubbard hopping matrix.")
 
-        // CONSTRUCTORS
+        /*
+         *  MARK: Constructors
+         */
 
-        .def_static(
-            "FromAdjacencyMatrix",
-            [](const Eigen::MatrixXd& A, const double t, const double U) {
-                return HoppingMatrix<double> {SquareMatrix<double> {A}, t, U};
-            },
-            py::arg("A"),
-            py::arg("t"),
-            py::arg("U"),
-            "Return the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.")
+        .def(py::init<const AdjacencyMatrix&, const double, const double>(),
+             py::arg("A"),
+             py::arg("t"),
+             py::arg("U"),
+             "Return the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.")
 
         .def_static(
             "FromCSLine",
             [](const std::string& cs_line) {
                 return HoppingMatrix<double>::FromCSLine(cs_line);
             },
-            "Return the hopping matrix that corresponds to the given comma-separated line.");
+            py::arg("csline"),
+            "Return the hopping matrix that corresponds to the given comma-separated line.")
+
+        /*
+         *  MARK: Access
+         */
+        .def(
+            "matrix",
+            [](const HoppingMatrix<double>& H) {
+                return H.matrix().Eigen();
+            },
+            "Return a read-only reference to the matrix representation of this hopping matrix.")
+
+        /*
+         *  MARK: General information
+         */
+        .def(
+            "numberOfLatticeSites",
+            [](const HoppingMatrix<double>& H) {
+                return H.numberOfLatticeSites();
+            },
+            "Return the number of lattice sites corresponding used in this hopping matrix.");
 }
 
 

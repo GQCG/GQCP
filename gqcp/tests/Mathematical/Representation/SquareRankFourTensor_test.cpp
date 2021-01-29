@@ -22,53 +22,45 @@
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 
+/**
+ *  Check if the handling of the constructor argument behaves as expected.
+ */
 BOOST_AUTO_TEST_CASE(square_constructor) {
 
     GQCP::Tensor<double, 4> T1 {2, 2, 2, 2};
-    T1.setZero();
     BOOST_CHECK_NO_THROW(GQCP::SquareRankFourTensor<double> square_T1 {T1});
 
     GQCP::Tensor<double, 4> T2 {2, 1, 2, 2};
-    BOOST_CHECK_THROW(GQCP::SquareRankFourTensor<double> square_T2 {T2}, std::invalid_argument);  // not square
+    BOOST_CHECK_THROW(GQCP::SquareRankFourTensor<double> square_T2 {T2}, std::invalid_argument);  // Not 'square'.
 }
 
 
-BOOST_AUTO_TEST_CASE(constructor_assignment) {
-
-    // A small check to see if the interface of the constructor and assignment operator works as expected
-
-    GQCP::SquareRankFourTensor<double> A {2};
-    GQCP::SquareRankFourTensor<double> B {2};
-
-    GQCP::SquareRankFourTensor<double> T1 {A.Eigen() + B.Eigen()};
-    GQCP::SquareRankFourTensor<double> T2 = 2 * B.Eigen();
-
-    GQCP::SquareRankFourTensor<double> T3 {T1.Eigen() + T2.Eigen()};
-    GQCP::SquareRankFourTensor<double> T4 = T1.Eigen() + T2.Eigen();
-    GQCP::SquareRankFourTensor<double> T5 = 3 * T2.Eigen();
-}
-
-
+/**
+ *  Check the error handling for `FromFile`.
+ */
 BOOST_AUTO_TEST_CASE(readArrayFromFile_tensor_throw) {
 
-    size_t dim = 7;
+    const size_t dim = 7;
 
-    // Check that there's an error when a wrong path is supplied
-    BOOST_CHECK_THROW(GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_two_electron_horton.dat", dim), std::runtime_error);
+    // Check that there's an error when a wrong path is supplied.
+    BOOST_CHECK_THROW(GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_two_electron_horton.dat", dim), std::runtime_error);  // Should be 'datA'.
 
 
-    // Check that there's no error when a correct path is supplied
+    // Check that there's no error when a correct path is supplied.
     BOOST_CHECK_NO_THROW(GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_two_electron_horton.data", dim));
 
 
-    // Check that there's an error when the tensor is incompatible with the given file
-    BOOST_CHECK_THROW(GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_kinetic.data_horton", dim), std::runtime_error);  // can't read in one-electron data in a tensor
+    // Check that there's an error when the tensor is incompatible with the given file.
+    BOOST_CHECK_THROW(GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_kinetic.data_horton", dim), std::runtime_error);  // Can't read in one-electron data in a tensor.
 }
 
 
+/**
+ *  Check if `FromFile` method reads in a tensor correctly.
+ */
 BOOST_AUTO_TEST_CASE(readArrayFromFile_tensor_example) {
 
-    // Test the read function on a small example mimicking the two-electron integrals
+    // Test the read function on a small example mimicking the two-electron integrals.
     size_t dim = 6;
     GQCP::SquareRankFourTensor<double> T_ref {dim};
     T_ref.setZero();
@@ -87,9 +79,12 @@ BOOST_AUTO_TEST_CASE(readArrayFromFile_tensor_example) {
 }
 
 
+/**
+ *  Check if the pair-wise reshaping of a tensor into a matrix is correctly implemented.
+ */
 BOOST_AUTO_TEST_CASE(pairWiseStrictReduced) {
 
-    // Example 1
+    // Example 1.
     size_t dim1 = 2;
     GQCP::SquareRankFourTensor<double> T1 {dim1};
     for (size_t i = 0; i < dim1; i++) {
@@ -104,12 +99,12 @@ BOOST_AUTO_TEST_CASE(pairWiseStrictReduced) {
 
 
     GQCP::SquareMatrix<double> M1_ref {1};  // 2*(2-1)/2 = 1
-    M1_ref << 10;                           // by manual inspection we find that this is the only value that should appear in the matrix
+    M1_ref << 10;                           // By manual inspection we find that this is the only value that should appear in the matrix.
 
     BOOST_CHECK(M1_ref.isApprox(T1.pairWiseStrictReduced()));
 
 
-    // Example 2
+    // Example 2.
     size_t dim2 = 3;
     GQCP::SquareRankFourTensor<double> T2 {dim2};
     for (size_t i = 0; i < dim2; i++) {
@@ -127,7 +122,7 @@ BOOST_AUTO_TEST_CASE(pairWiseStrictReduced) {
     // clang-format off
     M2_ref << 30, 33, 34,
               57, 60, 61,
-              66, 69, 70;  // by manual inspection, these should be the elements of the reduced matrix
+              66, 69, 70;  // By manual inspection, these should be the elements of the reduced matrix.
     // clang-format on
 
     BOOST_CHECK(M2_ref.isApprox(T2.pairWiseStrictReduced()));
