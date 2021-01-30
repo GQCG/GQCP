@@ -18,6 +18,7 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 
 #include <pybind11/eigen.h>
+#include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 
 
@@ -41,9 +42,25 @@ void bindSpinResolvedONVBasis(py::module& module) {
 
 
         // PUBLIC METHODS
+        .def(
+            "compoundAddress",
+            [](const SpinResolvedONVBasis& onv_basis, const size_t I_alpha, const size_t I_beta) {
+                return onv_basis.compoundAddress(I_alpha, I_beta);
+            },
+            py::arg("I_alpha"),
+            py::arg("I_beta"),
+            "Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.")
 
         .def("dimension",
-             &SpinResolvedONVBasis::dimension);
+             &SpinResolvedONVBasis::dimension)
+
+        .def(
+            "forEach",
+            [](const SpinResolvedONVBasis& onv_basis, const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) {
+                return onv_basis.forEach(callback);
+            },
+            py::arg("callback"),
+            "Iterate over all ONVs, and apply the given callback function.");
 }
 
 
