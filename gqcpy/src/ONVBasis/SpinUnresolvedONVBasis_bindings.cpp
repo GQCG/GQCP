@@ -42,6 +42,14 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def(
+            "addressOf",
+            [](const SpinUnresolvedONVBasis& onv_basis, const SpinUnresolvedONV& onv) {
+                return onv_basis.addressOf(onv);
+            },
+            py::arg("onv"),
+            "Calculate the address (i.e. the ordering number) of a spin-unresolved ONV.")
+
+        .def(
             "arcWeight",
             [](const SpinUnresolvedONVBasis& onv_basis, size_t p, const size_t n) {
                 return onv_basis.arcWeight(p, n);
@@ -60,6 +68,14 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
             "Calculate the dimension of a spin-unresolved ONV with M spinors and N electrons.")
 
         .def(
+            "forEach",
+            [](const SpinUnresolvedONVBasis& onv_basis, const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) {
+                return onv_basis.forEach(callback);
+            },
+            py::arg("callback"),
+            "Iterate over all ONVs in this ONV basis and apply the given callback function.")
+
+        .def(
             "vertexWeight",
             [](const SpinUnresolvedONVBasis onv_basis, const size_t p, const size_t n) {
                 return onv_basis.vertexWeight(p, n);
@@ -67,6 +83,5 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
             py::arg("p"),
             py::arg("n"),
             "Return the vertex weight of vertex (p, n), with p the orbital index and n the electron index.");
-}
 
 }  // namespace gqcpy
