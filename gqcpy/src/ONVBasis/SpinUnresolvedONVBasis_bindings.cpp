@@ -85,5 +85,4 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
             "Return the vertex weight of vertex (p, n), with p the orbital index and n the electron index.");
 }
     
-    
 }  // namespace gqcpy
