@@ -730,6 +730,8 @@ void bindSimple1DMInterface(Class& py_class) {
 
     using Scalar = typename Type::Scalar;
 
+
+    // Add specific APIs for `Simple1DM`.
     py_class
         .def(py::init<>([](const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& D) {
             return Type {D};
@@ -741,6 +743,10 @@ void bindSimple1DMInterface(Class& py_class) {
                 return D.matrix();
             },
             "Return a read-only reference to the matrix representation of the 1-DM.");
+
+
+    // Add common APIs.
+    bindVectorSpaceArithmeticInterface(py_class);
 }
 
 
@@ -760,6 +766,7 @@ void bindSimple2DMInterface(Class& py_class) {
     using Scalar = typename Type::Scalar;
 
 
+    // Add specific APIs for `Simple2DM`.
     py_class
         .def(py::init<>([](const Eigen::Tensor<Scalar, 4>& d) {
             return Type(SquareRankFourTensor<Scalar>(d));
@@ -781,6 +788,10 @@ void bindSimple2DMInterface(Class& py_class) {
             "trace",
             &Type::trace,
             "Return the trace of the 2-DM, i.e. d(p,p,q,q).");
+
+
+    // Add common APIs.
+    bindVectorSpaceArithmeticInterface(py_class);
 }
 
 
