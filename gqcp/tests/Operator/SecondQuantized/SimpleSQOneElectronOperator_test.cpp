@@ -106,8 +106,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     // Initialize a test operator and density matrices.
     const GQCP::ScalarRSQOneElectronOperator<double> f_operator {2};
-    const GQCP::Orbital1DM<double> D_valid = GQCP::Orbital1DM<double>::Zero(2);
-    const GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
+    const GQCP::Orbital1DM<double> D_valid {GQCP::SquareMatrix<double>::Zero(2)};
+    const GQCP::Orbital1DM<double> D_invalid {GQCP::SquareMatrix<double>::Zero(3)};
 
     BOOST_CHECK_NO_THROW(f_operator.calculateExpectationValue(D_valid));
     BOOST_CHECK_THROW(f_operator.calculateExpectationValue(D_invalid), std::invalid_argument);  // Invalid dimension for the density matrix.
@@ -130,16 +130,17 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const GQCP::ScalarRSQOneElectronOperator<double> op {M1};
 
     // Initialize a test density matrix.
-    GQCP::Orbital1DM<double> D {dim};
+    GQCP::SquareMatrix<double> D {dim};
     // clang-format off
     D << 0.0, 1.0,
          1.0, 0.0;
     // clang-format on
+    const GQCP::Orbital1DM<double> DM {D};
 
     // Initialize a reference value and check the result.
     const double reference_expectation_value = 5.0;
 
-    const double expectation_value = op.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted to the underlying scalar.
+    const double expectation_value = op.calculateExpectationValue(DM);  // A scalar-StorageArray can be implicitly converted to the underlying scalar.
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 

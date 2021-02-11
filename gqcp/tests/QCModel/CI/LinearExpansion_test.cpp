@@ -416,20 +416,20 @@ BOOST_AUTO_TEST_CASE(spin_resolved_vs_spin_resolved_selected_DMs) {
     const auto D_specialized = linear_expansion_specialized.calculateSpinResolved1DM();
     const auto D_selected = linear_expansion_selected.calculateSpinResolved1DM();
 
-    BOOST_CHECK(D_specialized.orbitalDensity().isApprox(D_selected.orbitalDensity(), 1.0e-12));
-    BOOST_CHECK(D_specialized.alpha().isApprox(D_selected.alpha(), 1.0e-12));
-    BOOST_CHECK(D_specialized.beta().isApprox(D_selected.beta(), 1.0e-12));
+    BOOST_CHECK(D_specialized.orbitalDensity().matrix().isApprox(D_selected.orbitalDensity().matrix(), 1.0e-12));
+    BOOST_CHECK(D_specialized.alpha().matrix().isApprox(D_selected.alpha().matrix(), 1.0e-12));
+    BOOST_CHECK(D_specialized.beta().matrix().isApprox(D_selected.beta().matrix(), 1.0e-12));
 
 
     // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
     const auto d_specialized = linear_expansion_specialized.calculateSpinResolved2DM();
     const auto d_selected = linear_expansion_selected.calculateSpinResolved2DM();
 
-    BOOST_CHECK(d_specialized.alphaAlpha().isApprox(d_selected.alphaAlpha(), 1.0e-12));
-    BOOST_CHECK(d_specialized.alphaBeta().isApprox(d_selected.alphaBeta(), 1.0e-12));
-    BOOST_CHECK(d_specialized.betaAlpha().isApprox(d_selected.betaAlpha(), 1.0e-12));
-    BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
-    BOOST_CHECK(d_specialized.orbitalDensity().isApprox(d_selected.orbitalDensity(), 1.0e-12));
+    BOOST_CHECK(d_specialized.alphaAlpha().tensor().isApprox(d_selected.alphaAlpha().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.alphaBeta().tensor().isApprox(d_selected.alphaBeta().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaAlpha().tensor().isApprox(d_selected.betaAlpha().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaBeta().tensor().isApprox(d_selected.betaBeta().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.orbitalDensity().tensor().isApprox(d_selected.orbitalDensity().tensor(), 1.0e-12));
 }
 
 
@@ -469,20 +469,20 @@ BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
     const auto D_specialized = linear_expansion_specialized.calculateSpinResolved1DM();
     const auto D_selected = linear_expansion_selected.calculateSpinResolved1DM();
 
-    BOOST_CHECK(D_specialized.orbitalDensity().isApprox(D_selected.orbitalDensity(), 1.0e-12));
-    BOOST_CHECK(D_specialized.alpha().isApprox(D_selected.alpha(), 1.0e-12));
-    BOOST_CHECK(D_specialized.beta().isApprox(D_selected.beta(), 1.0e-12));
+    BOOST_CHECK(D_specialized.orbitalDensity().matrix().isApprox(D_selected.orbitalDensity().matrix(), 1.0e-12));
+    BOOST_CHECK(D_specialized.alpha().matrix().isApprox(D_selected.alpha().matrix(), 1.0e-12));
+    BOOST_CHECK(D_specialized.beta().matrix().isApprox(D_selected.beta().matrix(), 1.0e-12));
 
 
     // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
     const auto d_specialized = linear_expansion_specialized.calculateSpinResolved2DM();
     const auto d_selected = linear_expansion_selected.calculateSpinResolved2DM();
 
-    BOOST_CHECK(d_specialized.alphaAlpha().isApprox(d_selected.alphaAlpha(), 1.0e-12));
-    BOOST_CHECK(d_specialized.alphaBeta().isApprox(d_selected.alphaBeta(), 1.0e-12));
-    BOOST_CHECK(d_specialized.betaAlpha().isApprox(d_selected.betaAlpha(), 1.0e-12));
-    BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
-    BOOST_CHECK(d_specialized.orbitalDensity().isApprox(d_selected.orbitalDensity(), 1.0e-12));
+    BOOST_CHECK(d_specialized.alphaAlpha().tensor().isApprox(d_selected.alphaAlpha().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.alphaBeta().tensor().isApprox(d_selected.alphaBeta().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaAlpha().tensor().isApprox(d_selected.betaAlpha().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaBeta().tensor().isApprox(d_selected.betaBeta().tensor(), 1.0e-12));
+    BOOST_CHECK(d_specialized.orbitalDensity().tensor().isApprox(d_selected.orbitalDensity().tensor(), 1.0e-12));
 }
 
 
@@ -526,7 +526,7 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_ref_SpinResolved) {
     const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, linear_expansion_unresolved.coefficients()};
 
     const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions anyways.
-    BOOST_CHECK(D_unresolved.isApprox(D_resolved, 1.0e-12));
+    BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
 }
 
 /**
@@ -548,5 +548,5 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_ref_SpinResolved_doubleCheck) {
     const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, linear_expansion_unresolved.coefficients()};
 
     const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions anyways.
-    BOOST_CHECK(D_unresolved.isApprox(D_resolved, 1.0e-12));
+    BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
 }

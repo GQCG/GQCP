@@ -87,7 +87,7 @@ public:
      *  @return The orbital (total, spin-summed) two-electron density matrix.
      */
     Orbital2DM<Scalar> orbitalDensity() const {
-        return Orbital2DM<Scalar> {this->alphaAlpha().Eigen() + this->alphaBeta().Eigen() + this->betaAlpha().Eigen() + this->betaBeta().Eigen()};
+        return Orbital2DM<Scalar> {this->alphaAlpha().tensor().Eigen() + this->alphaBeta().tensor().Eigen() + this->betaAlpha().tensor().Eigen() + this->betaBeta().tensor().Eigen()};
     }
 
 

@@ -41,10 +41,14 @@ void bindMixedSpinResolved2DMComponent(py::module& module) {
 
 
     py_MixedSpinResolved2DMComponent_d
+        .def(py::init<>([](const Eigen::Tensor<double, 4>& d) {
+            return MixedSpinResolved2DMComponent<double>(GQCP::SquareRankFourTensor<double>(d));
+        }))
+
         .def(
-            "asArray",
+            "tensor",
             [](const MixedSpinResolved2DMComponent<double>& d) {
-                return asNumpyArray(d.Eigen());
+                return d.tensor().Eigen();
             });
 }
 

@@ -101,7 +101,7 @@ BOOST_AUTO_TEST_CASE(one_dm_from_two_dm) {
     const auto d = linear_expansion.calculate2DM();
 
     GQCP::Orbital1DM<double> D_from_reduction = (1.0 / (N - 1)) * d.reduce();
-    BOOST_CHECK(D.isApprox(D_from_reduction, 1.0e-12));
+    BOOST_CHECK(D.matrix().isApprox(D_from_reduction.matrix(), 1.0e-12));
 }
 
 

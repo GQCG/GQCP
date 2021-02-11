@@ -86,7 +86,7 @@ public:
 
             // Perform the actual contraction (with prefactor 0.5):
             //      0.5 g(p q r s) d(p q r s)
-            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].template einsum<4>("pqrs, pqrs->", d);
+            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].template einsum<4>("pqrs, pqrs->", d.tensor());
 
             // As the contraction is a scalar (a tensor of rank 0), we should access using `operator(0)`.
             expectation_values[i] = contraction(0);

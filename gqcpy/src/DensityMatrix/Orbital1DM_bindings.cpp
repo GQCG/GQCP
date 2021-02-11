@@ -39,6 +39,8 @@ void bindOrbital1DM(py::module& module) {
     // Define the Python class for `Orbital1DM`.
     py::class_<Orbital1DM<double>> py_Orbital1DM_d {module, "Orbital1DM_d", "The orbital one-electron density matrix."};
 
+    // Expose the `Simple1DM` API to the Python class;
+    bindSimple1DMInterface(py_Orbital1DM_d);
 
     // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_Orbital1DM_d);

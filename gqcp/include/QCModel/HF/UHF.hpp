@@ -151,9 +151,9 @@ public:
 
         // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5):
         //      0.5 P_sigma(mu nu) P_sigma(mu nu).
-        Tensor<Scalar, 0> contraction_alpha = 0.5 * Z_alpha_tensor.template einsum<2>("ij,ji->", P.alpha());
+        Tensor<Scalar, 0> contraction_alpha = 0.5 * Z_alpha_tensor.template einsum<2>("ij,ji->", P.alpha().matrix());
 
-        Tensor<Scalar, 0> contraction_beta = 0.5 * Z_beta_tensor.template einsum<2>("ij,ji->", P.beta());
+        Tensor<Scalar, 0> contraction_beta = 0.5 * Z_beta_tensor.template einsum<2>("ij,ji->", P.beta().matrix());
 
         // As the double contraction of two rank-2 tensors is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction_alpha(0) + contraction_beta(0);
@@ -170,8 +170,8 @@ public:
     static SpinResolved<SquareMatrix<Scalar>> calculateError(const ScalarUSQOneElectronOperator<Scalar>& F, const SpinResolved1DM<Scalar>& D, const ScalarUSQOneElectronOperator<Scalar>& S) {
 
         // Calculate the alpha and beta error vectors separately.
-        const auto error_vector_alpha = F.alpha().parameters() * D.alpha() * S.alpha().parameters() - S.alpha().parameters() * D.alpha() * F.alpha().parameters();
-        const auto error_vector_beta = F.beta().parameters() * D.beta() * S.beta().parameters() - S.beta().parameters() * D.beta() * F.beta().parameters();
+        const auto error_vector_alpha = F.alpha().parameters() * D.alpha().matrix() * S.alpha().parameters() - S.alpha().parameters() * D.alpha().matrix() * F.alpha().parameters();
+        const auto error_vector_beta = F.beta().parameters() * D.beta().matrix() * S.beta().parameters() - S.beta().parameters() * D.beta().matrix() * F.beta().parameters();
 
         return SpinResolved<SquareMatrix<Scalar>> {error_vector_alpha, error_vector_beta};
     }
@@ -196,13 +196,13 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        SpinResolved1DMComponent<Scalar> D_MO_a = SpinResolved1DMComponent<Scalar>::Zero(K_a);
+        SquareMatrix<Scalar> D_MO_a = SquareMatrix<Scalar>::Zero(K_a);
         D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a);
 
-        SpinResolved1DMComponent<Scalar> D_MO_b = SpinResolved1DMComponent<Scalar>::Zero(K_b);
+        SquareMatrix<Scalar> D_MO_b = SquareMatrix<Scalar>::Zero(K_b);
         D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b);
 
-        return SpinResolved1DM<Scalar> {D_MO_a, D_MO_b};
+        return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {D_MO_a}, SpinResolved1DMComponent<Scalar> {D_MO_b}};
     }
 
 
@@ -222,7 +222,7 @@ public:
 
 
         // Use KISS formulas to implement the spin components of the UHF 2-DM.
-        PureSpinResolved2DMComponent<Scalar> d_aaaa = PureSpinResolved2DMComponent<Scalar>::Zero(K);
+        SquareRankFourTensor<Scalar> d_aaaa = SquareRankFourTensor<Scalar>::Zero(K);
         for (const auto& i : orbital_space.alpha().indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.alpha().indices(OccupationType::k_occupied)) {
                 for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
@@ -240,7 +240,7 @@ public:
         }
 
 
-        MixedSpinResolved2DMComponent<Scalar> d_aabb = MixedSpinResolved2DMComponent<Scalar>::Zero(K);
+        SquareRankFourTensor<Scalar> d_aabb = SquareRankFourTensor<Scalar>::Zero(K);
         for (const auto& i : orbital_space.alpha().indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.alpha().indices(OccupationType::k_occupied)) {
                 for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
@@ -254,7 +254,7 @@ public:
         }
 
 
-        MixedSpinResolved2DMComponent<Scalar> d_bbaa = MixedSpinResolved2DMComponent<Scalar>::Zero(K);
+        SquareRankFourTensor<Scalar> d_bbaa = SquareRankFourTensor<Scalar>::Zero(K);
         for (const auto& i : orbital_space.beta().indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.beta().indices(OccupationType::k_occupied)) {
                 for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
@@ -268,7 +268,7 @@ public:
         }
 
 
-        PureSpinResolved2DMComponent<Scalar> d_bbbb = PureSpinResolved2DMComponent<Scalar>::Zero(K);
+        SquareRankFourTensor<Scalar> d_bbbb = SquareRankFourTensor<Scalar>::Zero(K);
         for (const auto& i : orbital_space.beta().indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.beta().indices(OccupationType::k_occupied)) {
                 for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
@@ -285,7 +285,7 @@ public:
             }
         }
 
-        return SpinResolved2DM<Scalar> {d_aaaa, d_aabb, d_bbaa, d_bbbb};
+        return SpinResolved2DM<Scalar> {PureSpinResolved2DMComponent<Scalar>(d_aaaa), MixedSpinResolved2DMComponent<Scalar>(d_aabb), MixedSpinResolved2DMComponent<Scalar>(d_bbaa), PureSpinResolved2DMComponent<Scalar>(d_bbbb)};
     }
 
 
@@ -325,8 +325,8 @@ public:
 
         // Specify the contraction pairs for the direct contractions:
         //      (mu nu|rho lambda) P(rho lambda).
-        const auto J_alpha = g_a.template einsum<2>("ijkl,kl->ij", P.alpha()).asMatrix();
-        const auto J_beta = g_b.template einsum<2>("ijkl,kl->ij", P.beta()).asMatrix();
+        const auto J_alpha = g_a.template einsum<2>("ijkl,kl->ij", P.alpha().matrix()).asMatrix();
+        const auto J_beta = g_b.template einsum<2>("ijkl,kl->ij", P.beta().matrix()).asMatrix();
 
         // Calculate the total J tensor.
         const auto J = J_alpha + J_beta;
@@ -351,8 +351,8 @@ public:
 
         // Specify the contraction pairs for the exchange contraction:
         //      (mu rho|lambda nu) P(lambda rho).
-        const auto K_alpha = g_a.template einsum<2>("ijkl,kj->il", P.alpha()).asMatrix();
-        const auto K_beta = g_b.template einsum<2>("ijkl,kj->il", P.beta()).asMatrix();
+        const auto K_alpha = g_a.template einsum<2>("ijkl,kj->il", P.alpha().matrix()).asMatrix();
+        const auto K_beta = g_b.template einsum<2>("ijkl,kj->il", P.beta().matrix()).asMatrix();
 
         return ScalarUSQOneElectronOperator<Scalar> {K_alpha, K_beta};
     }

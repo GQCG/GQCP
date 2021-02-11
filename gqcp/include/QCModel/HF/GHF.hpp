@@ -88,7 +88,7 @@ public:
      *  @return The GHF error matrix.
      */
     static SquareMatrix<Scalar> calculateError(const ScalarGSQOneElectronOperator<Scalar>& F, const G1DM<Scalar>& P, const ScalarGSQOneElectronOperator<Scalar>& S) {
-        return F.parameters() * P * S.parameters() - S.parameters() * P * F.parameters();
+        return F.parameters() * P.matrix() * S.parameters() - S.parameters() * P.matrix() * F.parameters();
     }
 
 
@@ -106,14 +106,14 @@ public:
 
         // Convert the matrix Z to a Tensor.
         // Einsum is only implemented for a tensor + a matrix, not for 2 matrices.
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), P.rows(), P.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), P.matrix().rows(), P.matrix().cols()};
         Tensor<Scalar, 2> Z_tensor = Tensor<Scalar, 2>(Z_t);
 
         // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5):
         //      0.5 D(mu nu) Z(mu nu).
         // See knowdes: https://gqcg-res.github.io/knowdes/general-hartree-fock-theory.html
 
-        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij, ij ->", P);
+        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij, ij ->", P.matrix());
 
         // As the double contraction of two matrices is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction(0);
@@ -132,7 +132,7 @@ public:
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
 
         // Transform the 1-DM in an orthonormal basis to the underlying scalar basis.
-        return C.matrix().conjugate() * P_orthonormal * C.matrix().transpose();
+        return G1DM<Scalar>(C.matrix().conjugate() * P_orthonormal.matrix() * C.matrix().transpose());
     }
 
 
@@ -150,12 +150,12 @@ public:
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
-        const auto M = P.dimension();  // The total number of basis functions.
-        G1DM<Scalar> P_aa = G1DM<Scalar>::Zero(M);
-        P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
+        const auto M = P.numberOfOrbitals();  // The total number of basis functions.
+        SquareMatrix<Scalar> P_aa = SquareMatrix<Scalar>::Zero(M);
+        P_aa.topLeftCorner(M / 2, M / 2) = P.matrix().topLeftCorner(M / 2, M / 2);
 
-        G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
-        P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
+        SquareMatrix<Scalar> P_bb = SquareMatrix<Scalar>::Zero(M);
+        P_bb.bottomRightCorner(M / 2, M / 2) = P.matrix().bottomRightCorner(M / 2, M / 2);
 
         // Specify the contraction pairs for the direct contractions:
         //      P(rho lambda) (mu nu|rho lambda).
@@ -181,19 +181,19 @@ public:
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
-        const auto M = P.dimension();  // The total number of basis functions.
+        const auto M = P.numberOfOrbitals();  // The total number of basis functions.
 
-        G1DM<Scalar> P_aa = G1DM<Scalar>::Zero(M);
-        P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
+        SquareMatrix<Scalar> P_aa = SquareMatrix<Scalar>::Zero(M);
+        P_aa.topLeftCorner(M / 2, M / 2) = P.matrix().topLeftCorner(M / 2, M / 2);
 
-        G1DM<Scalar> P_ab = G1DM<Scalar>::Zero(M);
-        P_ab.topRightCorner(M / 2, M / 2) = P.topRightCorner(M / 2, M / 2);
+        SquareMatrix<Scalar> P_ab = SquareMatrix<Scalar>::Zero(M);
+        P_ab.topRightCorner(M / 2, M / 2) = P.matrix().topRightCorner(M / 2, M / 2);
 
-        G1DM<Scalar> P_ba = G1DM<Scalar>::Zero(M);
-        P_ba.bottomLeftCorner(M / 2, M / 2) = P.bottomLeftCorner(M / 2, M / 2);
+        SquareMatrix<Scalar> P_ba = SquareMatrix<Scalar>::Zero(M);
+        P_ba.bottomLeftCorner(M / 2, M / 2) = P.matrix().bottomLeftCorner(M / 2, M / 2);
 
-        G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
-        P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
+        SquareMatrix<Scalar> P_bb = SquareMatrix<Scalar>::Zero(M);
+        P_bb.bottomRightCorner(M / 2, M / 2) = P.matrix().bottomRightCorner(M / 2, M / 2);
 
 
         // Specify the contraction pairs for the exchange contractions:
@@ -244,10 +244,10 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        G1DM<Scalar> D = G1DM<Scalar>::Zero(M);
+        SquareMatrix<Scalar> D = SquareMatrix<Scalar>::Zero(M);
         D.topLeftCorner(N, N) = SquareMatrix<Scalar>::Identity(N);
 
-        return D;
+        return G1DM<Scalar> {D};
     }
 
 
@@ -266,7 +266,7 @@ public:
 
 
         // Implement a KISS formula for the GHF 2-DM.
-        G2DM<Scalar> d = G2DM<Scalar>::Zero(M);
+        SquareRankFourTensor<Scalar> d = SquareRankFourTensor<Scalar>::Zero(M);
 
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
@@ -284,7 +284,7 @@ public:
             }
         }
 
-        return d;
+        return G2DM<Scalar>(d);
     }
 
 

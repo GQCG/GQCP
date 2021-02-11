@@ -79,7 +79,7 @@ public:
      */
     static SpinResolved1DM<Scalar> FromOrbital1DM(const Orbital1DM<Scalar>& D) {
 
-        const SpinResolved1DMComponent<Scalar> D_half = D / 2;
+        const SpinResolved1DMComponent<Scalar> D_half {(D / 2).matrix()};
         return SpinResolved1DM<Scalar>(D_half, D_half);
     }
 
@@ -101,11 +101,11 @@ public:
         const auto M = K_alpha + K_beta;
 
         // The generalized 1-DM contains the alpha part in the top-left corner, and the beta part in the bottom right corner.
-        G1DM<Scalar> D_generalized = G1DM<Scalar>::Zero(M);
-        D_generalized.topLeftCorner(K_alpha, K_alpha) = this->alpha();
-        D_generalized.bottomRightCorner(K_beta, K_beta) = this->beta();
+        SquareMatrix<Scalar> D_generalized = SquareMatrix<Scalar>::Zero(M);
+        D_generalized.topLeftCorner(K_alpha, K_alpha) = this->alpha().matrix();
+        D_generalized.bottomRightCorner(K_beta, K_beta) = this->beta().matrix();
 
-        return D_generalized;
+        return G1DM<Scalar> {D_generalized};
     }
 
 
@@ -134,14 +134,14 @@ public:
      *  @return The spin-density matrix, i.e. the difference between the alpha and beta 1-DM.
      */
     SpinDensity1DM<Scalar> spinDensity() const {
-        return this->alpha() - this->beta();
+        return SpinDensity1DM<Scalar> {(this->alpha() - this->beta()).matrix()};
     }
 
     /**
      *  @return The orbital density matrix, i.e. the sum of the alpha and beta 1-DM.
      */
     Orbital1DM<Scalar> orbitalDensity() const {
-        return this->alpha() + this->beta();
+        return Orbital1DM<Scalar> {(this->alpha() + this->beta()).matrix()};
     }
 
 
