@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCModel/CC/T2Amplitudes.hpp"
+#include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -46,7 +47,7 @@ void bindT2Amplitudes(py::module& module) {
         .def(
             "asTensor",
             [](const T2Amplitudes<double>& t2_amplitudes) {
-                return t2_amplitudes.asImplicitRankFourTensorSlice().asTensor();
+                return asNumpyArray(t2_amplitudes.asImplicitRankFourTensorSlice().asTensor());
             },
             "Return the T2-amplitudes as a tensor.");
 }
