@@ -33,80 +33,81 @@ namespace GQCP {
 /**
  *  An algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.
  * 
- *  @tparam _Scalar             the scalar type the amplitudes
+ *  @tparam _Scalar             The scalar type that represents one of the amplitudes.
  */
 template <typename _Scalar>
 class CCSDEnvironment {
 public:
+    // The scalar type that represents one of the amplitudes.
     using Scalar = _Scalar;
 
 
 public:
-    std::deque<double> electronic_energies;  // the electronic correlation energy
+    std::deque<double> correlation_energies;  // The electronic correlation energies.
 
     std::deque<T1Amplitudes<Scalar>> t1_amplitudes;
     std::deque<T2Amplitudes<Scalar>> t2_amplitudes;
 
-    SquareMatrix<Scalar> f;            // the (inactive) Fock matrix
-    SquareRankFourTensor<Scalar> V_A;  // the antisymmetrized two-electron integrals (in physicist's notation)
+    std::deque<VectorX<Scalar>> t1_amplitude_errors;
+    std::deque<VectorX<Scalar>> t2_amplitude_errors;
 
-    ImplicitMatrixSlice<Scalar> F1;  // represents equation (3) in Stanton1991
-    ImplicitMatrixSlice<Scalar> F2;  // represents equation (4) in Stanton1991
-    ImplicitMatrixSlice<Scalar> F3;  // F3 represents equation (5) in Stanton1991
+    SquareMatrix<Scalar> f;            // The elements of the (inactive) Fock matrix.
+    SquareRankFourTensor<Scalar> V_A;  // The antisymmetrized two-electron integrals (in physicist's notation).
 
-    ImplicitRankFourTensorSlice<Scalar> W1;  // represents equation (6) in Stanton1991
-    ImplicitRankFourTensorSlice<Scalar> W2;  // represents equation (7) in Stanton1991
-    ImplicitRankFourTensorSlice<Scalar> W3;  // represents equation (8) in Stanton1991
+    ImplicitMatrixSlice<Scalar> F1;  // An intermediate that represents equation (3) in Stanton1991.
+    ImplicitMatrixSlice<Scalar> F2;  // An intermediate that represents equation (4) in Stanton1991.
+    ImplicitMatrixSlice<Scalar> F3;  // An intermediate that represents equation (5) in Stanton1991.
 
-    ImplicitRankFourTensorSlice<Scalar> tau2;        // represents equation (10) in Stanton1991
-    ImplicitRankFourTensorSlice<Scalar> tau2_tilde;  // represents equation (9) in Stanton1991
+    ImplicitRankFourTensorSlice<Scalar> W1;  // An intermediate that represents equation (6) in Stanton1991.
+    ImplicitRankFourTensorSlice<Scalar> W2;  // An intermediate that represents equation (7) in Stanton1991.
+    ImplicitRankFourTensorSlice<Scalar> W3;  // An intermediate that represents equation (8) in Stanton1991.
+
+    ImplicitRankFourTensorSlice<Scalar> tau2;        // An intermediate that represents equation (10) in Stanton1991.
+    ImplicitRankFourTensorSlice<Scalar> tau2_tilde;  // An intermediate that represents equation (9) in Stanton1991.
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  Initialize a CCSD algorithmic environment with given T1- and T2-amplitudes.
+     *  Initialize an algorithmic environment with given T1- and T2-amplitudes.
      * 
-     *  @param t1_amplitudes            the initial T1-amplitudes
-     *  @param t2_amplitudes            the initial T2-amplitudes
-     *  @param f                        the (inactive) Fock matrix
-     *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1_amplitudes            The initial T1-amplitudes.
+     *  @param t2_amplitudes            The initial T2-amplitudes.
+     *  @param f                        The elements of the (inactive) Fock matrix.
+     *  @param V_A                      The antisymmetrized two-electron integrals (in physicist's notation).
      */
     CCSDEnvironment(const T1Amplitudes<Scalar>& t1_amplitudes, const T2Amplitudes<Scalar>& t2_amplitudes, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A) :
-        electronic_energies {QCModel::CCSD<Scalar>::calculateCorrelationEnergy(f, V_A, t1_amplitudes, t2_amplitudes)},  // already calculate the initial CCSD energy correction
+        correlation_energies {QCModel::CCSD<Scalar>::calculateCorrelationEnergy(f, V_A, t1_amplitudes, t2_amplitudes)},  // already calculate the initial CCSD energy correction
         t1_amplitudes {t1_amplitudes},
         t2_amplitudes {t2_amplitudes},
         f {f},
         V_A {V_A} {}
 
+
     /**
-     *  Initialize a CCD algorithmic environment with given T2-amplitudes.
+     *  Initialize an algorithmic environment with given T2-amplitudes.
      * 
-     *  @param t2_amplitudes            the initial T2-amplitudes
-     *  @param f                        the (inactive) Fock matrix
-     *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t2_amplitudes            The initial T2-amplitudes.
+     *  @param f                        The elements of the (inactive) Fock matrix.
+     *  @param V_A                      The antisymmetrized two-electron integrals (in physicist's notation).
      */
     CCSDEnvironment(const T2Amplitudes<Scalar>& t2_amplitudes, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A) :
-        electronic_energies {QCModel::CCD<Scalar>::calculateCorrelationEnergy(f, V_A, t2_amplitudes)},  // already calculate the initial CCD energy correction
+        correlation_energies {QCModel::CCD<Scalar>::calculateCorrelationEnergy(f, V_A, t2_amplitudes)},  // Make sure to calculate the initial CCD energy correction already.
         t2_amplitudes {t2_amplitudes},
         f {f},
         V_A {V_A} {}
 
 
-    /*
-     *  NAMED CONSTRUCTORS
-     */
-
     /**
      *  Initialize a CCSD algorithmic environment with initial guesses for the T1- and T2-amplitudes based on perturbation theory.
      * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation
+     *  @param sq_hamiltonian               The Hamiltonian expressed in an orthonormal spinor basis.
+     *  @param orbital_space                The orbital space which encapsulates the occupied-virtual separation.
      * 
-     *  @return an algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.
+     *  @return An algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.
      */
     static CCSDEnvironment<Scalar> PerturbativeCCSD(const GSQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
 
@@ -123,13 +124,14 @@ public:
         return CCSDEnvironment<Scalar>(t1_amplitudes, t2_amplitudes, f, V_A);
     }
 
+
     /**
      *  Initialize a CCD algorithmic environment with initial guesses for the T2-amplitudes based on perturbation theory.
      * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation
+     *  @param sq_hamiltonian               The Hamiltonian expressed in an orthonormal spinor basis.
+     *  @param orbital_space                The orbital space which encapsulates the occupied-virtual separation.
      * 
-     *  @return an algorithmic environment suitable for CCD calculations.
+     *  @return An algorithmic environment suitable for CCD calculations.
      */
     static CCSDEnvironment<Scalar> PerturbativeCCD(const GSQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
 
@@ -139,7 +141,7 @@ public:
         const auto& g_chemists = sq_hamiltonian.twoElectron();
         const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized().parameters();
 
-        const auto t2_amplitudes = T2Amplitudes<Scalar>::Perturbative(f, V_A, orbital_space);
+        const auto t2_amplitudes = T2Amplitudes<Scalar>::Perturbative(sq_hamiltonian, orbital_space);
 
         return CCSDEnvironment<Scalar>(t2_amplitudes, f, V_A);
     }

@@ -11,4 +11,6 @@ target_sources(gqcp
         CCSDEnvironment.hpp
         CCSDIntermediatesUpdate.hpp
         CCSDSolver.hpp
+        T2DIIS.hpp
+        T2ErrorCalculation.hpp
 )

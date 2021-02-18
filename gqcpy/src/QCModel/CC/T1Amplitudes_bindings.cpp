@@ -33,16 +33,37 @@ void bindT1Amplitudes(py::module& module) {
 
     py::class_<T1Amplitudes<double>>(module, "T1Amplitudes", "The coupled-cluster T1 amplitudes t_i^a.")
 
-        // CONSTRUCTORS
-        .def(py::init<>(
-                 [](const Eigen::MatrixXd& T, const OrbitalSpace& orbital_space) {
-                     const auto t = orbital_space.createRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual, T);
+        /*
+         *  MARK: Access
+         */
+        .def(
+            "orbitalSpace",
+            &T1Amplitudes<double>::orbitalSpace,
+            "Return the orbital space for these T1-amplitudes, which encapsulates the occupied-virtual separation.")
 
-                     return T1Amplitudes<double>(t, orbital_space);
-                 }),
-             "Construct T1-amplitudes given their dense representation.")
+        .def(
+            "get",
+            [](const T1Amplitudes<double>& T1, const size_t i, const size_t a) {
+                return T1(i, a);
+            },
+            py::arg("i"),
+            py::arg("a"),
+            "Return a read-only reference to the T1-amplitude t_i^a.")
 
-        // PUBLIC METHODS
+        .def(
+            "set",
+            [](T1Amplitudes<double>& T1, const size_t i, const size_t a, const double value) {
+                T1(i, a) = value;
+            },
+            py::arg("i"),
+            py::arg("a"),
+            py::arg("value"),
+            "Change the T1-amplitude t_i^a to the given value.")
+
+
+        /*
+         *  MARK: Python-only methods
+         */
         .def(
             "asMatrix",
             [](const T1Amplitudes<double>& t1_amplitudes) {

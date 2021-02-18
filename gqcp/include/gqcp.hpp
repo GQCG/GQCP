@@ -199,6 +199,8 @@
 #include "QCMethod/CC/CCSDEnvironment.hpp"
 #include "QCMethod/CC/CCSDIntermediatesUpdate.hpp"
 #include "QCMethod/CC/CCSDSolver.hpp"
+#include "QCMethod/CC/T2DIIS.hpp"
+#include "QCMethod/CC/T2ErrorCalculation.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"

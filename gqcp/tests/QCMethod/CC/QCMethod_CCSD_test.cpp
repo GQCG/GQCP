@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
     BOOST_REQUIRE(t1.asImplicitMatrixSlice().asMatrix().isZero(1.0e-08));  // for a HF reference, the perturbative T1 amplitudes are zero
 
-    const auto initial_ccsd_correction_energy = environment.electronic_energies.back();
+    const auto initial_ccsd_correction_energy = environment.correlation_energies.back();
     BOOST_REQUIRE(std::abs(initial_ccsd_correction_energy - ref_mp2_correction_energy) < 1.0e-10);
 
 

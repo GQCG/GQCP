@@ -65,7 +65,7 @@ public:
 
         // Calculate the current correlation energy and push it to the environment.
         const auto current_correlation_energy = QCModel::CCD<Scalar>::calculateCorrelationEnergy(f, V_A, t2);
-        environment.electronic_energies.push_back(current_correlation_energy);
+        environment.correlation_energies.push_back(current_correlation_energy);
     }
 };
 
