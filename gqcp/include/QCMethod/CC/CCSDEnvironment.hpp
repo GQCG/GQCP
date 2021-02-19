@@ -141,7 +141,7 @@ public:
         const auto& g_chemists = sq_hamiltonian.twoElectron();
         const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized().parameters();
 
-        const auto t2_amplitudes = T2Amplitudes<Scalar>::Perturbative(sq_hamiltonian, orbital_space);
+        const auto t2_amplitudes = T2Amplitudes<Scalar>::Perturbative(f, V_A, orbital_space);
 
         return CCSDEnvironment<Scalar>(t2_amplitudes, f, V_A);
     }

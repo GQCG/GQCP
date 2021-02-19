@@ -100,7 +100,6 @@ public:
         auto t1 = orbital_space.initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual);
 
         // Provide the perturbative T1-amplitudes, by setting the RHS amplitudes in Stanton1991, equation (1) to zero.
-        const auto f = hamiltonian.calculateInactiveFockian(orbital_space).parameters();
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 const auto denominator = f(i, i) - f(a, a);
