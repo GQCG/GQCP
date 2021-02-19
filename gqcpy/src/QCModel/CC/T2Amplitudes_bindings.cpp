@@ -34,16 +34,41 @@ void bindT2Amplitudes(py::module& module) {
 
     py::class_<T2Amplitudes<double>>(module, "T2Amplitudes", "The coupled-cluster T2 amplitudes t_{ij}^{ab}.")
 
-        // CONSTRUCTORS
-        .def(py::init<>(
-                 [](const Eigen::Tensor<double, 4>& T, const OrbitalSpace& orbital_space) {
-                     const auto t = orbital_space.createRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, T);
+        /*
+         *  MARK: Access
+         */
+        .def(
+            "orbitalSpace",
+            &T2Amplitudes<double>::orbitalSpace,
+            "Return the orbital space for these T2-amplitudes, which encapsulates the occupied-virtual separation.")
 
-                     return T2Amplitudes<double>(t, orbital_space);
-                 }),
-             "Construct T2-amplitudes given their dense representation.")
+        .def(
+            "get",
+            [](const T2Amplitudes<double>& T2, const size_t i, const size_t j, const size_t a, const size_t b) {
+                return T2(i, j, a, b);
+            },
+            py::arg("i"),
+            py::arg("j"),
+            py::arg("a"),
+            py::arg("b"),
+            "Return a read-only reference to the T2-amplitude t_{ij}^{ab}.")
 
-        // PUBLIC METHODS
+        .def(
+            "set",
+            [](T2Amplitudes<double>& T2, const size_t i, const size_t j, const size_t a, const size_t b, const double value) {
+                T2(i, j, a, b) = value;
+            },
+            py::arg("i"),
+            py::arg("j"),
+            py::arg("a"),
+            py::arg("b"),
+            py::arg("value"),
+            "Change the T2-amplitude t_{ij}^{ab} to the given value.")
+
+
+        /*
+         *  MARK: Python-only methods
+         */
         .def(
             "asTensor",
             [](const T2Amplitudes<double>& t2_amplitudes) {

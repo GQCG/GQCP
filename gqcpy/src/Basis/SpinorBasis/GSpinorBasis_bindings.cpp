@@ -71,7 +71,6 @@ void bindGSpinorBasisInterface(Class& py_class) {
                         return Type::FromRestricted(spin_orbital_basis);
                     })
 
-
         .def_static("FromUnrestricted",
                     [](const USpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis) {
                         return Type::FromUnrestricted(spin_orbital_basis);
