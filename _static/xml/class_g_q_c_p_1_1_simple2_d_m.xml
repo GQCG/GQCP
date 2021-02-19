@@ -2,9 +2,9 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_simple2_d_m" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Simple2DM</compoundname>
-    <basecompoundref refid="class_g_q_c_p_1_1_square_rank_four_tensor" prot="public" virt="non-virtual">GQCP::SquareRankFourTensor&lt; _Scalar &gt;</basecompoundref>
     <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; _DerivedDM &gt;</basecompoundref>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; _DerivedDM &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</basecompoundref>
     <includes refid="_simple2_d_m_8hpp" local="no">Simple2DM.hpp</includes>
     <templateparamlist>
       <param>
@@ -26,7 +26,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="49" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" prot="public" static="no">
         <type>_DerivedDM</type>
@@ -39,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple2_d_m_1aefc8c5af3ee2724a55047ea838b0c6bf" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_simple2_d_m" kindref="compound">Simple2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref> &gt;</type>
@@ -52,7 +52,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple2_d_m_1aed1f55de7a9d98b0840235518c9936b9" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_density_matrix_traits" kindref="compound">DensityMatrixTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple2_d_m_1aed1f55de7a9d98b0840235518c9936b9" kindref="member">OneDM</ref></type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple2_d_m_1aba11548e39f9172a41286b4bab30bfbf" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_density_matrix_traits" kindref="compound">DensityMatrixTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple2_d_m_1aba11548e39f9172a41286b4bab30bfbf" kindref="member">Transformation</ref></type>
@@ -78,10 +78,99 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="61" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_simple2_d_m_1a548a5afa20bb04fb0cccaec0d1e2284d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SquareRankFourTensor&lt;Scalar&gt; GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="67" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1a1d060aeddc9190dde803c35abdcc3a7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::Simple2DM</definition>
+        <argsstring>(const SquareRankFourTensor&lt; Scalar &gt; &amp;d)</argsstring>
+        <name>Simple2DM</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <computeroutput><ref refid="class_g_q_c_p_1_1_simple2_d_m" kindref="compound">Simple2DM</ref></computeroutput> from its matrix representation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The matrix representation of the two-electron density matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="80" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="80" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1a3ab74c809c6d59a4644a0961bd07c95f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::Simple2DM</definition>
+        <argsstring>()</argsstring>
+        <name>Simple2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default constructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="87" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="87" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1aad3ffde69137305a6beff84f68fa0734" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const SquareRankFourTensor&lt;Scalar&gt;&amp; GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::tensor</definition>
+        <argsstring>() const</argsstring>
+        <name>tensor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the matrix representation of this two-electron density matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="98" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1a251e04ca90de055345b494907a4f76d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>SquareRankFourTensor&lt;Scalar&gt;&amp; GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::tensor</definition>
+        <argsstring>()</argsstring>
+        <name>tensor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the matrix representation of this two-electron density matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="103" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="103" bodyend="103"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1a9294ffe2b798149a40916f8750e511c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
         <definition>size_t GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::numberOfOrbitals</definition>
@@ -96,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="80" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="80" bodyend="80"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="113" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="113" bodyend="113"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1aa0174297056f19cd441279cb3f1f4b20" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple2_d_m_1aed1f55de7a9d98b0840235518c9936b9" kindref="member">OneDM</ref></type>
@@ -112,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="90" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="90" bodyend="106"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="123" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="123" bodyend="139"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1a9f69bac123516579adcd3a106e032208" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" kindref="member">Scalar</ref></type>
@@ -128,7 +217,45 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="112" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="112" bodyend="125"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="145" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="145" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref> &amp;</type>
+        <definition>DerivedDM&amp; GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::operator+=</definition>
+        <argsstring>(const DerivedDM &amp;rhs) override</argsstring>
+        <name>operator+=</name>
+        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555">operator+=</reimplements>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="168" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="168" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref> &amp;</type>
+        <definition>DerivedDM&amp; GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;::operator*=</definition>
+        <argsstring>(const Scalar &amp;a) override</argsstring>
+        <name>operator*=</name>
+        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911">operator*=</reimplements>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" kindref="member">Scalar</ref> &amp;</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Scalar multiplication-assignment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="177" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="177" bodyend="180"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref></type>
@@ -158,7 +285,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="139" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="139" bodyend="163"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="194" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="194" bodyend="218"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple2_d_m_1afa2372a0996cdbb192187d0ab8f72866" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" kindref="member">DerivedDM</ref></type>
@@ -188,7 +315,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="184" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="184" bodyend="189"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="239" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="239" bodyend="244"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -217,22 +344,14 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="3">
-        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
-        <link refid="class_g_q_c_p_1_1_tensor"/>
-        <childnode refid="4" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
         <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="2">
-        <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="5">
+        <label>GQCP::CRTP&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="2">
         <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
@@ -241,33 +360,28 @@
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-        <childnode refid="5" relation="public-inheritance">
+        <childnode refid="3" relation="public-inheritance">
         </childnode>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
       <node id="4">
-        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+        <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
       <node id="3">
-        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
-        <link refid="class_g_q_c_p_1_1_tensor"/>
-        <childnode refid="4" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
         <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="2">
-        <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="5">
+        <label>GQCP::CRTP&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="2">
         <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
@@ -276,44 +390,33 @@
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-        <childnode refid="5" relation="public-inheritance">
+        <childnode refid="3" relation="public-inheritance">
         </childnode>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
       <node id="4">
-        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+        <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="46" bodyend="193"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="47" bodyend="248"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_tensor_1a27c1c038c06c561f87d788f96d80a7db" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>addBlock</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1afaef2cb55ae37ca6174f956614e32411" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>addBlock</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>asMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1adf256320409b3cb071a75f236c342d77" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Base</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a548a5afa20bb04fb0cccaec0d1e2284d" prot="private" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>d</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>DerivedDM</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa3537155a1ab4f7207232610ddeae5f9" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>dimension</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Eigen</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a65b3e312701a619764a36cb9e5b77247" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Eigen</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a7f3fc273d404b00111e250639592e310" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>einsum</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1afbf2116f91e93cce546be34cfbe362c6" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>einsum</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1ab0aac5a7270d58bb2739787076f320cf" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>einsum</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a4f661c1441222dccb0b170cdcc04a744" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>FromBlock</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a3d43828d2fa60cdb902529d56a34c21c" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>FromFile</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a0fbb66c2ec178b7c21441ef6aaf3362d" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>hasEqualDimensionsAs</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1aedf5e3a286be6c44e3209f722cd42d14" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>isApprox</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>JacobiRotationType</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>numberOfElements</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9294ffe2b798149a40916f8750e511c7" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aed1f55de7a9d98b0840235518c9936b9" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>OneDM</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a43265946ffddd810e5380feb8806edc2" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>operator=</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a6a4c62ac97e943c971985487edde42c9" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>pairWiseReduced</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1afaab91c4c43e216d1e0c1d7c2d45a746" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>pairWiseStrictReduced</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>print</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a52e4cca8048c3e51977fa460f5715d76" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Random</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Rank</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b" prot="public" virt="virtual"><scope>GQCP::Simple2DM</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d" prot="public" virt="virtual"><scope>GQCP::Simple2DM</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>operator-</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aa0174297056f19cd441279cb3f1f4b20" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>reduce</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1ad617715dde3cdf405c91fc7e2ab4bba5" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>reshape</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; _DerivedDM &gt;::"><scope>GQCP::Simple2DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; _DerivedDM &gt;::"><scope>GQCP::Simple2DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1afa2372a0996cdbb192187d0ab8f72866" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>rotated</name></member>
@@ -321,16 +424,15 @@
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; _DerivedDM &gt;::"><scope>GQCP::Simple2DM</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a8e32575a4c64db611c4830d54aef8b07" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aefc8c5af3ee2724a55047ea838b0c6bf" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Self</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a69d281a8471cddd9cfacb64a15330769" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>SquareRankFourTensor</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa7d76da72a02cda047036cfdee4dd398" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>SquareRankFourTensor</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ad7a0f38bc13a432d0b0bc8f1e757550f" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>SquareRankFourTensor</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a7aa129b102b42f24a27d967dc05e9190" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>SquareRankFourTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a1d060aeddc9190dde803c35abdcc3a7b" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Simple2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a3ab74c809c6d59a4644a0961bd07c95f" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Simple2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aad3ffde69137305a6beff84f68fa0734" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>tensor</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a251e04ca90de055345b494907a4f76d9" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>tensor</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9f69bac123516579adcd3a106e032208" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>trace</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::Simple2DM</scope><name>transform</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba11548e39f9172a41286b4bab30bfbf" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Transformation</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>transformed</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; _DerivedDM &gt;::"><scope>GQCP::Simple2DM</scope><name>transformed</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" prot="public" virt="non-virtual"><scope>GQCP::Simple2DM</scope><name>Zero</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -13,10 +13,10 @@
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_r_spin_orbital_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp</includedby>
     <incdepgraph>
-      <node id="46">
+      <node id="48">
         <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
         <link refid="_s_q_operator_storage_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -54,7 +54,7 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="33">
+      <node id="35">
         <label>Mathematical/Functions/ScalarFunction.hpp</label>
         <link refid="_scalar_function_8hpp"/>
         <childnode refid="13" relation="include">
@@ -63,7 +63,7 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
       <node id="23">
@@ -84,7 +84,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="34">
+      <node id="36">
         <label>boost/format.hpp</label>
       </node>
       <node id="57">
@@ -97,7 +97,7 @@
       <node id="29">
         <label>numeric</label>
       </node>
-      <node id="39">
+      <node id="41">
         <label>Basis/MullikenPartitioning/RMullikenPartitioning.hpp</label>
         <link refid="_r_mulliken_partitioning_8hpp"/>
         <childnode refid="2" relation="include">
@@ -121,9 +121,9 @@
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
       </node>
       <node id="54">
@@ -132,7 +132,7 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="46">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
       <node id="56">
@@ -155,17 +155,17 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="42">
+      <node id="44">
         <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
         <link refid="_square_rank_four_tensor_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="43">
         <label>DensityMatrix/Simple2DM.hpp</label>
         <link refid="_simple2_d_m_8hpp"/>
         <childnode refid="4" relation="include">
@@ -174,7 +174,9 @@
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
       <node id="28">
@@ -210,7 +212,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="34">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
@@ -247,12 +249,12 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="37">
         <label>Mathematical/Representation/DenseVectorizer.hpp</label>
         <link refid="_dense_vectorizer_8hpp"/>
-        <childnode refid="36" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
@@ -285,13 +287,13 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
         <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -303,15 +305,15 @@
         <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="54" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
       </node>
-      <node id="36">
+      <node id="38">
         <label>array</label>
       </node>
-      <node id="40">
+      <node id="42">
         <label>DensityMatrix/Orbital2DM.hpp</label>
         <link refid="_orbital2_d_m_8hpp"/>
         <childnode refid="2" relation="include">
@@ -320,7 +322,7 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -345,10 +347,10 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="37">
+      <node id="39">
         <label>cstddef</label>
       </node>
-      <node id="45">
+      <node id="47">
         <label>Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp</label>
         <link refid="_simple_s_q_one_electron_operator_8hpp"/>
         <childnode refid="4" relation="include">
@@ -357,23 +359,23 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="38">
+      <node id="40">
         <label>Operator/SecondQuantized/RSQOneElectronOperator.hpp</label>
         <link refid="_r_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="39" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
@@ -400,6 +402,8 @@
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
       </node>
@@ -417,7 +421,7 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="43">
+      <node id="45">
         <label>Mathematical/Representation/Tensor.hpp</label>
         <link refid="_tensor_8hpp"/>
         <childnode refid="13" relation="include">
@@ -426,7 +430,7 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
@@ -438,7 +442,7 @@
       <node id="50">
         <label>Mathematical/Representation/StorageArray.hpp</label>
         <link refid="_storage_array_8hpp"/>
-        <childnode refid="35" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
@@ -447,10 +451,10 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="33">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="48" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -1499,44 +1503,43 @@
 <codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>SchrodingerDistribution<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_scalar_function_product" kindref="compound">ScalarFunctionProduct&lt;SpatialOrbital&gt;</ref>;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>DensityType<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination&lt;double, SchrodingerDistribution&gt;</ref>;</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>density<sp/>as<sp/>a<sp/>linear<sp/>combination<sp/>of<sp/>&apos;density<sp/>matrix<sp/>elements&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>density<sp/>as<sp/>a<sp/>linear<sp/>combination<sp/>of<sp/>&apos;density<sp/>matrix<sp/>elements&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DensityType<sp/>density;</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dimension<sp/>=<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4119731fc8031d5bcaecba3db59297bb" kindref="member">numberOfOrbitals</ref>();</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DensityType<sp/>density;</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>dimension;<sp/>p++)<sp/>{</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>q<sp/>=<sp/>0;<sp/>q<sp/>&lt;<sp/>dimension;<sp/>q++)<sp/>{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>coefficient<sp/>=<sp/>D(p,<sp/>q);</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()(p,<sp/>q);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>density.append(coefficient,<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>density;</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="135"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>dimension;<sp/>p++)<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>q<sp/>=<sp/>0;<sp/>q<sp/>&lt;<sp/>dimension;<sp/>q++)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>coefficient<sp/>=<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>()(p,<sp/>q);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()(p,<sp/>q);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>density.append(coefficient,<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>density;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
 <codeline lineno="136"><highlight class="normal"></highlight></codeline>
-<codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="138"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="139"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Operator<sp/>traits</highlight></codeline>
-<codeline lineno="140"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="141"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Evaluatable&gt;</highlight></codeline>
-<codeline lineno="146" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator</ref>&lt;_Evaluatable&gt;&gt;<sp/>{</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>evaluatable<sp/>function<sp/>that<sp/>is<sp/>used<sp/>as<sp/>a<sp/>matrix<sp/>element<sp/>of<sp/>the<sp/>one-electron<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="148" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" kindref="member">Evaluatable</ref><sp/>=<sp/>_Evaluatable;</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>the<sp/>evaluatable<sp/>one-electron<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="151" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a22b52a7a18cf6285470721a57fdbe2a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a22b52a7a18cf6285470721a57fdbe2a4" kindref="member">Scalar</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Evaluatable::Scalar;</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"></highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>operator<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>inheritance<sp/>chain<sp/>of<sp/>`SQOperatorStorageBase`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="154" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a8364091416b0ed7cd4b226bc3f53d267" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">DerivedOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator&lt;Evaluatable&gt;</ref>;</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>version<sp/>of<sp/>the<sp/>type<sp/>of<sp/>the<sp/>operator<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>inheritance<sp/>chain<sp/>of<sp/>`SQOperatorStorageBase`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="157" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a976d2ef2d234bbf7736d4a5fdda36fcd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">ScalarOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator&lt;Evaluatable&gt;</ref>;</highlight></codeline>
-<codeline lineno="158"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Operator<sp/>traits</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Evaluatable&gt;</highlight></codeline>
+<codeline lineno="145" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator</ref>&lt;_Evaluatable&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>evaluatable<sp/>function<sp/>that<sp/>is<sp/>used<sp/>as<sp/>a<sp/>matrix<sp/>element<sp/>of<sp/>the<sp/>one-electron<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a80dd0862221730ccdcbb22469b277e53" kindref="member">Evaluatable</ref><sp/>=<sp/>_Evaluatable;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>the<sp/>evaluatable<sp/>one-electron<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a22b52a7a18cf6285470721a57fdbe2a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a22b52a7a18cf6285470721a57fdbe2a4" kindref="member">Scalar</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Evaluatable::Scalar;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>operator<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>inheritance<sp/>chain<sp/>of<sp/>`SQOperatorStorageBase`.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a8364091416b0ed7cd4b226bc3f53d267" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">DerivedOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator&lt;Evaluatable&gt;</ref>;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>version<sp/>of<sp/>the<sp/>type<sp/>of<sp/>the<sp/>operator<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>inheritance<sp/>chain<sp/>of<sp/>`SQOperatorStorageBase`.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4_1a976d2ef2d234bbf7736d4a5fdda36fcd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">ScalarOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator&lt;Evaluatable&gt;</ref>;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"/>
   </compounddef>

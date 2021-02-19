@@ -3,11 +3,6 @@
   <compounddef id="class_g_q_c_p_1_1_square_rank_four_tensor" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SquareRankFourTensor</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_tensor" prot="public" virt="non-virtual">GQCP::Tensor&lt; _Scalar, 4 &gt;</basecompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" prot="public" virt="non-virtual">GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_simple2_d_m" prot="public" virt="non-virtual">GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_simple2_d_m" prot="public" virt="non-virtual">GQCP::Simple2DM&lt; _Scalar, G2DM&lt; _Scalar &gt; &gt;</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_simple2_d_m" prot="public" virt="non-virtual">GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_simple2_d_m" prot="public" virt="non-virtual">GQCP::Simple2DM&lt; _Scalar, PureSpinResolved2DMComponent&lt; _Scalar &gt; &gt;</derivedcompoundref>
     <includes refid="_square_rank_four_tensor_8hpp" local="no">SquareRankFourTensor.hpp</includes>
     <templateparamlist>
       <param>
@@ -391,18 +386,6 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="6">
-        <label>Simple2DM&lt; _Scalar, G2DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>GQCP::MixedSpinResolved2DMComponent&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="2">
         <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
         <link refid="class_g_q_c_p_1_1_tensor"/>
@@ -415,44 +398,8 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="10">
-        <label>Simple2DM&lt; _Scalar, PureSpinResolved2DMComponent&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>GQCP::G2DM&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_g2_d_m"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>GQCP::Simple2DM&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>GQCP::Orbital2DM&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
-        <childnode refid="8" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="3">
         <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
-      </node>
-      <node id="11">
-        <label>GQCP::PureSpinResolved2DMComponent&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component"/>
-        <childnode refid="10" relation="public-inheritance">
-        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>

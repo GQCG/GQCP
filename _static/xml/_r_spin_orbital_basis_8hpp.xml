@@ -492,6 +492,8 @@
         </childnode>
         <childnode refid="106" relation="include">
         </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
         <childnode refid="91" relation="include">
         </childnode>
       </node>
@@ -982,6 +984,8 @@
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="118" relation="include">
         </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
         <childnode refid="91" relation="include">
         </childnode>
         <childnode refid="103" relation="include">
@@ -1064,6 +1068,8 @@
         <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="89" relation="include">
         </childnode>

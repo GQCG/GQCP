@@ -3,6 +3,7 @@
   <compounddef id="_mixed_spin_resolved2_d_m_component_8hpp" kind="file" language="C++">
     <compoundname>MixedSpinResolved2DMComponent.hpp</compoundname>
     <includes refid="_u_transformation_component_8hpp" local="yes">Basis/Transformations/UTransformationComponent.hpp</includes>
+    <includes refid="_vector_space_arithmetic_8hpp" local="yes">Mathematical/Functions/VectorSpaceArithmetic.hpp</includes>
     <includes refid="_square_rank_four_tensor_8hpp" local="yes">Mathematical/Representation/SquareRankFourTensor.hpp</includes>
     <includes refid="_spin_8hpp" local="yes">QuantumChemical/Spin.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
@@ -69,15 +70,15 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="32">
+      <node id="34">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
-      <node id="30">
+      <node id="32">
         <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
         <link refid="_square_rank_four_tensor_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
@@ -100,6 +101,10 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+      </node>
+      <node id="31">
+        <label>Utilities/CRTP.hpp</label>
+        <link refid="_c_r_t_p_8hpp"/>
       </node>
       <node id="9">
         <label>Eigen/Dense</label>
@@ -149,7 +154,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="33">
+      <node id="35">
         <label>QuantumChemical/Spin.hpp</label>
         <link refid="_spin_8hpp"/>
       </node>
@@ -182,7 +187,9 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
         </childnode>
       </node>
       <node id="17">
@@ -198,7 +205,7 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="31">
+      <node id="33">
         <label>Mathematical/Representation/Tensor.hpp</label>
         <link refid="_tensor_8hpp"/>
         <childnode refid="13" relation="include">
@@ -207,13 +214,21 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
+        <link refid="_vector_space_arithmetic_8hpp"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -1261,122 +1276,157 @@
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_u_transformation_component_8hpp" kindref="compound">Basis/Transformations/UTransformationComponent.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_square_rank_four_tensor_8hpp" kindref="compound">Mathematical/Representation/SquareRankFourTensor.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_spin_8hpp" kindref="compound">QuantumChemical/Spin.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_vector_space_arithmetic_8hpp" kindref="compound">Mathematical/Functions/VectorSpaceArithmetic.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_square_rank_four_tensor_8hpp" kindref="compound">Mathematical/Representation/SquareRankFourTensor.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_spin_8hpp" kindref="compound">QuantumChemical/Spin.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
-<codeline lineno="35" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent</ref>:</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt;_Scalar&gt;<sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>used<sp/>for<sp/>a<sp/>density<sp/>matrix<sp/>element:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>&apos;this&apos;.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad3ef74b2b6b6a3126a475dacd47aec75" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent&lt;Scalar&gt;</ref>;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
+<codeline lineno="36" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent</ref>:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_vector_space_arithmetic" kindref="compound">VectorSpaceArithmetic</ref>&lt;MixedSpinResolved2DMComponent&lt;_Scalar&gt;,<sp/>_Scalar&gt;<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>used<sp/>for<sp/>a<sp/>density<sp/>matrix<sp/>element:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>&apos;this&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad3ef74b2b6b6a3126a475dacd47aec75" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent&lt;Scalar&gt;</ref>;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="47"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Constructors</highlight></codeline>
-<codeline lineno="48"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>matrix<sp/>representation<sp/>of<sp/>this<sp/>two-electron<sp/>density<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref><sp/>d;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Inherit<sp/>`SquareRankFourTensor`&apos;s<sp/>constructors.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;::SquareRankFourTensor</ref>;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="55"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>General<sp/>information</highlight></codeline>
-<codeline lineno="56"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" kindref="member">numberOfOrbitals</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa3537155a1ab4f7207232610ddeae5f9" kindref="member">dimension</ref>();<sp/>}</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Constructors</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad6b55e2cf8837191b2fbae9f17442368" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad6b55e2cf8837191b2fbae9f17442368" kindref="member">MixedSpinResolved2DMComponent</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref>&amp;<sp/>d)<sp/>:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>d<sp/>{d}<sp/>{}</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="65"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Contractions</highlight></codeline>
-<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>FIXME:<sp/>This<sp/>is<sp/>duplicate<sp/>code<sp/>from<sp/>`Simple2DM`.<sp/>It<sp/>would<sp/>be<sp/>double<sp/>work<sp/>to<sp/>introduce<sp/>a<sp/>temporary<sp/>intermediate<sp/>class<sp/>before<sp/>resolving<sp/>issue<sp/>#559<sp/>(https://github.com/GQCG/GQCP/issues/559),<sp/>which<sp/>is<sp/>why<sp/>we<sp/>chose<sp/>to<sp/>just<sp/>copy-paste<sp/>the<sp/>implementation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>when<sp/>Eigen3<sp/>releases<sp/>tensor.trace(),<sp/>use<sp/>it<sp/>to<sp/>implement<sp/>the<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" kindref="member">numberOfOrbitals</ref>();</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref><sp/>{};</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>K;<sp/>p++)<sp/>{</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>q<sp/>=<sp/>0;<sp/>q<sp/>&lt;<sp/>K;<sp/>q++)<sp/>{</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref><sp/>+=<sp/>this-&gt;operator()(p,<sp/>p,<sp/>q,<sp/>q);</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeeb2c103b1969cc5c535b71e3e00f2c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeeb2c103b1969cc5c535b71e3e00f2c8" kindref="member">MixedSpinResolved2DMComponent</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent</ref>(<ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref>&gt;::Zero(0))<sp/>{}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Access</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;d;<sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a146fb8c1345c295623aec7f1bace0c12" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a146fb8c1345c295623aec7f1bace0c12" kindref="member">tensor</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;d;<sp/>}</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref>;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="91"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Basis<sp/>transformations</highlight></codeline>
-<codeline lineno="92"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent&lt;Scalar&gt;</ref>&amp;<sp/>T,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>transformation<sp/>formulas<sp/>for<sp/>two-electron<sp/>operators<sp/>and<sp/>2-DMs<sp/>are<sp/>similar,<sp/>but<sp/>not<sp/>quite<sp/>the<sp/>same.<sp/>Instead<sp/>of<sp/>using<sp/>T,<sp/>the<sp/>transformation<sp/>formula<sp/>for<sp/>the<sp/>2-DM<sp/>uses<sp/>T_inverse_transpose.<sp/>See<sp/>also<sp/>(https://gqcg-res.github.io/knowdes/spinor-transformations.html).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>we&apos;re<sp/>only<sp/>getting<sp/>T<sp/>as<sp/>a<sp/>matrix,<sp/>we<sp/>should<sp/>convert<sp/>it<sp/>to<sp/>an<sp/>appropriate<sp/>tensor<sp/>to<sp/>perform<sp/>contractions.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Although<sp/>not<sp/>a<sp/>necessity<sp/>for<sp/>the<sp/>einsum<sp/>implementation,<sp/>it<sp/>makes<sp/>it<sp/>a<sp/>lot<sp/>easier<sp/>to<sp/>follow<sp/>the<sp/>formulas.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">GQCP::SquareMatrix&lt;Scalar&gt;</ref><sp/>T_related<sp/>=<sp/>T.<ref refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" kindref="member">matrix</ref>().transpose().inverse();</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor&lt;Scalar, 2&gt;</ref><sp/>T_related_tensor<sp/>=<sp/>Eigen::TensorMap&lt;Eigen::Tensor&lt;const<sp/>Scalar,<sp/>2&gt;&gt;(T_related.data(),<sp/>T_related.rows(),<sp/>T_related.cols());</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>calculate<sp/>the<sp/>conjugate<sp/>as<sp/>a<sp/>tensor<sp/>as<sp/>well.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor&lt;Scalar, 2&gt;</ref><sp/>T_related_conjugate<sp/>=<sp/>T_related_tensor.conjugate();</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Depending<sp/>on<sp/>the<sp/>given<sp/>spin-component,<sp/>we<sp/>should<sp/>either<sp/>transform<sp/>the<sp/>first<sp/>two,<sp/>or<sp/>the<sp/>second<sp/>two<sp/>axes.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(sigma)<sp/>{</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>:<sp/>{</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>temp<sp/>=<sp/>T_related_tensor.template<sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;UQ,TUVW-&gt;TQVW&quot;</highlight><highlight class="normal">,<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref><sp/>=<sp/>T_related_conjugate.template<sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;TP,TQVW-&gt;PQVW&quot;</highlight><highlight class="normal">,<sp/>temp);</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/>{<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>};</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>:<sp/>{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>temp<sp/>=<sp/>this-&gt;</highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;PQVW,<sp/>WS-&gt;PQVS&quot;</highlight><highlight class="normal">,<sp/>T_related_tensor);</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref><sp/>=<sp/>temp.template<sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;PQVS,<sp/>VR-&gt;PQRS&quot;</highlight><highlight class="normal">,<sp/>T_related_conjugate);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/>{<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>};</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"></highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="144" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ace9e92100a3e1219efb8bd2d20b5f20c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ace9e92100a3e1219efb8bd2d20b5f20c" kindref="member">transform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent&lt;Scalar&gt;</ref>&amp;<sp/>T,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)<sp/>{</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>(T,<sp/>sigma);</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>result;</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" kindref="member">rotated</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>&amp;<sp/>jacobi_rotation,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>General<sp/>information</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" kindref="member">numberOfOrbitals</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa3537155a1ab4f7207232610ddeae5f9" kindref="member">dimension</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Conforming<sp/>to<sp/>`VectorSpaceArithmetic`</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a64fc61ef4e9247a33f87d813e75527aa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a64fc61ef4e9247a33f87d813e75527aa" kindref="member">operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref>&amp;<sp/>rhs)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>+=<sp/>rhs.<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a0f0abafa128cc561833ff07a9531cb0d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a0f0abafa128cc561833ff07a9531cb0d" kindref="member">operator*=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref>&amp;<sp/>a)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>()<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>*<sp/>a;<sp/><sp/></highlight><highlight class="comment">//<sp/>A<sp/>compiler<sp/>error<sp/>occurs<sp/>when<sp/>writing<sp/>&quot;this-&gt;tensor().Eigen()<sp/>*=<sp/>a&quot;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Contractions</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>FIXME:<sp/>This<sp/>is<sp/>duplicate<sp/>code<sp/>from<sp/>`Simple2DM`.<sp/>It<sp/>would<sp/>be<sp/>double<sp/>work<sp/>to<sp/>introduce<sp/>a<sp/>temporary<sp/>intermediate<sp/>class<sp/>before<sp/>resolving<sp/>issue<sp/>#559<sp/>(https://github.com/GQCG/GQCP/issues/559),<sp/>which<sp/>is<sp/>why<sp/>we<sp/>chose<sp/>to<sp/>just<sp/>copy-paste<sp/>the<sp/>implementation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>when<sp/>Eigen3<sp/>releases<sp/>tensor.trace(),<sp/>use<sp/>it<sp/>to<sp/>implement<sp/>the<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" kindref="member">numberOfOrbitals</ref>();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref><sp/>{};</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>K;<sp/>p++)<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>q<sp/>=<sp/>0;<sp/>q<sp/>&lt;<sp/>K;<sp/>q++)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref><sp/>+=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>()(p,<sp/>p,<sp/>q,<sp/>q);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kindref="member">trace</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="146"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Basis<sp/>transformations</highlight></codeline>
+<codeline lineno="147"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent&lt;Scalar&gt;</ref>&amp;<sp/>T,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>transformation<sp/>formulas<sp/>for<sp/>two-electron<sp/>operators<sp/>and<sp/>2-DMs<sp/>are<sp/>similar,<sp/>but<sp/>not<sp/>quite<sp/>the<sp/>same.<sp/>Instead<sp/>of<sp/>using<sp/>T,<sp/>the<sp/>transformation<sp/>formula<sp/>for<sp/>the<sp/>2-DM<sp/>uses<sp/>T_inverse_transpose.<sp/>See<sp/>also<sp/>(https://gqcg-res.github.io/knowdes/spinor-transformations.html).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_simple_transformation_1a62eded5880afac6391df8e70a51c5dfe" kindref="member">UTransformationComponent&lt;Scalar&gt;::FromJacobi</ref>(jacobi_rotation,<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" kindref="member">numberOfOrbitals</ref>());</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>(J,<sp/>sigma);</highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>we&apos;re<sp/>only<sp/>getting<sp/>T<sp/>as<sp/>a<sp/>matrix,<sp/>we<sp/>should<sp/>convert<sp/>it<sp/>to<sp/>an<sp/>appropriate<sp/>tensor<sp/>to<sp/>perform<sp/>contractions.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Although<sp/>not<sp/>a<sp/>necessity<sp/>for<sp/>the<sp/>einsum<sp/>implementation,<sp/>it<sp/>makes<sp/>it<sp/>a<sp/>lot<sp/>easier<sp/>to<sp/>follow<sp/>the<sp/>formulas.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">GQCP::SquareMatrix&lt;Scalar&gt;</ref><sp/>T_related<sp/>=<sp/>T.<ref refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" kindref="member">matrix</ref>().transpose().inverse();</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor&lt;Scalar, 2&gt;</ref><sp/>T_related_tensor<sp/>=<sp/>Eigen::TensorMap&lt;Eigen::Tensor&lt;const<sp/>Scalar,<sp/>2&gt;&gt;(T_related.data(),<sp/>T_related.rows(),<sp/>T_related.cols());</highlight></codeline>
 <codeline lineno="167"><highlight class="normal"></highlight></codeline>
-<codeline lineno="176" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a566ad63ad8fcf9d3216962a334834b9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a566ad63ad8fcf9d3216962a334834b9d" kindref="member">rotate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>&amp;<sp/>jacobi_rotation,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)<sp/>{</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"></highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" kindref="member">rotated</ref>(jacobi_rotation,<sp/>sigma);</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>result;</highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="181"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="182"><highlight class="normal"></highlight></codeline>
-<codeline lineno="183"><highlight class="normal"></highlight></codeline>
-<codeline lineno="184"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>calculate<sp/>the<sp/>conjugate<sp/>as<sp/>a<sp/>tensor<sp/>as<sp/>well.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor&lt;Scalar, 2&gt;</ref><sp/>T_related_conjugate<sp/>=<sp/>T_related_tensor.conjugate();</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Depending<sp/>on<sp/>the<sp/>given<sp/>spin-component,<sp/>we<sp/>should<sp/>either<sp/>transform<sp/>the<sp/>first<sp/>two,<sp/>or<sp/>the<sp/>second<sp/>two<sp/>axes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(sigma)<sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>:<sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>temp<sp/>=<sp/>T_related_tensor.template<sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;UQ,TUVW-&gt;TQVW&quot;</highlight><highlight class="normal">,<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>());</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref><sp/>=<sp/>T_related_conjugate.template<sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;TP,TQVW-&gt;PQVW&quot;</highlight><highlight class="normal">,<sp/>temp);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/>{<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>};</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>:<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>temp<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>().template<sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;PQVW,<sp/>WS-&gt;PQVS&quot;</highlight><highlight class="normal">,<sp/>T_related_tensor);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref><sp/>=<sp/>temp.template<sp/>einsum&lt;1&gt;(</highlight><highlight class="stringliteral">&quot;PQVS,<sp/>VR-&gt;PQRS&quot;</highlight><highlight class="normal">,<sp/>T_related_conjugate);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/>{<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>};</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ace9e92100a3e1219efb8bd2d20b5f20c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ace9e92100a3e1219efb8bd2d20b5f20c" kindref="member">transform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_transformation_component" kindref="compound">UTransformationComponent&lt;Scalar&gt;</ref>&amp;<sp/>T,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)<sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>(T,<sp/>sigma);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>result;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">Self</ref><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" kindref="member">rotated</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>&amp;<sp/>jacobi_rotation,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_simple_transformation_1a62eded5880afac6391df8e70a51c5dfe" kindref="member">UTransformationComponent&lt;Scalar&gt;::FromJacobi</ref>(jacobi_rotation,<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" kindref="member">numberOfOrbitals</ref>());</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kindref="member">transformed</ref>(J,<sp/>sigma);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231" refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a566ad63ad8fcf9d3216962a334834b9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a566ad63ad8fcf9d3216962a334834b9d" kindref="member">rotate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>&amp;<sp/>jacobi_rotation,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)<sp/>{</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a7873dd36e3796bf15fc3e289c49ac5ca" kindref="member">rotated</ref>(jacobi_rotation,<sp/>sigma);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>result;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="236"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/MixedSpinResolved2DMComponent.hpp"/>
   </compounddef>

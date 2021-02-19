@@ -48,7 +48,7 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="46">
         <label>DensityMatrix/SpinDensity1DM.hpp</label>
         <link refid="_spin_density1_d_m_8hpp"/>
         <childnode refid="18" relation="include">
@@ -81,13 +81,13 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
         <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
@@ -131,7 +131,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="47">
         <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
         <link refid="_spin_resolved1_d_m_component_8hpp"/>
         <childnode refid="37" relation="include">
@@ -182,7 +182,7 @@
         <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="44">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
@@ -321,6 +321,8 @@
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
         <childnode refid="20" relation="include">
         </childnode>
       </node>
@@ -328,7 +330,7 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="43">
+      <node id="45">
         <label>DensityMatrix/Orbital1DM.hpp</label>
         <link refid="_orbital1_d_m_8hpp"/>
         <childnode refid="18" relation="include">
@@ -338,10 +340,10 @@
         <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="43">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
@@ -1381,7 +1383,7 @@
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80" refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a4792f0eadb892f6cd03d3a50a511c27a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a4792f0eadb892f6cd03d3a50a511c27a" kindref="member">FromOrbital1DM</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;Scalar&gt;</ref>&amp;<sp/>D)<sp/>{</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;Scalar&gt;</ref><sp/>D_half<sp/>=<sp/>D<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;Scalar&gt;</ref><sp/>D_half<sp/>{(D<sp/>/<sp/>2).matrix()};</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM&lt;Scalar&gt;</ref>(D_half,<sp/>D_half);</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
@@ -1398,11 +1400,11 @@
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>M<sp/>=<sp/>K_alpha<sp/>+<sp/>K_beta;</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>generalized<sp/>1-DM<sp/>contains<sp/>the<sp/>alpha<sp/>part<sp/>in<sp/>the<sp/>top-left<sp/>corner,<sp/>and<sp/>the<sp/>beta<sp/>part<sp/>in<sp/>the<sp/>bottom<sp/>right<sp/>corner.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM&lt;Scalar&gt;</ref><sp/>D_generalized<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">G1DM&lt;Scalar&gt;::Zero</ref>(M);</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D_generalized.topLeftCorner(K_alpha,<sp/>K_alpha)<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>();</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D_generalized.bottomRightCorner(K_beta,<sp/>K_beta)<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref><sp/>D_generalized<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;Scalar&gt;::Zero</ref>(M);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D_generalized.topLeftCorner(K_alpha,<sp/>K_alpha)<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D_generalized.bottomRightCorner(K_beta,<sp/>K_beta)<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>();</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>D_generalized;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM&lt;Scalar&gt;</ref><sp/>{D_generalized};</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
@@ -1420,11 +1422,11 @@
 <codeline lineno="131"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
 <codeline lineno="136" refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a2e2d38df90fee7b9265f4c8f317fffd6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_spin_density1_d_m" kindref="compound">SpinDensity1DM&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a2e2d38df90fee7b9265f4c8f317fffd6" kindref="member">spinDensity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()<sp/>-<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>();</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_density1_d_m" kindref="compound">SpinDensity1DM&lt;Scalar&gt;</ref><sp/>{(this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()<sp/>-<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>()).matrix()};</highlight></codeline>
 <codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"></highlight></codeline>
 <codeline lineno="143" refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1acf8873137e885fb7424217cfa2d17aa2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1acf8873137e885fb7424217cfa2d17aa2" kindref="member">orbitalDensity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;Scalar&gt;</ref><sp/>{(this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>()).matrix()};</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"></highlight></codeline>
 <codeline lineno="147"><highlight class="normal"></highlight></codeline>

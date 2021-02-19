@@ -77,7 +77,7 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="53">
         <label>QuantumChemical/DoublySpinResolvedBase.hpp</label>
         <link refid="_doubly_spin_resolved_base_8hpp"/>
         <childnode refid="15" relation="include">
@@ -100,15 +100,15 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="43">
+      <node id="45">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
-      <node id="50">
+      <node id="52">
         <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
         <link refid="_spin_resolved1_d_m_component_8hpp"/>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
       <node id="14">
@@ -121,26 +121,28 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="43">
         <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
         <link refid="_square_rank_four_tensor_8hpp"/>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="50">
         <label>DensityMatrix/Simple2DM.hpp</label>
         <link refid="_simple2_d_m_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
       <node id="35">
@@ -149,7 +151,7 @@
       <node id="28">
         <label>fstream</label>
       </node>
-      <node id="45">
+      <node id="47">
         <label>DensityMatrix/DensityMatrixTraits.hpp</label>
         <link refid="_density_matrix_traits_8hpp"/>
       </node>
@@ -179,14 +181,18 @@
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+      </node>
+      <node id="42">
+        <label>Utilities/CRTP.hpp</label>
+        <link refid="_c_r_t_p_8hpp"/>
       </node>
       <node id="10">
         <label>Eigen/Dense</label>
@@ -254,14 +260,14 @@
         <label>QuantumChemical/Spin.hpp</label>
         <link refid="_spin_8hpp"/>
       </node>
-      <node id="49">
+      <node id="51">
         <label>DensityMatrix/PureSpinResolved2DMComponent.hpp</label>
         <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
         <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
       <node id="15">
@@ -281,16 +287,16 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="46">
         <label>DensityMatrix/Orbital2DM.hpp</label>
         <link refid="_orbital2_d_m_8hpp"/>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -330,6 +336,8 @@
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
@@ -350,7 +358,7 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="49">
         <label>DensityMatrix/Simple1DM.hpp</label>
         <link refid="_simple1_d_m_8hpp"/>
         <childnode refid="3" relation="include">
@@ -359,7 +367,9 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -368,17 +378,17 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="46">
+      <node id="48">
         <label>DensityMatrix/Orbital1DM.hpp</label>
         <link refid="_orbital1_d_m_8hpp"/>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
         <childnode refid="47" relation="include">
         </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
       </node>
-      <node id="42">
+      <node id="44">
         <label>Mathematical/Representation/Tensor.hpp</label>
         <link refid="_tensor_8hpp"/>
         <childnode refid="21" relation="include">
@@ -387,13 +397,21 @@
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
+        <link refid="_vector_space_arithmetic_8hpp"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -1435,7 +1453,7 @@
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89" refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1af32067fd0dde6a92c3e00d775491ae49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1af32067fd0dde6a92c3e00d775491ae49" kindref="member">orbitalDensity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref><sp/>{this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a3b00a4e21ad888d40c95f497cbc5b694" kindref="member">alphaAlpha</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1af09c9e21929a8447daf32408221ff56a" kindref="member">alphaBeta</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a5c9f1b662f39a03b728e2c024360b194" kindref="member">betaAlpha</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1ac77e62d5f651dce8c4217a6aa7f3487d" kindref="member">betaBeta</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()};</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref><sp/>{this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a3b00a4e21ad888d40c95f497cbc5b694" kindref="member">alphaAlpha</ref>().<ref refid="class_g_q_c_p_1_1_simple2_d_m_1aad3ffde69137305a6beff84f68fa0734" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1af09c9e21929a8447daf32408221ff56a" kindref="member">alphaBeta</ref>().<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a5c9f1b662f39a03b728e2c024360b194" kindref="member">betaAlpha</ref>().<ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()<sp/>+<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1ac77e62d5f651dce8c4217a6aa7f3487d" kindref="member">betaBeta</ref>().<ref refid="class_g_q_c_p_1_1_simple2_d_m_1aad3ffde69137305a6beff84f68fa0734" kindref="member">tensor</ref>().<ref refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" kindref="member">Eigen</ref>()};</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>

@@ -1,9 +1,8 @@
 <map id="GQCP::G1DM&lt; _Scalar &gt;" name="GQCP::G1DM&lt; _Scalar &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="417,1167,649,1244"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_simple1_d_m.html" title=" " alt="" coords="397,997,669,1119"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="5,549,377,949"/>
-<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="20,145,363,501"/>
-<area shape="rect" id="node5" title=" " alt="" coords="70,5,313,97"/>
-<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="401,681,664,817"/>
-<area shape="rect" id="node7" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="689,696,921,803"/>
+<area shape="rect" id="node1" title=" " alt="" coords="293,616,525,693"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_simple1_d_m.html" title=" " alt="" coords="273,344,545,568"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="5,160,268,296"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="293,175,525,281"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_vector_space_arithmetic.html" title=" " alt="" coords="549,160,852,296"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_c_r_t_p.html" title=" " alt="" coords="599,5,802,112"/>
 </map>

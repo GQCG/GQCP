@@ -38,13 +38,26 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfc
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ae3065b1b1822b7246642d34ff4300bfe}{Simple1\+DM}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} $>$ \&D)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ae16447c5b63cd60e31d154e791d79dc0}{Simple1\+DM}} ()
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a4a9790b2d1ceb12a2fc3d62002923151}{matrix}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a3e3c379b5a13002dc7332d2441798639}{matrix}} ()
+\item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a4119731fc8031d5bcaecba3db59297bb}{number\+Of\+Orbitals}} () const
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_aba76988eeab709bb1af1a4ae9d4ab83b}{norm}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a3730b13257db341c113e49aa26b3fee4}{operator+=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \&rhs) override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_adf9829fb7c3d3f634ad83ca0a37fea96}{operator$\ast$=}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} \&a) override
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a734825576319d1c80e64ad9142bf2894}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ad2de22beb149df74e5b4757cfcbbbf5a}{Transformation}} \&T) const override
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a6acb767fddd8829ddfd34a3dc5980d2e}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&jacobi\+\_\+rotation) const override
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
@@ -95,13 +108,95 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+D
 
 
 
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_ae3065b1b1822b7246642d34ff4300bfe}\label{class_g_q_c_p_1_1_simple1_d_m_ae3065b1b1822b7246642d34ff4300bfe}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!Simple1DM@{Simple1DM}}
+\index{Simple1DM@{Simple1DM}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{Simple1DM()}{Simple1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{Simple1\+DM}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} $>$ \&}]{D }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{Simple1\+DM}}} from its matrix representation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em D} & The matrix representation of the one-\/electron density matrix. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_ae16447c5b63cd60e31d154e791d79dc0}\label{class_g_q_c_p_1_1_simple1_d_m_ae16447c5b63cd60e31d154e791d79dc0}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!Simple1DM@{Simple1DM}}
+\index{Simple1DM@{Simple1DM}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{Simple1DM()}{Simple1DM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{Simple1\+DM}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The default constructor. 
+
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a3e3c379b5a13002dc7332d2441798639}\label{class_g_q_c_p_1_1_simple1_d_m_a3e3c379b5a13002dc7332d2441798639}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A writable reference to the matrix representation of this one-\/electron density matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a4a9790b2d1ceb12a2fc3d62002923151}\label{class_g_q_c_p_1_1_simple1_d_m_a4a9790b2d1ceb12a2fc3d62002923151}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A read-\/only reference to the matrix representation of this one-\/electron density matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_aba76988eeab709bb1af1a4ae9d4ab83b}\label{class_g_q_c_p_1_1_simple1_d_m_aba76988eeab709bb1af1a4ae9d4ab83b}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!norm@{norm}}
+\index{norm@{norm}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+double \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The norm of this 1-\/DM.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This linear algebraic A\+PI is required for conformance in {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{Consecutive\+Iterates\+Norm\+Convergence}}}. 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a4119731fc8031d5bcaecba3db59297bb}\label{class_g_q_c_p_1_1_simple1_d_m_a4119731fc8031d5bcaecba3db59297bb}} 
 \index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!numberOfOrbitals@{numberOfOrbitals}}
 \index{numberOfOrbitals@{numberOfOrbitals}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
 \doxysubsubsection{\texorpdfstring{numberOfOrbitals()}{numberOfOrbitals()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::number\+Of\+Orbitals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The number of orbitals that this one-\/electron density matrix is related to. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_adf9829fb7c3d3f634ad83ca0a37fea96}\label{class_g_q_c_p_1_1_simple1_d_m_adf9829fb7c3d3f634ad83ca0a37fea96}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a2cc35610b654768cb5a0df0731185a4b}{Scalar}} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Scalar multiplication-\/assignment. 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a1ea665b4c39561433d116ee4b6c1d911}{G\+Q\+C\+P\+::\+Vector\+Space\+Arithmetic$<$ \+\_\+\+Derived\+D\+M, \+\_\+\+Scalar $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a3730b13257db341c113e49aa26b3fee4}\label{class_g_q_c_p_1_1_simple1_d_m_a3730b13257db341c113e49aa26b3fee4}} 
+\index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Derived\+DM $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{G\+Q\+C\+P\+::\+Simple1\+DM}}$<$ \+\_\+\+Scalar, \+\_\+\+Derived\+DM $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_a8b792b25e79a11342da60d54b5f1ed44}{Derived\+DM}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Addition-\/assignment. 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic_a241d8217aa2b2f34384a4439a968d555}{G\+Q\+C\+P\+::\+Vector\+Space\+Arithmetic$<$ \+\_\+\+Derived\+D\+M, \+\_\+\+Scalar $>$}}.
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_simple1_d_m_a6acb767fddd8829ddfd34a3dc5980d2e}\label{class_g_q_c_p_1_1_simple1_d_m_a6acb767fddd8829ddfd34a3dc5980d2e}} 
 \index{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$@{GQCP::Simple1DM$<$ \_Scalar, \_DerivedDM $>$}!rotated@{rotated}}

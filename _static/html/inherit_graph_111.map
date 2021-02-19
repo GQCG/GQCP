@@ -1,5 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="5,5,448,61"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_s_q_hamiltonian.html" title=" " alt="" coords="496,49,828,105"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="25,86,428,157"/>
+<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="306,5,578,47"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_simple1_d_m.html" title=" " alt="" coords="636,79,908,120"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_orbital1_d_m.html" title=" " alt="" coords="956,79,1159,120"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_c_r_t_p.html" title=" " alt="" coords="5,79,248,120"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_vector_space_arithmetic.html" title=" " alt="" coords="296,71,588,127"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="306,152,578,193"/>
 </map>

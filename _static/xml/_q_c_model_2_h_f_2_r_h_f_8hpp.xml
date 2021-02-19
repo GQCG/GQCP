@@ -39,10 +39,10 @@
         <childnode refid="55" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="51">
         <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
         <link refid="_s_q_operator_storage_8hpp"/>
-        <childnode refid="50" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
@@ -60,9 +60,9 @@
         </childnode>
         <childnode refid="156" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
@@ -85,7 +85,7 @@
       <node id="99">
         <label>Operator/FirstQuantized/AngularMomentumOperator.hpp</label>
         <link refid="_angular_momentum_operator_8hpp"/>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="100" relation="include">
         </childnode>
@@ -107,7 +107,7 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -129,7 +129,7 @@
       <node id="100">
         <label>Operator/FirstQuantized/BaseFQOperator.hpp</label>
         <link refid="_base_f_q_operator_8hpp"/>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -184,13 +184,13 @@
         <link refid="_base_one_electron_integral_buffer_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
       <node id="108">
         <label>Operator/FirstQuantized/LinearMomentumOperator.hpp</label>
         <link refid="_linear_momentum_operator_8hpp"/>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="100" relation="include">
         </childnode>
@@ -234,7 +234,7 @@
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
@@ -256,7 +256,7 @@
         </childnode>
         <childnode refid="148" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
       </node>
       <node id="66">
@@ -302,7 +302,7 @@
         <link refid="_hubbard_hamiltonian_8hpp"/>
         <childnode refid="159" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="138" relation="include">
         </childnode>
@@ -381,7 +381,7 @@
       <node id="153">
         <label>QuantumChemical/DoublySpinResolvedBase.hpp</label>
         <link refid="_doubly_spin_resolved_base_8hpp"/>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -432,7 +432,7 @@
         <childnode refid="110" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="43">
         <label>Basis/MullikenPartitioning/RMullikenPartitioning.hpp</label>
         <link refid="_r_mulliken_partitioning_8hpp"/>
         <childnode refid="25" relation="include">
@@ -493,11 +493,11 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
@@ -526,7 +526,7 @@
         </childnode>
         <childnode refid="150" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="139" relation="include">
         </childnode>
@@ -546,15 +546,15 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="139" relation="include">
         </childnode>
         <childnode refid="141" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="142" relation="include">
         </childnode>
@@ -575,9 +575,9 @@
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
       </node>
       <node id="57">
@@ -644,7 +644,7 @@
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="98" relation="include">
         </childnode>
@@ -652,7 +652,7 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="92" relation="include">
         </childnode>
@@ -662,7 +662,7 @@
         <link refid="_spin_resolved_base_8hpp"/>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -679,7 +679,7 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="46">
         <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
         <link refid="_square_rank_four_tensor_8hpp"/>
         <childnode refid="32" relation="include">
@@ -697,7 +697,7 @@
         <childnode refid="110" relation="include">
         </childnode>
       </node>
-      <node id="43">
+      <node id="45">
         <label>DensityMatrix/Simple2DM.hpp</label>
         <link refid="_simple2_d_m_8hpp"/>
         <childnode refid="27" relation="include">
@@ -706,7 +706,9 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
       <node id="36">
@@ -717,7 +719,7 @@
         <link refid="_primitive_cartesian_operator_integral_engine_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
       <node id="121">
@@ -739,7 +741,7 @@
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -790,7 +792,7 @@
         </childnode>
         <childnode refid="156" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="155" relation="include">
         </childnode>
@@ -838,7 +840,7 @@
         <link refid="_one_electron_integral_buffer_8hpp"/>
         <childnode refid="91" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
       <node id="150">
@@ -854,7 +856,7 @@
         </childnode>
         <childnode refid="140" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
@@ -878,10 +880,10 @@
         <link refid="_base_two_electron_integral_buffer_8hpp"/>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="41">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
@@ -941,7 +943,7 @@
         <link refid="_r_spin_orbital_basis_8hpp"/>
         <childnode refid="89" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="134" relation="include">
         </childnode>
@@ -957,7 +959,7 @@
         </childnode>
         <childnode refid="137" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="138" relation="include">
         </childnode>
@@ -977,7 +979,7 @@
         <link refid="_linear_combination_8hpp"/>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="79" relation="include">
         </childnode>
@@ -1052,12 +1054,12 @@
         <childnode refid="69" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="47">
         <label>Mathematical/Representation/DenseVectorizer.hpp</label>
         <link refid="_dense_vectorizer_8hpp"/>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
@@ -1102,11 +1104,11 @@
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
@@ -1122,12 +1124,12 @@
         <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="48">
         <label>array</label>
       </node>
       <node id="65">
@@ -1152,7 +1154,7 @@
         <childnode refid="120" relation="include">
         </childnode>
       </node>
-      <node id="42">
+      <node id="44">
         <label>DensityMatrix/Orbital2DM.hpp</label>
         <link refid="_orbital2_d_m_8hpp"/>
         <childnode refid="25" relation="include">
@@ -1161,7 +1163,7 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
       </node>
       <node id="30">
@@ -1262,10 +1264,10 @@
         <childnode refid="91" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="49">
         <label>cstddef</label>
       </node>
-      <node id="48">
+      <node id="50">
         <label>Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp</label>
         <link refid="_simple_s_q_one_electron_operator_8hpp"/>
         <childnode refid="27" relation="include">
@@ -1274,7 +1276,7 @@
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
       </node>
       <node id="151">
@@ -1320,7 +1322,7 @@
         <link refid="_cartesian_exponents_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -1370,7 +1372,7 @@
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
@@ -1379,20 +1381,20 @@
         <childnode refid="60" relation="include">
         </childnode>
       </node>
-      <node id="40">
+      <node id="42">
         <label>Operator/SecondQuantized/RSQOneElectronOperator.hpp</label>
         <link refid="_r_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="41" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
@@ -1404,7 +1406,9 @@
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
@@ -1431,7 +1435,7 @@
         </childnode>
         <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
       <node id="133">
@@ -1495,6 +1499,8 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
         <childnode refid="32" relation="include">
         </childnode>
       </node>
@@ -1517,9 +1523,9 @@
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
@@ -1585,7 +1591,7 @@
       <node id="53">
         <label>Mathematical/Representation/StorageArray.hpp</label>
         <link refid="_storage_array_8hpp"/>
-        <childnode refid="45" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -1610,10 +1616,10 @@
         <childnode refid="81" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="40">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="51" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
@@ -1639,7 +1645,7 @@
         </childnode>
         <childnode refid="158" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="138" relation="include">
         </childnode>
@@ -1967,12 +1973,12 @@
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Convert<sp/>the<sp/>matrix<sp/>Z<sp/>to<sp/>an<sp/>GQCP::Tensor&lt;double,<sp/>2&gt;<sp/>Z_tensor.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Einsum<sp/>is<sp/>only<sp/>implemented<sp/>for<sp/>a<sp/>tensor<sp/>+<sp/>a<sp/>matrix,<sp/>not<sp/>for<sp/>2<sp/>matrices.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::TensorMap&lt;Eigen::Tensor&lt;const<sp/>Scalar,<sp/>2&gt;&gt;<sp/>Z_t<sp/>{Z.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>().data(),<sp/>D.rows(),<sp/>D.cols()};</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::TensorMap&lt;Eigen::Tensor&lt;const<sp/>Scalar,<sp/>2&gt;&gt;<sp/>Z_t<sp/>{Z.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>().data(),<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>().rows(),<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>().cols()};</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>Z_tensor<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref>(Z_t);</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>To<sp/>calculate<sp/>the<sp/>electronic<sp/>energy,<sp/>we<sp/>must<sp/>perform<sp/>a<sp/>double<sp/>contraction<sp/>(with<sp/>prefactor<sp/>0.5):</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>0.5<sp/>D(nu<sp/>mu)<sp/>Z(mu<sp/>nu).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 0&gt;</ref><sp/>contraction<sp/>=<sp/>0.5<sp/>*<sp/>Z_tensor.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ij,ji-&gt;&quot;</highlight><highlight class="normal">,<sp/>D);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 0&gt;</ref><sp/>contraction<sp/>=<sp/>0.5<sp/>*<sp/>Z_tensor.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ij,ji-&gt;&quot;</highlight><highlight class="normal">,<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>());</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>As<sp/>the<sp/>double<sp/>contraction<sp/>of<sp/>two<sp/>matrices<sp/>is<sp/>a<sp/>scalar<sp/>(a<sp/>tensor<sp/>of<sp/>rank<sp/>0),<sp/>we<sp/>should<sp/>access<sp/>the<sp/>value<sp/>as<sp/>(0).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>contraction(0);</highlight></codeline>
@@ -1980,7 +1986,7 @@
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
 <codeline lineno="120" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a80e2103050ccbf2b204f094fd2824510" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a80e2103050ccbf2b204f094fd2824510" kindref="member">calculateError</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">ScalarRSQOneElectronOperator&lt;Scalar&gt;</ref>&amp;<sp/>F,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;Scalar&gt;</ref>&amp;<sp/>D,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">ScalarRSQOneElectronOperator&lt;Scalar&gt;</ref>&amp;<sp/>S)<sp/>{</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()<sp/>*<sp/>D<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()<sp/>-<sp/>S.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()<sp/>*<sp/>D<sp/>*<sp/>F.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>()<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()<sp/>-<sp/>S.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>()<sp/>*<sp/>F.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" kindref="member">parameters</ref>();</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
 <codeline lineno="124"><highlight class="normal"></highlight></codeline>
@@ -2051,17 +2057,17 @@
 <codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="215"><highlight class="normal"></highlight></codeline>
-<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;double&gt;</ref><sp/>D<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">Orbital1DM&lt;double&gt;::Zero</ref>(K);</highlight></codeline>
-<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D.topLeftCorner(N<sp/>/<sp/>2,<sp/>N<sp/>/<sp/>2)<sp/>=<sp/>2<sp/>*<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;double&gt;::Identity</ref>(N<sp/>/<sp/>2);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref><sp/>D<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D.topLeftCorner(N<sp/>/<sp/>2,<sp/>N<sp/>/<sp/>2)<sp/>=<sp/>2<sp/>*<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;Scalar&gt;::Identity</ref>(N<sp/>/<sp/>2);</highlight></codeline>
 <codeline lineno="218"><highlight class="normal"></highlight></codeline>
-<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>D;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;Scalar&gt;</ref><sp/>{D};</highlight></codeline>
 <codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="221"><highlight class="normal"></highlight></codeline>
 <codeline lineno="222"><highlight class="normal"></highlight></codeline>
 <codeline lineno="231" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a64d5b4d64cea2c88cd9208e8c2ab24cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a64d5b4d64cea2c88cd9208e8c2ab24cd" kindref="member">calculateOrthonormalBasis2DM</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N)<sp/>{</highlight></codeline>
 <codeline lineno="232"><highlight class="normal"></highlight></codeline>
 <codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(N<sp/>%<sp/>2<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
-<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;QCMethod::RHF::calculateOrthonormalBasis1DM(const<sp/>size_t,<sp/>const<sp/>size_t):<sp/>The<sp/>number<sp/>of<sp/>given<sp/>electrons<sp/>cannot<sp/>be<sp/>odd<sp/>for<sp/>RHF.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;QCMethod::RHF::calculateOrthonormalBasis2DM(const<sp/>size_t,<sp/>const<sp/>size_t):<sp/>The<sp/>number<sp/>of<sp/>given<sp/>electrons<sp/>cannot<sp/>be<sp/>odd<sp/>for<sp/>RHF.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="236"><highlight class="normal"></highlight></codeline>
 <codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N_P<sp/>=<sp/>N<sp/>/<sp/>2;<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>number<sp/>of<sp/>electron<sp/>pairs.</highlight><highlight class="normal"></highlight></codeline>
@@ -2072,7 +2078,7 @@
 <codeline lineno="242"><highlight class="normal"></highlight></codeline>
 <codeline lineno="243"><highlight class="normal"></highlight></codeline>
 <codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Implement<sp/>a<sp/>KISS<sp/>formula<sp/>for<sp/>the<sp/>RHF<sp/>2-DM.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref><sp/>d<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">Orbital2DM&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref><sp/>d<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">SquareRankFourTensor&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
 <codeline lineno="246"><highlight class="normal"></highlight></codeline>
 <codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>j<sp/>:<sp/>orbital_space.indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
@@ -2090,7 +2096,7 @@
 <codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="262"><highlight class="normal"></highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref>(d);</highlight></codeline>
 <codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="265"><highlight class="normal"></highlight></codeline>
 <codeline lineno="266"><highlight class="normal"></highlight></codeline>
@@ -2111,9 +2117,9 @@
 <codeline lineno="295"><highlight class="normal"></highlight></codeline>
 <codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>To<sp/>calculate<sp/>G,<sp/>we<sp/>must<sp/>perform<sp/>two<sp/>double<sp/>contractions:</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>1.<sp/>(mu<sp/>nu|rho<sp/>lambda)<sp/>P(lambda<sp/>rho),</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>direct_contraction<sp/>=<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,lk-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>D);</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>direct_contraction<sp/>=<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,lk-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>());</highlight></codeline>
 <codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>2.<sp/>-0.5<sp/>(mu<sp/>lambda|rho<sp/>nu)<sp/>P(lambda<sp/>rho).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>exchange_contraction<sp/>=<sp/>-0.5<sp/>*<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ilkj,lk-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>D);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>exchange_contraction<sp/>=<sp/>-0.5<sp/>*<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ilkj,lk-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>());</highlight></codeline>
 <codeline lineno="301"><highlight class="normal"></highlight></codeline>
 <codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>previous<sp/>contractions<sp/>are<sp/>Tensor&lt;Scalar,<sp/>2&gt;<sp/>instances.<sp/>In<sp/>order<sp/>to<sp/>calculate<sp/>the<sp/>total<sp/>G<sp/>matrix,<sp/>we<sp/>will<sp/>convert<sp/>them<sp/>back<sp/>into<sp/>GQCP::Matrix&lt;Scalar&gt;.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>G1<sp/>=<sp/>direct_contraction.<ref refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" kindref="member">asMatrix</ref>();</highlight></codeline>

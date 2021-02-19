@@ -18,6 +18,17 @@
         <definition>virtual T&amp; GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;::operator+=</definition>
         <argsstring>(const T &amp;rhs)=0</argsstring>
         <name>operator+=</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d">operator+=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360">operator+=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_t2_amplitudes_1aceccc95a7c3c82a13ad6cb09cf77ed82">operator+=</reimplementedby>
         <param>
@@ -41,6 +52,18 @@
         <reimplementedby refid="class_g_q_c_p_1_1_linear_combination_1ac99cb8ad362edfa97cfc0e70fbb67396">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a8dd5c13f6d98c0835dd1db46fcbf412a">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a8dd5c13f6d98c0835dd1db46fcbf412a">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a0f0abafa128cc561833ff07a9531cb0d">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1aebf277a6623597c7dd2b196c1907ddbe">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ad2641d7ed0bb28069712ad51522ac228">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb">operator*=</reimplementedby>

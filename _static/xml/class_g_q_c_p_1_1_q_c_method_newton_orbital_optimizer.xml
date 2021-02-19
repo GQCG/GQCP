@@ -290,32 +290,33 @@
         <childnode refid="8" relation="usage">
           <edgelabel>#d</edgelabel>
         </childnode>
-        <childnode refid="15" relation="usage">
+        <childnode refid="14" relation="usage">
           <edgelabel>#D</edgelabel>
         </childnode>
       </node>
-      <node id="13">
+      <node id="10">
         <label>GQCP::BasisTransformable&lt; Orbital2DM&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="13">
+        <label>GQCP::CRTP&lt; Orbital2DM&lt; double &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="3">
         <label>GQCP::BaseOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
       </node>
-      <node id="12">
-        <label>Eigen::Tensor&lt; double , _Rank &gt;</label>
-      </node>
-      <node id="15">
+      <node id="14">
         <label>GQCP::Orbital1DM&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="15" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
+      <node id="17">
         <label>GQCP::JacobiRotatable&lt; Orbital1DM&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="17">
+      <node id="16">
         <label>GQCP::BasisTransformable&lt; Orbital1DM&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
@@ -324,19 +325,19 @@
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="10" relation="public-inheritance">
         </childnode>
-        <childnode refid="13" relation="public-inheritance">
+        <childnode refid="11" relation="public-inheritance">
         </childnode>
-        <childnode refid="14" relation="public-inheritance">
+        <childnode refid="12" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="14">
+      <node id="11">
         <label>GQCP::JacobiRotatable&lt; Orbital2DM&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="16">
+      <node id="15">
         <label>GQCP::Simple1DM&lt; double, Orbital1DM&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="16" relation="public-inheritance">
         </childnode>
         <childnode refid="17" relation="public-inheritance">
         </childnode>
@@ -345,6 +346,18 @@
       </node>
       <node id="5">
         <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="12">
+        <label>GQCP::VectorSpaceArithmetic&lt; Orbital2DM&lt; double &gt;, double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>GQCP::VectorSpaceArithmetic&lt; Orbital1DM&lt; double &gt;, double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="6">
         <label>GQCP::SquareMatrix&lt; double &gt;</label>
@@ -358,18 +371,6 @@
         <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="10">
-        <label>GQCP::SquareRankFourTensor&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
-        <childnode refid="11" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>GQCP::Tensor&lt; double, 4 &gt;</label>
-        <link refid="class_g_q_c_p_1_1_tensor"/>
-        <childnode refid="12" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="7">
         <label>MatrixX&lt; double  &gt;</label>
         <link refid="class_g_q_c_p_1_1_matrix"/>
@@ -381,6 +382,10 @@
         <link refid="class_g_q_c_p_1_1_matrix"/>
         <childnode refid="5" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="19">
+        <label>GQCP::CRTP&lt; Orbital1DM&lt; double &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" bodystart="33" bodyend="103"/>

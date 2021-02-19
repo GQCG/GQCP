@@ -94,6 +94,10 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
+      <node id="33">
+        <label>Utilities/CRTP.hpp</label>
+        <link refid="_c_r_t_p_8hpp"/>
+      </node>
       <node id="9">
         <label>Eigen/Dense</label>
       </node>
@@ -190,6 +194,8 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
       </node>
@@ -205,6 +211,14 @@
         <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
+        <link refid="_vector_space_arithmetic_8hpp"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -1343,7 +1357,7 @@
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_simple1_d_m" kindref="compound">Simple1DM</ref>&lt;_Scalar,<sp/>Orbital1DM&lt;_Scalar&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>used<sp/>for<sp/>a<sp/>density<sp/>matrix<sp/>element:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="class_g_q_c_p_1_1_orbital1_d_m_1a324c5e8fc811df976614d0f357537b9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_1a820960c1c3ad2c124d6be1ccd0eec021" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="45" refid="class_g_q_c_p_1_1_orbital1_d_m_1a324c5e8fc811df976614d0f357537b9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m_1a324c5e8fc811df976614d0f357537b9e" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
@@ -1351,7 +1365,7 @@
 <codeline lineno="50"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Inherit<sp/>`Simple1DM`&apos;s<sp/>constructors.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_simple1_d_m" kindref="compound">Simple1DM&lt;Scalar, Orbital1DM&lt;Scalar&gt;</ref>&gt;<ref refid="class_g_q_c_p_1_1_simple1_d_m" kindref="compound">::Simple1DM</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_simple1_d_m" kindref="compound">Simple1DM&lt;Scalar, Orbital1DM&lt;Scalar&gt;</ref>&gt;<ref refid="class_g_q_c_p_1_1_simple1_d_m_1ae16447c5b63cd60e31d154e791d79dc0" kindref="member">::Simple1DM</ref>;</highlight></codeline>
 <codeline lineno="54"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>

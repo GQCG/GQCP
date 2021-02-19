@@ -1459,7 +1459,14 @@
   <compound refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kind="class"><name>GQCP::MixedSpinResolved2DMComponent</name>
     <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac5ad15a7cb7c0e26246d43b844967b8a" kind="typedef"><name>Scalar</name></member>
     <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad3ef74b2b6b6a3126a475dacd47aec75" kind="typedef"><name>Self</name></member>
+    <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1afd341a064a84da2136a0d15bbb1866a4" kind="variable"><name>d</name></member>
+    <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ad6b55e2cf8837191b2fbae9f17442368" kind="function"><name>MixedSpinResolved2DMComponent</name></member>
+    <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeeb2c103b1969cc5c535b71e3e00f2c8" kind="function"><name>MixedSpinResolved2DMComponent</name></member>
+    <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1abfaf3d5978bb67933bcc129e73e35a8a" kind="function"><name>tensor</name></member>
+    <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a146fb8c1345c295623aec7f1bace0c12" kind="function"><name>tensor</name></member>
     <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a192e4c3262c24fd817a310ab8267d56b" kind="function"><name>numberOfOrbitals</name></member>
+    <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a64fc61ef4e9247a33f87d813e75527aa" kind="function"><name>operator+=</name></member>
+    <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1a0f0abafa128cc561833ff07a9531cb0d" kind="function"><name>operator*=</name></member>
     <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ac1f06cb6ea47669187539f5deb7f9b8d" kind="function"><name>trace</name></member>
     <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1aeedc530afe4b833154c0cd28e32d6d47" kind="function"><name>transformed</name></member>
     <member refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_1ace9e92100a3e1219efb8bd2d20b5f20c" kind="function"><name>transform</name></member>
@@ -2099,7 +2106,15 @@
     <member refid="class_g_q_c_p_1_1_simple1_d_m_1a8b792b25e79a11342da60d54b5f1ed44" kind="typedef"><name>DerivedDM</name></member>
     <member refid="class_g_q_c_p_1_1_simple1_d_m_1a758c8b8f0d87ca20b2e212140b8e201f" kind="typedef"><name>Self</name></member>
     <member refid="class_g_q_c_p_1_1_simple1_d_m_1ad2de22beb149df74e5b4757cfcbbbf5a" kind="typedef"><name>Transformation</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4b099f7e230bdbb896430075d19bf196" kind="variable"><name>D</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1ae3065b1b1822b7246642d34ff4300bfe" kind="function"><name>Simple1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1ae16447c5b63cd60e31d154e791d79dc0" kind="function"><name>Simple1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kind="function"><name>matrix</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3e3c379b5a13002dc7332d2441798639" kind="function"><name>matrix</name></member>
     <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4119731fc8031d5bcaecba3db59297bb" kind="function"><name>numberOfOrbitals</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1aba76988eeab709bb1af1a4ae9d4ab83b" kind="function"><name>norm</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4" kind="function"><name>operator+=</name></member>
+    <member refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96" kind="function"><name>operator*=</name></member>
     <member refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894" kind="function"><name>transformed</name></member>
     <member refid="class_g_q_c_p_1_1_simple1_d_m_1a6acb767fddd8829ddfd34a3dc5980d2e" kind="function"><name>rotated</name></member>
   </compound>
@@ -2109,9 +2124,16 @@
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1aefc8c5af3ee2724a55047ea838b0c6bf" kind="typedef"><name>Self</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1aed1f55de7a9d98b0840235518c9936b9" kind="typedef"><name>OneDM</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba11548e39f9172a41286b4bab30bfbf" kind="typedef"><name>Transformation</name></member>
+    <member refid="class_g_q_c_p_1_1_simple2_d_m_1a548a5afa20bb04fb0cccaec0d1e2284d" kind="variable"><name>d</name></member>
+    <member refid="class_g_q_c_p_1_1_simple2_d_m_1a1d060aeddc9190dde803c35abdcc3a7b" kind="function"><name>Simple2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_simple2_d_m_1a3ab74c809c6d59a4644a0961bd07c95f" kind="function"><name>Simple2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_simple2_d_m_1aad3ffde69137305a6beff84f68fa0734" kind="function"><name>tensor</name></member>
+    <member refid="class_g_q_c_p_1_1_simple2_d_m_1a251e04ca90de055345b494907a4f76d9" kind="function"><name>tensor</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9294ffe2b798149a40916f8750e511c7" kind="function"><name>numberOfOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1aa0174297056f19cd441279cb3f1f4b20" kind="function"><name>reduce</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9f69bac123516579adcd3a106e032208" kind="function"><name>trace</name></member>
+    <member refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d" kind="function"><name>operator+=</name></member>
+    <member refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b" kind="function"><name>operator*=</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc" kind="function"><name>transformed</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1afa2372a0996cdbb192187d0ab8f72866" kind="function"><name>rotated</name></member>
   </compound>
@@ -2157,8 +2179,8 @@
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a66f1572868ae3bc4105f55783551667a" kind="typedef"><name>Derived2DM</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1afcb21b0fa27c292d97432fca3d5053d2" kind="typedef"><name>MullikenPartitioning</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ab6a38425352d5efdf8e3a733be931c3d" kind="function"><name>calculateExpectationValue</name></member>
-    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1aaff15231cb93a6b83f3523a5280d55bb" kind="function"><name>calculateFockianMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1aefb18657cba382fba0cbad975fcac1f9" kind="function"><name>calculateSuperFockianMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1acdc164109eb242236265053a76993de5" kind="function"><name>calculateFockianMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a56ca07c0f5a64e3c6314a2134ce2ccd9" kind="function"><name>calculateSuperFockianMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0" kind="function"><name>transformed</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ab1474f3ec1beed8cc704747f81a73d31" kind="function"><name>rotated</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a860bef15613c7755de4338798f99a612" kind="function"><name>oneIndexTransformed</name></member>
@@ -2177,8 +2199,8 @@
     <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a4937ad940b74c9e3e05e2a8031d8b3c2" kind="variable"><name>is_antisymmetrized</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ac25018de357564880f6317e1d6930137" kind="variable"><name>is_expressed_using_chemists_notation</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a5ba898d010523b0525f8f2d76f968828" kind="function"><name>calculateExpectationValue</name></member>
-    <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a710b1ac2356a85deee1d5d6c47ea5a9d" kind="function"><name>calculateFockianMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a7bab46450e4e1bddbff79f3e8ddfcf0b" kind="function"><name>calculateSuperFockianMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a43b3f6d8fdd25861d362c4257efe8264" kind="function"><name>calculateFockianMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a21332fee28561cb37a7ded0c64aa5ebc" kind="function"><name>calculateSuperFockianMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ae3c403cf1c713b5c63334f00f4ea16e5" kind="function"><name>effectiveOneElectronPartition</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1ada0b12379e30e62f52101ccd6ea8b4ec" kind="function"><name>transformed</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a3e6be644da73696328a0ac02ebd9bf50" kind="function"><name>rotated</name></member>
@@ -2783,13 +2805,6 @@
   <compound refid="class_g_q_c_p_1_1_u_transformation_component" kind="class"><name>GQCP::UTransformationComponent</name>
     <member refid="class_g_q_c_p_1_1_u_transformation_component_1acd11a67d9ae1fb88b980cb91f668a57e" kind="typedef"><name>Scalar</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCMethod::vAP1roG</name>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" kind="variable"><name>N_P</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" kind="variable"><name>K</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" kind="variable"><name>sq_hamiltonian</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" kind="function"><name>vAP1roG</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" kind="function"><name>optimize</name></member>
-  </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCModel::vAP1roG</name>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a6377a0cf43e0687e60a2b804fd4d3f0d" kind="variable"><name>G</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a808536e31ebf0b7f9cf3244f3fc56bc2" kind="variable"><name>multipliers</name></member>
@@ -2808,6 +2823,13 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1af8da613c00b56e12c072a16b5a3bc12f" kind="function"><name>calculateMultiplierResponseForceConstant</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1ac6097016fcd926adb640aab4bd4ec014" kind="function"><name>calculateNumber2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a7c6e8708db3023d08e3d4948fa04aecb" kind="function"><name>calculatePair2DM</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g" kind="class"><name>GQCP::QCMethod::vAP1roG</name>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1aea8eb9fc391aaacb188cc0e1d3711abd" kind="variable"><name>N_P</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a404f63c57f3f5cb83299a7416845671d" kind="variable"><name>K</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a045d96f95f69c8b4fdc7a291ca1a07bc" kind="variable"><name>sq_hamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a7703579c6e66e4bae3342360212577cd" kind="function"><name>vAP1roG</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_1a9008d93035b6e9c638ccb4ccd0021e42" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver" kind="class"><name>GQCP::vAP1roGElectricalResponseSolver</name>
     <member refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_1ad931e3c8282ffd72c211f45c09eb6772" kind="variable"><name>vap1rog</name></member>

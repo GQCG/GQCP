@@ -39,7 +39,7 @@
       <node id="67">
         <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
         <link refid="_s_q_operator_storage_8hpp"/>
-        <childnode refid="55" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="68" relation="include">
         </childnode>
@@ -104,7 +104,7 @@
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -151,7 +151,7 @@
         <label>Operator/SecondQuantized/OperatorTraits.hpp</label>
         <link refid="_operator_traits_8hpp"/>
       </node>
-      <node id="53">
+      <node id="55">
         <label>DensityMatrix/SpinDensity1DM.hpp</label>
         <link refid="_spin_density1_d_m_8hpp"/>
         <childnode refid="30" relation="include">
@@ -233,13 +233,13 @@
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
         <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -398,7 +398,7 @@
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
         <childnode refid="153" relation="include">
         </childnode>
@@ -531,7 +531,7 @@
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>
@@ -549,7 +549,7 @@
         <link refid="_r_s_q_two_electron_operator_8hpp"/>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="62" relation="include">
         </childnode>
@@ -578,7 +578,7 @@
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
@@ -594,7 +594,7 @@
       <node id="23">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
-      <node id="54">
+      <node id="56">
         <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
         <link refid="_spin_resolved1_d_m_component_8hpp"/>
         <childnode refid="45" relation="include">
@@ -711,6 +711,8 @@
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
         <childnode refid="61" relation="include">
         </childnode>
       </node>
@@ -738,7 +740,7 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -886,7 +888,7 @@
         <childnode refid="28" relation="include">
         </childnode>
       </node>
-      <node id="56">
+      <node id="53">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
@@ -982,7 +984,7 @@
         <link refid="_linear_combination_8hpp"/>
         <childnode refid="91" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="92" relation="include">
         </childnode>
@@ -1131,7 +1133,7 @@
         <link refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp"/>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="91" relation="include">
         </childnode>
@@ -1160,7 +1162,7 @@
         </childnode>
         <childnode refid="63" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
       </node>
       <node id="28">
@@ -1195,7 +1197,7 @@
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="63" relation="include">
         </childnode>
@@ -1422,7 +1424,7 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="62" relation="include">
         </childnode>
@@ -1439,6 +1441,8 @@
         <label>DensityMatrix/MixedSpinResolved2DMComponent.hpp</label>
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -1531,6 +1535,8 @@
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
         <childnode refid="37" relation="include">
         </childnode>
       </node>
@@ -1551,7 +1557,7 @@
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -1564,7 +1570,7 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="52">
+      <node id="54">
         <label>DensityMatrix/Orbital1DM.hpp</label>
         <link refid="_orbital1_d_m_8hpp"/>
         <childnode refid="30" relation="include">
@@ -1646,10 +1652,10 @@
         <childnode refid="94" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="52">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="56" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -1903,9 +1909,9 @@
 <codeline lineno="151"><highlight class="normal"></highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>To<sp/>calculate<sp/>the<sp/>electronic<sp/>energy,<sp/>we<sp/>must<sp/>perform<sp/>a<sp/>double<sp/>contraction<sp/>(with<sp/>prefactor<sp/>0.5):</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>0.5<sp/>P_sigma(mu<sp/>nu)<sp/>P_sigma(mu<sp/>nu).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 0&gt;</ref><sp/>contraction_alpha<sp/>=<sp/>0.5<sp/>*<sp/>Z_alpha_tensor.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ij,ji-&gt;&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>());</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 0&gt;</ref><sp/>contraction_alpha<sp/>=<sp/>0.5<sp/>*<sp/>Z_alpha_tensor.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ij,ji-&gt;&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix());</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 0&gt;</ref><sp/>contraction_beta<sp/>=<sp/>0.5<sp/>*<sp/>Z_beta_tensor.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ij,ji-&gt;&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>());</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 0&gt;</ref><sp/>contraction_beta<sp/>=<sp/>0.5<sp/>*<sp/>Z_beta_tensor.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ij,ji-&gt;&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix());</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"></highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>As<sp/>the<sp/>double<sp/>contraction<sp/>of<sp/>two<sp/>rank-2<sp/>tensors<sp/>is<sp/>a<sp/>scalar<sp/>(a<sp/>tensor<sp/>of<sp/>rank<sp/>0),<sp/>we<sp/>should<sp/>access<sp/>the<sp/>value<sp/>as<sp/>(0).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>contraction_alpha(0)<sp/>+<sp/>contraction_beta(0);</highlight></codeline>
@@ -1915,8 +1921,8 @@
 <codeline lineno="170" refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a9437c28c31d71850d8370a7ab21b5eb6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved&lt;SquareMatrix&lt;Scalar&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a9437c28c31d71850d8370a7ab21b5eb6" kindref="member">calculateError</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">ScalarUSQOneElectronOperator&lt;Scalar&gt;</ref>&amp;<sp/>F,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM&lt;Scalar&gt;</ref>&amp;<sp/>D,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">ScalarUSQOneElectronOperator&lt;Scalar&gt;</ref>&amp;<sp/>S)<sp/>{</highlight></codeline>
 <codeline lineno="171"><highlight class="normal"></highlight></codeline>
 <codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>alpha<sp/>and<sp/>beta<sp/>error<sp/>vectors<sp/>separately.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>error_vector_alpha<sp/>=<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters()<sp/>-<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()<sp/>*<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters();</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>error_vector_beta<sp/>=<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>()<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters()<sp/>-<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>()<sp/>*<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters();</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>error_vector_alpha<sp/>=<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix()<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters()<sp/>-<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix()<sp/>*<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().parameters();</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>error_vector_beta<sp/>=<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix()<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters()<sp/>-<sp/>S.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters()<sp/>*<sp/>D.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix()<sp/>*<sp/>F.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().parameters();</highlight></codeline>
 <codeline lineno="175"><highlight class="normal"></highlight></codeline>
 <codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved&lt;SquareMatrix&lt;Scalar&gt;</ref>&gt;<sp/>{error_vector_alpha,<sp/>error_vector_beta};</highlight></codeline>
 <codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -1931,13 +1937,13 @@
 <codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="198"><highlight class="normal"></highlight></codeline>
-<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;Scalar&gt;</ref><sp/>D_MO_a<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SpinResolved1DMComponent&lt;Scalar&gt;::Zero</ref>(K_a);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref><sp/>D_MO_a<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;Scalar&gt;::Zero</ref>(K_a);</highlight></codeline>
 <codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D_MO_a.topLeftCorner(N_a,<sp/>N_a)<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;Scalar&gt;::Identity</ref>(N_a);</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"></highlight></codeline>
-<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;Scalar&gt;</ref><sp/>D_MO_b<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SpinResolved1DMComponent&lt;Scalar&gt;::Zero</ref>(K_b);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref><sp/>D_MO_b<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;Scalar&gt;::Zero</ref>(K_b);</highlight></codeline>
 <codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D_MO_b.topLeftCorner(N_b,<sp/>N_b)<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;Scalar&gt;::Identity</ref>(N_b);</highlight></codeline>
 <codeline lineno="204"><highlight class="normal"></highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM&lt;Scalar&gt;</ref><sp/>{D_MO_a,<sp/>D_MO_b};</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM&lt;Scalar&gt;</ref><sp/>{<ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;Scalar&gt;</ref><sp/>{D_MO_a},<sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;Scalar&gt;</ref><sp/>{D_MO_b}};</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="207"><highlight class="normal"></highlight></codeline>
 <codeline lineno="208"><highlight class="normal"></highlight></codeline>
@@ -1948,7 +1954,7 @@
 <codeline lineno="222"><highlight class="normal"></highlight></codeline>
 <codeline lineno="223"><highlight class="normal"></highlight></codeline>
 <codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>KISS<sp/>formulas<sp/>to<sp/>implement<sp/>the<sp/>spin<sp/>components<sp/>of<sp/>the<sp/>UHF<sp/>2-DM.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" kindref="compound">PureSpinResolved2DMComponent&lt;Scalar&gt;</ref><sp/>d_aaaa<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">PureSpinResolved2DMComponent&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref><sp/>d_aaaa<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">SquareRankFourTensor&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
 <codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.alpha().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>j<sp/>:<sp/>orbital_space.alpha().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>k<sp/>:<sp/>orbital_space.alpha().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
@@ -1966,7 +1972,7 @@
 <codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="241"><highlight class="normal"></highlight></codeline>
 <codeline lineno="242"><highlight class="normal"></highlight></codeline>
-<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent&lt;Scalar&gt;</ref><sp/>d_aabb<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">MixedSpinResolved2DMComponent&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref><sp/>d_aabb<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">SquareRankFourTensor&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
 <codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.alpha().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>j<sp/>:<sp/>orbital_space.alpha().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>k<sp/>:<sp/>orbital_space.beta().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
@@ -1980,7 +1986,7 @@
 <codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="255"><highlight class="normal"></highlight></codeline>
 <codeline lineno="256"><highlight class="normal"></highlight></codeline>
-<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent&lt;Scalar&gt;</ref><sp/>d_bbaa<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">MixedSpinResolved2DMComponent&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref><sp/>d_bbaa<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">SquareRankFourTensor&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
 <codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.beta().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>j<sp/>:<sp/>orbital_space.beta().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>k<sp/>:<sp/>orbital_space.alpha().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
@@ -1994,7 +2000,7 @@
 <codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="269"><highlight class="normal"></highlight></codeline>
 <codeline lineno="270"><highlight class="normal"></highlight></codeline>
-<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" kindref="compound">PureSpinResolved2DMComponent&lt;Scalar&gt;</ref><sp/>d_bbbb<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">PureSpinResolved2DMComponent&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;Scalar&gt;</ref><sp/>d_bbbb<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">SquareRankFourTensor&lt;Scalar&gt;::Zero</ref>(K);</highlight></codeline>
 <codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.beta().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>j<sp/>:<sp/>orbital_space.beta().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
 <codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>k<sp/>:<sp/>orbital_space.beta().indices(OccupationType::k_occupied))<sp/>{</highlight></codeline>
@@ -2011,7 +2017,7 @@
 <codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="287"><highlight class="normal"></highlight></codeline>
-<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM&lt;Scalar&gt;</ref><sp/>{d_aaaa,<sp/>d_aabb,<sp/>d_bbaa,<sp/>d_bbbb};</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM&lt;Scalar&gt;</ref><sp/>{<ref refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" kindref="compound">PureSpinResolved2DMComponent&lt;Scalar&gt;</ref>(d_aaaa),<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent&lt;Scalar&gt;</ref>(d_aabb),<sp/><ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent&lt;Scalar&gt;</ref>(d_bbaa),<sp/><ref refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" kindref="compound">PureSpinResolved2DMComponent&lt;Scalar&gt;</ref>(d_bbbb)};</highlight></codeline>
 <codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="290"><highlight class="normal"></highlight></codeline>
 <codeline lineno="291"><highlight class="normal"></highlight></codeline>
@@ -2034,8 +2040,8 @@
 <codeline lineno="325"><highlight class="normal"></highlight></codeline>
 <codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Specify<sp/>the<sp/>contraction<sp/>pairs<sp/>for<sp/>the<sp/>direct<sp/>contractions:</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>(mu<sp/>nu|rho<sp/>lambda)<sp/>P(rho<sp/>lambda).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J_alpha<sp/>=<sp/>g_a.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kl-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()).asMatrix();</highlight></codeline>
-<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J_beta<sp/>=<sp/>g_b.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kl-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>()).asMatrix();</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J_alpha<sp/>=<sp/>g_a.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kl-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix()).asMatrix();</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J_beta<sp/>=<sp/>g_b.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kl-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix()).asMatrix();</highlight></codeline>
 <codeline lineno="330"><highlight class="normal"></highlight></codeline>
 <codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>total<sp/>J<sp/>tensor.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J<sp/>=<sp/>J_alpha<sp/>+<sp/>J_beta;</highlight></codeline>
@@ -2052,8 +2058,8 @@
 <codeline lineno="351"><highlight class="normal"></highlight></codeline>
 <codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Specify<sp/>the<sp/>contraction<sp/>pairs<sp/>for<sp/>the<sp/>exchange<sp/>contraction:</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>(mu<sp/>rho|lambda<sp/>nu)<sp/>P(lambda<sp/>rho).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_alpha<sp/>=<sp/>g_a.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kj-&gt;il&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()).asMatrix();</highlight></codeline>
-<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_beta<sp/>=<sp/>g_b.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kj-&gt;il&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>()).asMatrix();</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_alpha<sp/>=<sp/>g_a.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kj-&gt;il&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix()).asMatrix();</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_beta<sp/>=<sp/>g_b.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kj-&gt;il&quot;</highlight><highlight class="normal">,<sp/>P.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix()).asMatrix();</highlight></codeline>
 <codeline lineno="356"><highlight class="normal"></highlight></codeline>
 <codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">ScalarUSQOneElectronOperator&lt;Scalar&gt;</ref><sp/>{K_alpha,<sp/>K_beta};</highlight></codeline>
 <codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>

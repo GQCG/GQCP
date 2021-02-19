@@ -686,6 +686,8 @@
         </childnode>
         <childnode refid="112" relation="include">
         </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
         <childnode refid="34" relation="include">
         </childnode>
       </node>
@@ -1393,6 +1395,8 @@
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="124" relation="include">
         </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
         <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="109" relation="include">
@@ -1483,6 +1487,8 @@
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -1792,7 +1798,7 @@
 <codeline lineno="121"><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal">SquareMatrix&lt;double&gt;<sp/><ref refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a3c677c380a02d6ed3bccc718a704b8f8" kindref="member">NewtonOrbitalOptimizer::calculateHessianMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>sq_hamiltonian)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd" kindref="member">calculateHessianTensor</ref>(sq_hamiltonian).<ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1afaab91c4c43e216d1e0c1d7c2d45a746" kindref="member">pairWiseStrictReduced</ref>();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd" kindref="member">calculateHessianTensor</ref>(sq_hamiltonian).pairWiseStrictReduced();</highlight></codeline>
 <codeline lineno="130"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>

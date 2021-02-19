@@ -976,49 +976,52 @@ CUHF C_beta (P. Bultinck):
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">constrain_function_thesis_fixed</span><span class="p">(</span><span class="n">environment</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;&quot;&quot;</span>
 
-    <span class="c1"># Prepare some variables to be used in the algorithm.</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">lowdinOrthonormalization</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()</span>  <span class="c1"># the transformation matrix TO an orthonormal basis</span>
-    
-    <span class="n">F_alpha</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">fock_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>  <span class="c1"># in AO basis</span>
+    <span class="c1"># Read the relevant intermediates from the environment.</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">fock_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">density_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">N</span>  <span class="c1"># Number of alpha and beta electrons.</span>
 
-    <span class="n">F_beta</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">fock_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>  <span class="c1"># in AO basis</span>
-    
-    <span class="n">D_alpha</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">density_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span>  <span class="c1"># in AO basis</span>
-    <span class="n">D_beta</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">density_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span>  <span class="c1"># in AO basis</span>
 
-    <span class="n">N_alpha</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">alpha</span>
-    <span class="n">N_beta</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">beta</span>
+    <span class="c1"># Form the closed-shell Fock matrix and the UHF modification in the AO basis.</span>
+    <span class="n">F_cs</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">Delta_UHF</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">alpha</span> <span class="o">-</span> <span class="n">F</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
     
 
-    <span class="c1"># Form the closed-shell Fock matrix and the UHF modification.</span>
-    <span class="n">F_cs</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_alpha</span> <span class="o">+</span> <span class="n">F_beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1"># the closed-shell Fock matrix, in AO basis</span>
-    <span class="n">Delta_UHF</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_alpha</span> <span class="o">-</span> <span class="n">F_beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1"># in AO basis</span>
-    
-
-    <span class="c1"># Form modified Fock matrices.</span>
+    <span class="c1"># Form the modified Fock matrices.</span>
     <span class="n">F_aa</span> <span class="o">=</span> <span class="n">F_cs</span> <span class="o">+</span> <span class="n">Delta_UHF</span>
     <span class="n">F_bb</span> <span class="o">=</span> <span class="n">F_cs</span> <span class="o">-</span> <span class="n">Delta_UHF</span>
 
 
-    <span class="c1"># Find the natural occupation numbers and vectors by diagonalizing the charge-density matrix in an orthonormal basis.</span>
-    <span class="n">P_AO</span> <span class="o">=</span> <span class="p">(</span><span class="n">D_alpha</span> <span class="o">+</span> <span class="n">D_beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
-    <span class="n">P_MO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">P_AO</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">natural_occupation_numbers</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">P_MO</span><span class="p">)</span>
+    <span class="c1"># Find the natural occupation numbers and vectors by diagonalizing the charge-density matrix</span>
+    <span class="c1"># in an orthonormal basis. For the orthonormal basis, we use the Löwdin basis of the alpha basis functions.</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">lowdinOrthonormalization</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span>  <span class="c1"># X transforms from the AO basis to the Löwdin basis.</span>
+    
+    <span class="n">P_AO</span> <span class="o">=</span> <span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">D</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">P_MO</span> <span class="o">=</span> <span class="n">P_AO</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="n">natural_occupation_numbers</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">P_MO</span><span class="o">.</span><span class="n">matrix</span><span class="p">())</span>  <span class="c1"># Use NumPy for the diagonalization.</span>
 
 
-    <span class="c1"># Construct the Langrange multipliers to add them to the &#39;constrained&#39; Fock matrices.    </span>
-    <span class="n">Delta_UHF_NO</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Delta_UHF</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">V</span>  <span class="c1"># in the natural occupation (NO) basis</span>
+    <span class="c1"># Construct the Langrange multipliers to add them to the &#39;constrained&#39; Fock matrices. They</span>
+    <span class="c1"># should be constructed in the basis of the natural occupations.</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UTransformationComponent_d</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>  <span class="c1"># V transforms from the Löwdin basis to the natural occupations.</span>
+
+    <span class="n">Delta_UHF_NO</span> <span class="o">=</span> <span class="n">Delta_UHF</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>  <span class="c1"># In the natural occupation (NO) basis.</span>
+    <span class="n">Delta_UHF_NO</span> <span class="o">=</span> <span class="n">Delta_UHF_NO</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+
     <span class="n">Lambda_NO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Delta_UHF_NO</span><span class="p">))</span>
     <span class="n">Lambda_NO</span><span class="p">[:</span><span class="n">N_beta</span><span class="p">,</span> <span class="n">N_alpha</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Delta_UHF_NO</span><span class="p">[:</span><span class="n">N_beta</span><span class="p">,</span> <span class="n">N_alpha</span><span class="p">:]</span>
     <span class="n">Lambda_NO</span><span class="p">[</span><span class="n">N_alpha</span><span class="p">:,</span> <span class="p">:</span><span class="n">N_beta</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Delta_UHF_NO</span><span class="p">[</span><span class="n">N_alpha</span><span class="p">:,</span> <span class="p">:</span><span class="n">N_beta</span><span class="p">]</span>
-    <span class="n">Lambda_AO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Lambda_NO</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">Lambda_NO</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperatorComponent_d</span><span class="p">(</span><span class="n">Lambda_NO</span><span class="p">)</span>
+
+    <span class="n">Lambda_AO</span> <span class="o">=</span> <span class="n">Lambda_NO</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">inverse</span><span class="p">())</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">inverse</span><span class="p">())</span>  <span class="c1"># In the AO basis.</span>
     
 
-    <span class="c1"># Overwrite the most recent UHF Fock matrices with the cUHF ones</span>
+    <span class="c1"># Overwrite the most recent UHF Fock matrices with the CUHF modifications.</span>
     <span class="n">F_alpha_constrained</span> <span class="o">=</span> <span class="n">F_aa</span> <span class="o">+</span> <span class="n">Lambda_AO</span>
     <span class="n">F_beta_constrained</span> <span class="o">=</span> <span class="n">F_bb</span> <span class="o">-</span> <span class="n">Lambda_AO</span>
     
-    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_fock_matrices</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="p">,</span> <span class="n">F_beta_constrained</span><span class="p">)</span>
+    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_fock_matrices</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">F_beta_constrained</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
 
 
 <span class="n">constrain_step_thesis_fixed</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalStep_UHFSCFEnvironment_d</span><span class="p">(</span><span class="n">constrain_function_thesis_fixed</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm, but with &#39;fixed&#39; transformation formulas.&quot;</span><span class="p">)</span>
@@ -1069,14 +1072,14 @@ A convergence criterion that checks if the norm of the difference of two iterate
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">environment</span><span class="o">.</span><span class="n">density_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">environment</span><span class="o">.</span><span class="n">density_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 3.405955 -1.515785 -1.504544]
- [-1.515785  0.9533    0.947886]
- [-1.504544  0.947886  0.942511]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 3.405967 -1.511384 -1.508956]
+ [-1.511384  0.949063  0.947898]
+ [-1.508956  0.947898  0.946736]]
 </pre></div>
 </div>
 </div>
@@ -1090,17 +1093,17 @@ A convergence criterion that checks if the norm of the difference of two iterate
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUHF electronic energy (thesis): -3.63052188
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUHF electronic energy (thesis): -3.63052195
 
 CUHF C_alpha (thesis):
-[[-0.381515 -1.805659 -0.003305]
- [-0.346769  0.91249  -1.566232]
- [-0.347213  0.906844  1.569409]]
+[[-3.815161e-01 -1.805661e+00 -7.488487e-04]
+ [-3.469373e-01  9.103070e-01 -1.567464e+00]
+ [-3.470443e-01  9.090292e-01  1.568182e+00]]
 
 CUHF C_beta (thesis):
-[[ 0.261075  0.002209 -1.826965]
- [ 0.406413  1.566776  0.886572]
- [ 0.406553 -1.568868  0.8828  ]]
+[[ 2.610740e-01  6.446768e-04 -1.826967e+00]
+ [ 4.064737e-01  1.567514e+00  8.852380e-01]
+ [ 4.064938e-01 -1.568132e+00  8.841344e-01]]
 </pre></div>
 </div>
 </div>
@@ -1120,13 +1123,13 @@ CUHF C_beta (thesis):
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3.7",
+            kernelName: "python3",
             path: "./examples"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3.7'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

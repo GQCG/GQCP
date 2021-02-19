@@ -218,8 +218,8 @@
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ae0f9fa3ea86967e23c84a2f6ed581d00" prot="protected" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>array</name></member>
       <member refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator_1a207f434ad0c5d9d411d58ab3a32ae6f2" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>beta</name></member>
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ab6a38425352d5efdf8e3a733be931c3d" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>calculateExpectationValue</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1aaff15231cb93a6b83f3523a5280d55bb" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>calculateFockianMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1aefb18657cba382fba0cbad975fcac1f9" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>calculateSuperFockianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1acdc164109eb242236265053a76993de5" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>calculateFockianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a56ca07c0f5a64e3c6314a2134ce2ccd9" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>calculateSuperFockianMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::RSQOneElectronOperator</scope><name>Derived</name></member>

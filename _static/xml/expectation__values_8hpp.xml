@@ -25,7 +25,7 @@
       <node id="134">
         <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
         <link refid="_s_q_operator_storage_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="135" relation="include">
         </childnode>
@@ -90,7 +90,7 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
@@ -134,7 +134,7 @@
         <label>Operator/SecondQuantized/OperatorTraits.hpp</label>
         <link refid="_operator_traits_8hpp"/>
       </node>
-      <node id="45">
+      <node id="47">
         <label>DensityMatrix/SpinDensity1DM.hpp</label>
         <link refid="_spin_density1_d_m_8hpp"/>
         <childnode refid="19" relation="include">
@@ -208,13 +208,13 @@
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
         <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
@@ -373,7 +373,7 @@
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="144" relation="include">
         </childnode>
@@ -506,7 +506,7 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="142" relation="include">
         </childnode>
@@ -524,7 +524,7 @@
         <link refid="_r_s_q_two_electron_operator_8hpp"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -553,7 +553,7 @@
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="91" relation="include">
         </childnode>
@@ -569,7 +569,7 @@
       <node id="55">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
-      <node id="46">
+      <node id="48">
         <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
         <link refid="_spin_resolved1_d_m_component_8hpp"/>
         <childnode refid="38" relation="include">
@@ -685,6 +685,8 @@
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
@@ -849,7 +851,7 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="45">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
@@ -945,7 +947,7 @@
         <link refid="_linear_combination_8hpp"/>
         <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
@@ -1066,7 +1068,7 @@
         <link refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
@@ -1092,7 +1094,7 @@
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
       <node id="16">
@@ -1127,7 +1129,7 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
@@ -1354,7 +1356,7 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -1371,6 +1373,8 @@
         <label>DensityMatrix/MixedSpinResolved2DMComponent.hpp</label>
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
@@ -1463,6 +1467,8 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
         <childnode refid="21" relation="include">
         </childnode>
       </node>
@@ -1483,7 +1489,7 @@
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
@@ -1496,7 +1502,7 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="44">
+      <node id="46">
         <label>DensityMatrix/Orbital1DM.hpp</label>
         <link refid="_orbital1_d_m_8hpp"/>
         <childnode refid="19" relation="include">
@@ -1578,10 +1584,10 @@
         <childnode refid="72" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="44">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="48" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
@@ -1692,11 +1698,11 @@
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>s_squared<sp/>=<sp/>-sz;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K<sp/>=<sp/>one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a265438d278110b0a2e0b151f7537e6d5" kindref="member">numberOfOrbitals</ref>();</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>K;<sp/>p++)<sp/>{</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()(p,<sp/>p);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>One-electron<sp/>partition<sp/>of<sp/>S+S_</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>(one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>()(p,<sp/>p)<sp/>+<sp/>one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>()(p,<sp/>p))<sp/>/<sp/>4;<sp/><sp/></highlight><highlight class="comment">//<sp/>One-electron<sp/>partition<sp/>of<sp/>S^2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix()(p,<sp/>p);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>One-electron<sp/>partition<sp/>of<sp/>S+S_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>(one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix()(p,<sp/>p)<sp/>+<sp/>one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix()(p,<sp/>p))<sp/>/<sp/>4;<sp/><sp/></highlight><highlight class="comment">//<sp/>One-electron<sp/>partition<sp/>of<sp/>S^2</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>q<sp/>=<sp/>0;<sp/>q<sp/>&lt;<sp/>K;<sp/>q++)<sp/>{</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>-two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1af09c9e21929a8447daf32408221ff56a" kindref="member">alphaBeta</ref>()(p,<sp/>q,<sp/>q,<sp/>p);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Two-electron<sp/>partition<sp/><sp/>S+S_</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>(two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a3b00a4e21ad888d40c95f497cbc5b694" kindref="member">alphaAlpha</ref>()(p,<sp/>p,<sp/>q,<sp/>q)<sp/>+<sp/>two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1ac77e62d5f651dce8c4217a6aa7f3487d" kindref="member">betaBeta</ref>()(p,<sp/>p,<sp/>q,<sp/>q)<sp/>-<sp/>two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1af09c9e21929a8447daf32408221ff56a" kindref="member">alphaBeta</ref>()(p,<sp/>p,<sp/>q,<sp/>q)<sp/>-<sp/>two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a5c9f1b662f39a03b728e2c024360b194" kindref="member">betaAlpha</ref>()(p,<sp/>p,<sp/>q,<sp/>q))<sp/>/<sp/>4;<sp/><sp/></highlight><highlight class="comment">//<sp/>Two-electron<sp/>partition<sp/>of<sp/>S^2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>-two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1af09c9e21929a8447daf32408221ff56a" kindref="member">alphaBeta</ref>().tensor()(p,<sp/>q,<sp/>q,<sp/>p);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Two-electron<sp/>partition<sp/><sp/>S+S_<sp/>.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_squared<sp/>+=<sp/>(two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a3b00a4e21ad888d40c95f497cbc5b694" kindref="member">alphaAlpha</ref>().tensor()(p,<sp/>p,<sp/>q,<sp/>q)<sp/>+<sp/>two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1ac77e62d5f651dce8c4217a6aa7f3487d" kindref="member">betaBeta</ref>().tensor()(p,<sp/>p,<sp/>q,<sp/>q)<sp/>-<sp/>two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1af09c9e21929a8447daf32408221ff56a" kindref="member">alphaBeta</ref>().tensor()(p,<sp/>p,<sp/>q,<sp/>q)<sp/>-<sp/>two_DMs.<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a5c9f1b662f39a03b728e2c024360b194" kindref="member">betaAlpha</ref>().tensor()(p,<sp/>p,<sp/>q,<sp/>q))<sp/>/<sp/>4;<sp/><sp/></highlight><highlight class="comment">//<sp/>Two-electron<sp/>partition<sp/>of<sp/>S^2<sp/>.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s_squared;</highlight></codeline>
@@ -1705,7 +1711,7 @@
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
 <codeline lineno="67" refid="namespace_g_q_c_p_1aab2f368ef37a2428c9f180136c27f1ee" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aab2f368ef37a2428c9f180136c27f1ee" kindref="member">calculateSpinZ</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM&lt;Scalar&gt;</ref>&amp;<sp/>one_DMs)<sp/>{</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a2e2d38df90fee7b9265f4c8f317fffd6" kindref="member">spinDensity</ref>().trace()<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>one_DMs.<ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a2e2d38df90fee7b9265f4c8f317fffd6" kindref="member">spinDensity</ref>().matrix().trace()<sp/>/<sp/>2;</highlight></codeline>
 <codeline lineno="69"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>

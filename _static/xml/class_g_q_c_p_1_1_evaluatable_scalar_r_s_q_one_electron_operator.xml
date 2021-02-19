@@ -138,11 +138,11 @@
 <parametername>D</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the 1-DM</para>
+<para>The 1-DM.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the expectation value of this second-quantized (one-electron) density operator, i.e. the electron density</para>
+<simplesect kind="return"><para>The expectation value of this second-quantized (one-electron) density operator, i.e. the electron density.</para>
 </simplesect>
 <simplesect kind="note"><para>This method is only enabled for <ref refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kindref="compound">EvaluatableScalarRSQOneElectronOperator</ref> that represent second-quantized electron density operators. </para>
 </simplesect>
@@ -150,7 +150,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="113" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="113" bodyend="134"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="113" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="113" bodyend="133"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -200,7 +200,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="43" bodyend="135"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp" bodystart="43" bodyend="134"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" prot="public" virt="non-virtual"><scope>GQCP::EvaluatableScalarRSQOneElectronOperator</scope><name>allParameters</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a887b0138971425ecf72ae15c9226b3c9" prot="public" virt="non-virtual"><scope>GQCP::EvaluatableScalarRSQOneElectronOperator</scope><name>allParameters</name></member>
