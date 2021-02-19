@@ -28,32 +28,41 @@ namespace GQCP {
 
 
 /**
- *  The coupled-cluster T2-amplitudes t_{ij}^{ab}. According to context, this class may either represent restricted (i.e. spatial-orbital) amplitudes, or generalized (spinor) amplitudes.
+ *  The coupled-cluster T2-amplitudes t_{ij}^{ab}.
+ * 
+ *  In general, these are spinor amplitudes, but they may be used to represent spin-orbital amplitudes as well.
+ * 
+ *  @param _Scalar          The scalar type that represents one of the amplitudes.
  */
 template <typename _Scalar>
 class T2Amplitudes:
     public VectorSpaceArithmetic<T2Amplitudes<_Scalar>, _Scalar> {
 
 public:
+    // The scalar type that represents one of the amplitudes.
     using Scalar = _Scalar;
+
+    // The type of 'this'.
     using Self = T2Amplitudes<Scalar>;
 
 private:
-    OrbitalSpace orbital_space;  // the orbital space which covers the occupied-virtual separation
+    // The orbital space which encapsulates the occupied-virtual separation.
+    OrbitalSpace orbital_space;
 
-    ImplicitRankFourTensorSlice<Scalar> t;  // the T2-amplitudes as a block rank-four tensor, implementing easy operator(i,j,a,b) calls
+    // The T2-amplitudes as an implicit tensor, implementing intuitive operator(i,j,a,b) calls.
+    ImplicitRankFourTensorSlice<Scalar> t;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  Construct T2-amplitudes given their representation as a ImplicitRankFourTensorSlice and and explicit occupied-virtual orbital space.
+     *  Construct T2-amplitudes given their representation as an `ImplicitRankFourTensorSlice` and explicit occupied-virtual orbital space.
      * 
-     *  @param t                            the T2-amplitudes as a block matrix, implementing easy operator(i,j,a,b) calls
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation, indicating which indices in the block matrix are occupied and which are virtual
+     *  @param t                            The T2-amplitudes as an implicit tensor, implementing intuitive operator(i,j,a,b) calls.
+     *  @param orbital_space                The orbital space which encapsulates the occupied-virtual separation.
      */
     T2Amplitudes(const ImplicitRankFourTensorSlice<Scalar>& t, const OrbitalSpace& orbital_space) :
         orbital_space {orbital_space},
@@ -61,28 +70,28 @@ public:
 
 
     /**
-     *  Construct the T2-amplitudes given their representation as a ImplicitRankFourTensorSlice and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.
+     *  Construct the T2-amplitudes given their representation as an `ImplicitRankFourTensorSlice` and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.
      * 
-     *  @param t                the T2-amplitudes as a block matrix, implementing easy operator(i,j,a,b) calls
-     *  @param N                the number of occupied orbitals
-     *  @param M                the total number of orbitals
+     *  @param t                The T2-amplitudes as an implicit tensor, implementing intuitive operator(i,j,a,b) calls.
+     *  @param N                The number of occupied orbitals.
+     *  @param M                The total number of orbitals.
      */
     T2Amplitudes(const ImplicitRankFourTensorSlice<Scalar>& t, const size_t N, const size_t M) :
         T2Amplitudes(t, OrbitalSpace::Implicit({{OccupationType::k_occupied, N}, {OccupationType::k_virtual, M - N}})) {}
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  MARK: Named constructors
      */
 
     /**
-     *  Create perturbative T2-amplitudes using an explicit orbital space.
+     *  Create perturbative T2-amplitudes.
      * 
-     *  @param f                            the (inactive) Fock matrix
-     *  @param V_A                          the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation
+     *  @param f                            The (inactive) Fock matrix.
+     *  @param V_A                          The antisymmetrized two-electron integrals (in physicist's notation).
+     *  @param orbital_space                The orbital space which encapsulates the occupied-virtual separation.
      * 
-     *  @return T2-amplitudes calculated from an initial perturbative result
+     *  @return T2-amplitudes calculated from an initial perturbative result.
      */
     static T2Amplitudes<Scalar> Perturbative(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const OrbitalSpace& orbital_space) {
 
@@ -107,70 +116,53 @@ public:
     }
 
 
-    /**
-     *  Create perturbative T2-amplitudes using an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.
-     * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
-     *  @param N                            the number of occupied orbitals
-     *  @param M                            the total number of orbitals
-     * 
-     *  @return T2-amplitudes calculated from an initial perturbative result
-     */
-    static T2Amplitudes<Scalar> Perturbative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N, const size_t M) {
-
-        // Create the implicit orbital space for N occupied orbitals and M total orbitals.
-        const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N}, {OccupationType::k_virtual, M - N}});
-
-        return T2Amplitudes<Scalar>::Perturbative(sq_hamiltonian, orbital_space);
-    }
-
-
     /*
-     *  OPERATORS
+     *  MARK: Access
      */
 
     /**
      *  Access one of the T2-amplitudes.
      * 
-     *  @param i            an occupied index
-     *  @param j            an occupied index
-     *  @param a            a virtual index
-     *  @param b            a virtual index
+     *  @param i            An occupied index.
+     *  @param j            An occupied index.
+     *  @param a            A virtual index.
+     *  @param b            A virtual index.
      * 
-     *  @return the read-only T2-amplitude corresponding to t_{ij}^{ab}
+     *  @return A read-only reference to the T2-amplitude t_{ij}^{ab}.
      */
     Scalar operator()(const size_t i, const size_t j, const size_t a, const size_t b) const { return this->t(i, j, a, b); }
 
     /**
      *  Access one of the T2-amplitudes.
      * 
-     *  @param i            an occupied index
-     *  @param j            an occupied index
-     *  @param a            a virtual index
-     *  @param b            a virtual index
+     *  @param i            An occupied index.
+     *  @param j            An occupied index.
+     *  @param a            A virtual index.
+     *  @param b            A virtual index.
      * 
-     *  @return the writable T2-amplitude corresponding to t_{ij}^{ab}
+     *  @return A writable reference to the T2-amplitude corresponding to t_{ij}^{ab}
      */
     Scalar& operator()(const size_t i, const size_t j, const size_t a, const size_t b) { return this->t(i, j, a, b); }
 
-    /*
-     *  PUBLIC METHODS
-     */
-
     /**
-     *  @return the T2-amplitudes as a ImplicitRankFourTensorSlice
+     *  @return The T2-amplitudes as an `ImplicitRankFourTensorSlice`.
      */
     const ImplicitRankFourTensorSlice<Scalar>& asImplicitRankFourTensorSlice() const { return this->t; }
 
     /**
-     *  @return the Frobenius norm of these T2-amplitudes
-     */
-    Scalar norm() const { return this->asImplicitRankFourTensorSlice().asMatrix().norm(); }
-
-    /**
-     *  @return the orbital space for these T2-amplitudes, which covers the occupied-virtual separation
+     *  @return The orbital space for these T2-amplitudes, which encapsulates the occupied-virtual separation.
      */
     const OrbitalSpace& orbitalSpace() const { return this->orbital_space; }
+
+
+    /*
+     *  MARK: Linear algebra
+     */
+
+    /**
+     *  @return The Frobenius norm of these T2-amplitudes.
+     */
+    Scalar norm() const { return this->asImplicitRankFourTensorSlice().asMatrix().norm(); }
 
 
     /*
@@ -185,6 +177,7 @@ public:
         // Prepare some variables.
         const auto& index_maps = this->asImplicitRankFourTensorSlice().indexMaps();
 
+        // Add the tensor representations.
         const Tensor<Scalar, 4> t_sum_dense = this->asImplicitRankFourTensorSlice().asTensor().Eigen() + rhs.asImplicitRankFourTensorSlice().asTensor().Eigen();
         const ImplicitRankFourTensorSlice<Scalar> t_sum_slice {index_maps, t_sum_dense};
 
@@ -202,6 +195,7 @@ public:
         // Prepare some variables.
         const auto& index_maps = this->asImplicitRankFourTensorSlice().indexMaps();
 
+        // Multiply the tensor representation.
         const Tensor<Scalar, 4> t_multiplied_dense = a * this->asImplicitRankFourTensorSlice().asTensor().Eigen();
         const ImplicitRankFourTensorSlice<Scalar> t_multiplied_slice {index_maps, t_multiplied_dense};
 

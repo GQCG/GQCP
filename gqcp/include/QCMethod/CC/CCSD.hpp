@@ -61,7 +61,7 @@ public:
         const auto& T1 = environment.t1_amplitudes.back();
         const auto& T2 = environment.t2_amplitudes.back();
 
-        const auto E_electronic_correlation = environment.electronic_energies.back();
+        const auto E_electronic_correlation = environment.correlation_energies.back();
         const QCModel::CCSD<Scalar> ccsd_parameters {T1, T2};
 
         return QCStructure<GQCP::QCModel::CCSD<Scalar>>({E_electronic_correlation}, {ccsd_parameters});

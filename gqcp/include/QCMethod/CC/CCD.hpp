@@ -60,7 +60,7 @@ public:
         // Furthermore, the solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state.
         const auto& T2 = environment.t2_amplitudes.back();
 
-        const auto E_electronic_correlation = environment.electronic_energies.back();
+        const auto E_electronic_correlation = environment.correlation_energies.back();
         const QCModel::CCD<Scalar> ccd_parameters {T2};
 
         return QCStructure<GQCP::QCModel::CCD<Scalar>>({E_electronic_correlation}, {ccd_parameters});

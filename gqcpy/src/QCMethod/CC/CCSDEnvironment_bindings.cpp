@@ -49,7 +49,7 @@ void bindCCSDEnvironment(py::module& module) {
             "Initialize a CCD algorithmic environment with initial guesses for the T2-amplitudes based on perturbation theory.")
 
         // Bind read-write members/properties, exposing intermediary environment variables to the Python interface.
-        .def_readwrite("electronic_energies", &CCSDEnvironment<double>::electronic_energies)
+        .def_readwrite("correlation_energies", &CCSDEnvironment<double>::correlation_energies)
 
 
         // Define read-only 'getters'.
