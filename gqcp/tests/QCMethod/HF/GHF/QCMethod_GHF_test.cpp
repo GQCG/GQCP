@@ -78,8 +78,8 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
 
     // Check the reference value for S_x/y/z based on two different implementations.
     const double reference_s_x = 0.0;  // an UHF solution
-    const double reference_s_y = 0.0;  // an UHF solution
-    const double reference_s_z = 0.5;  // an UHF solution
+    const double reference_s_y = 0.0;  // An UHF solution.
+    const double reference_s_z = 0.5;  // An UHF solution.
 
     const GQCP::G1DM<GQCP::complex> P {ghf_parameters.calculateScalarBasis1DM().matrix().cast<GQCP::complex>()};  // The AO density matrix, converted from real to complex values.
 
@@ -150,8 +150,8 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
     // Check the reference value for S_x/y/z based on two different implementations.
     const double reference_s_x = 0.0;                     // a true GHF solution
-    const double reference_s_y = 0.0;                     // a true GHF solution
-    const double reference_s_z = -4.903573113845816e-05;  // a true GHF solution
+    const double reference_s_y = 0.0;                     // A true GHF solution.
+    const double reference_s_z = -4.903573113845816e-05;  // A true GHF solution.
 
     const GQCP::G1DM<GQCP::complex> P {ghf_parameters.calculateScalarBasis1DM().matrix().cast<GQCP::complex>()};  // The AO density matrix, converted from real to complex values.
 
@@ -220,8 +220,8 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
 
     // Check the reference value for S_x/y/z based on two different implementations.
     const double reference_s_x = 0.0;                 // an UHF solution
-    const double reference_s_y = 0.0;                 // an UHF solution
-    const double reference_s_z = 0.4999999999999999;  // an UHF solution
+    const double reference_s_y = 0.0;                 // An UHF solution.
+    const double reference_s_z = 0.4999999999999999;  // An UHF solution.
 
     const GQCP::G1DM<GQCP::complex> P {ghf_parameters.calculateScalarBasis1DM().matrix().cast<GQCP::complex>()};  // The AO density matrix, converted from real to complex values.
 

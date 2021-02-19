@@ -744,7 +744,7 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
-        // Initialize as zero matrices
+        // Initialize as zero matrices.
         size_t K = this->onv_basis.alpha().numberOfOrbitals();
 
         SquareMatrix<double> D_aa = SquareMatrix<double>::Zero(K);
@@ -851,7 +851,7 @@ public:
                 onv_basis_beta.transformONVToNextPermutation(spin_string_beta);
             }
 
-        }  // I_beta loop
+        }  // I_beta loop.
         return SpinResolved1DM<double> {SpinResolved1DMComponent<double> {D_aa}, SpinResolved1DMComponent<double> {D_bb}};
     }
 
@@ -872,14 +872,14 @@ public:
         auto dim_alpha = onv_basis_alpha.dimension();
         auto dim_beta = onv_basis_beta.dimension();
 
-        // Initialize as zero matrices
+        // Initialize as zero matrices.
         size_t K = this->onv_basis.alpha().numberOfOrbitals();
 
         SquareRankFourTensor<double> d_aaaa = SquareRankFourTensor<double>::Zero(K);
         SquareRankFourTensor<double> d_aabb = SquareRankFourTensor<double>::Zero(K);
         SquareRankFourTensor<double> d_bbbb = SquareRankFourTensor<double>::Zero(K);
 
-        // ALPHA-ALPHA-ALPHA-ALPHA
+        // ALPHA-ALPHA-ALPHA-ALPHA.
         SpinUnresolvedONV spin_string_alpha_aaaa = onv_basis_alpha.constructONVFromAddress(0);  // spin string with address 0
         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {                              // I_alpha loops over all the addresses of the alpha spin strings
 
@@ -1002,13 +1002,13 @@ public:
         }  // loop over alpha addresses
 
 
-        // BETA-BETA-ALPHA-ALPHA
-        // We know that d^aabb_pqrs = d^bbaa_rspq
+        // BETA-BETA-ALPHA-ALPHA.
+        // We know that d^aabb_pqrs = d^bbaa_rspq.
         Eigen::array<int, 4> axes {2, 3, 0, 1};  // array specifying the axes that should be swapped
         MixedSpinResolved2DMComponent<double> d_bbaa {GQCP::SquareRankFourTensor<double>(d_aabb.Eigen().shuffle(axes))};
 
 
-        // BETA-BETA-BETA-BETA
+        // BETA-BETA-BETA-BETA.
         SpinUnresolvedONV spin_string_beta_bbbb = onv_basis_beta.constructONVFromAddress(0);  // spin string with address 0
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                                // I_beta loops over all the addresses of the beta spin strings
 
@@ -1063,7 +1063,7 @@ public:
                 onv_basis_beta.transformONVToNextPermutation(spin_string_beta_bbbb);
             }
 
-        }  // loop over I_beta
+        }  // loop over I_beta.
 
         return SpinResolved2DM<double> {PureSpinResolved2DMComponent<double>(d_aaaa), MixedSpinResolved2DMComponent<double>(d_aabb), d_bbaa, PureSpinResolved2DMComponent<double>(d_bbbb)};
     }
@@ -1203,7 +1203,7 @@ public:
             }
         }
 
-        // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
+        // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa).
         return SpinResolved2DM<double> {PureSpinResolved2DMComponent<double>(d_aaaa), MixedSpinResolved2DMComponent<double>(d_aabb), MixedSpinResolved2DMComponent<double>(d_aabb), PureSpinResolved2DMComponent<double>(d_aaaa)};
     }
 
@@ -1227,7 +1227,7 @@ public:
         SquareMatrix<double> D_bb = SquareMatrix<double>::Zero(K);
 
 
-        for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
+        for (size_t I = 0; I < dim; I++) {  // Loop over all addresses (1).
             SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
             SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
             SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
@@ -1285,8 +1285,8 @@ public:
                     D_bb(q, p) += sign * c_I * c_J;
                 }
 
-            }  // loop over addresses J > I
-        }      // loop over addresses I
+            }  // Loop over addresses J > I.
+        }      // Loop over addresses I.
 
         return SpinResolved1DM<double> {SpinResolved1DMComponent<double> {D_aa}, SpinResolved1DMComponent<double> {D_bb}};
     }
@@ -1308,7 +1308,7 @@ public:
         SquareRankFourTensor<double> d_bbaa = SquareRankFourTensor<double>::Zero(K);
         SquareRankFourTensor<double> d_bbbb = SquareRankFourTensor<double>::Zero(K);
 
-        for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
+        for (size_t I = 0; I < dim; I++) {  // Loop over all addresses I.
 
             SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
             SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
@@ -1518,7 +1518,7 @@ public:
 
             }  // loop over all addresses J > I
 
-        }  // loop over all addresses I
+        }  // Loop over all addresses I.
 
         return SpinResolved2DM<double> {PureSpinResolved2DMComponent<double>(d_aaaa), MixedSpinResolved2DMComponent<double>(d_aabb), MixedSpinResolved2DMComponent<double>(d_bbaa), PureSpinResolved2DMComponent<double>(d_bbbb)};
     }

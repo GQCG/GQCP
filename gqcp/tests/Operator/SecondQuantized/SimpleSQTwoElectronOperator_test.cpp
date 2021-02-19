@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     }
     const GQCP::Orbital2DM<double> dm {d};
 
-    // Initialize a reference value
+    // Initialize a reference value.
     const double reference_expectation_value = 180.0;
 
     const double expectation_value = op.calculateExpectationValue(dm);  // A scalar-StorageArray can be implicitly casted into its underlying scalar.
