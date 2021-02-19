@@ -2,6 +2,11 @@ target_sources(gqcp
     PRIVATE
         CCD.hpp
         CCSD.hpp
+        DoublesAmplitudes.hpp
+        L1Amplitudes.hpp
+        L2Amplitudes.hpp
+        LambdaCCSD.hpp
+        SinglesAmplitudes.hpp
         T1Amplitudes.hpp
         T2Amplitudes.hpp
 )

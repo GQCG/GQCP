@@ -18,10 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
-#include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCModel/CC/DoublesAmplitudes.hpp"
 
 
 namespace GQCP {
@@ -32,16 +30,11 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class T2Amplitudes:
-    public VectorSpaceArithmetic<T2Amplitudes<_Scalar>, _Scalar> {
+    public DoublesAmplitudes<_Scalar, T2Amplitudes<_Scalar>> {
 
 public:
     using Scalar = _Scalar;
     using Self = T2Amplitudes<Scalar>;
-
-private:
-    OrbitalSpace orbital_space;  // the orbital space which covers the occupied-virtual separation
-
-    ImplicitRankFourTensorSlice<Scalar> t;  // the T2-amplitudes as a block rank-four tensor, implementing easy operator(i,j,a,b) calls
 
 
 public:
@@ -49,26 +42,8 @@ public:
      *  CONSTRUCTORS
      */
 
-    /**
-     *  Construct T2-amplitudes given their representation as a ImplicitRankFourTensorSlice and and explicit occupied-virtual orbital space.
-     * 
-     *  @param t                            the T2-amplitudes as a block matrix, implementing easy operator(i,j,a,b) calls
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation, indicating which indices in the block matrix are occupied and which are virtual
-     */
-    T2Amplitudes(const ImplicitRankFourTensorSlice<Scalar>& t, const OrbitalSpace& orbital_space) :
-        orbital_space {orbital_space},
-        t {t} {}
-
-
-    /**
-     *  Construct the T2-amplitudes given their representation as a ImplicitRankFourTensorSlice and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.
-     * 
-     *  @param t                the T2-amplitudes as a block matrix, implementing easy operator(i,j,a,b) calls
-     *  @param N                the number of occupied orbitals
-     *  @param M                the total number of orbitals
-     */
-    T2Amplitudes(const ImplicitRankFourTensorSlice<Scalar>& t, const size_t N, const size_t M) :
-        T2Amplitudes(t, OrbitalSpace::Implicit({{OccupationType::k_occupied, N}, {OccupationType::k_virtual, M - N}})) {}
+    // Inherit `DoublesAmplitudes`' constructors.
+    using DoublesAmplitudes<Scalar, T2Amplitudes<Scalar>>::DoublesAmplitudes;
 
 
     /*
@@ -122,92 +97,6 @@ public:
         const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N}, {OccupationType::k_virtual, M - N}});
 
         return T2Amplitudes<Scalar>::Perturbative(sq_hamiltonian, orbital_space);
-    }
-
-
-    /*
-     *  OPERATORS
-     */
-
-    /**
-     *  Access one of the T2-amplitudes.
-     * 
-     *  @param i            an occupied index
-     *  @param j            an occupied index
-     *  @param a            a virtual index
-     *  @param b            a virtual index
-     * 
-     *  @return the read-only T2-amplitude corresponding to t_{ij}^{ab}
-     */
-    Scalar operator()(const size_t i, const size_t j, const size_t a, const size_t b) const { return this->t(i, j, a, b); }
-
-    /**
-     *  Access one of the T2-amplitudes.
-     * 
-     *  @param i            an occupied index
-     *  @param j            an occupied index
-     *  @param a            a virtual index
-     *  @param b            a virtual index
-     * 
-     *  @return the writable T2-amplitude corresponding to t_{ij}^{ab}
-     */
-    Scalar& operator()(const size_t i, const size_t j, const size_t a, const size_t b) { return this->t(i, j, a, b); }
-
-    /*
-     *  PUBLIC METHODS
-     */
-
-    /**
-     *  @return the T2-amplitudes as a ImplicitRankFourTensorSlice
-     */
-    const ImplicitRankFourTensorSlice<Scalar>& asImplicitRankFourTensorSlice() const { return this->t; }
-
-    /**
-     *  @return the Frobenius norm of these T2-amplitudes
-     */
-    Scalar norm() const { return this->asImplicitRankFourTensorSlice().asMatrix().norm(); }
-
-    /**
-     *  @return the orbital space for these T2-amplitudes, which covers the occupied-virtual separation
-     */
-    const OrbitalSpace& orbitalSpace() const { return this->orbital_space; }
-
-
-    /*
-     *  MARK: Vector space arithmetic
-     */
-
-    /**
-     *  Addition-assignment.
-     */
-    Self& operator+=(const Self& rhs) override {
-
-        // Prepare some variables.
-        const auto& index_maps = this->asImplicitRankFourTensorSlice().indexMaps();
-
-        const Tensor<Scalar, 4> t_sum_dense = this->asImplicitRankFourTensorSlice().asTensor().Eigen() + rhs.asImplicitRankFourTensorSlice().asTensor().Eigen();
-        const ImplicitRankFourTensorSlice<Scalar> t_sum_slice {index_maps, t_sum_dense};
-
-        this->t = t_sum_slice;
-
-        return *this;
-    }
-
-
-    /**
-     *  Scalar multiplication-assignment.
-     */
-    Self& operator*=(const Scalar& a) override {
-
-        // Prepare some variables.
-        const auto& index_maps = this->asImplicitRankFourTensorSlice().indexMaps();
-
-        const Tensor<Scalar, 4> t_multiplied_dense = a * this->asImplicitRankFourTensorSlice().asTensor().Eigen();
-        const ImplicitRankFourTensorSlice<Scalar> t_multiplied_slice {index_maps, t_multiplied_dense};
-
-        this->t = t_multiplied_slice;
-
-        return *this;
     }
 };
 
