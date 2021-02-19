@@ -20,6 +20,8 @@
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCModel/CC/L1Amplitudes.hpp"
+#include "QCModel/CC/L2Amplitudes.hpp"
 #include "QCModel/CC/T1Amplitudes.hpp"
 #include "QCModel/CC/T2Amplitudes.hpp"
 
@@ -44,8 +46,14 @@ private:
     // The T1-amplitudes.
     T1Amplitudes<Scalar> t1;
 
-    // The T2-amplitudes
+    // The L1-amplitudes
+    L1Amplitudes<Scalar> l1;
+
+    // The T2-amplitudes.
     T2Amplitudes<Scalar> t2;
+
+    // The L2-amplitudes.
+    L2Amplitudes<Scalar> l2;
 
 
 public:
@@ -56,590 +64,720 @@ public:
     /**
      *  Construct a LambdaCCSD wave function from its converged T1- and T2-amplitudes.
      * 
-     *  @param t1                   the T1-amplitudes
-     *  @param t2                   the T2-amplitudes
+     *  @param t1                   The T1-amplitudes.
+     *  @param t2                   The T2-amplitudes.
+     *  @param l1                   The L1-amplitudes.
+     *  @param l2                   The L2-amplitudes.
      */
-    LambdaCCSD(const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) :
+    LambdaCCSD(const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const L1Amplitudes<Scalar>& l1, const L2Amplitudes<Scalar>& l2) :
         t1 {t1},
-        t2 {t2} {}
+        l1 {l1},
+        t2 {t2},
+        l2 {l2} {}
 
 
     /*
-     *  STATIC PUBLIC METHODS
+     *  MARK: Access
      */
 
     /**
-     *  Calculate the LambdaCCSD correlation energy.
-     * 
-     *  @param f                        the (inactive) Fock matrix
-     *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                           the T1-amplitudes
-     *  @param t2                           the T2-amplitudes
-     * 
-     *  @return the LambdaCCSD correlation energy
+     *  @return These LambdaCCSD model parameters' T1-amplitudes.
      */
-    static Scalar calculateCorrelationEnergy(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
-        const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
+    const T1Amplitudes<Scalar>& t1Amplitudes() const { return this->t1; }
 
-        // A KISS implementation of the LambdaCCSD energy correction.
-        // The implementation is in line with Crawford2000 "Chapter 2: An Introduction to Coupled Cluster Theory for Computational Chemists", eq. [134].
-        double E = 0.0;
-        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+    /**
+     *  @return These LambdaCCSD model parameters' T2-amplitudes.
+     */
+    const T2Amplitudes<Scalar>& t2Amplitudes() const { return this->t2; }
+
+    /**
+     *  @return These LambdaCCSD model parameters' L1-amplitudes.
+     */
+    const T1Amplitudes<Scalar>& l1Amplitudes() const { return this->l1; }
+
+    /**
+     *  @return These LambdaCCSD model parameters' L2-amplitudes.
+     */
+    const T2Amplitudes<Scalar>& l2Amplitudes() const { return this->l2; }
+
+
+    /*
+     *  MARK: Intermediates for Lambda-CCSD
+     */
+
+    /**
+     *  @param F1           The F1-intermediate (equation (4) in Gauss1991).
+     *  @param F3           The F3-intermediate (equation (6) in Gauss1991).
+     *  @param t1           The T1-amplitudes.
+     * 
+     *  @return the F1_tilde-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, F1_tilde represents equation (17) in Gauss1991.
+     */
+    static ImplicitMatrixSlice<Scalar> calculateF1tilde(const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F3, const T1Amplitudes<Scalar>& t1) {
+
+        const auto& orbital_space = t1.orbitalSpace();
+
+        auto F1_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual);  // Zero-initialize a virtual-virtual object.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                E += f(i, a) * t1(i, a);
+                // Calculate the contribution from the first term.
+                Scalar value = F1(e, a);
+
+                // Calculate the contribution from the second term.
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    value -= 0.5 * t1(m, e) * F3(m, a);
+                }
+
+                F1_tilde(e, a) = value;
             }
         }
 
+        return F1_tilde;
+    }
+
+
+    /**
+     *  @param F2           The F2-intermediate (equation (5) in Gauss1991).
+     *  @param F3           The F3-intermediate (equation (6) in Gauss1991).
+     *  @param t1           The T1-amplitudes.
+     * 
+     *  @return The F2_tilde-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, F2_tilde represents equation (18) in Gauss1991.
+     */
+    static ImplicitMatrixSlice<Scalar> calculateF2tilde(const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3, const T1Amplitudes<Scalar>& t1) {
+
+        const auto& orbital_space = t1.orbitalSpace();
+
+        auto F2_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied);  // Zero-initialize a virtual-virtual object.
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-                for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        E += 0.25 * V_A(i, j, a, b) * t2(i, j, a, b);
-                        E += 0.5 * V_A(i, j, a, b) * t1(i, a) * t1(j, b);
-                    }
-                }
-            }
-        }
-
-        return E;
-    }
-
-
-    /**
-     *  Calculate the value for one of the LambdaCCSD T1-amplitude equations, evaluated at the given T1- and T2-amplitudes (and itermediates).
-     *      f_i^a = <Phi_i^a| H |Phi_0>             with H the similarity-transformed normal-ordered Hamiltonian
-     * 
-     *  @param i                            the (occupied) subscript for the amplitude equation
-     *  @param a                            the (virtual) superscript for the amplitude equation
-     *  @param f                            the (inactive) Fock matrix
-     *  @param V_A                          the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                           the T1-amplitudes
-     *  @param t2                           the T2-amplitudes
-     *  @param F1                           the F1-intermediate (equation (3) in Stanton1991)
-     *  @param F2                           the F2-intermediate (equation (4) in Stanton1991)
-     *  @param F3                           the F3-intermediate (equation (5) in Stantion1991)
-     * 
-     *  @return the value for one of the LambdaCCSD T1-amplitude equations
-     */
-    static Scalar calculateT1AmplitudeEquation(const size_t i, const size_t a, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3) {
-
-        const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
-
-        // We will use equation (1) in Stanton1991 by putting the left-hand term (with the energy denominator) to the right.
-        Scalar result {0.0};  // zero-initialize the scalar value for the result
-
-        // Calculate the contribution from the left-hand side.
-        const auto D_ia = f(i, i) - f(a, a);
-        result -= t1(i, a) * D_ia;
-
-        // Calculate the contribution from the first term.
-        result += f(i, a);
-
-        // Calculate the contribution from the second term.
-        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-            result += t1(i, e) * F1(a, e);
-        }
-
-        // Calculate the contribution from the third term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            result -= t1(m, a) * F2(m, i);
-        }
-
-        // Calculate the contribution from the fourth term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                result += t2(i, m, a, e) * F3(m, e);
-            }
-        }
-
-        // Calculate the contribution from the fifth term.
-        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                result -= t1(n, f) * V_A(n, a, i, f);
-            }
-        }
-
-        // Calculate the contribution from the sixth term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                    result -= 0.5 * t2(i, m, e, f) * V_A(m, a, e, f);
-                }
-            }
-        }
-
-        // Calculate the contribution from the seventh term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                    result -= 0.5 * t2(m, n, a, e) * V_A(n, m, e, i);
-                }
-            }
-        }
-
-        return result;
-    }
-
-
-    /**
-     *  Calculate the value for one of the LambdaCCSD T2-amplitude equations, evaluated at the given T1- and T2-amplitudes (and itermediates).
-     *      f_{ij}^{ab} = <Phi_{ij}^{ab}| H |Phi_0>             with H the similarity-transformed normal-ordered Hamiltonian
-     * 
-     *  @param i                            the (occupied) subscript for the amplitude equation
-     *  @param j                            the other (occupied) subscript for the amplitude equation
-     *  @param a                            the (virtual) superscript for the amplitude equation
-     *  @param b                            the other (virtual) superscript for the amplitude equation
-     *  @param f                            the (inactive) Fock matrix
-     *  @param V_A                          the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                           the T1-amplitudes
-     *  @param t2                           the T2-amplitudes
-     *  @param tau2                         the tau2-intermediate (equation (10) in Stanton1991)
-     *  @param F1                           the F1-intermediate (equation (3) in Stanton1991)
-     *  @param F2                           the F2-intermediate (equation (4) in Stanton1991)
-     *  @param F3                           the F3-intermediate (equation (5) in Stantion1991)
-     *  @param W1                           the W1-intermediate (equation (6) in Stanton1991)
-     *  @param W2                           the W2-intermediate (equation (7) in Stanton1991)
-     *  @param W3                           the W3-intermediate (equation (8) in Stantion1991)
-     * 
-     *  @return the value for one of the LambdaCCSD T2-amplitude equations
-     */
-    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
-
-        const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
-
-        // We will use equation (2) in Stanton1991 by putting the left-hand term (with the energy denominator) to the right.
-        Scalar result {0.0};  // zero-initialize the scalar value for the result
-
-        // Calculate the contribution from the left-hand side.
-        const auto D_ijab = f(i, i) + f(j, j) - f(a, a) - f(b, b);
-        result -= t2(i, j, a, b) * D_ijab;
-
-        // Calculate the contribution from the first term.
-        result += V_A(i, j, a, b);
-
-        // Calculate the contribution from the second term.
-        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-            result += t2(i, j, a, e) * F1(b, e);
-            result -= t2(i, j, b, e) * F1(a, e);  // P(ab) applied
-
             for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-                result -= 0.5 * t2(i, j, a, e) * t1(m, b) * F3(m, e);
-                result += 0.5 * t2(i, j, b, e) * t1(m, a) * F3(m, e);  // P(ab) applied
+                // Calculate the contribution from the first term.
+                Scalar value = F2(i, m);
+
+                // Calculate the contribution from the second term.
+                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                    value -= 0.5 * t1(m, e) * F3(i, e);
+                }
+
+                F2_tilde(i, m) = value;
             }
         }
 
-        // Calculate the contribution from the third term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            result -= t2(i, m, a, b) * F2(m, j);
-            result += t2(j, m, a, b) * F2(m, i);  // P(ij) applied
+        return F2_tilde;
+    }
 
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                result -= 0.5 * t2(i, m, a, b) * t1(j, e) * F3(m, e);
-                result += 0.5 * t2(j, m, a, b) * t1(i, e) * F3(m, e);  // P(ij) applied
-            }
-        }
 
-        // Calculate the contribution from the fourth term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                result += 0.5 * tau2(m, n, a, b) * W1(m, n, i, j);
-            }
-        }
+    /**
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     *  @param tau2                 The tau2-intermediate (equation (11) in Gauss1991).
+     *  @param W2                   The W2-intermediate (equation (8) in Gauss1991).
+     *  @param orbital_space        The orbital space that encapsulates the occupied-virtual separation.
+     * 
+     *  @return The W1_tilde-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, W1_tilde represents equation (19) in Gauss1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateW1Tilde(const SquareRankFourTensor<Scalar>& V_A, const ImplicitRankFourTensorSlice<Scalar>& tau2, const ImplicitRankFourTensorSlice<Scalar>& W2, const OrbitalSpace& orbital_space) {
 
-        // Calculate the contribution from the fifth term.
+        auto W1_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_virtual);  // Zero-initialize a virtual-virtual-virtual-virtual object.
         for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
             for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                result += 0.5 * tau2(i, j, e, f) * W2(a, b, e, f);
-            }
-        }
-
-        // Calculate the contribution from the sixth term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                result += t2(i, m, a, e) * W3(m, b, e, j) - t1(i, e) * t1(m, a) * V_A(m, b, e, j);
-                result -= t2(j, m, a, e) * W3(m, b, e, i) - t1(j, e) * t1(m, a) * V_A(m, b, e, i);  // P(ij) applied
-                result -= t2(i, m, b, e) * W3(m, a, e, j) - t1(i, e) * t1(m, b) * V_A(m, a, e, j);  // P(ab) applied
-                result += t2(j, m, b, e) * W3(m, a, e, i) - t1(j, e) * t1(m, b) * V_A(m, a, e, i);  // P(ij) P(ab) applied
-            }
-        }
-
-        // Calculate the contribution from the seventh term.
-        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-            result += t1(i, e) * V_A(a, b, e, j);
-            result -= t1(j, e) * V_A(a, b, e, i);  // P(ij) applied
-        }
-
-        // Calculate the contribution from the eight term.
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            result -= t1(m, a) * V_A(m, b, i, j);
-            result += t1(m, b) * V_A(m, a, i, j);  // P(ab) applied
-        }
-
-        return result;
-    }
-
-
-    /**
-     *  @param f                    the (inactive) Fock matrix
-     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                   the T1-amplitudes
-     *  @param tau2_tilde           the tau2_tilde intermediary (equation (10) in Stanton1991)
-     * 
-     *  @return the F1-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, F1 represents equation (3) in Stanton1991.
-     */
-    static ImplicitMatrixSlice<Scalar> calculateF1(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2_tilde) {
-
-        const auto& orbital_space = t1.orbitalSpace();
-
-        // Implement the formula for the F1-intermediate: equation (3) in Stanton1993.
-        auto F1 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual);  // zero-initialize a virtual-virtual object
-        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                Scalar value {0.0};  // zero-initialize the scalar value to be added
-
-                // Calculate the contribution from the first term.
-                if (a != e) {  // (1 - delta_ae)
-                    value += f(a, e);
-                }
-
-                // Calculate the contribution from the second term.
-                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-                    value -= 0.5 * f(m, e) * t1(m, a);
-                }
-
-                // Calculate the contribution from the third term.
-                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-                    for (const auto f : orbital_space.indices(OccupationType::k_virtual)) {
-                        value += t1(m, f) * V_A(m, a, f, e);
-                    }
-                }
-
-                // Calculate the contribution from the fourth term.
-                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-                    for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                            value -= 0.5 * tau2_tilde(m, n, a, f) * V_A(m, n, e, f);
-                        }
-                    }
-                }
-
-                F1(a, e) = value;
-            }
-        }
-
-        return F1;
-    }
-
-
-    /**
-     *  @param f                    the (inactive) Fock matrix
-     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                   the T1-amplitudes
-     *  @param tau2_tilde           the tau2_tilde intermediary (equation (10) in Stanton1991)
-     * 
-     *  @return the F2-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, F2 represents equation (4) in Stanton1991.
-     */
-    static ImplicitMatrixSlice<Scalar> calculateF2(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2_tilde) {
-
-        const auto& orbital_space = t1.orbitalSpace();
-
-        // Implement the formula for F2 in equation (4) in Stanton1991.
-        auto F2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied);  // zero-initialize an occupied-occupied object
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-                Scalar value {0.0};  // zero-initialize the scalar value to be added
-
-                // Calculate the contribution from the first term.
-                if (m != i) {  // (1 - delta_mi)
-                    value += f(m, i);
-                }
-
-                // Calculate the contribution from the second term.
-                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                    value += 0.5 * t1(i, e) * f(m, e);
-                }
-
-                // Calculate the contribution from the third term.
-                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                    for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                        value += t1(n, e) * V_A(m, n, i, e);
-                    }
-                }
-
-                // Calculate the contribution from the fourth term.
-                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                    for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                            value += 0.5 * tau2_tilde(i, n, e, f) * V_A(m, n, e, f);
-                        }
-                    }
-                }
-
-                F2(m, i) = value;
-            }
-        }
-
-        return F2;
-    }
-
-
-    /**
-     *  @param f                    the (inactive) Fock matrix
-     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                   the T1-amplitudes
-     * 
-     *  @return the F3-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, F3 represents equation (5) in Stanton1991.
-     */
-    static ImplicitMatrixSlice<Scalar> calculateF3(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1) {
-
-        const auto& orbital_space = t1.orbitalSpace();
-
-        // Implement the formula for F3 in equation (5) in Stanton1991.
-        auto F3 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual);  // zero-initialize an occupied-virtual object
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                Scalar value {0.0};  // zero-initialize the scalar value to be added
-
-                // Calculate the contribution from the first term.
-                value += f(m, e);
-
-                // Calculate the contribution from the second term.
-                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                    for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                        value += t1(n, f) * V_A(m, n, e, f);
-                    }
-                }
-
-                F3(m, e) = value;
-            }
-        }
-
-        return F3;
-    }
-
-
-    /**
-     *  @param t1                   the T1-amplitudes
-     *  @param t2                   the T2-amplitudes
-     * 
-     *  @return the tau2-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, tau2 represents equation (10) in Stanton1991.
-     */
-    static ImplicitRankFourTensorSlice<Scalar> calculateTau2(const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
-
-        const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces for t1 and t2 are equal
-
-        // Implement the formula for tau2 (equation 10).
-        auto tau2 = t2.asImplicitRankFourTensorSlice();  // the contribution from the first term
-
-        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                 for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        tau2(i, j, a, b) += t1(i, a) * t1(j, b) - t1(i, b) * t1(j, a);
-                    }
-                }
-            }
-        }
-
-        return tau2;
-    }
-
-
-    /**
-     *  @param t1                   the T1-amplitudes
-     *  @param t2                   the T2-amplitudes
-     * 
-     *  @return the tau2_tilde-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, tau2_tilde represents equation (9) in Stanton1991.
-     */
-    static ImplicitRankFourTensorSlice<Scalar> calculateTau2Tilde(const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
-
-        const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces for t1 and t2 are equal
-
-        // Implement the formula for tau2_tilde (equation 9).
-        auto tau2_tilde = t2.asImplicitRankFourTensorSlice();  // the contribution from the first term
-
-        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-                for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        tau2_tilde(i, j, a, b) += 0.5 * (t1(i, a) * t1(j, b) - t1(i, b) * t1(j, a));
-                    }
-                }
-            }
-        }
-
-        return tau2_tilde;
-    }
-
-
-    /**
-     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                   the T1-amplitudes
-     *  @param tau2                 the tau2-intermediate (equation 10 in Stanton1991)
-     * 
-     *  @return the W1-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, W1 represents equation (6) in Stanton1991.
-     */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW1(const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2) {
-
-        const auto& orbital_space = t1.orbitalSpace();
-
-        // Implement the formula for W1 (equation 6).
-        auto W1 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_occupied);  // zero-initialize an occupied-occupied-occupied-occupied object
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-                    for (const auto j : orbital_space.indices(OccupationType::k_occupied)) {
-                        Scalar value {0.0};  // zero-initialize the scalar value to be added
 
                         // Calculate the contribution from the first term.
-                        value += V_A(m, n, i, j);
+                        Scalar value = W2(e, f, a, b);
 
                         // Calculate the contribution from the second term.
-                        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                            value += t1(j, e) * V_A(m, n, i, e);
-                            value -= t1(i, e) * V_A(m, n, j, e);  // P(ij) applied
-                        }
-
-                        // Calculate the contribution from the third term.
-                        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                                value += 0.25 * tau2(i, j, e, f) * V_A(m, n, e, f);
-                            }
-                        }
-
-                        W1(m, n, i, j) = value;
-                    }
-                }
-            }
-        }
-
-        return W1;
-    }
-
-
-    /**
-     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                   the T1-amplitudes
-     *  @param tau2                 the tau2-intermediate (equation 10 in Stanton1991)
-     * 
-     *  @return the W2-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, W2 represents equation (7) in Stanton1991.
-     */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW2(const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2) {
-
-        const auto& orbital_space = t1.orbitalSpace();
-
-        // Implement the formula for W2 (equation 7).
-        auto W2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_virtual);  // zero-initialize a virtual-virtual-virtual-virtual object
-        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-            for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                    for (const auto f : orbital_space.indices(OccupationType::k_virtual)) {
-                        Scalar value {0.0};  // zero-initialize the scalar value to be added
-
-                        // Calculate the contribution from the first term.
-                        value += V_A(a, b, e, f);
-
-                        // Calculate the contribution from the second term.
-                        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-                            value -= t1(m, b) * V_A(a, m, e, f);
-                            value += t1(m, a) * V_A(b, m, e, f);  // P(ab) applied
-                        }
-
-                        // Calculate the contribution from the third term.
                         for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
                             for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                                value += 0.25 * tau2(m, n, a, b) * V_A(m, n, e, f);
+                                value += 0.25 * tau2(m, n, e, f) * V_A(m, n, a, b);
                             }
                         }
 
-                        W2(a, b, e, f) = value;
+                        W1_tilde(a, b, e, f) = value;
                     }
                 }
             }
         }
 
-        return W2;
+        return W1_tilde;
     }
 
 
     /**
-     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t1                   the T1-amplitudes
-     *  @param t2                   the T2-amplitudes
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     *  @param tau2                 The tau2-intermediate (equation (11) in Gauss1991).
+     *  @param W2                   The W2-intermediate (equation (8) in Gauss1991).
+     *  @param orbital_space        The orbital space that encapsulates the occupied-virtual separation.
      * 
-     *  @return the W3-intermediate
+     *  @return The W2_tilde-intermediate.
      * 
-     *  @note This is one of the intermediate quantities in the factorization of LambdaCCSD. In particular, W3 represents equation (8) in Stanton1991.
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, W2_tilde represents equation (20) in Gauss1991.
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW3(const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateW2Tilde(const SquareRankFourTensor<Scalar>& V_A, const ImplicitRankFourTensorSlice<Scalar>& tau2, const ImplicitRankFourTensorSlice<Scalar>& W2, const OrbitalSpace& orbital_space) {
 
-        const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces for t1 and t2 are equal
-
-        // Implement the formula for W3 (equation 8).
-        auto W3 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_occupied);  // zero-initialize an occupied-virtual-virtual-occupied object
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-                        Scalar value {0.0};  // zero-initialize the scalar value to be added
+        auto W2_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_occupied);  // Zero-initialize an occupied-occupied-occupied-occupied object.
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
 
                         // Calculate the contribution from the first term.
-                        value += V_A(m, b, e, j);
+                        Scalar value = W1(i, j, m, n);
+
+                        // Calculate the contribution from the second term.
+                        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                                value += 0.25 * tau2(m, n, e, f) * V_A(e, f, i, j);
+                            }
+                        }
+
+                        W2_tilde(i, j, m, n) = value;
+                    }
+                }
+            }
+        }
+
+        return W2_tilde;
+    }
+
+
+    /**
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     *  @param t1                   The T1-amplitudes.
+     *  @param t2                   The T2-amplitudes.
+     * 
+     *  @return The W3_tilde-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, W3_tilde represents equation (21) in Gauss1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateW3Tilde(const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // Assume the orbital spaces for t1 and t2 are equal.
+
+        auto W3_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual);  // Zero-initialize a virtual-occupied-occupied-virtual object
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+
+                        // Zero-initialize the scalar value to be added.
+                        Scalar value {0.0};
+
+                        // Calculate the contribution from the first term.
+                        value += V_A(e, j, m, b);
 
                         // Calculate the contribution from the second term.
                         for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                            value += t1(j, f) * V_A(m, b, e, f);
+                            value += t1(m, f) * V_A(e, j, f, b);
                         }
 
                         // Calculate the contribution from the third term.
                         for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                            value -= t1(n, b) * V_A(m, n, e, j);
+                            value -= t1(n, e) * V_A(n, j, m, b);
                         }
 
                         // Calculate the contribution from the fourth term.
                         for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
                             for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                                value -= (0.5 * t2(j, n, f, b) + t1(j, f) * t1(n, b)) * V_A(m, n, e, f);
+                                value += (t2(m, n, e, f) - t1(m, f) * t1(n, e)) * V_A(n, j, f, b);
                             }
                         }
 
-                        W3(m, b, e, j) = value;
+                        W3_tilde(e, j, m, b) = value;
                     }
                 }
             }
         }
 
-        return W3;
+        return W3_tilde;
+    }
+
+
+    /**
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     *  @param t1                   The T1-amplitudes.
+     *  @param t2                   The T2-amplitudes.
+     *  @param tau2
+     *  @param F3
+     *  @param W3_tilde
+     *  @param W_tilde_tilde
+     * 
+     *  @return The W4_tilde-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, W4_tilde represents equation (22) in Gauss1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateW4Tilde(const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitRankFourTensorSlice<Scalar>& W3_tilde, const ImplicitRankFourTensorSlice<Scalar>& W_tilde_tilde) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // Assume the orbital spaces for t1 and t2 are equal.
+
+        auto W4_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_occupied);  // Zero-initialize a virtual-occupied-occupied-virtual object
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+
+                        // Zero-initialize the scalar value to be added.
+                        Scalar value {0.0};
+
+                        // Calculate the contribution from the first term.
+                        value += V_A(i, e, m, n);
+
+                        // Calculate the contribution from the second term.
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            value -= F3(i, f) * t2(m, n, e, f);
+                        }
+
+                        // Calculate the contribution from the third term.
+                        for (const auto& o : orbital_space.indices(OccupationType::k_occupied)) {
+                            value -= t1(o, e) * W3_tilde(i, o, m, n);
+                        }
+
+                        // Calculate the contribution from the fourth term.
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            for (const auto& g : orbital_space.indices(OccupationType::k_virtual)) {
+                                value += 0.5 * V_A(i, e, f, g) * tau2(m, n, f, g);
+                            }
+                        }
+
+                        // Calculate the contribution from the fifth term.
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            value -= t1(m, f) * W_tilde_tilde(i, e, f, n);
+                            value += t1(n, f) * W_tilde_tilde(i, e, f, m);  // P(mn) applied.
+                        }
+
+                        // Calculate the contribution from the sixth term.
+                        for (const auto& o : orbital_space.indices(OccupationType::k_occupied)) {
+                            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                                value += V_A(i, o, m, f) * t2(n, o, e, f);
+                                value -= V_A(i, o, n, f) * t2(m, o, e, f);  // P(mn) applied.
+                            }
+                        }
+
+                        W4_tilde(e, j, m, b) = value;
+                    }
+                }
+            }
+        }
+
+        return W4_tilde;
+    }
+
+
+    /**
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     *  @param t1                   The T1-amplitudes.
+     *  @param t2                   The T2-amplitudes.
+     *  @param tau2
+     *  @param F3
+     *  @param W1_tilde
+     *  @param W_tilde_tilde
+     * 
+     *  @return The W5_tilde-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, W5_tilde represents equation (23) in Gauss1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateW5Tilde(const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitRankFourTensorSlice<Scalar>& W1_tilde, const ImplicitRankFourTensorSlice<Scalar>& W_tilde_tilde) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // Assume the orbital spaces for t1 and t2 are equal.
+
+        auto W5_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_occupied);  // Zero-initialize a virtual-virtual-virtual-occupied object
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+
+                        // Zero-initialize the scalar value to be added.
+                        Scalar value {0.0};
+
+                        // Calculate the contribution from the first term.
+                        value += V_A(e, f, a, m);
+
+                        // Calculate the contribution from the second term.
+                        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                            value += t2(m, n, e, f) * F3(n, a);
+                        }
+
+                        // Calculate the contribution from the third term.
+                        for (const auto& g : orbital_space.indices(OccupationType::k_virtual)) {
+                            value += t1(m, g) * W1_tilde(e, f, a, g);
+                        }
+
+                        // Calculate the contribution from the fourth term.
+                        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                            for (const auto& o : orbital_space.indices(OccupationType::k_occupied)) {
+                                value += 0.5 * V_A(a, m, n, o) * tau2(n, o, e, f);
+                            }
+                        }
+
+                        // Calculate the contribution from the fifth term.
+                        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                            value -= t1(n, e) * W_tilde_tilde(n, f, a, m);
+                            value += t1(n, f) * W_tilde_tilde(n, e, a, m);  // P(ef) applied.
+                        }
+
+                        // Calculate the contribution from the sixth term.
+                        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                            for (const auto& g : orbital_space.indices(OccupationType::k_virtual)) {
+                                value += V_A(e, n, a, g) * t2(m, n, f, g);
+                                value -= V_A(f, n, a, g) * t2(m, n, e, g);  // P(ef) applied
+                            }
+                        }
+
+                        W5_tilde(e, j, m, b) = value;
+                    }
+                }
+            }
+        }
+
+        return W5_tilde;
+    }
+
+
+    /**
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     *  @param t2                   The T2-amplitudes.
+     * 
+     *  @return The W_tilde_tilde-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, W_tilde_tilde represents equation (24) in Gauss1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateWTildeTilde(const SquareRankFourTensor<Scalar>& V_Aconst T2Amplitudes<Scalar>& t2) {
+
+        const auto& orbital_space = t2.orbitalSpace();
+
+        auto W_tilde_tilde = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_occupied);  // Zero-initialize a occupied-virtual-virtual-occupied object.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+
+                        // Calculate the contribution from the first term.
+                        Scalar value = V_A(m, b, e, f);
+
+                        // Calculate the contribution from the second term.
+                        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                                value -= t2(n, j, b, f) * V_A(m, n, e, f);
+                            }
+                        }
+
+                        W_tilde_tilde(m, b, e, j) = value;
+                    }
+                }
+            }
+        }
+
+        return W_tilde_tilde;
+    }
+
+
+    /**
+     *  @param t2           The T2-amplitudes.
+     *  @param l2           The L2-amplitudes.
+     * 
+     *  @return The G1-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, G1 represents equation (25) in Gauss1991.
+     */
+    static ImplicitMatrixSlice<Scalar> calculateG1(const T2Amplitudes<Scalar>& t2, const L2Amplitudes<Scalar>& l2) {
+
+        const auto& orbital_space = t2.orbitalSpace();  // Assume the orbital spaces for t2 and l2 are equal.
+
+        auto G1 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual);  // Zero-initialize a virtual-virtual object.
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+
+                Scalar value {0.0};
+
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            value -= 0.5 * t2(m, n, e, f) * l2(a, f, m, n);
+                        }
+                    }
+                }
+
+                G1(a, e) = value;
+            }
+        }
+
+        return G1;
+    }
+
+
+    /**
+     *  @param t2           The T2-amplitudes.
+     *  @param l2           The L2-amplitudes.
+     * 
+     *  @return The G2-intermediate.
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of Lambda-CCSD. In particular, G2 represents equation (26) in Gauss1991.
+     */
+    static ImplicitMatrixSlice<Scalar> calculateG1(const T2Amplitudes<Scalar>& t2, const L2Amplitudes<Scalar>& l2) {
+
+        const auto& orbital_space = t2.orbitalSpace();  // Assume the orbital spaces for t2 and l2 are equal.
+
+        auto G2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied);  // Zero-initialize an occupied-occupied object.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+
+                Scalar value {0.0};
+
+                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            value += t2(m, n, e, f) * l2(e, f, i, n);
+                        }
+                    }
+                }
+
+                G2(m, i) = value;
+            }
+        }
+
+        return G2;
     }
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Lambda equations
      */
 
     /**
-     *  @return these LambdaCCSD model parameters' T1-amplitudes
+     *  Calculate the value for one of the Lambda-CCSD L1-amplitude equations, evaluated at the intermediates.
+     * 
+     *  @param a                    The virtual index for the amplitude equation.
+     *  @param i                    The occupied index for the amplitude equation.
+     *  @param f                    The (inactive) Fock matrix.
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     *  @return The value for one of the CCSD L1-amplitude equations.
      */
-    const T1Amplitudes<Scalar>& t1Amplitudes() const { return this->t1; }
+    static Scalar calculateT1AmplitudeEquation(const size_t a, const size_t i, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const L1Amplitudes<Scalar>& l1, const L2Amplitudes<Scalar>& l2, const ImplicitMatrixSlice<Scalar>& G1, const ImplicitMatrixSlice<Scalar>& G2, const ImplicitMatrixSlice<Scalar>& F1_tilde, const ImplicitMatrixSlice<Scalar>& F2_tilde, const ImplicitRankFourTensorSlice<Scalar>& W3_tilde, const ImplicitRankFourTensorSlice<Scalar>& W4_tilde, const ImplicitRankFourTensorSlice<Scalar>& W5_tilde) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // Assume all implements have the same orbital space.
+
+        // We will use equation (15) in Gauss1991 by putting the left-hand term (with the energy denominator) to the right.
+        Scalar result {0.0};  // Zero-initialize the scalar value for the result.
+
+        // Calculate the contribution from the left-hand side.
+        const auto D_ia = f(i, i) - f(a, a);
+        result -= D_ia * l1(a, i);
+
+        // Calculate the contribution from the first term.
+        value += F3(i, a);
+
+        // Calculate the contribution from the second term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            value += l1(e, i) * F1_tilde(e, a);
+        }
+
+        // Calculate the contribution from the third term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            value -= l1(a, m) * F2_tilde(i, m);
+        }
+
+        // Calculate the contribution from the fourth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                    value += 0.5 * l2(e, f, i, m) * W5_tilde(e, f, a, m);
+                }
+            }
+        }
+
+        // Calculate the contribution from the fifth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                value += l1(e, m) * W3_tilde(e, i, m, a);
+            }
+        }
+
+        // Calculate the contribution from the sixth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                    value -= 0.5 * l2(a, e, m, n) * W4_tilde(i, e, m, n);  // We believe the order of the indices that is provided in the paper, i.e. W_mnie, is wrong and should be permuted.
+                }
+            }
+        }
+
+        // Calculate the contribution from the seventh term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                value -= G1(e, f) * V_A(e, i, f, a);
+            }
+        }
+
+        // Calculate the contribution from the eight term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                value -= G2(m, n) * V_A(m, i, n, a);
+            }
+        }
+
+        // Calculate the contribution from the ninth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+
+                for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                    value += G1(f, e) * t1(m, f) * V_A(i, m, a, e);
+                }
+
+                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                    value -= G2(m, n) * t1(m, e) * V_A(i, m, a, e);
+                }
+            }
+        }
+
+        return result;
+    }
+
 
     /**
-     *  @return these LambdaCCSD model parameters' T2-amplitudes
+     *  Calculate the value for one of the Lambda-CCSD L2-amplitude equations, evaluated at the intermediates.
+     * 
+     *  @param a                    The virtual index for the amplitude equation.
+     *  @param i                    The occupied index for the amplitude equation.
+     *  @param f                    The (inactive) Fock matrix.
+     *  @param V_A                  The antisymmetrized two-electron integrals (in physicist's notation).
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     *  @return The value for one of the CCSD L2-amplitude equations.
      */
-    const T2Amplitudes<Scalar>& t2Amplitudes() const { return this->t2; }
+    static Scalar
+    calculateL2AmplitudeEquation(const size_t a, const size_t b, const size_t i, const size_t j, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const L1Amplitudes<Scalar>& l1, const L2Amplitudes<Scalar>& l2, const ImplicitMatrixSlice<Scalar>& G1, const ImplicitMatrixSlice<Scalar>& G2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitMatrixSlice<Scalar>& F1_tilde, const ImplicitMatrixSlice<Scalar>& F2_tilde, const ImplicitRankFourTensorSlice<Scalar>& W1_tilde, const ImplicitRankFourTensorSlice<Scalar>& W2_tilde, const ImplicitRankFourTensorSlice<Scalar>& W3_tilde) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // Assume all implements have the same orbital space.
+
+        // We will use equation (16) in Gauss1991 by putting the left-hand term (with the energy denominator) to the right.
+        Scalar result {0.0};  // Zero-initialize the scalar value for the result.
+
+        // Calculate the contribution from the left-hand side.
+        const auto D_ijab = f(i, i) + f(j, j) - f(a, a) - f(b, b);
+        result -= D_ijab * l2(a, b, i, j);
+
+        // Calculate the contribution from the first term.
+        value += V_A(i, j, a, b);
+
+        // Calculate the contribution from the second term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            // We believe the order of the indices that is provided in the paper, i.e. l2_ijae, is wrong and should be permuted.
+            value += l2(a, e, i, j) * F1_tilde(e, b);
+            value -= l2(b, e, i, j) * F1_tilde(e, a);  // P(ab) applied.
+        }
+
+        // Calculate the contribution from the third term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            value -= l2(a, b, i, m) * F2_tilde(j, m);
+            value += l2(a, b, j, m) * F2_tilde(i, m);  // P(ij) applied.
+        }
+
+        // Calculate the contribution from the fourth term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                value += 0.5 * l2(e, f, i, j) * W1_tilde(e, f, a, b);
+            }
+        }
+
+        // Calculate the contribution from the fifth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                value += 0.5 * l2(a, b, m, n) * W2_tilde(i, j, m, n);
+            }
+        }
+
+        // Calculate the contribution from the sixth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                value += l2(a, e, i, m) * W3_tilde(e, j, m, b);
+                value -= l2(a, e, j, m) * W3_tilde(e, i, m, b);  // P(ij) appplied.
+                value -= l2(b, e, i, m) * W3_tilde(e, j, m, a);  // P(ab) applied.
+                value += l2(b, e, j, m) * W3_tilde(e, i, m, a);  // P(ij) P(ab) applied.
+            }
+        }
+
+        // Calculate the contribution from the seventh term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+
+            // First contribution in parentheses.
+            value += V_A(i, j, a, e) * G1(b, e);
+
+            // Second contribution in parentheses.
+            for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                value -= V_A(i, j, a, e) * l1(b, m) * t1(m, e);
+            }
+
+            // First contribution in parentheses, with P(ab) applied.
+            value -= V_A(i, j, b, e) * G1(a, e);
+
+            // Second contribution in parentheses, with P(ab) applied.
+            for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                value += V_A(i, j, b, e) * l1(a, m) * t1(m, e);
+            }
+        }
+
+        // Calculate the contribution from the eight term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+
+            // First contribution in parentheses.
+            value -= V_A(i, m, a, b) * G2(m, j);
+
+            // Second contribution in parentheses.
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                value -= V_A(i, m, a, b) * l1(e, j) * t1(m, e);
+            }
+
+            // First contribution in parentheses, with P(ij) applied.
+            value += V_A(j, m, a, b) * G2(m, i);
+
+            // Second contribution in parentheses, with P(ij) applied.
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                value += V_A(j, m, a, b) * l1(e, i) * t1(m, e);
+            }
+        }
+
+        // Calculate the contribution from the ninth term.
+        value += l1(a, i) * F3(j, b);
+        value -= l1(a, j) * F3(i, b);  // P(ij) applied
+        value -= l1(b, i) * F3(j, a);  // P(ab) applied
+        value += l1(b, j) * F3(i, a);  // P(ij) P(ab) applied.
+
+        // Calculate the contribution from the eleventh term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            value += l1(e, i) * V_A(e, j, a, b);
+            value -= l1(e, j) * V_A(e, i, a, b);  // P(ij) applied.
+        }
+
+        // Calculate the contribution from the twelfth term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_occupied)) {
+            value -= l1(a, m) * V_A(i, j, m, b);
+            value += l1(b, m) * V_A(i, j, m, a);  // P(ab) applied.
+        }
+
+        return value;
+    }
+
+    /*
+     *  MARK: Density matrices
+     */
 };
 
 

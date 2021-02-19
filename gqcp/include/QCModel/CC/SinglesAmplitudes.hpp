@@ -87,22 +87,22 @@ public:
     /**
      *  Access one of the singles amplitudes.
      * 
-     *  @param i            An occupied index.
-     *  @param a            A virtual index.
+     *  @param p            The subscript index.
+     *  @param q            The superscript index.
      * 
-     *  @return A read-only reference to the singles amplitude u_i^a.
+     *  @return A read-only reference to the singles amplitude u_p^q.
      */
-    Scalar operator()(const size_t i, const size_t a) const { return this->u(i, a); }
+    Scalar operator()(const size_t p, const size_t q) const { return this->u(p, q); }
 
     /**
      *  Access one of the singles amplitudes.
      * 
-     *  @param i            An occupied index.
-     *  @param a            A virtual index.
+     *  @param p            The subscript index.
+     *  @param q            The superscript index.
      * 
-     *  @return A writable reference to the singles amplitude u_i^a.
+     *  @return A writable reference to the singles amplitude u_p^q.
      */
-    Scalar& operator()(const size_t i, const size_t a) { return this->u(i, a); }
+    Scalar& operator()(const size_t p, const size_t q) { return this->u(p, q); }
 
     /**
      *  @return These singles amplitudes as an `ImplicitMatrixSlice`.

@@ -48,5 +48,4 @@ public:
     using SingleAmplitudes<Scalar, L1Amplitudes<Scalar>>::SingleAmplitudes;
 };
 
-
 }  // namespace GQCP

@@ -87,26 +87,26 @@ public:
     /**
      *  Access one of the doubles amplitudes.
      * 
-     *  @param i            An occupied index.
-     *  @param j            An occupied index.
-     *  @param a            A virtual index.
-     *  @param b            A virtual index.
+     *  @param p            The first subscript index.
+     *  @param q            The second subscript index.
+     *  @param r            The first superscript index.
+     *  @param s            The second superscript index.
      * 
-     *  @return A read-only reference to the doubles amplitude u_{ij}^{ab}.
+     *  @return A read-only reference to the doubles amplitude u_{pq}^{rs}.
      */
-    Scalar operator()(const size_t i, const size_t j, const size_t a, const size_t b) const { return this->v(i, j, a, b); }
+    Scalar operator()(const size_t p, const size_t q, const size_t r, const size_t s) const { return this->v(p, q, r, s); }
 
     /**
      *  Access one of the doubles amplitudes.
      * 
-     *  @param i            An occupied index.
-     *  @param j            An occupied index.
-     *  @param a            A virtual index.
-     *  @param b            A virtual index.
+     *  @param p            The first subscript index.
+     *  @param q            The second subscript index.
+     *  @param r            The first superscript index.
+     *  @param s            The second superscript index.
      * 
-     *  @return A writable reference to the doubles amplitude u_{ij}^{ab}.
+     *  @return A writable reference to the doubles amplitude u_{pq}^{rs}.
      */
-    Scalar& operator()(const size_t i, const size_t j, const size_t a, const size_t b) { return this->v(i, j, a, b); }
+    Scalar& operator()(const size_t p, const size_t q, const size_t r, const size_t s) { return this->v(p, q, r, s); }
 
     /**
      *  @return These doubles amplitudes as an `ImplicitRankFourTensorSlice`.
