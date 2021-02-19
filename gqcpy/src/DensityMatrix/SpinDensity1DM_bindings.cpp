@@ -39,6 +39,8 @@ void bindSpinDensity1DM(py::module& module) {
     // Define the Python class for `SpinDensity1DM`.
     py::class_<SpinDensity1DM<double>> py_SpinDensity1DM_d {module, "SpinDensity1DM_d", "A type used to represent a one-electron spin-density density matrix, i.e. the alpha density matrix minus the beta density matrix."};
 
+    // Expose the `Simple1DM` API to the Python class;
+    bindSimple1DMInterface(py_SpinDensity1DM_d);
 
     // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_SpinDensity1DM_d);

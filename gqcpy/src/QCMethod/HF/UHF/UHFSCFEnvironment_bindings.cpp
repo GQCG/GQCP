@@ -103,7 +103,7 @@ void bindQCMethodUHFSCFEnvironmentInterface(Class& py_class) {
          */
 
         .def("replace_current_coefficient_matrices",
-             [](UHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd&& new_coefficient_matrix_alpha, const Eigen::MatrixXd&& new_coefficient_matrix_beta) {
+             [](UHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_coefficient_matrix_alpha, const Eigen::MatrixXd& new_coefficient_matrix_beta) {
                  environment.coefficient_matrices.pop_back();
                  environment.coefficient_matrices.push_back(UTransformation<Scalar>(UTransformationComponent<Scalar>(new_coefficient_matrix_alpha), UTransformationComponent<Scalar>(new_coefficient_matrix_beta)));
              })
@@ -111,9 +111,14 @@ void bindQCMethodUHFSCFEnvironmentInterface(Class& py_class) {
         .def("replace_current_density_matrices",
              [](UHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_density_matrix_alpha, const Eigen::MatrixXd& new_density_matrix_beta) {
                  environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(SpinResolved1DM<Scalar>(new_density_matrix_alpha, new_density_matrix_beta));
+                 environment.density_matrices.push_back(SpinResolved1DM<Scalar>(SpinResolved1DMComponent<Scalar>(new_density_matrix_alpha), SpinResolved1DMComponent<Scalar>(new_density_matrix_beta)));
              })
 
+        .def("replace_current_density_matrices",
+             [](UHFSCFEnvironment<Scalar>& environment, const SpinResolved1DM<Scalar>& D) {
+                 environment.density_matrices.pop_back();
+                 environment.density_matrices.push_back(D);
+             })
 
         .def("replace_current_fock_matrices",
              [](UHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_fock_matrix_alpha, const Eigen::MatrixXd& new_fock_matrix_beta) {

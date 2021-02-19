@@ -103,9 +103,9 @@ public:
     /**
      *  Evaluate the expectation value of this second-quantized (one-electron) density operator.
      * 
-     *  @param D                the 1-DM
+     *  @param D            The 1-DM.
      * 
-     *  @return the expectation value of this second-quantized (one-electron) density operator, i.e. the electron density
+     *  @return The expectation value of this second-quantized (one-electron) density operator, i.e. the electron density.
      * 
      *  @note This method is only enabled for EvaluatableScalarRSQOneElectronOperator that represent second-quantized electron density operators.
      */
@@ -118,13 +118,12 @@ public:
         using SchrodingerDistribution = ScalarFunctionProduct<SpatialOrbital>;
         using DensityType = LinearCombination<double, SchrodingerDistribution>;
 
-
         // Create the density as a linear combination of 'density matrix elements'.
-        const auto dimension = D.numberOfOrbitals();
         DensityType density;
+        const auto dimension = D.numberOfOrbitals();
         for (size_t p = 0; p < dimension; p++) {
             for (size_t q = 0; q < dimension; q++) {
-                const auto coefficient = D(p, q);
+                const auto coefficient = D.matrix()(p, q);
                 const auto function = this->parameters()(p, q);
                 density.append(coefficient, function);
             }

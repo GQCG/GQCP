@@ -22,6 +22,7 @@
 #include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -42,9 +43,9 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _DerivedDM>
 class Simple1DM:
-    public SquareMatrix<_Scalar>,
     public BasisTransformable<_DerivedDM>,
-    public JacobiRotatable<_DerivedDM> {
+    public JacobiRotatable<_DerivedDM>,
+    public VectorSpaceArithmetic<_DerivedDM, _Scalar> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -59,19 +60,84 @@ public:
     using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
 
 
+private:
+    // The matrix representation of this one-electron density matrix.
+    SquareMatrix<Scalar> D;
+
+
 public:
     /*
      *  MARK: Constructors
      */
 
-    // Inherit `SquareMatrix`' constructors.
-    using SquareMatrix<Scalar>::SquareMatrix;
+    /**
+     *  Create a `Simple1DM` from its matrix representation.
+     * 
+     *  @param D            The matrix representation of the one-electron density matrix.
+     */
+    Simple1DM(const SquareMatrix<Scalar>& D) :
+        D {D} {}
+
+
+    /**
+     *  The default constructor.
+     */
+    Simple1DM() :
+        Simple1DM(SquareMatrix<Scalar>::Zero(0)) {}
+
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     *  @return A read-only reference to the matrix representation of this one-electron density matrix.
+     */
+    const SquareMatrix<Scalar>& matrix() const { return this->D; }
+
+    /**
+     *  @return A writable reference to the matrix representation of this one-electron density matrix.
+     */
+    SquareMatrix<Scalar>& matrix() { return this->D; }
 
 
     /*
      *  MARK: General information
      */
-    size_t numberOfOrbitals() const { return this->dimension(); }
+
+    /**
+     *  @return The number of orbitals that this one-electron density matrix is related to.
+     */
+    size_t numberOfOrbitals() const { return this->matrix().dimension(); }
+
+
+    /**
+     *  @return The norm of this 1-DM.
+     * 
+     *  @note This linear algebraic API is required for conformance in `ConsecutiveIteratesNormConvergence`.
+     */
+    double norm() const { return this->matrix().norm(); }
+
+
+    /*
+     *  MARK: Conforming to `VectorSpaceArithmetic`
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    DerivedDM& operator+=(const DerivedDM& rhs) override {
+        this->matrix() += rhs.matrix();
+        return static_cast<DerivedDM&>(*this);
+    }
+
+    /**
+     *  Scalar multiplication-assignment.
+     */
+    DerivedDM& operator*=(const Scalar& a) override {
+        this->matrix() *= a;
+        return static_cast<DerivedDM&>(*this);
+    }
 
 
     /*
@@ -89,7 +155,7 @@ public:
 
         // The transformation formulas for one-electron operators and 1-DMs are similar, but not quite the same. Instead of using T, the transformation formula for the 1-DM uses T_inverse_transpose. See also (https://gqcg-res.github.io/knowdes/spinor-transformations.html).
         const auto T_related = T.matrix().transpose().inverse();
-        return DerivedDM {T_related.adjoint() * (*this) * T_related};
+        return DerivedDM {T_related.adjoint() * this->matrix() * T_related};
     }
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.

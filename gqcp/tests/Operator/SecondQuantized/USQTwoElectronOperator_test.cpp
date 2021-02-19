@@ -81,10 +81,10 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const auto g = GQCP::ScalarUSQTwoElectronOperator<double>::Zero(dim);
 
     // Initialize valid and invalid test 2-DMs.
-    const GQCP::PureSpinResolved2DMComponent<double> d_valid_pure {2};
-    const GQCP::PureSpinResolved2DMComponent<double> d_invalid_pure {3};
-    const GQCP::MixedSpinResolved2DMComponent<double> d_valid_mixed {2};
-    const GQCP::MixedSpinResolved2DMComponent<double> d_invalid_mixed {3};
+    const GQCP::PureSpinResolved2DMComponent<double> d_valid_pure {GQCP::SquareRankFourTensor<double>::Zero(2)};
+    const GQCP::PureSpinResolved2DMComponent<double> d_invalid_pure {GQCP::SquareRankFourTensor<double>::Zero(3)};
+    const GQCP::MixedSpinResolved2DMComponent<double> d_valid_mixed {GQCP::SquareRankFourTensor<double>::Zero(2)};
+    const GQCP::MixedSpinResolved2DMComponent<double> d_invalid_mixed {GQCP::SquareRankFourTensor<double>::Zero(3)};
 
     const GQCP::SpinResolved2DM<double> d_invalid_aa {d_invalid_pure, d_valid_mixed, d_valid_mixed, d_valid_pure};
     const GQCP::SpinResolved2DM<double> d_invalid_ab {d_valid_pure, d_invalid_mixed, d_valid_mixed, d_valid_pure};
@@ -138,8 +138,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 
 
     // Initialize test 2-DMs: each one is chosen to have the correct four-index symmetries.
-    auto d1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
-
+    GQCP::SquareRankFourTensor<double> d1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
@@ -149,8 +148,10 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
             }
         }
     }
+    const GQCP::PureSpinResolved2DMComponent<double> dm1 {d1};
 
-    auto d2 = GQCP::SquareRankFourTensor<double>::Zero(dim);
+
+    GQCP::SquareRankFourTensor<double> d2 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -161,7 +162,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
             }
         }
     }
-    const GQCP::SpinResolved2DM<double> d {d1, d1, d2, d2};
+    const GQCP::SpinResolved2DM<double> d {GQCP::PureSpinResolved2DMComponent<double>(d1), GQCP::MixedSpinResolved2DMComponent<double>(d1), GQCP::MixedSpinResolved2DMComponent<double>(d2), GQCP::PureSpinResolved2DMComponent<double>(d2)};
 
 
     // Initialize a reference value and check the result.

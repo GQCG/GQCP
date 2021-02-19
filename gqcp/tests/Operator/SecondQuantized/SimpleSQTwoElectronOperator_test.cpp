@@ -157,8 +157,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     const GQCP::ScalarRSQTwoElectronOperator<double> g {2};
 
-    const GQCP::Orbital2DM<double> d_valid {2};
-    const GQCP::Orbital2DM<double> d_invalid {3};
+    const GQCP::Orbital2DM<double> d_valid {GQCP::SquareRankFourTensor<double>::Zero(2)};
+    const GQCP::Orbital2DM<double> d_invalid {GQCP::SquareRankFourTensor<double>::Zero(3)};
 
     BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(g.calculateExpectationValue(d_valid));
@@ -176,8 +176,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const auto op = toyTwoElectronIntegrals(dim);
 
     // Initialize a density matrix as a Hermitian matrix.
-    GQCP::Orbital2DM<double> d {dim};
-
+    GQCP::SquareRankFourTensor<double> d {dim};
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
@@ -187,11 +186,12 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
             }
         }
     }
+    const GQCP::Orbital2DM<double> dm {d};
 
-    // Initialize a reference value
+    // Initialize a reference value.
     const double reference_expectation_value = 180.0;
 
-    const double expectation_value = op.calculateExpectationValue(d);  // A scalar-StorageArray can be implicitly casted into its underlying scalar.
+    const double expectation_value = op.calculateExpectationValue(dm);  // A scalar-StorageArray can be implicitly casted into its underlying scalar.
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 

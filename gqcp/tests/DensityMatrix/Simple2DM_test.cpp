@@ -36,7 +36,7 @@
  */
 GQCP::G2DM<double> calculateToy2DMTensor() {
 
-    GQCP::G2DM<double> d {2};
+    GQCP::SquareRankFourTensor<double> d {2};
 
     for (size_t i = 0; i < 2; i++) {
         for (size_t j = 0; j < 2; j++) {
@@ -53,7 +53,7 @@ GQCP::G2DM<double> calculateToy2DMTensor() {
         }
     }
 
-    return d;
+    return GQCP::G2DM<double>(d);
 };
 
 
@@ -81,14 +81,14 @@ BOOST_AUTO_TEST_CASE(reduce) {
     const auto d = calculateToy2DMTensor();
 
     // Set up the reference result.
-    GQCP::G1DM<double> D_ref = GQCP::G1DM<double>::Zero(2);
+    GQCP::SquareMatrix<double> D_ref = GQCP::SquareMatrix<double>::Zero(2);
 
     // clang-format off
     D_ref <<  3, 11,
              19, 27;
     // clang-format on
 
-    BOOST_CHECK(D_ref.isApprox(d.reduce(), 1.0e-12));
+    BOOST_CHECK(D_ref.isApprox(d.reduce().matrix(), 1.0e-12));
 }
 
 

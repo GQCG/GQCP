@@ -98,12 +98,12 @@ public:
 
         // Convert the matrix Z to an GQCP::Tensor<double, 2> Z_tensor.
         // Einsum is only implemented for a tensor + a matrix, not for 2 matrices.
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), D.rows(), D.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), D.matrix().rows(), D.matrix().cols()};
         Tensor<Scalar, 2> Z_tensor = Tensor<Scalar, 2>(Z_t);
 
         // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5):
         //      0.5 D(nu mu) Z(mu nu).
-        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij,ji->", D);
+        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij,ji->", D.matrix());
 
         // As the double contraction of two matrices is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction(0);
@@ -118,7 +118,7 @@ public:
      *  @return The RHF error matrix.
      */
     static SquareMatrix<Scalar> calculateError(const ScalarRSQOneElectronOperator<Scalar>& F, const Orbital1DM<Scalar>& D, const ScalarRSQOneElectronOperator<Scalar>& S) {
-        return F.parameters() * D * S.parameters() - S.parameters() * D * F.parameters();
+        return F.parameters() * D.matrix() * S.parameters() - S.parameters() * D.matrix() * F.parameters();
     }
 
 
@@ -213,10 +213,10 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        Orbital1DM<double> D = Orbital1DM<double>::Zero(K);
-        D.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2);
+        SquareMatrix<Scalar> D = SquareMatrix<Scalar>::Zero(K);
+        D.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<Scalar>::Identity(N / 2);
 
-        return D;
+        return Orbital1DM<Scalar> {D};
     }
 
 
@@ -231,7 +231,7 @@ public:
     static Orbital2DM<Scalar> calculateOrthonormalBasis2DM(const size_t K, const size_t N) {
 
         if (N % 2 != 0) {
-            throw std::invalid_argument("QCMethod::RHF::calculateOrthonormalBasis1DM(const size_t, const size_t): The number of given electrons cannot be odd for RHF.");
+            throw std::invalid_argument("QCMethod::RHF::calculateOrthonormalBasis2DM(const size_t, const size_t): The number of given electrons cannot be odd for RHF.");
         }
 
         const size_t N_P = N / 2;  // The number of electron pairs.
@@ -242,7 +242,7 @@ public:
 
 
         // Implement a KISS formula for the RHF 2-DM.
-        Orbital2DM<Scalar> d = Orbital2DM<Scalar>::Zero(K);
+        SquareRankFourTensor<Scalar> d = SquareRankFourTensor<Scalar>::Zero(K);
 
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
@@ -260,7 +260,7 @@ public:
             }
         }
 
-        return d;
+        return Orbital2DM<Scalar>(d);
     }
 
 
@@ -295,9 +295,9 @@ public:
 
         // To calculate G, we must perform two double contractions:
         //      1. (mu nu|rho lambda) P(lambda rho),
-        const Tensor<Scalar, 2> direct_contraction = g.template einsum<2>("ijkl,lk->ij", D);
+        const Tensor<Scalar, 2> direct_contraction = g.template einsum<2>("ijkl,lk->ij", D.matrix());
         //      2. -0.5 (mu lambda|rho nu) P(lambda rho).
-        const Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ilkj,lk->ij", D);
+        const Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ilkj,lk->ij", D.matrix());
 
         // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into GQCP::Matrix<Scalar>.
         auto G1 = direct_contraction.asMatrix();

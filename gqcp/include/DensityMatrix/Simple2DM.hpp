@@ -21,6 +21,7 @@
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 
@@ -41,9 +42,9 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _DerivedDM>
 class Simple2DM:
-    public SquareRankFourTensor<_Scalar>,
     public BasisTransformable<_DerivedDM>,
-    public JacobiRotatable<_DerivedDM> {
+    public JacobiRotatable<_DerivedDM>,
+    public VectorSpaceArithmetic<_DerivedDM, _Scalar> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -61,13 +62,45 @@ public:
     using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
 
 
+private:
+    // The matrix representation of this two-electron density matrix.
+    SquareRankFourTensor<Scalar> d;
+
+
 public:
     /*
      *  MARK: Constructors
      */
 
-    // Inherit `SquareRankFourTensor`'s constructors.
-    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;
+    /**
+     *  Create a `Simple2DM` from its matrix representation.
+     * 
+     *  @param D            The matrix representation of the two-electron density matrix.
+     */
+    Simple2DM(const SquareRankFourTensor<Scalar>& d) :
+        d {d} {}
+
+
+    /**
+     *  The default constructor.
+     */
+    Simple2DM() :
+        Simple2DM(SquareRankFourTensor<Scalar>::Zero(0)) {}
+
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     *  @return A read-only reference to the matrix representation of this two-electron density matrix.
+     */
+    const SquareRankFourTensor<Scalar>& tensor() const { return this->d; }
+
+    /**
+     *  @return A writable reference to the matrix representation of this two-electron density matrix.
+     */
+    SquareRankFourTensor<Scalar>& tensor() { return this->d; }
 
 
     /*
@@ -77,7 +110,7 @@ public:
     /**
      *  @return The number of orbitals that are related to this 2-DM.
      */
-    size_t numberOfOrbitals() const { return this->dimension(); }
+    size_t numberOfOrbitals() const { return this->tensor().dimension(); }
 
 
     /*
@@ -88,21 +121,21 @@ public:
      *  @return A partial contraction D(p,q) of the 2-DM, where D(p,q) = d(p,q,r,r).
      */
     OneDM reduce() const {
-        // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
+        // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction.
 
         const auto K = this->numberOfOrbitals();
 
-        OneDM D = OneDM::Zero(K);
+        SquareMatrix<Scalar> D = SquareMatrix<Scalar>::Zero(K);
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
 
                 for (size_t r = 0; r < K; r++) {
-                    D(p, q) += this->operator()(p, q, r, r);
+                    D(p, q) += this->tensor()(p, q, r, r);
                 }
             }
         }
 
-        return D;
+        return OneDM(D);
     }
 
 
@@ -117,11 +150,33 @@ public:
         Scalar trace {};
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
-                trace += this->operator()(p, p, q, q);
+                trace += this->tensor()(p, p, q, q);
             }
         }
 
         return trace;
+    }
+
+
+    /*
+     *  MARK: Conforming to `VectorSpaceArithmetic`
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    DerivedDM& operator+=(const DerivedDM& rhs) override {
+        this->tensor().Eigen() += rhs.tensor().Eigen();
+        return static_cast<DerivedDM&>(*this);
+    }
+
+
+    /**
+     *  Scalar multiplication-assignment.
+     */
+    DerivedDM& operator*=(const Scalar& a) override {
+        this->tensor() = this->tensor().Eigen() * a;  // A compiler error occurs when writing "this->tensor().Eigen() *= a".
+        return static_cast<DerivedDM&>(*this);
     }
 
 
@@ -151,7 +206,7 @@ public:
         // We will have to do four single contractions
         // d(T U V W)  T^*(V R) -> a(T U R W)
         // a(T U R W)  T(W S) -> b(T U R S)
-        const auto temp_1 = this->template einsum<1>("TUVW,VR->TURW", T_related_conjugate).template einsum<1>("TURW,WS->TURS", T_related_tensor);
+        const auto temp_1 = this->tensor().template einsum<1>("TUVW,VR->TURW", T_related_conjugate).template einsum<1>("TURW,WS->TURS", T_related_tensor);
 
         // T(U Q)  b(T U R S) -> c(T Q R S)
         const auto temp_2 = T_related_tensor.template einsum<1>("UQ,TURS->TQRS", temp_1);

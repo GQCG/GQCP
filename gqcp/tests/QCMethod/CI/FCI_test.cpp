@@ -378,7 +378,7 @@ BOOST_AUTO_TEST_CASE(naturals) {
 
     // Calculate the 1-DM and diagonalize it to obtain the FCI naturals.
     const auto D_before = linear_expansion_before.calculate1DM();
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> diagonalizer {D_before};
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> diagonalizer {D_before.matrix()};
     GQCP::RTransformation<double> U {diagonalizer.eigenvectors()};
 
 
@@ -389,5 +389,5 @@ BOOST_AUTO_TEST_CASE(naturals) {
 
     const auto D_after = linear_expansion_after.calculate1DM();
 
-    BOOST_CHECK(D_after.diagonal().isApprox(diagonalizer.eigenvalues(), 1.0e-12));
+    BOOST_CHECK(D_after.matrix().diagonal().isApprox(diagonalizer.eigenvalues(), 1.0e-12));
 }

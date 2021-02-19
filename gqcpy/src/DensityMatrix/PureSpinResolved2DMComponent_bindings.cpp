@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
+#include "gqcpy/include/interfaces.hpp"
 #include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/pybind11.h>
@@ -40,12 +41,8 @@ void bindPureSpinResolved2DMComponent(py::module& module) {
     py::class_<PureSpinResolved2DMComponent<double>> py_PureSpinResolved2DMComponent_d {module, "PureSpinResolved2DMComponent_d", "One of the pure (i.e. alpha-alpha or beta-beta) spin components of a spin-resolved 2-DM."};
 
 
-    py_PureSpinResolved2DMComponent_d
-        .def(
-            "asArray",
-            [](const PureSpinResolved2DMComponent<double>& d) {
-                return asNumpyArray(d.Eigen());
-            });
+    // Expose the `Simple2DM` API to the Python class.
+    bindSimple2DMInterface(py_PureSpinResolved2DMComponent_d);
 }
 
 

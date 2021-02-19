@@ -16,7 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCModel/CC/T2Amplitudes.hpp"
-#include "gqcpy/include/interfaces.hpp"
+#include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>

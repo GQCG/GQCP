@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "QuantumChemical/Spin.hpp"
 
@@ -33,7 +34,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class MixedSpinResolved2DMComponent:
-    public SquareRankFourTensor<_Scalar> {
+    public VectorSpaceArithmetic<MixedSpinResolved2DMComponent<_Scalar>, _Scalar> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -42,13 +43,45 @@ public:
     using Self = MixedSpinResolved2DMComponent<Scalar>;
 
 
+private:
+    // The matrix representation of this two-electron density matrix.
+    SquareRankFourTensor<Scalar> d;
+
+
 public:
     /*
      *  MARK: Constructors
      */
 
-    // Inherit `SquareRankFourTensor`'s constructors.
-    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;
+    /**
+     *  Create a `MixedSpinResolved2DMComponent` from its matrix representation.
+     * 
+     *  @param D            The matrix representation of the two-electron density matrix.
+     */
+    MixedSpinResolved2DMComponent(const SquareRankFourTensor<Scalar>& d) :
+        d {d} {}
+
+
+    /**
+     *  The default constructor.
+     */
+    MixedSpinResolved2DMComponent() :
+        MixedSpinResolved2DMComponent(SquareRankFourTensor<Scalar>::Zero(0)) {}
+
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     *  @return A read-only reference to the matrix representation of this two-electron density matrix.
+     */
+    const SquareRankFourTensor<Scalar>& tensor() const { return this->d; }
+
+    /**
+     *  @return A writable reference to the matrix representation of this two-electron density matrix.
+     */
+    SquareRankFourTensor<Scalar>& tensor() { return this->d; }
 
 
     /*
@@ -58,7 +91,29 @@ public:
     /**
      *  @return The number of orbitals that are related to this 2-DM.
      */
-    size_t numberOfOrbitals() const { return this->dimension(); }
+    size_t numberOfOrbitals() const { return this->tensor().dimension(); }
+
+
+    /*
+     *  MARK: Conforming to `VectorSpaceArithmetic`
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    Self& operator+=(const Self& rhs) override {
+        this->tensor().Eigen() += rhs.tensor().Eigen();
+        return *this;
+    }
+
+
+    /**
+     *  Scalar multiplication-assignment.
+     */
+    Self& operator*=(const Scalar& a) override {
+        this->tensor() = this->tensor().Eigen() * a;  // A compiler error occurs when writing "this->tensor().Eigen() *= a".
+        return *this;
+    }
 
 
     /*
@@ -79,7 +134,7 @@ public:
         Scalar trace {};
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
-                trace += this->operator()(p, p, q, q);
+                trace += this->tensor()(p, p, q, q);
             }
         }
 
@@ -117,14 +172,14 @@ public:
         // Depending on the given spin-component, we should either transform the first two, or the second two axes.
         switch (sigma) {
         case Spin::alpha: {
-            const auto temp = T_related_tensor.template einsum<1>("UQ,TUVW->TQVW", *this);
+            const auto temp = T_related_tensor.template einsum<1>("UQ,TUVW->TQVW", this->tensor());
             const auto transformed = T_related_conjugate.template einsum<1>("TP,TQVW->PQVW", temp);
             return Self {transformed};
             break;
         }
 
         case Spin::beta: {
-            const auto temp = this->template einsum<1>("PQVW, WS->PQVS", T_related_tensor);
+            const auto temp = this->tensor().template einsum<1>("PQVW, WS->PQVS", T_related_tensor);
             const auto transformed = temp.template einsum<1>("PQVS, VR->PQRS", T_related_conjugate);
             return Self {transformed};
             break;

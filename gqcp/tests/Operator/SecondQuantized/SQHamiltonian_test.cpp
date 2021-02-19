@@ -35,7 +35,7 @@
  */
 GQCP::Orbital2DM<double> calculateToy2DM() {
 
-    auto d = GQCP::Orbital2DM<double>::Zero(2);
+    GQCP::SquareRankFourTensor<double> d = GQCP::SquareRankFourTensor<double>::Zero(2);
 
     for (size_t p = 0; p < 2; p++) {
         for (size_t q = 0; q < 2; q++) {
@@ -49,7 +49,7 @@ GQCP::Orbital2DM<double> calculateToy2DM() {
         }
     }
 
-    return d;
+    return GQCP::Orbital2DM<double>(d);
 };
 
 
@@ -210,11 +210,11 @@ BOOST_AUTO_TEST_CASE(calculate_generalized_Fock_matrix_and_super_invalid_argumen
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the orbital basis).
-    const GQCP::Orbital1DM<double> D_valid = GQCP::Orbital1DM<double>::Zero(2);
-    const GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
+    const GQCP::Orbital1DM<double> D_valid {GQCP::SquareMatrix<double>::Zero(2)};
+    const GQCP::Orbital1DM<double> D_invalid {GQCP::SquareMatrix<double>::Zero(3)};
 
-    const GQCP::Orbital2DM<double> d_valid {2};
-    const GQCP::Orbital2DM<double> d_invalid {3};
+    const GQCP::Orbital2DM<double> d_valid {GQCP::SquareRankFourTensor<double>::Zero(2)};
+    const GQCP::Orbital2DM<double> d_invalid {GQCP::SquareRankFourTensor<double>::Zero(3)};
 
 
     // Test faulty function calls.
@@ -238,11 +238,12 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
 
     // We test the function by a manual calculation of toy 1- and 2-DMs and one- and two-electron integrals.
     // Set up the toy 1- and 2-DMs.
-    GQCP::Orbital1DM<double> D {2};
+    GQCP::SquareMatrix<double> D {2};
     // clang-format off
     D << 0, 1,
          1, 0;
     // clang-format on
+    const GQCP::Orbital1DM<double> DM {D};
 
     const auto d = calculateToy2DM();
 

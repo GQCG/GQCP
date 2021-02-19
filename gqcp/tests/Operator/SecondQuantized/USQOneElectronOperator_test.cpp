@@ -206,9 +206,12 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const GQCP::ScalarUSQOneElectronOperator<double> h {M1, M1};
 
     // Initialize test DMs and check if calculating expectation values throws when expected.
-    const GQCP::SpinResolved1DM<double> D_valid {GQCP::SpinResolved1DMComponent<double>::Zero(dim), GQCP::SpinResolved1DMComponent<double>::Zero(dim)};
-    const GQCP::SpinResolved1DM<double> D_invalid_alpha {GQCP::SpinResolved1DMComponent<double>::Zero(dim + 1), GQCP::SpinResolved1DMComponent<double>::Zero(dim)};
-    const GQCP::SpinResolved1DM<double> D_invalid_beta {GQCP::SpinResolved1DMComponent<double>::Zero(dim), GQCP::SpinResolved1DMComponent<double>::Zero(dim + 1)};
+    const GQCP::SpinResolved1DMComponent<double> D_component_valid {GQCP::SquareMatrix<double>::Zero(dim)};
+    const GQCP::SpinResolved1DMComponent<double> D_component_invalid {GQCP::SquareMatrix<double>::Zero(dim + 1)};
+
+    const GQCP::SpinResolved1DM<double> D_valid {D_component_valid, D_component_valid};
+    const GQCP::SpinResolved1DM<double> D_invalid_alpha {D_component_invalid, D_component_valid};
+    const GQCP::SpinResolved1DM<double> D_invalid_beta {D_component_valid, D_component_invalid};
 
     BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid_alpha), std::invalid_argument);
     BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid_beta), std::invalid_argument);
@@ -244,7 +247,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     D_beta << 1.0,  0.0,
               0.0, -1.0;
     // clang-format on
-    const GQCP::SpinResolved1DM<double> D {D_alpha, D_beta};
+    const GQCP::SpinResolved1DM<double> D {GQCP::SpinResolved1DMComponent<double>(D_alpha), GQCP::SpinResolved1DMComponent<double>(D_beta)};
 
 
     // Initialize a reference value and check the result of the calculation.

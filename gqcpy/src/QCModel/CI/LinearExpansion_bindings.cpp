@@ -141,7 +141,7 @@ void bindLinearExpansion<SeniorityZeroONVBasis>(py::module& module, const std::s
         .def(
             "calculate2DM",
             [](const LinearExpansion<SeniorityZeroONVBasis>& linear_expansion) {
-                return asNumpyArray(linear_expansion.calculate2DM().Eigen());
+                return linear_expansion.calculate2DM();
             },
             "Return the two-electron density matrix (2-DM) for a seniority-zero wave function expansion.")
 
@@ -235,7 +235,7 @@ void bindLinearExpansion<SpinResolvedONVBasis>(py::module& module, const std::st
         .def(
             "calculate2DM",
             [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion) {
-                return asNumpyArray(linear_expansion.calculate2DM().Eigen());
+                return linear_expansion.calculate2DM();
             },
             "Return the two-electron density matrix (2-DM) for a full spin-resolved wave function expansion.")
 
@@ -320,7 +320,7 @@ void bindLinearExpansion<SpinResolvedSelectedONVBasis>(py::module& module, const
         .def(
             "calculate2DM",
             [](const LinearExpansion<SpinResolvedSelectedONVBasis>& linear_expansion) {
-                return asNumpyArray(linear_expansion.calculate2DM().Eigen());
+                return linear_expansion.calculate2DM();
             },
             "Return the two-electron density matrix (2-DM) for a selected spin-resolved wave function expansion.")
 

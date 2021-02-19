@@ -62,9 +62,9 @@ BOOST_AUTO_TEST_CASE(trace) {
     // Calculate the 1-DMs, calculate the traces and check if they match the expected result.
     const auto D = linear_expansion.calculateSpinResolved1DM();
 
-    BOOST_CHECK(std::abs(D.alpha().trace() - N_alpha) < 1.0e-12);
-    BOOST_CHECK(std::abs(D.beta().trace() - N_beta) < 1.0e-12);
-    BOOST_CHECK(std::abs(D.orbitalDensity().trace() - (N_alpha + N_beta)) < 1.0e-12);
+    BOOST_CHECK(std::abs(D.alpha().matrix().trace() - N_alpha) < 1.0e-12);
+    BOOST_CHECK(std::abs(D.beta().matrix().trace() - N_beta) < 1.0e-12);
+    BOOST_CHECK(std::abs(D.orbitalDensity().matrix().trace() - (N_alpha + N_beta)) < 1.0e-12);
 }
 
 

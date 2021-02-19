@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(RHF_1DM_matrix) {
 
     const size_t K = 5;  // The number of spatial orbitals.
     const size_t N = 6;  // The number of electrons.
-    GQCP::Orbital1DM<double> D_ref {K};
+    GQCP::SquareMatrix<double> D_ref {K};
     // clang-format off
     D_ref << 2, 0, 0, 0, 0,
              0, 2, 0, 0, 0,
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(RHF_1DM_matrix) {
              0, 0, 0, 0, 0;
     // clang-format on
 
-    BOOST_CHECK(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N).isApprox(D_ref));
+    BOOST_CHECK(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N).matrix().isApprox(D_ref));
 }
 
 

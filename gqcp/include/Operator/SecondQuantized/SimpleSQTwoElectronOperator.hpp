@@ -116,7 +116,7 @@ public:
 
             // Perform the actual contraction (with prefactor 0.5):
             //      0.5 g(p q r s) d(p q r s)
-            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].template einsum<4>("pqrs, pqrs->", d);
+            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].template einsum<4>("pqrs, pqrs->", d.tensor());
 
             // As the contraction is a scalar (a tensor of rank 0), we should access using `operator(0)`.
             expectation_values[i] = contraction(0);
@@ -129,21 +129,21 @@ public:
     /**
      *  Calculate the Fockian matrix for (each of the components of) this two-electron operator.
      * 
-     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
-     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *  @param DM           The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param dm           The 2-DM (or the response 2-DM for made-variational wave function models).
      *
      *  @return The Fockian matrix.
      * 
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& D, const Derived2DM& d) const {
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& DM, const Derived2DM& dm) const {
 
-        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
+        if (DM.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SimpleSQTwoElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The 1-DM's dimensions are not compatible with this two-electron operator.");
         }
 
-        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
+        if (dm.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SimpleSQTwoElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The 2-DM's dimensions are not compatible with this two-electron operator.");
         }
 
@@ -151,6 +151,7 @@ public:
         std::vector<SquareMatrix<double>> F_vector {this->numberOfComponents()};  // The resulting vector of Fockian matrices.
 
         // A KISS implementation of the calculation of the Fockian matrix.
+        const auto& d = dm.tensor();
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
 
             const auto& g_i = parameters[i];  // The matrix representation of the parameters of the i-th component.
@@ -179,31 +180,32 @@ public:
     /**
      *  Calculate the super-Fockian matrix for (each of the components of) this two-electron operator.
      * 
-     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
-     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *  @param DM           The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param dm           The 2-DM (or the response 2-DM for made-variational wave function models).
      *
      *  @return The super-Fockian matrix.
      * 
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& D, const Derived2DM& d) const {
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& DM, const Derived2DM& dm) const {
 
-        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
+        if (DM.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SimpleSQTwoElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The given 1-DM's dimensions are not compatible with this two-electron operator.");
         }
 
-        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
+        if (dm.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SimpleSQTwoElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The given 2-DM's dimensions are not compatible with this two-electron operator.");
         }
 
 
         const auto& parameters = this->allParameters();                                   // The parameters of this two-electron operator, as a vector.
         std::vector<SquareRankFourTensor<double>> G_vector {this->numberOfComponents()};  // The resulting vector of super-Fockian matrices.
-        const auto F_vector = this->calculateFockianMatrix(D, d).elements();              // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
+        const auto F_vector = this->calculateFockianMatrix(DM, dm).elements();            // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
 
 
-        // A KISS implementation of the calculation of the super-Fockian matrix
+        // A KISS implementation of the calculation of the super-Fockian matrix.
+        const auto& d = dm.tensor();
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
 
             const auto& g_i = parameters[i];  // The matrix representation of the parameters of the i-th component.

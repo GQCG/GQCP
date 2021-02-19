@@ -39,6 +39,8 @@ void bindSpinResolved1DMComponent(py::module& module) {
     // Define the Python class for `SpinResolved1DMComponent`.
     py::class_<SpinResolved1DMComponent<double>> py_SpinResolved1DMComponent_d {module, "SpinResolved1DMComponent_d", "One of the spin components of a `SpinResolved1DM`."};
 
+    // Expose the `Simple1DM` API to the Python class;
+    bindSimple1DMInterface(py_SpinResolved1DMComponent_d);
 
     // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_SpinResolved1DMComponent_d);

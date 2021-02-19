@@ -39,6 +39,8 @@ void bindG1DM(py::module& module) {
     // Define the Python class for `G1DM`.
     py::class_<G1DM<double>> py_G1DM_d {module, "G1DM_d", "A type used to represent a one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix."};
 
+    // Expose the `Simple1DM` API to the Python class;
+    bindSimple1DMInterface(py_G1DM_d);
 
     // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_G1DM_d);
