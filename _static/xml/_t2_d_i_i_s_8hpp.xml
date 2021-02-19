@@ -1,0 +1,1880 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_t2_d_i_i_s_8hpp" kind="file" language="C++">
+    <compoundname>T2DIIS.hpp</compoundname>
+    <includes refid="_step_8hpp" local="yes">Mathematical/Algorithm/Step.hpp</includes>
+    <includes refid="_d_i_i_s_8hpp" local="yes">Mathematical/Optimization/Accelerator/DIIS.hpp</includes>
+    <includes refid="_c_c_d_amplitudes_update_8hpp" local="yes">QCMethod/CC/CCDAmplitudesUpdate.hpp</includes>
+    <includes refid="_c_c_d_intermediates_update_8hpp" local="yes">QCMethod/CC/CCDIntermediatesUpdate.hpp</includes>
+    <includes refid="_c_c_s_d_environment_8hpp" local="yes">QCMethod/CC/CCSDEnvironment.hpp</includes>
+    <includes local="no">algorithm</includes>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
+    <includedby refid="_c_c_d_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</includedby>
+    <incdepgraph>
+      <node id="146">
+        <label>Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
+        <link refid="_u_spin_orbital_basis_component_8hpp"/>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+      </node>
+      <node id="130">
+        <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
+        <link refid="_s_q_operator_storage_8hpp"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="156">
+        <label>Operator/SecondQuantized/GSQOneElectronOperator.hpp</label>
+        <link refid="_g_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="111">
+        <label>Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</label>
+        <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>Operator/FirstQuantized/AngularMomentumOperator.hpp</label>
+        <link refid="_angular_momentum_operator_8hpp"/>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>iomanip</label>
+      </node>
+      <node id="35">
+        <label>functional</label>
+      </node>
+      <node id="167">
+        <label>QCModel/CC/CCD.hpp</label>
+        <link refid="_q_c_model_2_c_c_2_c_c_d_8hpp"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="168" relation="include">
+        </childnode>
+      </node>
+      <node id="120">
+        <label>Basis/SpinorBasis/SimpleSpinorBasis.hpp</label>
+        <link refid="_simple_spinor_basis_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp</label>
+        <link refid="_libcint_two_electron_integral_buffer_8hpp"/>
+        <childnode refid="73" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp</label>
+      </node>
+      <node id="42">
+        <label>Basis/Transformations/SpinResolvedJacobiRotatable.hpp</label>
+        <link refid="_spin_resolved_jacobi_rotatable_8hpp"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="83">
+        <label>Operator/FirstQuantized/BaseFQOperator.hpp</label>
+        <link refid="_base_f_q_operator_8hpp"/>
+        <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>iterator</label>
+      </node>
+      <node id="2">
+        <label>Mathematical/Algorithm/Step.hpp</label>
+        <link refid="_step_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>QuantumChemical/SpinResolved.hpp</label>
+        <link refid="_spin_resolved_8hpp"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="133">
+        <label>Operator/SecondQuantized/OperatorTraits.hpp</label>
+        <link refid="_operator_traits_8hpp"/>
+      </node>
+      <node id="150">
+        <label>DensityMatrix/SpinDensity1DM.hpp</label>
+        <link refid="_spin_density1_d_m_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>boost/lexical_cast.hpp</label>
+      </node>
+      <node id="32">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>Basis/Integrals/BaseOneElectronIntegralBuffer.hpp</label>
+        <link refid="_base_one_electron_integral_buffer_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>Operator/FirstQuantized/LinearMomentumOperator.hpp</label>
+        <link refid="_linear_momentum_operator_8hpp"/>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>Molecule/Molecule.hpp</label>
+        <link refid="_molecule_8hpp"/>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</label>
+        <link refid="_primitive_dipole_integral_engine_8hpp"/>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+      </node>
+      <node id="148">
+        <label>DensityMatrix/SpinResolved1DM.hpp</label>
+        <link refid="_spin_resolved1_d_m_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="99">
+        <label>Utilities/literals.hpp</label>
+        <link refid="literals_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>DensityMatrix/G2DM.hpp</label>
+        <link refid="_g2_d_m_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>Basis/Transformations/SpinResolvedBasisTransformable.hpp</label>
+        <link refid="_spin_resolved_basis_transformable_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="107">
+        <label>Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</label>
+        <link refid="_libint_two_electron_integral_engine_8hpp"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>Mathematical/Functions/ScalarFunction.hpp</label>
+        <link refid="_scalar_function_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>Mathematical/Functions/CartesianGTO.hpp</label>
+        <link refid="_cartesian_g_t_o_8hpp"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="164">
+        <label>Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp</label>
+        <link refid="_hubbard_hamiltonian_8hpp"/>
+        <childnode refid="165" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>Basis/Integrals/Interfaces/LibcintInterfacer.hpp</label>
+        <link refid="_libcint_interfacer_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Basis/SpinorBasis/GSpinorBasis.hpp</label>
+        <link refid="_g_spinor_basis_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>boost/format.hpp</label>
+      </node>
+      <node id="160">
+        <label>Basis/SpinorBasis/OccupationType.hpp</label>
+        <link refid="_occupation_type_8hpp"/>
+      </node>
+      <node id="89">
+        <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
+        <link refid="_electronic_spin__z_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="154">
+        <label>QuantumChemical/DoublySpinResolvedBase.hpp</label>
+        <link refid="_doubly_spin_resolved_base_8hpp"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="142">
+        <label>Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp</label>
+        <link refid="_pure_u_s_q_two_electron_operator_component_8hpp"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="143" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+      </node>
+      <node id="138">
+        <label>QuantumChemical/spinor_tags.hpp</label>
+        <link refid="spinor__tags_8hpp"/>
+      </node>
+      <node id="28">
+        <label>stdexcept</label>
+      </node>
+      <node id="86">
+        <label>Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
+        <link refid="_electronic_density_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>numeric</label>
+      </node>
+      <node id="65">
+        <label>Molecule/NuclearFramework.hpp</label>
+        <link refid="_nuclear_framework_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="95">
+        <label>Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
+        <link refid="_nuclear_repulsion_operator_8hpp"/>
+        <childnode refid="93" relation="include">
+        </childnode>
+      </node>
+      <node id="118">
+        <label>Basis/MullikenPartitioning/RMullikenPartitioning.hpp</label>
+        <link refid="_r_mulliken_partitioning_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="166">
+        <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
+        <link refid="_adjacency_matrix_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>Mathematical/Representation/ImplicitMatrixSlice.hpp</label>
+        <link refid="_implicit_matrix_slice_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>Basis/Integrals/IntegralEngine.hpp</label>
+        <link refid="_integral_engine_8hpp"/>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="143">
+        <label>Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp</label>
+        <link refid="_simple_s_q_two_electron_operator_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="90">
+        <label>Operator/FirstQuantized/KineticOperator.hpp</label>
+        <link refid="_kinetic_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="155">
+        <label>Operator/SecondQuantized/USQTwoElectronOperator.hpp</label>
+        <link refid="_u_s_q_two_electron_operator_8hpp"/>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="148" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="154" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="139">
+        <label>Operator/SecondQuantized/RSQTwoElectronOperator.hpp</label>
+        <link refid="_r_s_q_two_electron_operator_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="143" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="162">
+        <label>map</label>
+      </node>
+      <node id="134">
+        <label>Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</label>
+        <link refid="_u_s_q_one_electron_operator_component_8hpp"/>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>Basis/Transformations/UTransformationComponent.hpp</label>
+        <link refid="_u_transformation_component_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>unsupported/Eigen/CXX11/Tensor</label>
+      </node>
+      <node id="137">
+        <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
+        <link refid="_spin_resolved1_d_m_component_8hpp"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+      </node>
+      <node id="119">
+        <label>Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp</label>
+        <link refid="_simple_spin_orbital_basis_8hpp"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>Molecule/Nucleus.hpp</label>
+        <link refid="_nucleus_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>Basis/Integrals/IntegralCalculator.hpp</label>
+        <link refid="_integral_calculator_8hpp"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>QuantumChemical/SpinResolvedBase.hpp</label>
+        <link refid="_spin_resolved_base_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="131">
+        <label>Operator/SecondQuantized/SQOperatorStorageBase.hpp</label>
+        <link refid="_s_q_operator_storage_base_8hpp"/>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="117">
+        <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
+        <link refid="_square_rank_four_tensor_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="128">
+        <label>DensityMatrix/Simple2DM.hpp</label>
+        <link refid="_simple2_d_m_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+      </node>
+      <node id="92">
+        <label>Operator/FirstQuantized/NuclearAttractionOperator.hpp</label>
+        <link refid="_nuclear_attraction_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="112">
+        <label>Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp</label>
+        <link refid="_primitive_cartesian_operator_integral_engine_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+      </node>
+      <node id="104">
+        <label>boost/preprocessor.hpp</label>
+      </node>
+      <node id="18">
+        <label>fstream</label>
+      </node>
+      <node id="124">
+        <label>DensityMatrix/DensityMatrixTraits.hpp</label>
+        <link refid="_density_matrix_traits_8hpp"/>
+      </node>
+      <node id="31">
+        <label>ostream</label>
+      </node>
+      <node id="169">
+        <label>QCModel/CC/CCSD.hpp</label>
+        <link refid="_q_c_model_2_c_c_2_c_c_s_d_8hpp"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="168" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>Basis/ScalarBasis/ScalarBasis.hpp</label>
+        <link refid="_scalar_basis_8hpp"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>Molecule/elements.hpp</label>
+        <link refid="elements_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="158">
+        <label>Operator/SecondQuantized/GSQTwoElectronOperator.hpp</label>
+        <link refid="_g_s_q_two_electron_operator_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+        <childnode refid="143" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="93">
+        <label>Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
+        <link refid="_base_nuclear_operator_8hpp"/>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Basis/Transformations/SimpleTransformation.hpp</label>
+        <link refid="_simple_transformation_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="135">
+        <label>Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp</label>
+        <link refid="_u_mulliken_partitioning_component_8hpp"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</label>
+        <link refid="_base_reference_dependent_operator_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="110">
+        <label>Basis/Integrals/OneElectronIntegralBuffer.hpp</label>
+        <link refid="_one_electron_integral_buffer_8hpp"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="151">
+        <label>DensityMatrix/SpinResolved2DM.hpp</label>
+        <link refid="_spin_resolved2_d_m_8hpp"/>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="154" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="149">
+        <label>DensityMatrix/G1DM.hpp</label>
+        <link refid="_g1_d_m_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp</label>
+        <link refid="_base_two_electron_integral_buffer_8hpp"/>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>Utilities/CRTP.hpp</label>
+        <link refid="_c_r_t_p_8hpp"/>
+      </node>
+      <node id="159">
+        <label>Basis/SpinorBasis/OrbitalSpace.hpp</label>
+        <link refid="_orbital_space_8hpp"/>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
+        <childnode refid="163" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>Operator/FirstQuantized/Operator.hpp</label>
+        <link refid="_operator_8hpp"/>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="67">
+        <label>Basis/SpinorBasis/RSpinOrbitalBasis.hpp</label>
+        <link refid="_r_spin_orbital_basis_8hpp"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>Basis/Transformations/RTransformation.hpp</label>
+        <link refid="_r_transformation_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>Mathematical/Functions/LinearCombination.hpp</label>
+        <link refid="_linear_combination_8hpp"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="88">
+        <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
+        <link refid="_electronic_spin_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="114">
+        <label>Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp</label>
+        <link refid="_primitive_kinetic_energy_integral_engine_8hpp"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>QCMethod/CC/CCDAmplitudesUpdate.hpp</label>
+        <link refid="_c_c_d_amplitudes_update_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Basis/Transformations/BasisTransformable.hpp</label>
+        <link refid="_basis_transformable_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Basis/MullikenPartitioning/GMullikenPartitioning.hpp</label>
+        <link refid="_g_mulliken_partitioning_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="96">
+        <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
+        <link refid="_overlap_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Mathematical/Representation/Matrix.hpp</label>
+        <link refid="_matrix_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>Basis/Transformations/UJacobiRotation.hpp</label>
+        <link refid="_u_jacobi_rotation_8hpp"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>Mathematical/Representation/DenseVectorizer.hpp</label>
+        <link refid="_dense_vectorizer_8hpp"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Basis/Transformations/GTransformation.hpp</label>
+        <link refid="_g_transformation_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>vector</label>
+      </node>
+      <node id="11">
+        <label>Utilities/aliases.hpp</label>
+        <link refid="aliases_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="122">
+        <label>Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp</label>
+        <link refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>QuantumChemical/Spin.hpp</label>
+        <link refid="_spin_8hpp"/>
+      </node>
+      <node id="136">
+        <label>DensityMatrix/PureSpinResolved2DMComponent.hpp</label>
+        <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>array</label>
+      </node>
+      <node id="39">
+        <label>Basis/Transformations/UTransformation.hpp</label>
+        <link refid="_u_transformation_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>DensityMatrix/Orbital2DM.hpp</label>
+        <link refid="_orbital2_d_m_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+      </node>
+      <node id="106">
+        <label>Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
+        <link refid="_libint_one_electron_integral_buffer_8hpp"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Basis/Transformations/JacobiRotation.hpp</label>
+        <link refid="_jacobi_rotation_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="115">
+        <label>Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</label>
+        <link refid="_primitive_linear_momentum_integral_engine_8hpp"/>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="170">
+        <label>QCModel/CC/T1Amplitudes.hpp</label>
+        <link refid="_t1_amplitudes_8hpp"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>Operator/FirstQuantized/ElectronicDipoleOperator.hpp</label>
+        <link refid="_electronic_dipole_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="163">
+        <label>Mathematical/Representation/ImplicitRankFourTensorSlice.hpp</label>
+        <link refid="_implicit_rank_four_tensor_slice_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp</label>
+        <link refid="_libcint_one_electron_integral_engine_8hpp"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>Basis/Integrals/BaseTwoElectronIntegralEngine.hpp</label>
+        <link refid="_base_two_electron_integral_engine_8hpp"/>
+        <childnode refid="73" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp</label>
+      </node>
+      <node id="69">
+        <label>Basis/Integrals/BaseOneElectronIntegralEngine.hpp</label>
+        <link refid="_base_one_electron_integral_engine_8hpp"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
+        <link refid="_hopping_matrix_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>cstdlib</label>
+      </node>
+      <node id="19">
+        <label>iostream</label>
+      </node>
+      <node id="29">
+        <label>Basis/Transformations/JacobiRotatable.hpp</label>
+        <link refid="_jacobi_rotatable_8hpp"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="98">
+        <label>Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp</label>
+        <link refid="_libcint_one_electron_integral_buffer_8hpp"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+      </node>
+      <node id="82">
+        <label>cstddef</label>
+      </node>
+      <node id="129">
+        <label>Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp</label>
+        <link refid="_simple_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+      </node>
+      <node id="152">
+        <label>Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp</label>
+        <link refid="_doubly_spin_resolved_basis_transformable_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="171">
+        <label>deque</label>
+      </node>
+      <node id="97">
+        <label>cint.h</label>
+      </node>
+      <node id="105">
+        <label>libint2.hpp</label>
+      </node>
+      <node id="144">
+        <label>Basis/SpinorBasis/USpinOrbitalBasis.hpp</label>
+        <link refid="_u_spin_orbital_basis_8hpp"/>
+        <childnode refid="145" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>Mathematical/Functions/CartesianExponents.hpp</label>
+        <link refid="_cartesian_exponents_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>Basis/Integrals/Interfaces/LibintInterfacer.hpp</label>
+        <link refid="_libint_interfacer_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+      </node>
+      <node id="100">
+        <label>Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</label>
+        <link refid="_libcint_two_electron_integral_engine_8hpp"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="147">
+        <label>Operator/SecondQuantized/USQOneElectronOperator.hpp</label>
+        <link refid="_u_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="145" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="148" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="172">
+        <label>QCMethod/CC/CCDIntermediatesUpdate.hpp</label>
+        <link refid="_c_c_d_intermediates_update_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="126">
+        <label>Operator/SecondQuantized/RSQOneElectronOperator.hpp</label>
+        <link refid="_r_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="141">
+        <label>DensityMatrix/MixedSpinResolved2DMComponent.hpp</label>
+        <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Mathematical/Optimization/Accelerator/DIIS.hpp</label>
+        <link refid="_d_i_i_s_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_traits</label>
+      </node>
+      <node id="85">
+        <label>Operator/FirstQuantized/CoulombRepulsionOperator.hpp</label>
+        <link refid="_coulomb_repulsion_operator_8hpp"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="108">
+        <label>Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp</label>
+        <link refid="_libint_two_electron_integral_buffer_8hpp"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+      </node>
+      <node id="94">
+        <label>Operator/FirstQuantized/NuclearDipoleOperator.hpp</label>
+        <link refid="_nuclear_dipole_operator_8hpp"/>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+      </node>
+      <node id="116">
+        <label>Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</label>
+        <link refid="_primitive_overlap_integral_engine_8hpp"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+      </node>
+      <node id="168">
+        <label>QCModel/CC/T2Amplitudes.hpp</label>
+        <link refid="_t2_amplitudes_8hpp"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="163" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>complex</label>
+      </node>
+      <node id="34">
+        <label>algorithm</label>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp</label>
+        <link refid="_t2_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="172" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>Basis/ScalarBasis/ShellSet.hpp</label>
+        <link refid="_shell_set_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="153">
+        <label>Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp</label>
+        <link refid="_doubly_spin_resolved_jacobi_rotatable_8hpp"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>Basis/ScalarBasis/GTOBasisSet.hpp</label>
+        <link refid="_g_t_o_basis_set_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="125">
+        <label>DensityMatrix/Simple1DM.hpp</label>
+        <link refid="_simple1_d_m_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>QCMethod/CC/CCSDEnvironment.hpp</label>
+        <link refid="_c_c_s_d_environment_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="167" relation="include">
+        </childnode>
+        <childnode refid="169" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="168" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="109">
+        <label>Basis/Integrals/OneElectronIntegralEngine.hpp</label>
+        <link refid="_one_electron_integral_engine_8hpp"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="140">
+        <label>Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp</label>
+        <link refid="_mixed_u_s_q_two_electron_operator_component_8hpp"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
+      </node>
+      <node id="123">
+        <label>DensityMatrix/Orbital1DM.hpp</label>
+        <link refid="_orbital1_d_m_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>Mathematical/Representation/Tensor.hpp</label>
+        <link refid="_tensor_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="145">
+        <label>Basis/MullikenPartitioning/UMullikenPartitioning.hpp</label>
+        <link refid="_u_mulliken_partitioning_8hpp"/>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="102">
+        <label>Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</label>
+        <link refid="_libint_one_electron_integral_engine_8hpp"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="132">
+        <label>Mathematical/Representation/StorageArray.hpp</label>
+        <link refid="_storage_array_8hpp"/>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>memory</label>
+      </node>
+      <node id="66">
+        <label>initializer_list</label>
+      </node>
+      <node id="51">
+        <label>Basis/ScalarBasis/GTOShell.hpp</label>
+        <link refid="_g_t_o_shell_8hpp"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
+        <link refid="_vector_space_arithmetic_8hpp"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Operator/SecondQuantized/SQHamiltonian.hpp</label>
+        <link refid="_s_q_hamiltonian_8hpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="164" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="121">
+        <label>Basis/SpinorBasis/Spinor.hpp</label>
+        <link refid="_spinor_8hpp"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</label>
+        <link refid="_c_c_d_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp</label>
+        <link refid="_t2_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_g_q_c_p_1_1_t2_d_i_i_s" prot="public">GQCP::T2DIIS</innerclass>
+    <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>GQCG-GQCP.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2017-2020<sp/><sp/>the<sp/>GQCG<sp/>developers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GQCG-GQCP<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>along<sp/>with<sp/>GQCG-GQCP.<sp/><sp/>If<sp/>not,<sp/>see<sp/>&lt;http://www.gnu.org/licenses/&gt;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_step_8hpp" kindref="compound">Mathematical/Algorithm/Step.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_d_i_i_s_8hpp" kindref="compound">Mathematical/Optimization/Accelerator/DIIS.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_c_c_d_amplitudes_update_8hpp" kindref="compound">QCMethod/CC/CCDAmplitudesUpdate.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_c_c_d_intermediates_update_8hpp" kindref="compound">QCMethod/CC/CCDIntermediatesUpdate.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_c_c_s_d_environment_8hpp" kindref="compound">QCMethod/CC/CCSDEnvironment.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
+<codeline lineno="39" refid="class_g_q_c_p_1_1_t2_d_i_i_s" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_t2_d_i_i_s" kindref="compound">T2DIIS</ref>:</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_step" kindref="compound">Step</ref>&lt;CCSDEnvironment&lt;_Scalar&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>used<sp/>to<sp/>represent<sp/>the<sp/>T2<sp/>amplitudes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="class_g_q_c_p_1_1_t2_d_i_i_s_1afe0e1b061f21a2e1e53ab66fae584821" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t2_d_i_i_s_1afe0e1b061f21a2e1e53ab66fae584821" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>environment<sp/>that<sp/>this<sp/>iteration<sp/>step<sp/>can<sp/>access.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aa14a764323726787475897bc23405d9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">Environment</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment&lt;Scalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>minimum<sp/>number<sp/>of<sp/>T2<sp/>amplitudes<sp/>that<sp/>have<sp/>to<sp/>be<sp/>in<sp/>the<sp/>subspace<sp/>before<sp/>enabling<sp/>DIIS.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>minimum_subspace_dimension;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>maximum<sp/>number<sp/>of<sp/>T2<sp/>amplitues<sp/>that<sp/>can<sp/>be<sp/>handled<sp/>by<sp/>DIIS.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>maximum_subspace_dimension;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>DIIS<sp/>accelerator.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS&lt;Scalar&gt;</ref><sp/>diis;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Constructors</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="class_g_q_c_p_1_1_t2_d_i_i_s_1a7f7c719c76487cdbe41e978a378bcfdb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t2_d_i_i_s_1a7f7c719c76487cdbe41e978a378bcfdb" kindref="member">T2DIIS</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>minimum_subspace_dimension<sp/>=<sp/>6,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>maximum_subspace_dimension<sp/>=<sp/>6)<sp/>:</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>minimum_subspace_dimension<sp/>{minimum_subspace_dimension},</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maximum_subspace_dimension<sp/>{maximum_subspace_dimension}<sp/>{}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Conforming<sp/>to<sp/>`Step`.</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aea6d5c59a6d05853733d63b24141a8ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aea6d5c59a6d05853733d63b24141a8ae" kindref="member">description</ref>()</highlight><highlight class="keyword"><sp/>const<sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Calculate<sp/>the<sp/>accelerated<sp/>T2<sp/>amplitudes<sp/>and<sp/>place<sp/>them<sp/>in<sp/>the<sp/>environment<sp/>by<sp/>overwriting<sp/>the<sp/>previous<sp/>T2<sp/>amplitudes.&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aa210a568a82efbbd41eb6dd0de82cdfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aa210a568a82efbbd41eb6dd0de82cdfa" kindref="member">execute</ref>(<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">Environment</ref>&amp;<sp/>environment)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Don&apos;t<sp/>do<sp/>anything<sp/>if<sp/>the<sp/>minimum<sp/>number<sp/>of<sp/>T2<sp/>amplitude<sp/>iterations<sp/>isn&apos;t<sp/>satisfied.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a9ab250672806f9feb5cea83e66f774a9" kindref="member">t2_amplitude_errors</ref>.size()<sp/>&lt;<sp/>this-&gt;minimum_subspace_dimension)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Convert<sp/>the<sp/>deques<sp/>in<sp/>the<sp/>environment<sp/>to<sp/>vectors<sp/>that<sp/>can<sp/>be<sp/>accepted<sp/>by<sp/>the<sp/>DIIS<sp/>accelerator.<sp/>The<sp/>total<sp/>number<sp/>of<sp/>elements<sp/>we<sp/>can<sp/>use<sp/>in<sp/>DIIS<sp/>is<sp/>either<sp/>the<sp/>maximum<sp/>subspace<sp/>dimension<sp/>or<sp/>the<sp/>number<sp/>of<sp/>available<sp/>error<sp/>vectors.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>Include<sp/>the<sp/>possibility<sp/>for<sp/>an<sp/>x-iteration<sp/>&apos;relaxation&apos;,<sp/>i.e.<sp/>not<sp/>doing<sp/>DIIS<sp/>for<sp/>x<sp/>iterations<sp/>long.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>std::min(this-&gt;maximum_subspace_dimension,<sp/>environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a9ab250672806f9feb5cea83e66f774a9" kindref="member">t2_amplitude_errors</ref>.size());</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;VectorX&lt;Scalar&gt;&gt;<sp/>error_vectors<sp/>{environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a9ab250672806f9feb5cea83e66f774a9" kindref="member">t2_amplitude_errors</ref>.end()<sp/>-<sp/>n,<sp/>environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a9ab250672806f9feb5cea83e66f774a9" kindref="member">t2_amplitude_errors</ref>.end()};<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>n-th<sp/>last<sp/>error<sp/>vectors.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;T2Amplitudes&lt;Scalar&gt;&gt;<sp/>t2_amplitudes<sp/>{environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a3a005b633746ec034014da148dfae1e5" kindref="member">t2_amplitudes</ref>.end()<sp/>-<sp/>n,<sp/>environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a3a005b633746ec034014da148dfae1e5" kindref="member">t2_amplitudes</ref>.end()};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>n-th<sp/>last<sp/>T2<sp/>amplitudes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>accelerated<sp/>T2<sp/>amplitudes<sp/>and<sp/>place<sp/>them<sp/>in<sp/>the<sp/>environment<sp/>by<sp/>overwriting<sp/>the<sp/>previous<sp/>T2<sp/>amplitudes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>t2_amplitudes_accelerated<sp/>=<sp/>this-&gt;diis.<ref refid="class_g_q_c_p_1_1_d_i_i_s_1afc4b6a0b711eafeeb3740780eb7f8a9f" kindref="member">accelerate</ref>(t2_amplitudes,<sp/>error_vectors);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a3a005b633746ec034014da148dfae1e5" kindref="member">t2_amplitudes</ref>.pop_back();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a3a005b633746ec034014da148dfae1e5" kindref="member">t2_amplitudes</ref>.push_back(t2_amplitudes_accelerated);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp"/>
+  </compounddef>
+</doxygen>

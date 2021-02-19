@@ -282,6 +282,8 @@
     <innerclass refid="class_g_q_c_p_1_1_subspace_update" prot="public">GQCP::SubspaceUpdate</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_t1_amplitudes" prot="public">GQCP::T1Amplitudes</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_t2_amplitudes" prot="public">GQCP::T2Amplitudes</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_t2_d_i_i_s" prot="public">GQCP::T2DIIS</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_t2_error_calculation" prot="public">GQCP::T2ErrorCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_tensor" prot="public">GQCP::Tensor</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation" prot="public">GQCP::UHFDensityMatrixCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_electronic_energy_calculation" prot="public">GQCP::UHFElectronicEnergyCalculation</innerclass>

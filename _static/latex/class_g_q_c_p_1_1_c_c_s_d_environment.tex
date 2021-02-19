@@ -36,11 +36,15 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Envir
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::deque$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a70b4d4d2b5ea5557bd35a69d3beade56}{electronic\+\_\+energies}}
+std\+::deque$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_aef79bf3441544306172ef243a0a3d9a0}{correlation\+\_\+energies}}
 \item 
 std\+::deque$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes}{T1\+Amplitudes}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\+\_\+amplitudes}}
 \item 
 std\+::deque$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2\+Amplitudes}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\+\_\+amplitudes}}
+\item 
+std\+::deque$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a85381ffcfad2dd470437720e85a84f22}{t1\+\_\+amplitude\+\_\+errors}}
+\item 
+std\+::deque$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}{t2\+\_\+amplitude\+\_\+errors}}
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}}
 \item 
@@ -72,7 +76,7 @@ An algorithmic environment suitable for coupled-\/cluster calculations up to the
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Scalar} & the scalar type the amplitudes \\
+{\em \+\_\+\+Scalar} & The scalar type that represents one of the amplitudes. \\
 \hline
 \end{DoxyTemplParams}
 
@@ -95,17 +99,17 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes}{T1\+Amplitudes}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \&}]{t1\+\_\+amplitudes,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2\+Amplitudes}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \&}]{t2\+\_\+amplitudes,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \&}]{f,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \&}]{V\+\_\+A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Initialize a C\+C\+SD algorithmic environment with given T1-\/ and T2-\/amplitudes.
+Initialize an algorithmic environment with given T1-\/ and T2-\/amplitudes.
 
 
 \begin{DoxyParams}{Parameters}
-{\em t1\+\_\+amplitudes} & the initial T1-\/amplitudes \\
+{\em t1\+\_\+amplitudes} & The initial T1-\/amplitudes. \\
 \hline
-{\em t2\+\_\+amplitudes} & the initial T2-\/amplitudes \\
+{\em t2\+\_\+amplitudes} & The initial T2-\/amplitudes. \\
 \hline
-{\em f} & the (inactive) Fock matrix \\
+{\em f} & The elements of the (inactive) Fock matrix. \\
 \hline
-{\em V\+\_\+A} & the antisymmetrized two-\/electron integrals (in physicist\textquotesingle{}s notation) \\
+{\em V\+\_\+A} & The antisymmetrized two-\/electron integrals (in physicist\textquotesingle{}s notation). \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_a5d4c983ec466321e35d9f9a5171bec76}\label{class_g_q_c_p_1_1_c_c_s_d_environment_a5d4c983ec466321e35d9f9a5171bec76}} 
@@ -115,15 +119,15 @@ Initialize a C\+C\+SD algorithmic environment with given T1-\/ and T2-\/amplitud
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2\+Amplitudes}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \&}]{t2\+\_\+amplitudes,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \&}]{f,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}} $>$ \&}]{V\+\_\+A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Initialize a C\+CD algorithmic environment with given T2-\/amplitudes.
+Initialize an algorithmic environment with given T2-\/amplitudes.
 
 
 \begin{DoxyParams}{Parameters}
-{\em t2\+\_\+amplitudes} & the initial T2-\/amplitudes \\
+{\em t2\+\_\+amplitudes} & The initial T2-\/amplitudes. \\
 \hline
-{\em f} & the (inactive) Fock matrix \\
+{\em f} & The elements of the (inactive) Fock matrix. \\
 \hline
-{\em V\+\_\+A} & the antisymmetrized two-\/electron integrals (in physicist\textquotesingle{}s notation) \\
+{\em V\+\_\+A} & The antisymmetrized two-\/electron integrals (in physicist\textquotesingle{}s notation). \\
 \hline
 \end{DoxyParams}
 
@@ -140,13 +144,13 @@ Initialize a C\+CD algorithmic environment with initial guesses for the T2-\/amp
 
 
 \begin{DoxyParams}{Parameters}
-{\em sq\+\_\+hamiltonian} & the Hamiltonian expressed in an orthonormal spinor basis \\
+{\em sq\+\_\+hamiltonian} & The Hamiltonian expressed in an orthonormal spinor basis. \\
 \hline
-{\em orbital\+\_\+space} & the orbital space which covers the occupied-\/virtual separation\\
+{\em orbital\+\_\+space} & The orbital space which encapsulates the occupied-\/virtual separation.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-an algorithmic environment suitable for C\+CD calculations. 
+An algorithmic environment suitable for C\+CD calculations. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_aad57786295828bb1e0c1b5e448473bc4}\label{class_g_q_c_p_1_1_c_c_s_d_environment_aad57786295828bb1e0c1b5e448473bc4}} 
 \index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!PerturbativeCCSD@{PerturbativeCCSD}}
@@ -159,23 +163,23 @@ Initialize a C\+C\+SD algorithmic environment with initial guesses for the T1-\/
 
 
 \begin{DoxyParams}{Parameters}
-{\em sq\+\_\+hamiltonian} & the Hamiltonian expressed in an orthonormal spinor basis \\
+{\em sq\+\_\+hamiltonian} & The Hamiltonian expressed in an orthonormal spinor basis. \\
 \hline
-{\em orbital\+\_\+space} & the orbital space which covers the occupied-\/virtual separation\\
+{\em orbital\+\_\+space} & The orbital space which encapsulates the occupied-\/virtual separation.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-an algorithmic environment suitable for coupled-\/cluster calculations up to the C\+C\+SD level. 
+An algorithmic environment suitable for coupled-\/cluster calculations up to the C\+C\+SD level. 
 \end{DoxyReturn}
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_a70b4d4d2b5ea5557bd35a69d3beade56}\label{class_g_q_c_p_1_1_c_c_s_d_environment_a70b4d4d2b5ea5557bd35a69d3beade56}} 
-\index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!electronic\_energies@{electronic\_energies}}
-\index{electronic\_energies@{electronic\_energies}!GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}}
-\doxysubsubsection{\texorpdfstring{electronic\_energies}{electronic\_energies}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_aef79bf3441544306172ef243a0a3d9a0}\label{class_g_q_c_p_1_1_c_c_s_d_environment_aef79bf3441544306172ef243a0a3d9a0}} 
+\index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!correlation\_energies@{correlation\_energies}}
+\index{correlation\_energies@{correlation\_energies}!GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{correlation\_energies}{correlation\_energies}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-std\+::deque$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::electronic\+\_\+energies}
+std\+::deque$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::correlation\+\_\+energies}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}\label{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}} 
 \index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!f@{f}}
@@ -205,12 +209,26 @@ std\+::deque$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{Implicit\+Matrix\+Slice}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::F3}
 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_a85381ffcfad2dd470437720e85a84f22}\label{class_g_q_c_p_1_1_c_c_s_d_environment_a85381ffcfad2dd470437720e85a84f22}} 
+\index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!t1\_amplitude\_errors@{t1\_amplitude\_errors}}
+\index{t1\_amplitude\_errors@{t1\_amplitude\_errors}!GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{t1\_amplitude\_errors}{t1\_amplitude\_errors}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+std\+::deque$<$\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::t1\+\_\+amplitude\+\_\+errors}
+
 \mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}\label{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}} 
 \index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!t1\_amplitudes@{t1\_amplitudes}}
 \index{t1\_amplitudes@{t1\_amplitudes}!GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{t1\_amplitudes}{t1\_amplitudes}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 std\+::deque$<$\mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes}{T1\+Amplitudes}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::t1\+\_\+amplitudes}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}\label{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}} 
+\index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!t2\_amplitude\_errors@{t2\_amplitude\_errors}}
+\index{t2\_amplitude\_errors@{t2\_amplitude\_errors}!GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{t2\_amplitude\_errors}{t2\_amplitude\_errors}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+std\+::deque$<$\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{G\+Q\+C\+P\+::\+C\+C\+S\+D\+Environment}}$<$ \+\_\+\+Scalar $>$\+::t2\+\_\+amplitude\+\_\+errors}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}\label{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}} 
 \index{GQCP::CCSDEnvironment$<$ \_Scalar $>$@{GQCP::CCSDEnvironment$<$ \_Scalar $>$}!t2\_amplitudes@{t2\_amplitudes}}

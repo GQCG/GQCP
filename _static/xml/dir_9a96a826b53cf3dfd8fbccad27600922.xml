@@ -13,6 +13,8 @@
     <innerfile refid="_c_c_s_d_environment_8hpp">CCSDEnvironment.hpp</innerfile>
     <innerfile refid="_c_c_s_d_intermediates_update_8hpp">CCSDIntermediatesUpdate.hpp</innerfile>
     <innerfile refid="_c_c_s_d_solver_8hpp">CCSDSolver.hpp</innerfile>
+    <innerfile refid="_t2_d_i_i_s_8hpp">T2DIIS.hpp</innerfile>
+    <innerfile refid="_t2_error_calculation_8hpp">T2ErrorCalculation.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

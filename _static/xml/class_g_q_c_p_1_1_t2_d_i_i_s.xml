@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_t2_d_i_i_s" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::T2DIIS</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_t2_d_i_i_s_8hpp" local="no">T2DIIS.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_t2_d_i_i_s_1afe0e1b061f21a2e1e53ab66fae584821" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::T2DIIS&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_t2_d_i_i_s_1aa14a764323726787475897bc23405d9c" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_d_i_i_s_1afe0e1b061f21a2e1e53ab66fae584821" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::T2DIIS&lt; _Scalar &gt;::Environment =  CCSDEnvironment&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_t2_d_i_i_s_1ae9724fbc1e204d8ac50fc0d7219ab18e" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::T2DIIS&lt; _Scalar &gt;::minimum_subspace_dimension</definition>
+        <argsstring></argsstring>
+        <name>minimum_subspace_dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="52" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_t2_d_i_i_s_1a02d4bd79ca2aba67a4718d89f9909d8f" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::T2DIIS&lt; _Scalar &gt;::maximum_subspace_dimension</definition>
+        <argsstring></argsstring>
+        <name>maximum_subspace_dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="55" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_t2_d_i_i_s_1ad294cc33724090899f5adc67fd629ad3" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_d_i_i_s_1afe0e1b061f21a2e1e53ab66fae584821" kindref="member">Scalar</ref> &gt;</type>
+        <definition>DIIS&lt;Scalar&gt; GQCP::T2DIIS&lt; _Scalar &gt;::diis</definition>
+        <argsstring></argsstring>
+        <name>diis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="58" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_d_i_i_s_1a7f7c719c76487cdbe41e978a378bcfdb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::T2DIIS&lt; _Scalar &gt;::T2DIIS</definition>
+        <argsstring>(const size_t minimum_subspace_dimension=6, const size_t maximum_subspace_dimension=6)</argsstring>
+        <name>T2DIIS</name>
+        <param>
+          <type>const size_t</type>
+          <declname>minimum_subspace_dimension</declname>
+          <defval>6</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_subspace_dimension</declname>
+          <defval>6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>minimum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimum number of T2 amplitudes that have to be in the subspace before enabling <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum number of T2 amplitues that can be handled by <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="70" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_d_i_i_s_1aea6d5c59a6d05853733d63b24141a8ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string GQCP::T2DIIS&lt; _Scalar &gt;::description</definition>
+        <argsstring>() const override</argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A textual description of this algorithmic step. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="82" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="82" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_d_i_i_s_1aa210a568a82efbbd41eb6dd0de82cdfa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::T2DIIS&lt; _Scalar &gt;::execute</definition>
+        <argsstring>(Environment &amp;environment) override</argsstring>
+        <name>execute</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aa14a764323726787475897bc23405d9c" kindref="member">Environment</ref> &amp;</type>
+          <declname>environment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the accelerated T2 amplitudes and place them in the environment by overwriting the previous T2 amplitudes.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The environment that acts as a sort of calculation space. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="92" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="92" bodyend="111"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An iteration step that accelerates the T2 amplitudes based on a <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> accelerator.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used to represent the T2 amplitudes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::T2DIIS&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_t2_d_i_i_s"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="1">
+        <label>GQCP::T2DIIS&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_t2_d_i_i_s"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp" bodystart="40" bodyend="112"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aea6d5c59a6d05853733d63b24141a8ae" prot="public" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::T2DIIS</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1ad294cc33724090899f5adc67fd629ad3" prot="private" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>diis</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aa14a764323726787475897bc23405d9c" prot="public" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>Environment</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aa210a568a82efbbd41eb6dd0de82cdfa" prot="public" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::T2DIIS</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1a02d4bd79ca2aba67a4718d89f9909d8f" prot="private" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>maximum_subspace_dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1ae9724fbc1e204d8ac50fc0d7219ab18e" prot="private" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>minimum_subspace_dimension</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1afe0e1b061f21a2e1e53ab66fae584821" prot="public" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_d_i_i_s_1a7f7c719c76487cdbe41e978a378bcfdb" prot="public" virt="non-virtual"><scope>GQCP::T2DIIS</scope><name>T2DIIS</name></member>
+      <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::T2DIIS</scope><name>~Step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

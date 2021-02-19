@@ -1786,7 +1786,7 @@
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>current<sp/>correlation<sp/>energy<sp/>and<sp/>push<sp/>it<sp/>to<sp/>the<sp/>environment.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>current_correlation_energy<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1abe7ae6c787fc0cefd125b3b79f3c9e2f" kindref="member">QCModel::CCSD&lt;Scalar&gt;::calculateCorrelationEnergy</ref>(f,<sp/>V_A,<sp/>t1,<sp/>t2);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a70b4d4d2b5ea5557bd35a69d3beade56" kindref="member">electronic_energies</ref>.push_back(current_correlation_energy);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>environment.<ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1aef79bf3441544306172ef243a0a3d9a0" kindref="member">correlation_energies</ref>.push_back(current_correlation_energy);</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>

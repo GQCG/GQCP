@@ -23,6 +23,8 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a246f6c40282aa89c88d0647df263d033}{Plain}} (const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a79356536c991851bc7229ee381f00032}{D\+I\+IS}} (const size\+\_\+t minimum\+\_\+subspace\+\_\+dimension=6, const size\+\_\+t maximum\+\_\+subspace\+\_\+dimension=6, const double threshold=1.\+0e-\/08, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128)
 \end{DoxyCompactItemize}
 
 
@@ -34,7 +36,7 @@ A factory class that can construct C\+CD solvers in an easy way.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Scalar} & the scalar type that is used to represent the amplitudes \\
+{\em \+\_\+\+Scalar} & The scalar type that is used to represent the amplitudes. \\
 \hline
 \end{DoxyTemplParams}
 
@@ -50,6 +52,29 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver}{G\+Q\+C\+P\+::\+C\+C\+D\+
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_d_solver_a79356536c991851bc7229ee381f00032}\label{class_g_q_c_p_1_1_c_c_d_solver_a79356536c991851bc7229ee381f00032}} 
+\index{GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}!DIIS@{DIIS}}
+\index{DIIS@{DIIS}!GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{DIIS()}{DIIS()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver}{G\+Q\+C\+P\+::\+C\+C\+D\+Solver}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{minimum\+\_\+subspace\+\_\+dimension = {\ttfamily 6},  }\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 6},  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} C\+CD solver.
+
+
+\begin{DoxyParams}{Parameters}
+{\em minimum\+\_\+subspace\+\_\+dimension} & The minimum number of T2 amplitudes that have to be in the subspace before enabling \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}}. \\
+\hline
+{\em maximum\+\_\+subspace\+\_\+dimension} & The maximum number of T2 amplitudes that can be handled by \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}}. \\
+\hline
+{\em threshold} & The threshold that is used in comparing the amplitudes. \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & The maximum number of iterations the algorithm may perform.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{D\+I\+IS}} C\+CD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_d_solver_a246f6c40282aa89c88d0647df263d033}\label{class_g_q_c_p_1_1_c_c_d_solver_a246f6c40282aa89c88d0647df263d033}} 
 \index{GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}!Plain@{Plain}}
 \index{Plain@{Plain}!GQCP::CCDSolver$<$ \_Scalar $>$@{GQCP::CCDSolver$<$ \_Scalar $>$}}
@@ -57,15 +82,17 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver}{G\+Q\+C\+P\+::\+C\+C\+D\+
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 static \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{C\+C\+S\+D\+Environment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver}{G\+Q\+C\+P\+::\+C\+C\+D\+Solver}}$<$ \+\_\+\+Scalar $>$\+::Plain (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
+Create a plain C\+CD solver.
+
 
 \begin{DoxyParams}{Parameters}
-{\em threshold} & the threshold that is used in comparing the amplitudes \\
+{\em threshold} & The threshold that is used in comparing the amplitudes. \\
 \hline
-{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & the maximum number of iterations the algorithm may perform\\
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & The maximum number of iterations the algorithm may perform.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a plain C\+CD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion 
+A plain C\+CD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion. 
 \end{DoxyReturn}
 
 

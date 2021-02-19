@@ -21,7 +21,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="38" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt;</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="39" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -49,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="42" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="50" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_t2_amplitudes_1a79736e1b3d13a680b594873dd0beacde" prot="private" static="no" mutable="no">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt;</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="44" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="44" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="53" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -82,13 +82,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Construct T2-amplitudes given their representation as a <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref> and and explicit occupied-virtual orbital space.</para>
+<para>Construct T2-amplitudes given their representation as an <computeroutput><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref></computeroutput> and explicit occupied-virtual orbital space.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>t</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the T2-amplitudes as a block matrix, implementing easy operator(i,j,a,b) calls </para>
+<para>The T2-amplitudes as an implicit tensor, implementing intuitive operator(i,j,a,b) calls. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -96,7 +96,7 @@
 <parametername>orbital_space</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the orbital space which covers the occupied-virtual separation, indicating which indices in the block matrix are occupied and which are virtual </para>
+<para>The orbital space which encapsulates the occupied-virtual separation. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -104,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="58" bodyend="60"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="67" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a3231734ad7a906703c03a34427866e3d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -126,13 +126,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Construct the T2-amplitudes given their representation as a <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref> and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.</para>
+<para>Construct the T2-amplitudes given their representation as an <computeroutput><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref></computeroutput> and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>t</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the T2-amplitudes as a block matrix, implementing easy operator(i,j,a,b) calls </para>
+<para>The T2-amplitudes as an implicit tensor, implementing intuitive operator(i,j,a,b) calls. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -140,7 +140,7 @@
 <parametername>N</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the number of occupied orbitals </para>
+<para>The number of occupied orbitals. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -148,7 +148,7 @@
 <parametername>M</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the total number of orbitals </para>
+<para>The total number of orbitals. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="70" bodyend="71"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="79" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="79" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a72b3745d781ae7986c45f4e348906b89" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref></type>
@@ -188,7 +188,7 @@
 <parametername>i</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>an occupied index </para>
+<para>An occupied index. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -196,7 +196,7 @@
 <parametername>j</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>an occupied index </para>
+<para>An occupied index. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -204,7 +204,7 @@
 <parametername>a</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a virtual index </para>
+<para>A virtual index. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -212,17 +212,17 @@
 <parametername>b</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a virtual index</para>
+<para>A virtual index.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the read-only T2-amplitude corresponding to t_{ij}^{ab} </para>
+<simplesect kind="return"><para>A read-only reference to the T2-amplitude t_{ij}^{ab}. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="142" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="142" bodyend="142"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="133" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="133" bodyend="133"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a842400905c898572cc8ab4df1e162795" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &amp;</type>
@@ -254,7 +254,7 @@
 <parametername>i</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>an occupied index </para>
+<para>An occupied index. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -262,7 +262,7 @@
 <parametername>j</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>an occupied index </para>
+<para>An occupied index. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -270,7 +270,7 @@
 <parametername>a</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a virtual index </para>
+<para>A virtual index. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -278,17 +278,17 @@
 <parametername>b</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a virtual index</para>
+<para>A virtual index.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the writable T2-amplitude corresponding to t_{ij}^{ab} </para>
+<simplesect kind="return"><para>A writable reference to the T2-amplitude corresponding to t_{ij}^{ab} </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="154" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="154" bodyend="154"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="145" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="145" bodyend="145"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1abf1805e5eaa6e845a1ed95e80c122bf0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt; &amp;</type>
@@ -298,29 +298,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>the T2-amplitudes as a <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref> </para>
+<para><simplesect kind="return"><para>The T2-amplitudes as an <computeroutput><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="163" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="163" bodyend="163"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a0ba7fd37b05a3d653b15a148a675d000" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref></type>
-        <definition>Scalar GQCP::T2Amplitudes&lt; _Scalar &gt;::norm</definition>
-        <argsstring>() const</argsstring>
-        <name>norm</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>the Frobenius norm of these T2-amplitudes </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="168" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="168" bodyend="168"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="150" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="150" bodyend="150"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1ab97309a121f7d229f2f5ac00c343ac6d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
@@ -330,13 +314,29 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>the orbital space for these T2-amplitudes, which covers the occupied-virtual separation </para>
+<para><simplesect kind="return"><para>The orbital space for these T2-amplitudes, which encapsulates the occupied-virtual separation. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="173" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="173" bodyend="173"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="155" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a0ba7fd37b05a3d653b15a148a675d000" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref></type>
+        <definition>Scalar GQCP::T2Amplitudes&lt; _Scalar &gt;::norm</definition>
+        <argsstring>() const</argsstring>
+        <name>norm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The Frobenius norm of these T2-amplitudes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="165" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="165" bodyend="165"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1aceccc95a7c3c82a13ad6cb09cf77ed82" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" kindref="member">Self</ref> &amp;</type>
@@ -354,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="183" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="183" bodyend="194"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="175" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="175" bodyend="187"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a10ae1614bffaae6a0bdf8755b8840d72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" kindref="member">Self</ref> &amp;</type>
@@ -373,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="200" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="200" bodyend="211"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="193" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="193" bodyend="205"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -397,13 +397,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create perturbative T2-amplitudes using an explicit orbital space.</para>
+<para>Create perturbative T2-amplitudes.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>f</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the (inactive) Fock matrix </para>
+<para>The (inactive) Fock matrix. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -411,7 +411,7 @@
 <parametername>V_A</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the antisymmetrized two-electron integrals (in physicist&apos;s notation) </para>
+<para>The antisymmetrized two-electron integrals (in physicist&apos;s notation). </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -419,77 +419,34 @@
 <parametername>orbital_space</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the orbital space which covers the occupied-virtual separation</para>
+<para>The orbital space which encapsulates the occupied-virtual separation.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>T2-amplitudes calculated from an initial perturbative result </para>
+<simplesect kind="return"><para>T2-amplitudes calculated from an initial perturbative result. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="87" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="87" bodyend="107"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1ada764c328a919261dc1b2653a1026985" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static T2Amplitudes&lt;Scalar&gt; GQCP::T2Amplitudes&lt; _Scalar &gt;::Perturbative</definition>
-        <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const size_t N, const size_t M)</argsstring>
-        <name>Perturbative</name>
-        <param>
-          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt; &amp;</type>
-          <declname>sq_hamiltonian</declname>
-        </param>
-        <param>
-          <type>const size_t</type>
-          <declname>N</declname>
-        </param>
-        <param>
-          <type>const size_t</type>
-          <declname>M</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Create perturbative T2-amplitudes using an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>sq_hamiltonian</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the Hamiltonian expressed in an orthonormal spinor basis </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>N</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the number of occupied orbitals </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>M</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the total number of orbitals</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>T2-amplitudes calculated from an initial perturbative result </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="119" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="119" bodyend="125"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="96" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="96" bodyend="116"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>The coupled-cluster T2-amplitudes t_{ij}^{ab}. According to context, this class may either represent restricted (i.e. spatial-orbital) amplitudes, or generalized (spinor) amplitudes. </para>
+<para>The coupled-cluster T2-amplitudes t_{ij}^{ab}.</para>
+<para>In general, these are spinor amplitudes, but they may be used to represent spin-orbital amplitudes as well.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type that represents one of the amplitudes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
@@ -527,7 +484,7 @@
         <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="35" bodyend="212"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="39" bodyend="206"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1abf1805e5eaa6e845a1ed95e80c122bf0" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>asImplicitRankFourTensorSlice</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>derived</name></member>
@@ -544,7 +501,6 @@
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a468d9d2e69c8f5166585283adde5819d" prot="private" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>orbital_space</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1ab97309a121f7d229f2f5ac00c343ac6d" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>orbitalSpace</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a5a0b7ae7664a5eaa7706867505931790" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Perturbative</name></member>
-      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1ada764c328a919261dc1b2653a1026985" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Perturbative</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a79736e1b3d13a680b594873dd0beacde" prot="private" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>t</name></member>

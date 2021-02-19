@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -42,12 +42,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Create a plain CCD solver.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>threshold</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the threshold that is used in comparing the amplitudes </para>
+<para>The threshold that is used in comparing the amplitudes. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -55,17 +56,87 @@
 <parametername>maximum_number_of_iterations</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the maximum number of iterations the algorithm may perform</para>
+<para>The maximum number of iterations the algorithm may perform.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>a plain CCD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion </para>
+<simplesect kind="return"><para>A plain CCD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" line="56" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" bodystart="56" bodyend="73"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" line="60" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" bodystart="60" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_d_solver_1a79356536c991851bc7229ee381f00032" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment" kindref="compound">CCSDEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_c_c_d_solver_1a1699b71a10a7147d4308233fc4d32141" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>static IterativeAlgorithm&lt;CCSDEnvironment&lt;Scalar&gt; &gt; GQCP::CCDSolver&lt; _Scalar &gt;::DIIS</definition>
+        <argsstring>(const size_t minimum_subspace_dimension=6, const size_t maximum_subspace_dimension=6, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>DIIS</name>
+        <param>
+          <type>const size_t</type>
+          <declname>minimum_subspace_dimension</declname>
+          <defval>6</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_subspace_dimension</declname>
+          <defval>6</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> CCD solver.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>minimum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimum number of T2 amplitudes that have to be in the subspace before enabling <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_subspace_dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum number of T2 amplitudes that can be handled by <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold that is used in comparing the amplitudes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum number of iterations the algorithm may perform.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_d_i_i_s" kindref="compound">DIIS</ref> CCD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" line="90" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" bodystart="90" bodyend="108"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -77,7 +148,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar type that is used to represent the amplitudes </para>
+<para>The scalar type that is used to represent the amplitudes. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -89,8 +160,9 @@
         <link refid="class_g_q_c_p_1_1_c_c_d_solver"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" bodystart="40" bodyend="74"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp" bodystart="42" bodyend="109"/>
     <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_c_c_d_solver_1a79356536c991851bc7229ee381f00032" prot="public" virt="non-virtual"><scope>GQCP::CCDSolver</scope><name>DIIS</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_d_solver_1a246f6c40282aa89c88d0647df263d033" prot="public" virt="non-virtual"><scope>GQCP::CCDSolver</scope><name>Plain</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_d_solver_1a1699b71a10a7147d4308233fc4d32141" prot="public" virt="non-virtual"><scope>GQCP::CCDSolver</scope><name>Scalar</name></member>
     </listofallmembers>

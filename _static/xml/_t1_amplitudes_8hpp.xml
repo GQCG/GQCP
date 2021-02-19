@@ -1641,7 +1641,7 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="11">
+      <node id="12">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
         <link refid="_c_c_s_d_solver_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1653,41 +1653,41 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="14">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDIntermediatesUpdate.hpp</label>
         <link refid="_c_c_s_d_intermediates_update_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="12">
+      <node id="13">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp</label>
         <link refid="_c_c_s_d_energy_calculation_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="10">
+      <node id="11">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDAmplitudesUpdate.hpp</label>
         <link refid="_c_c_s_d_amplitudes_update_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp</label>
         <link refid="_q_c_model_2_c_c_2_c_c_s_d_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="8">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDEnergyCalculation.hpp</label>
         <link refid="_c_c_d_energy_calculation_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1701,6 +1701,8 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -1720,12 +1722,30 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="15">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2ErrorCalculation.hpp</label>
+        <link refid="_t2_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDIntermediatesUpdate.hpp</label>
         <link refid="_c_c_d_intermediates_update_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp</label>
+        <link refid="_t2_d_i_i_s_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
@@ -1740,24 +1760,28 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
         <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
       </node>
-      <node id="9">
+      <node id="10">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSD.hpp</label>
         <link refid="_q_c_method_2_c_c_2_c_c_s_d_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1801,121 +1825,119 @@
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
-<codeline lineno="35" refid="class_g_q_c_p_1_1_t1_amplitudes" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>:</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_vector_space_arithmetic" kindref="compound">VectorSpaceArithmetic</ref>&lt;T1Amplitudes&lt;_Scalar&gt;,<sp/>_Scalar&gt;<sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="39" refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
-<codeline lineno="40" refid="class_g_q_c_p_1_1_t1_amplitudes_1a7abc9070ad99e319a57ac6779a482fb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes&lt;Scalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
+<codeline lineno="39" refid="class_g_q_c_p_1_1_t1_amplitudes" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>:</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_vector_space_arithmetic" kindref="compound">VectorSpaceArithmetic</ref>&lt;T1Amplitudes&lt;_Scalar&gt;,<sp/>_Scalar&gt;<sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/>orbital_space;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>orbital<sp/>space<sp/>which<sp/>covers<sp/>the<sp/>occupied-virtual<sp/>separation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>that<sp/>represents<sp/>one<sp/>of<sp/>the<sp/>amplitudes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref><sp/>t;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>T1-amplitudes<sp/>as<sp/>a<sp/>block<sp/>matrix,<sp/>implementing<sp/>easy<sp/>operator(i,a)<sp/>calls</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>&apos;this&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="class_g_q_c_p_1_1_t1_amplitudes_1a7abc9070ad99e319a57ac6779a482fb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes&lt;Scalar&gt;</ref>;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="51"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
-<codeline lineno="52"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>orbital<sp/>space<sp/>which<sp/>encapsulates<sp/>the<sp/>occupied-virtual<sp/>separation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/>orbital_space;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60" refid="class_g_q_c_p_1_1_t1_amplitudes_1a318de1170ed0d3a1beccf2863f0ae920" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a318de1170ed0d3a1beccf2863f0ae920" kindref="member">T1Amplitudes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref>&amp;<sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space)<sp/>:</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orbital_space<sp/>{orbital_space},</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t<sp/>{t}<sp/>{}</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72" refid="class_g_q_c_p_1_1_t1_amplitudes_1aa45c8c14f5c0db828f41001ab9a20186" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1aa45c8c14f5c0db828f41001ab9a20186" kindref="member">T1Amplitudes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref>&amp;<sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>M)<sp/>:</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>(t,<sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>::Implicit({{OccupationType::k_occupied,<sp/>N},<sp/>{<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_virtual</ref>,<sp/>M<sp/>-<sp/>N}}))<sp/>{}</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="77"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>NAMED<sp/>CONSTRUCTORS</highlight></codeline>
-<codeline lineno="78"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88" refid="class_g_q_c_p_1_1_t1_amplitudes_1a3150e61624672a155ce7a13807c72ac0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a3150e61624672a155ce7a13807c72ac0" kindref="member">Perturbative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref>&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space)<sp/>{</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Zero-initialize<sp/>a<sp/>matrix<sp/>representation<sp/>for<sp/>the<sp/>(occupied-virtual)<sp/>T1-amplitudes<sp/>t_i^a.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>t1<sp/>=<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a94054746984d5264a8db8be75ec36515" kindref="member">initializeRepresentableObjectFor</ref>&lt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref>&gt;(OccupationType::k_occupied,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_virtual</ref>);</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Provide<sp/>the<sp/>perturbative<sp/>T1-amplitudes,<sp/>by<sp/>setting<sp/>the<sp/>RHS<sp/>amplitudes<sp/>in<sp/>Stanton1991,<sp/>equation<sp/>(1)<sp/>to<sp/>zero.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(OccupationType::k_occupied))<sp/>{</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>denominator<sp/>=<sp/>f(i,<sp/>i)<sp/>-<sp/>f(a,<sp/>a);</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t1(i,<sp/>a)<sp/>=<sp/>f(i,<sp/>a)<sp/>/<sp/>denominator;</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>T1-amplitudes<sp/>as<sp/>an<sp/>implicit<sp/>matrix,<sp/>implementing<sp/>intuitive<sp/>operator(i,a)<sp/>calls.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref><sp/>t;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Constructors</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="class_g_q_c_p_1_1_t1_amplitudes_1a318de1170ed0d3a1beccf2863f0ae920" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a318de1170ed0d3a1beccf2863f0ae920" kindref="member">T1Amplitudes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref>&amp;<sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space)<sp/>:</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orbital_space<sp/>{orbital_space},</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t<sp/>{t}<sp/>{}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="class_g_q_c_p_1_1_t1_amplitudes_1aa45c8c14f5c0db828f41001ab9a20186" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1aa45c8c14f5c0db828f41001ab9a20186" kindref="member">T1Amplitudes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref>&amp;<sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>M)<sp/>:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>(t,<sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>::Implicit({{OccupationType::k_occupied,<sp/>N},<sp/>{<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_virtual</ref>,<sp/>M<sp/>-<sp/>N}}))<sp/>{}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Named<sp/>constructors</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="class_g_q_c_p_1_1_t1_amplitudes_1a3150e61624672a155ce7a13807c72ac0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a3150e61624672a155ce7a13807c72ac0" kindref="member">Perturbative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref>&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Zero-initialize<sp/>a<sp/>matrix<sp/>representation<sp/>for<sp/>the<sp/>(occupied-virtual)<sp/>T1-amplitudes<sp/>t_i^a.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>t1<sp/>=<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a94054746984d5264a8db8be75ec36515" kindref="member">initializeRepresentableObjectFor</ref>&lt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref>&gt;(OccupationType::k_occupied,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_virtual</ref>);</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes&lt;Scalar&gt;</ref>(t1,<sp/>orbital_space);</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115" refid="class_g_q_c_p_1_1_t1_amplitudes_1afbceca3af3dee8bdbee4d4a321ad3a6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1afbceca3af3dee8bdbee4d4a321ad3a6b" kindref="member">Perturbative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">RSQHamiltonian&lt;Scalar&gt;</ref>&amp;<sp/>sq_hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>M)<sp/>{</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>implicit<sp/>orbital<sp/>space<sp/>for<sp/>N<sp/>occupied<sp/>orbitals<sp/>and<sp/>M<sp/>total<sp/>orbitals.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>orbital_space<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_orbital_space_1a22c967bc1d33a75341c86b1ca52b0532" kindref="member">OrbitalSpace::Implicit</ref>({{OccupationType::k_occupied,<sp/>N},<sp/>{<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_virtual</ref>,<sp/>M<sp/>-<sp/>N}});</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a3150e61624672a155ce7a13807c72ac0" kindref="member">T1Amplitudes&lt;Scalar&gt;::Perturbative</ref>(sq_hamiltonian,<sp/>orbital_space);</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="125"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>OPERATORS</highlight></codeline>
-<codeline lineno="126"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136" refid="class_g_q_c_p_1_1_t1_amplitudes_1a319fb8a01157d667cc4c7480108fa469" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a319fb8a01157d667cc4c7480108fa469" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>a)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;t(i,<sp/>a);<sp/>}</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146" refid="class_g_q_c_p_1_1_t1_amplitudes_1af77bfe33980d15ebd8768fdda8c804e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1af77bfe33980d15ebd8768fdda8c804e5" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>a)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;t(i,<sp/>a);<sp/>}</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Provide<sp/>the<sp/>perturbative<sp/>T1-amplitudes,<sp/>by<sp/>setting<sp/>the<sp/>RHS<sp/>amplitudes<sp/>in<sp/>Stanton1991,<sp/>equation<sp/>(1)<sp/>to<sp/>zero.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(OccupationType::k_occupied))<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>denominator<sp/>=<sp/>f(i,<sp/>i)<sp/>-<sp/>f(a,<sp/>a);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t1(i,<sp/>a)<sp/>=<sp/>f(i,<sp/>a)<sp/>/<sp/>denominator;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes&lt;Scalar&gt;</ref>(t1,<sp/>orbital_space);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Access.</highlight></codeline>
+<codeline lineno="117"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="class_g_q_c_p_1_1_t1_amplitudes_1a319fb8a01157d667cc4c7480108fa469" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a319fb8a01157d667cc4c7480108fa469" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>a)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;t(i,<sp/>a);<sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="class_g_q_c_p_1_1_t1_amplitudes_1af77bfe33980d15ebd8768fdda8c804e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1af77bfe33980d15ebd8768fdda8c804e5" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>a)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;t(i,<sp/>a);<sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;t;<sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="class_g_q_c_p_1_1_t1_amplitudes_1a801461e773b25c13e9318dfbfd6a722b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a801461e773b25c13e9318dfbfd6a722b" kindref="member">orbitalSpace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;orbital_space;<sp/>}</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="150"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS</highlight></codeline>
-<codeline lineno="151"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="152"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156" refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;t;<sp/>}</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161" refid="class_g_q_c_p_1_1_t1_amplitudes_1abc7ea3e9be64ed749b6e33011c21fe67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1abc7ea3e9be64ed749b6e33011c21fe67" kindref="member">norm</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>().norm();<sp/>}</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="166" refid="class_g_q_c_p_1_1_t1_amplitudes_1a801461e773b25c13e9318dfbfd6a722b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a801461e773b25c13e9318dfbfd6a722b" kindref="member">orbitalSpace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;orbital_space;<sp/>}</highlight></codeline>
-<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="151"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Linear<sp/>algebra</highlight></codeline>
+<codeline lineno="152"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="class_g_q_c_p_1_1_t1_amplitudes_1abc7ea3e9be64ed749b6e33011c21fe67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1abc7ea3e9be64ed749b6e33011c21fe67" kindref="member">norm</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>().norm();<sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="161"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Vector<sp/>space<sp/>arithmetic</highlight></codeline>
+<codeline lineno="162"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360" kindref="member">operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref>&amp;<sp/>rhs)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="168"><highlight class="normal"></highlight></codeline>
-<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="170"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Vector<sp/>space<sp/>arithmetic</highlight></codeline>
-<codeline lineno="171"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>row_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a2e40fa80fe0f68c539890c151c57c126" kindref="member">rowIndexMap</ref>();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>col_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a70eefd9bf58591279c903c7b0c6f5b66" kindref="member">columnIndexMap</ref>();</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"></highlight></codeline>
-<codeline lineno="176" refid="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1a7d5903cbb3231a6c53e29cc0b2770360" kindref="member">operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref>&amp;<sp/>rhs)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"></highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>row_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a2e40fa80fe0f68c539890c151c57c126" kindref="member">rowIndexMap</ref>();</highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>col_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a70eefd9bf58591279c903c7b0c6f5b66" kindref="member">columnIndexMap</ref>();</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sum<sp/>the<sp/>matrix<sp/>representations.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/>t_sum_dense<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>()<sp/>+<sp/>rhs.<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>();</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref><sp/>t_sum_slice<sp/>{row_map,<sp/>col_map,<sp/>t_sum_dense};</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;t<sp/>=<sp/>t_sum_slice;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/>t_sum_dense<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>()<sp/>+<sp/>rhs.<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>();</highlight></codeline>
-<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref><sp/>t_sum_slice<sp/>{row_map,<sp/>col_map,<sp/>t_sum_dense};</highlight></codeline>
-<codeline lineno="184"><highlight class="normal"></highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;t<sp/>=<sp/>t_sum_slice;</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"></highlight></codeline>
-<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="190"><highlight class="normal"></highlight></codeline>
-<codeline lineno="194" refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb" kindref="member">operator*=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref>&amp;<sp/>a)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186" refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">Self</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb" kindref="member">operator*=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kindref="member">Scalar</ref>&amp;<sp/>a)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>row_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a2e40fa80fe0f68c539890c151c57c126" kindref="member">rowIndexMap</ref>();</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>col_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a70eefd9bf58591279c903c7b0c6f5b66" kindref="member">columnIndexMap</ref>();</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Multiply<sp/>the<sp/>matrix<sp/>representation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/>t_multiplied_dense<sp/>=<sp/>a<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>();</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref><sp/>t_multiplied_slice<sp/>{row_map,<sp/>col_map,<sp/>t_multiplied_dense};</highlight></codeline>
 <codeline lineno="195"><highlight class="normal"></highlight></codeline>
-<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>row_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a2e40fa80fe0f68c539890c151c57c126" kindref="member">rowIndexMap</ref>();</highlight></codeline>
-<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>col_map<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1a70eefd9bf58591279c903c7b0c6f5b66" kindref="member">columnIndexMap</ref>();</highlight></codeline>
-<codeline lineno="199"><highlight class="normal"></highlight></codeline>
-<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/>t_multiplied_dense<sp/>=<sp/>a<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_t1_amplitudes_1ad59a3b5bf6da7ed43dd8e1e3f6caef49" kindref="member">asImplicitMatrixSlice</ref>().<ref refid="class_g_q_c_p_1_1_implicit_matrix_slice_1ac621e9ddb2df28ac144d043cf8d06e5f" kindref="member">asMatrix</ref>();</highlight></codeline>
-<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice&lt;Scalar&gt;</ref><sp/>t_multiplied_slice<sp/>{row_map,<sp/>col_map,<sp/>t_multiplied_dense};</highlight></codeline>
-<codeline lineno="202"><highlight class="normal"></highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;t<sp/>=<sp/>t_multiplied_slice;</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"></highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="207"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;t<sp/>=<sp/>t_multiplied_slice;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp"/>
   </compounddef>
