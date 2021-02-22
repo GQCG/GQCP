@@ -112,7 +112,7 @@ install(
 )
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/gqcp/include/ DESTINATION include/gqcp)
-install(FILES ${CMAKE_BINARY_DIR}/gqcp/include/version.hpp DESTINATION include/gqcp)
+#install(FILES ${CMAKE_BINARY_DIR}/gqcp/version/version.hpp DESTINATION include/gqcp)
 
 install(
     EXPORT gqcp-targets

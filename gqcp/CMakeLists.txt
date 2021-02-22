@@ -21,7 +21,13 @@ execute_process(
     ERROR_QUIET
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in include/version.hpp)
+#configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in include/version.hpp)
+# Add configuration file containing version of current library.
+configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in version/version.hpp @ONLY)
+# Compile the version as its own library where, if needed, other targets can be linked to.
+# Common practice: this to avoid unneccessary recompiling whenever the version changes.
+add_library(gqcp_version INTERFACE)
+target_include_directories(gqcp_version INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/version/)
 
 
 

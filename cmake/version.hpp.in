@@ -22,24 +22,23 @@
 #include <string>
 
 
-namespace $ {
-PROJECT_NAME
-}
-{
+// clang-format off
+namespace ${PROJECT_NAME} {
 
 
-    /**
+/**
  *  A class that holds version-related info: the version numbers and the corresponding git SHA1
  */
-    struct Version {
-    public:
-        static constexpr size_t major = $ {$ {PROJECT_NAME} _VERSION_MAJOR};
-        static constexpr size_t minor = $ {$ {PROJECT_NAME} _VERSION_MINOR};
-        static constexpr size_t patch = $ {$ {PROJECT_NAME} _VERSION_PATCH};
-        static constexpr auto full = "${${PROJECT_NAME}_VERSION}";
+struct Version {
+public:
+    static constexpr size_t major = $ {$ {PROJECT_NAME} _VERSION_MAJOR};
+    static constexpr size_t minor = $ {$ {PROJECT_NAME} _VERSION_MINOR};
+    static constexpr size_t patch = $ {$ {PROJECT_NAME} _VERSION_PATCH};
+    static constexpr auto full = "${${PROJECT_NAME}_VERSION}";
 
-        static constexpr auto git_SHA1 = "${GIT_SHA1}";
-    };
+    static constexpr auto git_SHA1 = "${GIT_SHA1}";
+};
 
 
 }  // namespace ${PROJECT_NAME}
+// clang-format on
