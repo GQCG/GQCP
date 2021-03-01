@@ -11,6 +11,10 @@ if (OPTIMIZE_FOR_NATIVE)
     target_compile_options(gqcp PRIVATE "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
 endif()
 
+# target_compile_options(gqcp PRIVATE "-fsanitize=address")
+# target_link_libraries(gqcp PRIVATE "-fsanitize=address")
+
+
 
 # Process the version.hpp-file
 # Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)

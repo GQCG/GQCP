@@ -27,6 +27,11 @@ foreach(TEST_SOURCE ${test_target_sources})
     target_link_libraries(${TEST_NAME} PUBLIC gqcp Boost::unit_test_framework)
     target_compile_definitions(${TEST_NAME} PRIVATE BOOST_TEST_DYN_LINK)
 
+    # target_link_libraries(${TEST_NAME}
+    #     PUBLIC -fsanitize=address
+    # )
+
+
     add_test(
         NAME ${TEST_NAME} COMMAND ${TEST_NAME}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gqcp/tests
