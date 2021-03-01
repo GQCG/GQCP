@@ -382,12 +382,8 @@ BOOST_AUTO_TEST_CASE(giao_sandbox) {
     // B[2] = 1.0;
     std::array<double, 3> B {0.0, 0.0, 1.0};
 
-
-    ChronusQ::pop_cart_ang_list();   // populate cartesian angular momentum list
-    ChronusQ::pop_car2sph_matrix();  // populate cartesian to spherical transform matrix
-    ChronusQ::generateFmTTable();
-
     auto result = ChronusQ::ComplexGIAOIntEngine::computeGIAOOverlapS(pair, libint_shell1, libint_shell2, B);
+
 
     for (const auto& vec : result) {
         for (const auto& each : vec) {
@@ -395,8 +391,10 @@ BOOST_AUTO_TEST_CASE(giao_sandbox) {
         }
     }
 
+
     pair.init(libint_shell1, libint_shell1, -1000);
     result = ChronusQ::ComplexGIAOIntEngine::computeGIAOOverlapS(pair, libint_shell1, libint_shell1, B);
+
 
     for (const auto& vec : result) {
         for (const auto& each : vec) {

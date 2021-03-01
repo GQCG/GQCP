@@ -46,6 +46,124 @@
 namespace ChronusQ {
 
 
+std::vector<std::vector<std::array<int, 3>>> Environment::pop_cart_ang_list() {
+
+    std::vector<std::vector<std::array<int, 3>>> list;
+
+    // generate angular momentum list, can only be called once.
+    int k, xx, yy, x, y, z;
+    for (k = 0; k <= LIBINT2_MAX_AM; k++) {
+        list.emplace_back();  //loop over possible angular momentum
+        for (xx = 0; xx < k + 1; xx++) {
+            x = k - xx;
+            for (yy = 0; yy < xx + 1; yy++) {
+                y = xx - yy;
+                z = k - x - y;
+                list[k].push_back({x, y, z});
+            }
+        }
+    }
+
+    return list;
+}
+std::vector<std::vector<std::array<int, 3>>> Environment::cart_ang_list = Environment::pop_cart_ang_list();
+
+
+std::vector<std::vector<double>> Environment::pop_car2sph_matrix() {
+
+    std::vector<std::vector<double>> matrix;
+
+    int l[3];
+    int m;
+    int carsize;  //cartesian size
+    double scalecoeff;
+
+    for (int L = 0; L <= LIBINT2_MAX_AM; L++) {
+
+        carsize = (L + 1) * (L + 2) / 2;
+        matrix.emplace_back((2 * L + 1) * carsize, 0.0);
+        if (L == 0) {
+            matrix[L][0] = 1.0;
+        } else if (L == 1) {
+            matrix[L][0 * 3 + 0] = 1.0;
+            matrix[L][1 * 3 + 1] = 1.0;
+            matrix[L][2 * 3 + 2] = 1.0;
+        } else {
+            for (int p = 0; p < L + 1; p++)
+                for (int q = 0; q < carsize; q++) {
+                    for (int k = 0; k < 3; k++)
+                        l[k] = Environment::cart_ang_list[L][q][k];
+                    m = -L + p;
+                    if (m < 0) {
+                        auto cplxcoeff = cart2sphCoeff(L, m, l[0], l[1], l[2]);  // complex coefficient
+
+                        matrix[L][p * carsize + q] = sqrt(2.0) * (-cplxcoeff.imag());
+
+                        matrix[L][(2 * L - p) * carsize + q] = sqrt(2.0) * cplxcoeff.real();
+
+                        double scalecoeff = sqrt(doubleFact(L) /
+                                                 (doubleFact(l[0]) * doubleFact(l[1]) * doubleFact(l[2])));
+                        matrix[L][p * carsize + q] = matrix[L][p * carsize + q] * scalecoeff;
+                        matrix[L][(2 * L - p) * carsize + q] = matrix[L][(2 * L - p) * carsize + q] * scalecoeff;
+                    } else if (m == 0) {
+                        matrix[L][p * carsize + q] = cart2sphCoeff(L, m, l[0], l[1], l[2]).real();
+                        scalecoeff = sqrt(doubleFact(L) /
+                                          (doubleFact(l[0]) * doubleFact(l[1]) * doubleFact(l[2])));
+                        matrix[L][p * carsize + q] = matrix[L][p * carsize + q] * scalecoeff;
+                    }
+                }
+        }
+
+    }  //loop over angular momentum
+
+
+    return matrix;
+}  //pop_car2sph_matrix()
+std::vector<std::vector<double>> Environment::car2sph_matrix = Environment::pop_car2sph_matrix();
+
+std::array<std::array<double, 25>, 3201> Environment::generateFmTTable() {
+
+    std::array<std::array<double, 25>, 3201> table;
+
+    double intervalFmT = 0.025;
+    double T = 0.0;
+    int MaxTotalL = 25;
+    int MaxFmTPt = 3201;
+    double critT = 33.0;  // critical value for T. for T>critT, use limit formula
+    double expT, factor, term, sum, twoT, Tn;
+    for (int i = 0; i < MaxFmTPt; i++) {
+        if (std::abs(T) <= 1.0e-10) {
+            for (int m = 0; m <= MaxTotalL; m++)
+                table[i][m] = 1.0 / (2.0 * m + 1);
+        } else if (T > critT) {
+            table[i][0] = 0.5 * sqrt(M_PI / T);
+            twoT = 2.0 * T;
+            Tn = 1.0;
+            for (int m = 1; m < MaxTotalL; m++) {
+                Tn *= twoT;
+                table[i][m] = table[i][m - 1] * (2 * m - 1) / twoT;
+            }
+        } else {
+            expT = exp(-T);
+            factor = MaxTotalL + 0.5;
+            term = 0.5 / factor;
+            sum = term;
+            while (term > 1.0e-10) {
+                factor += 1.0;
+                term *= T / factor;
+                sum += term;
+            };
+            table[i][MaxTotalL] = expT * sum;
+            twoT = 2.0 * T;
+            for (int m = MaxTotalL - 1; m >= 0; m--)
+                table[i][m] = (twoT * table[i][m + 1] + expT) / (2 * m + 1);
+        }  // else
+        T += intervalFmT;
+    }  // for i
+}  // generateFmTTable()
+std::array<std::array<double, 25>, 3201> Environment::FmTTable = Environment::generateFmTTable();
+
+
 void cart2sph_complex_transform(int l_i, int l_j, std::vector<dcomplex>& shell_element_sph, std::vector<dcomplex>& shell_element_cart) {
 
     int cart_i = (l_i + 1) * (l_i + 2) / 2;
@@ -64,7 +182,7 @@ void cart2sph_complex_transform(int l_i, int l_j, std::vector<dcomplex>& shell_e
             tempVal = 0.0;
             for (int p = 0; p < cart_i; p++) {
                 for (int q = 0; q < cart_j; q++) {
-                    tempVal += car2sph_matrix[l_i][i * cart_i + p] * car2sph_matrix[l_j][j * cart_j + q] * shell_element_cart[p * cart_j + q];
+                    tempVal += Environment::car2sph_matrix[l_i][i * cart_i + p] * Environment::car2sph_matrix[l_j][j * cart_j + q] * shell_element_cart[p * cart_j + q];
                 }
             }
 
@@ -144,7 +262,6 @@ double factorial(int t) {
     }
 }  //factorial
 
-
 double doubleFact(int t) {
     int i;
     double tmp = 1.0;
@@ -172,7 +289,7 @@ std::vector<std::vector<dcomplex>> ComplexGIAOIntEngine::computeGIAOOverlapS(
     libint2::ShellPair& pair, libint2::Shell& shell1, libint2::Shell& shell2, const std::array<double, 3>& H) {
 
 
-    int nElement = cart_ang_list[shell1.contr[0].l].size() * cart_ang_list[shell2.contr[0].l].size();
+    int nElement = Environment::cart_ang_list[shell1.contr[0].l].size() * Environment::cart_ang_list[shell2.contr[0].l].size();
 
     // evaluate the number of integral in the shell pair with cartesian gaussian
     std::vector<dcomplex> S_cartshell;
@@ -213,18 +330,19 @@ std::vector<std::vector<dcomplex>> ComplexGIAOIntEngine::computeGIAOOverlapS(
     auto ss_shellpair = computecompOverlapss(pair, shell1, ka, shell2, kb);
 
 
-    std::cout << "Calculated computecompOverlapss" << std::endl;
-
     //for ( auto sselement : ss_shellpair ){
     //  std::cout<<"SS in a shellpair "<<std::setprecision(12)<<sselement<<std::endl;
     //}
 
-    for (int i = 0; i < cart_ang_list[shell1.contr[0].l].size(); i++)
-        for (int j = 0; j < cart_ang_list[shell2.contr[0].l].size(); j++) {
+    for (int i = 0; i < Environment::cart_ang_list[shell1.contr[0].l].size(); i++) {
+
+        for (int j = 0; j < Environment::cart_ang_list[shell2.contr[0].l].size(); j++) {
             for (int k = 0; k < 3; k++) {
-                lA[k] = cart_ang_list[shell1.contr[0].l][i][k];
-                lB[k] = cart_ang_list[shell2.contr[0].l][j][k];
+
+                lA[k] = Environment::cart_ang_list[shell1.contr[0].l][i][k];
+                lB[k] = Environment::cart_ang_list[shell2.contr[0].l][j][k];
             }
+
 
             S = comphRRSab(pair, shell1, shell2, K, ss_shellpair,
                            shell1.contr[0].l, lA, shell2.contr[0].l, lB);
@@ -234,7 +352,7 @@ std::vector<std::vector<dcomplex>> ComplexGIAOIntEngine::computeGIAOOverlapS(
             S_cartshell.push_back(S);
 
         }  // loop over ij
-
+    }
 
     if ((not shell1.contr[0].pure) and (not shell2.contr[0].pure)) {
         // if both sides are cartesian, return cartesian gaussian integrals
@@ -259,6 +377,7 @@ std::vector<std::vector<dcomplex>> ComplexGIAOIntEngine::computeGIAOOverlapS(
 
 std::vector<dcomplex> ComplexGIAOIntEngine::computecompOverlapss(
     libint2::ShellPair& pair, libint2::Shell& shell1, double* ka, libint2::Shell& shell2, double* kb) {
+
 
     std::vector<dcomplex> ss_shellpair;
     dcomplex onei;
@@ -289,6 +408,7 @@ std::vector<dcomplex> ComplexGIAOIntEngine::computecompOverlapss(
 
         ss_shellpair.push_back(tmpVal);
     }
+
     return ss_shellpair;
 }
 
@@ -315,6 +435,7 @@ dcomplex ComplexGIAOIntEngine::comphRRSab(libint2::ShellPair& pair, libint2::She
                                           libint2::Shell& shell2, double* K, std::vector<dcomplex>& ss_shellpair,
                                           int LA, int* lA, int LB, int* lB) {
 
+
     int iWork, lAp1[3], lBm1[3];
     dcomplex tmpVal = 0.0;
 
@@ -338,6 +459,7 @@ dcomplex ComplexGIAOIntEngine::comphRRSab(libint2::ShellPair& pair, libint2::She
                             LA + 1, lAp1, LB - 1, lBm1);
         tmpVal += pair.AB[iWork] * comphRRSab(pair, shell1, shell2, K,
                                               ss_shellpair, LA, lA, LB - 1, lBm1);
+
         return tmpVal;
 
     }  // if ( LB > LA )
@@ -372,6 +494,7 @@ dcomplex ComplexGIAOIntEngine::comphRRSab(libint2::ShellPair& pair, libint2::She
 */
 
         }  // for pripair
+
         return tmpVal;
     } else if (LB == 0) {
         // (|s)
@@ -387,6 +510,7 @@ dcomplex ComplexGIAOIntEngine::comphRRSab(libint2::ShellPair& pair, libint2::She
             pripairindex++;
 
         }  // for pripair
+
         return tmpVal;
     };  // else if(LB == 0)
 
@@ -408,6 +532,7 @@ dcomplex ComplexGIAOIntEngine::comphRRSab(libint2::ShellPair& pair, libint2::She
 
     tmpVal = comphRRSab(pair, shell1, shell2, K, ss_shellpair, LA + 1, lAp1, LB - 1, lBm1);
     tmpVal += (shell1.O[iWork] - shell2.O[iWork]) * comphRRSab(pair, shell1, shell2, K, ss_shellpair, LA, lA, LB - 1, lBm1);
+
     //  tmpVal+= pair.AB[iWork]*hRRSab(pair,shell1,shell2,LA,lA,LB-1,lBm1);
     return tmpVal;
 
