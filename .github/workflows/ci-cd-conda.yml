@@ -3,6 +3,7 @@ name: Conda CI/CD
 on:
   push:
     paths:
+    - '.github/workflows/ci-cd-conda.yml'
     - 'conda/**'
     - 'workflows/ci-cd-conda.yml'
     - '**.hpp'
@@ -14,6 +15,7 @@ on:
       - develop
   pull_request:
     paths:
+    - '.github/workflows/ci-cd-conda.yml'
     - 'conda/**'
     - 'workflows/ci-cd-conda.yml'
     - '**.hpp'
