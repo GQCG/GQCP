@@ -74,6 +74,34 @@ public:
     void operator=(LibintInterfacer const& libint_communicator) = delete;
 
 
+    /*
+     *  MARK: Interfacing - std to libint
+     */
+
+    /**
+     *  Convert a `std::vector` to a `libint2::svector`.
+     * 
+     *  @param vector               The `std::vector`.
+     *  
+     *  @return The `libint2::svector`.
+     */
+    libint2::svector<double> interface(const std::vector<double>& vector) const;
+
+
+    /*
+     *  MARK: Interfacing - libint to std
+     */
+
+    /**
+     *  Convert a `libint2::svector` to a `std::vector`.
+     * 
+     *  @param svector              The `libint2::svector`.
+     * 
+     *  @return The `std::vector`.
+     */
+    std::vector<double> interface(const libint2::svector<double>& svector) const;
+
+
     // PUBLIC METHODS - INTERFACING (GQCP TO LIBINT)
 
     /**
