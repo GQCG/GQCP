@@ -1,288 +1,36 @@
-/*
+/* 
  *  This file is part of the Chronus Quantum (ChronusQ) software package
- *
- *  Copyright (C) 2014-2018 Li Research Group (University of Washington)
- *
+ *  
+ *  Copyright (C) 2014-2020 Li Research Group (University of Washington)
+ *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- *
+ *  
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- *
+ *  
  *  You should have received a copy of the GNU General Public License along
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
+ *  
  *  Contact the Developers:
  *    E-Mail: xsli@uw.edu
- *
  */
 
-
-// This file is part of GQCG-GQCP.
-//
-// Copyright (C) 2017-2020  the GQCG developers
-//
-// GQCG-GQCP is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// GQCG-GQCP is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+// The interfaces and implementations from this file have been adapted from
+// those in the Chronus Quantum (ChronusQ) software package.
 
 #include "Basis/Integrals/Interfaces/ChronusQ/engines.hpp"
 
+#include "Basis/Integrals/Interfaces/ChronusQ/Environment.hpp"
+#include "Basis/Integrals/Interfaces/ChronusQ/math.hpp"
+
 
 namespace ChronusQ {
-
-
-std::vector<std::vector<std::array<int, 3>>> Environment::pop_cart_ang_list() {
-
-    std::vector<std::vector<std::array<int, 3>>> list;
-
-    // generate angular momentum list, can only be called once.
-    int k, xx, yy, x, y, z;
-    for (k = 0; k <= LIBINT2_MAX_AM; k++) {
-        list.emplace_back();  //loop over possible angular momentum
-        for (xx = 0; xx < k + 1; xx++) {
-            x = k - xx;
-            for (yy = 0; yy < xx + 1; yy++) {
-                y = xx - yy;
-                z = k - x - y;
-                list[k].push_back({x, y, z});
-            }
-        }
-    }
-
-    return list;
-}
-std::vector<std::vector<std::array<int, 3>>> Environment::cart_ang_list = Environment::pop_cart_ang_list();
-
-
-std::vector<std::vector<double>> Environment::pop_car2sph_matrix() {
-
-    std::vector<std::vector<double>> matrix;
-
-    int l[3];
-    int m;
-    int carsize;  //cartesian size
-    double scalecoeff;
-
-    for (int L = 0; L <= LIBINT2_MAX_AM; L++) {
-
-        carsize = (L + 1) * (L + 2) / 2;
-        matrix.emplace_back((2 * L + 1) * carsize, 0.0);
-        if (L == 0) {
-            matrix[L][0] = 1.0;
-        } else if (L == 1) {
-            matrix[L][0 * 3 + 0] = 1.0;
-            matrix[L][1 * 3 + 1] = 1.0;
-            matrix[L][2 * 3 + 2] = 1.0;
-        } else {
-            for (int p = 0; p < L + 1; p++)
-                for (int q = 0; q < carsize; q++) {
-                    for (int k = 0; k < 3; k++)
-                        l[k] = Environment::cart_ang_list[L][q][k];
-                    m = -L + p;
-                    if (m < 0) {
-                        auto cplxcoeff = cart2sphCoeff(L, m, l[0], l[1], l[2]);  // complex coefficient
-
-                        matrix[L][p * carsize + q] = sqrt(2.0) * (-cplxcoeff.imag());
-
-                        matrix[L][(2 * L - p) * carsize + q] = sqrt(2.0) * cplxcoeff.real();
-
-                        double scalecoeff = sqrt(doubleFact(L) /
-                                                 (doubleFact(l[0]) * doubleFact(l[1]) * doubleFact(l[2])));
-                        matrix[L][p * carsize + q] = matrix[L][p * carsize + q] * scalecoeff;
-                        matrix[L][(2 * L - p) * carsize + q] = matrix[L][(2 * L - p) * carsize + q] * scalecoeff;
-                    } else if (m == 0) {
-                        matrix[L][p * carsize + q] = cart2sphCoeff(L, m, l[0], l[1], l[2]).real();
-                        scalecoeff = sqrt(doubleFact(L) /
-                                          (doubleFact(l[0]) * doubleFact(l[1]) * doubleFact(l[2])));
-                        matrix[L][p * carsize + q] = matrix[L][p * carsize + q] * scalecoeff;
-                    }
-                }
-        }
-
-    }  //loop over angular momentum
-
-
-    return matrix;
-}  //pop_car2sph_matrix()
-std::vector<std::vector<double>> Environment::car2sph_matrix = Environment::pop_car2sph_matrix();
-
-std::array<std::array<double, 25>, 3201> Environment::generateFmTTable() {
-
-    std::array<std::array<double, 25>, 3201> table;
-
-    double intervalFmT = 0.025;
-    double T = 0.0;
-    int MaxTotalL = 25;
-    int MaxFmTPt = 3201;
-    double critT = 33.0;  // critical value for T. for T>critT, use limit formula
-    double expT, factor, term, sum, twoT, Tn;
-    for (int i = 0; i < MaxFmTPt; i++) {
-        if (std::abs(T) <= 1.0e-10) {
-            for (int m = 0; m <= MaxTotalL; m++)
-                table[i][m] = 1.0 / (2.0 * m + 1);
-        } else if (T > critT) {
-            table[i][0] = 0.5 * sqrt(M_PI / T);
-            twoT = 2.0 * T;
-            Tn = 1.0;
-            for (int m = 1; m < MaxTotalL; m++) {
-                Tn *= twoT;
-                table[i][m] = table[i][m - 1] * (2 * m - 1) / twoT;
-            }
-        } else {
-            expT = exp(-T);
-            factor = MaxTotalL + 0.5;
-            term = 0.5 / factor;
-            sum = term;
-            while (term > 1.0e-10) {
-                factor += 1.0;
-                term *= T / factor;
-                sum += term;
-            };
-            table[i][MaxTotalL] = expT * sum;
-            twoT = 2.0 * T;
-            for (int m = MaxTotalL - 1; m >= 0; m--)
-                table[i][m] = (twoT * table[i][m + 1] + expT) / (2 * m + 1);
-        }  // else
-        T += intervalFmT;
-    }  // for i
-}  // generateFmTTable()
-std::array<std::array<double, 25>, 3201> Environment::FmTTable = Environment::generateFmTTable();
-
-
-void cart2sph_complex_transform(int l_i, int l_j, std::vector<dcomplex>& shell_element_sph, std::vector<dcomplex>& shell_element_cart) {
-
-    int cart_i = (l_i + 1) * (l_i + 2) / 2;
-    int cart_j = (l_j + 1) * (l_j + 2) / 2;
-    int cartsize = cart_i * cart_j;
-    int sphsize = (2 * l_i + 1) * (2 * l_j + 1);
-    dcomplex tempVal;
-
-    if (sphsize != shell_element_sph.size())
-        std::cout << "spherical dimension doesn't match" << std::endl;
-    if (cartsize != shell_element_cart.size())
-        std::cout << "cartesian dimension doesn't match" << std::endl;
-
-    for (int i = 0; i < 2 * l_i + 1; i++) {
-        for (int j = 0; j < 2 * l_j + 1; j++) {
-            tempVal = 0.0;
-            for (int p = 0; p < cart_i; p++) {
-                for (int q = 0; q < cart_j; q++) {
-                    tempVal += Environment::car2sph_matrix[l_i][i * cart_i + p] * Environment::car2sph_matrix[l_j][j * cart_j + q] * shell_element_cart[p * cart_j + q];
-                }
-            }
-
-            if (std::abs(tempVal) < 1.0e-15)
-                tempVal = 0.0;
-            shell_element_sph[i * (2 * l_j + 1) + j] = tempVal;
-        }
-    }
-}  //cart2sph_complex_transform
-
-std::complex<double> cart2sphCoeff(int L, int m, int lx, int ly, int lz) {
-
-    //calculate the cartesian to spherical transformation coefficient.
-
-    int Ltotal;
-    dcomplex coeff(0.0);
-    Ltotal = lx + ly + lz;
-    double tmp = 0.0;
-    if (L != Ltotal) {
-        return coeff;
-    }
-    double j;
-    j = (double(lx + ly) - std::abs(double(m))) / 2;
-    if (fmod(j, 1) > 0) {
-        return coeff;
-    }
-    dcomplex sumval(0.0);
-    dcomplex ttmmpp, sumsumval;
-    dcomplex pref, absmchooselxm2k, ichoosej;
-    int i, k;
-    if (Ltotal == L) {
-        pref = sqrt(factorial(lx * 2) * factorial(2 * ly) * factorial(2 * lz) * factorial(L) * factorial(L - std::abs(m)) / (factorial(2 * L) * factorial(lx) * factorial(ly) * factorial(lz) * factorial(L + std::abs(m)))) / (factorial(L) * pow(2, L));
-
-        i = 0;
-
-        while (i <= double((L - std::abs(m)) / 2)) {
-            sumsumval = 0.0;
-            for (k = 0; k <= j; k++) {
-                if (m >= 0) {
-                    ttmmpp = double(std::abs(m) - lx + 2 * k) / 2;
-                } else {
-                    ttmmpp = -double(std::abs(m) - lx + 2 * k) / 2;
-                }
-
-                if ((std::abs(m) >= (lx - 2 * k)) && ((lx - 2 * k) >= 0)) {
-                    absmchooselxm2k = polyCoeff(std::abs(m), lx - 2 * k);
-                } else {
-                    absmchooselxm2k = 0.0;
-                }
-                sumsumval = sumsumval + polyCoeff(j, k) * absmchooselxm2k * pow(-1.0, ttmmpp);
-            }
-            if (i < j || (j < 0)) {
-                ichoosej = 0.0;
-            } else {
-                ichoosej = polyCoeff(i, j);
-            }
-            sumval = sumval + polyCoeff(L, i) * ichoosej * pow(-1, i) * factorial(2 * L - 2 * i) /
-                                  (factorial(L - std::abs(m) - 2 * i)) * sumsumval;
-            i = i + 1;
-        }
-        coeff = pref * sumval;
-        return coeff;
-    }
-}  // cart2sphCoeff
-
-double factorial(int t) {
-    int i;
-    double tmp = 1.0;
-    if (t < 0)
-        std::cout << "Factorial (t!) only defined on domain t in [0,inf)" << std::endl;
-    if (t == 0)
-        return 1.0;
-    else {
-        for (i = 1; i <= t; i++)
-            tmp *= i;
-        return tmp;
-    }
-}  //factorial
-
-double doubleFact(int t) {
-    int i;
-    double tmp = 1.0;
-    if (t < 0)
-        std::cout << "Double factorial (t!!) only defined on domain t in [0,inf)"
-                  << std::endl;
-    if (t == 0)
-        return 1.0;
-    else {
-        for (i = 1; i <= t; i++)
-            tmp *= (2 * i - 1);
-        return tmp;
-    }
-}  // doubleFact
-
-double polyCoeff(int l, int i) {
-    if (l >= i)
-        return factorial(l) / (factorial(i) * factorial(l - i));
-    else
-        std::cout << "polyCoeff error" << std::endl;
-}
 
 
 std::vector<std::vector<dcomplex>> ComplexGIAOIntEngine::computeGIAOOverlapS(

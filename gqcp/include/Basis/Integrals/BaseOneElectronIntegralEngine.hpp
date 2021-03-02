@@ -27,37 +27,45 @@ namespace GQCP {
 
 
 /**
- *  A base class to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the calculate() call
+ *  A base class that helps to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells. See also the calculate() call.
  * 
- *  @tparam _Shell                  the type of shell the integral engine is able to handle
- *  @tparam _N                      the number of components the operator has
- *  @tparam _IntegralScalar         the scalar representation of an integral
- * 
- *  _Shell is a template parameter because that enables compile-time checking of correct arguments
- */
+ *  @tparam _Shell                  The type of shell the integral engine is able to handle. This enables compile-time checking of correct arguments.
+ *  @tparam _N                      The number of components the operator has.
+ *  @tparam _IntegralScalar         
+ *  */
 template <typename _Shell, size_t _N, typename _IntegralScalar>
 class BaseOneElectronIntegralEngine {
 public:
-    using Shell = _Shell;                    // the type of shell the integral engine is able to handle
-    using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
-    static constexpr auto N = _N;            // the number of components the operator has
+    // The type of shell the integral engine is able to handle. This enables compile-time checking of correct arguments.
+    using Shell = _Shell;
+
+    // The number of components the operator has.
+    static constexpr auto N = _N;  // the number of components the operator has
+
+    // The scalar representation of an integral.
+    using IntegralScalar = _IntegralScalar;
 
 
 public:
-    // DESTRUCTOR
+    /**
+     *  A default destructor.
+     */
     virtual ~BaseOneElectronIntegralEngine() = default;
 
 
-    // PUBLIC PURE VIRTUAL METHODS
+    /*
+     *  MARK: Integral calculations
+     */
 
     /**
-     *  Calculate all the integrals over the given shells
-     *  @note This method is not marked const to allow the Engine's internals to be changed
+     *  Calculate all the integrals over the given shells.
      * 
-     *  @param shell1           the first shell
-     *  @param shell2           the second shell
+     *  @param shell1           The first shell.
+     *  @param shell2           The second shell.
      * 
-     *  @return a buffer containing the calculated integrals
+     *  @return A buffer containing the calculated integrals.
+     * 
+     *  @note This method is not marked const to allow the Engine's internals to be changed.
      */
     virtual std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const Shell& shell1, const Shell& shell2) = 0;
 };

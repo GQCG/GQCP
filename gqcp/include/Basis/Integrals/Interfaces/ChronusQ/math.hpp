@@ -24,34 +24,22 @@
 // The interfaces and implementations from this file have been adapted from
 // those in the Chronus Quantum (ChronusQ) software package.
 
-
 #pragma once
 
 #include "Basis/Integrals/Interfaces/ChronusQ/aliases.hpp"
-#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 
+#include <complex>
 #include <vector>
 
 
 namespace ChronusQ {
 
 
-struct ComplexGIAOIntEngine {
-
-    static std::vector<std::vector<dcomplex>> computeGIAOOverlapS(libint2::ShellPair&, libint2::Shell&, libint2::Shell&, const std::array<double, 3>&);
-
-    // calculate the uncontracted overlap of (s||s) type for a shellpair
-    static std::vector<dcomplex> computecompOverlapss(libint2::ShellPair&, libint2::Shell&, double*, libint2::Shell&, double*);
-
-    // complex overlap horizontal recursion for contracted case
-    static dcomplex comphRRSab(libint2::ShellPair&, libint2::Shell&, libint2::Shell&, double*, std::vector<dcomplex>&, int, int*, int, int*);
-
-    // complex overlap horizontal recursion iPP specific for uncontracted case
-    static dcomplex comphRRiPPSab(libint2::ShellPair::PrimPairData&, libint2::Shell&, libint2::Shell&, double*, dcomplex, int, int*, int, int*);
-
-    // complex overlap vertical recursion for uncontracted case
-    static dcomplex compvRRSa0(libint2::ShellPair::PrimPairData&, libint2::Shell&, double*, dcomplex, int, int*);
-};
+double factorial(int);
+double doubleFact(int);
+double polyCoeff(int, int);
+std::complex<double> cart2sphCoeff(int, int, int, int, int);
+void cart2sph_complex_transform(int, int, std::vector<dcomplex>&, std::vector<dcomplex>&);
 
 
 }  // namespace ChronusQ

@@ -27,31 +27,14 @@
 
 #pragma once
 
-#include "Basis/Integrals/Interfaces/ChronusQ/aliases.hpp"
-#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 
-#include <vector>
+#include <complex>
 
 
 namespace ChronusQ {
 
 
-struct ComplexGIAOIntEngine {
-
-    static std::vector<std::vector<dcomplex>> computeGIAOOverlapS(libint2::ShellPair&, libint2::Shell&, libint2::Shell&, const std::array<double, 3>&);
-
-    // calculate the uncontracted overlap of (s||s) type for a shellpair
-    static std::vector<dcomplex> computecompOverlapss(libint2::ShellPair&, libint2::Shell&, double*, libint2::Shell&, double*);
-
-    // complex overlap horizontal recursion for contracted case
-    static dcomplex comphRRSab(libint2::ShellPair&, libint2::Shell&, libint2::Shell&, double*, std::vector<dcomplex>&, int, int*, int, int*);
-
-    // complex overlap horizontal recursion iPP specific for uncontracted case
-    static dcomplex comphRRiPPSab(libint2::ShellPair::PrimPairData&, libint2::Shell&, libint2::Shell&, double*, dcomplex, int, int*, int, int*);
-
-    // complex overlap vertical recursion for uncontracted case
-    static dcomplex compvRRSa0(libint2::ShellPair::PrimPairData&, libint2::Shell&, double*, dcomplex, int, int*);
-};
+using dcomplex = std::complex<double>;
 
 
 }  // namespace ChronusQ

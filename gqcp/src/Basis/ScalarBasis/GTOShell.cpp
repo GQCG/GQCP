@@ -41,7 +41,7 @@ namespace GQCP {
  */
 GTOShell::GTOShell(const size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, const bool pure, const bool are_embedded_normalization_factors_of_primitives, const bool is_normalized) :
     pure {pure},
-    embedded_normalization_factors_of_primitives {are_embedded_normalization_factors_of_primitives},
+    are_embedded_normalization_factors_of_primitives {are_embedded_normalization_factors_of_primitives},
     normalized {is_normalized},
     l {l},
     m_nucleus {nucleus},
@@ -177,12 +177,12 @@ void GTOShell::embedNormalizationFactor() {
  */
 void GTOShell::embedNormalizationFactorsOfPrimitives() {
 
-    if (!this->embedded_normalization_factors_of_primitives) {
+    if (!this->areEmbeddedNormalizationFactorsOfPrimitives()) {
         for (size_t i = 0; i < this->contractionSize(); i++) {
             this->contraction_coefficients[i] *= CartesianGTO::calculateNormalizationFactor(this->gaussian_exponents[i], CartesianExponents(this->l, 0, 0));  // normalization factor of an axis-aligned Cartesian GTO
         }
 
-        this->embedded_normalization_factors_of_primitives = true;
+        this->are_embedded_normalization_factors_of_primitives = true;
     }
 }
 
@@ -230,12 +230,12 @@ size_t GTOShell::numberOfBasisFunctions() const {
  */
 void GTOShell::unEmbedNormalizationFactorsOfPrimitives() {
 
-    if (this->embedded_normalization_factors_of_primitives) {
+    if (this->areEmbeddedNormalizationFactorsOfPrimitives()) {
         for (size_t i = 0; i < this->contractionSize(); i++) {
             this->contraction_coefficients[i] /= CartesianGTO::calculateNormalizationFactor(this->gaussian_exponents[i], CartesianExponents(this->l, 0, 0));  // normalization factor of an axis-aligned Cartesian GTO
         }
 
-        this->embedded_normalization_factors_of_primitives = false;
+        this->are_embedded_normalization_factors_of_primitives = false;
     }
 }
 

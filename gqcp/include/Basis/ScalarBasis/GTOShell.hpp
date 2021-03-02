@@ -30,25 +30,46 @@ namespace GQCP {
  *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus.
  */
 class GTOShell {
-private:
-    bool pure;                                          // true if spherical, false if Cartesian
-    bool embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
-    bool normalized;                                    // if the total normalization factor is already embedded in the contraction coefficients
-    size_t l;                                           // the angular momentum of the shell
-    Nucleus m_nucleus;                                  // nucleus on which the shell is centered
-    std::vector<double> gaussian_exponents;             // Gaussian exponents (i.e. for the exponential), shared for every contraction
+protected:
+    // If this shell is considered to be 'pure', i.e. a spherical shell is pure, a Cartesian shell is not pure.
+    bool pure;
+
+    // If the normalization factors of the primitives are embedded in the contraction coefficients.
+    bool are_embedded_normalization_factors_of_primitives;
+
+    // If the total normalization factor of the contracted GTO is already embedded in the contraction coefficients.
+    bool normalized;
+
+    // The angular momentum of the shell, i.e. the sum of the Cartesian exponents of this shell.
+    size_t l;
+
+    // The nucleus on which the shell is centered.
+    Nucleus m_nucleus;
+
+    // The Gaussian exponents for this shell, i.e. the exponents for the exponential. These are shared for every contraction.
+    std::vector<double> gaussian_exponents;
+
+    // The contraction coefficients for this shell.
     std::vector<double> contraction_coefficients;
 
 
 public:
-    using Primitive = CartesianGTO;                              // the type of primitives that this shell is made up with
-    using BasisFunction = LinearCombination<double, Primitive>;  // the type of basis functions that this shell can produce
+    // The type of primitive that underlies this shell.
+    using Primitive = CartesianGTO;
+
+    // The type of basis function that this shell can produce.
+    using BasisFunction = LinearCombination<double, Primitive>;
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
+
     /**
-     *  @param l                                                    the angular momentum of the shell
+     *  Create a `GTOShell` from all its specifications.
+     * 
+     *  @param l                                                    The angular momentum of the shell, i.e. the sum of the Cartesian exponents of this shell.
      *  @param nucleus                                              the nucleus on which the shell is centered
      *  @param gaussian_exponents                                   the Gaussian exponents, which are shared for every contraction
      *  @param contraction_coefficients                             the contraction coefficients
@@ -78,7 +99,7 @@ public:
     /**
      *  @return if the normalization factors of the primitives are embedded in the contraction coefficients
      */
-    bool areEmbeddedNormalizationFactorsOfPrimitives() const { return this->embedded_normalization_factors_of_primitives; }
+    bool areEmbeddedNormalizationFactorsOfPrimitives() const { return this->are_embedded_normalization_factors_of_primitives; }
 
     /**
      *  @return the basis functions that correspond to this shell

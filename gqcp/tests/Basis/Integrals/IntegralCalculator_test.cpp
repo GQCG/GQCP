@@ -356,51 +356,50 @@ BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
 }
 
 
-#include "Basis/Integrals/Interfaces/ChronusQ/engines.hpp"
+#include "Basis/Integrals/Interfaces/ChronusQOneElectronIntegralEngine.hpp"
 
 /**
  *  GIAO SANDBOX
  */
 BOOST_AUTO_TEST_CASE(giao_sandbox) {
 
-    // In Szabo, section 3.5.2, we read that the internuclear distance R = 1.4 a.u. = 0.740848 Angstrom.
+    // Set up a scalar basis with GIAOGTOShells.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::GIAOGTOShell> scalar_basis {molecule, "STO-3G", B};
 
 
-    auto shells = scalar_basis.shellSet().asVector();
+    // Calc
+    const auto& giao_shell1 = scalar_basis.shellSet().asVector()[0];
+    const auto& giao_shell2 = scalar_basis.shellSet().asVector()[1];
 
-    auto libint_shell1 = GQCP::LibintInterfacer::get().interface(shells[0]);
-    auto libint_shell2 = GQCP::LibintInterfacer::get().interface(shells[1]);
+    GQCP::ChronusQOneElectronIntegralEngine<1> engine {};
 
-    libint2::ShellPair pair;
-    pair.init(libint_shell1, libint_shell2, -1000);
+    //auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::ElectronicDipole(origin));
+    auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
-    // double* B = (double*) malloc(3 * sizeof(double));
-    // B[0] = 0.0;
-    // B[1] = 0.0;
-    // B[2] = 1.0;
-    std::array<double, 3> B {0.0, 0.0, 1.0};
+    std::cout << integrals[0] << std::endl;
 
-    auto result = ChronusQ::ComplexGIAOIntEngine::computeGIAOOverlapS(pair, libint_shell1, libint_shell2, B);
+    // auto result = ChronusQ::ComplexGIAOIntEngine::computeGIAOOverlapS(pair, libint_shell1, libint_shell2, B);
 
 
-    for (const auto& vec : result) {
-        for (const auto& each : vec) {
-            std::cout << each << std::endl;
-        }
-    }
+    // for (const auto& vec : result) {
+    //     for (const auto& each : vec) {
+    //         std::cout << each << std::endl;
+    //     }
+    // }
 
 
-    pair.init(libint_shell1, libint_shell1, -1000);
-    result = ChronusQ::ComplexGIAOIntEngine::computeGIAOOverlapS(pair, libint_shell1, libint_shell1, B);
+    // pair.init(libint_shell1, libint_shell1, -1000);
+    // result = ChronusQ::ComplexGIAOIntEngine::computeGIAOOverlapS(pair, libint_shell1, libint_shell1, B);
 
 
-    for (const auto& vec : result) {
-        for (const auto& each : vec) {
-            std::cout << each << std::endl;
-        }
-    }
+    // for (const auto& vec : result) {
+    //     for (const auto& each : vec) {
+    //         std::cout << each << std::endl;
+    //     }
+    // }
 
 
     std::cout << "CHRONUSQ: THE END!" << std::endl;

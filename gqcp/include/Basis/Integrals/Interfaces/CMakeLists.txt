@@ -2,6 +2,8 @@ add_subdirectory(ChronusQ)
 
 target_sources(gqcp
     PRIVATE
+        ChronusQOneElectronIntegralBuffer.hpp
+        ChronusQOneElectronIntegralEngine.hpp
         LibcintInterfacer.hpp
         LibcintOneElectronIntegralBuffer.hpp
         LibcintOneElectronIntegralEngine.hpp
