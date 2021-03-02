@@ -3,6 +3,7 @@ name: Docker deploy
 on:
   push:
     paths:
+      - '.github/workflows/docker-gqcp-deploy.yml'
       - 'Dockerfile'
       - '**.hpp'
       - '**.cpp'
