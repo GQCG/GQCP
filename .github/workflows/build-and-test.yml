@@ -16,7 +16,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     container:
-      image: gqcg/gqcp-dev:latest
+      image: gqcg/gqcp-dev:libint
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
