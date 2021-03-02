@@ -18,12 +18,14 @@
 #pragma once
 
 
+#include "Basis/ScalarBasis/GIAOGTOShell.hpp"
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Mathematical/Functions/LinearCombination.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
+#include "Utilities/HomogeneousMagneticField.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <functional>
@@ -76,7 +78,7 @@ public:
      */
     template <typename Z = GTOShell>
     ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name,
-                typename std::enable_if<std::is_same<Z, Shell>::value>::type* = 0) :
+                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
         ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework)) {
 
         this->shell_set.embedNormalizationFactorsOfPrimitives();
@@ -95,6 +97,39 @@ public:
     ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
                 typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
         ScalarBasis(molecule.nuclearFramework(), basisset_name) {}
+
+
+    /**
+     *  Construct a scalar basis by placing gauge-including shells corresponding to the basisset specification on every nucleus of the nuclear framework.
+     *
+     *  @param nuclear_framework        The nuclear framework containing the nuclei on which the shells should be centered.
+     *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
+     *  @param B                        The homogeneous magnetic field.
+     *
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
+     */
+    template <typename Z = GIAOGTOShell>
+    ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name, const HomogeneousMagneticField& B,
+                typename std::enable_if<std::is_same<Z, GIAOGTOShell>::value>::type* = 0) :
+        ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework).applyLondonModification(B)) {
+
+        this->shell_set.embedNormalizationFactorsOfPrimitives();
+    }
+
+
+    /**
+     *  Construct a scalar basis by placing gauge-including shells corresponding to the basisset specification on every nucleus of the molecule.
+     *
+     *  @param molecule             The molecule containing the nuclei on which the shells should be centered.
+     *  @param basisset_name        The name of the basisset, e.g. "STO-3G".
+     *  @param B                    The homogeneous magnetic field.
+     *
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
+     */
+    template <typename Z = GIAOGTOShell>
+    ScalarBasis(const Molecule& molecule, const std::string& basisset_name, const HomogeneousMagneticField& B,
+                typename std::enable_if<std::is_same<Z, GIAOGTOShell>::value>::type* = 0) :
+        ScalarBasis(molecule.nuclearFramework(), basisset_name, B) {}
 
 
     /*

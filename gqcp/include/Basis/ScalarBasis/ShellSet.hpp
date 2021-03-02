@@ -18,8 +18,11 @@
 #pragma once
 
 
+#include "Basis/ScalarBasis/GIAOGTOShell.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Utilities/HomogeneousMagneticField.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <algorithm>
 #include <initializer_list>
@@ -69,6 +72,28 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  Apply a London- (gauge-including) modification to each shell.
+     * 
+     *  @param B            The homogeneous magnetic field.
+     * 
+     *  @return A new shell shet whose underlying shells have been London-modified.
+     */
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, GTOShell>::value, ShellSet<GIAOGTOShell>> applyLondonModification(const HomogeneousMagneticField& B) const {
+
+        // Run over each `GTOShell` and construct the corresponding `GIAOGTOShell`.
+        std::vector<GIAOGTOShell> giao_shells;
+        giao_shells.reserve(this->numberOfShells());
+        for (const auto& gto_shell : this->asVector()) {
+            GIAOGTOShell giao_shell {gto_shell, B};
+            giao_shells.push_back(giao_shell);
+        }
+
+        return ShellSet<GIAOGTOShell>(giao_shells);
+    }
+
 
     /**
      *  @return a vector of the underlying shells that this shellset describes

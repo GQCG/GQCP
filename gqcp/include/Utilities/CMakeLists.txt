@@ -3,6 +3,7 @@ target_sources(gqcp
         aliases.hpp
         CRTP.hpp
         Eigen.hpp
+        HomogeneousMagneticField.hpp
         memory.hpp
         miscellaneous.hpp
         type_traits.hpp
