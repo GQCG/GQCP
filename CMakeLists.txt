@@ -10,6 +10,18 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(GQCP VERSION 0.0.1 LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
+# Add configuration file containing version of current library.
+configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in version/version.hpp)
+# Compile the version as its own library where, if needed, other targets can be linked to.
+# Common practice: this to avoid unneccessary recompiling whenever version details change.
+add_library(gqcp_version INTERFACE)
+target_include_directories(gqcp_version 
+    INTERFACE 
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/version>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/version>
+        $<INSTALL_INTERFACE:version>
+)
+
 
 # List the supported options
 option(BUILD_TESTS "Build the C++ library tests" OFF)
@@ -103,16 +115,21 @@ endif()
 include(GNUInstallDirs)
 
 install(
+    TARGETS gqcp_version
+    EXPORT gqcp-targets
+    PUBLIC_HEADER DESTINATION version
+)
+
+install(
     TARGETS gqcp
     EXPORT gqcp-targets
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
     RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include/gqcp
+    INCLUDES DESTINATION include/gqcp version
 )
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/gqcp/include/ DESTINATION include/gqcp)
-install(FILES ${CMAKE_BINARY_DIR}/gqcp/include/version.hpp DESTINATION include/gqcp)
 
 install(
     EXPORT gqcp-targets

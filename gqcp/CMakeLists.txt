@@ -1,6 +1,8 @@
 # Entry point for the CMake configuration of the C++ library
 add_library(gqcp SHARED "")
 
+target_link_libraries(gqcp PUBLIC gqcp_version)
+
 target_compile_options(gqcp PUBLIC -m64 -pipe)
 target_compile_options(gqcp PUBLIC "$<IF:$<CONFIG:Debug>,-g,-O2>")
 target_compile_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
@@ -21,7 +23,6 @@ execute_process(
     ERROR_QUIET
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in include/version.hpp)
 
 
 
