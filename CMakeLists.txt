@@ -19,7 +19,6 @@ target_include_directories(gqcp_version
     INTERFACE 
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/version>
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/version>
-        $<INSTALL_INTERFACE:version>
 )
 
 
@@ -118,6 +117,7 @@ install(
     TARGETS gqcp_version
     EXPORT gqcp-targets
     PUBLIC_HEADER DESTINATION version
+    INCLUDES DESTINATION version
 )
 
 install(
