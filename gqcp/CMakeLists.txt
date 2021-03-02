@@ -32,7 +32,6 @@ add_subdirectory(src)
 
 target_include_directories(gqcp
     PUBLIC
-        #$<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/gqcp/include>
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/gqcp/include>
     PRIVATE
