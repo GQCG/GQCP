@@ -14,7 +14,7 @@ sources = [{
     'git_config': {
         'url': 'https://github.com/GQCG',
         'repo_name': 'gqcp',
-	    'tag' : 'refactor/libint-2.6',
+	'tag' : 'refactor/libint-2.6',
         'recursive': True,
     },
 }]
@@ -22,12 +22,12 @@ sources = [{
 dependencies = [
     ('Python', '3.7.4', '', ('GCCcore', '8.3.0')),
     ('SciPy-bundle', '2019.10', versionsuffix),
-    ('pybind11', '2.2.4', versionsuffix),
+    ('pybind11', '2.4.3', versionsuffix),
     ('Eigen', '3.3.7', '', True),
     ('spectra', '0.8.1', '', ('intel', '2019b')),
+    ('Boost', '1.69.0', '', ('intel', '2019b')),
     ('Libint', '2.6.0', '', ('intel', '2019b')),
     ('libcint', '3.0.19', '', ('intel', '2019b')),
-    ('Boost', '1.69.0', '', ('intel', '2019b')),
 ]
 builddependencies = [
     ('CMake', '3.15.3'),
@@ -39,7 +39,7 @@ options = {'modulename' : 'gqcpy'}
 
 preconfigopts = 'EIGEN3_ROOT=${EBROOTEIGEN}/include LIBINT_DATA_PATH=${EBROOTLIBINT}/share/libint/2.6.0/basis'
 
-configopts = '-DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_PREFIX_PATH="${EBROOTLIBINT};${EBROOTLIBCINT};${EBROOTPYBIND11};${EBROOTSPECTRA}" -DBUILD_TESTS=TRUE -DBUILD_DRIVERS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE'
+configopts = '-DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_PREFIX_PATH="${EBROOTLIBINT};${EBROOTLIBCINT};${EBROOTPYBIND11};${EBROOTSPECTRA}" -DBUILD_TESTS=TRUE -DBUILD_DRIVERS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DOPTIMIZE_FOR_NATIVE=1'
 
 runtest = 'test'
 
