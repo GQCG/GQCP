@@ -26,7 +26,7 @@ execute_process(
 
 
 
-add_subdirectory(include)
+#add_subdirectory(include)
 add_subdirectory(src)
 
 
