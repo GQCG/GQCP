@@ -26,7 +26,7 @@ Hints
 include(FindPackageHandleStandardArgs)
 
 find_path(MKL_INCLUDE_DIR mkl.h HINTS $ENV{MKLROOT}/include)
-find_library(MKL_INTERFACE_LIBRARY NAMES libmkl_intel_lp64.so mkl_intel_lp64.dylib PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
+find_library(MKL_INTERFACE_LIBRARY NAMES libmkl_intel_lp64.so libmkl_intel_lp64.dylib PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
 find_library(MKL_INTEL_THREAD NAMES libmkl_intel_thread.so libmkl_intel_thread.dylib PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
 find_library(MKL_CORE_LIBRARY NAMES libmkl_core.so libmkl_core.dylib PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
 get_filename_component(IOMP5_ROOT $ENV{MKLROOT}/.. ABSOLUTE) # The root of IOMP installation can be one directory above the MKL root.
