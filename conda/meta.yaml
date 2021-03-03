@@ -22,7 +22,7 @@ requirements:
       - eigen
       - intel-openmp
       - mkl-include
-      - mkl-static
+      - mkl
       - numpy
       - libint
       - llvm-openmp               # [osx]
@@ -37,7 +37,7 @@ requirements:
       - eigen
       - intel-openmp
       - mkl-include
-      - mkl-static
+      - mkl
       - numpy
       - libint
       - llvm-openmp               # [osx]
