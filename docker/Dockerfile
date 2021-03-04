@@ -1,4 +1,4 @@
-FROM gqcg/gqcp-dev:libint
+FROM gqcg/gqcp-dev:latest
 
 COPY . .
 RUN mkdir build && cd build && cmake .. \
