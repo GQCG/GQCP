@@ -3,6 +3,7 @@ name: Build and test
 on: 
   pull_request:
     paths:
+      - '.github/workflows/build-and-test.yml'
       - '**.hpp'
       - '**.cpp'
       - '**.cmake'

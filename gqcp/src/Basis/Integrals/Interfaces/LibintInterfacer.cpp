@@ -72,6 +72,50 @@ LibintInterfacer& LibintInterfacer::get() {      // need to return by reference 
 
 
 /*
+ *  MARK: Interfacing - std to libint
+ */
+
+/**
+ *  Convert a `std::vector` to a `libint2::svector`.
+ * 
+ *  @param vector               The `std::vector`.
+ *  
+ *  @return The `libint2::svector`.
+ */
+libint2::svector<double> LibintInterfacer::interface(const std::vector<double>& vector) const {
+
+    libint2::svector<double> svector {};
+    for (const auto& element : vector) {
+        svector.push_back(element);
+    }
+
+    return svector;
+}
+
+
+/*
+ *  MARK: Interfacing - libint to std
+ */
+
+/**
+ *  Convert a `libint2::svector` to a `std::vector`.
+ * 
+ *  @param svector              The `libint2::svector`.
+ * 
+ *  @return The `std::vector`.
+ */
+std::vector<double> LibintInterfacer::interface(const libint2::svector<double>& svector) const {
+
+    std::vector<double> vector {};
+    for (const auto& element : svector) {
+        vector.push_back(element);
+    }
+
+    return vector;
+}
+
+
+/*
  *  PUBLIC METHODS - INTERFACING (GQCP TO LIBINT)
  */
 
@@ -114,13 +158,14 @@ std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Nucleus
 libint2::Shell LibintInterfacer::interface(const GTOShell& shell) const {
 
     // Part 1: exponents
-    const std::vector<double>& libint_alpha = shell.gaussianExponents();  // libint::Shell::real_t is double, so no need to use real_t
+    const auto libint_alpha = this->interface(shell.gaussianExponents());
 
 
     // Part 2: contractions
     auto libint_l = static_cast<int>(shell.angularMomentum());
     bool libint_pure = shell.isPure();
-    const std::vector<double>& libint_coeff = shell.contractionCoefficients();
+    const auto libint_coeff = this->interface(shell.contractionCoefficients());
+
     libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
 
 
@@ -192,7 +237,7 @@ std::vector<GTOShell> LibintInterfacer::interface(const libint2::Shell& libint_s
 
 
     // Construct the corresponding GQCP::Shells
-    std::vector<double> exponents = libint_shell_copy.alpha;
+    const auto exponents = this->interface(libint_shell_copy.alpha);
 
     std::vector<GTOShell> shells;
     shells.reserve(this->numberOfShells(libint_shell_copy));
@@ -200,7 +245,7 @@ std::vector<GTOShell> LibintInterfacer::interface(const libint2::Shell& libint_s
 
         // Angular momentum and coefficients
         size_t l = libint_contraction.l;
-        std::vector<double> coefficients = libint_contraction.coeff;
+        const auto coefficients = this->interface(libint_contraction.coeff);
 
         // Libint2 only stores the origin of the shell, so we have to find the nucleus corresponding to the copied shell's origin
         Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map(libint_shell_copy.O.data());  // convert raw array data to Eigen
