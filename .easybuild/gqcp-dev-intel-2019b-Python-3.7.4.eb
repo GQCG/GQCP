@@ -14,7 +14,7 @@ sources = [{
     'git_config': {
         'url': 'https://github.com/GQCG',
         'repo_name': 'gqcp',
-	'tag' : 'refactor/libint-2.6',
+	    'tag' : 'develop',
         'recursive': True,
     },
 }]
