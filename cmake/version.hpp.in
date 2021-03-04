@@ -50,22 +50,22 @@ public:
     /**
      *  @return The GQCP major version.
      */
-    static size_t major();
+    static size_t major_version();
 
     /**
      *  @return The GQCP minor version.
      */
-    static size_t minor();
+    static size_t minor_version();
 
     /**
      *  @return The GQCP patch version.
      */
-    static size_t patch();
+    static size_t patch_version();
 
     /**
      *  @return The full GQCP version.
      */
-    static std::string full();
+    static std::string full_version();
 
     /**
      *  @return The current GQCP commit SHA1.

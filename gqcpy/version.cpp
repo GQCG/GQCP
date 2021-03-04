@@ -33,22 +33,22 @@ void bindVersion(py::module& module) {
     py::class_<GQCP::Version>(module, "Version", "Information on the GQCP version")
         .def(
             "major",
-            &Version::major,
+            &Version::major_version,
             "The GQCP major version.")
 
         .def(
             "minor",
-            &Version::minor,
+            &Version::minor_version,
             "The GQCP minor version.")
 
         .def(
             "patch",
-            &Version::patch,
+            &Version::patch_version,
             "The GQCP patch version.")
 
         .def(
             "full",
-            &Version::full,
+            &Version::full_version,
             "The full GQCP version.")
 
         .def(
