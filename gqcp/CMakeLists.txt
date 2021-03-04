@@ -25,8 +25,6 @@ execute_process(
 )
 
 
-
-add_subdirectory(include)
 add_subdirectory(src)
 
 
@@ -34,8 +32,6 @@ target_include_directories(gqcp
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/gqcp/include>
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/gqcp/include>
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/gqcp/src
 )
 
 target_link_libraries(gqcp
@@ -46,7 +42,7 @@ target_link_libraries(gqcp
         cint::cint
         MKL::MKL
 )
-
+ 
 # Add rt library on Linux environments
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     find_library(LIB_RT rt)

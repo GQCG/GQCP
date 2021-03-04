@@ -116,8 +116,7 @@ include(GNUInstallDirs)
 install(
     TARGETS gqcp_version
     EXPORT gqcp-targets
-    PUBLIC_HEADER DESTINATION version
-    INCLUDES DESTINATION version
+    PUBLIC_HEADER DESTINATION include/version
 )
 
 install(
@@ -126,7 +125,7 @@ install(
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
     RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include/gqcp version
+    INCLUDES DESTINATION include/gqcp include/version
 )
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/gqcp/include/ DESTINATION include/gqcp)
