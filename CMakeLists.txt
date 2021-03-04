@@ -120,7 +120,7 @@ include(GNUInstallDirs)
 install(
     TARGETS gqcp_version
     EXPORT gqcp-targets
-    PUBLIC_HEADER DESTINATION include/version
+    ARCHIVE DESTINATION include/version
 )
 
 install(
