@@ -32,8 +32,6 @@ target_include_directories(gqcp
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/gqcp/include>
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/gqcp/include>
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/gqcp/src
 )
 
 target_link_libraries(gqcp
