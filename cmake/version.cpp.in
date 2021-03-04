@@ -1,0 +1,66 @@
+// This file is part of GQCG-gqcp.
+//
+// Copyright (C) 2017-2019  the GQCG developers
+//
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+#include "version.hpp"
+
+
+// clang-format off
+namespace ${PROJECT_NAME} {
+
+
+/**
+*  @return The GQCP major version.
+*/
+size_t Version::major() {
+    return _major;
+}
+
+
+/**
+*  @return The GQCP minor version.
+*/
+size_t Version::minor() {
+    return _minor;
+}
+
+
+/**
+*  @return The GQCP patch version.
+*/
+size_t Version::patch() {
+    return _patch;
+}
+
+
+/**
+*  @return The full GQCP version.
+*/
+std::string Version::full() {
+    return _full;
+}
+
+
+/**
+*  @return The current GQCP commit SHA1.
+*/
+std::string Version::git_SHA1() {
+    return _git_SHA1;
+}
+
+} // namespace ${PROJECT_NAME}
+// clang-format on

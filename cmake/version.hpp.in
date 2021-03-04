@@ -27,16 +27,50 @@ namespace ${PROJECT_NAME} {
 
 
 /**
- *  A class that holds version-related info: the version numbers and the corresponding git SHA1
+ *  A class that holds version-related info: the version numbers and the corresponding git SHA1.
  */
 struct Version {
-public:
-    static constexpr size_t major = ${${PROJECT_NAME}_VERSION_MAJOR};
-    static constexpr size_t minor = ${${PROJECT_NAME}_VERSION_MINOR};
-    static constexpr size_t patch = ${${PROJECT_NAME}_VERSION_PATCH};
-    static constexpr auto full = "${${PROJECT_NAME}_VERSION}";
+private:
+    // The GQCP major version.
+    static constexpr size_t _major = ${${PROJECT_NAME}_VERSION_MAJOR};
 
-    static constexpr auto git_SHA1 = "${GIT_SHA1}";
+    // The GQCP minor version.
+    static constexpr size_t _minor = ${${PROJECT_NAME}_VERSION_MINOR};
+
+    // The GQCP patch version.
+    static constexpr size_t _patch = ${${PROJECT_NAME}_VERSION_PATCH};
+
+    // The full GQCP version.
+    static constexpr auto _full = "${${PROJECT_NAME}_VERSION}";
+
+    // The current GQCP commit SHA1.
+    static constexpr auto _git_SHA1 = "${GIT_SHA1}";
+
+public:
+    /**
+     *  @return The GQCP major version.
+     */
+    static size_t major();
+
+    /**
+     *  @return The GQCP minor version.
+     */
+    static size_t minor();
+
+    /**
+     *  @return The GQCP patch version.
+     */
+    static size_t patch();
+
+    /**
+     *  @return The full GQCP version.
+     */
+    static std::string full();
+
+    /**
+     *  @return The current GQCP commit SHA1.
+     */
+    static std::string git_SHA1();
 };
 
 
