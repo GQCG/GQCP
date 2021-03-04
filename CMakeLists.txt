@@ -19,7 +19,11 @@ configure_file(${CMAKE_SOURCE_DIR}/cmake/version.cpp.in version/version.cpp)
 # Common practice: this to avoid unneccessary recompiling whenever version details change.
 add_library(gqcp_version STATIC ${CMAKE_CURRENT_BINARY_DIR}/version/version.cpp)
 target_compile_features(gqcp_version PUBLIC cxx_std_14)
-
+target_include_directories(gqcp_version
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/version>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/version>
+)
 
 # List the supported options
 option(BUILD_TESTS "Build the C++ library tests" OFF)
