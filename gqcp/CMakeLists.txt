@@ -42,7 +42,7 @@ target_link_libraries(gqcp
         cint::cint
         MKL::MKL
 )
-
+ 
 # Add rt library on Linux environments
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     find_library(LIB_RT rt)
