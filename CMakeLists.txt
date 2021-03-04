@@ -18,11 +18,6 @@ configure_file(${CMAKE_SOURCE_DIR}/cmake/version.cpp.in version/version.cpp)
 # Compile the version as its own library where, if needed, other targets can be linked to.
 # Common practice: this to avoid unneccessary recompiling whenever version details change.
 add_library(gqcp_version STATIC ${CMAKE_CURRENT_BINARY_DIR}/version/version.cpp)
-target_include_directories(gqcp_version 
-    PUBLIC 
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/version>
-        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/version>
-)
 target_compile_features(gqcp_version PUBLIC cxx_std_14)
 
 
