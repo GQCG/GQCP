@@ -15,8 +15,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into
 # Add configuration file containing version of current library.
 configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in version/version.hpp)
 configure_file(${CMAKE_SOURCE_DIR}/cmake/version.cpp.in version/version.cpp)
-# Compile the version as its own library where, if needed, other targets can be linked to.
-# Common practice: this to avoid unneccessary recompiling whenever version details change.
+
 add_library(gqcp_version STATIC ${CMAKE_CURRENT_BINARY_DIR}/version/version.cpp)
 target_compile_features(gqcp_version PUBLIC cxx_std_14)
 target_include_directories(gqcp_version
@@ -25,7 +24,7 @@ target_include_directories(gqcp_version
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/version>
 )
 
-# List the supported options
+# List the supported optionsc
 option(BUILD_TESTS "Build the C++ library tests" OFF)
 option(BUILD_BENCHMARKS "Build the executables used for benchmarking the C++ library" OFF)
 option(BUILD_DOCS "Build the documentation of the C++ library using Doxygen" OFF)

@@ -26,7 +26,7 @@ namespace ${PROJECT_NAME} {
 /**
 *  @return The GQCP major version.
 */
-size_t Version::major_version() {
+size_t Version::majorVersion() {
     return _major;
 }
 
@@ -34,7 +34,7 @@ size_t Version::major_version() {
 /**
 *  @return The GQCP minor version.
 */
-size_t Version::minor_version() {
+size_t Version::minorVersion() {
     return _minor;
 }
 
@@ -42,7 +42,7 @@ size_t Version::minor_version() {
 /**
 *  @return The GQCP patch version.
 */
-size_t Version::patch_version() {
+size_t Version::patchVersion() {
     return _patch;
 }
 
@@ -50,7 +50,7 @@ size_t Version::patch_version() {
 /**
 *  @return The full GQCP version.
 */
-std::string Version::full_version() {
+std::string Version::fullVersion() {
     return _full;
 }
 

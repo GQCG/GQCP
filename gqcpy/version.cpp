@@ -32,27 +32,27 @@ using namespace GQCP;
 void bindVersion(py::module& module) {
     py::class_<GQCP::Version>(module, "Version", "Information on the GQCP version")
         .def(
-            "major",
-            &Version::major_version,
+            "majorVersion",
+            &Version::majorVersion,
             "The GQCP major version.")
 
         .def(
-            "minor",
-            &Version::minor_version,
+            "minorVersion",
+            &Version::minorVersion,
             "The GQCP minor version.")
 
         .def(
-            "patch",
-            &Version::patch_version,
+            "patchVersion",
+            &Version::patchVersion,
             "The GQCP patch version.")
 
         .def(
-            "full",
-            &Version::full_version,
+            "fullVersion",
+            &Version::fullVersion,
             "The full GQCP version.")
 
         .def(
-            "git_sha1",
+            "git_SHA1",
             &Version::git_SHA1,
             "The current GQCP commit SHA1.");
 }
