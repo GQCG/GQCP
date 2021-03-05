@@ -1,6 +1,4 @@
-// clang-format off
 from.gqcpy import*
 
 #Print version - related information upon import
 print("gqcpy version {} @ {}".format(gqcpy.Version.fullVersion(), gqcpy.Version.gitSHA1()))
-// clang-format off
