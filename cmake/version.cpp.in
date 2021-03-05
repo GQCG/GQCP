@@ -27,7 +27,7 @@ namespace ${PROJECT_NAME} {
 *  @return The GQCP major version.
 */
 size_t Version::majorVersion() {
-    return _major;
+    return major_version;
 }
 
 
@@ -35,7 +35,7 @@ size_t Version::majorVersion() {
 *  @return The GQCP minor version.
 */
 size_t Version::minorVersion() {
-    return _minor;
+    return minor_version;
 }
 
 
@@ -43,7 +43,7 @@ size_t Version::minorVersion() {
 *  @return The GQCP patch version.
 */
 size_t Version::patchVersion() {
-    return _patch;
+    return patch_version;
 }
 
 
@@ -51,15 +51,15 @@ size_t Version::patchVersion() {
 *  @return The full GQCP version.
 */
 std::string Version::fullVersion() {
-    return _full;
+    return full_version;
 }
 
 
 /**
 *  @return The current GQCP commit SHA1.
 */
-std::string Version::git_SHA1() {
-    return _git_SHA1;
+std::string Version::gitSHA1() {
+    return git_SHA1;
 }
 
 } // namespace ${PROJECT_NAME}

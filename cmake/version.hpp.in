@@ -32,19 +32,19 @@ namespace ${PROJECT_NAME} {
 struct Version {
 private:
     // The GQCP major version.
-    static constexpr size_t _major = ${${PROJECT_NAME}_VERSION_MAJOR};
+    static constexpr size_t major_version = ${${PROJECT_NAME}_VERSION_MAJOR};
 
     // The GQCP minor version.
-    static constexpr size_t _minor = ${${PROJECT_NAME}_VERSION_MINOR};
+    static constexpr size_t minor_version = ${${PROJECT_NAME}_VERSION_MINOR};
 
     // The GQCP patch version.
-    static constexpr size_t _patch = ${${PROJECT_NAME}_VERSION_PATCH};
+    static constexpr size_t patch_version = ${${PROJECT_NAME}_VERSION_PATCH};
 
     // The full GQCP version.
-    static constexpr auto _full = "${${PROJECT_NAME}_VERSION}";
+    static constexpr auto full_version = "${${PROJECT_NAME}_VERSION}";
 
     // The current GQCP commit SHA1.
-    static constexpr auto _git_SHA1 = "${GIT_SHA1}";
+    static constexpr auto git_SHA1 = "${GIT_SHA1}";
 
 public:
     /**
@@ -70,7 +70,7 @@ public:
     /**
      *  @return The current GQCP commit SHA1.
      */
-    static std::string git_SHA1();
+    static std::string gitSHA1();
 };
 
 

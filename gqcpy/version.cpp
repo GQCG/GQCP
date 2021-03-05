@@ -52,8 +52,8 @@ void bindVersion(py::module& module) {
             "The full GQCP version.")
 
         .def(
-            "git_SHA1",
-            &Version::git_SHA1,
+            "gitSHA1",
+            &Version::gitSHA1,
             "The current GQCP commit SHA1.");
 }
 
