@@ -1,0 +1,2 @@
+add_subdirectory(Minimization)
+add_subdirectory(NonLinearEquation)

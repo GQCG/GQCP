@@ -1,0 +1,11 @@
+target_sources(gqcp
+    PRIVATE
+        AngularMomentumOperator.cpp
+        BaseNuclearOperator.cpp
+        BaseReferenceDependentOperator.cpp
+        ElectronicDipoleOperator.cpp
+        ElectronicSpinOperator.cpp
+        LinearMomentumOperator.cpp
+        NuclearDipoleOperator.cpp
+        NuclearRepulsionOperator.cpp
+)

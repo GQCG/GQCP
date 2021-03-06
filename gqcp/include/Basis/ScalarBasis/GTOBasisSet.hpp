@@ -1,0 +1,72 @@
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
+#pragma once
+
+
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
+#include "Molecule/Molecule.hpp"
+#include "Molecule/NuclearFramework.hpp"
+
+#include <string>
+
+
+namespace GQCP {
+
+
+/**
+ *  A class that represents a Gaussian basis set: it serves as a mold to construct GTOShells
+ */
+class GTOBasisSet {
+private:
+    std::string basisset_name;  // the name of the basisset
+
+
+public:
+    // CONSTRUCTORS
+
+    /**
+     *  @param basisset_name                the name of the basisset
+     */
+    GTOBasisSet(const std::string& basisset_name);
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @param nuclear_framework            the nuclear framework containing the nuclei on which the shells should be centered
+     * 
+     *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the nuclear framework
+     */
+    ShellSet<GTOShell> generate(const NuclearFramework& nuclear_framework) const;
+
+    /**
+     *  @param molecule             the molecule containing the nuclei on which the shells should be centered
+     * 
+     *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the molecule
+     */
+    ShellSet<GTOShell> generate(const Molecule& molecule) const;
+
+    /**
+     *  @return the name of the basisset
+     */
+    const std::string& name() const { return this->basisset_name; }
+};
+
+
+}  // namespace GQCP

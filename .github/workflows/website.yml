@@ -1,0 +1,59 @@
+name: Website
+
+# Only run the workflow if website files are changed.
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'website/**'
+  pull_request:
+    paths:
+      - 'website/**'
+
+jobs:
+  deploy-website:
+    runs-on: ubuntu-latest
+    container:
+      image: gqcg/gqcp-dev:latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # Install Jupyter Book dependencies.
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Install Jupyter Book
+      run: |
+        pip install -U jupyter-book
+
+    # Build the C++ API documentation.
+    - name: Build C++ API documentation
+      run: |
+        mkdir build && cd build
+        cmake .. -DBUILD_DOCS=TRUE
+        make docs
+
+    # Build the website
+    - name: Build website
+      run: |
+        jupyter-book build website
+
+    # Upload an artifact of the website on pull request.
+    - name: Archive build
+      uses: actions/upload-artifact@v1
+      with:
+        name: _site
+        path: ./website/_build
+      if: github.event_name == 'pull_request'
+
+    # Deploy the website to GitHub pages on push.
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./website/_build/html
+      if: github.event_name == 'push'

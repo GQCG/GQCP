@@ -1,0 +1,9 @@
+target_sources(gqcp
+    PRIVATE
+        SeniorityZeroONVBasis.cpp
+        SpinResolvedONV.cpp
+        SpinResolvedONVBasis.cpp
+        SpinResolvedSelectedONVBasis.cpp
+        SpinUnresolvedONV.cpp
+        SpinUnresolvedONVBasis.cpp
+)
