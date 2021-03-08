@@ -1,3 +1,4 @@
+add_subdirectory(Integrals)
 add_subdirectory(MullikenPartitioning)
 add_subdirectory(ScalarBasis)
 add_subdirectory(SpinorBasis)

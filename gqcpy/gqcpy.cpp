@@ -26,6 +26,10 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
+// Basis - Integrals
+void bindMcMurchieDavidsonCoefficient(py::module& module);
+
+
 // Basis - MullikenPartitioning
 void bindRMullikenPartitioning(py::module& module);
 void bindUMullikenPartitioning(py::module& module);
@@ -223,6 +227,10 @@ void bindVersion(py::module& module);
  *  The actual Python binding into the gqcpy Python module.
  */
 PYBIND11_MODULE(gqcpy, module) {
+
+    // Basis - Integrals
+    gqcpy::bindMcMurchieDavidsonCoefficient(module);
+
 
     // Basis - MullikenPartitioning
     gqcpy::bindRMullikenPartitioning(module);
