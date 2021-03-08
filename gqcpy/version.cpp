@@ -21,28 +21,40 @@
 #include <pybind11/stl.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindVersion(py::module& module) {
     py::class_<GQCP::Version>(module, "Version", "Information on the GQCP version")
-        .def_property_readonly_static(
-            "major", [](py::object) { return GQCP::Version::major; }, "The GQCP major version")
+        .def(
+            "majorVersion",
+            &Version::majorVersion,
+            "The GQCP major version.")
 
-        .def_property_readonly_static(
-            "minor", [](py::object) { return GQCP::Version::minor; }, "The GQCP minor version")
+        .def(
+            "minorVersion",
+            &Version::minorVersion,
+            "The GQCP minor version.")
 
-        .def_property_readonly_static(
-            "patch", [](py::object) { return GQCP::Version::patch; }, "The GQCP patch version")
+        .def(
+            "patchVersion",
+            &Version::patchVersion,
+            "The GQCP patch version.")
 
-        .def_property_readonly_static(
-            "full", [](py::object) { return GQCP::Version::full; }, "The full GQCP version")
+        .def(
+            "fullVersion",
+            &Version::fullVersion,
+            "The full GQCP version.")
 
-        .def_property_readonly_static(
-            "git_sha1", [](py::object) { return GQCP::Version::git_SHA1; }, "The current GQCP commit SHA1");
+        .def(
+            "gitSHA1",
+            &Version::gitSHA1,
+            "The current GQCP commit SHA1.");
 }
 
 
