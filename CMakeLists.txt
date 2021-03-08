@@ -24,7 +24,7 @@ target_include_directories(gqcp_version
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/version>
 )
 
-# List the supported optionsc
+# List the supported options.
 option(BUILD_TESTS "Build the C++ library tests" OFF)
 option(BUILD_BENCHMARKS "Build the executables used for benchmarking the C++ library" OFF)
 option(BUILD_DOCS "Build the documentation of the C++ library using Doxygen" OFF)
