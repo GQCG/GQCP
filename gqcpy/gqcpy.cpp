@@ -27,7 +27,10 @@ namespace gqcpy {
 
 
 // Basis - Integrals
+void bindFunctionalPrimitiveEngine(py::module& module);
+void bindFunctionalOneElectronIntegralEngine(py::module& module);
 void bindMcMurchieDavidsonCoefficient(py::module& module);
+void bindIntegralEngine(py::module& module);
 
 
 // Basis - MullikenPartitioning
@@ -38,6 +41,8 @@ void bindUMullikenPartitioningComponent(py::module& module);
 
 // Basis - ScalarBasis
 void bindGTOShell(py::module& module);
+void bindScalarBasis(py::module& module);
+void bindShellSet(py::module& module);
 
 
 // Basis - SpinorBasis
@@ -72,6 +77,12 @@ void bindSpinResolved2DM(py::module& module);
 void bindAlgorithms(py::module& module);
 void bindFunctionalSteps(py::module& module);
 void bindIterativeAlgorithms(py::module& module);
+
+
+// Mathematical - Functions
+void bindCartesianDirection(py::module& module);
+void bindCartesianExponents(py::module& module);
+void bindCartesianGTO(py::module& module);
 
 
 // Mathematical - Grid
@@ -229,7 +240,10 @@ void bindVersion(py::module& module);
 PYBIND11_MODULE(gqcpy, module) {
 
     // Basis - Integrals
+    gqcpy::bindFunctionalPrimitiveEngine(module);
+    gqcpy::bindFunctionalOneElectronIntegralEngine(module);
     gqcpy::bindMcMurchieDavidsonCoefficient(module);
+    gqcpy::bindIntegralEngine(module);
 
 
     // Basis - MullikenPartitioning
@@ -240,6 +254,8 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Basis - ScalarBasis
     gqcpy::bindGTOShell(module);
+    gqcpy::bindScalarBasis(module);
+    gqcpy::bindShellSet(module);
 
 
     // Basis - SpinorBasis
@@ -274,6 +290,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindAlgorithms(module);
     gqcpy::bindFunctionalSteps(module);
     gqcpy::bindIterativeAlgorithms(module);
+
+
+    // Mathematical - Functions
+    gqcpy::bindCartesianDirection(module);
+    gqcpy::bindCartesianExponents(module);
+    gqcpy::bindCartesianGTO(module);
 
 
     // Mathematical - Grid

@@ -36,7 +36,7 @@ using namespace GQCP;
 void bindMcMurchieDavidsonCoefficient(py::module& module) {
 
     // Define the Python class for `GTransformation_d`.
-    py::class_<McMurchieDavidsonCoefficient<double>> py_McMurchieDavidsonCoefficient {module, "McMurchieDavidsonCoefficient", "An implementation of the McMurchie-Davidson expansion coefficients through recurrence relations."};
+    py::class_<McMurchieDavidsonCoefficient> py_McMurchieDavidsonCoefficient {module, "McMurchieDavidsonCoefficient", "An implementation of the McMurchie-Davidson expansion coefficients through recurrence relations."};
 
     py_McMurchieDavidsonCoefficient
         .def(py::init<const double, const double, const double, const double>(),
@@ -46,6 +46,7 @@ void bindMcMurchieDavidsonCoefficient(py::module& module) {
              py::arg("b"))
 
         .def("__call__",
+             &McMurchieDavidsonCoefficient::operator(),
              py::arg("i"),
              py::arg("j"),
              py::arg("t"),
