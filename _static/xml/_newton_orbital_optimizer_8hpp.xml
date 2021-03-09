@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_newton_orbital_optimizer_8hpp" kind="file" language="C++">
     <compoundname>NewtonOrbitalOptimizer.hpp</compoundname>
     <includes refid="_orbital_rotation_generators_8hpp" local="yes">Basis/Transformations/OrbitalRotationGenerators.hpp</includes>
@@ -1785,7 +1785,7 @@
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="class_g_q_c_p_1_1_newton_orbital_optimizer" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_newton_orbital_optimizer" kindref="compound">NewtonOrbitalOptimizer</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_base_orbital_optimizer" kindref="compound">BaseOrbitalOptimizer</ref><sp/>{</highlight></codeline>
+<codeline lineno="37" refid="class_g_q_c_p_1_1_newton_orbital_optimizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_newton_orbital_optimizer" kindref="compound">NewtonOrbitalOptimizer</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_base_orbital_optimizer" kindref="compound">BaseOrbitalOptimizer</ref><sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="39" refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad31068b230ffb38e97432624120c4318" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;BaseHessianModifier&gt;<sp/><ref refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad31068b230ffb38e97432624120c4318" kindref="member">hessian_modifier</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>modifier<sp/>functor<sp/>that<sp/>should<sp/>be<sp/>used<sp/>when<sp/>an<sp/>indefinite<sp/>Hessian<sp/>is<sp/>encountered</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>

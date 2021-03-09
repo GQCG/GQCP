@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_orbital_space_8hpp" kind="file" language="C++">
     <compoundname>OrbitalSpace.hpp</compoundname>
     <includes refid="_occupation_type_8hpp" local="yes">Basis/SpinorBasis/OccupationType.hpp</includes>
@@ -1078,7 +1078,7 @@
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="class_g_q_c_p_1_1_orbital_space" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/>{</highlight></codeline>
+<codeline lineno="40" refid="class_g_q_c_p_1_1_orbital_space" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;size_t&gt;<sp/>occupied_indices;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>indices<sp/>of<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>considered<sp/>occupied<sp/>by<sp/>the<sp/>electrons</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;size_t&gt;<sp/>active_indices;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>indices<sp/>of<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>considered<sp/>&apos;active&apos;,<sp/>i.e.<sp/>those<sp/>spinor<sp/>indices<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>some<sp/>set<sp/>of<sp/>configurations<sp/>but<sp/>not<sp/>in<sp/>others</highlight><highlight class="normal"></highlight></codeline>

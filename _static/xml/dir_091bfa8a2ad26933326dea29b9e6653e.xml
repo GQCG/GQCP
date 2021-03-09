@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_091bfa8a2ad26933326dea29b9e6653e" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/include/QCModel/CC</compoundname>
     <innerfile refid="_q_c_model_2_c_c_2_c_c_d_8hpp">CCD.hpp</innerfile>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_r_s_q_two_electron_operator_8hpp" kind="file" language="C++">
     <compoundname>RSQTwoElectronOperator.hpp</compoundname>
     <includes refid="_r_transformation_8hpp" local="yes">Basis/Transformations/RTransformation.hpp</includes>
@@ -1519,7 +1519,7 @@
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Vectorizer&gt;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Vectorizer&gt;</highlight></codeline>
 <codeline lineno="42" refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" kindref="compound">RSQTwoElectronOperator</ref>:</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator" kindref="compound">SimpleSQTwoElectronOperator</ref>&lt;_Scalar,<sp/>_Vectorizer,<sp/>RSQTwoElectronOperator&lt;_Scalar,<sp/>_Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -1605,7 +1605,7 @@
 <codeline lineno="133"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Operator<sp/>traits</highlight></codeline>
 <codeline lineno="134"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="142"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Vectorizer&gt;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Vectorizer&gt;</highlight></codeline>
 <codeline lineno="143" refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" kindref="compound">RSQTwoElectronOperator</ref>&lt;Scalar,<sp/>Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>A<sp/>type<sp/>that<sp/>corresponds<sp/>to<sp/>the<sp/>scalar<sp/>version<sp/>of<sp/>the<sp/>associated<sp/>restricted<sp/>two-electron<sp/>operator<sp/>type.</highlight><highlight class="normal"></highlight></codeline>
@@ -1629,7 +1629,7 @@
 <codeline lineno="163"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>BasisTransformableTraits</highlight></codeline>
 <codeline lineno="164"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="165"><highlight class="normal"></highlight></codeline>
-<codeline lineno="172"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Vectorizer&gt;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Vectorizer&gt;</highlight></codeline>
 <codeline lineno="173" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" kindref="compound">RSQTwoElectronOperator</ref>&lt;Scalar,<sp/>Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="174"><highlight class="normal"></highlight></codeline>
 <codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>transformation<sp/>that<sp/>is<sp/>naturally<sp/>associated<sp/>to<sp/>an<sp/>`RSQTwoElectronOperator`.</highlight><highlight class="normal"></highlight></codeline>
@@ -1641,7 +1641,7 @@
 <codeline lineno="181"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>JacobiRotatableTraits</highlight></codeline>
 <codeline lineno="182"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="183"><highlight class="normal"></highlight></codeline>
-<codeline lineno="187"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Vectorizer&gt;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Vectorizer&gt;</highlight></codeline>
 <codeline lineno="188" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" kindref="compound">RSQTwoElectronOperator</ref>&lt;Scalar,<sp/>Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
 <codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>Jacobi<sp/>rotation<sp/>for<sp/>which<sp/>the<sp/>Jacobi<sp/>rotation<sp/>should<sp/>be<sp/>defined.</highlight><highlight class="normal"></highlight></codeline>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_spin_resolved1_d_m" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SpinResolved1DM</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; SpinResolved1DMComponent&lt; _Scalar &gt;, SpinResolved1DM&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -254,6 +254,10 @@
         <childnode refid="8" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
       <node id="1">
         <label>GQCP::SpinResolved1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m"/>
@@ -272,27 +276,23 @@
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::BasisTransformable&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="8">
-        <label>GQCP::CRTP&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
       <node id="3">
         <label>GQCP::SpinResolvedBasisTransformable&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="2">
         <label>GQCP::SpinResolvedBase&lt; SpinResolved1DMComponent&lt; _Scalar &gt;, SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="8">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
@@ -302,6 +302,10 @@
         <childnode refid="8" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
       <node id="1">
         <label>GQCP::SpinResolved1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m"/>
@@ -320,27 +324,23 @@
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::BasisTransformable&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="8">
-        <label>GQCP::CRTP&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
       <node id="3">
         <label>GQCP::SpinResolvedBasisTransformable&lt; SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="2">
         <label>GQCP::SpinResolvedBase&lt; SpinResolved1DMComponent&lt; _Scalar &gt;, SpinResolved1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="8">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" bodystart="45" bodyend="194"/>

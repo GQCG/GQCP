@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_s_q_two_electron_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::USQTwoElectronOperator</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" prot="public" virt="non-virtual">GQCP::DoublySpinResolvedBase&lt; PureUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;, MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;, USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</basecompoundref>
@@ -483,16 +483,8 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="6">
-        <label>GQCP::JacobiRotatable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="4">
-        <label>GQCP::BasisTransformable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="8">
-        <label>GQCP::CRTP&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">
         <label>GQCP::USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
@@ -527,20 +519,20 @@
         <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable"/>
         <childnode refid="6" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="8">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
       <node id="6">
-        <label>GQCP::JacobiRotatable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="4">
-        <label>GQCP::BasisTransformable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="8">
-        <label>GQCP::CRTP&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">
         <label>GQCP::USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
@@ -575,6 +567,14 @@
         <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable"/>
         <childnode refid="6" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="8">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="49" bodyend="285"/>
@@ -607,8 +607,7 @@
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQTwoElectronOperator</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQTwoElectronOperator</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQTwoElectronOperator</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_1a6d8f51cf240f4a7acc6bc309a84ab563" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQTwoElectronOperator</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQTwoElectronOperator</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_1a6d8f51cf240f4a7acc6bc309a84ab563" prot="public" virt="virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQTwoElectronOperator</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" prot="public" virt="non-virtual"><scope>GQCP::USQTwoElectronOperator</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a18cef515647e1b62519dde7e9077be49" prot="public" virt="non-virtual"><scope>GQCP::USQTwoElectronOperator</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ae3d6317cab5cc865f48f86be11b13842" prot="public" virt="non-virtual"><scope>GQCP::USQTwoElectronOperator</scope><name>SpinorTag</name></member>

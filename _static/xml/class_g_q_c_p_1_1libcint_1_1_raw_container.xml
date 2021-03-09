@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1libcint_1_1_raw_container" kind="class" language="C++" prot="public">
     <compoundname>GQCP::libcint::RawContainer</compoundname>
     <includes refid="_libcint_interfacer_8hpp" local="no">LibcintInterfacer.hpp</includes>
@@ -85,10 +85,13 @@
       </sectiondef>
       <sectiondef kind="friend">
       <memberdef kind="friend" id="class_g_q_c_p_1_1libcint_1_1_raw_container_1a0af106fa7a5fef4e88dbdc8d0f68fd3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>friend class</type>
+        <type>class</type>
         <definition>friend class GQCP::LibcintInterfacer</definition>
         <argsstring></argsstring>
         <name>GQCP::LibcintInterfacer</name>
+        <param>
+          <type><ref refid="class_g_q_c_p_1_1_libcint_interfacer" kindref="compound">GQCP::LibcintInterfacer</ref></type>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

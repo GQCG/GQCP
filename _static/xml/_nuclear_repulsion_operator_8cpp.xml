@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_nuclear_repulsion_operator_8cpp" kind="file" language="C++">
     <compoundname>NuclearRepulsionOperator.cpp</compoundname>
     <includes refid="_nuclear_repulsion_operator_8hpp" local="yes">Operator/FirstQuantized/NuclearRepulsionOperator.hpp</includes>
@@ -167,7 +167,7 @@
 <codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Operator<sp/>value</highlight></codeline>
 <codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a095316bd4ac0e4c331e10f1326251105" kindref="member">NuclearRepulsionOperator::value</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a095316bd4ac0e4c331e10f1326251105" kindref="member">NuclearRepulsionOperator::value</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>nuclei<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" kindref="member">nucleiAsVector</ref>();</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>

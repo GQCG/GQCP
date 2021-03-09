@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_step" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::Step</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_step_collection" prot="public" virt="non-virtual">GQCP::StepCollection&lt; Environment &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_functional_step" prot="public" virt="non-virtual">GQCP::FunctionalStep&lt; _Environment &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update" prot="public" virt="non-virtual">GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update" prot="public" virt="non-virtual">GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_step_collection" prot="public" virt="non-virtual">GQCP::StepCollection&lt; _Environment &gt;</derivedcompoundref>
-    <includes refid="_step_8hpp" local="no">Step.hpp</includes>
+    <includes refid="_algorithm_2_step_8hpp" local="no">Step.hpp</includes>
     <templateparamlist>
       <param>
         <type>typename _Environment</type>
@@ -49,8 +50,43 @@
         <reimplementedby refid="class_g_q_c_p_1_1_functional_step_1acdbcb74b42d6f390be7c6aa00e05978b">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a4f63e6c1cb7d7de973cbb4212e5ba699">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a4f63e6c1cb7d7de973cbb4212e5ba699">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_guess_vector_update_1a587095aac1b169167816445427e96607">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_matrix_vector_product_calculation_1ae5787266b1ab6ab5678066534935c547">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_residual_vector_calculation_1afb3cb399b0a1fae12b5580e2a4c62624">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_subspace_matrix_calculation_1ad685b367cc75f6745a32c9b6c966ef81">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a4874cd13941a8fdf1984df8241ee89c0">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_subspace_update_1a1af3f62a92fa892cb28acd7b2bbc0bb7">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_dense_diagonalization_1abb3d222b533cd59f944f411d2134b591">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a9364e58c7624df4f6621f712a929b5f3">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a719c5657ab1eaa89adbe008e9516c618">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_c_c_d_amplitudes_update_1acb24cc7c9c99832480c80b68e90d4297">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_c_c_d_energy_calculation_1ada68ad9804a52b75985458b4cd30fb7c">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_c_c_d_intermediates_update_1a25cb1458843fd03b10e323a9201e9cff">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_c_c_s_d_amplitudes_update_1ab3e5f2b01034c37e1c9beb71c3a5f180">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a7289ab09cfe140d1bb1c4ff15d970479">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_c_c_s_d_intermediates_update_1ae215cc082796264e469749dc14902960">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_t2_d_i_i_s_1aea6d5c59a6d05853733d63b24141a8ae">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_t2_error_calculation_1a0bd596a51223272502582889e156f880">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_1a7d9a82b402d3de3d91b4cf002f455706">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation_1ade6dee2ca8b8a9db044d4b543be4fd7e">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_g_h_f_error_calculation_1a6223f238aa3f5ad5afbe8428d1e11f71">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation_1a403f07618f9898875bc0e9abd8c0e9b0">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization_1a3748982c7d710b59a519e363b63fe0f9">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1aa290d11cf0fc2a1a316c278029da597d">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_density_matrix_calculation_1a04575d40b5d9e12abd67ae9e2eb99ccc">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper_1abd279ab70ac09d3308dd8b8afdf95f46">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_electronic_energy_calculation_1a5b70648e8040dd518d04b174a47fd867">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_error_calculation_1ab792c7c6fb175e51059b2cd04ba2f078">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_calculation_1ad2a22e6920a83b85b152a09035e74593">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_diagonalization_1af7b042b9c8f938fffcec7a7c5d54fd38">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1a0684bdd3b2572946eece708e751a2918">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation_1a9fdc96af4d1eb5aa0551f6b77e717202">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_h_f_electronic_energy_calculation_1ab6222c59cb0a8310036ee50b6554e449">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_h_f_error_calculation_1a82e55496103e1d714d8acceae9d7fe93">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_1a3b8cd504b0fb0a2409ded0947039e0de">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_1a91159c90c3ba61e434fbc8ade3143a3a">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_u_h_f_fock_matrix_d_i_i_s_1a0e3a95de68060c280dc8c43e108cc86a">description</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -125,29 +161,35 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
-        <label>GQCP::Step&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
-      <node id="4">
-        <label>GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Environment &gt;</label>
+      <node id="5">
+        <label>GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;</label>
         <link refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="1">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
+      <node id="2">
+        <label>GQCP::StepCollection&lt; Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step_collection"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
         <label>GQCP::StepCollection&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_step_collection"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
-        <label>GQCP::Minimization::NewtonStepUpdate&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="2">
         <label>GQCP::FunctionalStep&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_functional_step"/>
         <childnode refid="1" relation="public-inheritance">

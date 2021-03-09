@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_spin_resolved1_d_m_8hpp" kind="file" language="C++">
     <compoundname>SpinResolved1DM.hpp</compoundname>
     <includes refid="_spin_resolved_basis_transformable_8hpp" local="yes">Basis/Transformations/SpinResolvedBasisTransformable.hpp</includes>
@@ -1348,7 +1348,7 @@
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
 <codeline lineno="41" refid="class_g_q_c_p_1_1_spin_resolved1_d_m" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>:</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt;SpinResolved1DMComponent&lt;_Scalar&gt;,<sp/>SpinResolved1DM&lt;_Scalar&gt;&gt;,</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable" kindref="compound">SpinResolvedBasisTransformable</ref>&lt;SpinResolved1DM&lt;_Scalar&gt;&gt;,</highlight></codeline>
@@ -1359,7 +1359,7 @@
 <codeline lineno="48" refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a536004ece5dd6fdf434ad50f6eee971a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a536004ece5dd6fdf434ad50f6eee971a" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>transformation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`SpinResolved1DM`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51" refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a1bcd4e7be3ec2689dd69ee6dfb26b91f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation&lt;Scalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="51" refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a1bcd4e7be3ec2689dd69ee6dfb26b91f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation&lt;Scalar&gt;</ref>;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>&apos;this&apos;.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="54" refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1ad3022b1d3284208b6c1cec206a70c0ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM&lt;Scalar&gt;</ref>;</highlight></codeline>
@@ -1473,7 +1473,7 @@
 <codeline lineno="198"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>BasisTransformableTraits</highlight></codeline>
 <codeline lineno="199"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="200"><highlight class="normal"></highlight></codeline>
-<codeline lineno="204"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
 <codeline lineno="205" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
 <codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>transformation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`SpinResolved1DM`.</highlight><highlight class="normal"></highlight></codeline>
@@ -1485,7 +1485,7 @@
 <codeline lineno="213"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>JacobiRotatableTraits</highlight></codeline>
 <codeline lineno="214"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="215"><highlight class="normal"></highlight></codeline>
-<codeline lineno="219"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
 <codeline lineno="220" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="221"><highlight class="normal"></highlight></codeline>
 <codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>Jacobi<sp/>rotation<sp/>for<sp/>which<sp/>the<sp/>Jacobi<sp/>rotation<sp/>should<sp/>be<sp/>defined.</highlight><highlight class="normal"></highlight></codeline>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_correction_vector_calculation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::CorrectionVectorCalculation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
@@ -74,11 +74,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp" bodystart="48" bodyend="50"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
         <definition>std::string GQCP::CorrectionVectorCalculation::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -153,8 +154,7 @@
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a62e7f197aabd8b5498ea1c571aa6717d" prot="private" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>correction_threshold</name></member>
       <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a48c74231f2206b48ee07077792b2939d" prot="public" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>CorrectionVectorCalculation</name></member>
-      <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e" prot="public" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>description</name></member>
-      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; EigenproblemEnvironment &gt;::"><scope>GQCP::CorrectionVectorCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e" prot="public" virt="virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>Environment</name></member>
       <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a120b466e0f888fbdddddc15a311830fd" prot="public" virt="virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>execute</name></member>
       <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a6c9abd64d7c3af27945863f27d871ec4" prot="private" virt="non-virtual"><scope>GQCP::CorrectionVectorCalculation</scope><name>number_of_requested_eigenpairs</name></member>

@@ -1,9 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_simple_transformation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SimpleTransformation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; _DerivedTransformation &gt;</basecompoundref>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; _DerivedTransformation &gt;</basecompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_g_transformation" prot="public" virt="non-virtual">GQCP::GTransformation&lt; Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_r_transformation" prot="public" virt="non-virtual">GQCP::RTransformation&lt; Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_u_transformation_component" prot="public" virt="non-virtual">GQCP::UTransformationComponent&lt; Scalar &gt;</derivedcompoundref>
     <includes refid="_simple_transformation_8hpp" local="no">SimpleTransformation.hpp</includes>
     <templateparamlist>
       <param>
@@ -469,6 +472,18 @@
         <label>GQCP::BasisTransformable&lt; _DerivedTransformation &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
+      <node id="5">
+        <label>GQCP::RTransformation&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_transformation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::GTransformation&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_transformation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>GQCP::SimpleTransformation&lt; _Scalar, _DerivedTransformation &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_transformation"/>
@@ -480,6 +495,12 @@
       <node id="3">
         <label>GQCP::JacobiRotatable&lt; _DerivedTransformation &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::UTransformationComponent&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_transformation_component"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>

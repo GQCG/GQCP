@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427" kind="struct" language="C++" prot="public">
     <compoundname>GQCP::BasisTransformableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</compoundname>
     <includes refid="_simple_s_q_two_electron_operator_8hpp" local="no">SimpleSQTwoElectronOperator.hpp</includes>

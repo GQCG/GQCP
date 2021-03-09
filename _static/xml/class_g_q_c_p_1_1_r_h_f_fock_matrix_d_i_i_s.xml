@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s" kind="class" language="C++" prot="public">
     <compoundname>GQCP::RHFFockMatrixDIIS</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; RHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -120,11 +120,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp" bodystart="63" bodyend="65"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1a0684bdd3b2572946eece708e751a2918" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1a0684bdd3b2572946eece708e751a2918" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
         <definition>std::string GQCP::RHFFockMatrixDIIS&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -206,8 +207,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp" bodystart="40" bodyend="107"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1a0684bdd3b2572946eece708e751a2918" prot="public" virt="non-virtual"><scope>GQCP::RHFFockMatrixDIIS</scope><name>description</name></member>
-      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; RHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::RHFFockMatrixDIIS</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1a0684bdd3b2572946eece708e751a2918" prot="public" virt="virtual"><scope>GQCP::RHFFockMatrixDIIS</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1ac369e2e1ea5e7d3adc9e0fb04f8a54e4" prot="private" virt="non-virtual"><scope>GQCP::RHFFockMatrixDIIS</scope><name>diis</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1ae425da6514e2dff86569d234684ef8d0" prot="public" virt="non-virtual"><scope>GQCP::RHFFockMatrixDIIS</scope><name>Environment</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_1a3145fad579ae44ca59ec4ba09965cfa8" prot="public" virt="non-virtual"><scope>GQCP::RHFFockMatrixDIIS</scope><name>execute</name></member>

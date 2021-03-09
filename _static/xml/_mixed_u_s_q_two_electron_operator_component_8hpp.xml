@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_mixed_u_s_q_two_electron_operator_component_8hpp" kind="file" language="C++">
     <compoundname>MixedUSQTwoElectronOperatorComponent.hpp</compoundname>
     <includes refid="_u_transformation_component_8hpp" local="yes">Basis/Transformations/UTransformationComponent.hpp</includes>
@@ -1346,7 +1346,7 @@
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Vectorizer&gt;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Vectorizer&gt;</highlight></codeline>
 <codeline lineno="39" refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" kindref="compound">MixedUSQTwoElectronOperatorComponent</ref>:</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_s_q_operator_storage" kindref="compound">SQOperatorStorage</ref>&lt;SquareRankFourTensor&lt;_Scalar&gt;,<sp/>_Vectorizer,<sp/>MixedUSQTwoElectronOperatorComponent&lt;_Scalar,<sp/>_Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -1487,7 +1487,7 @@
 <codeline lineno="219"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Operator<sp/>traits</highlight></codeline>
 <codeline lineno="220"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="221"><highlight class="normal"></highlight></codeline>
-<codeline lineno="228"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Vectorizer&gt;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Vectorizer&gt;</highlight></codeline>
 <codeline lineno="229" refid="struct_g_q_c_p_1_1_operator_traits_3_01_mixed_u_s_q_two_electron_operator_component_3_01___scalar_00_01___vectorizer_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" kindref="compound">MixedUSQTwoElectronOperatorComponent</ref>&lt;_Scalar,<sp/>_Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="230"><highlight class="normal"></highlight></codeline>
 <codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>used<sp/>for<sp/>a<sp/>single<sp/>parameter:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>

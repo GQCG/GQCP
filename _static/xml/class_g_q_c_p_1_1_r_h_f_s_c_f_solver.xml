@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver" kind="class" language="C++" prot="public">
     <compoundname>GQCP::RHFSCFSolver</compoundname>
     <includes refid="_r_h_f_s_c_f_solver_8hpp" local="no">RHFSCFSolver.hpp</includes>

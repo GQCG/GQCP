@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_tensor}{}\doxysection{G\+Q\+CP\+::Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_tensor}{}\doxysection{GQCP\+::Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$ Class Template Reference}
 \label{class_g_q_c_p_1_1_tensor}\index{GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 
 
@@ -6,22 +6,22 @@
 
 
 
-Inheritance diagram for G\+Q\+CP\+::Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+:
+Inheritance diagram for GQCP\+::Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=277pt]{class_g_q_c_p_1_1_tensor__inherit__graph}
+\includegraphics[width=229pt]{class_g_q_c_p_1_1_tensor__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for G\+Q\+CP\+::Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+:
+Collaboration diagram for GQCP\+::Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=277pt]{class_g_q_c_p_1_1_tensor__coll__graph}
+\includegraphics[width=229pt]{class_g_q_c_p_1_1_tensor__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -46,15 +46,15 @@ const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4
 \item 
 {\footnotesize template$<$int Z = Rank$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Z==4, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a6a4c62ac97e943c971985487edde42c9}{pair\+Wise\+Reduced}} (const size\+\_\+t start\+\_\+i=0, const size\+\_\+t start\+\_\+j=0, const size\+\_\+t start\+\_\+k=0, const size\+\_\+t start\+\_\+l=0) const
 \item 
-{\footnotesize template$<$int N, int L\+H\+S\+Rank = Rank, int R\+H\+S\+Rank$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, L\+H\+S\+Rank+R\+H\+S\+Rank -\/ 2 $\ast$N $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7f3fc273d404b00111e250639592e310}{einsum}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, R\+H\+S\+Rank $>$ \&rhs, const std\+::string \&lhs\+\_\+labels, const std\+::string \&rhs\+\_\+labels, const std\+::string \&output\+\_\+labels) const
+{\footnotesize template$<$int N, int LHSRank = Rank, int RHSRank$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, LHSRank+RHSRank -\/ 2 $\ast$N $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7f3fc273d404b00111e250639592e310}{einsum}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, RHSRank $>$ \&rhs, const std\+::string \&lhs\+\_\+labels, const std\+::string \&rhs\+\_\+labels, const std\+::string \&output\+\_\+labels) const
 \item 
-{\footnotesize template$<$int N, int L\+H\+S\+Rank = Rank, int R\+H\+S\+Rank$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, L\+H\+S\+Rank+R\+H\+S\+Rank -\/ 2 $\ast$N $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_afbf2116f91e93cce546be34cfbe362c6}{einsum}} (std\+::string contraction\+\_\+string, const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, R\+H\+S\+Rank $>$ \&rhs) const
+{\footnotesize template$<$int N, int LHSRank = Rank, int RHSRank$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, LHSRank+RHSRank -\/ 2 $\ast$N $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_afbf2116f91e93cce546be34cfbe362c6}{einsum}} (std\+::string contraction\+\_\+string, const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, RHSRank $>$ \&rhs) const
 \item 
-{\footnotesize template$<$int N, int L\+H\+S\+Rank = Rank$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, L\+H\+S\+Rank+2 -\/ 2 $\ast$N $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ab0aac5a7270d58bb2739787076f320cf}{einsum}} (std\+::string contraction\+\_\+string, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ rhs) const
+{\footnotesize template$<$int N, int LHSRank = Rank$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, LHSRank+2 -\/ 2 $\ast$N $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ab0aac5a7270d58bb2739787076f320cf}{einsum}} (std\+::string contraction\+\_\+string, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ rhs) const
 \item 
-{\footnotesize template$<$int Z = Rank$>$ }\\const \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Z==2, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a0b8ef475882c562f666abfbe3701bcf4}{as\+Matrix}} () const
+{\footnotesize template$<$int Z = Rank$>$ }\\const \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ Z==2, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP\+::\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a0b8ef475882c562f666abfbe3701bcf4}{as\+Matrix}} () const
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ad617715dde3cdf405c91fc7e2ab4bba5}{reshape}} (const size\+\_\+t rows, const size\+\_\+t cols) const
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP\+::\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ad617715dde3cdf405c91fc7e2ab4bba5}{reshape}} (const size\+\_\+t rows, const size\+\_\+t cols) const
 \item 
 bool \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a0fbb66c2ec178b7c21441ef6aaf3362d}{has\+Equal\+Dimensions\+As}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&other) const
 \item 
@@ -78,7 +78,7 @@ static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a776e6ece53ccfc8
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Rank$>$\newline
-class G\+Q\+C\+P\+::\+Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$}
+class GQCP\+::\+Tensor$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$}
 
 An extension of the Eigen\+::\+Tensor class, with extra operations.
 
@@ -97,21 +97,21 @@ We have decided to inherit from Eigen\+::\+Tensor, because we will use different
 \index{Base@{Base}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{Base}{Base}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}} =  Eigen\+::\+Tensor$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a776e6ece53ccfc888aa36aef2f998985}{Rank}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}} =  Eigen\+::\+Tensor$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a776e6ece53ccfc888aa36aef2f998985}{Rank}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}\label{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}} 
 \index{GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} =  \+\_\+\+Scalar}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}\label{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}} 
 \index{GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}!Self@{Self}}
 \index{Self@{Self}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{Self}{Self}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a776e6ece53ccfc888aa36aef2f998985}{Rank}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a776e6ece53ccfc888aa36aef2f998985}{Rank}}$>$}
 
 
 
@@ -122,7 +122,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\
 \doxysubsubsection{\texorpdfstring{addBlock()}{addBlock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
 template$<$size\+\_\+t r, size\+\_\+t s, int Z = Rank$>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}}\&$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::add\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ \&}]{M,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k,  }\item[{const size\+\_\+t}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}}\&$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::add\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$ \&}]{M,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k,  }\item[{const size\+\_\+t}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Add a matrix to a this tensor starting from given indices
 
@@ -155,7 +155,7 @@ Example\+: Given a rank-\/4 tensor of dimensions (10,10,10,10), and a matrix M o
 \doxysubsubsection{\texorpdfstring{addBlock()}{addBlock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
 template$<$int Z = Rank$>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}}\&$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::add\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{T,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k,  }\item[{const size\+\_\+t}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}}\&$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::add\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{T,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k,  }\item[{const size\+\_\+t}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Add a rank-\/4 tensor into this, starting from given indices
 
@@ -181,7 +181,7 @@ a reference to updated this
 \doxysubsubsection{\texorpdfstring{asMatrix()}{asMatrix()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
 template$<$int Z = Rank$>$ \\
-const \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 2, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::as\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 2, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP\+::\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::as\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 This rank-\/two tensor as a matrix. 
@@ -191,7 +191,7 @@ This rank-\/two tensor as a matrix.
 \index{Eigen@{Eigen}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{Eigen()}{Eigen()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::Eigen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::Eigen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 This as a non-\/const \mbox{\hyperlink{namespace_eigen}{Eigen}} base. 
@@ -201,7 +201,7 @@ This as a non-\/const \mbox{\hyperlink{namespace_eigen}{Eigen}} base.
 \index{Eigen@{Eigen}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{Eigen()}{Eigen()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::Eigen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::Eigen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 This as a const \mbox{\hyperlink{namespace_eigen}{Eigen}} base. 
@@ -211,24 +211,24 @@ This as a const \mbox{\hyperlink{namespace_eigen}{Eigen}} base.
 \index{einsum@{einsum}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{einsum()}{einsum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-template$<$int N, int L\+H\+S\+Rank = Rank, int R\+H\+S\+Rank$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, L\+H\+S\+Rank + R\+H\+S\+Rank -\/ 2 $\ast$ N$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::einsum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, R\+H\+S\+Rank $>$ \&}]{rhs,  }\item[{const std\+::string \&}]{lhs\+\_\+labels,  }\item[{const std\+::string \&}]{rhs\+\_\+labels,  }\item[{const std\+::string \&}]{output\+\_\+labels }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+template$<$int N, int LHSRank = Rank, int RHSRank$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, LHSRank + RHSRank -\/ 2 $\ast$ N$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::einsum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, RHSRank $>$ \&}]{rhs,  }\item[{const std\+::string \&}]{lhs\+\_\+labels,  }\item[{const std\+::string \&}]{rhs\+\_\+labels,  }\item[{const std\+::string \&}]{output\+\_\+labels }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_tensor_ab0aac5a7270d58bb2739787076f320cf}\label{class_g_q_c_p_1_1_tensor_ab0aac5a7270d58bb2739787076f320cf}} 
 \index{GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}!einsum@{einsum}}
 \index{einsum@{einsum}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{einsum()}{einsum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-template$<$int N, int L\+H\+S\+Rank = Rank$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, L\+H\+S\+Rank + 2 -\/ 2 $\ast$ N$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::einsum (\begin{DoxyParamCaption}\item[{std\+::string}]{contraction\+\_\+string,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+template$<$int N, int LHSRank = Rank$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, LHSRank + 2 -\/ 2 $\ast$ N$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::einsum (\begin{DoxyParamCaption}\item[{std\+::string}]{contraction\+\_\+string,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}} $>$}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_tensor_afbf2116f91e93cce546be34cfbe362c6}\label{class_g_q_c_p_1_1_tensor_afbf2116f91e93cce546be34cfbe362c6}} 
 \index{GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}!einsum@{einsum}}
 \index{einsum@{einsum}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{einsum()}{einsum()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-template$<$int N, int L\+H\+S\+Rank = Rank, int R\+H\+S\+Rank$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, L\+H\+S\+Rank + R\+H\+S\+Rank -\/ 2 $\ast$ N$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::einsum (\begin{DoxyParamCaption}\item[{std\+::string}]{contraction\+\_\+string,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, R\+H\+S\+Rank $>$ \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+template$<$int N, int LHSRank = Rank, int RHSRank$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, LHSRank + RHSRank -\/ 2 $\ast$ N$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::einsum (\begin{DoxyParamCaption}\item[{std\+::string}]{contraction\+\_\+string,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}, RHSRank $>$ \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_tensor_a4f661c1441222dccb0b170cdcc04a744}\label{class_g_q_c_p_1_1_tensor_a4f661c1441222dccb0b170cdcc04a744}} 
 \index{GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}!FromBlock@{FromBlock}}
@@ -236,7 +236,7 @@ template$<$int N, int L\+H\+S\+Rank = Rank, int R\+H\+S\+Rank$>$ \\
 \doxysubsubsection{\texorpdfstring{FromBlock()}{FromBlock()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
 template$<$int Z = Rank$>$ \\
-static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::From\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{T,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k,  }\item[{const size\+\_\+t}]{l,  }\item[{const size\+\_\+t}]{cutoff = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::From\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{T,  }\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k,  }\item[{const size\+\_\+t}]{l,  }\item[{const size\+\_\+t}]{cutoff = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -261,7 +261,7 @@ a rank-\/4 tensor from an other rank-\/4 tensor, starting from given indices
 \index{hasEqualDimensionsAs@{hasEqualDimensionsAs}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{hasEqualDimensionsAs()}{hasEqualDimensionsAs()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-bool \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::has\+Equal\+Dimensions\+As (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::has\+Equal\+Dimensions\+As (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -277,7 +277,7 @@ if this tensor has the same dimensions as the other tensor
 \doxysubsubsection{\texorpdfstring{isApprox()}{isApprox()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
 template$<$int Z = Rank$>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, bool$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{other,  }\item[{const double}]{tolerance = {\ttfamily 1.0e-\/12} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, bool$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a7c6ee05dda4be6978c7124701848c998}{Self}} \&}]{other,  }\item[{const double}]{tolerance = {\ttfamily 1.0e-\/12} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -294,7 +294,7 @@ if this is approximately equal to the other
 \index{numberOfElements@{numberOfElements}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{numberOfElements()}{numberOfElements()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::number\+Of\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::number\+Of\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The total number of elements in this tensor. 
@@ -305,7 +305,7 @@ The total number of elements in this tensor.
 \doxysubsubsection{\texorpdfstring{pairWiseReduced()}{pairWiseReduced()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
 template$<$int Z = Rank$>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::pair\+Wise\+Reduced (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{start\+\_\+i = {\ttfamily 0},  }\item[{const size\+\_\+t}]{start\+\_\+j = {\ttfamily 0},  }\item[{const size\+\_\+t}]{start\+\_\+k = {\ttfamily 0},  }\item[{const size\+\_\+t}]{start\+\_\+l = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4, \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::pair\+Wise\+Reduced (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{start\+\_\+i = {\ttfamily 0},  }\item[{const size\+\_\+t}]{start\+\_\+j = {\ttfamily 0},  }\item[{const size\+\_\+t}]{start\+\_\+k = {\ttfamily 0},  }\item[{const size\+\_\+t}]{start\+\_\+l = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -327,7 +327,7 @@ in which m is calculated from i and j in a column-\/major way n is calculated fr
 \doxysubsubsection{\texorpdfstring{print()}{print()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
 template$<$int Z = Rank$>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{output\+\_\+stream = {\ttfamily std\+:\+:cout} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$Z == 4$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{output\+\_\+stream = {\ttfamily std\+:\+:cout} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Print the contents of this to an output stream
 
@@ -341,7 +341,7 @@ Print the contents of this to an output stream
 \index{reshape@{reshape}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{reshape()}{reshape()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{G\+Q\+C\+P\+::\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::reshape (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{rows,  }\item[{const size\+\_\+t}]{cols }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP\+::\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::reshape (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{rows,  }\item[{const size\+\_\+t}]{cols }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 A numpy-\/like reshape function that turns a tensor into a matrix using C-\/like ordering (See numpy documentation\+: \href{https://numpy.org/doc/stable/reference/generated/numpy.reshape.html}{\texttt{ https\+://numpy.\+org/doc/stable/reference/generated/numpy.\+reshape.\+html}}).
 
@@ -363,10 +363,10 @@ This tensor as a matrix of the specified dimensions, ordered using C-\/like orde
 \index{Rank@{Rank}!GQCP::Tensor$<$ \_Scalar, \_Rank $>$@{GQCP::Tensor$<$ \_Scalar, \_Rank $>$}}
 \doxysubsubsection{\texorpdfstring{Rank}{Rank}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rank$>$ \\
-constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{G\+Q\+C\+P\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::Rank = \+\_\+\+Rank\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP\+::\+Tensor}}$<$ \+\_\+\+Scalar, \+\_\+\+Rank $>$\+::Rank = \+\_\+\+Rank\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_tensor_8hpp}{Tensor.\+hpp}}\end{DoxyCompactItemize}
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Mathematical/\+Representation/\mbox{\hyperlink{_tensor_8hpp}{Tensor.\+hpp}}\end{DoxyCompactItemize}

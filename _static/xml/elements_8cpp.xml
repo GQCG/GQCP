@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="elements_8cpp" kind="file" language="C++">
     <compoundname>elements.cpp</compoundname>
     <includes refid="elements_8hpp" local="yes">Molecule/elements.hpp</includes>
@@ -63,7 +63,7 @@
 <codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/>STATIC<sp/>VARIABLES</highlight></codeline>
 <codeline lineno="29"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal">std::vector&lt;boost::bimap&lt;std::string,<sp/>size_t&gt;::value_type&gt;<sp/><ref refid="namespace_g_q_c_p_1_1elements_1a00b3e1bbcc41a8e15b2591ac050f8006" kindref="member">elements_list</ref><sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;H&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/>1},</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;He&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/>2},</highlight></codeline>
@@ -187,20 +187,20 @@
 <codeline lineno="157"><highlight class="normal"></highlight><highlight class="comment">//<sp/>clang-format<sp/>on</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="158"><highlight class="normal"></highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>boost::bimap&lt;std::string,<sp/>size_t&gt;<sp/>periodic_table<sp/>{<ref refid="namespace_g_q_c_p_1_1elements_1a00b3e1bbcc41a8e15b2591ac050f8006" kindref="member">elements_list</ref>.begin(),<sp/><ref refid="namespace_g_q_c_p_1_1elements_1a00b3e1bbcc41a8e15b2591ac050f8006" kindref="member">elements_list</ref>.end()};</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>boost::bimap&lt;std::string,<sp/>size_t&gt;<sp/>periodic_table<sp/>{<ref refid="namespace_g_q_c_p_1_1elements_1a00b3e1bbcc41a8e15b2591ac050f8006" kindref="member">elements_list</ref>.begin(),<sp/><ref refid="namespace_g_q_c_p_1_1elements_1a00b3e1bbcc41a8e15b2591ac050f8006" kindref="member">elements_list</ref>.end()};</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"></highlight></codeline>
 <codeline lineno="167"><highlight class="normal"></highlight></codeline>
 <codeline lineno="168"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="169"><highlight class="comment"><sp/>*<sp/>FUNCTION<sp/>IMPLEMENTATIONS</highlight></codeline>
 <codeline lineno="170"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="171"><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1_1elements_1afbbf86dc79a97b10bb2c86a02826d013" kindref="member">elementToAtomicNumber</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>symbol)<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1_1elements_1afbbf86dc79a97b10bb2c86a02826d013" kindref="member">elementToAtomicNumber</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>symbol)<sp/>{</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"></highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>periodic_table.left.at(symbol);</highlight></codeline>
 <codeline lineno="180"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"></highlight></codeline>
 <codeline lineno="182"><highlight class="normal"></highlight></codeline>
-<codeline lineno="188"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="namespace_g_q_c_p_1_1elements_1ac5dcc53a36a3732c4d8a15ffc954f002" kindref="member">atomicNumberToElement</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>atomic_number)<sp/>{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="namespace_g_q_c_p_1_1elements_1ac5dcc53a36a3732c4d8a15ffc954f002" kindref="member">atomicNumberToElement</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>atomic_number)<sp/>{</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
 <codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>periodic_table.right.at(atomic_number);</highlight></codeline>
 <codeline lineno="191"><highlight class="normal">}</highlight></codeline>

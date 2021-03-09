@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_eigenproblem_solver_8hpp" kind="file" language="C++">
     <compoundname>EigenproblemSolver.hpp</compoundname>
     <includes refid="_algorithm_8hpp" local="yes">Mathematical/Algorithm/Algorithm.hpp</includes>
@@ -24,7 +24,7 @@
       </node>
       <node id="4">
         <label>Mathematical/Algorithm/Step.hpp</label>
-        <link refid="_step_8hpp"/>
+        <link refid="_algorithm_2_step_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>

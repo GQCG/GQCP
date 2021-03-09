@@ -1,32 +1,32 @@
-\hypertarget{class_g_q_c_p_1_1_g_t_o_shell}{}\doxysection{G\+Q\+CP\+::G\+T\+O\+Shell Class Reference}
+\hypertarget{class_g_q_c_p_1_1_g_t_o_shell}{}\doxysection{GQCP\+::GTOShell Class Reference}
 \label{class_g_q_c_p_1_1_g_t_o_shell}\index{GQCP::GTOShell@{GQCP::GTOShell}}
 
 
-{\ttfamily \#include $<$G\+T\+O\+Shell.\+hpp$>$}
+{\ttfamily \#include $<$GTOShell.\+hpp$>$}
 
 
 
-Collaboration diagram for G\+Q\+CP\+::G\+T\+O\+Shell\+:
+Collaboration diagram for GQCP\+::GTOShell\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=307pt]{class_g_q_c_p_1_1_g_t_o_shell__coll__graph}
+\includegraphics[width=247pt]{class_g_q_c_p_1_1_g_t_o_shell__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}} = \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}} = \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}}
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{Basis\+Function}} = \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}} $>$
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a2292c8cc28d1ce4c67feeafd59419fdc}{G\+T\+O\+Shell}} (const size\+\_\+t l, const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a2dda3f01e7039d0fc6389a0e0fe9cc24}{nucleus}}, const std\+::vector$<$ double $>$ \&gaussian\+\_\+exponents, const std\+::vector$<$ double $>$ \&contraction\+\_\+coefficients, const bool pure=true, const bool are\+\_\+embedded\+\_\+normalization\+\_\+factors\+\_\+of\+\_\+primitives=false, const bool is\+\_\+normalized=false)
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a2292c8cc28d1ce4c67feeafd59419fdc}{GTOShell}} (const size\+\_\+t l, const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a2dda3f01e7039d0fc6389a0e0fe9cc24}{nucleus}}, const std\+::vector$<$ double $>$ \&gaussian\+\_\+exponents, const std\+::vector$<$ double $>$ \&contraction\+\_\+coefficients, const bool pure=true, const bool are\+\_\+embedded\+\_\+normalization\+\_\+factors\+\_\+of\+\_\+primitives=false, const bool is\+\_\+normalized=false)
 \item 
-bool \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_ad5f78828a70e65cdd0ef90d2d25b4c9b}{operator==}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&rhs) const
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_ad5f78828a70e65cdd0ef90d2d25b4c9b}{operator==}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} \&rhs) const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a419bc8549c549852e547bb6d0082b4e2}{angular\+Momentum}} () const
 \item 
@@ -59,20 +59,20 @@ void \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_aaf323771b52c1629c145f556ac0
 
 
 \doxysubsection{Detailed Description}
-A class that represents a shell of G\+T\+Os\+: it specifies in a condensed way which G\+T\+Os are on an nucleus. 
+A class that represents a shell of GTOs\+: it specifies in a condensed way which GTOs are on an nucleus. 
 
 \doxysubsection{Member Typedef Documentation}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}\label{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}} 
 \index{GQCP::GTOShell@{GQCP::GTOShell}!BasisFunction@{BasisFunction}}
 \index{BasisFunction@{BasisFunction}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{BasisFunction}{BasisFunction}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::\+Basis\+Function}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}}$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{GQCP\+::\+GTOShell\+::\+Basis\+Function}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}\label{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}} 
 \index{GQCP::GTOShell@{GQCP::GTOShell}!Primitive@{Primitive}}
 \index{Primitive@{Primitive}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::\+Primitive}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+G\+TO}}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{GQCP\+::\+GTOShell\+::\+Primitive}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}}}
 
 
 
@@ -81,7 +81,7 @@ A class that represents a shell of G\+T\+Os\+: it specifies in a condensed way w
 \index{GQCP::GTOShell@{GQCP::GTOShell}!GTOShell@{GTOShell}}
 \index{GTOShell@{GTOShell}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{GTOShell()}{GTOShell()}}
-{\footnotesize\ttfamily G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::\+G\+T\+O\+Shell (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{l,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&}]{nucleus,  }\item[{const std\+::vector$<$ double $>$ \&}]{gaussian\+\_\+exponents,  }\item[{const std\+::vector$<$ double $>$ \&}]{contraction\+\_\+coefficients,  }\item[{const bool}]{pure = {\ttfamily true},  }\item[{const bool}]{are\+\_\+embedded\+\_\+normalization\+\_\+factors\+\_\+of\+\_\+primitives = {\ttfamily false},  }\item[{const bool}]{is\+\_\+normalized = {\ttfamily false} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily GQCP\+::\+GTOShell\+::\+GTOShell (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{l,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&}]{nucleus,  }\item[{const std\+::vector$<$ double $>$ \&}]{gaussian\+\_\+exponents,  }\item[{const std\+::vector$<$ double $>$ \&}]{contraction\+\_\+coefficients,  }\item[{const bool}]{pure = {\ttfamily true},  }\item[{const bool}]{are\+\_\+embedded\+\_\+normalization\+\_\+factors\+\_\+of\+\_\+primitives = {\ttfamily false},  }\item[{const bool}]{is\+\_\+normalized = {\ttfamily false} }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -107,7 +107,7 @@ A class that represents a shell of G\+T\+Os\+: it specifies in a condensed way w
 \index{GQCP::GTOShell@{GQCP::GTOShell}!angularMomentum@{angularMomentum}}
 \index{angularMomentum@{angularMomentum}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{angularMomentum()}{angularMomentum()}}
-{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::angular\+Momentum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily size\+\_\+t GQCP\+::\+GTOShell\+::angular\+Momentum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 the angular momentum of the shell 
@@ -116,7 +116,7 @@ the angular momentum of the shell
 \index{GQCP::GTOShell@{GQCP::GTOShell}!areEmbeddedNormalizationFactorsOfPrimitives@{areEmbeddedNormalizationFactorsOfPrimitives}}
 \index{areEmbeddedNormalizationFactorsOfPrimitives@{areEmbeddedNormalizationFactorsOfPrimitives}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{areEmbeddedNormalizationFactorsOfPrimitives()}{areEmbeddedNormalizationFactorsOfPrimitives()}}
-{\footnotesize\ttfamily bool G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::are\+Embedded\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool GQCP\+::\+GTOShell\+::are\+Embedded\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 if the normalization factors of the primitives are embedded in the contraction coefficients 
@@ -125,7 +125,7 @@ if the normalization factors of the primitives are embedded in the contraction c
 \index{GQCP::GTOShell@{GQCP::GTOShell}!basisFunctions@{basisFunctions}}
 \index{basisFunctions@{basisFunctions}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{basisFunctions()}{basisFunctions()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{G\+T\+O\+Shell\+::\+Basis\+Function}} $>$ G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{GTOShell\+::\+Basis\+Function}} $>$ GQCP\+::\+GTOShell\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 the basis functions that correspond to this shell
@@ -137,7 +137,7 @@ The basis functions are ordered lexicographically. This means x $<$ y $<$ z.
 \index{GQCP::GTOShell@{GQCP::GTOShell}!contractionCoefficients@{contractionCoefficients}}
 \index{contractionCoefficients@{contractionCoefficients}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{contractionCoefficients()}{contractionCoefficients()}}
-{\footnotesize\ttfamily const std\+::vector$<$double$>$\& G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::contraction\+Coefficients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::vector$<$double$>$\& GQCP\+::\+GTOShell\+::contraction\+Coefficients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 the contraction coefficients for this shell 
@@ -146,7 +146,7 @@ the contraction coefficients for this shell
 \index{GQCP::GTOShell@{GQCP::GTOShell}!contractionSize@{contractionSize}}
 \index{contractionSize@{contractionSize}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{contractionSize()}{contractionSize()}}
-{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::contraction\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily size\+\_\+t GQCP\+::\+GTOShell\+::contraction\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 the size of the contraction in the shell, i.\+e. the number of primitives contracted in this shell 
@@ -155,24 +155,24 @@ the size of the contraction in the shell, i.\+e. the number of primitives contra
 \index{GQCP::GTOShell@{GQCP::GTOShell}!embedNormalizationFactor@{embedNormalizationFactor}}
 \index{embedNormalizationFactor@{embedNormalizationFactor}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{embedNormalizationFactor()}{embedNormalizationFactor()}}
-{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::embed\+Normalization\+Factor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void GQCP\+::\+GTOShell\+::embed\+Normalization\+Factor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Embed the total normalization factor of the corresponding linear combination of spherical (or axis-\/aligned Cartesian) G\+T\+Os into the contraction coefficients. \mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_a47ebbf9f1aac815702d5938ca6f9e365}\label{class_g_q_c_p_1_1_g_t_o_shell_a47ebbf9f1aac815702d5938ca6f9e365}} 
+Embed the total normalization factor of the corresponding linear combination of spherical (or axis-\/aligned Cartesian) GTOs into the contraction coefficients. \mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_a47ebbf9f1aac815702d5938ca6f9e365}\label{class_g_q_c_p_1_1_g_t_o_shell_a47ebbf9f1aac815702d5938ca6f9e365}} 
 \index{GQCP::GTOShell@{GQCP::GTOShell}!embedNormalizationFactorsOfPrimitives@{embedNormalizationFactorsOfPrimitives}}
 \index{embedNormalizationFactorsOfPrimitives@{embedNormalizationFactorsOfPrimitives}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{embedNormalizationFactorsOfPrimitives()}{embedNormalizationFactorsOfPrimitives()}}
-{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::embed\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void GQCP\+::\+GTOShell\+::embed\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
 
 \begin{DoxyNote}{Note}
-The normalization factor that is embedded, corresponds to the spherical (or axis-\/aligned Cartesian) G\+TO 
+The normalization factor that is embedded, corresponds to the spherical (or axis-\/aligned Cartesian) GTO 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_af257cc213dd0b96d9a6066a89965bb80}\label{class_g_q_c_p_1_1_g_t_o_shell_af257cc213dd0b96d9a6066a89965bb80}} 
 \index{GQCP::GTOShell@{GQCP::GTOShell}!gaussianExponents@{gaussianExponents}}
 \index{gaussianExponents@{gaussianExponents}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{gaussianExponents()}{gaussianExponents()}}
-{\footnotesize\ttfamily const std\+::vector$<$double$>$\& G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::gaussian\+Exponents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::vector$<$double$>$\& GQCP\+::\+GTOShell\+::gaussian\+Exponents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 the Gaussian exponents (i.\+e. for the exponential) for this shell, shared for every contraction 
@@ -181,7 +181,7 @@ the Gaussian exponents (i.\+e. for the exponential) for this shell, shared for e
 \index{GQCP::GTOShell@{GQCP::GTOShell}!generateCartesianExponents@{generateCartesianExponents}}
 \index{generateCartesianExponents@{generateCartesianExponents}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{generateCartesianExponents()}{generateCartesianExponents()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} $>$ G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::generate\+Cartesian\+Exponents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} $>$ GQCP\+::\+GTOShell\+::generate\+Cartesian\+Exponents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 a list of the Cartesian exponents that have this shell\textquotesingle{}s angular momentum (in lexicographical ordering). 
@@ -190,7 +190,7 @@ a list of the Cartesian exponents that have this shell\textquotesingle{}s angula
 \index{GQCP::GTOShell@{GQCP::GTOShell}!isNormalized@{isNormalized}}
 \index{isNormalized@{isNormalized}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{isNormalized()}{isNormalized()}}
-{\footnotesize\ttfamily bool G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::is\+Normalized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool GQCP\+::\+GTOShell\+::is\+Normalized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 if the total normalization factor is already embedded in the contraction coefficients 
@@ -199,16 +199,16 @@ if the total normalization factor is already embedded in the contraction coeffic
 \index{GQCP::GTOShell@{GQCP::GTOShell}!isPure@{isPure}}
 \index{isPure@{isPure}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{isPure()}{isPure()}}
-{\footnotesize\ttfamily bool G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::is\+Pure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool GQCP\+::\+GTOShell\+::is\+Pure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-true if the G\+TO shell is spherical, false if it is Cartesian 
+true if the GTO shell is spherical, false if it is Cartesian 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_a2dda3f01e7039d0fc6389a0e0fe9cc24}\label{class_g_q_c_p_1_1_g_t_o_shell_a2dda3f01e7039d0fc6389a0e0fe9cc24}} 
 \index{GQCP::GTOShell@{GQCP::GTOShell}!nucleus@{nucleus}}
 \index{nucleus@{nucleus}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{nucleus()}{nucleus()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}}\& G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::nucleus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}}\& GQCP\+::\+GTOShell\+::nucleus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The nucleus on which the shell is centered. 
@@ -217,7 +217,7 @@ The nucleus on which the shell is centered.
 \index{GQCP::GTOShell@{GQCP::GTOShell}!numberOfBasisFunctions@{numberOfBasisFunctions}}
 \index{numberOfBasisFunctions@{numberOfBasisFunctions}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{numberOfBasisFunctions()}{numberOfBasisFunctions()}}
-{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::number\+Of\+Basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily size\+\_\+t GQCP\+::\+GTOShell\+::number\+Of\+Basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 the number of basis functions that are in this shell 
@@ -226,7 +226,7 @@ the number of basis functions that are in this shell
 \index{GQCP::GTOShell@{GQCP::GTOShell}!operator==@{operator==}}
 \index{operator==@{operator==}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
-{\footnotesize\ttfamily bool G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{rhs }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool GQCP\+::\+GTOShell\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} \&}]{rhs }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
@@ -240,16 +240,16 @@ A functor to compare two doubles with respect to a tolerance\mbox{\Hypertarget{c
 \index{GQCP::GTOShell@{GQCP::GTOShell}!unEmbedNormalizationFactorsOfPrimitives@{unEmbedNormalizationFactorsOfPrimitives}}
 \index{unEmbedNormalizationFactorsOfPrimitives@{unEmbedNormalizationFactorsOfPrimitives}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{unEmbedNormalizationFactorsOfPrimitives()}{unEmbedNormalizationFactorsOfPrimitives()}}
-{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+G\+T\+O\+Shell\+::un\+Embed\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void GQCP\+::\+GTOShell\+::un\+Embed\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
 
 \begin{DoxyNote}{Note}
-The the normalization factor that is embedded corresponds to the spherical (or axis-\/aligned Cartesian) G\+TO 
+The the normalization factor that is embedded corresponds to the spherical (or axis-\/aligned Cartesian) GTO 
 \end{DoxyNote}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Scalar\+Basis/\mbox{\hyperlink{_g_t_o_shell_8hpp}{G\+T\+O\+Shell.\+hpp}}\item 
-/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Scalar\+Basis/\mbox{\hyperlink{_g_t_o_shell_8cpp}{G\+T\+O\+Shell.\+cpp}}\end{DoxyCompactItemize}
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Scalar\+Basis/\mbox{\hyperlink{_g_t_o_shell_8hpp}{GTOShell.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Scalar\+Basis/\mbox{\hyperlink{_g_t_o_shell_8cpp}{GTOShell.\+cpp}}\end{DoxyCompactItemize}

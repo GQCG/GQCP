@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_adjacency_matrix_8cpp" kind="file" language="C++">
     <compoundname>AdjacencyMatrix.cpp</compoundname>
     <includes refid="_adjacency_matrix_8hpp" local="yes">Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</includes>
@@ -195,11 +195,11 @@
 <codeline lineno="57"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Named<sp/>constructors</highlight></codeline>
 <codeline lineno="58"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal">AdjacencyMatrix<sp/><ref refid="class_g_q_c_p_1_1_adjacency_matrix_1a9842a7431178b39e4cc171c6545f83c8" kindref="member">AdjacencyMatrix::Cyclic</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">AdjacencyMatrix<sp/>AdjacencyMatrix::Cyclic(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n)<sp/>{</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>adjacency<sp/>matrix<sp/>of<sp/>a<sp/>cyclic<sp/>graph<sp/>is<sp/>the<sp/>one<sp/>of<sp/>a<sp/>linear<sp/>graph,<sp/>where<sp/>the<sp/>endpoints<sp/>are<sp/>also<sp/>connected.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>A<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_adjacency_matrix_1a1eb42859809cc2046b18e79d32883fff" kindref="member">AdjacencyMatrix::Linear</ref>(n);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>A<sp/>=<sp/>AdjacencyMatrix::Linear(n);</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>A.matrix()(0,<sp/>n<sp/>-<sp/>1)<sp/>=<sp/>1;</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>A.matrix()(n<sp/>-<sp/>1,<sp/>0)<sp/>=<sp/>1;</highlight></codeline>
@@ -208,14 +208,14 @@
 <codeline lineno="75"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal">AdjacencyMatrix<sp/><ref refid="class_g_q_c_p_1_1_adjacency_matrix_1a1eb42859809cc2046b18e79d32883fff" kindref="member">AdjacencyMatrix::Linear</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">AdjacencyMatrix<sp/>AdjacencyMatrix::Linear(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n)<sp/>{</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>A<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;size_t&gt;::Zero</ref>(n);</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>A.diagonal(1)<sp/>=<sp/>VectorX&lt;size_t&gt;::Ones(n<sp/>-<sp/>1);<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>super-diagonal<sp/>contains<sp/>1s.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>A.diagonal(-1)<sp/>=<sp/>VectorX&lt;size_t&gt;::Ones(n<sp/>-<sp/>1);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>sub-diagonal<sp/>contains<sp/>1s.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_adjacency_matrix_1ad11ff9daab3cb7993f8c444de32336dc" kindref="member">AdjacencyMatrix</ref>(A);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>AdjacencyMatrix(A);</highlight></codeline>
 <codeline lineno="91"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>

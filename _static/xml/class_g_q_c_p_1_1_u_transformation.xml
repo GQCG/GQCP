@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_transformation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::UTransformation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; UTransformationComponent&lt; _Scalar &gt;, UTransformation&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -306,9 +306,9 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::BasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="5">
         <label>GQCP::SpinResolvedJacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
@@ -316,15 +316,15 @@
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
       <node id="3">
         <label>GQCP::SpinResolvedBasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
@@ -342,9 +342,9 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::BasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="5">
         <label>GQCP::SpinResolvedJacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
@@ -352,15 +352,15 @@
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
       <node id="3">
         <label>GQCP::SpinResolvedBasisTransformable&lt; UTransformation&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp" bodystart="44" bodyend="190"/>

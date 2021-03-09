@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_base_reference_dependent_operator_8cpp" kind="file" language="C++">
     <compoundname>BaseReferenceDependentOperator.cpp</compoundname>
     <includes refid="_base_reference_dependent_operator_8hpp" local="yes">Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</includes>
@@ -129,7 +129,7 @@
 <codeline lineno="39"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>pure<sp/>virtual<sp/>destructor<sp/>should<sp/>have<sp/>an<sp/>empty<sp/>implementation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a67db3a2bf7e00d38db5fcba98dec06ed" kindref="member">BaseReferenceDependentOperator::~BaseReferenceDependentOperator</ref>()<sp/>{};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">BaseReferenceDependentOperator::~BaseReferenceDependentOperator()<sp/>{};</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>

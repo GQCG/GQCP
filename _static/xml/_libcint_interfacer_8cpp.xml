@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_libcint_interfacer_8cpp" kind="file" language="C++">
     <compoundname>LibcintInterfacer.cpp</compoundname>
     <includes refid="_libcint_interfacer_8hpp" local="yes">Basis/Integrals/Interfaces/LibcintInterfacer.hpp</includes>
@@ -514,7 +514,7 @@
 <codeline lineno="107"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libcint_interfacer_1a20b8176235c9cac423b7d3a13eef690e" kindref="member">LibcintInterfacer::setCommonOrigin</ref>(libcint::RawContainer&amp;<sp/>raw_container,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector&lt;double,<sp/>3&gt;&amp;<sp/>origin)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libcint_interfacer_1a20b8176235c9cac423b7d3a13eef690e" kindref="member">LibcintInterfacer::setCommonOrigin</ref>(libcint::RawContainer&amp;<sp/>raw_container,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector&lt;double,<sp/>3&gt;&amp;<sp/>origin)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>raw_container.libcint_env[libcint::ptr_common_orig<sp/>+<sp/>0]<sp/>=<sp/>origin.x();<sp/><sp/></highlight><highlight class="comment">//<sp/>input<sp/>the<sp/>origin<sp/>inside<sp/>the<sp/>libcint<sp/>environment</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>raw_container.libcint_env[libcint::ptr_common_orig<sp/>+<sp/>1]<sp/>=<sp/>origin.y();</highlight></codeline>

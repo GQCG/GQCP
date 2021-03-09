@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::CCSDEnergyCalculation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -38,11 +38,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a7289ab09cfe140d1bb1c4ff15d970479" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a7289ab09cfe140d1bb1c4ff15d970479" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
         <definition>std::string GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -124,8 +125,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" bodystart="35" bodyend="72"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a7289ab09cfe140d1bb1c4ff15d970479" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>description</name></member>
-      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::CCSDEnergyCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a7289ab09cfe140d1bb1c4ff15d970479" prot="public" virt="virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae948c74d396ea92f33fc17b1ccb8fbfb" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>Environment</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1a6a572a72973a50d86c2bca93737ab5b2" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnergyCalculation</scope><name>execute</name></member>
       <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::CCSDEnergyCalculation</scope><name>execute</name></member>

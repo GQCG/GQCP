@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_jacobi_orbital_optimizer_8hpp" kind="file" language="C++">
     <compoundname>JacobiOrbitalOptimizer.hpp</compoundname>
     <includes refid="_jacobi_rotation_8hpp" local="yes">Basis/Transformations/JacobiRotation.hpp</includes>
@@ -1728,7 +1728,7 @@
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" kindref="compound">JacobiOrbitalOptimizer</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_base_orbital_optimizer" kindref="compound">BaseOrbitalOptimizer</ref><sp/>{</highlight></codeline>
+<codeline lineno="31" refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" kindref="compound">JacobiOrbitalOptimizer</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_base_orbital_optimizer" kindref="compound">BaseOrbitalOptimizer</ref><sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="33" refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1afa2b23e301f0eee1ea111cde0cbf9231" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1afa2b23e301f0eee1ea111cde0cbf9231" kindref="member">dim</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>dimension<sp/>of<sp/>the<sp/>orbital<sp/>space<sp/>that<sp/>should<sp/>be<sp/>scanned.<sp/>The<sp/>valid<sp/>orbital<sp/>indices<sp/>then<sp/>are<sp/>0<sp/>...<sp/>dim<sp/>(not<sp/>included)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>

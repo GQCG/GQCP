@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_algorithm_8hpp" kind="file" language="C++">
     <compoundname>Algorithm.hpp</compoundname>
     <includes refid="_step_collection_8hpp" local="yes">Mathematical/Algorithm/StepCollection.hpp</includes>
@@ -10,7 +10,7 @@
     <incdepgraph>
       <node id="3">
         <label>Mathematical/Algorithm/Step.hpp</label>
-        <link refid="_step_8hpp"/>
+        <link refid="_algorithm_2_step_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
@@ -197,7 +197,7 @@
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Environment&gt;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Environment&gt;</highlight></codeline>
 <codeline lineno="33" refid="class_g_q_c_p_1_1_algorithm" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm</ref><sp/>{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="35" refid="class_g_q_c_p_1_1_algorithm_1ae7d57842d40e6d4595cad18e75056a95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_algorithm_1ae7d57842d40e6d4595cad18e75056a95" kindref="member">Environment</ref><sp/>=<sp/>_Environment;</highlight></codeline>

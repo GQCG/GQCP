@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_occupation_type_8hpp" kind="file" language="C++">
     <compoundname>OccupationType.hpp</compoundname>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
@@ -905,10 +905,10 @@
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29" refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" refkind="member"><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref><sp/>{</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>k_occupied,</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>k_active,</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">k_virtual</ref></highlight></codeline>
+<codeline lineno="29" refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">k_occupied</ref>,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bacc02c580e9e25896a6de2e072cf1630f" kindref="member">k_active</ref>,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">k_virtual</ref></highlight></codeline>
 <codeline lineno="33"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>

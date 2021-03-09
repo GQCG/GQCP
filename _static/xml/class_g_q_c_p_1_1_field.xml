@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_field" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Field</compoundname>
     <includes refid="_field_8hpp" local="no">Field.hpp</includes>
@@ -382,7 +382,7 @@
       </sectiondef>
       <sectiondef kind="friend">
       <memberdef kind="friend" id="class_g_q_c_p_1_1_field_1af389765c10f7818e16bd66d6e9d235cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>friend <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
         <definition>Field&lt;T&gt; operator+</definition>
         <argsstring>(Field&lt; T &gt; lhs, const Field&lt; T &gt; &amp;rhs)</argsstring>
         <name>operator+</name>
@@ -426,7 +426,7 @@
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="249" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="249" bodyend="253"/>
       </memberdef>
       <memberdef kind="friend" id="class_g_q_c_p_1_1_field_1af08d9a23cd201e1b7e71675a05fd8c9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>friend <ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; T &gt;</type>
         <definition>Field&lt;T&gt; operator-</definition>
         <argsstring>(Field&lt; T &gt; lhs, const Field&lt; T &gt; &amp;rhs)</argsstring>
         <name>operator-</name>

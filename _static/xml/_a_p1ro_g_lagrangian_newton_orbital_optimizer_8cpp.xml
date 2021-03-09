@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp" kind="file" language="C++">
     <compoundname>AP1roGLagrangianNewtonOrbitalOptimizer.cpp</compoundname>
     <includes refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp" local="yes">QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp</includes>
@@ -135,7 +135,7 @@
       </node>
       <node id="182">
         <label>Mathematical/Algorithm/Step.hpp</label>
-        <link refid="_step_8hpp"/>
+        <link refid="_algorithm_2_step_8hpp"/>
         <childnode refid="33" relation="include">
         </childnode>
       </node>
@@ -2018,7 +2018,7 @@
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>AP1roGLagrangianNewtonOrbitalOptimizer(AP1roGGeminalCoefficients(N_P,<sp/>K),<sp/>hessian_modifier,<sp/>oo_convergence_threshold,<sp/>oo_maximum_number_of_iterations,<sp/>pse_convergence_threshold,<sp/>pse_maximum_number_of_iterations)<sp/>{}</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a682f92d1fb05df87f7e4c5a0238e16b5" kindref="member">AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AP1roGGeminalCoefficients&amp;<sp/>G,<sp/>std::shared_ptr&lt;BaseHessianModifier&gt;<sp/>hessian_modifier,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>oo_convergence_threshold,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>oo_maximum_number_of_iterations,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pse_convergence_threshold,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>pse_maximum_number_of_iterations)<sp/>:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AP1roGGeminalCoefficients&amp;<sp/>G,<sp/>std::shared_ptr&lt;BaseHessianModifier&gt;<sp/>hessian_modifier,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>oo_convergence_threshold,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>oo_maximum_number_of_iterations,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pse_convergence_threshold,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>pse_maximum_number_of_iterations)<sp/>:</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>N_P<sp/>{G.numberOfElectronPairs()},</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>G<sp/>{G},</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>pse_convergence_threshold<sp/>{pse_convergence_threshold},</highlight></codeline>
@@ -2030,7 +2030,7 @@
 <codeline lineno="65"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>OVERRIDDEN<sp/>METHODS</highlight></codeline>
 <codeline lineno="66"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5c8c974c787553a88daeaf850210229f" kindref="member">AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>sq_hamiltonian)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>sq_hamiltonian)<sp/>{</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Optimize<sp/>the<sp/>vAP1roG<sp/>wave<sp/>function<sp/>model<sp/>in<sp/>this<sp/>basis<sp/>and<sp/>update<sp/>the<sp/>results.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>non_linear_solver<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_non_linear_equation_solver_1a8fa8bd3c3e4cf9b433968460b15cc779" kindref="member">GQCP::NonLinearEquationSolver&lt;double&gt;::Newton</ref>();</highlight></codeline>
@@ -2045,18 +2045,18 @@
 <codeline lineno="85"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal">Orbital1DM&lt;double&gt;<sp/><ref refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1afdaf6eb8496913f79d26692f65d07317" kindref="member">AP1roGLagrangianNewtonOrbitalOptimizer::calculate1DM</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">Orbital1DM&lt;double&gt;<sp/>AP1roGLagrangianNewtonOrbitalOptimizer::calculate1DM()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1a9081594f358133fb350cb84fabc034c0" kindref="member">GQCP::QCModel::vAP1roG::calculate1DM</ref>(this-&gt;G,<sp/>this-&gt;m_multipliers);</highlight></codeline>
 <codeline lineno="93"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal">Orbital2DM&lt;double&gt;<sp/><ref refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a1931e33efbb95070899b100d8db336a2" kindref="member">AP1roGLagrangianNewtonOrbitalOptimizer::calculate2DM</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">Orbital2DM&lt;double&gt;<sp/>AP1roGLagrangianNewtonOrbitalOptimizer::calculate2DM()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_1aade602b2c90eb61c8006148f970f9da6" kindref="member">GQCP::QCModel::vAP1roG::calculate2DM</ref>(this-&gt;G,<sp/>this-&gt;m_multipliers);</highlight></codeline>
 <codeline lineno="101"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal">OrbitalRotationGenerators<sp/><ref refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a42d0ec0da1507f51c81086668c18696e" kindref="member">AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>sq_hamiltonian)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1aa7bc61e43d13cc7c1c2905110738918c" kindref="member">calculateNewFreeOrbitalGenerators</ref>(sq_hamiltonian);<sp/><sp/></highlight><highlight class="comment">//<sp/>no<sp/>extra<sp/>step<sp/>necessary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">OrbitalRotationGenerators<sp/>AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>sq_hamiltonian)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;calculateNewFreeOrbitalGenerators(sq_hamiltonian);<sp/><sp/></highlight><highlight class="comment">//<sp/>no<sp/>extra<sp/>step<sp/>necessary</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="113"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>

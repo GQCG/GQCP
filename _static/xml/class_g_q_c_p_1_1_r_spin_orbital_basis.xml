@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_r_spin_orbital_basis" kind="class" language="C++" prot="public">
     <compoundname>GQCP::RSpinOrbitalBasis</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple_spin_orbital_basis" prot="public" virt="non-virtual">GQCP::SimpleSpinOrbitalBasis&lt; _ExpansionScalar, _Shell, RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</basecompoundref>
@@ -375,20 +375,8 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
-        <label>GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;</label>
-        <link refid="class_g_q_c_p_1_1_r_spin_orbital_basis"/>
-        <childnode refid="2" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::SimpleSpinOrbitalBasis&lt; _ExpansionScalar, _Shell, RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple_spin_orbital_basis"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="3">
-        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
@@ -397,37 +385,34 @@
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::CRTP&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="5">
-        <label>GQCP::BasisTransformable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="1">
         <label>GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_spin_orbital_basis"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="4">
+        <label>GQCP::CRTP&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
       <node id="2">
         <label>GQCP::SimpleSpinOrbitalBasis&lt; _ExpansionScalar, _Shell, RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_spin_orbital_basis"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
-        <childnode refid="8" relation="usage">
-          <edgelabel>#scalar_basis</edgelabel>
-        </childnode>
       </node>
+      <node id="5">
+        <label>GQCP::BasisTransformable&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
       <node id="3">
-        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _FinalSpinorBasis &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
@@ -439,25 +424,33 @@
           <edgelabel>#C</edgelabel>
         </childnode>
       </node>
+      <node id="1">
+        <label>GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_spin_orbital_basis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="4">
-        <label>GQCP::CRTP&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::CRTP&lt; _FinalSpinorBasis &gt;</label>
         <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
+      <node id="2">
+        <label>GQCP::SimpleSpinOrbitalBasis&lt; _ExpansionScalar, _Shell, RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_spin_orbital_basis"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="5">
-        <label>GQCP::BasisTransformable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; _FinalSpinorBasis &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
-      <node id="8">
-        <label>GQCP::ScalarBasis&lt; Shell &gt;</label>
-        <link refid="class_g_q_c_p_1_1_scalar_basis"/>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; _FinalSpinorBasis &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="7">
         <label>GQCP::BasisTransformableTraits&lt; FinalSpinorBasis &gt;</label>
         <link refid="struct_g_q_c_p_1_1_basis_transformable_traits"/>
-      </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="46" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="47" bodyend="274"/>
@@ -486,11 +479,10 @@
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a6633da0cc38c0089254de3778c731e2c" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ad5f906f989853bc821ba0150a221eec7" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1aa742e5dc57b287170d71b8f2bcd8e06f" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>quantize</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" virt="virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1ad82e9a3ee9b7b72cb07eea596b80db53" prot="protected" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>scalar_basis</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a65c66682f4aa90cc4c7bf2cd3dfb3e43" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>scalarBasis</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a5cc5b25be3944ebe7140b30a14dedbce" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>Shell</name></member>
@@ -507,7 +499,7 @@
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>transform</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a75c80392015198d949774257c5d1d84d" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>Transformation</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa6d146421985b3aefc1b4a9ec4aa6c54" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>transformed</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; _FinalSpinorBasis &gt;::"><scope>GQCP::RSpinOrbitalBasis</scope><name>transformed</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

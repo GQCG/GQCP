@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_orbital_rotation_generators_8hpp" kind="file" language="C++">
     <compoundname>OrbitalRotationGenerators.hpp</compoundname>
     <includes refid="_r_transformation_8hpp" local="yes">Basis/Transformations/RTransformation.hpp</includes>
@@ -295,7 +295,7 @@
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33" refid="class_g_q_c_p_1_1_orbital_rotation_generators" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref><sp/>{</highlight></codeline>
+<codeline lineno="33" refid="class_g_q_c_p_1_1_orbital_rotation_generators" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref><sp/>{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_spatial_orbitals;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>number<sp/>of<sp/>spatial<sp/>orbitals<sp/>that<sp/>can<sp/>be<sp/>rotated<sp/>using<sp/>these<sp/>orbital<sp/>rotation<sp/>generators</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">VectorX&lt;double&gt;</ref><sp/>kappa_vector;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>strict<sp/>upper/lower<sp/>triangle<sp/>of<sp/>the<sp/>kappa<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>

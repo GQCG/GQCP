@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_simple2_d_m" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Simple2DM</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; _DerivedDM &gt;</basecompoundref>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; _DerivedDM &gt;</basecompoundref>
     <basecompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</basecompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_orbital2_d_m" prot="public" virt="non-virtual">GQCP::Orbital2DM&lt; double &gt;</derivedcompoundref>
     <includes refid="_simple2_d_m_8hpp" local="no">Simple2DM.hpp</includes>
     <templateparamlist>
       <param>
@@ -347,10 +348,6 @@
         <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="5">
-        <label>GQCP::CRTP&lt; _DerivedDM &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
       <node id="2">
         <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
@@ -365,11 +362,21 @@
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="6">
+        <label>GQCP::Orbital2DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="4">
         <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="5" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
@@ -377,10 +384,6 @@
         <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="5">
-        <label>GQCP::CRTP&lt; _DerivedDM &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
       <node id="2">
         <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
@@ -400,6 +403,10 @@
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="5" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp" bodystart="47" bodyend="248"/>

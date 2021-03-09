@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_t1_amplitudes" kind="class" language="C++" prot="public">
     <compoundname>GQCP::T1Amplitudes</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; T1Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</basecompoundref>
@@ -396,7 +396,7 @@
         </childnode>
       </node>
       <node id="3">
-        <label>GQCP::CRTP&lt; T1Amplitudes&lt; _Scalar &gt; &gt;</label>
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
         <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">
@@ -414,7 +414,7 @@
         </childnode>
       </node>
       <node id="3">
-        <label>GQCP::CRTP&lt; T1Amplitudes&lt; _Scalar &gt; &gt;</label>
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
         <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g1_d_m" kind="class" language="C++" prot="public">
     <compoundname>GQCP::G1DM</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple1_d_m" prot="public" virt="non-virtual">GQCP::Simple1DM&lt; _Scalar, G1DM&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -40,15 +40,9 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="5">
-        <label>GQCP::VectorSpaceArithmetic&lt; G1DM&lt; _Scalar &gt;, _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>GQCP::CRTP&lt; G1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      <node id="4">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="1">
         <label>GQCP::G1DM&lt; _Scalar &gt;</label>
@@ -66,25 +60,25 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::JacobiRotatable&lt; G1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      <node id="6">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="5">
+        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="3">
-        <label>GQCP::BasisTransformable&lt; G1DM&lt; _Scalar &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="5">
-        <label>GQCP::VectorSpaceArithmetic&lt; G1DM&lt; _Scalar &gt;, _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>GQCP::CRTP&lt; G1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      <node id="4">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="1">
         <label>GQCP::G1DM&lt; _Scalar &gt;</label>
@@ -102,12 +96,18 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::JacobiRotatable&lt; G1DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      <node id="6">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="5">
+        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="3">
-        <label>GQCP::BasisTransformable&lt; G1DM&lt; _Scalar &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
@@ -122,15 +122,17 @@
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3e3c379b5a13002dc7332d2441798639" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>matrix</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1aba76988eeab709bb1af1a4ae9d4ab83b" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>norm</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4119731fc8031d5bcaecba3db59297bb" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>numberOfOrbitals</name></member>
-      <member refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96" prot="public" virt="virtual"><scope>GQCP::G1DM</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4" prot="public" virt="virtual"><scope>GQCP::G1DM</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::G1DM</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::G1DM</scope><name>operator+=</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>operator-</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>operator-=</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; G1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::G1DM</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; G1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::G1DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="GQCP::"><scope>GQCP::G1DM</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::G1DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a6acb767fddd8829ddfd34a3dc5980d2e" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; G1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::G1DM</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; G1DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::G1DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="GQCP::BasisTransformable::"><scope>GQCP::G1DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::G1DM</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_g1_d_m_1a7027b6b4375942fa7c56c4c1699ff754" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a758c8b8f0d87ca20b2e212140b8e201f" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1ae3065b1b1822b7246642d34ff4300bfe" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>Simple1DM</name></member>

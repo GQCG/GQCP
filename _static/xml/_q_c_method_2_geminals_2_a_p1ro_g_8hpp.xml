@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_q_c_method_2_geminals_2_a_p1ro_g_8hpp" kind="file" language="C++">
     <compoundname>AP1roG.hpp</compoundname>
     <includes refid="_non_linear_equation_environment_8hpp" local="yes">Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp</includes>
@@ -1815,7 +1815,7 @@
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QCMethod<sp/>{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34" refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g" kindref="compound">AP1roG</ref><sp/>{</highlight></codeline>
+<codeline lineno="34" refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g" kindref="compound">AP1roG</ref><sp/>{</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
@@ -1832,7 +1832,7 @@
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53" refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1aad0b1e7f6bd342533f1e384c4f5ecb0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1aad0b1e7f6bd342533f1e384c4f5ecb0f" kindref="member">AP1roG</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">RSQHamiltonian&lt;double&gt;</ref>&amp;<sp/>sq_hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N_P)<sp/>:</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>N_P<sp/>{N_P},</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>K<sp/>{sq_hamiltonian.<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a9beb3656dcb386bb52a74e74f7723ad2" kindref="member">numberOfOrbitals</ref>()},<sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>spatial<sp/>orbitals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>K<sp/>{sq_hamiltonian.numberOfOrbitals()},<sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>spatial<sp/>orbitals</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sq_hamiltonian<sp/>{sq_hamiltonian}<sp/>{}</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>

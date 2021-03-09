@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_r_m_p2_8hpp" kind="file" language="C++">
     <compoundname>RMP2.hpp</compoundname>
     <includes refid="_molecule_8hpp" local="yes">Molecule/Molecule.hpp</includes>
@@ -1709,7 +1709,7 @@
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35" refid="namespace_g_q_c_p_1a9f8d842e0828d430237774761219cce0" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a9f8d842e0828d430237774761219cce0" kindref="member">calculateRMP2EnergyCorrection</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">RSQHamiltonian&lt;double&gt;</ref>&amp;<sp/>sq_hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF&lt;double&gt;</ref>&amp;<sp/>rhf_parameters);</highlight></codeline>
+<codeline lineno="35" refid="namespace_g_q_c_p_1a9f8d842e0828d430237774761219cce0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a9f8d842e0828d430237774761219cce0" kindref="member">calculateRMP2EnergyCorrection</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">RSQHamiltonian&lt;double&gt;</ref>&amp;<sp/>sq_hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF&lt;double&gt;</ref>&amp;<sp/>rhf_parameters);</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>

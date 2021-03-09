@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_q_c_method_newton_orbital_optimizer_8cpp" kind="file" language="C++">
     <compoundname>QCMethodNewtonOrbitalOptimizer.cpp</compoundname>
     <includes refid="_q_c_method_newton_orbital_optimizer_8hpp" local="yes">QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</includes>
@@ -1758,7 +1758,7 @@
 <codeline lineno="69"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a7059d13f4c52ef77baec8567a9e72eb1" kindref="member">QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>sq_hamiltonian)<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a7059d13f4c52ef77baec8567a9e72eb1" kindref="member">QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>sq_hamiltonian)<sp/>{</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a815d7b0854bb6b1b5a2e0ecb2ece412d" kindref="member">prepareDMCalculation</ref>(sq_hamiltonian);<sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>should<sp/>prepare<sp/>the<sp/>calculation<sp/>of<sp/>the<sp/>1-<sp/>and<sp/>2-DMs</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>

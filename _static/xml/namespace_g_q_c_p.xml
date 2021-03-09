@@ -1,166 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespace_g_q_c_p" kind="namespace" language="C++">
     <compoundname>GQCP</compoundname>
-    <innerclass refid="struct_g_q_c_p_1_1___unique__if" prot="public">GQCP::_Unique_if</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_0e_4" prot="public">GQCP::_Unique_if&lt; T[]&gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_n_0e_4" prot="public">GQCP::_Unique_if&lt; T[N]&gt;</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_adjacency_matrix" prot="public">GQCP::AdjacencyMatrix</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_algorithm" prot="public">GQCP::Algorithm</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_angular_momentum_operator" prot="public">GQCP::AngularMomentumOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" prot="public">GQCP::AP1roGGeminalCoefficients</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer" prot="public">GQCP::AP1roGJacobiOrbitalOptimizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer" prot="public">GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients" prot="public">GQCP::APIGGeminalCoefficients</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_array" prot="public">GQCP::Array</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_base_electrical_response_solver" prot="public">GQCP::BaseElectricalResponseSolver</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_base_f_q_operator" prot="public">GQCP::BaseFQOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_base_hessian_modifier" prot="public">GQCP::BaseHessianModifier</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_base_nuclear_operator" prot="public">GQCP::BaseNuclearOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" prot="public">GQCP::BaseOneElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" prot="public">GQCP::BaseOneElectronIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_base_orbital_optimizer" prot="public">GQCP::BaseOrbitalOptimizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_base_reference_dependent_operator" prot="public">GQCP::BaseReferenceDependentOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_base_scalar_f_q_operator" prot="public">GQCP::BaseScalarFQOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public">GQCP::BaseTwoElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public">GQCP::BaseTwoElectronIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_basis_transformable" prot="public">GQCP::BasisTransformable</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits" prot="public">GQCP::BasisTransformableTraits</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; G1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; G2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_orbital1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; Orbital1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_orbital2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; Orbital2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_pure_spin_resolved2_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; PureSpinResolved2DMComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_pure_u_s_q_two_electron_operator_component_3_853a5b0b9f96d2ea948bda6ede7953a4" prot="public">GQCP::BasisTransformableTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427" prot="public">GQCP::BasisTransformableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinResolved1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved1_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinResolved1DMComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc" prot="public">GQCP::BasisTransformableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_spin_orbital_basis_component_3_01___expansi6865a2f7ca94c2358204b3f91682cab6" prot="public">GQCP::BasisTransformableTraits&lt; USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; UTransformation&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_cartesian_exponents" prot="public">GQCP::CartesianExponents</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_cartesian_g_t_o" prot="public">GQCP::CartesianGTO</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_d_amplitudes_update" prot="public">GQCP::CCDAmplitudesUpdate</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_d_energy_calculation" prot="public">GQCP::CCDEnergyCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_d_intermediates_update" prot="public">GQCP::CCDIntermediatesUpdate</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_d_solver" prot="public">GQCP::CCDSolver</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_amplitudes_update" prot="public">GQCP::CCSDAmplitudesUpdate</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation" prot="public">GQCP::CCSDEnergyCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_environment" prot="public">GQCP::CCSDEnvironment</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_intermediates_update" prot="public">GQCP::CCSDIntermediatesUpdate</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_solver" prot="public">GQCP::CCSDSolver</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_compound_convergence_criterion" prot="public">GQCP::CompoundConvergenceCriterion</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence" prot="public">GQCP::ConsecutiveIteratesNormConvergence</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_constant_damper" prot="public">GQCP::ConstantDamper</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_convergence_criterion" prot="public">GQCP::ConvergenceCriterion</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_correction_vector_calculation" prot="public">GQCP::CorrectionVectorCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" prot="public">GQCP::CoulombRepulsionOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_c_r_t_p" prot="public">GQCP::CRTP</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_cubic_grid" prot="public">GQCP::CubicGrid</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_dense_diagonalization" prot="public">GQCP::DenseDiagonalization</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_dense_vectorizer" prot="public">GQCP::DenseVectorizer</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits" prot="public">GQCP::DensityMatrixTraits</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; G1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; G2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_orbital1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; Orbital1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_orbital2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; Orbital2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_pure_spin_resolved2_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; PureSpinResolved2DMComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_spin_resolved1_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; SpinResolved1DMComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective" prot="public">GQCP::DiagonalRHFFockMatrixObjective</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_d_i_i_s" prot="public">GQCP::DIIS</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" prot="public">GQCP::DoublySpinResolvedBase</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable" prot="public">GQCP::DoublySpinResolvedBasisTransformable</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable" prot="public">GQCP::DoublySpinResolvedJacobiRotatable</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_dyson_orbital" prot="public">GQCP::DysonOrbital</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_eigenpair" prot="public">GQCP::Eigenpair</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_eigenproblem_environment" prot="public">GQCP::EigenproblemEnvironment</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_electronic_density_operator" prot="public">GQCP::ElectronicDensityOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public">GQCP::ElectronicDipoleOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_electronic_spin__z_operator" prot="public">GQCP::ElectronicSpin_zOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_electronic_spin_operator" prot="public">GQCP::ElectronicSpinOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_e_r_jacobi_localizer" prot="public">GQCP::ERJacobiLocalizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_e_r_newton_localizer" prot="public">GQCP::ERNewtonLocalizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" prot="public">GQCP::EvaluatableScalarRSQOneElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_field" prot="public">GQCP::Field</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_functional_step" prot="public">GQCP::FunctionalStep</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g1_d_m" prot="public">GQCP::G1DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g2_d_m" prot="public">GQCP::G2DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_geminal_coefficients_interface" prot="public">GQCP::GeminalCoefficientsInterface</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_general_spinor_tag" prot="public">GQCP::GeneralSpinorTag</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_density_matrix_calculation" prot="public">GQCP::GHFDensityMatrixCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation" prot="public">GQCP::GHFElectronicEnergyCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_error_calculation" prot="public">GQCP::GHFErrorCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation" prot="public">GQCP::GHFFockMatrixCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization" prot="public">GQCP::GHFFockMatrixDiagonalization</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s" prot="public">GQCP::GHFFockMatrixDIIS</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment" prot="public">GQCP::GHFSCFEnvironment</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_h_f_s_c_f_solver" prot="public">GQCP::GHFSCFSolver</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_mulliken_partitioning" prot="public">GQCP::GMullikenPartitioning</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_spinor_basis" prot="public">GQCP::GSpinorBasis</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" prot="public">GQCP::GSQOneElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator" prot="public">GQCP::GSQTwoElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_t_o_basis_set" prot="public">GQCP::GTOBasisSet</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_t_o_shell" prot="public">GQCP::GTOShell</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_transformation" prot="public">GQCP::GTransformation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_guess_vector_update" prot="public">GQCP::GuessVectorUpdate</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_hopping_matrix" prot="public">GQCP::HoppingMatrix</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_hubbard_hamiltonian" prot="public">GQCP::HubbardHamiltonian</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_implicit_matrix_slice" prot="public">GQCP::ImplicitMatrixSlice</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" prot="public">GQCP::ImplicitRankFourTensorSlice</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_functional_primitive_engine" prot="public">GQCP::FunctionalPrimitiveEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_calculator" prot="public">GQCP::IntegralCalculator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_engine" prot="public">GQCP::IntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_iterative_algorithm" prot="public">GQCP::IterativeAlgorithm</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier" prot="public">GQCP::IterativeIdentitiesHessianModifier</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" prot="public">GQCP::JacobiOrbitalOptimizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public">GQCP::JacobiRotatable</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" prot="public">GQCP::JacobiRotatableTraits</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; G1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; G2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_orbital1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; Orbital1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_orbital2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; Orbital2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_pure_spin_resolved2_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; PureSpinResolved2DMComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_pure_u_s_q_two_electron_operator_component_3_01_5951181e4bf7687a9c1d9d69dbbdf843" prot="public">GQCP::JacobiRotatableTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00d91ca45987de7bd8c30b8b73d55a889" prot="public">GQCP::JacobiRotatableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinResolved1DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved1_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinResolved1DMComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c" prot="public">GQCP::JacobiRotatableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_spin_orbital_basis_component_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; UTransformation&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_jacobi_rotation" prot="public">GQCP::JacobiRotation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_kinetic_operator" prot="public">GQCP::KineticOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" prot="public">GQCP::McMurchieDavidsonCoefficient</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_buffer" prot="public">GQCP::OneElectronIntegralBuffer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_engine" prot="public">GQCP::OneElectronIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public">GQCP::PrimitiveAngularMomentumIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" prot="public">GQCP::PrimitiveCartesianOperatorIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" prot="public">GQCP::PrimitiveDipoleIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_kinetic_energy_integral_engine" prot="public">GQCP::PrimitiveKineticEnergyIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public">GQCP::PrimitiveLinearMomentumIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public">GQCP::PrimitiveOverlapIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_interfacer" prot="public">GQCP::LibcintInterfacer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_one_electron_integral_buffer" prot="public">GQCP::LibcintOneElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" prot="public">GQCP::LibcintOneElectronIntegralEngine</innerclass>
@@ -171,67 +28,250 @@
     <innerclass refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" prot="public">GQCP::LibintOneElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libint_two_electron_integral_buffer" prot="public">GQCP::LibintTwoElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine" prot="public">GQCP::LibintTwoElectronIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_mulliken_partitioning" prot="public">GQCP::GMullikenPartitioning</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_mulliken_partitioning" prot="public">GQCP::RMullikenPartitioning</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning" prot="public">GQCP::UMullikenPartitioning</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" prot="public">GQCP::UMullikenPartitioningComponent</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_t_o_basis_set" prot="public">GQCP::GTOBasisSet</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_t_o_shell" prot="public">GQCP::GTOShell</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_scalar_basis" prot="public">GQCP::ScalarBasis</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_shell_set" prot="public">GQCP::ShellSet</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_spinor_basis" prot="public">GQCP::GSpinorBasis</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::SpinorBasisTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_orbital_space" prot="public">GQCP::OrbitalSpace</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_spin_orbital_basis" prot="public">GQCP::RSpinOrbitalBasis</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits" prot="public">GQCP::SpinorBasisTraits</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple_spinor_basis" prot="public">GQCP::SimpleSpinorBasis</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple_spin_orbital_basis" prot="public">GQCP::SimpleSpinOrbitalBasis</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spinor" prot="public">GQCP::Spinor</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_orbital_space" prot="public">GQCP::SpinResolvedOrbitalSpace</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_spin_orbital_basis" prot="public">GQCP::USpinOrbitalBasis</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component" prot="public">GQCP::USpinOrbitalBasisComponent</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4" prot="public">GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_spin_orbital_basis_component_3_01___expansi6865a2f7ca94c2358204b3f91682cab6" prot="public">GQCP::BasisTransformableTraits&lt; USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_spin_orbital_basis_component_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits" prot="public">GQCP::BasisTransformableTraits</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_basis_transformable" prot="public">GQCP::BasisTransformable</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable" prot="public">GQCP::DoublySpinResolvedBasisTransformable</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable" prot="public">GQCP::DoublySpinResolvedJacobiRotatable</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_transformation" prot="public">GQCP::GTransformation</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" prot="public">GQCP::JacobiRotatableTraits</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public">GQCP::JacobiRotatable</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_jacobi_rotation" prot="public">GQCP::JacobiRotation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_orbital_rotation_generators" prot="public">GQCP::OrbitalRotationGenerators</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_transformation" prot="public">GQCP::RTransformation</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple_transformation" prot="public">GQCP::SimpleTransformation</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable" prot="public">GQCP::SpinResolvedBasisTransformable</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable" prot="public">GQCP::SpinResolvedJacobiRotatable</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_jacobi_rotation" prot="public">GQCP::UJacobiRotation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_transformation" prot="public">GQCP::UTransformation</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; UTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; UTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_transformation_component" prot="public">GQCP::UTransformationComponent</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits" prot="public">GQCP::DensityMatrixTraits</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g1_d_m" prot="public">GQCP::G1DM</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; G1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; G1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; G1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g2_d_m" prot="public">GQCP::G2DM</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; G2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; G2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; G2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" prot="public">GQCP::MixedSpinResolved2DMComponent</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_orbital1_d_m" prot="public">GQCP::Orbital1DM</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_orbital1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; Orbital1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_orbital1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; Orbital1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_orbital1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; Orbital1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_orbital2_d_m" prot="public">GQCP::Orbital2DM</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_orbital2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; Orbital2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_orbital2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; Orbital2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_orbital2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; Orbital2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" prot="public">GQCP::PureSpinResolved2DMComponent</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_pure_spin_resolved2_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; PureSpinResolved2DMComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_pure_spin_resolved2_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; PureSpinResolved2DMComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_pure_spin_resolved2_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; PureSpinResolved2DMComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple1_d_m" prot="public">GQCP::Simple1DM</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple2_d_m" prot="public">GQCP::Simple2DM</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_density1_d_m" prot="public">GQCP::SpinDensity1DM</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved1_d_m" prot="public">GQCP::SpinResolved1DM</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinResolved1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinResolved1DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" prot="public">GQCP::SpinResolved1DMComponent</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved1_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinResolved1DMComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved1_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinResolved1DMComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_spin_resolved1_d_m_component_3_01_scalar_01_4_01_4" prot="public">GQCP::DensityMatrixTraits&lt; SpinResolved1DMComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved2_d_m" prot="public">GQCP::SpinResolved2DM</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_algorithm" prot="public">GQCP::Algorithm</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_compound_convergence_criterion" prot="public">GQCP::CompoundConvergenceCriterion</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_convergence_criterion" prot="public">GQCP::ConvergenceCriterion</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_functional_step" prot="public">GQCP::FunctionalStep</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_iterative_algorithm" prot="public">GQCP::IterativeAlgorithm</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_step" prot="public">GQCP::Step</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_step_collection" prot="public">GQCP::StepCollection</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_cartesian_exponents" prot="public">GQCP::CartesianExponents</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_cartesian_g_t_o" prot="public">GQCP::CartesianGTO</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_linear_combination" prot="public">GQCP::LinearCombination</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_linear_expansion" prot="public">GQCP::LinearExpansion</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_linear_momentum_operator" prot="public">GQCP::LinearMomentumOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_scalar_function" prot="public">GQCP::ScalarFunction</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_scalar_function_product" prot="public">GQCP::ScalarFunctionProduct</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public">GQCP::VectorSpaceArithmetic</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_cubic_grid" prot="public">GQCP::CubicGrid</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_field" prot="public">GQCP::Field</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_weighted_grid" prot="public">GQCP::WeightedGrid</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence" prot="public">GQCP::ConsecutiveIteratesNormConvergence</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_optimization_environment" prot="public">GQCP::OptimizationEnvironment</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_constant_damper" prot="public">GQCP::ConstantDamper</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_d_i_i_s" prot="public">GQCP::DIIS</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_dense_diagonalization" prot="public">GQCP::DenseDiagonalization</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_eigenpair" prot="public">GQCP::Eigenpair</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_eigenproblem_environment" prot="public">GQCP::EigenproblemEnvironment</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_correction_vector_calculation" prot="public">GQCP::CorrectionVectorCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_guess_vector_update" prot="public">GQCP::GuessVectorUpdate</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_matrix_vector_product_calculation" prot="public">GQCP::MatrixVectorProductCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_residual_vector_calculation" prot="public">GQCP::ResidualVectorCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_residual_vector_convergence" prot="public">GQCP::ResidualVectorConvergence</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_subspace_matrix_calculation" prot="public">GQCP::SubspaceMatrixCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization" prot="public">GQCP::SubspaceMatrixDiagonalization</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_subspace_update" prot="public">GQCP::SubspaceUpdate</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_hessian_modifier" prot="public">GQCP::BaseHessianModifier</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier" prot="public">GQCP::IterativeIdentitiesHessianModifier</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_minimization_environment" prot="public">GQCP::MinimizationEnvironment</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_minimizer" prot="public">GQCP::Minimizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_unaltering_hessian_modifier" prot="public">GQCP::UnalteringHessianModifier</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_non_linear_equation_environment" prot="public">GQCP::NonLinearEquationEnvironment</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_non_linear_equation_solver" prot="public">GQCP::NonLinearEquationSolver</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_array" prot="public">GQCP::Array</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_dense_vectorizer" prot="public">GQCP::DenseVectorizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_implicit_matrix_slice" prot="public">GQCP::ImplicitMatrixSlice</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" prot="public">GQCP::ImplicitRankFourTensorSlice</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix" prot="public">GQCP::Matrix</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container" prot="public">GQCP::MatrixRepresentationEvaluationContainer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4" prot="public">GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; double &gt; &gt;</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4" prot="public">GQCP::MatrixRepresentationEvaluationContainer&lt; VectorX&lt; double &gt; &gt;</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_matrix_vector_product_calculation" prot="public">GQCP::MatrixVectorProductCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" prot="public">GQCP::McMurchieDavidsonCoefficient</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_minimization_environment" prot="public">GQCP::MinimizationEnvironment</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_minimizer" prot="public">GQCP::Minimizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" prot="public">GQCP::MixedSpinResolved2DMComponent</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" prot="public">GQCP::MixedUSQTwoElectronOperatorComponent</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_square_matrix" prot="public">GQCP::SquareMatrix</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_square_rank_four_tensor" prot="public">GQCP::SquareRankFourTensor</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_storage_array" prot="public">GQCP::StorageArray</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_tensor" prot="public">GQCP::Tensor</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_molecule" prot="public">GQCP::Molecule</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_newton_orbital_optimizer" prot="public">GQCP::NewtonOrbitalOptimizer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_non_linear_equation_environment" prot="public">GQCP::NonLinearEquationEnvironment</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_non_linear_equation_solver" prot="public">GQCP::NonLinearEquationSolver</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_nuclear_framework" prot="public">GQCP::NuclearFramework</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_nucleus" prot="public">GQCP::Nucleus</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_angular_momentum_operator" prot="public">GQCP::AngularMomentumOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_f_q_operator" prot="public">GQCP::BaseFQOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_scalar_f_q_operator" prot="public">GQCP::BaseScalarFQOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_nuclear_operator" prot="public">GQCP::BaseNuclearOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_reference_dependent_operator" prot="public">GQCP::BaseReferenceDependentOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" prot="public">GQCP::CoulombRepulsionOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_electronic_density_operator" prot="public">GQCP::ElectronicDensityOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public">GQCP::ElectronicDipoleOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_electronic_spin__z_operator" prot="public">GQCP::ElectronicSpin_zOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_electronic_spin_operator" prot="public">GQCP::ElectronicSpinOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_kinetic_operator" prot="public">GQCP::KineticOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_linear_momentum_operator" prot="public">GQCP::LinearMomentumOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_attraction_operator" prot="public">GQCP::NuclearAttractionOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_dipole_operator" prot="public">GQCP::NuclearDipoleOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_nuclear_framework" prot="public">GQCP::NuclearFramework</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" prot="public">GQCP::NuclearRepulsionOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_nucleus" prot="public">GQCP::Nucleus</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_buffer" prot="public">GQCP::OneElectronIntegralBuffer</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_engine" prot="public">GQCP::OneElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_operator" prot="public">GQCP::Operator</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits" prot="public">GQCP::OperatorTraits</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_mixed_u_s_q_two_electron_operator_component_3_01___scalar_00_01___vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_pure_u_s_q_two_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_one_electron_operator_3_01___scalar_00_01___v0918eac09027259a60bbf357cfb65fd4" prot="public">GQCP::OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308" prot="public">GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_operator_003e2277a2c43d3fcee1134049f20a895a" prot="public">GQCP::OperatorTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; USQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_optimization_environment" prot="public">GQCP::OptimizationEnvironment</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_orbital1_d_m" prot="public">GQCP::Orbital1DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_orbital2_d_m" prot="public">GQCP::Orbital2DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_orbital_rotation_generators" prot="public">GQCP::OrbitalRotationGenerators</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_orbital_space" prot="public">GQCP::OrbitalSpace</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_overlap_operator" prot="public">GQCP::OverlapOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public">GQCP::PrimitiveAngularMomentumIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" prot="public">GQCP::PrimitiveCartesianOperatorIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" prot="public">GQCP::PrimitiveDipoleIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_kinetic_energy_integral_engine" prot="public">GQCP::PrimitiveKineticEnergyIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public">GQCP::PrimitiveLinearMomentumIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public">GQCP::PrimitiveOverlapIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" prot="public">GQCP::PureSpinResolved2DMComponent</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" prot="public">GQCP::EvaluatableScalarRSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" prot="public">GQCP::GSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator" prot="public">GQCP::GSQTwoElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" prot="public">GQCP::MixedUSQTwoElectronOperatorComponent</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_mixed_u_s_q_two_electron_operator_component_3_01___scalar_00_01___vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits" prot="public">GQCP::OperatorTraits</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component" prot="public">GQCP::PureUSQTwoElectronOperatorComponent</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer" prot="public">GQCP::QCMethodNewtonOrbitalOptimizer</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_pure_u_s_q_two_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_pure_u_s_q_two_electron_operator_component_3_853a5b0b9f96d2ea948bda6ede7953a4" prot="public">GQCP::BasisTransformableTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_pure_u_s_q_two_electron_operator_component_3_01_5951181e4bf7687a9c1d9d69dbbdf843" prot="public">GQCP::JacobiRotatableTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" prot="public">GQCP::RSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" prot="public">GQCP::RSQTwoElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator" prot="public">GQCP::SimpleSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_one_electron_operator_3_01___scalar_00_01___v0918eac09027259a60bbf357cfb65fd4" prot="public">GQCP::OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator" prot="public">GQCP::SimpleSQTwoElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308" prot="public">GQCP::OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427" prot="public">GQCP::BasisTransformableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00d91ca45987de7bd8c30b8b73d55a889" prot="public">GQCP::JacobiRotatableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_s_q_hamiltonian" prot="public">GQCP::SQHamiltonian</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_operator_003e2277a2c43d3fcee1134049f20a895a" prot="public">GQCP::OperatorTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_be19606f097c3d99f2f436e6296e27cc" prot="public">GQCP::BasisTransformableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c" prot="public">GQCP::JacobiRotatableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_s_q_operator_storage" prot="public">GQCP::SQOperatorStorage</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_s_q_operator_storage_base" prot="public">GQCP::SQOperatorStorageBase</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" prot="public">GQCP::USQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; USQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component" prot="public">GQCP::USQOneElectronOperatorComponent</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" prot="public">GQCP::USQTwoElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_adjacency_matrix" prot="public">GQCP::AdjacencyMatrix</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_hopping_matrix" prot="public">GQCP::HoppingMatrix</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_hubbard_hamiltonian" prot="public">GQCP::HubbardHamiltonian</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_electrical_response_solver" prot="public">GQCP::BaseElectricalResponseSolver</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_dyson_orbital" prot="public">GQCP::DysonOrbital</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_h_f_electrical_response_solver" prot="public">GQCP::RHFElectricalResponseSolver</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver" prot="public">GQCP::vAP1roGElectricalResponseSolver</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_q_c_structure" prot="public">GQCP::QCStructure</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_residual_vector_calculation" prot="public">GQCP::ResidualVectorCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_residual_vector_convergence" prot="public">GQCP::ResidualVectorConvergence</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_restricted_spinor_tag" prot="public">GQCP::RestrictedSpinorTag</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_d_amplitudes_update" prot="public">GQCP::CCDAmplitudesUpdate</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_d_energy_calculation" prot="public">GQCP::CCDEnergyCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_d_intermediates_update" prot="public">GQCP::CCDIntermediatesUpdate</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_d_solver" prot="public">GQCP::CCDSolver</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_amplitudes_update" prot="public">GQCP::CCSDAmplitudesUpdate</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation" prot="public">GQCP::CCSDEnergyCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_environment" prot="public">GQCP::CCSDEnvironment</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_intermediates_update" prot="public">GQCP::CCSDIntermediatesUpdate</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_solver" prot="public">GQCP::CCSDSolver</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_t2_d_i_i_s" prot="public">GQCP::T2DIIS</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_t2_error_calculation" prot="public">GQCP::T2ErrorCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer" prot="public">GQCP::AP1roGJacobiOrbitalOptimizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer" prot="public">GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_density_matrix_calculation" prot="public">GQCP::GHFDensityMatrixCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation" prot="public">GQCP::GHFElectronicEnergyCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_error_calculation" prot="public">GQCP::GHFErrorCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_calculation" prot="public">GQCP::GHFFockMatrixCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_diagonalization" prot="public">GQCP::GHFFockMatrixDiagonalization</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s" prot="public">GQCP::GHFFockMatrixDIIS</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_s_c_f_environment" prot="public">GQCP::GHFSCFEnvironment</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_h_f_s_c_f_solver" prot="public">GQCP::GHFSCFSolver</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective" prot="public">GQCP::DiagonalRHFFockMatrixObjective</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_density_matrix_calculation" prot="public">GQCP::RHFDensityMatrixCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_density_matrix_damper" prot="public">GQCP::RHFDensityMatrixDamper</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_r_h_f_electrical_response_solver" prot="public">GQCP::RHFElectricalResponseSolver</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_electronic_energy_calculation" prot="public">GQCP::RHFElectronicEnergyCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_error_calculation" prot="public">GQCP::RHFErrorCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_calculation" prot="public">GQCP::RHFFockMatrixCalculation</innerclass>
@@ -239,52 +279,6 @@
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s" prot="public">GQCP::RHFFockMatrixDIIS</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" prot="public">GQCP::RHFSCFEnvironment</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver" prot="public">GQCP::RHFSCFSolver</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_r_mulliken_partitioning" prot="public">GQCP::RMullikenPartitioning</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_r_spin_orbital_basis" prot="public">GQCP::RSpinOrbitalBasis</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" prot="public">GQCP::RSQOneElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator" prot="public">GQCP::RSQTwoElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_r_transformation" prot="public">GQCP::RTransformation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_scalar_basis" prot="public">GQCP::ScalarBasis</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_scalar_function" prot="public">GQCP::ScalarFunction</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_scalar_function_product" prot="public">GQCP::ScalarFunctionProduct</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_shell_set" prot="public">GQCP::ShellSet</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_simple1_d_m" prot="public">GQCP::Simple1DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_simple2_d_m" prot="public">GQCP::Simple2DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_simple_spinor_basis" prot="public">GQCP::SimpleSpinorBasis</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_simple_spin_orbital_basis" prot="public">GQCP::SimpleSpinOrbitalBasis</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator" prot="public">GQCP::SimpleSQOneElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator" prot="public">GQCP::SimpleSQTwoElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_simple_transformation" prot="public">GQCP::SimpleTransformation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_density1_d_m" prot="public">GQCP::SpinDensity1DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spinor" prot="public">GQCP::Spinor</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits" prot="public">GQCP::SpinorBasisTraits</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::SpinorBasisTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::SpinorBasisTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4" prot="public">GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved" prot="public">GQCP::SpinResolved</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved1_d_m" prot="public">GQCP::SpinResolved1DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" prot="public">GQCP::SpinResolved1DMComponent</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved2_d_m" prot="public">GQCP::SpinResolved2DM</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public">GQCP::SpinResolvedBase</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable" prot="public">GQCP::SpinResolvedBasisTransformable</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable" prot="public">GQCP::SpinResolvedJacobiRotatable</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_orbital_space" prot="public">GQCP::SpinResolvedOrbitalSpace</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_s_q_hamiltonian" prot="public">GQCP::SQHamiltonian</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_s_q_operator_storage" prot="public">GQCP::SQOperatorStorage</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_s_q_operator_storage_base" prot="public">GQCP::SQOperatorStorageBase</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_square_matrix" prot="public">GQCP::SquareMatrix</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_square_rank_four_tensor" prot="public">GQCP::SquareRankFourTensor</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_step" prot="public">GQCP::Step</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_step_collection" prot="public">GQCP::StepCollection</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_storage_array" prot="public">GQCP::StorageArray</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_subspace_matrix_calculation" prot="public">GQCP::SubspaceMatrixCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization" prot="public">GQCP::SubspaceMatrixDiagonalization</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_subspace_update" prot="public">GQCP::SubspaceUpdate</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_t1_amplitudes" prot="public">GQCP::T1Amplitudes</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_t2_amplitudes" prot="public">GQCP::T2Amplitudes</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_t2_d_i_i_s" prot="public">GQCP::T2DIIS</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_t2_error_calculation" prot="public">GQCP::T2ErrorCalculation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_tensor" prot="public">GQCP::Tensor</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_density_matrix_calculation" prot="public">GQCP::UHFDensityMatrixCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_electronic_energy_calculation" prot="public">GQCP::UHFElectronicEnergyCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_error_calculation" prot="public">GQCP::UHFErrorCalculation</innerclass>
@@ -293,21 +287,28 @@
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_fock_matrix_d_i_i_s" prot="public">GQCP::UHFFockMatrixDIIS</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" prot="public">GQCP::UHFSCFEnvironment</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver" prot="public">GQCP::UHFSCFSolver</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_jacobi_rotation" prot="public">GQCP::UJacobiRotation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning" prot="public">GQCP::UMullikenPartitioning</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" prot="public">GQCP::UMullikenPartitioningComponent</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_unaltering_hessian_modifier" prot="public">GQCP::UnalteringHessianModifier</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_orbital_optimizer" prot="public">GQCP::BaseOrbitalOptimizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" prot="public">GQCP::JacobiOrbitalOptimizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_newton_orbital_optimizer" prot="public">GQCP::NewtonOrbitalOptimizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer" prot="public">GQCP::QCMethodNewtonOrbitalOptimizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_e_r_jacobi_localizer" prot="public">GQCP::ERJacobiLocalizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_e_r_newton_localizer" prot="public">GQCP::ERNewtonLocalizer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_t1_amplitudes" prot="public">GQCP::T1Amplitudes</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_t2_amplitudes" prot="public">GQCP::T2Amplitudes</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_linear_expansion" prot="public">GQCP::LinearExpansion</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" prot="public">GQCP::AP1roGGeminalCoefficients</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients" prot="public">GQCP::APIGGeminalCoefficients</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_geminal_coefficients_interface" prot="public">GQCP::GeminalCoefficientsInterface</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" prot="public">GQCP::DoublySpinResolvedBase</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_restricted_spinor_tag" prot="public">GQCP::RestrictedSpinorTag</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_unrestricted_spinor_tag" prot="public">GQCP::UnrestrictedSpinorTag</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_spin_orbital_basis" prot="public">GQCP::USpinOrbitalBasis</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component" prot="public">GQCP::USpinOrbitalBasisComponent</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" prot="public">GQCP::USQOneElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component" prot="public">GQCP::USQOneElectronOperatorComponent</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" prot="public">GQCP::USQTwoElectronOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_transformation" prot="public">GQCP::UTransformation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_transformation_component" prot="public">GQCP::UTransformationComponent</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver" prot="public">GQCP::vAP1roGElectricalResponseSolver</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public">GQCP::VectorSpaceArithmetic</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_weighted_grid" prot="public">GQCP::WeightedGrid</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_general_spinor_tag" prot="public">GQCP::GeneralSpinorTag</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved" prot="public">GQCP::SpinResolved</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public">GQCP::SpinResolvedBase</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_c_r_t_p" prot="public">GQCP::CRTP</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1___unique__if" prot="public">GQCP::_Unique_if</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_0e_4" prot="public">GQCP::_Unique_if&lt; T[]&gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1___unique__if_3_01_t_0f_n_0e_4" prot="public">GQCP::_Unique_if&lt; T[N]&gt;</innerclass>
     <innernamespace refid="namespace_g_q_c_p_1_1_c_i_environment">GQCP::CIEnvironment</innernamespace>
     <innernamespace refid="namespace_g_q_c_p_1_1_eigenproblem_solver">GQCP::EigenproblemSolver</innernamespace>
     <innernamespace refid="namespace_g_q_c_p_1_1elements">GQCP::elements</innernamespace>

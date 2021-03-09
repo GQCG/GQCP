@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4" kind="class" language="C++" prot="public">
     <compoundname>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; double &gt; &gt;</compoundname>
     <includes refid="_matrix_representation_evaluation_container_8hpp" local="no">MatrixRepresentationEvaluationContainer.hpp</includes>

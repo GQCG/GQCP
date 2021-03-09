@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_base_reference_dependent_operator_8hpp" kind="file" language="C++">
     <compoundname>BaseReferenceDependentOperator.hpp</compoundname>
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
@@ -1261,7 +1261,7 @@
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="class_g_q_c_p_1_1_base_reference_dependent_operator" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator" kindref="compound">BaseReferenceDependentOperator</ref><sp/>{</highlight></codeline>
+<codeline lineno="32" refid="class_g_q_c_p_1_1_base_reference_dependent_operator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator" kindref="compound">BaseReferenceDependentOperator</ref><sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>point<sp/>that<sp/>is<sp/>used<sp/>as<sp/>a<sp/>reference<sp/>to<sp/>define<sp/>the<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref><sp/>m_reference;</highlight></codeline>

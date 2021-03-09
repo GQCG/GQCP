@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCModel::UHF</compoundname>
     <includes refid="_q_c_model_2_h_f_2_u_h_f_8hpp" local="no">UHF.hpp</includes>

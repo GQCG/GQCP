@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::EvaluatableScalarRSQOneElectronOperator</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_s_q_operator_storage_base" prot="public" virt="non-virtual">GQCP::SQOperatorStorageBase&lt; SquareMatrix&lt; _Evaluatable &gt;, ScalarVectorizer, EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</basecompoundref>
@@ -182,16 +182,9 @@
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="3">
-        <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_storage_array"/>
-      </node>
       <node id="2">
         <label>GQCP::SQOperatorStorageBase&lt; SquareMatrix&lt; _Evaluatable &gt;, ScalarVectorizer, EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>#array</edgelabel>
-        </childnode>
       </node>
       <node id="1">
         <label>GQCP::EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt;</label>

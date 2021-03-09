@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_h_f_error_calculation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::UHFErrorCalculation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -38,11 +38,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_error_calculation_1a82e55496103e1d714d8acceae9d7fe93" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_error_calculation_1a82e55496103e1d714d8acceae9d7fe93" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
         <definition>std::string GQCP::UHFErrorCalculation&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -124,8 +125,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp" bodystart="36" bodyend="78"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_u_h_f_error_calculation_1a82e55496103e1d714d8acceae9d7fe93" prot="public" virt="non-virtual"><scope>GQCP::UHFErrorCalculation</scope><name>description</name></member>
-      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::UHFErrorCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_error_calculation_1a82e55496103e1d714d8acceae9d7fe93" prot="public" virt="virtual"><scope>GQCP::UHFErrorCalculation</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_u_h_f_error_calculation_1a891792f2112cbd8845074199aabc7354" prot="public" virt="non-virtual"><scope>GQCP::UHFErrorCalculation</scope><name>Environment</name></member>
       <member refid="class_g_q_c_p_1_1_u_h_f_error_calculation_1a412e7dd9c614c074ac70403ccff40e14" prot="public" virt="non-virtual"><scope>GQCP::UHFErrorCalculation</scope><name>execute</name></member>
       <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::UHFErrorCalculation</scope><name>execute</name></member>

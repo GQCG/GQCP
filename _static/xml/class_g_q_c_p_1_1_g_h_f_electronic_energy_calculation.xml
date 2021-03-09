@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::GHFElectronicEnergyCalculation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -38,11 +38,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation_1ade6dee2ca8b8a9db044d4b543be4fd7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation_1ade6dee2ca8b8a9db044d4b543be4fd7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
         <definition>std::string GQCP::GHFElectronicEnergyCalculation&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -124,8 +125,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFElectronicEnergyCalculation.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFElectronicEnergyCalculation.hpp" bodystart="36" bodyend="70"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation_1ade6dee2ca8b8a9db044d4b543be4fd7e" prot="public" virt="non-virtual"><scope>GQCP::GHFElectronicEnergyCalculation</scope><name>description</name></member>
-      <member refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFElectronicEnergyCalculation</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation_1ade6dee2ca8b8a9db044d4b543be4fd7e" prot="public" virt="virtual"><scope>GQCP::GHFElectronicEnergyCalculation</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation_1a6d66266a687a43bb0ba5aec9a05926fa" prot="public" virt="non-virtual"><scope>GQCP::GHFElectronicEnergyCalculation</scope><name>Environment</name></member>
       <member refid="class_g_q_c_p_1_1_g_h_f_electronic_energy_calculation_1ac32d1d7a50edd6786ee3f2fa9cbb8fe8" prot="public" virt="non-virtual"><scope>GQCP::GHFElectronicEnergyCalculation</scope><name>execute</name></member>
       <member refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f" prot="public" virt="pure-virtual" ambiguityscope="Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;::"><scope>GQCP::GHFElectronicEnergyCalculation</scope><name>execute</name></member>

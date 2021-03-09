@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_primitive_dipole_integral_engine_8hpp" kind="file" language="C++">
     <compoundname>PrimitiveDipoleIntegralEngine.hpp</compoundname>
     <includes refid="_primitive_cartesian_operator_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp</includes>
@@ -1208,7 +1208,7 @@
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kindref="compound">PrimitiveDipoleIntegralEngine</ref>:</highlight></codeline>
+<codeline lineno="31" refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kindref="compound">PrimitiveDipoleIntegralEngine</ref>:</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" kindref="compound">PrimitiveCartesianOperatorIntegralEngine</ref><sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="34" refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1ae92321e7c3ce29098ab68bd859ebcaef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1ae92321e7c3ce29098ab68bd859ebcaef" kindref="member">Components</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator_1a00d21fd28669791d314090ae6e422f2c" kindref="member">ElectronicDipoleOperator::NumberOfComponents</ref>;</highlight></codeline>

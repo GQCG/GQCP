@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp" kind="file" language="C++">
     <compoundname>UHF.hpp</compoundname>
     <includes refid="_iterative_algorithm_8hpp" local="yes">Mathematical/Algorithm/IterativeAlgorithm.hpp</includes>
@@ -134,7 +134,7 @@
       </node>
       <node id="6">
         <label>Mathematical/Algorithm/Step.hpp</label>
-        <link refid="_step_8hpp"/>
+        <link refid="_algorithm_2_step_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
@@ -1850,7 +1850,7 @@
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QCMethod<sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar&gt;</highlight></codeline>
 <codeline lineno="40" refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f" kindref="compound">UHF</ref><sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>

@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_subspace_update}{}\doxysection{G\+Q\+CP\+::Subspace\+Update Class Reference}
+\hypertarget{class_g_q_c_p_1_1_subspace_update}{}\doxysection{GQCP\+::Subspace\+Update Class Reference}
 \label{class_g_q_c_p_1_1_subspace_update}\index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
 
 
@@ -6,22 +6,22 @@
 
 
 
-Inheritance diagram for G\+Q\+CP\+::Subspace\+Update\+:
+Inheritance diagram for GQCP\+::Subspace\+Update\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=277pt]{class_g_q_c_p_1_1_subspace_update__inherit__graph}
+\includegraphics[width=231pt]{class_g_q_c_p_1_1_subspace_update__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for G\+Q\+CP\+::Subspace\+Update\+:
+Collaboration diagram for GQCP\+::Subspace\+Update\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=277pt]{class_g_q_c_p_1_1_subspace_update__coll__graph}
+\includegraphics[width=231pt]{class_g_q_c_p_1_1_subspace_update__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -44,7 +44,7 @@ A step that adds projected correction vectors to the subspace (if their norm is 
 \index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}!SubspaceUpdate@{SubspaceUpdate}}
 \index{SubspaceUpdate@{SubspaceUpdate}!GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
 \doxysubsubsection{\texorpdfstring{SubspaceUpdate()}{SubspaceUpdate()}}
-{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Subspace\+Update\+::\+Subspace\+Update (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 15},  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/03} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily GQCP\+::\+Subspace\+Update\+::\+Subspace\+Update (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 15},  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/03} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -60,16 +60,20 @@ A step that adds projected correction vectors to the subspace (if their norm is 
 \index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}!description@{description}}
 \index{description@{description}!GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
 \doxysubsubsection{\texorpdfstring{description()}{description()}}
-{\footnotesize\ttfamily std\+::string G\+Q\+C\+P\+::\+Subspace\+Update\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+{\footnotesize\ttfamily std\+::string GQCP\+::\+Subspace\+Update\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 \begin{DoxyReturn}{Returns}
 a textual description of this algorithmic step 
 \end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{GQCP\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+
 \mbox{\Hypertarget{class_g_q_c_p_1_1_subspace_update_acf11b3134f5b1a2d059bfa2f3bcc5bf7}\label{class_g_q_c_p_1_1_subspace_update_acf11b3134f5b1a2d059bfa2f3bcc5bf7}} 
 \index{GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}!execute@{execute}}
 \index{execute@{execute}!GQCP::SubspaceUpdate@{GQCP::SubspaceUpdate}}
 \doxysubsubsection{\texorpdfstring{execute()}{execute()}}
-{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Subspace\+Update\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void GQCP\+::\+Subspace\+Update\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Add projected correction vectors to the subspace (if their norm is large enough) and collapse the subspace becomes too large. The new subspace vectors (after a collapse) are linear combinations of current subspace vectors, with coefficients found in the lowest eigenvectors of the subspace matrix.
 
@@ -80,10 +84,10 @@ Add projected correction vectors to the subspace (if their norm is large enough)
 \end{DoxyParams}
 
 
-Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{G\+Q\+C\+P\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{GQCP\+::\+Step$<$ Eigenproblem\+Environment $>$}}.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_subspace_update_8hpp}{Subspace\+Update.\+hpp}}\end{DoxyCompactItemize}
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\+Davidson/\mbox{\hyperlink{_subspace_update_8hpp}{Subspace\+Update.\+hpp}}\end{DoxyCompactItemize}

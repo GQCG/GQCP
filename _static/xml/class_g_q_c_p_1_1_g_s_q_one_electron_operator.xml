@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g_s_q_one_electron_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::GSQOneElectronOperator</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator" prot="public" virt="non-virtual">GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</basecompoundref>
@@ -107,30 +107,28 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="4">
+        <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+      </node>
       <node id="1">
         <label>GQCP::GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="7">
-        <label>GQCP::BasisTransformable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      <node id="5">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; _DerivedOperator &gt;::DerivedOperator, OperatorTraits&lt; _DerivedOperator &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="8">
-        <label>GQCP::JacobiRotatable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="6">
-        <label>GQCP::CRTP&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="4">
-        <label>GQCP::SQOperatorStorageBase&lt; SquareMatrix&lt; _Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
-      </node>
       <node id="3">
-        <label>GQCP::SQOperatorStorage&lt; SquareMatrix&lt; _Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;</label>
+        <label>GQCP::SQOperatorStorage&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
@@ -147,50 +145,50 @@
         <childnode refid="8" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
-        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
+      <node id="7">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="6">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="4">
+        <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#array</edgelabel>
+        </childnode>
+      </node>
       <node id="1">
         <label>GQCP::GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="8">
-        <label>GQCP::BasisTransformable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="9">
-        <label>GQCP::JacobiRotatable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="7">
-        <label>GQCP::CRTP&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="4">
-        <label>GQCP::SQOperatorStorageBase&lt; SquareMatrix&lt; _Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
-        <childnode refid="5" relation="usage">
-          <edgelabel>#array</edgelabel>
+      <node id="6">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; _DerivedOperator &gt;::DerivedOperator, OperatorTraits&lt; _DerivedOperator &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="7" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
-        <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_storage_array"/>
+      <node id="9">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="3">
-        <label>GQCP::SQOperatorStorage&lt; SquareMatrix&lt; _Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;</label>
+        <label>GQCP::SQOperatorStorage&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
         <childnode refid="6" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_storage_array"/>
       </node>
       <node id="2">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
@@ -202,11 +200,13 @@
         <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="7" relation="public-inheritance">
-        </childnode>
+      <node id="8">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="7">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQOneElectronOperator.hpp" bodystart="42" bodyend="77"/>
@@ -234,9 +234,9 @@
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a860bef15613c7755de4338798f99a612" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>oneIndexTransformed</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3406af47b43cdf59b508d2c65ed78dd5" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a8fe948ec5f11fde630a6076b6d280563" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; _DerivedOperator &gt;::DerivedOperator, OperatorTraits&lt; _DerivedOperator &gt;::Scalar &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>operator*=</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a95a0c4cf331f89f073323bd8aaa60a6e" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>operator+=</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; OperatorTraits&lt; _DerivedOperator &gt;::DerivedOperator, OperatorTraits&lt; _DerivedOperator &gt;::Scalar &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>operator+=</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>operator-</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>parameters</name></member>
@@ -245,11 +245,11 @@
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>Random</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="GQCP::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ab1474f3ec1beed8cc704747f81a73d31" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="GQCP::BasisTransformable::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::GSQOneElectronOperator</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator_1aa51b9cfa45b84e2c9974692c748737a3" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ab6efacbe6abc0002e31bc4fe08ae6c7e" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>ScalarDerivedOperator</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a7bdaff688770ec8194aeaef02fae1340" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>ScalarFinalOperator</name></member>

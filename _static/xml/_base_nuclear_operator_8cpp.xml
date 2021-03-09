@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_base_nuclear_operator_8cpp" kind="file" language="C++">
     <compoundname>BaseNuclearOperator.cpp</compoundname>
     <includes refid="_base_nuclear_operator_8hpp" local="yes">Operator/FirstQuantized/BaseNuclearOperator.hpp</includes>
@@ -165,7 +165,7 @@
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>nuclear_framework<sp/>{nuclear_framework}<sp/>{}</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a94b1c7232e7ff103f31c2346b8d2d96a" kindref="member">BaseNuclearOperator::BaseNuclearOperator</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Nucleus&gt;&amp;<sp/>nuclei)<sp/>:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">BaseNuclearOperator::BaseNuclearOperator(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Nucleus&gt;&amp;<sp/>nuclei)<sp/>:</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>BaseNuclearOperator(NuclearFramework(nuclei))<sp/>{}</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
@@ -174,7 +174,7 @@
 <codeline lineno="48"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>pure<sp/>virtual<sp/>destructor<sp/>should<sp/>have<sp/>an<sp/>empty<sp/>implementation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5ff429963c499ddfca45164e17e734e9" kindref="member">BaseNuclearOperator::~BaseNuclearOperator</ref>()<sp/>{};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">BaseNuclearOperator::~BaseNuclearOperator()<sp/>{};</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>

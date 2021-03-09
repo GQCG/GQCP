@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_spin_orbital_basis" kind="class" language="C++" prot="public">
     <compoundname>GQCP::USpinOrbitalBasis</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt;, USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</basecompoundref>
@@ -790,7 +790,7 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="6">
-        <label>GQCP::JacobiRotatable&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="3">
@@ -816,7 +816,7 @@
         </childnode>
       </node>
       <node id="4">
-        <label>GQCP::BasisTransformable&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
       <node id="2">
@@ -826,7 +826,7 @@
     </inheritancegraph>
     <collaborationgraph>
       <node id="6">
-        <label>GQCP::JacobiRotatable&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="3">
@@ -852,7 +852,7 @@
         </childnode>
       </node>
       <node id="4">
-        <label>GQCP::BasisTransformable&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
       <node id="2">

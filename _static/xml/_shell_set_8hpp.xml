@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_shell_set_8hpp" kind="file" language="C++">
     <compoundname>ShellSet.hpp</compoundname>
     <includes refid="_g_t_o_shell_8hpp" local="yes">Basis/ScalarBasis/GTOShell.hpp</includes>
@@ -1353,7 +1353,7 @@
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
 <codeline lineno="38" refid="class_g_q_c_p_1_1_shell_set" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref><sp/>{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="40" refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" kindref="member">Shell</ref><sp/>=<sp/>_Shell;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>type<sp/>of<sp/>shell<sp/>that<sp/>is<sp/>contained<sp/>in<sp/>this<sp/>set</highlight><highlight class="normal"></highlight></codeline>

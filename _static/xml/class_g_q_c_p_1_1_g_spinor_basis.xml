@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g_spinor_basis" kind="class" language="C++" prot="public">
     <compoundname>GQCP::GSpinorBasis</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple_spinor_basis" prot="public" virt="non-virtual">GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</basecompoundref>
@@ -816,6 +816,10 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="5">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
       <node id="2">
         <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
@@ -826,17 +830,13 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::CRTP&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="5">
-        <label>GQCP::JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
       <node id="4">
-        <label>GQCP::BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
@@ -846,6 +846,10 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="5">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
       <node id="2">
         <label>GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_spinor_basis"/>
@@ -855,25 +859,14 @@
         </childnode>
         <childnode refid="5" relation="public-inheritance">
         </childnode>
-        <childnode refid="6" relation="usage">
-          <edgelabel>#C</edgelabel>
-        </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::CRTP&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="5">
-        <label>GQCP::JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="4">
-        <label>GQCP::BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
-      <node id="6">
-        <label>GQCP::BasisTransformableTraits&lt; FinalSpinorBasis &gt;</label>
-        <link refid="struct_g_q_c_p_1_1_basis_transformable_traits"/>
+      <node id="3">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="46" bodyend="458"/>
@@ -911,11 +904,10 @@
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aaf8591c62c2f9905264f8329fc2d5d37" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aa529a4a523093dca0af4104d3b8ee61b" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a9b0e5186f7f5a95f713efca6028025c0" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="GQCP::"><scope>GQCP::GSpinorBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::GSpinorBasis</scope><name>rotate</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" virt="virtual"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="GQCP::BasisTransformable::"><scope>GQCP::GSpinorBasis</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a9b4dd7434df5fbe0e5a9557b6645d764" prot="private" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>scalar_bases</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a29e97fd11c496f40147b63fcbf42a623" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>scalarBases</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Shell</name></member>
@@ -924,8 +916,7 @@
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>SQOverlapOperator</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::GSpinorBasis</scope><name>transform</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ac3b826302d446a0d413ab4ff5797148e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Transformation</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa6d146421985b3aefc1b4a9ec4aa6c54" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>transformed</name></member>
-      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::GSpinorBasis</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa6d146421985b3aefc1b4a9ec4aa6c54" prot="public" virt="virtual"><scope>GQCP::GSpinorBasis</scope><name>transformed</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

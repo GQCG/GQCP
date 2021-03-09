@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_iterative_identities_hessian_modifier_8cpp" kind="file" language="C++">
     <compoundname>IterativeIdentitiesHessianModifier.cpp</compoundname>
     <includes refid="_iterative_identities_hessian_modifier_8hpp" local="yes">Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp</includes>
@@ -191,14 +191,14 @@
 <codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>OVERRIDDEN<sp/>METHODS</highlight></codeline>
 <codeline lineno="41"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal">SquareMatrix&lt;double&gt;<sp/><ref refid="class_g_q_c_p_1_1_iterative_identities_hessian_modifier_1a82c62cd66ed7797b1af9775588ec72d3" kindref="member">IterativeIdentitiesHessianModifier::operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;&amp;<sp/>hessian)<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">SquareMatrix&lt;double&gt;<sp/>IterativeIdentitiesHessianModifier::operator()(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;&amp;<sp/>hessian)<sp/>{</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>tau_0,<sp/>i.e.<sp/>the<sp/>initial<sp/>value<sp/>for<sp/>tau</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>min_diagonal_el<sp/>=<sp/>hessian.diagonal().minCoeff();</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(min_diagonal_el<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tau<sp/>=<sp/>0.0;</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tau<sp/>=<sp/>-min_diagonal_el<sp/>+<sp/>this-&gt;beta;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tau<sp/>=<sp/>-min_diagonal_el<sp/>+<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>;</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
@@ -213,7 +213,7 @@
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modified_hessian<sp/>+=<sp/>this-&gt;tau<sp/>*<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;double&gt;::Identity</ref>(dim);</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>the<sp/>scaler</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tau<sp/>=<sp/>std::max(this-&gt;alpha<sp/>*<sp/>this-&gt;tau,<sp/>this-&gt;beta);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tau<sp/>=<sp/>std::max(this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref><sp/>*<sp/>this-&gt;tau,<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>);</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>modified_hessian;</highlight></codeline>

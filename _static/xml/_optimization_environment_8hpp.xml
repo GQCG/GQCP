@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_optimization_environment_8hpp" kind="file" language="C++">
     <compoundname>OptimizationEnvironment.hpp</compoundname>
     <includes local="no">deque</includes>
@@ -172,11 +172,11 @@
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Iterate&gt;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Iterate&gt;</highlight></codeline>
 <codeline lineno="33" refid="class_g_q_c_p_1_1_optimization_environment" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_optimization_environment" kindref="compound">OptimizationEnvironment</ref><sp/>{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="35" refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Iterate</ref><sp/>=<sp/>_Iterate;</highlight></codeline>
-<codeline lineno="36" refid="class_g_q_c_p_1_1_optimization_environment_1ab90536bd286710f617a8006c9e08558d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment_1ab90536bd286710f617a8006c9e08558d" kindref="member">Scalar</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_1a820960c1c3ad2c124d6be1ccd0eec021" kindref="member">Iterate::Scalar</ref>;</highlight></codeline>
+<codeline lineno="35" refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" kindref="member">Iterate</ref><sp/>=<sp/>_Iterate;</highlight></codeline>
+<codeline lineno="36" refid="class_g_q_c_p_1_1_optimization_environment_1ab90536bd286710f617a8006c9e08558d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment_1ab90536bd286710f617a8006c9e08558d" kindref="member">Scalar</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Iterate::Scalar;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -188,7 +188,7 @@
 <codeline lineno="45"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
 <codeline lineno="46"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53" refid="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" kindref="member">OptimizationEnvironment</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Iterate</ref>&amp;<sp/>initial_guess)<sp/>:</highlight></codeline>
+<codeline lineno="53" refid="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment_1a3e1584f77188e87fff296888f667e690" kindref="member">OptimizationEnvironment</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" kindref="member">Iterate</ref>&amp;<sp/>initial_guess)<sp/>:</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment_1adb8d5b6dd10be21c085d1a6855d307db" kindref="member">variables</ref><sp/>{initial_guess}<sp/>{}</highlight></codeline>
 <codeline lineno="55"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>

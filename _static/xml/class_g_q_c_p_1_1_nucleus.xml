@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_nucleus" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Nucleus</compoundname>
     <includes refid="_nucleus_8hpp" local="no">Nucleus.hpp</includes>
@@ -244,7 +244,7 @@
       </sectiondef>
       <sectiondef kind="friend">
       <memberdef kind="friend" id="class_g_q_c_p_1_1_nucleus_1add3a9881efd3c38d0dd574fb5259d84c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>friend std::ostream &amp;</type>
+        <type>std::ostream &amp;</type>
         <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const Nucleus &amp;nucleus)</argsstring>
         <name>operator&lt;&lt;</name>

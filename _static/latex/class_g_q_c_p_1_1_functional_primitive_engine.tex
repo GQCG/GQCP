@@ -1,0 +1,127 @@
+\hypertarget{class_g_q_c_p_1_1_functional_primitive_engine}{}\doxysection{GQCP\+::Functional\+Primitive\+Engine$<$ \+\_\+\+Integral\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_functional_primitive_engine}\index{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}}
+
+
+{\ttfamily \#include $<$Functional\+Primitive\+Engine.\+hpp$>$}
+
+
+
+Collaboration diagram for GQCP\+::Functional\+Primitive\+Engine$<$ \+\_\+\+Integral\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{class_g_q_c_p_1_1_functional_primitive_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}{Integral\+Scalar}} = \+\_\+\+Integral\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_aacc77fe3481ed09d9ca0e8eb282ed91b}{Functional\+Primitive\+Engine}} (const std\+::function$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}{Integral\+Scalar}}(const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&)$>$ \&function)
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a7cf67d03745b9a160c39bfd35f6287a3}{prepare\+State\+For\+Component}} (const size\+\_\+t component)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_ab540e80af6313a65244cd279d3f1ac9f}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a41eaa9480edfa34f8573d77fdf494969}{Components}} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Integral\+Scalar$>$\newline
+class GQCP\+::\+Functional\+Primitive\+Engine$<$ \+\_\+\+Integral\+Scalar $>$}
+
+A custom primitive engine that can calculate one-\/electron integrals over Cartesian GTOs according to a custom implementation. It is limited to calculating integrals over scalar operators.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Integral\+Scalar} & The scalar representation of one of the primitive integrals. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}\label{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}} 
+\index{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine}{GQCP\+::\+Functional\+Primitive\+Engine}}$<$ \+\_\+\+Integral\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}{Integral\+Scalar}} =  \+\_\+\+Integral\+Scalar}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_functional_primitive_engine_aacc77fe3481ed09d9ca0e8eb282ed91b}\label{class_g_q_c_p_1_1_functional_primitive_engine_aacc77fe3481ed09d9ca0e8eb282ed91b}} 
+\index{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}!FunctionalPrimitiveEngine@{FunctionalPrimitiveEngine}}
+\index{FunctionalPrimitiveEngine@{FunctionalPrimitiveEngine}!GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{FunctionalPrimitiveEngine()}{FunctionalPrimitiveEngine()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine}{GQCP\+::\+Functional\+Primitive\+Engine}}$<$ \+\_\+\+Integral\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine}{Functional\+Primitive\+Engine}} (\begin{DoxyParamCaption}\item[{const std\+::function$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}{Integral\+Scalar}}(const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&)$>$ \&}]{function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & A user-\/supplied custom function that can calculate primitive integrals over two Cartesian GTOs. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_functional_primitive_engine_ab540e80af6313a65244cd279d3f1ac9f}\label{class_g_q_c_p_1_1_functional_primitive_engine_ab540e80af6313a65244cd279d3f1ac9f}} 
+\index{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine_a174928d21997f1e43def391ab3658ba8}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine}{GQCP\+::\+Functional\+Primitive\+Engine}}$<$ \+\_\+\+Integral\+Scalar $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the primitive integral over two {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}}}s.
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The Cartesian GTO of the bra side. \\
+\hline
+{\em right} & The Cartesian GTO of the ket site.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the integral over the two given {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}}}s. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_functional_primitive_engine_a7cf67d03745b9a160c39bfd35f6287a3}\label{class_g_q_c_p_1_1_functional_primitive_engine_a7cf67d03745b9a160c39bfd35f6287a3}} 
+\index{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}!prepareStateForComponent@{prepareStateForComponent}}
+\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{prepareStateForComponent()}{prepareStateForComponent()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine}{GQCP\+::\+Functional\+Primitive\+Engine}}$<$ \+\_\+\+Integral\+Scalar $>$\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & The index of the component of the operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Since this kind of primitive engine is limited to 1-\/component operators (i.\+e. scalar operators), this method has no effect. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_functional_primitive_engine_a41eaa9480edfa34f8573d77fdf494969}\label{class_g_q_c_p_1_1_functional_primitive_engine_a41eaa9480edfa34f8573d77fdf494969}} 
+\index{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}!Components@{Components}}
+\index{Components@{Components}!GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalPrimitiveEngine$<$ \_IntegralScalar $>$}}
+\doxysubsubsection{\texorpdfstring{Components}{Components}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_functional_primitive_engine}{GQCP\+::\+Functional\+Primitive\+Engine}}$<$ \+\_\+\+Integral\+Scalar $>$\+::Components = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_functional_primitive_engine_8hpp}{Functional\+Primitive\+Engine.\+hpp}}\end{DoxyCompactItemize}

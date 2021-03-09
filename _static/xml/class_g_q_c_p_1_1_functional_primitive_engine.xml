@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_functional_primitive_engine" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::FunctionalPrimitiveEngine</compoundname>
+    <includes refid="_functional_primitive_engine_8hpp" local="no">FunctionalPrimitiveEngine.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _IntegralScalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_functional_primitive_engine_1a174928d21997f1e43def391ab3658ba8" prot="public" static="no">
+        <type>_IntegralScalar</type>
+        <definition>using GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;::IntegralScalar =  _IntegralScalar</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" line="37" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_functional_primitive_engine_1a41eaa9480edfa34f8573d77fdf494969" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;::Components</definition>
+        <argsstring></argsstring>
+        <name>Components</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" line="40" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_functional_primitive_engine_1ad611d282231b4d895648cbe78c91ebc0" prot="private" static="no" mutable="no">
+        <type>std::function&lt; <ref refid="class_g_q_c_p_1_1_functional_primitive_engine_1a174928d21997f1e43def391ab3658ba8" kindref="member">IntegralScalar</ref>(const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;, const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;)&gt;</type>
+        <definition>std::function&lt;IntegralScalar(const CartesianGTO&amp;, const CartesianGTO&amp;)&gt; GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;::function</definition>
+        <argsstring></argsstring>
+        <name>function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" line="44" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_functional_primitive_engine_1aacc77fe3481ed09d9ca0e8eb282ed91b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;::FunctionalPrimitiveEngine</definition>
+        <argsstring>(const std::function&lt; IntegralScalar(const CartesianGTO &amp;, const CartesianGTO &amp;)&gt; &amp;function)</argsstring>
+        <name>FunctionalPrimitiveEngine</name>
+        <param>
+          <type>const std::function&lt; <ref refid="class_g_q_c_p_1_1_functional_primitive_engine_1a174928d21997f1e43def391ab3658ba8" kindref="member">IntegralScalar</ref>(const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;, const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;)&gt; &amp;</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A user-supplied custom function that can calculate primitive integrals over two Cartesian GTOs. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" bodystart="55" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_functional_primitive_engine_1a7cf67d03745b9a160c39bfd35f6287a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;::prepareStateForComponent</definition>
+        <argsstring>(const size_t component)</argsstring>
+        <name>prepareStateForComponent</name>
+        <param>
+          <type>const size_t</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the component of the operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Since this kind of primitive engine is limited to 1-component operators (i.e. scalar operators), this method has no effect. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" line="70" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_functional_primitive_engine_1ab540e80af6313a65244cd279d3f1ac9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_functional_primitive_engine_1a174928d21997f1e43def391ab3658ba8" kindref="member">IntegralScalar</ref></type>
+        <definition>IntegralScalar GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;::calculate</definition>
+        <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right) const</argsstring>
+        <name>calculate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the primitive integral over two <computeroutput><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref></computeroutput>s.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian GTO of the bra side. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian GTO of the ket site.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the integral over the two given <computeroutput><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref></computeroutput>s. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" line="80" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A custom primitive engine that can calculate one-electron integrals over Cartesian GTOs according to a custom implementation. It is limited to calculating integrals over scalar operators.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_IntegralScalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar representation of one of the primitive integrals. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_primitive_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp" bodystart="34" bodyend="81"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_functional_primitive_engine_1ab540e80af6313a65244cd279d3f1ac9f" prot="public" virt="non-virtual"><scope>GQCP::FunctionalPrimitiveEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_functional_primitive_engine_1a41eaa9480edfa34f8573d77fdf494969" prot="public" virt="non-virtual"><scope>GQCP::FunctionalPrimitiveEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_functional_primitive_engine_1ad611d282231b4d895648cbe78c91ebc0" prot="private" virt="non-virtual"><scope>GQCP::FunctionalPrimitiveEngine</scope><name>function</name></member>
+      <member refid="class_g_q_c_p_1_1_functional_primitive_engine_1aacc77fe3481ed09d9ca0e8eb282ed91b" prot="public" virt="non-virtual"><scope>GQCP::FunctionalPrimitiveEngine</scope><name>FunctionalPrimitiveEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_functional_primitive_engine_1a174928d21997f1e43def391ab3658ba8" prot="public" virt="non-virtual"><scope>GQCP::FunctionalPrimitiveEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_functional_primitive_engine_1a7cf67d03745b9a160c39bfd35f6287a3" prot="public" virt="non-virtual"><scope>GQCP::FunctionalPrimitiveEngine</scope><name>prepareStateForComponent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

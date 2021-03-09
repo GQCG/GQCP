@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_libint_interfacer}{}\doxysection{G\+Q\+CP\+::Libint\+Interfacer Class Reference}
+\hypertarget{class_g_q_c_p_1_1_libint_interfacer}{}\doxysection{GQCP\+::Libint\+Interfacer Class Reference}
 \label{class_g_q_c_p_1_1_libint_interfacer}\index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 
 
@@ -6,12 +6,12 @@
 
 
 
-Collaboration diagram for G\+Q\+CP\+::Libint\+Interfacer\+:
+Collaboration diagram for GQCP\+::Libint\+Interfacer\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=262pt]{class_g_q_c_p_1_1_libint_interfacer__coll__graph}
+\includegraphics[width=205pt]{class_g_q_c_p_1_1_libint_interfacer__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -26,17 +26,21 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a60b19bbf913080d3e958
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_aab216f2d2458c398eb271561f7f553dd}{operator=}} (\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}} const \&libint\+\_\+communicator)=delete
 \item 
+libint2\+::svector$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}} (const std\+::vector$<$ double $>$ \&vector) const
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a1b4b0834ac2f6b99d6cdd1525a93bd60}{interface}} (const libint2\+::svector$<$ double $>$ \&svector) const
+\item 
 libint2\+::\+Atom \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ab167b72e70548e5f2dd14e34d6fb1780}{interface}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&nucleus) const
 \item 
 std\+::vector$<$ libint2\+::\+Atom $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a22bdd7cee1e7f37677c16e99ea2ac4ab}{interface}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei) const
 \item 
-libint2\+::\+Shell \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a330f91c686a79c6950dec1f068bed6ce}{interface}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&shell) const
+libint2\+::\+Shell \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a330f91c686a79c6950dec1f068bed6ce}{interface}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} \&shell) const
 \item 
-libint2\+::\+Basis\+Set \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_abb87b475cd511ef6364d10f3e0f0fcd1}{interface}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&shellset) const
+libint2\+::\+Basis\+Set \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_abb87b475cd511ef6364d10f3e0f0fcd1}{interface}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ \&shellset) const
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a27340a4cb6bb52c86c2d2dfa18d1e6cd}{interface}} (const libint2\+::\+Shell \&libint\+\_\+shell, const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei, bool undo\+\_\+renorm=true) const
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a27340a4cb6bb52c86c2d2dfa18d1e6cd}{interface}} (const libint2\+::\+Shell \&libint\+\_\+shell, const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei, bool undo\+\_\+renorm=true) const
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac0ee59a07f22370ebbaba392c837402a}{interface}} (const libint2\+::\+Basis\+Set \&libint\+\_\+basisset, const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei) const
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac0ee59a07f22370ebbaba392c837402a}{interface}} (const libint2\+::\+Basis\+Set \&libint\+\_\+basisset, const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei) const
 \item 
 libint2\+::\+Engine \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac404e0944449e3e4698bdba35067290e}{create\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l) const
 \item 
@@ -62,7 +66,7 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}
 
 
 \doxysubsection{Detailed Description}
-A singleton class that takes care of interfacing with the Libint2 (version 2.\+3.\+1) C++ A\+PI
+A singleton class that takes care of interfacing with the Libint2 (version 2.\+3.\+1) C++ API
 
 Singleton class template from\+: \href{https://stackoverflow.com/a/1008289}{\texttt{ https\+://stackoverflow.\+com/a/1008289}} 
 
@@ -71,7 +75,7 @@ Singleton class template from\+: \href{https://stackoverflow.com/a/1008289}{\tex
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!libint\_target\_ptr\_vec@{libint\_target\_ptr\_vec}}
 \index{libint\_target\_ptr\_vec@{libint\_target\_ptr\_vec}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{libint\_target\_ptr\_vec}{libint\_target\_ptr\_vec}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a60b19bbf913080d3e958cca51bc16196}{G\+Q\+C\+P\+::\+Libint\+Interfacer\+::libint\+\_\+target\+\_\+ptr\+\_\+vec}} =  libint2\+::\+Engine\+::target\+\_\+ptr\+\_\+vec}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a60b19bbf913080d3e958cca51bc16196}{GQCP\+::\+Libint\+Interfacer\+::libint\+\_\+target\+\_\+ptr\+\_\+vec}} =  libint2\+::\+Engine\+::target\+\_\+ptr\+\_\+vec}
 
 
 
@@ -80,7 +84,7 @@ Singleton class template from\+: \href{https://stackoverflow.com/a/1008289}{\tex
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!LibintInterfacer@{LibintInterfacer}}
 \index{LibintInterfacer@{LibintInterfacer}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{LibintInterfacer()}{LibintInterfacer()}}
-{\footnotesize\ttfamily G\+Q\+C\+P\+::\+Libint\+Interfacer\+::\+Libint\+Interfacer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}} const \&}]{libint\+\_\+communicator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+{\footnotesize\ttfamily GQCP\+::\+Libint\+Interfacer\+::\+Libint\+Interfacer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}} const \&}]{libint\+\_\+communicator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 Remove the public copy constructor and the public assignment operator 
 
@@ -89,7 +93,7 @@ Remove the public copy constructor and the public assignment operator
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!createEngine@{createEngine}}
 \index{createEngine@{createEngine}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{createEngine()}{createEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
-{\footnotesize\ttfamily libint2\+::\+Engine G\+Q\+C\+P\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily libint2\+::\+Engine GQCP\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
 
 Construct a libint2 engine that corresponds to the given operator
 
@@ -109,7 +113,7 @@ the proper libint2 engine
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!createEngine@{createEngine}}
 \index{createEngine@{createEngine}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{createEngine()}{createEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
-{\footnotesize\ttfamily libint2\+::\+Engine G\+Q\+C\+P\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily libint2\+::\+Engine GQCP\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
 
 Construct a libint2 engine that corresponds to the given operator
 
@@ -129,7 +133,7 @@ the proper libint2 engine
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!createEngine@{createEngine}}
 \index{createEngine@{createEngine}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{createEngine()}{createEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
-{\footnotesize\ttfamily libint2\+::\+Engine G\+Q\+C\+P\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily libint2\+::\+Engine GQCP\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
 
 Construct a libint2 engine that corresponds to the given operator
 
@@ -149,7 +153,7 @@ the proper libint2 engine
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!createEngine@{createEngine}}
 \index{createEngine@{createEngine}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{createEngine()}{createEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
-{\footnotesize\ttfamily libint2\+::\+Engine G\+Q\+C\+P\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily libint2\+::\+Engine GQCP\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
 
 Construct a libint2 engine that corresponds to the given operator
 
@@ -169,7 +173,7 @@ the proper libint2 engine
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!createEngine@{createEngine}}
 \index{createEngine@{createEngine}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{createEngine()}{createEngine()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
-{\footnotesize\ttfamily libint2\+::\+Engine G\+Q\+C\+P\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily libint2\+::\+Engine GQCP\+::\+Libint\+Interfacer\+::create\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \&}]{op,  }\item[{const size\+\_\+t}]{max\+\_\+nprim,  }\item[{const size\+\_\+t}]{max\+\_\+l }\end{DoxyParamCaption}) const}
 
 Construct a libint2 engine that corresponds to the given operator
 
@@ -189,7 +193,7 @@ the proper libint2 engine
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!get@{get}}
 \index{get@{get}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}} \& G\+Q\+C\+P\+::\+Libint\+Interfacer\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}} \& GQCP\+::\+Libint\+Interfacer\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \begin{DoxyReturn}{Returns}
 the static singleton instance 
@@ -197,32 +201,32 @@ the static singleton instance
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_a330f91c686a79c6950dec1f068bed6ce}\label{class_g_q_c_p_1_1_libint_interfacer_a330f91c686a79c6950dec1f068bed6ce}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
 \index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
-\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
-{\footnotesize\ttfamily libint2\+::\+Shell G\+Q\+C\+P\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} \&}]{shell }\end{DoxyParamCaption}) const}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
+{\footnotesize\ttfamily libint2\+::\+Shell GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} \&}]{shell }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
-{\em shell} & the \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} shell that should be interfaced\\
+{\em shell} & the \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} shell that should be interfaced\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a libint2\+::\+Shell whose renorm()alization has been undone, interfaced from the \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}}
+a libint2\+::\+Shell whose renorm()alization has been undone, interfaced from the \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-{\em shell} & the \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} shell that should be interfaced\\
+{\em shell} & the \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} shell that should be interfaced\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a libint2\+::\+Shell whose renorm()alization has been undone, interfaced from the \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} Shell 
+a libint2\+::\+Shell whose renorm()alization has been undone, interfaced from the \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} Shell 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_ac0ee59a07f22370ebbaba392c837402a}\label{class_g_q_c_p_1_1_libint_interfacer_ac0ee59a07f22370ebbaba392c837402a}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
 \index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
-\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ G\+Q\+C\+P\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const libint2\+::\+Basis\+Set \&}]{libint\+\_\+basisset,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei }\end{DoxyParamCaption}) const}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const libint2\+::\+Basis\+Set \&}]{libint\+\_\+basisset,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei }\end{DoxyParamCaption}) const}
 
-Interface a libint2\+::\+Basis\+Set to the corresponding \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{G\+Q\+C\+P\+::\+Shell\+Set}} and undo the libint2 renorm()alization
+Interface a libint2\+::\+Basis\+Set to the corresponding \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}} and undo the libint2 renorm()alization
 
 
 \begin{DoxyParams}{Parameters}
@@ -232,15 +236,15 @@ Interface a libint2\+::\+Basis\+Set to the corresponding \mbox{\hyperlink{class_
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a vector of G\+T\+O\+Shells corresponding to the un-\/renorm()alized libint2\+::\+Basis\+Set 
+a vector of GTOShells corresponding to the un-\/renorm()alized libint2\+::\+Basis\+Set 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_a27340a4cb6bb52c86c2d2dfa18d1e6cd}\label{class_g_q_c_p_1_1_libint_interfacer_a27340a4cb6bb52c86c2d2dfa18d1e6cd}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
 \index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
-\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ G\+Q\+C\+P\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const libint2\+::\+Shell \&}]{libint\+\_\+shell,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei,  }\item[{bool}]{undo\+\_\+renorm = {\ttfamily true} }\end{DoxyParamCaption}) const}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const libint2\+::\+Shell \&}]{libint\+\_\+shell,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei,  }\item[{bool}]{undo\+\_\+renorm = {\ttfamily true} }\end{DoxyParamCaption}) const}
 
-Interface a libint2\+::\+Shell to the corresponding list of G\+Q\+C\+P\+::\+Shells. Note that there is no one-\/to-\/one libint -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} conversion, since \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} does not support representing \textquotesingle{}linked\textquotesingle{} sp-\/\textquotesingle{}shells\textquotesingle{}
+Interface a libint2\+::\+Shell to the corresponding list of GQCP\+::\+Shells. Note that there is no one-\/to-\/one libint -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} conversion, since \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} does not support representing \textquotesingle{}linked\textquotesingle{} sp-\/\textquotesingle{}shells\textquotesingle{}
 
 
 \begin{DoxyParams}{Parameters}
@@ -252,9 +256,9 @@ Interface a libint2\+::\+Shell to the corresponding list of G\+Q\+C\+P\+::\+Shel
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a vector of G\+Q\+C\+P\+::\+Shells corresponding to the given libint2\+::\+Shells
+a vector of GQCP\+::\+Shells corresponding to the given libint2\+::\+Shells
 \end{DoxyReturn}
-Interface a libint2\+::\+Shell to the corresponding list of G\+Q\+C\+P\+::\+Shells. Note that there is no one-\/to-\/one libint -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} conversion, since \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} does not support representing \textquotesingle{}linked\textquotesingle{} sp-\/\textquotesingle{}shells\textquotesingle{}
+Interface a libint2\+::\+Shell to the corresponding list of GQCP\+::\+Shells. Note that there is no one-\/to-\/one libint -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} conversion, since \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} does not support representing \textquotesingle{}linked\textquotesingle{} sp-\/\textquotesingle{}shells\textquotesingle{}
 
 
 \begin{DoxyParams}{Parameters}
@@ -266,55 +270,87 @@ Interface a libint2\+::\+Shell to the corresponding list of G\+Q\+C\+P\+::\+Shel
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a vector of G\+Q\+C\+P\+::\+Shells 
+a vector of GQCP\+::\+Shells 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_a1b4b0834ac2f6b99d6cdd1525a93bd60}\label{class_g_q_c_p_1_1_libint_interfacer_a1b4b0834ac2f6b99d6cdd1525a93bd60}} 
+\index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
+\index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const libint2\+::svector$<$ double $>$ \&}]{svector }\end{DoxyParamCaption}) const}
+
+Convert a {\ttfamily libint2\+::svector} to a {\ttfamily std\+::vector}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em svector} & The {\ttfamily libint2\+::svector}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The {\ttfamily std\+::vector}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_ab167b72e70548e5f2dd14e34d6fb1780}\label{class_g_q_c_p_1_1_libint_interfacer_ab167b72e70548e5f2dd14e34d6fb1780}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
 \index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
-\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
-{\footnotesize\ttfamily libint2\+::\+Atom G\+Q\+C\+P\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&}]{nucleus }\end{DoxyParamCaption}) const}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
+{\footnotesize\ttfamily libint2\+::\+Atom GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} \&}]{nucleus }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
-{\em nucleus} & the G\+Q\+C\+P-\/nucleus that should be interfaced into a libint2\+::\+Atom\\
+{\em nucleus} & the GQCP-\/nucleus that should be interfaced into a libint2\+::\+Atom\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a libint2\+::\+Atom, interfaced from the given \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{G\+Q\+C\+P\+::\+Nucleus}} 
+a libint2\+::\+Atom, interfaced from the given \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{GQCP\+::\+Nucleus}} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_abb87b475cd511ef6364d10f3e0f0fcd1}\label{class_g_q_c_p_1_1_libint_interfacer_abb87b475cd511ef6364d10f3e0f0fcd1}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
 \index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
-\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
-{\footnotesize\ttfamily libint2\+::\+Basis\+Set G\+Q\+C\+P\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{G\+T\+O\+Shell}} $>$ \&}]{shellset }\end{DoxyParamCaption}) const}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
+{\footnotesize\ttfamily libint2\+::\+Basis\+Set GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ \&}]{shellset }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
-{\em shellset} & the \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} that should be interfaced\\
+{\em shellset} & the \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} that should be interfaced\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a libint2\+::\+Basis\+Set (whose underlying libint2\+::\+Shells have been re-\/renorm()alized), interfaced from the \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}. Note that it is not possible to create libint2-\/sp-\/shells from a \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} 
+a libint2\+::\+Basis\+Set (whose underlying libint2\+::\+Shells have been re-\/renorm()alized), interfaced from the \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}. Note that it is not possible to create libint2-\/sp-\/shells from a \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}\label{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}} 
+\index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
+\index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
+{\footnotesize\ttfamily libint2\+::svector$<$ double $>$ GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{vector }\end{DoxyParamCaption}) const}
+
+Convert a {\ttfamily std\+::vector} to a {\ttfamily libint2\+::svector}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The {\ttfamily std\+::vector}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The {\ttfamily libint2\+::svector}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_a22bdd7cee1e7f37677c16e99ea2ac4ab}\label{class_g_q_c_p_1_1_libint_interfacer_a22bdd7cee1e7f37677c16e99ea2ac4ab}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!interface@{interface}}
 \index{interface@{interface}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
-\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
-{\footnotesize\ttfamily std\+::vector$<$ libint2\+::\+Atom $>$ G\+Q\+C\+P\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei }\end{DoxyParamCaption}) const}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
+{\footnotesize\ttfamily std\+::vector$<$ libint2\+::\+Atom $>$ GQCP\+::\+Libint\+Interfacer\+::interface (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
-{\em nuclei} & the G\+Q\+C\+P-\/nuclei that should be interfaced\\
+{\em nuclei} & the GQCP-\/nuclei that should be interfaced\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-libint2\+::\+Atoms, interfaced from the given \mbox{\hyperlink{namespace_g_q_c_p}{G\+Q\+CP}} nuclei 
+libint2\+::\+Atoms, interfaced from the given \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}} nuclei 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_a0b96ca7831ded630ed76449a6e6cb420}\label{class_g_q_c_p_1_1_libint_interfacer_a0b96ca7831ded630ed76449a6e6cb420}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!numberOfShells@{numberOfShells}}
 \index{numberOfShells@{numberOfShells}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{numberOfShells()}{numberOfShells()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Libint\+Interfacer\+::number\+Of\+Shells (\begin{DoxyParamCaption}\item[{const libint2\+::\+Basis\+Set \&}]{libint\+\_\+basisset }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily size\+\_\+t GQCP\+::\+Libint\+Interfacer\+::number\+Of\+Shells (\begin{DoxyParamCaption}\item[{const libint2\+::\+Basis\+Set \&}]{libint\+\_\+basisset }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
@@ -328,7 +364,7 @@ the number of true shells that are contained in the libint2\+::\+Basis\+Set
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!numberOfShells@{numberOfShells}}
 \index{numberOfShells@{numberOfShells}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{numberOfShells()}{numberOfShells()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily size\+\_\+t G\+Q\+C\+P\+::\+Libint\+Interfacer\+::number\+Of\+Shells (\begin{DoxyParamCaption}\item[{const libint2\+::\+Shell \&}]{libint\+\_\+shell }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily size\+\_\+t GQCP\+::\+Libint\+Interfacer\+::number\+Of\+Shells (\begin{DoxyParamCaption}\item[{const libint2\+::\+Shell \&}]{libint\+\_\+shell }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
@@ -350,13 +386,13 @@ the number of true shells that are contained in the libint shell
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!operator=@{operator=}}
 \index{operator=@{operator=}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
-{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Libint\+Interfacer\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}} const \&}]{libint\+\_\+communicator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+{\footnotesize\ttfamily void GQCP\+::\+Libint\+Interfacer\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{Libint\+Interfacer}} const \&}]{libint\+\_\+communicator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_libint_interfacer_ad39caadc6d5320df459e9d451c4b0b1c}\label{class_g_q_c_p_1_1_libint_interfacer_ad39caadc6d5320df459e9d451c4b0b1c}} 
 \index{GQCP::LibintInterfacer@{GQCP::LibintInterfacer}!undoRenorm@{undoRenorm}}
 \index{undoRenorm@{undoRenorm}!GQCP::LibintInterfacer@{GQCP::LibintInterfacer}}
 \doxysubsubsection{\texorpdfstring{undoRenorm()}{undoRenorm()}}
-{\footnotesize\ttfamily void G\+Q\+C\+P\+::\+Libint\+Interfacer\+::undo\+Renorm (\begin{DoxyParamCaption}\item[{libint2\+::\+Shell \&}]{libint\+\_\+shell }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily void GQCP\+::\+Libint\+Interfacer\+::undo\+Renorm (\begin{DoxyParamCaption}\item[{libint2\+::\+Shell \&}]{libint\+\_\+shell }\end{DoxyParamCaption}) const}
 
 Undo the libint2 default renormalization (see libint2\+::\+Shell\+::renorm())
 
@@ -369,5 +405,5 @@ Undo the libint2 default renormalization (see libint2\+::\+Shell\+::renorm())
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libint_interfacer_8hpp}{Libint\+Interfacer.\+hpp}}\item 
-/\+\_\+\+\_\+w/\+G\+Q\+C\+P/\+G\+Q\+C\+P/gqcp/src/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libint_interfacer_8cpp}{Libint\+Interfacer.\+cpp}}\end{DoxyCompactItemize}
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libint_interfacer_8hpp}{Libint\+Interfacer.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Integrals/\+Interfaces/\mbox{\hyperlink{_libint_interfacer_8cpp}{Libint\+Interfacer.\+cpp}}\end{DoxyCompactItemize}

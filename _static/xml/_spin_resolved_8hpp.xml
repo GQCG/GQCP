@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_spin_resolved_8hpp" kind="file" language="C++">
     <compoundname>SpinResolved.hpp</compoundname>
     <includes refid="_spin_resolved_base_8hpp" local="yes">QuantumChemical/SpinResolvedBase.hpp</includes>
@@ -1133,13 +1133,13 @@
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Of&gt;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Of&gt;</highlight></codeline>
 <codeline lineno="33" refid="class_g_q_c_p_1_1_spin_resolved" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>:</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt;_Of,<sp/>SpinResolved&lt;_Of&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>alpha-<sp/>and<sp/>beta-objects.<sp/>The<sp/>name<sp/>&apos;Of&apos;<sp/>is<sp/>chosen<sp/>for<sp/>a<sp/>natural<sp/>reading<sp/>`SpinResolved&lt;_Of,<sp/>_Derived&gt;`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="class_g_q_c_p_1_1_spin_resolved_1af19dfed239cc0a9d1949f8dbe00dfd41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">Of</ref><sp/>=<sp/>_Of;</highlight></codeline>
-<codeline lineno="38" refid="class_g_q_c_p_1_1_spin_resolved_1a4822a07715e3b9af5d97c669ddd6c077" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ComponentType</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_spin_resolved_1af19dfed239cc0a9d1949f8dbe00dfd41" kindref="member">Of</ref>;</highlight></codeline>
+<codeline lineno="37" refid="class_g_q_c_p_1_1_spin_resolved_1af19dfed239cc0a9d1949f8dbe00dfd41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved_1af19dfed239cc0a9d1949f8dbe00dfd41" kindref="member">Of</ref><sp/>=<sp/>_Of;</highlight></codeline>
+<codeline lineno="38" refid="class_g_q_c_p_1_1_spin_resolved_1a4822a07715e3b9af5d97c669ddd6c077" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved_1a4822a07715e3b9af5d97c669ddd6c077" kindref="member">ComponentType</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_spin_resolved_1af19dfed239cc0a9d1949f8dbe00dfd41" kindref="member">Of</ref>;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kind="class" language="C++" prot="public">
     <compoundname>GQCP::RHFSCFEnvironment</compoundname>
     <includes refid="_r_h_f_s_c_f_environment_8hpp" local="no">RHFSCFEnvironment.hpp</includes>
@@ -419,23 +419,19 @@
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="13">
-        <label>GQCP::JacobiRotatable&lt; RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; SQHamiltonian&lt; Scalar, _ScalarSQTwoElectronOperator &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
       <node id="8">
-        <label>GQCP::SQOperatorStorageBase&lt; SquareMatrix&lt; Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;</label>
+        <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
         <childnode refid="9" relation="usage">
           <edgelabel>#array</edgelabel>
         </childnode>
       </node>
+      <node id="12">
+        <label>GQCP::BasisTransformable&lt; _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="6">
-        <label>GQCP::SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt;</label>
+        <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
         <childnode refid="7" relation="public-inheritance">
         </childnode>
@@ -443,6 +439,14 @@
         </childnode>
         <childnode refid="13" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="13">
+        <label>GQCP::JacobiRotatable&lt; _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="4">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="1">
         <label>GQCP::RHFSCFEnvironment&lt; _Scalar &gt;</label>
@@ -454,29 +458,9 @@
           <edgelabel>+S</edgelabel>
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::JacobiRotatable&lt; SQHamiltonian&lt; Scalar, _ScalarSQTwoElectronOperator &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
       <node id="9">
         <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_storage_array"/>
-      </node>
-      <node id="11">
-        <label>GQCP::CRTP&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="7">
-        <label>GQCP::SQOperatorStorage&lt; SquareMatrix&lt; Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
-        <childnode refid="8" relation="public-inheritance">
-        </childnode>
-        <childnode refid="10" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>GQCP::BasisTransformable&lt; RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
       <node id="2">
         <label>GQCP::SQHamiltonian&lt; Scalar &gt;</label>
@@ -486,11 +470,27 @@
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="7">
+        <label>GQCP::SQOperatorStorage&lt; SquareMatrix&lt; _Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
       <node id="10">
-        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
+        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="11" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp" bodystart="44" bodyend="172"/>

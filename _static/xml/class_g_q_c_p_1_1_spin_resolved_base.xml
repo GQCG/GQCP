@@ -1,7 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_spin_resolved_base" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SpinResolvedBase</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_spin_resolved" prot="public" virt="non-virtual">GQCP::SpinResolved&lt; GQCP::Matrix&lt; Scalar &gt; &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_spin_resolved" prot="public" virt="non-virtual">GQCP::SpinResolved&lt; size_t &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_spin_resolved" prot="public" virt="non-virtual">GQCP::SpinResolved&lt; GQCP::ScalarBasis&lt; Shell &gt; &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" prot="public" virt="non-virtual">GQCP::USQOneElectronOperator&lt; Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_u_transformation" prot="public" virt="non-virtual">GQCP::UTransformation&lt; Scalar &gt;</derivedcompoundref>
     <includes refid="_spin_resolved_base_8hpp" local="no">SpinResolvedBase.hpp</includes>
     <templateparamlist>
       <param>
@@ -385,6 +390,42 @@
 </parameterlist>
 </para>
     </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::SpinResolved&lt; GQCP::Matrix&lt; Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::USQOneElectronOperator&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SpinResolved&lt; size_t &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="4">
+        <label>GQCP::SpinResolved&lt; GQCP::ScalarBasis&lt; Shell &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::UTransformation&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_transformation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
     <collaborationgraph>
       <node id="1">
         <label>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;</label>

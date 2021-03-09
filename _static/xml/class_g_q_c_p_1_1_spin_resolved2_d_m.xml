@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_spin_resolved2_d_m" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SpinResolved2DM</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" prot="public" virt="non-virtual">GQCP::DoublySpinResolvedBase&lt; PureSpinResolved2DMComponent&lt; _Scalar &gt;, MixedSpinResolved2DMComponent&lt; _Scalar &gt;, SpinResolved2DM&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -120,6 +120,10 @@
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
       <node id="1">
         <label>GQCP::SpinResolved2DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved2_d_m"/>
@@ -141,12 +145,8 @@
         </childnode>
       </node>
       <node id="4">
-        <label>GQCP::BasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
@@ -156,6 +156,10 @@
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="6">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
       <node id="1">
         <label>GQCP::SpinResolved2DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved2_d_m"/>
@@ -177,12 +181,8 @@
         </childnode>
       </node>
       <node id="4">
-        <label>GQCP::BasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="6">
-        <label>GQCP::JacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="44" bodyend="111"/>
@@ -205,8 +205,7 @@
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_1a6d8f51cf240f4a7acc6bc309a84ab563" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="JacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_1a6d8f51cf240f4a7acc6bc309a84ab563" prot="public" virt="virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ae334f20472a5e944c4ec8aedb2c973cf" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a2ef5bcf1e85d71497386544f2cbabfb1" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SpinResolved2DM</scope><name>transform</name></member>

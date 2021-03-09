@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_matrix" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Matrix</compoundname>
     <basecompoundref prot="public" virt="non-virtual">Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</basecompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; _Scalar &gt;</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; double &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; double &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; size_t &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_square_matrix" prot="public" virt="non-virtual">GQCP::SquareMatrix&lt; _Scalar &gt;</derivedcompoundref>
     <includes refid="_matrix_8hpp" local="no">Matrix.hpp</includes>
     <templateparamlist>
       <param>
@@ -934,13 +934,7 @@ We have decided to inherit from Eigen::Matrix, because we will use different hie
     </detaileddescription>
     <inheritancegraph>
       <node id="5">
-        <label>SquareMatrix&lt; Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_square_matrix"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>SquareMatrix&lt; double &gt;</label>
+        <label>GQCP::SquareMatrix&lt; size_t &gt;</label>
         <link refid="class_g_q_c_p_1_1_square_matrix"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
@@ -954,14 +948,20 @@ We have decided to inherit from Eigen::Matrix, because we will use different hie
       <node id="2">
         <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
-      <node id="3">
+      <node id="6">
         <label>GQCP::SquareMatrix&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_square_matrix"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>SquareMatrix&lt; size_t &gt;</label>
+      <node id="4">
+        <label>GQCP::SquareMatrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::SquareMatrix&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_square_matrix"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>

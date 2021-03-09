@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_nuclear_dipole_operator_8cpp" kind="file" language="C++">
     <compoundname>NuclearDipoleOperator.cpp</compoundname>
     <includes refid="_nuclear_dipole_operator_8hpp" local="yes">Operator/FirstQuantized/NuclearDipoleOperator.hpp</includes>
@@ -189,11 +189,11 @@
 <codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Operator<sp/>value</highlight></codeline>
 <codeline lineno="41"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal">Vector&lt;double,<sp/>3&gt;<sp/><ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator_1a81f61a6c3e8e15e07c8227c56f82965b" kindref="member">NuclearDipoleOperator::value</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">Vector&lt;double,<sp/>3&gt;<sp/>NuclearDipoleOperator::value()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector&lt;double,<sp/>3&gt;<sp/>mu<sp/>=<sp/>Vector&lt;double,<sp/>3&gt;::Zero();</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>nuclei<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" kindref="member">nucleiAsVector</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>nuclei<sp/>=<sp/>this-&gt;nuclearFramework().nucleiAsVector();</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>nucleus<sp/>:<sp/>nuclei)<sp/>{</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mu<sp/>+=<sp/>nucleus.charge()<sp/>*<sp/>nucleus.position();</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>

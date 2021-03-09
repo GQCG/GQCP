@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_orbital_rotation_generators_8cpp" kind="file" language="C++">
     <compoundname>OrbitalRotationGenerators.cpp</compoundname>
     <includes refid="_orbital_rotation_generators_8hpp" local="yes">Basis/Transformations/OrbitalRotationGenerators.hpp</includes>
@@ -224,7 +224,7 @@
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>number_of_spatial_orbitals<sp/>{<ref refid="namespace_g_q_c_p_1a1457a824d08dadcac6a081f036d4eaa5" kindref="member">strictTriangularRootOf</ref>(kappa_vector.size())}<sp/>{}</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators_1ac1acbcaa8a7d1d9d13e8adea6622f0c2" kindref="member">OrbitalRotationGenerators::OrbitalRotationGenerators</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;&amp;<sp/>kappa_matrix)<sp/>:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">OrbitalRotationGenerators::OrbitalRotationGenerators(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;&amp;<sp/>kappa_matrix)<sp/>:</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>OrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduced())<sp/>{}</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
@@ -232,12 +232,12 @@
 <codeline lineno="44"><highlight class="comment"><sp/>*<sp/><sp/>NAMED<sp/>CONSTRUCTORS</highlight></codeline>
 <codeline lineno="45"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal">OrbitalRotationGenerators<sp/><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a349b4e62d2f1b8a6f2a3f82bc377dc57" kindref="member">OrbitalRotationGenerators::FromOccOcc</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OrbitalRotationGenerators&amp;<sp/>o_o_generators,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">OrbitalRotationGenerators<sp/>OrbitalRotationGenerators::FromOccOcc(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OrbitalRotationGenerators&amp;<sp/>o_o_generators,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K)<sp/>{</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>kappa_full_matrix<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(K);</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>kappa_full_matrix.topLeftCorner(o_o_generators.numberOfSpatialOrbitals(),<sp/>o_o_generators.numberOfSpatialOrbitals())<sp/>=<sp/>o_o_generators.asMatrix();</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators_1ac1acbcaa8a7d1d9d13e8adea6622f0c2" kindref="member">OrbitalRotationGenerators</ref>(kappa_full_matrix);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>OrbitalRotationGenerators(kappa_full_matrix);</highlight></codeline>
 <codeline lineno="61"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
@@ -245,7 +245,7 @@
 <codeline lineno="65"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS</highlight></codeline>
 <codeline lineno="66"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal">SquareMatrix&lt;double&gt;<sp/><ref refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a05e28b5a48166bcae75fc9a99cad8430" kindref="member">OrbitalRotationGenerators::asMatrix</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">SquareMatrix&lt;double&gt;<sp/>OrbitalRotationGenerators::asMatrix()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>kappa_matrix<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1af916a1d7dab54e720134c9445f32b2ea" kindref="member">GQCP::SquareMatrix&lt;double&gt;::FromStrictTriangle</ref>(this-&gt;kappa_vector);<sp/><sp/></highlight><highlight class="comment">//<sp/>lower<sp/>triangle<sp/>only</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">GQCP::SquareMatrix&lt;double&gt;</ref><sp/>kappa_matrix_transpose<sp/>=<sp/>kappa_matrix.transpose();</highlight></codeline>

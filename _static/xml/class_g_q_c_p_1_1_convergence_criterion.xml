@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_convergence_criterion" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::ConvergenceCriterion</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_compound_convergence_criterion" prot="public" virt="non-virtual">GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;</derivedcompoundref>
@@ -125,7 +125,7 @@
         </childnode>
       </node>
       <node id="3">
-        <label>GQCP::ConsecutiveIteratesNormConvergence&lt; _Environment &gt;</label>
+        <label>GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>

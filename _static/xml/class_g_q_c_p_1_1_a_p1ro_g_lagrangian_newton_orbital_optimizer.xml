@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::QCMethodNewtonOrbitalOptimizer</basecompoundref>
@@ -466,17 +466,13 @@ The initial guess for the geminal coefficients is zero </para>
           <edgelabel>#D</edgelabel>
         </childnode>
       </node>
-      <node id="11">
-        <label>GQCP::BasisTransformable&lt; Orbital2DM&lt; double &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="14">
-        <label>GQCP::CRTP&lt; Orbital2DM&lt; double &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
       <node id="4">
         <label>GQCP::BaseOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="12">
+        <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="15">
         <label>GQCP::Orbital1DM&lt; double &gt;</label>
@@ -484,16 +480,22 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="16" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
-        <label>GQCP::JacobiRotatable&lt; Orbital1DM&lt; double &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="17">
-        <label>GQCP::BasisTransformable&lt; Orbital1DM&lt; double &gt; &gt;</label>
+      <node id="11">
+        <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
+      <node id="16">
+        <label>GQCP::Simple1DM&lt; _Scalar, _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="10">
-        <label>GQCP::Simple2DM&lt; double, Orbital2DM&lt; double &gt; &gt;</label>
+        <label>GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="11" relation="public-inheritance">
         </childnode>
@@ -502,34 +504,8 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="12">
-        <label>GQCP::JacobiRotatable&lt; Orbital2DM&lt; double &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="16">
-        <label>GQCP::Simple1DM&lt; double, Orbital1DM&lt; double &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
-        <childnode refid="17" relation="public-inheritance">
-        </childnode>
-        <childnode refid="18" relation="public-inheritance">
-        </childnode>
-        <childnode refid="19" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="6">
         <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
-      </node>
-      <node id="13">
-        <label>GQCP::VectorSpaceArithmetic&lt; Orbital2DM&lt; double &gt;, double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="14" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>GQCP::VectorSpaceArithmetic&lt; Orbital1DM&lt; double &gt;, double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="20" relation="public-inheritance">
-        </childnode>
       </node>
       <node id="7">
         <label>GQCP::SquareMatrix&lt; double &gt;</label>
@@ -543,11 +519,21 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="10" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="13">
+        <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="14">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="8">
         <label>MatrixX&lt; double  &gt;</label>
@@ -560,10 +546,6 @@ The initial guess for the geminal coefficients is zero </para>
         <link refid="class_g_q_c_p_1_1_matrix"/>
         <childnode refid="6" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="20">
-        <label>GQCP::CRTP&lt; Orbital1DM&lt; double &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp" line="29" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp" bodystart="29" bodyend="113"/>
