@@ -22,33 +22,32 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  MARK: Constructors
  */
 
 /**
- *  @param K                one of the components of the center of the left Cartesian GTO
- *  @param alpha            the Gaussian exponent of the left Cartesian GTO
- *  @param L                one of the components of the center of the left Cartesian GTO
- *  @param beta             the Gaussian exponent of the right Cartesian GTO
+ *  @param K                One of the Cartesian components of the center of the left Cartesian GTO.
+ *  @param a                The Gaussian exponent of the left Cartesian GTO.
+ *  @param L                One of the Cartesian components of the center of the right Cartesian GTO.
+ *  @param b                The Gaussian exponent of the right Cartesian GTO.
  */
-McMurchieDavidsonCoefficient::McMurchieDavidsonCoefficient(const double K, const double alpha, const double L, const double beta) :
+McMurchieDavidsonCoefficient::McMurchieDavidsonCoefficient(const double K, const double a, const double L, const double b) :
     K {K},
     L {L},
-    alpha {alpha},
-    beta {beta} {}
+    a {a},
+    b {b} {}
 
 
 /*
- *  OPERATORS
+ *  MARK: McMurchie-Davidson behavior
  */
 
-
 /**
- *  @param i            the Cartesian exponent of the left Cartesian GTO
- *  @param j            the Cartesian exponent of the right Cartesian GTO
- *  @param t            the degree of the Hermite Gaussian
+ *  @param i                The Cartesian exponent of the left Cartesian GTO.
+ *  @param j                The Cartesian exponent of the right Cartesian GTO.
+ *  @param t                The degree of the Hermite Gaussian.
  * 
- *  @return the value for the McMurchie-Davidson expansion coefficient E^{i,j}_t
+ *  @return The value for the McMurchie-Davidson expansion coefficient E^{i,j}_t.
  */
 double McMurchieDavidsonCoefficient::operator()(const int i, const int j, const int t) const {
 
@@ -67,36 +66,36 @@ double McMurchieDavidsonCoefficient::operator()(const int i, const int j, const 
     else if (j == 0) {
         return 1.0 / (2 * this->totalExponent()) * this->operator()(i - 1, j, t - 1) +
                (t + 1) * this->operator()(i - 1, j, t + 1) -
-               this->beta / this->totalExponent() * this->distance() * this->operator()(i - 1, j, t);
+               this->b / this->totalExponent() * this->distance() * this->operator()(i - 1, j, t);
     }
 
-    else {  // do the recurrence for E^{i, j+1}_t
+    else {  // Do the recurrence for E^{i, j+1}_t.
         return 1.0 / (2 * this->totalExponent()) * this->operator()(i, j - 1, t - 1) +
                (t + 1) * this->operator()(i, j - 1, t + 1) +
-               this->alpha / this->totalExponent() * this->distance() * this->operator()(i, j - 1, t);
+               this->a / this->totalExponent() * this->distance() * this->operator()(i, j - 1, t);
     }
 }
 
 
 /*
- *  PUBLIC METHODS
+ *  MARK: Gaussian overlap behavior
  */
 
 /**
- *  @return the center of mass of the Gaussian overlap distribution
+ *  @return The center of mass of the Gaussian overlap distribution.
  */
 double McMurchieDavidsonCoefficient::centerOfMass() const {
 
-    return (this->alpha * this->K + this->beta * L) / this->totalExponent();
+    return (this->a * this->K + this->b * L) / this->totalExponent();
 }
 
 
 /**
- *  @return the reduced exponent of the Gaussian overlap distribution
+ *  @return The reduced exponent of the Gaussian overlap distribution.
  */
 double McMurchieDavidsonCoefficient::reducedExponent() const {
 
-    return (this->alpha * this->beta) / this->totalExponent();
+    return (this->a * this->b) / this->totalExponent();
 }
 
 

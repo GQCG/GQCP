@@ -29,58 +29,70 @@ namespace GQCP {
  */
 class McMurchieDavidsonCoefficient {
 private:
-    double K;  // one of the components of the center of the left Cartesian GTO
-    double L;  // one of the components of the center of the left Cartesian GTO
+    // One of the Cartesian components of the center of the left Cartesian GTO.
+    double K;
 
-    double alpha;  // the Gaussian exponent of the left Cartesian GTO
-    double beta;   // the Gaussian exponent of the right Cartesian GTO
+    // One of the Cartesian components of the center of the right Cartesian GTO.
+    double L;
+
+    // The Gaussian exponent of the left Cartesian GTO.
+    double a;
+
+    // The Gaussian exponent of the right Cartesian GTO.
+    double b;
 
 
 public:
-    // CONSTRUCTORS
-
-    /**
-     *  @param K                one of the components of the center of the left Cartesian GTO
-     *  @param alpha            the Gaussian exponent of the left Cartesian GTO
-     *  @param L                one of the components of the center of the left Cartesian GTO
-     *  @param beta             the Gaussian exponent of the right Cartesian GTO
+    /*
+     *  MARK: Constructors
      */
-    McMurchieDavidsonCoefficient(const double K, const double alpha, const double L, const double beta);
-
-
-    // OPERATORS
 
     /**
-     *  @param i            the Cartesian exponent of the left Cartesian GTO
-     *  @param j            the Cartesian exponent of the right Cartesian GTO
-     *  @param t            the degree of the Hermite Gaussian
+     *  @param K                One of the Cartesian components of the center of the left Cartesian GTO.
+     *  @param a                The Gaussian exponent of the left Cartesian GTO.
+     *  @param L                One of the Cartesian components of the center of the right Cartesian GTO.
+     *  @param b                The Gaussian exponent of the right Cartesian GTO.
+     */
+    McMurchieDavidsonCoefficient(const double K, const double a, const double L, const double b);
+
+
+    /*
+     *  MARK: McMurchie-Davidson behavior
+     */
+
+    /**
+     *  @param i                The Cartesian exponent of the left Cartesian GTO.
+     *  @param j                The Cartesian exponent of the right Cartesian GTO.
+     *  @param t                The degree of the Hermite Gaussian.
      * 
-     *  @return the value for the McMurchie-Davidson expansion coefficient E^{i,j}_t
+     *  @return The value for the McMurchie-Davidson expansion coefficient E^{i,j}_t.
      */
     double operator()(const int i, const int j, const int t) const;
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: Gaussian overlap behavior
+     */
 
     /**
-     *  @return the center of mass of the Gaussian overlap distribution
+     *  @return The center of mass of the Gaussian overlap distribution.
      */
     double centerOfMass() const;
 
     /**
-     *  @return (one component of) the distance vector between the left and right Cartesian Gaussian (left - right)
-     */
-    double distance() const { return this->K - this->L; }
-
-    /**
-     *  @return the reduced exponent of the Gaussian overlap distribution
+     *  @return The reduced exponent of the Gaussian overlap distribution.
      */
     double reducedExponent() const;
 
     /**
-     *  @return the total exponent of the Gaussian overlap distribution
+     *  @return The total exponent of the Gaussian overlap distribution.
      */
-    double totalExponent() const { return alpha + beta; }
+    double totalExponent() const { return a + b; }
+
+    /**
+     *  @return One component of the distance vector between the left and right Cartesian Gaussian (left - right).
+     */
+    double distance() const { return this->K - this->L; }
 };
 
 

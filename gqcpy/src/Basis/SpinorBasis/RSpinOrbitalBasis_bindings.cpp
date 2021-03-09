@@ -70,10 +70,17 @@ void bindRSpinOrbitalBasisInterface(Class& py_class) {
     py_class
         .def(
             "numberOfSpatialOrbitals",
-            [](RSpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis) {
+            [](const RSpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis) {
                 return spin_orbital_basis.numberOfSpatialOrbitals();
             },
-            "Return the number of different spatial orbitals that are used in this spinor basis.");
+            "Return the number of different spatial orbitals that are used in this spinor basis.")
+            
+            
+        .def("scalarBasis",
+            [](const RSpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis) {
+                return spin_orbital_basis.scalarBasis();
+            },
+            "Return the underlying scalar basis with respect to which the basis coefficients are expressed.");
 
 
     /*
