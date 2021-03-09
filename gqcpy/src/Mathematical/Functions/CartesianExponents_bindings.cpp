@@ -43,7 +43,7 @@ void bindCartesianExponents(py::module& module) {
         .def("value",
              &CartesianExponents::value,
              py::arg("direction"),
-             "Return the exponent in the given direction");
+             "Return the exponent in the given direction.");
 }
 
 

@@ -49,7 +49,7 @@ public:
 
     /**
      *  @param K                One of the Cartesian components of the center of the left Cartesian GTO.
-     *  @param a                The Gaussian exponent of the left Cartesian GTO
+     *  @param a                The Gaussian exponent of the left Cartesian GTO.
      *  @param L                One of the Cartesian components of the center of the right Cartesian GTO.
      *  @param b                The Gaussian exponent of the right Cartesian GTO.
      */
