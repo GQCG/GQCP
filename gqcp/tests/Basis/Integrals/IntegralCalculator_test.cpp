@@ -359,7 +359,7 @@ BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
 /**
  *  Check if the London integrals are implemented correctly. The references are by ChronusQ.
  */
-BOOST_AUTO_TEST_CASE(London_ChronusQ) {
+BOOST_AUTO_TEST_CASE(London_overlap) {
 
     // Set up a scalar basis with GIAOGTOShells.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
@@ -369,4 +369,10 @@ BOOST_AUTO_TEST_CASE(London_ChronusQ) {
 
     const auto& london_shell1 = scalar_basis.shellSet().asVector()[0];
     const auto& london_shell2 = scalar_basis.shellSet().asVector()[1];
+
+
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Overlap());
+    const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    std::cout << S << std::endl;
 }

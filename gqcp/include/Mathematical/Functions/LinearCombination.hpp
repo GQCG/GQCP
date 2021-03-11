@@ -154,7 +154,7 @@ public:
     typename Function::Valued operator()(const Vector<typename Function::Scalar, Function::Cols>& x) const override {
         size_t n = this->m_functions.size();
 
-        CoefficientScalar value {};  // default initialization
+        typename Function::Valued value {};  // default initialization
         for (size_t i = 0; i < n; i++) {
             value += this->m_coefficients[i] * this->m_functions[i].operator()(x);  // evaluate every function of the linear combination
         }

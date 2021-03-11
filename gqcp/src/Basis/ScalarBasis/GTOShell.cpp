@@ -237,7 +237,6 @@ std::vector<GTOShell::BasisFunction> GTOShell::basisFunctions() const {
         basis_functions.push_back(basis_function);
     }
 
-
     return basis_functions;
 }
 

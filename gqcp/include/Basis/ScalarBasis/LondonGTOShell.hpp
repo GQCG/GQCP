@@ -29,8 +29,7 @@ namespace GQCP {
 /**
  *  A GTO shell with London-type modifications.
  */
-class LondonGTOShell:
-    public GTOShell {
+class LondonGTOShell {
 public:
     // The type of primitive that underlies this shell.
     using Primitive = LondonCartesianGTO;
@@ -43,6 +42,9 @@ private:
     // The specificiation of the magnetic field for this GIAO.
     HomogeneousMagneticField m_field;
 
+    // The field-free GTO shell.
+    GTOShell gto_shell;
+
 
 public:
     /*
@@ -52,12 +54,10 @@ public:
     /**
      *  Construct a gauge-including shell from a field-free shell and a magnetic field.
      * 
-     *  @param shell            The field-free GTO shell.
+     *  @param gto_shell        The field-free GTO shell.
      *  @param field            The specificiation of the magnetic field for this GIAO.
      */
-    LondonGTOShell(const GTOShell& shell, const HomogeneousMagneticField& field) :
-        GTOShell(shell),
-        m_field {field} {}
+    LondonGTOShell(const GTOShell& shell, const HomogeneousMagneticField& field);
 
 
     /*
@@ -67,7 +67,44 @@ public:
     /**
      *  @return The specificiation of the magnetic field for this GIAO.
      */
-    const HomogeneousMagneticField& field() const { return this->m_field; }
+    const HomogeneousMagneticField& magneticField() const { return this->m_field; }
+
+
+    /**
+     *  @return The field-free GTO shell.
+     */
+    const GTOShell& gtoShell() const { return this->gto_shell; }
+
+
+    /*
+     *  MARK: Normalization
+     */
+
+    /**
+     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
+     *
+     *  @note The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO.
+     */
+    void embedNormalizationFactorsOfPrimitives() { this->gto_shell.embedNormalizationFactorsOfPrimitives(); }
+
+
+    /*
+     *  MARK: Basis functions
+     */
+
+    /**
+     *  @return The number of basis functions that this shell contains.
+     */
+    size_t numberOfBasisFunctions() const { return this->gtoShell().numberOfBasisFunctions(); }
+
+    /**
+     *  Construct all basis functions contained in this shell.
+     * 
+     *  @return The basis functions that correspond to this shell.
+     * 
+     *  @note The basis functions are ordered lexicographically. This means x < y < z.
+     */
+    std::vector<BasisFunction> basisFunctions() const;
 };
 
 
