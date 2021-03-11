@@ -204,6 +204,8 @@ std::vector<CartesianExponents> GTOShell::generateCartesianExponents() const {
 
 
 /**
+ *  Construct all basis functions contained in this shell.
+ * 
  *  @return The basis functions that correspond to this shell.
  * 
  *  @note The basis functions are ordered lexicographically. This means x < y < z.
@@ -226,14 +228,8 @@ std::vector<GTOShell::BasisFunction> GTOShell::basisFunctions() const {
 
         GTOShell::BasisFunction basis_function;
         for (size_t d = 0; d < this->contractionSize(); d++) {
-            const CartesianGTO function {gaussian_exponents[d], cartesian_exponents, this->nucleus().position()};
-
-
             auto coefficient = contraction_coefficients[d];
-            if (!(this->areEmbeddedNormalizationFactorsOfPrimitives())) {
-                coefficient *= CartesianGTO::calculateNormalizationFactor(gaussian_exponents[d], CartesianExponents(this->l, 0, 0));
-            }
-
+            const CartesianGTO function {gaussian_exponents[d], cartesian_exponents, this->nucleus().position()};
 
             basis_function.append({coefficient}, {function});
         }

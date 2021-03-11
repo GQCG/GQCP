@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 
@@ -31,6 +32,12 @@ class PrimitiveOverlapIntegralEngine {
 public:
     static constexpr auto Components = OverlapOperator::NumberOfComponents;
     using IntegralScalar = OverlapOperator::Scalar;
+
+    // The type of shell that this integral engine is related to.
+    using Shell = GTOShell;
+
+    // The type of primitive that underlies the type of shell.
+    using Primitive = Shell::Primitive;
 
 
 public:

@@ -30,6 +30,14 @@ namespace GQCP {
  *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus.
  */
 class GTOShell {
+public:
+    // The type of primitive that underlies this shell.
+    using Primitive = CartesianGTO;
+
+    // The type of basis function that this shell can produce.
+    using BasisFunction = LinearCombination<double, Primitive>;
+
+
 private:
     // If this shell is considered to be 'pure', i.e. a spherical shell is pure, a Cartesian shell is not pure.
     bool pure;
@@ -51,14 +59,6 @@ private:
 
     // The contraction coefficients for this shell.
     std::vector<double> contraction_coefficients;
-
-
-public:
-    // The type of primitive that underlies this shell.
-    using Primitive = CartesianGTO;
-
-    // The type of basis function that this shell can produce.
-    using BasisFunction = LinearCombination<double, Primitive>;
 
 
 public:
@@ -90,20 +90,9 @@ public:
     size_t angularMomentum() const { return this->l; }
 
     /**
-     *  @return The contraction coefficients for this shell.
-     */
-    const std::vector<double>& contractionCoefficients() const { return this->contraction_coefficients; }
-
-    /**
-     *  @return The size of the contraction in the shell, i.e. the number of primitives contracted in this shell.
-     */
-    size_t contractionSize() const { return this->contraction_coefficients.size(); }
-
-    /**
      *  @return The Gaussian exponents for this shell, i.e. the exponents for the exponential. These are shared for every contraction.
      */
     const std::vector<double>& gaussianExponents() const { return this->gaussian_exponents; }
-
 
     /**
      *  @return If this shell is considered to be 'pure', i.e. a spherical shell is pure, a Cartesian shell is not pure.
@@ -158,6 +147,21 @@ public:
 
 
     /*
+     *  MARK: Contractions
+     */
+
+    /**
+     *  @return The contraction coefficients for this shell.
+     */
+    const std::vector<double>& contractionCoefficients() const { return this->contraction_coefficients; }
+
+    /**
+     *  @return The size of the contraction in the shell, i.e. the number of primitives contracted in this shell.
+     */
+    size_t contractionSize() const { return this->contraction_coefficients.size(); }
+
+
+    /*
      *  MARK: Basis functions
      */
 
@@ -172,6 +176,8 @@ public:
     std::vector<CartesianExponents> generateCartesianExponents() const;
 
     /**
+     *  Construct all basis functions contained in this shell.
+     * 
      *  @return The basis functions that correspond to this shell.
      * 
      *  @note The basis functions are ordered lexicographically. This means x < y < z.

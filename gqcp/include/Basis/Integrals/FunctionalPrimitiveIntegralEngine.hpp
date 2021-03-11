@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 
 #include <functional>
@@ -38,6 +39,13 @@ public:
 
     // The number of components of the operator over which the primitive engine can calculate integrals.
     static constexpr auto Components = 1;
+
+    // The type of shell that this integral engine is related to.
+    using Shell = GTOShell;
+
+    // The type of primitive that underlies the type of shell.
+    using Primitive = Shell::Primitive;
+
 
 private:
     // A user-supplied custom function that can calculate primitive integrals over two Cartesian GTOs.
