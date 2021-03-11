@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(overlap_integrals) {
     // Calculate the overlap integrals and check if they are equal.
     const auto ref_S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::Overlap());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::Overlap());
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(S.isApprox(ref_S, 1.0e-12));

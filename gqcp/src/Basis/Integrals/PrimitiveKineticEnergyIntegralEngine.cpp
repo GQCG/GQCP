@@ -53,7 +53,7 @@ PrimitiveKineticEnergyIntegralEngine::IntegralScalar PrimitiveKineticEnergyInteg
 
 
     // The 3D kinetic energy integral is a sum of three contributions (dx^2, dy^2, dz^2).
-    PrimitiveOverlapIntegralEngine primitive_overlap_engine;
+    PrimitiveOverlapIntegralEngine<GTOShell> primitive_overlap_engine;
 
     IntegralScalar primitive_integral = 1.0;
     return this->calculate1D(alpha, K_x, i, beta, L_x, j) * primitive_overlap_engine.calculate1D(alpha, K_y, k, beta, L_y, l) * primitive_overlap_engine.calculate1D(alpha, K_z, m, beta, L_z, n) +
@@ -74,7 +74,7 @@ PrimitiveKineticEnergyIntegralEngine::IntegralScalar PrimitiveKineticEnergyInteg
 PrimitiveKineticEnergyIntegralEngine::IntegralScalar PrimitiveKineticEnergyIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
 
     // The kinetic 1D integral is a sum of three 1D overlap integrals.
-    PrimitiveOverlapIntegralEngine primitive_overlap_engine;
+    PrimitiveOverlapIntegralEngine<GTOShell> primitive_overlap_engine;
 
     return -2 * std::pow(beta, 2) * primitive_overlap_engine.calculate1D(alpha, K, i, beta, L, j + 2) +
            beta * (2 * j + 1) * primitive_overlap_engine.calculate1D(alpha, K, i, beta, L, j) -

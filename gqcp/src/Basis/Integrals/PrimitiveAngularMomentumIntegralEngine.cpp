@@ -74,7 +74,7 @@ PrimitiveAngularMomentumIntegralEngine::IntegralScalar PrimitiveAngularMomentumI
 
 
     // For each component of the angular momentum operator, the integrals can be calculated through overlap integrals, linear momentum integrals and position/dipole integrals.
-    PrimitiveOverlapIntegralEngine overlap_engine;
+    PrimitiveOverlapIntegralEngine<GTOShell> overlap_engine;
     PrimitiveLinearMomentumIntegralEngine linear_momentum_engine;
     PrimitiveDipoleIntegralEngine dipole_engine {ElectronicDipoleOperator(this->angular_momentum_operator.reference())};
 

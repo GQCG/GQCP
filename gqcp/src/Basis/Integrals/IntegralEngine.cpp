@@ -69,17 +69,6 @@ OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> IntegralEngine:
 }
 
 
-/**
- *  @param op               the overlap operator
- * 
- *  @return a one-electron integral engine that can calculate integrals over the overlap operator
- */
-OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> IntegralEngine::InHouse(const OverlapOperator& op) {
-
-    return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine>(PrimitiveOverlapIntegralEngine());
-}
-
-
 /*
  *  LIBINT
  */

@@ -83,13 +83,21 @@ public:
     static OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> InHouse(const LinearMomentumOperator& op);
 
     /**
-     *  @param op               the overlap operator
+     *  Create an in-house one-electron integral engine that can calculate integrals over the overlap operator.
      * 
-     *  @return a one-electron integral engine that can calculate integrals over the overlap operator
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
      * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     *  @param op               The overlap operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the overlap operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
      */
-    static OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> InHouse(const OverlapOperator& op);
+    template <typename Shell>
+    static auto InHouse(const OverlapOperator& op) -> OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>>(PrimitiveOverlapIntegralEngine<Shell>());
+    }
 
 
     /*

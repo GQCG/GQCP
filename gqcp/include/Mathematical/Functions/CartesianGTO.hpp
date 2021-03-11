@@ -33,7 +33,13 @@ namespace GQCP {
  *  @note Calling operator() returns the value of the unnormalized Cartesian Gaussian.
  *  @note Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>.
  */
-class CartesianGTO: public ScalarFunction<double, double, 3> {
+class CartesianGTO:
+    public ScalarFunction<double, double, 3> {
+public:
+    // The return type of the call operator, i.e. the valuedness of the scalar function.
+    using Valued = double;
+
+
 private:
     double gaussian_exponent;                // exponent of the exponential
     CartesianExponents cartesian_exponents;  // exponents of (x-X), (y-Y), (z-Z)

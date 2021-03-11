@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Mathematical/Functions/LondonCartesianGTO.hpp"
 #include "Physical/HomogeneousMagneticField.hpp"
 
 
@@ -31,10 +32,11 @@ namespace GQCP {
 class LondonGTOShell:
     public GTOShell {
 public:
-    // FIXME: For initial compilations, we didn't implement the phase factor per se for every basis function. We should implement a GIAO-modification to a CartesianGTO.
-    // FIXME: These primitives and basis function types should be changed accordingly.
-    using Primitive = GTOShell::Primitive;
-    using BasisFunction = GTOShell::Primitive;
+    // The type of primitive that underlies this shell.
+    using Primitive = LondonCartesianGTO;
+
+    // The type of basis function that this shell can produce.
+    using BasisFunction = LinearCombination<double, Primitive>;
 
 
 private:

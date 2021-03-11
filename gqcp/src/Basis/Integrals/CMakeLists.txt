@@ -7,7 +7,6 @@ target_sources(gqcp
         PrimitiveDipoleIntegralEngine.cpp
         PrimitiveKineticEnergyIntegralEngine.cpp
         PrimitiveLinearMomentumIntegralEngine.cpp
-        PrimitiveOverlapIntegralEngine.cpp
 )
 
 add_subdirectory(Interfaces)

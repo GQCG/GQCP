@@ -4,5 +4,6 @@ target_sources(gqcp
         CartesianExponents.hpp
         CartesianGTO.hpp
         LinearCombination.hpp
+        LondonCartesianGTO.hpp
         ScalarFunction.hpp
 )
