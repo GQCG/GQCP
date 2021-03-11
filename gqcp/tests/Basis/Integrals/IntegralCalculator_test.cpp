@@ -354,3 +354,19 @@ BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
         BOOST_CHECK(angular_momentum_integrals[i].isApprox(ref_angular_momentum_integrals[i], 1.0e-07));
     }
 }
+
+
+/**
+ *  Check if the London integrals are implemented correctly. The references are by ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_ChronusQ) {
+
+    // Set up a scalar basis with GIAOGTOShells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "STO-3G", B};
+
+    const auto& london_shell1 = scalar_basis.shellSet().asVector()[0];
+    const auto& london_shell2 = scalar_basis.shellSet().asVector()[1];
+}
