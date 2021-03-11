@@ -400,8 +400,8 @@ BOOST_AUTO_TEST_CASE(London_overlap_001) {
 
 
     // Read in the reference values.
-    const auto S_ref_real = GQCP::MatrixX<double>::FromFile("h2o_6-31g_001_overlap_chronusq_real.data", nbf, nbf);
-    const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("h2o_6-31g_001_overlap_chronusq_complex.data", nbf, nbf);
+    const auto S_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_overlap_chronusq_real.data", nbf, nbf);
+    const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_overlap_chronusq_complex.data", nbf, nbf);
 
     GQCP::MatrixX<std::complex<double>> S_ref = S_ref_real + std::complex<double>(0, 1) * S_ref_complex;
     BOOST_CHECK(S.isApprox(S_ref, 1.0e-12));
@@ -428,8 +428,8 @@ BOOST_AUTO_TEST_CASE(London_overlap_111) {
 
 
     // Read in the reference values.
-    const auto S_ref_real = GQCP::MatrixX<double>::FromFile("h2o_6-31g_111_overlap_chronusq_real.data", nbf, nbf);
-    const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("h2o_6-31g_111_overlap_chronusq_complex.data", nbf, nbf);
+    const auto S_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_overlap_chronusq_real.data", nbf, nbf);
+    const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_overlap_chronusq_complex.data", nbf, nbf);
 
     GQCP::MatrixX<std::complex<double>> S_ref = S_ref_real + std::complex<double>(0, 1) * S_ref_complex;
     BOOST_CHECK(S.isApprox(S_ref, 1.0e-12));
