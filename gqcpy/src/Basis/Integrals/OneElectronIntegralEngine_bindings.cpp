@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/FunctionalPrimitiveEngine.hpp"
+#include "Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp"
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -38,18 +38,18 @@ using namespace GQCP;
 void bindFunctionalOneElectronIntegralEngine(py::module& module) {
 
     // Define the Python class for `FunctionalOneElectronIntegralEngine_d`.
-    py::class_<OneElectronIntegralEngine<FunctionalPrimitiveEngine<double>>> py_FunctionalOneElectronIntegralEngine_d {module, "FunctionalOneElectronIntegralEngine_d", "A custom one-electron integral engine that can calculate real-valued calculate one-electron integrals over Cartesian GTO shells according to a custom implementation."};
+    py::class_<OneElectronIntegralEngine<FunctionalPrimitiveIntegralEngine<double>>> py_FunctionalOneElectronIntegralEngine_d {module, "FunctionalOneElectronIntegralEngine_d", "A custom one-electron integral engine that can calculate real-valued calculate one-electron integrals over Cartesian GTO shells according to a custom implementation."};
 
     py_FunctionalOneElectronIntegralEngine_d
-        .def(py::init<const FunctionalPrimitiveEngine<double>&>(),
+        .def(py::init<const FunctionalPrimitiveIntegralEngine<double>&>(),
              py::arg("primitive_engine"));
 
 
     // Define the Python class for `FunctionalOneElectronIntegralEngine_cd`.
-    py::class_<OneElectronIntegralEngine<FunctionalPrimitiveEngine<complex>>> py_FunctionalOneElectronIntegralEngine_cd {module, "FunctionalOneElectronIntegralEngine_cd", "A custom one-electron integral engine that can calculate complex-valued calculate one-electron integrals over Cartesian GTO shells according to a custom implementation."};
+    py::class_<OneElectronIntegralEngine<FunctionalPrimitiveIntegralEngine<complex>>> py_FunctionalOneElectronIntegralEngine_cd {module, "FunctionalOneElectronIntegralEngine_cd", "A custom one-electron integral engine that can calculate complex-valued calculate one-electron integrals over Cartesian GTO shells according to a custom implementation."};
 
     py_FunctionalOneElectronIntegralEngine_cd
-        .def(py::init<const FunctionalPrimitiveEngine<complex>&>(),
+        .def(py::init<const FunctionalPrimitiveIntegralEngine<complex>&>(),
              py::arg("primitive_engine"));
 }
 

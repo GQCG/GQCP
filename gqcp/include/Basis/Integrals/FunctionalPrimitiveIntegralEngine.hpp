@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param _IntegralScalar          The scalar representation of one of the primitive integrals.
  */
 template <typename _IntegralScalar>
-class FunctionalPrimitiveEngine {
+class FunctionalPrimitiveIntegralEngine {
 public:
     // The scalar representation of one of the primitive integrals.
     using IntegralScalar = _IntegralScalar;
@@ -52,7 +52,7 @@ public:
     /**
      *  @param function             A user-supplied custom function that can calculate primitive integrals over two Cartesian GTOs.
      */
-    FunctionalPrimitiveEngine(const std::function<IntegralScalar(const CartesianGTO&, const CartesianGTO&)>& function) :
+    FunctionalPrimitiveIntegralEngine(const std::function<IntegralScalar(const CartesianGTO&, const CartesianGTO&)>& function) :
         function {function} {}
 
 

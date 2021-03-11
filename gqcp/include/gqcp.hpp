@@ -22,7 +22,7 @@
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
-#include "Basis/Integrals/FunctionalPrimitiveEngine.hpp"
+#include "Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/Integrals/IntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
