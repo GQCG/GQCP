@@ -27,6 +27,7 @@
 #include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
@@ -90,6 +91,17 @@ public:
      *  @note This integral engine can only calculate integrals over Cartesian d-shells.
      */
     static OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> InHouse(const OverlapOperator& op);
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+     * 
+     *  @param op               The nuclear attraction operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    static OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>> InHouse(const NuclearAttractionOperator& op);
 
 
     /*

@@ -80,6 +80,21 @@ OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> IntegralEngine::InHous
 }
 
 
+/**
+ *  Create an in-house one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+ * 
+ *  @param op               The nuclear attraction operator.
+ * 
+ *  @return A one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+ * 
+ *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+ */
+OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>> IntegralEngine::InHouse(const NuclearAttractionOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>>(PrimitiveNuclearAttractionIntegralEngine<GTOShell>(op));
+}
+
+
 /*
  *  LIBINT
  */
