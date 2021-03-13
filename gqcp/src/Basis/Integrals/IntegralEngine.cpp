@@ -95,6 +95,21 @@ OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>> In
 }
 
 
+/**
+ *  Create an in-house two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+ * 
+ *  @param op               The Coulomb repulsion operator.
+ * 
+ *  @return A two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+ * 
+ *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+ */
+TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<GTOShell>> IntegralEngine::InHouse(const CoulombRepulsionOperator& op) {
+
+    return TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<GTOShell>>(PrimitiveCoulombRepulsionIntegralEngine<GTOShell>());
+}
+
+
 /*
  *  LIBINT
  */

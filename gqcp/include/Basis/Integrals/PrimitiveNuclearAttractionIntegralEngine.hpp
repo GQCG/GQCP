@@ -116,7 +116,7 @@ public:
         const auto L_z = right.center()(CartesianDirection::z);
 
 
-        // Prepare the McMurchie-Davidson coefficients and the auxiliary Hermite Coulomb integrals.
+        // Prepare the McMurchie-Davidson coefficients.
         const McMurchieDavidsonCoefficient E_x {K_x, a, L_x, b};
         const McMurchieDavidsonCoefficient E_y {K_y, a, L_y, b};
         const McMurchieDavidsonCoefficient E_z {K_z, a, L_z, b};
@@ -138,8 +138,8 @@ public:
             for (int t = 0; t <= i + j; t++) {
                 for (int u = 0; u <= k + l; u++) {
                     for (int v = 0; v <= m + n; v++) {
-                        integral += 2 * boost::math::constants::pi<double>() / p *
-                                    E_x(i, j, t) * E_y(k, l, u) * E_z(m, n, v) * R(0, t, u, v);
+                        // Add the contribution to the integral. The prefactor will be applied at the end.
+                        integral += E_x(i, j, t) * E_y(k, l, u) * E_z(m, n, v) * R(0, t, u, v);
                     }
                 }
             }
@@ -147,7 +147,7 @@ public:
             total_integral += (-charge) * integral;
         }
 
-        return total_integral;
+        return 2 * boost::math::constants::pi<double>() / p * total_integral;
     }
 };
 
