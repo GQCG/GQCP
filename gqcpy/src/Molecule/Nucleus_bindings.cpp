@@ -54,7 +54,11 @@ void bindNucleus(py::module& module) {
 
         .def("position",
              &Nucleus::position,
-             "Return the vector describing the position of the nucleus.");
+             "Return the vector describing the position of the nucleus.")
+
+        .def("charge",
+             &Nucleus::charge,
+             "Return the nuclear charge");
 }
 
 

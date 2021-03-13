@@ -15,11 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/FunctionalPrimitiveEngine.hpp"
+#include "Basis/Integrals/FunctionalOneElectronPrimitiveIntegralEngine.hpp"
+#include "Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/Integrals/OneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/TwoElectronIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Utilities/aliases.hpp"
+#include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -42,12 +46,20 @@ void bindIntegralEngine(py::module& module) {
 
     auto py_module_IntegralCalculator = module.def_submodule("IntegralCalculator");
 
-    py_module_IntegralCalculator.def(
-        "calculate",
-        [](OneElectronIntegralEngine<FunctionalPrimitiveEngine<double>>& engine, const ShellSet<GTOShell>& left_shell_set, const ShellSet<GTOShell>& right_shell_set) {
-            return IntegralCalculator::calculate(engine, left_shell_set, right_shell_set)[0];
-        },
-        "Calculate all one-electron integrals over the basis functions inside the given shell sets.");
+    py_module_IntegralCalculator
+        .def(
+            "calculate",
+            [](OneElectronIntegralEngine<FunctionalOneElectronPrimitiveIntegralEngine<double>>& engine, const ShellSet<GTOShell>& left_shell_set, const ShellSet<GTOShell>& right_shell_set) {
+                return IntegralCalculator::calculate(engine, left_shell_set, right_shell_set)[0];
+            },
+            "Calculate all one-electron integrals over the basis functions inside the given shell sets.")
+
+        .def(
+            "calculate",
+            [](TwoElectronIntegralEngine<FunctionalTwoElectronPrimitiveIntegralEngine<double>>& engine, const ShellSet<GTOShell>& left_shell_set, const ShellSet<GTOShell>& right_shell_set) {
+                return asNumpyArray(IntegralCalculator::calculate(engine, left_shell_set, right_shell_set)[0]);
+            },
+            "Calculate all two-electron integrals over the basis functions inside the given shell sets.");
 }
 
 

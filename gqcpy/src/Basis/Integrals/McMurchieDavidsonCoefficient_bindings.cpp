@@ -35,7 +35,7 @@ using namespace GQCP;
  */
 void bindMcMurchieDavidsonCoefficient(py::module& module) {
 
-    // Define the Python class for `GTransformation_d`.
+    // Define the Python class for `McMurchieDavidsonCoefficient`.
     py::class_<McMurchieDavidsonCoefficient> py_McMurchieDavidsonCoefficient {module, "McMurchieDavidsonCoefficient", "An implementation of the McMurchie-Davidson expansion coefficients through recurrence relations."};
 
     py_McMurchieDavidsonCoefficient
@@ -50,7 +50,11 @@ void bindMcMurchieDavidsonCoefficient(py::module& module) {
              py::arg("i"),
              py::arg("j"),
              py::arg("t"),
-             "Return the value for the McMurchie-Davidson expansion coefficient E^{i,j}_t.");
+             "Return the value for the McMurchie-Davidson expansion coefficient E^{i,j}_t.")
+
+        .def("centerOfMass",
+             &McMurchieDavidsonCoefficient::centerOfMass,
+             "Return the center of mass of the Gaussian overlap distribution.");
 }
 
 

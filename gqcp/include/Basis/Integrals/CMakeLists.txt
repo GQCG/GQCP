@@ -4,7 +4,8 @@ target_sources(gqcp
         BaseOneElectronIntegralEngine.hpp
         BaseTwoElectronIntegralBuffer.hpp
         BaseTwoElectronIntegralEngine.hpp
-        FunctionalPrimitiveEngine.hpp
+        FunctionalOneElectronPrimitiveIntegralEngine.hpp
+        FunctionalTwoElectronPrimitiveIntegralEngine.hpp
         IntegralCalculator.hpp
         IntegralEngine.hpp
         McMurchieDavidsonCoefficient.hpp
