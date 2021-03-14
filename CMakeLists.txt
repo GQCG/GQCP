@@ -119,8 +119,13 @@ include(GNUInstallDirs)
 install(
     TARGETS gqcp_version
     EXPORT gqcp-targets
-    ARCHIVE DESTINATION include/gqcp/version
+    LIBRARY DESTINATION lib/gqcp
+    ARCHIVE DESTINATION lib/gqcp
+    RUNTIME DESTINATION bin/gqcp
+    INCLUDES DESTINATION include/gqcp/version
 )
+
+install(DIRECTORY ${CMAKE_BINARY_DIR}/gqcp/version/ DESTINATION include/gqcp/version)
 
 install(
     TARGETS gqcp
@@ -130,7 +135,6 @@ install(
     RUNTIME DESTINATION bin
     INCLUDES DESTINATION include/gqcp
 )
-
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/gqcp/include/ DESTINATION include/gqcp)
 
