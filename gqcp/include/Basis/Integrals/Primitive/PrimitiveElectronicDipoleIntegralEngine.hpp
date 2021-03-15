@@ -170,7 +170,6 @@ public:
     template <typename Z = Shell>
     enable_if_t<std::is_same<Z, LondonGTOShell>::value, IntegralScalar> calculate(const LondonCartesianGTO& left, const LondonCartesianGTO& right) {
 
-
         // Prepare some variables.
         const auto i = static_cast<int>(left.cartesianGTO().cartesianExponents().value(CartesianDirection::x));
         const auto k = static_cast<int>(left.cartesianGTO().cartesianExponents().value(CartesianDirection::y));

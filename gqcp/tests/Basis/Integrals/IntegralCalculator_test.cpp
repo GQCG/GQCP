@@ -23,6 +23,7 @@
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "Utilities/literals.hpp"
 
 
 /**
@@ -544,7 +545,7 @@ BOOST_AUTO_TEST_CASE(London_canonical_kinetic_111) {
 /**
  *  Check if the London electronic dipole integrals are implemented correctly, for a magnetic field of B=(0,0,1).
  * 
- *  The references values are by generated through ChronusQ.
+ *  The references values are by generated through ChronusQ, which has implemented position integrals, i.e. we expect our results to differ with a factor (-1).
  */
 BOOST_AUTO_TEST_CASE(London_electronic_dipole_001) {
 
@@ -585,7 +586,7 @@ BOOST_AUTO_TEST_CASE(London_electronic_dipole_001) {
 /**
  *  Check if the London electronic dipole integrals are implemented correctly, for a magnetic field of B=(1,1,1).
  * 
- *  The references values are by generated through ChronusQ.
+ *  The references values are by generated through ChronusQ, which has implemented position integrals, i.e. we expect our results to differ with a factor (-1).
  */
 BOOST_AUTO_TEST_CASE(London_electronic_dipole_111) {
 
@@ -620,4 +621,91 @@ BOOST_AUTO_TEST_CASE(London_electronic_dipole_111) {
     BOOST_CHECK(D_x.isApprox(D_x_ref, 1.0e-12));
     BOOST_CHECK(D_y.isApprox(D_y_ref, 1.0e-12));
     BOOST_CHECK(D_z.isApprox(D_z_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London angular momentum integrals are implemented correctly, for a magnetic field of B=(0,0,1).
+ * 
+ *  The references values are by generated through ChronusQ, which has implemented angular momentum integrals without the prefactor (-i).
+ */
+BOOST_AUTO_TEST_CASE(London_angular_momentum_001) {
+
+    using namespace GQCP::literals;
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::AngularMomentum());  // Reference point at the origin.
+    const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+    const auto L_x = integrals[0];
+    const auto L_y = integrals[1];
+    const auto L_z = integrals[2];
+
+
+    // Read in the reference values.
+    const GQCP::MatrixX<double> L_x_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_L_x_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> L_x_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_L_x_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> L_x_ref = -1.0_ii * (L_x_ref_real + std::complex<double>(0, 1) * L_x_ref_complex);
+
+    const GQCP::MatrixX<double> L_y_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_L_y_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> L_y_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_L_y_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> L_y_ref = -1.0_ii * (L_y_ref_real + std::complex<double>(0, 1) * L_y_ref_complex);
+
+    const GQCP::MatrixX<double> L_z_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_L_z_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> L_z_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_L_z_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> L_z_ref = -1.0_ii * (L_z_ref_real + std::complex<double>(0, 1) * L_z_ref_complex);
+
+    BOOST_CHECK(L_x.isApprox(L_x_ref, 1.0e-12));
+    BOOST_CHECK(L_y.isApprox(L_y_ref, 1.0e-12));
+    BOOST_CHECK(L_z.isApprox(L_z_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London angular momentum integrals are implemented correctly, for a magnetic field of B=(1,1,1).
+ * 
+ *  The references values are by generated through ChronusQ, which has implemented angular momentum integrals without the prefactor (-i).
+ */
+BOOST_AUTO_TEST_CASE(London_angular_momentum_111) {
+
+    using namespace GQCP::literals;
+
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{1.0, 1.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::AngularMomentum());  // Reference point at the origin.
+    const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+    const auto L_x = integrals[0];
+    const auto L_y = integrals[1];
+    const auto L_z = integrals[2];
+
+
+    // Read in the reference values.
+    const GQCP::MatrixX<double> L_x_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_L_x_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> L_x_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_L_x_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> L_x_ref = -1.0_ii * (L_x_ref_real + std::complex<double>(0, 1) * L_x_ref_complex);
+
+    const GQCP::MatrixX<double> L_y_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_L_y_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> L_y_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_L_y_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> L_y_ref = -1.0_ii * (L_y_ref_real + std::complex<double>(0, 1) * L_y_ref_complex);
+
+    const GQCP::MatrixX<double> L_z_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_L_z_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> L_z_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_L_z_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> L_z_ref = -1.0_ii * (L_z_ref_real + std::complex<double>(0, 1) * L_z_ref_complex);
+
+    BOOST_CHECK(L_x.isApprox(L_x_ref, 1.0e-12));
+    BOOST_CHECK(L_y.isApprox(L_y_ref, 1.0e-12));
+    BOOST_CHECK(L_z.isApprox(L_z_ref, 1.0e-12));
 }
