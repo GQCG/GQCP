@@ -65,17 +65,6 @@ public:
     static OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
 
     /**
-     *  Create an in-house one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
-     * 
-     *  @param op               The kinetic energy operator.
-     * 
-     *  @return A one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
-     * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
-     */
-    static OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<GTOShell>> InHouse(const KineticOperator& op);
-
-    /**
      *  @param op               the linear momentum operator
      * 
      *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator
@@ -99,6 +88,23 @@ public:
     static auto InHouse(const OverlapOperator& op) -> OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>> {
 
         return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>>(PrimitiveOverlapIntegralEngine<Shell>());
+    }
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
+     * 
+     *  @param op               The canonical kinetic energy operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    template <typename Shell>
+    static auto InHouse(const KineticOperator& op) -> OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>>(PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>());
     }
 
 

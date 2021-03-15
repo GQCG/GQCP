@@ -48,21 +48,6 @@ OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> IntegralEngine::InHouse
 
 
 /**
- *  Create an in-house one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
- * 
- *  @param op               The kinetic energy operator.
- * 
- *  @return A one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
- * 
- *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
- */
-OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<GTOShell>> IntegralEngine::InHouse(const KineticOperator& op) {
-
-    return OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<GTOShell>>(PrimitiveCanonicalKineticEnergyIntegralEngine<GTOShell>());
-}
-
-
-/**
  *  @param op               the linear momentum operator
  * 
  *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator

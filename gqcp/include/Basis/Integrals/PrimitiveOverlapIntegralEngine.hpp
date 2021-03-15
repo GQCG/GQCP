@@ -21,6 +21,7 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
+#include "Mathematical/Functions/LondonCartesianGTO.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/literals.hpp"
@@ -139,7 +140,7 @@ public:
     template <typename Z = Shell>
     enable_if_t<std::is_same<Z, LondonGTOShell>::value, IntegralScalar> calculate(const LondonCartesianGTO& left, const LondonCartesianGTO& right) {
 
-        Vector<double, 3> k1 = right.kVector() - left.kVector();  // The k-vector of the London overlap distribution.
+        const Vector<double, 3> k1 = right.kVector() - left.kVector();  // The k-vector of the London overlap distribution.
 
         // The 3D integral is separable in three 1D integrals.
         IntegralScalar primitive_integral {1.0};
@@ -163,7 +164,7 @@ public:
     /**
      *  Calculate the overlap integral over two London Cartesian GTO 1-D primitives.
      * 
-     *  @param k1               The (directional component of) the k-vector of the London overlap distribution.
+     *  @param k1               The (directional component of the) k-vector of the London overlap distribution.
      *  @param a                The Gaussian exponent of the left 1-D primitive.
      *  @param K                The (directional coordinate of the) center of the left 1-D primitive.
      *  @param i                The Cartesian exponent of the left 1-D primitive.
