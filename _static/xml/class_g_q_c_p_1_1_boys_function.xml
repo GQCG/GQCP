@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_boys_function" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::BoysFunction</compoundname>
+    <includes refid="_boys_function_8hpp" local="no">BoysFunction.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_boys_function_1a60397de44d83f3e7231bb75f9ee897c4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::BoysFunction::operator()</definition>
+        <argsstring>(const size_t n, const double x) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the value for the Boys function F_n(x).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The degree of the Boys function. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The argument for the Boys function.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value F_n(x). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/BoysFunction.hpp" line="44" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/BoysFunction.cpp" bodystart="38" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An implementation of the Boys function, through its relation with the confluent hypergeometric function. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BoysFunction</label>
+        <link refid="class_g_q_c_p_1_1_boys_function"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/BoysFunction.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/BoysFunction.hpp" bodystart="30" bodyend="45"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_boys_function_1a60397de44d83f3e7231bb75f9ee897c4" prot="public" virt="non-virtual"><scope>GQCP::BoysFunction</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

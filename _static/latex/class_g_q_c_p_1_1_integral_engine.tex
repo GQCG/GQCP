@@ -27,6 +27,10 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Ele
 \item 
 {\footnotesize template$<$typename Shell $>$ }\\static auto \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a130fcebcf302c6675af5aea64cbe548b}{In\+House}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&op) -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine}{Primitive\+Canonical\+Kinetic\+Energy\+Integral\+Engine}}$<$ Shell $>$$>$
 \item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine}{Primitive\+Nuclear\+Attraction\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a620821ae87f9be8fc6dcb53de42d1675}{In\+House}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&op)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{Two\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a56d3626fcd36ed800cc26eff9a9a5105}{In\+House}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&op)
+\item 
 static auto \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ab787d80066396f64d88877c848535aed}{Libint}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l) -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{Libint\+Two\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Coulomb\+Repulsion\+Operator\+::\+Number\+Of\+Components}} $>$
 \item 
 static auto \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a94b57de64ef4887b9eac7167c57d3315}{Libint}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&op, const size\+\_\+t max\+\_\+nprim, const size\+\_\+t max\+\_\+l) -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{Libint\+One\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator_a00d21fd28669791d314090ae6e422f2c}{Electronic\+Dipole\+Operator\+::\+Number\+Of\+Components}} $>$
@@ -56,7 +60,7 @@ A class that creates integral engines, like a factory class.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_integral_engine_aab2454c2e10aa09c1a90e201641636cb}\label{class_g_q_c_p_1_1_integral_engine_aab2454c2e10aa09c1a90e201641636cb}} 
 \index{GQCP::IntegralEngine@{GQCP::IntegralEngine}!InHouse@{InHouse}}
 \index{InHouse@{InHouse}!GQCP::IntegralEngine@{GQCP::IntegralEngine}}
-\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{Primitive\+Angular\+Momentum\+Integral\+Engine}} $>$ GQCP\+::\+Integral\+Engine\+::\+In\+House (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} \&}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
@@ -78,10 +82,29 @@ This integral engine can only calculate integrals over Cartesian d-\/shells.
 \begin{DoxyReturn}{Returns}
 a one-\/electron integral engine that can calculate integrals over the angular momentum operator 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_engine_a56d3626fcd36ed800cc26eff9a9a5105}\label{class_g_q_c_p_1_1_integral_engine_a56d3626fcd36ed800cc26eff9a9a5105}} 
+\index{GQCP::IntegralEngine@{GQCP::IntegralEngine}!InHouse@{InHouse}}
+\index{InHouse@{InHouse}!GQCP::IntegralEngine@{GQCP::IntegralEngine}}
+\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{Two\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ $>$ GQCP\+::\+Integral\+Engine\+::\+In\+House (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Create an in-\/house two-\/electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & The Coulomb repulsion operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A two-\/electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This integral engine can only calculate integrals over Cartesian d-\/shells, not spherical d-\/shells. 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_integral_engine_a0c5398d866b5389d2aeda6c7dc4fa73e}\label{class_g_q_c_p_1_1_integral_engine_a0c5398d866b5389d2aeda6c7dc4fa73e}} 
 \index{GQCP::IntegralEngine@{GQCP::IntegralEngine}!InHouse@{InHouse}}
 \index{InHouse@{InHouse}!GQCP::IntegralEngine@{GQCP::IntegralEngine}}
-\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_dipole_integral_engine}{Primitive\+Dipole\+Integral\+Engine}} $>$ GQCP\+::\+Integral\+Engine\+::\+In\+House (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{Electronic\+Dipole\+Operator}} \&}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
@@ -106,7 +129,7 @@ a one-\/electron integral engine that can calculate integrals over the electroni
 \mbox{\Hypertarget{class_g_q_c_p_1_1_integral_engine_a130fcebcf302c6675af5aea64cbe548b}\label{class_g_q_c_p_1_1_integral_engine_a130fcebcf302c6675af5aea64cbe548b}} 
 \index{GQCP::IntegralEngine@{GQCP::IntegralEngine}!InHouse@{InHouse}}
 \index{InHouse@{InHouse}!GQCP::IntegralEngine@{GQCP::IntegralEngine}}
-\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
 {\footnotesize\ttfamily template$<$typename Shell $>$ \\
 static auto GQCP\+::\+Integral\+Engine\+::\+In\+House (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{op }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine}{Primitive\+Canonical\+Kinetic\+Energy\+Integral\+Engine}}$<$Shell$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
@@ -131,7 +154,7 @@ This integral engine can only calculate integrals over Cartesian d-\/shells, not
 \mbox{\Hypertarget{class_g_q_c_p_1_1_integral_engine_afe460aeb2126e9478975b5460278b736}\label{class_g_q_c_p_1_1_integral_engine_afe460aeb2126e9478975b5460278b736}} 
 \index{GQCP::IntegralEngine@{GQCP::IntegralEngine}!InHouse@{InHouse}}
 \index{InHouse@{InHouse}!GQCP::IntegralEngine@{GQCP::IntegralEngine}}
-\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine}{Primitive\+Linear\+Momentum\+Integral\+Engine}} $>$ GQCP\+::\+Integral\+Engine\+::\+In\+House (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_momentum_operator}{Linear\+Momentum\+Operator}} \&}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
@@ -153,10 +176,29 @@ This integral engine can only calculate integrals over Cartesian d-\/shells.
 \begin{DoxyReturn}{Returns}
 a one-\/electron integral engine that can calculate integrals over the linear momentum operator 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_integral_engine_a620821ae87f9be8fc6dcb53de42d1675}\label{class_g_q_c_p_1_1_integral_engine_a620821ae87f9be8fc6dcb53de42d1675}} 
+\index{GQCP::IntegralEngine@{GQCP::IntegralEngine}!InHouse@{InHouse}}
+\index{InHouse@{InHouse}!GQCP::IntegralEngine@{GQCP::IntegralEngine}}
+\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine}{Primitive\+Nuclear\+Attraction\+Integral\+Engine}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ $>$ GQCP\+::\+Integral\+Engine\+::\+In\+House (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Create an in-\/house one-\/electron integral engine that can calculate integrals over the nuclear attraction operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & The nuclear attraction operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A one-\/electron integral engine that can calculate integrals over the nuclear attraction operator.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This integral engine can only calculate integrals over Cartesian d-\/shells, not spherical d-\/shells. 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_integral_engine_a4cf422b709df6a1b8489339e85ffdae1}\label{class_g_q_c_p_1_1_integral_engine_a4cf422b709df6a1b8489339e85ffdae1}} 
 \index{GQCP::IntegralEngine@{GQCP::IntegralEngine}!InHouse@{InHouse}}
 \index{InHouse@{InHouse}!GQCP::IntegralEngine@{GQCP::IntegralEngine}}
-\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+\doxysubsubsection{\texorpdfstring{InHouse()}{InHouse()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
 {\footnotesize\ttfamily template$<$typename Shell $>$ \\
 static auto GQCP\+::\+Integral\+Engine\+::\+In\+House (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{Overlap\+Operator}} \&}]{op }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{One\+Electron\+Integral\+Engine}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{Primitive\+Overlap\+Integral\+Engine}}$<$Shell$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 

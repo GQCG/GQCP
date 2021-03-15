@@ -1,0 +1,133 @@
+\hypertarget{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{}\doxysection{GQCP\+::Primitive\+Coulomb\+Repulsion\+Integral\+Engine$<$ \+\_\+\+Shell $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}\index{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}}
+
+
+{\ttfamily \#include $<$Primitive\+Coulomb\+Repulsion\+Integral\+Engine.\+hpp$>$}
+
+
+
+Collaboration diagram for GQCP\+::Primitive\+Coulomb\+Repulsion\+Integral\+Engine$<$ \+\_\+\+Shell $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_aaf312e943f59393bc8e718089469ad08}{Shell}} = \+\_\+\+Shell
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a95c96536cbe920c8306919ea8fa86927}{Primitive}} = typename Shell\+::\+Primitive
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a61e1e4dc409d270193758ec9de994749}{Integral\+Scalar}} = \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a758d6bad4ca9c7d4991bd1524f52b7ea}{prepare\+State\+For\+Component}} (const size\+\_\+t component)
+\item 
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a61e1e4dc409d270193758ec9de994749}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_aee851c7f218c60993a514c94eca34d9e}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left1, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left2, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right1, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a802b80f3b4df8f545d6ddaa752d4eb0d}{Components}} = \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Coulomb\+Repulsion\+Operator\+::\+Number\+Of\+Components}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Shell$>$\newline
+class GQCP\+::\+Primitive\+Coulomb\+Repulsion\+Integral\+Engine$<$ \+\_\+\+Shell $>$}
+
+A class that can calculate electron repulsion integrals.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Shell} & The type of shell that this integral engine is related to. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a61e1e4dc409d270193758ec9de994749}\label{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a61e1e4dc409d270193758ec9de994749}} 
+\index{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{GQCP\+::\+Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a61e1e4dc409d270193758ec9de994749}{Integral\+Scalar}} =  \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a95c96536cbe920c8306919ea8fa86927}\label{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a95c96536cbe920c8306919ea8fa86927}} 
+\index{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{GQCP\+::\+Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a95c96536cbe920c8306919ea8fa86927}{Primitive}} =  typename Shell\+::\+Primitive}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_aaf312e943f59393bc8e718089469ad08}\label{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_aaf312e943f59393bc8e718089469ad08}} 
+\index{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{GQCP\+::\+Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_aaf312e943f59393bc8e718089469ad08}{Shell}} =  \+\_\+\+Shell}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_aee851c7f218c60993a514c94eca34d9e}\label{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_aee851c7f218c60993a514c94eca34d9e}} 
+\index{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a61e1e4dc409d270193758ec9de994749}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{GQCP\+::\+Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{left1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{left2,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{right1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{right2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the Coulomb repulsion integral over four Cartesian GTOs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em left1} & The first left Cartesian GTO. \\
+\hline
+{\em left2} & The second left Cartesian GTO. \\
+\hline
+{\em right1} & The first right Cartesian GTO. \\
+\hline
+{\em right2} & The second right Cartesian GTO.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Coulomb repulsion integral over the four given Cartesian GTOs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a758d6bad4ca9c7d4991bd1524f52b7ea}\label{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a758d6bad4ca9c7d4991bd1524f52b7ea}} 
+\index{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}!prepareStateForComponent@{prepareStateForComponent}}
+\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{prepareStateForComponent()}{prepareStateForComponent()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{GQCP\+::\+Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+MARK\+: Components Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & The index of the component of the operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Since the Coulomb repulsion operator has only 1 component, this method has no effect. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a802b80f3b4df8f545d6ddaa752d4eb0d}\label{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_a802b80f3b4df8f545d6ddaa752d4eb0d}} 
+\index{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}!Components@{Components}}
+\index{Components@{Components}!GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveCoulombRepulsionIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Components}{Components}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{GQCP\+::\+Primitive\+Coulomb\+Repulsion\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::Components = \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Coulomb\+Repulsion\+Operator\+::\+Number\+Of\+Components}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_coulomb_repulsion_integral_engine_8hpp}{Primitive\+Coulomb\+Repulsion\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

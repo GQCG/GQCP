@@ -4,6 +4,8 @@
     <compoundname>McMurchieDavidsonCoefficient.hpp</compoundname>
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
+    <includedby refid="_primitive_coulomb_repulsion_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_nuclear_attraction_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp</includedby>
     <includedby refid="_primitive_overlap_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</includedby>
     <includedby refid="_mc_murchie_davidson_coefficient_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/McMurchieDavidsonCoefficient.cpp</includedby>
     <includedby refid="_primitive_dipole_integral_engine_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp</includedby>
@@ -176,7 +178,15 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
       </node>
-      <node id="104">
+      <node id="103">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp</label>
+        <link refid="_primitive_nuclear_attraction_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="106">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.cpp</label>
         <link refid="_primitive_angular_momentum_integral_engine_8cpp"/>
       </node>
@@ -241,9 +251,13 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="103" relation="include">
         </childnode>
-        <childnode refid="105" relation="include">
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -418,7 +432,7 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="105">
+      <node id="107">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp</label>
         <link refid="_primitive_dipole_integral_engine_8cpp"/>
       </node>
@@ -502,7 +516,7 @@
         <childnode refid="64" relation="include">
         </childnode>
       </node>
-      <node id="107">
+      <node id="109">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/McMurchieDavidsonCoefficient.cpp</label>
         <link refid="_mc_murchie_davidson_coefficient_8cpp"/>
       </node>
@@ -538,6 +552,14 @@
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp</label>
         <link refid="_q_c_method_2_c_c_2_c_c_d_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp</label>
+        <link refid="_primitive_coulomb_repulsion_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="16">
@@ -680,7 +702,7 @@
         <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="106">
+      <node id="108">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.cpp</label>
         <link refid="_primitive_linear_momentum_integral_engine_8cpp"/>
       </node>
@@ -826,7 +848,7 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="103">
+      <node id="105">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
         <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -860,20 +882,20 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="3">
+      <node id="104">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</label>
         <link refid="_primitive_overlap_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
         <childnode refid="105" relation="include">
         </childnode>
         <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
         </childnode>
       </node>
       <node id="82">

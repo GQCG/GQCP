@@ -276,7 +276,7 @@
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="60"><highlight class="comment"><sp/>*<sp/><sp/>Shell<sp/>characteristics</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Shell<sp/>characteristics</highlight></codeline>
 <codeline lineno="61"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>GTOShell::operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GTOShell&amp;<sp/>rhs)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>

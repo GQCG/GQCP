@@ -566,6 +566,21 @@
    Overlap integrals
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kinetic-integrals">
+   Kinetic integrals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nuclear-attraction-integrals">
+   Nuclear attraction integrals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coulomb-repulsion-integrals">
+   Coulomb repulsion integrals
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -589,26 +604,12 @@
 <span class="kn">import</span> <span class="nn">gqcpy</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this example, we’ll go over the high- and low-level machinery that GQCP offers in order to calculate integrals over Cartesian GTOs. We assume that you’re familiar with the mathematical concepts of a <em>scalar basis</em>, a <em>shell</em> and a <em>primitive</em>.</p>
-<p>We’ll start off by setting up a small molecular system.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Molecule</span><span class="p">([</span>
-    <span class="n">gqcpy</span><span class="o">.</span><span class="n">Nucleus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="n">gqcpy</span><span class="o">.</span><span class="n">Nucleus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="primitive-engines">
-<h2>Primitive engines<a class="headerlink" href="#primitive-engines" title="Permalink to this headline">¶</a></h2>
-<p>Before tackling the first type of integrals (the overlap integrals), we’ll have to zoom in a bit on how integrals are calculated. Let’s dive in:</p>
+<p>In this example, we’ll go over the high- and low-level machinery that GQCP offers in order to calculate integrals over Cartesian GTOs. We assume that you’re familiar with the mathematical concepts of a <em>scalar basis</em>, a <em>shell</em>, a <em>basis function</em>, and a <em>primitive</em>. If you’re not, here’s a very succinct overview:</p>
 <ul class="simple">
 <li><p>Spin-orbitals are expanded in an underlying scalar basis.</p></li>
 <li><p>In order to compactify scalar bases, we use shells that group primitives according to their angular momentum.</p></li>
@@ -616,9 +617,15 @@
 <li><p>Every basis function is defined as a contraction (i.e. a linear combination, where the coefficients are called <em>contraction coefficients</em>) of primitives.</p></li>
 <li><p>Here, the primitives are Cartesian GTOs.</p></li>
 </ul>
-<p>In GQCP, we define an <em>engine</em> to be a computational object that is able to calculate integrals over <em>shells</em>, while a <em>primitive engine</em> is defined to be a computational entity that can calculate integrals over <em>primitives</em>.</p>
-<p>In this example, we’re taking the expansion of contracted GTOs in terms of their primitives for granted (using the implementations provided by the combination of <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronIntegralEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">IntegralCalculator</span></code>), and we’ll be focusing on calculating integrals over <em>primitives</em>.</p>
-<p>Since we really don’t want to manually read in a basis set, we’ll use <code class="docutils literal notranslate"><span class="pre">RSpinOrbitalBasis</span></code>’s functionality to provide us with a scalar basis.</p>
+<p>We’ll start off by setting up a small molecular system and a scalar basis. Since we don’t want to manually read in a basis set, we’ll use <code class="docutils literal notranslate"><span class="pre">RSpinOrbitalBasis</span></code>’s functionality to provide us with a scalar basis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nuclei</span> <span class="o">=</span> <span class="p">[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">Nucleus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Nucleus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="n">nuclei</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spin_orbital_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
@@ -628,10 +635,32 @@
 </div>
 </div>
 </div>
+<div class="section" id="primitive-engines">
+<h2>Primitive engines<a class="headerlink" href="#primitive-engines" title="Permalink to this headline">¶</a></h2>
+<p>In GQCP, we define an <em>engine</em> to be a computational object that is able to calculate integrals over <em>shells</em>, while a <em>primitive engine</em> is defined to be a computational entity that can calculate integrals over <em>primitives</em>.</p>
+<p>In this example, we’re taking the expansion of contracted GTOs in terms of their primitives for granted (using the implementations provided by the combination of <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronIntegralEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">IntegralCalculator</span></code>), and we’ll be focusing on calculating integrals over <em>primitives</em>.</p>
 </div>
 <div class="section" id="overlap-integrals">
 <h2>Overlap integrals<a class="headerlink" href="#overlap-integrals" title="Permalink to this headline">¶</a></h2>
 <p>Let’s get straight into it. Using the McMurchie-Davidson integral scheme, we can calculate the overlap integral over two primitives as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    
+    <span class="c1"># Negative Cartesian exponents should be ignored: the correct value for the corresponding integral is 0.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    
+    
+    <span class="c1"># Use the McMurchie-Davidson recursion to calculate the overlap integral.</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">p</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">E</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">overlap_function</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
@@ -645,27 +674,21 @@
         
         <span class="n">a</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
         <span class="n">K</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">direction</span><span class="p">]</span>
         <span class="n">L</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">direction</span><span class="p">]</span>
 
-
-        <span class="n">E</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-        
-        <span class="n">primitive_integral_1D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">p</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">E</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">primitive_integral</span> <span class="o">*=</span> <span class="n">primitive_integral_1D</span>
-
+        <span class="n">primitive_integral</span> <span class="o">*=</span> <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">primitive_integral</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We’ll wrap this function in to a <code class="docutils literal notranslate"><span class="pre">FunctionalPrimitiveIntegralEngine</span></code>, and then supply it as the primitive engine that should be used in a <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronIntegralEngine</span></code>. We’re doing this in order to use GQCP’s internal handling of the shells and contractions through the <code class="docutils literal notranslate"><span class="pre">IntegralCalculator.calculate</span></code> call.</p>
+<p>We’ll wrap this function in to a <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronPrimitiveIntegralEngine</span></code>, and then supply it as the primitive engine that should be used in a <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronIntegralEngine</span></code>. We’re doing this in order to use GQCP’s internal handling of the shells and contractions through the <code class="docutils literal notranslate"><span class="pre">IntegralCalculator.calculate</span></code> call.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_overlap_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalPrimitiveIntegralEngine_d</span><span class="p">(</span><span class="n">overlap_function</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_overlap_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalOneElectronPrimitiveIntegralEngine_d</span><span class="p">(</span><span class="n">overlap_function</span><span class="p">)</span>
 <span class="n">overlap_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalOneElectronIntegralEngine_d</span><span class="p">(</span><span class="n">primitive_overlap_engine</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -679,8 +702,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.      0.79659]
- [0.79659 1.     ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.99999999 0.79658829]
+ [0.79658829 0.99999999]]
 </pre></div>
 </div>
 </div>
@@ -694,8 +717,340 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.      0.79659]
- [0.79659 1.     ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.99999999 0.79658829]
+ [0.79658829 0.99999999]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="kinetic-integrals">
+<h2>Kinetic integrals<a class="headerlink" href="#kinetic-integrals" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kinetic_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    
+    <span class="c1"># The kinetic 1D integral is a sum of three 1D overlap integrals.</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">b</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">-</span> \
+           <span class="mf">0.5</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kinetic_function</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+    
+    <span class="c1"># Prepare some variables</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    
+    <span class="n">j</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    
+    <span class="n">a</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+
+    <span class="n">K_x</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">K_y</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">K_z</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+    
+    <span class="n">L_x</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">L_y</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">L_z</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+    
+    
+    <span class="c1"># The 3D kinetic energy integral is a sum of three contributions (dx^2, dy^2, dz^2).</span>
+    <span class="k">return</span> <span class="n">kinetic_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_x</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> \
+               <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_y</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span> <span class="o">*</span> \
+               <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_z</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_z</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_x</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> \
+               <span class="n">kinetic_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_y</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span> <span class="o">*</span> \
+               <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_z</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_z</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_x</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> \
+               <span class="n">overlap_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_y</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span> <span class="o">*</span> \
+               <span class="n">kinetic_function_1D</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">K_z</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">L_z</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Same thing for the kinetic integrals. We wrap the <code class="docutils literal notranslate"><span class="pre">kinetic_function</span></code> in a functional primitive engine and proceed analoguously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_kinetic_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalOneElectronPrimitiveIntegralEngine_d</span><span class="p">(</span><span class="n">kinetic_function</span><span class="p">)</span>
+<span class="n">kinetic_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalOneElectronIntegralEngine_d</span><span class="p">(</span><span class="n">primitive_kinetic_engine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">IntegralCalculator</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">kinetic_engine</span><span class="p">,</span> <span class="n">shell_set</span><span class="p">,</span> <span class="n">shell_set</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.76003188 0.38325367]
+ [0.38325367 0.76003188]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a comparison, here are the GQCP integrals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_ref</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantizeKineticOperator</span><span class="p">()</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">T_ref</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.76003188 0.38325367]
+ [0.38325367 0.76003188]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="nuclear-attraction-integrals">
+<h2>Nuclear attraction integrals<a class="headerlink" href="#nuclear-attraction-integrals" title="Permalink to this headline">¶</a></h2>
+<p>A point of caution here. The type of functions that <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronPrimitiveIntegralEngine_d</span></code> accepts only has two <code class="docutils literal notranslate"><span class="pre">CartesianGTO</span></code> arguments. However, the nuclear attraction function needs to know which nucleic contributions have to be calculated. Since this is just a tutorial/example, we have opted to declare <code class="docutils literal notranslate"><span class="pre">nuclei</span></code> as a global variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nuclear_attraction_function</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+
+    <span class="c1"># Prepare some variables.</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    
+    <span class="n">j</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+
+    <span class="n">K_x</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">K_y</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">K_z</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+    
+    <span class="n">L_x</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">L_y</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">L_z</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+
+
+    <span class="c1"># Prepare the McMurchie-Davidson coefficients.</span>
+    <span class="n">E_x</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K_x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L_x</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">E_y</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K_y</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L_y</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">E_z</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K_z</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L_z</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_x</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">(),</span> <span class="n">E_y</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">(),</span> <span class="n">E_z</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">()])</span>
+
+
+    <span class="c1"># Calculate the contributions from every nuclear center.</span>
+    <span class="n">total_integral</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">for</span> <span class="n">nucleus</span> <span class="ow">in</span> <span class="n">nuclei</span><span class="p">:</span>
+        <span class="n">integral</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="n">C</span> <span class="o">=</span> <span class="n">nucleus</span><span class="o">.</span><span class="n">position</span><span class="p">()</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">HermiteCoulombIntegral</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="c1"># Add the contribution to the integral. The prefactor will be applied at the end.</span>
+                    <span class="n">integral</span> <span class="o">+=</span> <span class="n">E_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">E_y</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">*</span> <span class="n">E_z</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+        <span class="n">total_integral</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="n">nucleus</span><span class="o">.</span><span class="n">charge</span><span class="p">())</span> <span class="o">*</span> <span class="n">integral</span>
+
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">p</span> <span class="o">*</span> <span class="n">total_integral</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You’re getting the hang of this, right? Wrap the <code class="docutils literal notranslate"><span class="pre">nuclear_attraction_function</span></code> in the functional primitive engine and then provide that as input for the one-electron engine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_nuclear_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalOneElectronPrimitiveIntegralEngine_d</span><span class="p">(</span><span class="n">nuclear_attraction_function</span><span class="p">)</span>
+<span class="n">nuclear_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalOneElectronIntegralEngine_d</span><span class="p">(</span><span class="n">primitive_nuclear_engine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">IntegralCalculator</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">nuclear_engine</span><span class="p">,</span> <span class="n">shell_set</span><span class="p">,</span> <span class="n">shell_set</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-2.03852055 -1.60241665]
+ [-1.60241665 -2.03852055]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V_ref</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantizeNuclearAttractionOperator</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V_ref</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-2.03852055 -1.60241665]
+ [-1.60241665 -2.03852055]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="coulomb-repulsion-integrals">
+<h2>Coulomb repulsion integrals<a class="headerlink" href="#coulomb-repulsion-integrals" title="Permalink to this headline">¶</a></h2>
+<p>The two-electron Coulomb repulsion integrals aren’t very different. They just require a little more code since the integrals are calculated over four basis functions instead of the previous two.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coulomb_repulsion_function</span><span class="p">(</span><span class="n">left1</span><span class="p">,</span> <span class="n">left2</span><span class="p">,</span> <span class="n">right1</span><span class="p">,</span> <span class="n">right2</span><span class="p">):</span>
+
+    <span class="c1"># Prepare some variables. Those with an extra underscore represent the &#39;primed&#39; indices in the notes.</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">left1</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">left1</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">left1</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    
+    <span class="n">j</span> <span class="o">=</span> <span class="n">left2</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">left2</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">left2</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="n">i_</span> <span class="o">=</span> <span class="n">right1</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">k_</span> <span class="o">=</span> <span class="n">right1</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">m_</span> <span class="o">=</span> <span class="n">right1</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    
+    <span class="n">j_</span> <span class="o">=</span> <span class="n">right2</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">l_</span> <span class="o">=</span> <span class="n">right2</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">n_</span> <span class="o">=</span> <span class="n">right2</span><span class="o">.</span><span class="n">cartesianExponents</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">left1</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">left2</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">right1</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">right2</span><span class="o">.</span><span class="n">gaussianExponent</span><span class="p">()</span>
+
+    <span class="n">K_x</span> <span class="o">=</span> <span class="n">left1</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">K_y</span> <span class="o">=</span> <span class="n">left1</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">K_z</span> <span class="o">=</span> <span class="n">left1</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+    
+    <span class="n">L_x</span> <span class="o">=</span> <span class="n">left2</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">L_y</span> <span class="o">=</span> <span class="n">left2</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">L_z</span> <span class="o">=</span> <span class="n">left2</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+
+    <span class="n">M_x</span> <span class="o">=</span> <span class="n">right1</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">M_y</span> <span class="o">=</span> <span class="n">right1</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">M_z</span> <span class="o">=</span> <span class="n">right1</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+    
+    <span class="n">N_x</span> <span class="o">=</span> <span class="n">right2</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+    <span class="n">N_y</span> <span class="o">=</span> <span class="n">right2</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">N_z</span> <span class="o">=</span> <span class="n">right2</span><span class="o">.</span><span class="n">center</span><span class="p">()[</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CartesianDirection</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+
+
+    <span class="c1"># Prepare the McMurchie-Davidson coefficients.</span>
+    <span class="n">E_x</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K_x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L_x</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">E_y</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K_y</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L_y</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">E_z</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">K_z</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">L_z</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="n">E_x_</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">M_x</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">N_x</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="n">E_y_</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">M_y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">N_y</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="n">E_z_</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">McMurchieDavidsonCoefficient</span><span class="p">(</span><span class="n">M_z</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">N_z</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+
+    <span class="c1"># Prepare the Hermite Coulomb integral.</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">q</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="p">);</span>
+
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_x</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">(),</span> <span class="n">E_y</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">(),</span> <span class="n">E_z</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">()])</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_x_</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">(),</span> <span class="n">E_y_</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">(),</span> <span class="n">E_z_</span><span class="o">.</span><span class="n">centerOfMass</span><span class="p">()])</span>
+
+    <span class="n">R</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">HermiteCoulombIntegral</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">);</span>
+
+
+    <span class="c1"># Calculate the Coulomb repulsion integrals over the primitives.</span>
+    <span class="n">integral</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">tau</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i_</span> <span class="o">+</span> <span class="n">j_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k_</span> <span class="o">+</span> <span class="n">l_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">nu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m_</span> <span class="o">+</span> <span class="n">n_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                            <span class="c1"># Add the contribution to the integral. The prefactor will be applied at the end.</span>
+                            <span class="n">integral</span> <span class="o">+=</span> <span class="n">E_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">E_y</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">*</span> <span class="n">E_z</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> \
+                                        <span class="n">E_x_</span><span class="p">(</span><span class="n">i_</span><span class="p">,</span> <span class="n">j_</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">E_y_</span><span class="p">(</span><span class="n">k_</span><span class="p">,</span> <span class="n">l_</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span> <span class="o">*</span> <span class="n">E_z_</span><span class="p">(</span><span class="n">m_</span><span class="p">,</span> <span class="n">n_</span><span class="p">,</span> <span class="n">nu</span><span class="p">)</span> <span class="o">*</span> \
+                                        <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">tau</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span> <span class="o">+</span> <span class="n">tau</span><span class="p">,</span> <span class="n">u</span> <span class="o">+</span> <span class="n">mu</span><span class="p">,</span> <span class="n">v</span> <span class="o">+</span> <span class="n">nu</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="p">))</span> <span class="o">*</span> <span class="n">integral</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Instead of using a one-electron engine, we’ll have to use a two-electron engine for the Coulomb repulsion integrals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_coulomb_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalTwoElectronPrimitiveIntegralEngine_d</span><span class="p">(</span><span class="n">coulomb_repulsion_function</span><span class="p">)</span>
+<span class="n">coulomb_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalTwoElectronIntegralEngine_d</span><span class="p">(</span><span class="n">primitive_coulomb_engine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">IntegralCalculator</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">coulomb_engine</span><span class="p">,</span> <span class="n">shell_set</span><span class="p">,</span> <span class="n">shell_set</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[[0.77460593 0.56886143]
+   [0.56886143 0.65017746]]
+
+  [[0.56886143 0.45590151]
+   [0.45590151 0.56886143]]]
+
+
+ [[[0.56886143 0.45590151]
+   [0.45590151 0.56886143]]
+
+  [[0.65017746 0.56886143]
+   [0.56886143 0.77460593]]]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_ref</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantizeCoulombRepulsionOperator</span><span class="p">()</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g_ref</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[[0.77460593 0.56886143]
+   [0.56886143 0.65017746]]
+
+  [[0.56886143 0.45590151]
+   [0.45590151 0.56886143]]]
+
+
+ [[[0.56886143 0.45590151]
+   [0.45590151 0.56886143]]
+
+  [[0.65017746 0.56886143]
+   [0.56886143 0.77460593]]]]
 </pre></div>
 </div>
 </div>

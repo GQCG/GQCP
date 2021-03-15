@@ -320,6 +320,9 @@
   <compound refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::BasisTransformableTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4_1a4eb0914e4da609c47ac2a523c8cb11c0" kind="typedef"><name>Transformation</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_boys_function" kind="class"><name>GQCP::BoysFunction</name>
+    <member refid="class_g_q_c_p_1_1_boys_function_1a60397de44d83f3e7231bb75f9ee897c4" kind="function"><name>operator()</name></member>
+  </compound>
   <compound refid="struct_g_q_c_p_1_1_cartesian_exponents" kind="struct"><name>GQCP::CartesianExponents</name>
     <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1aa72b7f24d1b6f4a1fa5a712f20324986" kind="variable"><name>exponents</name></member>
     <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a5b3e6dd7cb8dfe12a6f59a1b2f547a96" kind="function"><name>CartesianExponents</name></member>
@@ -730,6 +733,16 @@
     <member refid="class_g_q_c_p_1_1_field_1af389765c10f7818e16bd66d6e9d235cd" kind="friend"><name>operator+</name></member>
     <member refid="class_g_q_c_p_1_1_field_1af08d9a23cd201e1b7e71675a05fd8c9e" kind="friend"><name>operator-</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" kind="class"><name>GQCP::FunctionalOneElectronPrimitiveIntegralEngine</name>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a26e80137becded39859354c7fd5a1e09" kind="typedef"><name>Shell</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a942b4605ffd36b899f30e20ebffffaf4" kind="typedef"><name>Primitive</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a20c63b51eb4c8ed4355254fa9b9ecc3b" kind="typedef"><name>IntegralScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a1e517e9ec18989d61e368895346fca85" kind="variable"><name>Components</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a668bd92924849e88e21fd333a775153e" kind="variable"><name>function</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a66093ca4810e7eeabfba68a72d616e0e" kind="function"><name>FunctionalOneElectronPrimitiveIntegralEngine</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a69a6850adcad39a1f897464feee8fd96" kind="function"><name>prepareStateForComponent</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1acee62d21ba8e54a743afac6bc64eb6cb" kind="function"><name>calculate</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_functional_primitive_integral_engine" kind="class"><name>GQCP::FunctionalPrimitiveIntegralEngine</name>
     <member refid="class_g_q_c_p_1_1_functional_primitive_integral_engine_1a1378bc8737e592ccfb0cb3ea5d19b5b3" kind="typedef"><name>IntegralScalar</name></member>
     <member refid="class_g_q_c_p_1_1_functional_primitive_integral_engine_1a646a4e6e93031a44c0bbab465e600fea" kind="typedef"><name>Shell</name></member>
@@ -748,6 +761,16 @@
     <member refid="class_g_q_c_p_1_1_functional_step_1ac0f2d8c6713c925dc06ec2bf2deb78ca" kind="function"><name>FunctionalStep</name></member>
     <member refid="class_g_q_c_p_1_1_functional_step_1acdbcb74b42d6f390be7c6aa00e05978b" kind="function"><name>description</name></member>
     <member refid="class_g_q_c_p_1_1_functional_step_1aa30af9328c3482352d24d15e05156e1d" kind="function"><name>execute</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine" kind="class"><name>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</name>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1afb32a888ce1f3fb1299474ca19994093" kind="typedef"><name>Shell</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a57f0d0279413aae5de63748322bce448" kind="typedef"><name>Primitive</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1acc8012becffe7327cfe96f0afa04365b" kind="typedef"><name>IntegralScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a38ac1ccf295a4ac40e7305f10bbe7bd4" kind="variable"><name>Components</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a0e9118db1857b0d2fb796b6229a3fc9b" kind="variable"><name>function</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a9224161c171f780f25cd80f11547601e" kind="function"><name>FunctionalTwoElectronPrimitiveIntegralEngine</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a67bb04ec0b696b5d607cc59d5b3cb76a" kind="function"><name>prepareStateForComponent</name></member>
+    <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1ac94b5e1362f1a3871ecf62bac3a8180c" kind="function"><name>calculate</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_g1_d_m" kind="class"><name>GQCP::G1DM</name>
     <member refid="class_g_q_c_p_1_1_g1_d_m_1a7027b6b4375942fa7c56c4c1699ff754" kind="typedef"><name>Scalar</name></member>
@@ -959,6 +982,13 @@
     <member refid="class_g_q_c_p_1_1_guess_vector_update_1a587095aac1b169167816445427e96607" kind="function"><name>description</name></member>
     <member refid="class_g_q_c_p_1_1_guess_vector_update_1a7a851040ae4141bf75a5c04e3b8c4789" kind="function"><name>execute</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_hermite_coulomb_integral" kind="class"><name>GQCP::HermiteCoulombIntegral</name>
+    <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1a88c5e1315d219e3b09d6dd4d57abff0e" kind="variable"><name>p</name></member>
+    <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1aeb1fb82d77c346a7df953a88fe0c264e" kind="variable"><name>P</name></member>
+    <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1a1a6490cad818b2ba5ea9ea7146ce9265" kind="variable"><name>C</name></member>
+    <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1a65ba5a393207d6964b8d74203d8ab494" kind="function"><name>HermiteCoulombIntegral</name></member>
+    <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1ad6a63ed335d180f38a7a7e02ed94d22d" kind="function"><name>operator()</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kind="class"><name>GQCP::HomogeneousMagneticField</name>
     <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a93a8adb6bebd554874219a78222e3d61" kind="variable"><name>B</name></member>
     <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a852823b4d105ded2b651ee653a72b3e6" kind="variable"><name>G</name></member>
@@ -1045,6 +1075,8 @@
     <member refid="class_g_q_c_p_1_1_integral_engine_1afe460aeb2126e9478975b5460278b736" kind="function"><name>InHouse</name></member>
     <member refid="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" kind="function"><name>InHouse</name></member>
     <member refid="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" kind="function"><name>InHouse</name></member>
+    <member refid="class_g_q_c_p_1_1_integral_engine_1a620821ae87f9be8fc6dcb53de42d1675" kind="function"><name>InHouse</name></member>
+    <member refid="class_g_q_c_p_1_1_integral_engine_1a56d3626fcd36ed800cc26eff9a9a5105" kind="function"><name>InHouse</name></member>
     <member refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kind="function"><name>Libint</name></member>
     <member refid="class_g_q_c_p_1_1_integral_engine_1a94b57de64ef4887b9eac7167c57d3315" kind="function"><name>Libint</name></member>
     <member refid="class_g_q_c_p_1_1_integral_engine_1a696f240f9a5d091a4adffb5ebfba6c6a" kind="function"><name>Libint</name></member>
@@ -1835,6 +1867,14 @@
     <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a14f348eef8b2b49487a42b887b407334" kind="function"><name>~PrimitiveCartesianOperatorIntegralEngine</name></member>
     <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1abc3fd20e83b16565852112d4594c7ba8" kind="function"><name>prepareStateForComponent</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine" kind="class"><name>GQCP::PrimitiveCoulombRepulsionIntegralEngine</name>
+    <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1aaf312e943f59393bc8e718089469ad08" kind="typedef"><name>Shell</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a95c96536cbe920c8306919ea8fa86927" kind="typedef"><name>Primitive</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a61e1e4dc409d270193758ec9de994749" kind="typedef"><name>IntegralScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a802b80f3b4df8f545d6ddaa752d4eb0d" kind="variable"><name>Components</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a758d6bad4ca9c7d4991bd1524f52b7ea" kind="function"><name>prepareStateForComponent</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1aee851c7f218c60993a514c94eca34d9e" kind="function"><name>calculate</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kind="class"><name>GQCP::PrimitiveDipoleIntegralEngine</name>
     <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1ae3b14b76459c1612a777a6f9f5ec7906" kind="typedef"><name>IntegralScalar</name></member>
     <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a2e6ff2d05289e239e09cfa5ab4a79ebf" kind="typedef"><name>Shell</name></member>
@@ -1853,6 +1893,16 @@
     <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a0c6a1b2540d2ec6af8ea336b129086ac" kind="function"><name>calculate</name></member>
     <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1afa6ea81662fee97590d9f8c687b984d5" kind="function"><name>calculate1D</name></member>
     <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a5ae4f80cc95067e1919a1d7336d46d42" kind="function"><name>PrimitiveCartesianOperatorIntegralEngine</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" kind="class"><name>GQCP::PrimitiveNuclearAttractionIntegralEngine</name>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4250779f16a3c00b6e5b5699ad465b5a" kind="typedef"><name>Shell</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4afc2d193bab6338b10e1065c88790c4" kind="typedef"><name>Primitive</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" kind="typedef"><name>IntegralScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a2c654df1d5a52d062e8b0bae850ad4c0" kind="variable"><name>Components</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1af42947f87325cb0c278b2c1e7b6085eb" kind="variable"><name>nuclear_attraction_operator</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1ae26d808dd3e029c6e37125a45be7276b" kind="function"><name>PrimitiveNuclearAttractionIntegralEngine</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a03c7d86440812fa223b0f15a67c8237c" kind="function"><name>prepareStateForComponent</name></member>
+    <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a2c42221c90f7aa1442eecc6245a40bcb" kind="function"><name>calculate</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kind="class"><name>GQCP::PrimitiveOverlapIntegralEngine</name>
     <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a201abfc83ece872d3af91a3b96ca3334" kind="typedef"><name>Shell</name></member>
@@ -2637,6 +2687,23 @@
     <member refid="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" kind="function"><name>numberOfElements</name></member>
     <member refid="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" kind="function"><name>print</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_two_electron_integral_buffer" kind="class"><name>GQCP::TwoElectronIntegralBuffer</name>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a1bfe3f83601a888e03d5d71d928779c6" kind="typedef"><name>IntegralScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a23fff96f2439354b2c519516e397cb62" kind="variable"><name>N</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a395dd41c0777f21c65f358ddf6233186" kind="variable"><name>buffer</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1aaf9a5167cdfa5e8f156d1c22278f6a7f" kind="function"><name>TwoElectronIntegralBuffer</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a9b6526452a74be456a9e14589349c976" kind="function"><name>areIntegralsAllZero</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1abf330db30b7b03925a41f7421047e34b" kind="function"><name>value</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_two_electron_integral_engine" kind="class"><name>GQCP::TwoElectronIntegralEngine</name>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ad176ab612e5497f7228128642a8ab156" kind="typedef"><name>PrimitiveIntegralEngine</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1aab076b71ff1efd1dfd523e2e4826ec78" kind="typedef"><name>Shell</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ab806171787404911056f0aeb62ae200d" kind="typedef"><name>IntegralScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1abad8e518fb09f8c734e6bd9548275933" kind="variable"><name>N</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1a32ef28b4e04bf07ef0f1c282916c9e1c" kind="variable"><name>primitive_engine</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1a4175bc3fc3a722df8175d0612eb475d2" kind="function"><name>TwoElectronIntegralEngine</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1a2b62b8c3c7402fb369dd0019f6f6fa28" kind="function"><name>calculate</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f" kind="class"><name>GQCP::QCMethod::UHF</name>
     <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kind="typedef"><name>Scalar</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a7d9df7748fa0da0c0181db6e8e6caf85" kind="function"><name>optimize</name></member>
@@ -3109,7 +3176,13 @@
   </compound>
   <compound refid="_base_two_electron_integral_engine_8hpp" kind="file"><name>BaseTwoElectronIntegralEngine.hpp</name>
   </compound>
+  <compound refid="_functional_one_electron_primitive_integral_engine_8hpp" kind="file"><name>FunctionalOneElectronPrimitiveIntegralEngine.hpp</name>
+  </compound>
   <compound refid="_functional_primitive_integral_engine_8hpp" kind="file"><name>FunctionalPrimitiveIntegralEngine.hpp</name>
+  </compound>
+  <compound refid="_functional_two_electron_primitive_integral_engine_8hpp" kind="file"><name>FunctionalTwoElectronPrimitiveIntegralEngine.hpp</name>
+  </compound>
+  <compound refid="_hermite_coulomb_integral_8hpp" kind="file"><name>HermiteCoulombIntegral.hpp</name>
   </compound>
   <compound refid="_integral_calculator_8hpp" kind="file"><name>IntegralCalculator.hpp</name>
   </compound>
@@ -3151,11 +3224,19 @@
   </compound>
   <compound refid="_primitive_cartesian_operator_integral_engine_8hpp" kind="file"><name>PrimitiveCartesianOperatorIntegralEngine.hpp</name>
   </compound>
+  <compound refid="_primitive_coulomb_repulsion_integral_engine_8hpp" kind="file"><name>PrimitiveCoulombRepulsionIntegralEngine.hpp</name>
+  </compound>
   <compound refid="_primitive_dipole_integral_engine_8hpp" kind="file"><name>PrimitiveDipoleIntegralEngine.hpp</name>
   </compound>
   <compound refid="_primitive_linear_momentum_integral_engine_8hpp" kind="file"><name>PrimitiveLinearMomentumIntegralEngine.hpp</name>
   </compound>
+  <compound refid="_primitive_nuclear_attraction_integral_engine_8hpp" kind="file"><name>PrimitiveNuclearAttractionIntegralEngine.hpp</name>
+  </compound>
   <compound refid="_primitive_overlap_integral_engine_8hpp" kind="file"><name>PrimitiveOverlapIntegralEngine.hpp</name>
+  </compound>
+  <compound refid="_two_electron_integral_buffer_8hpp" kind="file"><name>TwoElectronIntegralBuffer.hpp</name>
+  </compound>
+  <compound refid="_two_electron_integral_engine_8hpp" kind="file"><name>TwoElectronIntegralEngine.hpp</name>
   </compound>
   <compound refid="_g_mulliken_partitioning_8hpp" kind="file"><name>GMullikenPartitioning.hpp</name>
   </compound>
@@ -3268,6 +3349,8 @@
   <compound refid="_optimization_2_non_linear_equation_2_step_8hpp" kind="file"><name>step.hpp</name>
   </compound>
   <compound refid="_step_collection_8hpp" kind="file"><name>StepCollection.hpp</name>
+  </compound>
+  <compound refid="_boys_function_8hpp" kind="file"><name>BoysFunction.hpp</name>
   </compound>
   <compound refid="_cartesian_direction_8hpp" kind="file"><name>CartesianDirection.hpp</name>
   </compound>
@@ -3622,6 +3705,10 @@
   <compound refid="miscellaneous_8hpp" kind="file"><name>miscellaneous.hpp</name>
   </compound>
   <compound refid="type__traits_8hpp" kind="file"><name>type_traits.hpp</name>
+  </compound>
+  <compound refid="_boys_function_8cpp" kind="file"><name>BoysFunction.cpp</name>
+  </compound>
+  <compound refid="_hermite_coulomb_integral_8cpp" kind="file"><name>HermiteCoulombIntegral.cpp</name>
   </compound>
   <compound refid="_integral_engine_8cpp" kind="file"><name>IntegralEngine.cpp</name>
   </compound>

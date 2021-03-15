@@ -134,7 +134,7 @@
 <codeline lineno="52"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/src/Physical/HomogeneousMagneticField.cpp"/>
   </compounddef>

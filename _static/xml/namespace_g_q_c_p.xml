@@ -6,7 +6,10 @@
     <innerclass refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" prot="public">GQCP::BaseOneElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public">GQCP::BaseTwoElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public">GQCP::BaseTwoElectronIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" prot="public">GQCP::FunctionalOneElectronPrimitiveIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_functional_primitive_integral_engine" prot="public">GQCP::FunctionalPrimitiveIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine" prot="public">GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_hermite_coulomb_integral" prot="public">GQCP::HermiteCoulombIntegral</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_calculator" prot="public">GQCP::IntegralCalculator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_engine" prot="public">GQCP::IntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" prot="public">GQCP::McMurchieDavidsonCoefficient</innerclass>
@@ -15,9 +18,13 @@
     <innerclass refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public">GQCP::PrimitiveAngularMomentumIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" prot="public">GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" prot="public">GQCP::PrimitiveCartesianOperatorIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine" prot="public">GQCP::PrimitiveCoulombRepulsionIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" prot="public">GQCP::PrimitiveDipoleIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public">GQCP::PrimitiveLinearMomentumIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" prot="public">GQCP::PrimitiveNuclearAttractionIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public">GQCP::PrimitiveOverlapIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_two_electron_integral_buffer" prot="public">GQCP::TwoElectronIntegralBuffer</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_two_electron_integral_engine" prot="public">GQCP::TwoElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_interfacer" prot="public">GQCP::LibcintInterfacer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_one_electron_integral_buffer" prot="public">GQCP::LibcintOneElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" prot="public">GQCP::LibcintOneElectronIntegralEngine</innerclass>
@@ -129,6 +136,7 @@
     <innerclass refid="class_g_q_c_p_1_1_iterative_algorithm" prot="public">GQCP::IterativeAlgorithm</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_step" prot="public">GQCP::Step</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_step_collection" prot="public">GQCP::StepCollection</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_boys_function" prot="public">GQCP::BoysFunction</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_cartesian_exponents" prot="public">GQCP::CartesianExponents</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_cartesian_g_t_o" prot="public">GQCP::CartesianGTO</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_linear_combination" prot="public">GQCP::LinearCombination</innerclass>

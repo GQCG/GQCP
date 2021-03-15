@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="56" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="33" bodyend="36"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="59" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="33" bodyend="36"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a0c5398d866b5389d2aeda6c7dc4fa73e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kindref="compound">PrimitiveDipoleIntegralEngine</ref> &gt;</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="65" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="44" bodyend="47"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="68" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="44" bodyend="47"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1afe460aeb2126e9478975b5460278b736" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" kindref="compound">PrimitiveLinearMomentumIntegralEngine</ref> &gt;</type>
@@ -128,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="74" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="55" bodyend="58"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="77" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="55" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -174,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="88" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="88" bodyend="91"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="91" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="91" bodyend="94"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -220,7 +220,71 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="105" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="105" bodyend="108"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="108" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a620821ae87f9be8fc6dcb53de42d1675" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" kindref="compound">PrimitiveNuclearAttractionIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &gt;</type>
+        <definition>OneElectronIntegralEngine&lt; PrimitiveNuclearAttractionIntegralEngine&lt; GTOShell &gt; &gt; GQCP::IntegralEngine::InHouse</definition>
+        <argsstring>(const NuclearAttractionOperator &amp;op)</argsstring>
+        <name>InHouse</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an in-house one-electron integral engine that can calculate integrals over the nuclear attraction operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclear attraction operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A one-electron integral engine that can calculate integrals over the nuclear attraction operator.</para>
+</simplesect>
+<simplesect kind="note"><para>This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="122" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="70" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a56d3626fcd36ed800cc26eff9a9a5105" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_two_electron_integral_engine" kindref="compound">TwoElectronIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine" kindref="compound">PrimitiveCoulombRepulsionIntegralEngine</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &gt;</type>
+        <definition>TwoElectronIntegralEngine&lt; PrimitiveCoulombRepulsionIntegralEngine&lt; GTOShell &gt; &gt; GQCP::IntegralEngine::InHouse</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;op)</argsstring>
+        <name>InHouse</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an in-house two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Coulomb repulsion operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.</para>
+</simplesect>
+<simplesect kind="note"><para>This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="133" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="85" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -273,7 +337,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="122" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="72" bodyend="75"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="147" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="102" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a94b57de64ef4887b9eac7167c57d3315" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -326,7 +390,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="131" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="85" bodyend="88"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="156" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="115" bodyend="118"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a696f240f9a5d091a4adffb5ebfba6c6a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -379,7 +443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="140" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="111" bodyend="114"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="165" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="141" bodyend="144"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a9651e5879fb084b570946bcf63d87f0f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -432,7 +496,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="149" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="98" bodyend="101"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="174" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="128" bodyend="131"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1afec59610cce637a4604d1fcf0b5be052" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -485,7 +549,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="158" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="124" bodyend="127"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="183" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="154" bodyend="157"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -526,7 +590,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="171" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="140" bodyend="143"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="196" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="170" bodyend="173"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1ab92646915ae593df997ae85294158bff" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -578,7 +642,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="179" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="151" bodyend="154"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="204" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="181" bodyend="184"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a504b4863082626055f8555ab4f8658bd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -619,7 +683,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="187" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="175" bodyend="178"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="212" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="205" bodyend="208"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a3793b759cb20f072c69adff0e026022b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -660,7 +724,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="195" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="163" bodyend="166"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="220" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="193" bodyend="196"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a81fbbe96aeaf4d240de12b98d3ef741d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -701,7 +765,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="203" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="187" bodyend="190"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="228" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp" bodystart="217" bodyend="220"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -715,13 +779,15 @@
         <link refid="class_g_q_c_p_1_1_integral_engine"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="41" bodyend="204"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="44" bodyend="229"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1a0c5398d866b5389d2aeda6c7dc4fa73e" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1afe460aeb2126e9478975b5460278b736" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a620821ae87f9be8fc6dcb53de42d1675" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a56d3626fcd36ed800cc26eff9a9a5105" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1ab92646915ae593df997ae85294158bff" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1a504b4863082626055f8555ab4f8658bd" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>

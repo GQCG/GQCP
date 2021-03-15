@@ -3,6 +3,7 @@
   <compounddef id="class_g_q_c_p_1_1_base_two_electron_integral_buffer" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::BaseTwoElectronIntegralBuffer</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_two_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</derivedcompoundref>
     <includes refid="_base_two_electron_integral_buffer_8hpp" local="no">BaseTwoElectronIntegralBuffer.hpp</includes>
     <templateparamlist>
       <param>
@@ -181,6 +182,7 @@
         <definition>virtual bool GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::areIntegralsAllZero</definition>
         <argsstring>() const =0</argsstring>
         <name>areIntegralsAllZero</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a9b6526452a74be456a9e14589349c976">areIntegralsAllZero</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a57c6600cc78f886464837fc72738e4fe">areIntegralsAllZero</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_libint_two_electron_integral_buffer_1a92a7898936c99e58c5c42af5e9c76f67">areIntegralsAllZero</reimplementedby>
         <briefdescription>
@@ -201,6 +203,7 @@
         <name>value</name>
         <reimplementedby refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a779a754af0aa9056900119bebf5933da">value</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_libint_two_electron_integral_buffer_1ab6fe75c20d83f34e55a92ac07e03e386">value</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1abf330db30b7b03925a41f7421047e34b">value</reimplementedby>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -440,6 +443,12 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_two_electron_integral_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>

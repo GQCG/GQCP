@@ -37,6 +37,14 @@
       <node id="34">
         <label>functional</label>
       </node>
+      <node id="96">
+        <label>Basis/Integrals/TwoElectronIntegralBuffer.hpp</label>
+        <link refid="_two_electron_integral_buffer_8hpp"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
       <node id="39">
         <label>Physical/HomogeneousMagneticField.hpp</label>
         <link refid="_homogeneous_magnetic_field_8hpp"/>
@@ -66,6 +74,20 @@
       </node>
       <node id="67">
         <label>iterator</label>
+      </node>
+      <node id="94">
+        <label>Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp</label>
+        <link refid="_primitive_nuclear_attraction_integral_engine_8hpp"/>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
       </node>
       <node id="30">
         <label>boost/lexical_cast.hpp</label>
@@ -98,7 +120,7 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="89">
+      <node id="92">
         <label>Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</label>
         <link refid="_primitive_dipole_integral_engine_8hpp"/>
         <childnode refid="84" relation="include">
@@ -199,6 +221,9 @@
         <childnode refid="49" relation="include">
         </childnode>
       </node>
+      <node id="91">
+        <label>cmath</label>
+      </node>
       <node id="52">
         <label>Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
         <link refid="_electronic_density_operator_8hpp"/>
@@ -249,9 +274,15 @@
         </childnode>
         <childnode refid="89" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
@@ -284,6 +315,16 @@
         <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="95">
+        <label>Basis/Integrals/TwoElectronIntegralEngine.hpp</label>
+        <link refid="_two_electron_integral_engine_8hpp"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
       <node id="58">
@@ -401,6 +442,12 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
+      <node id="90">
+        <label>Basis/Integrals/HermiteCoulombIntegral.hpp</label>
+        <link refid="_hermite_coulomb_integral_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
       <node id="62">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
         <link refid="_overlap_operator_8hpp"/>
@@ -444,6 +491,22 @@
       <node id="15">
         <label>vector</label>
       </node>
+      <node id="89">
+        <label>Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp</label>
+        <link refid="_primitive_coulomb_repulsion_integral_engine_8hpp"/>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
       <node id="10">
         <label>Utilities/aliases.hpp</label>
         <link refid="aliases_8hpp"/>
@@ -479,7 +542,7 @@
         <childnode refid="75" relation="include">
         </childnode>
       </node>
-      <node id="90">
+      <node id="93">
         <label>Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</label>
         <link refid="_primitive_linear_momentum_integral_engine_8hpp"/>
         <childnode refid="84" relation="include">
@@ -815,75 +878,87 @@
 <codeline lineno="58"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/>LIBINT</highlight></codeline>
-<codeline lineno="63"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintTwoElectronIntegralEngine&lt;CoulombRepulsionOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintTwoElectronIntegralEngine&lt;CoulombRepulsionOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ElectronicDipoleOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;ElectronicDipoleOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">OneElectronIntegralEngine&lt;PrimitiveNuclearAttractionIntegralEngine&lt;GTOShell&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" kindref="member">IntegralEngine::InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>op)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>OneElectronIntegralEngine&lt;PrimitiveNuclearAttractionIntegralEngine&lt;GTOShell&gt;&gt;(PrimitiveNuclearAttractionIntegralEngine&lt;GTOShell&gt;(op));</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">TwoElectronIntegralEngine&lt;PrimitiveCoulombRepulsionIntegralEngine&lt;GTOShell&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" kindref="member">IntegralEngine::InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>op)<sp/>{</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;ElectronicDipoleOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>TwoElectronIntegralEngine&lt;PrimitiveCoulombRepulsionIntegralEngine&lt;GTOShell&gt;&gt;(PrimitiveCoulombRepulsionIntegralEngine&lt;GTOShell&gt;());</highlight></codeline>
 <codeline lineno="88"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>KineticOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;KineticOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;KineticOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
-<codeline lineno="101"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/><sp/>LIBINT</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintTwoElectronIntegralEngine&lt;CoulombRepulsionOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;NuclearAttractionOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;NuclearAttractionOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
-<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintTwoElectronIntegralEngine&lt;CoulombRepulsionOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ElectronicDipoleOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;ElectronicDipoleOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
 <codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OverlapOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;OverlapOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;OverlapOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
-<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;ElectronicDipoleOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>KineticOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;KineticOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="131"><highlight class="comment"><sp/>*<sp/><sp/>LIBCINT</highlight></codeline>
-<codeline lineno="132"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;KineticOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight></codeline>
-<codeline lineno="140"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintTwoElectronIntegralEngine&lt;GTOShell,<sp/>CoulombRepulsionOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"></highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintTwoElectronIntegralEngine&lt;GTOShell,<sp/>CoulombRepulsionOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
-<codeline lineno="143"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;NuclearAttractionOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;NuclearAttractionOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ElectronicDipoleOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>ElectronicDipoleOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"></highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>ElectronicDipoleOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
-<codeline lineno="154"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">IntegralEngine::Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OverlapOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/>LibintOneElectronIntegralEngine&lt;OverlapOperator::NumberOfComponents&gt;<sp/>{</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"></highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>KineticOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>KineticOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>KineticOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
-<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="167"><highlight class="normal"></highlight></codeline>
-<codeline lineno="168"><highlight class="normal"></highlight></codeline>
-<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>NuclearAttractionOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>NuclearAttractionOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
-<codeline lineno="178"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"></highlight></codeline>
-<codeline lineno="180"><highlight class="normal"></highlight></codeline>
-<codeline lineno="187"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OverlapOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>OverlapOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"></highlight></codeline>
-<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>OverlapOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
-<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="191"><highlight class="normal"></highlight></codeline>
-<codeline lineno="192"><highlight class="normal"></highlight></codeline>
-<codeline lineno="193"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibintOneElectronIntegralEngine&lt;OverlapOperator::NumberOfComponents&gt;(op,<sp/>max_nprim,<sp/>max_l);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="161"><highlight class="comment"><sp/>*<sp/><sp/>LIBCINT</highlight></codeline>
+<codeline lineno="162"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintTwoElectronIntegralEngine&lt;GTOShell,<sp/>CoulombRepulsionOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintTwoElectronIntegralEngine&lt;GTOShell,<sp/>CoulombRepulsionOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ElectronicDipoleOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>ElectronicDipoleOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>ElectronicDipoleOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>KineticOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>KineticOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>KineticOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>NuclearAttractionOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>NuclearAttractionOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">IntegralEngine::Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OverlapOperator&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ShellSet&lt;GTOShell&gt;&amp;<sp/>shell_set)<sp/>-&gt;<sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>OverlapOperator::NumberOfComponents,<sp/>double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LibcintOneElectronIntegralEngine&lt;GTOShell,<sp/>OverlapOperator::NumberOfComponents,<sp/>double&gt;(op,<sp/>shell_set);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp"/>
   </compounddef>

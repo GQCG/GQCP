@@ -5,6 +5,7 @@
     <includes refid="_base_two_electron_integral_buffer_8hpp" local="yes">Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_integral_calculator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp</includedby>
+    <includedby refid="_two_electron_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralEngine.hpp</includedby>
     <includedby refid="_libcint_two_electron_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</includedby>
     <includedby refid="_libint_two_electron_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</includedby>
     <incdepgraph>
@@ -246,7 +247,7 @@
         <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="103">
+      <node id="104">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libint_two_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -304,6 +305,14 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="100">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralEngine.hpp</label>
+        <link refid="_two_electron_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
         </childnode>
       </node>
       <node id="73">
@@ -713,6 +722,8 @@
         </childnode>
         <childnode refid="103" relation="include">
         </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
       </node>
       <node id="40">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFErrorCalculation.hpp</label>
@@ -840,7 +851,7 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="100">
+      <node id="103">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libcint_two_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">

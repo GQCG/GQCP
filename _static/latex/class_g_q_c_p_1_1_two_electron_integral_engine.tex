@@ -1,0 +1,147 @@
+\hypertarget{class_g_q_c_p_1_1_two_electron_integral_engine}{}\doxysection{GQCP\+::Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_two_electron_integral_engine}\index{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+
+
+{\ttfamily \#include $<$Two\+Electron\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{class_g_q_c_p_1_1_two_electron_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{class_g_q_c_p_1_1_two_electron_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ad176ab612e5497f7228128642a8ab156}{Primitive\+Integral\+Engine}} = \+\_\+\+Primitive\+Integral\+Engine
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ab806171787404911056f0aeb62ae200d}{Integral\+Scalar}} = typename \+\_\+\+Primitive\+Integral\+Engine\+::\+Integral\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_a4175bc3fc3a722df8175d0612eb475d2}{Two\+Electron\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ad176ab612e5497f7228128642a8ab156}{Primitive\+Integral\+Engine}} \&primitive\+\_\+engine)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer}{Base\+Two\+Electron\+Integral\+Buffer}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ab806171787404911056f0aeb62ae200d}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_abad8e518fb09f8c734e6bd9548275933}{N}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_a2b62b8c3c7402fb369dd0019f6f6fa28}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&shell1, const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&shell2, const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&shell3, const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&shell4) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_abad8e518fb09f8c734e6bd9548275933}{N}} = \+\_\+\+Primitive\+Integral\+Engine\+::\+Components
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Primitive\+Integral\+Engine$>$\newline
+class GQCP\+::\+Two\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$}
+
+An integral engine that can calculate two-\/electron integrals over shells.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Primitive\+Integral\+Engine} & The type of integral engine that is used for calculating integrals over primitives. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_two_electron_integral_engine_ab806171787404911056f0aeb62ae200d}\label{class_g_q_c_p_1_1_two_electron_integral_engine_ab806171787404911056f0aeb62ae200d}} 
+\index{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{GQCP\+::\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ab806171787404911056f0aeb62ae200d}{Integral\+Scalar}} =  typename \+\_\+\+Primitive\+Integral\+Engine\+::\+Integral\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_two_electron_integral_engine_ad176ab612e5497f7228128642a8ab156}\label{class_g_q_c_p_1_1_two_electron_integral_engine_ad176ab612e5497f7228128642a8ab156}} 
+\index{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!PrimitiveIntegralEngine@{PrimitiveIntegralEngine}}
+\index{PrimitiveIntegralEngine@{PrimitiveIntegralEngine}!GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{PrimitiveIntegralEngine}{PrimitiveIntegralEngine}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{GQCP\+::\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ad176ab612e5497f7228128642a8ab156}{Primitive\+Integral\+Engine}} =  \+\_\+\+Primitive\+Integral\+Engine}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}\label{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}} 
+\index{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{GQCP\+::\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_two_electron_integral_engine_a4175bc3fc3a722df8175d0612eb475d2}\label{class_g_q_c_p_1_1_two_electron_integral_engine_a4175bc3fc3a722df8175d0612eb475d2}} 
+\index{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!TwoElectronIntegralEngine@{TwoElectronIntegralEngine}}
+\index{TwoElectronIntegralEngine@{TwoElectronIntegralEngine}!GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{TwoElectronIntegralEngine()}{TwoElectronIntegralEngine()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{GQCP\+::\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{Two\+Electron\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ad176ab612e5497f7228128642a8ab156}{Primitive\+Integral\+Engine}} \&}]{primitive\+\_\+engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em primitive\+\_\+engine} & The integral engine that is used for calculating integrals over primitives. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_two_electron_integral_engine_a2b62b8c3c7402fb369dd0019f6f6fa28}\label{class_g_q_c_p_1_1_two_electron_integral_engine_a2b62b8c3c7402fb369dd0019f6f6fa28}} 
+\index{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_buffer}{Base\+Two\+Electron\+Integral\+Buffer}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_ab806171787404911056f0aeb62ae200d}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_abad8e518fb09f8c734e6bd9548275933}{N}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{GQCP\+::\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&}]{shell1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&}]{shell2,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&}]{shell3,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine_aab076b71ff1efd1dfd523e2e4826ec78}{Shell}} \&}]{shell4 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Calculate all the two-\/electron integrals over the given shells.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shell1} & The first shell. \\
+\hline
+{\em shell2} & The second shell. \\
+\hline
+{\em shell3} & The third shell. \\
+\hline
+{\em shell4} & The fourth shell.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This method is not marked const to allow the Engine\textquotesingle{}s internals to be changed.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+A buffer containing the calculated integrals. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine_a2b36d7ebbf6ee7aa876b6f15df77c18b}{GQCP\+::\+Base\+Two\+Electron\+Integral\+Engine$<$ GTOShell, \+\_\+\+Primitive\+Integral\+Engine\+::\+Components, \+\_\+\+Primitive\+Integral\+Engine\+::\+Integral\+Scalar $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_two_electron_integral_engine_abad8e518fb09f8c734e6bd9548275933}\label{class_g_q_c_p_1_1_two_electron_integral_engine_abad8e518fb09f8c734e6bd9548275933}} 
+\index{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}!N@{N}}
+\index{N@{N}!GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$@{GQCP::TwoElectronIntegralEngine$<$ \_PrimitiveIntegralEngine $>$}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Primitive\+Integral\+Engine $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{GQCP\+::\+Two\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Primitive\+Integral\+Engine $>$\+::N = \+\_\+\+Primitive\+Integral\+Engine\+::\+Components\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_two_electron_integral_engine_8hpp}{Two\+Electron\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

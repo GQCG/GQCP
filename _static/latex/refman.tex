@@ -249,6 +249,7 @@
 \input{struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4}
 \input{struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_3_01_scalar_01_4_01_4}
 \input{struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4}
+\input{class_g_q_c_p_1_1_boys_function}
 \input{struct_g_q_c_p_1_1_cartesian_exponents}
 \input{class_g_q_c_p_1_1_cartesian_g_t_o}
 \input{class_g_q_c_p_1_1_q_c_method_1_1_c_c_d}
@@ -300,8 +301,10 @@
 \input{class_g_q_c_p_1_1_e_r_newton_localizer}
 \input{class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator}
 \input{class_g_q_c_p_1_1_field}
+\input{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine}
 \input{class_g_q_c_p_1_1_functional_primitive_integral_engine}
 \input{class_g_q_c_p_1_1_functional_step}
+\input{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine}
 \input{class_g_q_c_p_1_1_g1_d_m}
 \input{class_g_q_c_p_1_1_g2_d_m}
 \input{class_g_q_c_p_1_1_geminal_coefficients_interface}
@@ -324,6 +327,7 @@
 \input{class_g_q_c_p_1_1_g_t_o_shell}
 \input{class_g_q_c_p_1_1_g_transformation}
 \input{class_g_q_c_p_1_1_guess_vector_update}
+\input{class_g_q_c_p_1_1_hermite_coulomb_integral}
 \input{class_g_q_c_p_1_1_homogeneous_magnetic_field}
 \input{class_g_q_c_p_1_1_hopping_matrix}
 \input{class_g_q_c_p_1_1_hubbard_hamiltonian}
@@ -429,8 +433,10 @@
 \input{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine}
+\input{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_dipole_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine}
+\input{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_overlap_integral_engine}
 \input{class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component}
 \input{class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component}
@@ -500,6 +506,8 @@
 \input{class_g_q_c_p_1_1_t2_d_i_i_s}
 \input{class_g_q_c_p_1_1_t2_error_calculation}
 \input{class_g_q_c_p_1_1_tensor}
+\input{class_g_q_c_p_1_1_two_electron_integral_buffer}
+\input{class_g_q_c_p_1_1_two_electron_integral_engine}
 \input{class_g_q_c_p_1_1_q_c_method_1_1_u_h_f}
 \input{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f}
 \input{class_g_q_c_p_1_1_u_h_f_density_matrix_calculation}
@@ -532,7 +540,10 @@
 \input{_base_one_electron_integral_engine_8hpp}
 \input{_base_two_electron_integral_buffer_8hpp}
 \input{_base_two_electron_integral_engine_8hpp}
+\input{_functional_one_electron_primitive_integral_engine_8hpp}
 \input{_functional_primitive_integral_engine_8hpp}
+\input{_functional_two_electron_primitive_integral_engine_8hpp}
+\input{_hermite_coulomb_integral_8hpp}
 \input{_integral_calculator_8hpp}
 \input{_integral_engine_8hpp}
 \input{_libcint_interfacer_8hpp}
@@ -551,9 +562,13 @@
 \input{_primitive_angular_momentum_integral_engine_8hpp}
 \input{_primitive_canonical_kinetic_energy_integral_engine_8hpp}
 \input{_primitive_cartesian_operator_integral_engine_8hpp}
+\input{_primitive_coulomb_repulsion_integral_engine_8hpp}
 \input{_primitive_dipole_integral_engine_8hpp}
 \input{_primitive_linear_momentum_integral_engine_8hpp}
+\input{_primitive_nuclear_attraction_integral_engine_8hpp}
 \input{_primitive_overlap_integral_engine_8hpp}
+\input{_two_electron_integral_buffer_8hpp}
+\input{_two_electron_integral_engine_8hpp}
 \input{_g_mulliken_partitioning_8hpp}
 \input{_r_mulliken_partitioning_8hpp}
 \input{_u_mulliken_partitioning_8hpp}
@@ -610,6 +625,7 @@
 \input{_algorithm_2_step_8hpp}
 \input{_optimization_2_non_linear_equation_2_step_8hpp}
 \input{_step_collection_8hpp}
+\input{_boys_function_8hpp}
 \input{_cartesian_direction_8hpp}
 \input{_cartesian_exponents_8hpp}
 \input{_cartesian_g_t_o_8hpp}
@@ -787,6 +803,8 @@
 \input{memory_8hpp}
 \input{miscellaneous_8hpp}
 \input{type__traits_8hpp}
+\input{_boys_function_8cpp}
+\input{_hermite_coulomb_integral_8cpp}
 \input{_integral_engine_8cpp}
 \input{_libcint_interfacer_8cpp}
 \input{_libint_interfacer_8cpp}

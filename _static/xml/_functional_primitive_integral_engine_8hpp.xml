@@ -5,7 +5,6 @@
     <includes refid="_g_t_o_shell_8hpp" local="yes">Basis/ScalarBasis/GTOShell.hpp</includes>
     <includes refid="_cartesian_g_t_o_8hpp" local="yes">Mathematical/Functions/CartesianGTO.hpp</includes>
     <includes local="no">functional</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
       <node id="18">
         <label>boost/algorithm/string.hpp</label>
@@ -196,18 +195,6 @@
         </childnode>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp</label>
-        <link refid="_functional_primitive_integral_engine_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_functional_primitive_integral_engine" prot="public">GQCP::FunctionalPrimitiveIntegralEngine</innerclass>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
     <briefdescription>

@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_hermite_coulomb_integral" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::HermiteCoulombIntegral</compoundname>
+    <includes refid="_hermite_coulomb_integral_8hpp" local="no">HermiteCoulombIntegral.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_hermite_coulomb_integral_1a88c5e1315d219e3b09d6dd4d57abff0e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::HermiteCoulombIntegral::p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" line="33" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_hermite_coulomb_integral_1aeb1fb82d77c346a7df953a88fe0c264e" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::HermiteCoulombIntegral::P</definition>
+        <argsstring></argsstring>
+        <name>P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_hermite_coulomb_integral_1a1a6490cad818b2ba5ea9ea7146ce9265" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::HermiteCoulombIntegral::C</definition>
+        <argsstring></argsstring>
+        <name>C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" line="39" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hermite_coulomb_integral_1a65ba5a393207d6964b8d74203d8ab494" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::HermiteCoulombIntegral::HermiteCoulombIntegral</definition>
+        <argsstring>(const double p, const Vector&lt; double, 3 &gt; &amp;P, const Vector&lt; double, 3 &gt; &amp;C)</argsstring>
+        <name>HermiteCoulombIntegral</name>
+        <param>
+          <type>const double</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exponent of the Hermite Gaussian. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The center of the Hermite Gaussian. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclear center. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/HermiteCoulombIntegral.cpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hermite_coulomb_integral_1ad6a63ed335d180f38a7a7e02ed94d22d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::HermiteCoulombIntegral::operator()</definition>
+        <argsstring>(const size_t n, const int t, const int u, const int v) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the value for the (auxiliary) Hermite Coulomb integral R^n_{tuv}(p, P, C).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The order of the Hermite Coulomb integral, i.e. the order of the Boys function. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The degree of the Hermite polynomial in x. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The degree of the Hermite polynomial in y. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The degree of the Hermite polynomial in z. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" line="67" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/HermiteCoulombIntegral.cpp" bodystart="53" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An implementation of the (auxiliary) Hermite Coulomb integral R^n_{tuv}. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::HermiteCoulombIntegral</label>
+        <link refid="class_g_q_c_p_1_1_hermite_coulomb_integral"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/HermiteCoulombIntegral.hpp" bodystart="30" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1a1a6490cad818b2ba5ea9ea7146ce9265" prot="private" virt="non-virtual"><scope>GQCP::HermiteCoulombIntegral</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1a65ba5a393207d6964b8d74203d8ab494" prot="public" virt="non-virtual"><scope>GQCP::HermiteCoulombIntegral</scope><name>HermiteCoulombIntegral</name></member>
+      <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1ad6a63ed335d180f38a7a7e02ed94d22d" prot="public" virt="non-virtual"><scope>GQCP::HermiteCoulombIntegral</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1a88c5e1315d219e3b09d6dd4d57abff0e" prot="private" virt="non-virtual"><scope>GQCP::HermiteCoulombIntegral</scope><name>p</name></member>
+      <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1aeb1fb82d77c346a7df953a88fe0c264e" prot="private" virt="non-virtual"><scope>GQCP::HermiteCoulombIntegral</scope><name>P</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
