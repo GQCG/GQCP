@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "Basis/Integrals/HermiteCoulombIntegral.hpp"
-#include "Basis/Integrals/McMurchieDavidsonCoefficient.hpp"
+#include "Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp"
+#include "Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 

@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveCartesianOperatorIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"

@@ -1,0 +1,10 @@
+target_sources(gqcp
+    PRIVATE
+        HermiteCoulombIntegral.cpp
+        IntegralEngine.cpp
+        McMurchieDavidsonCoefficient.cpp
+        PrimitiveAngularMomentumIntegralEngine.cpp
+        PrimitiveCartesianOperatorIntegralEngine.cpp
+        PrimitiveDipoleIntegralEngine.cpp
+        PrimitiveLinearMomentumIntegralEngine.cpp
+)

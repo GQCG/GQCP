@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/FunctionalOneElectronPrimitiveIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/FunctionalOneElectronPrimitiveIntegralEngine.hpp"
 #include "Utilities/aliases.hpp"
 #include "gqcpy/include/interfaces.hpp"
 

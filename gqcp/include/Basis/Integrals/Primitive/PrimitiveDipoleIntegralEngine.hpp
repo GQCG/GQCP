@@ -17,23 +17,23 @@
 
 #pragma once
 
-#include "Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveCartesianOperatorIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
-#include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that can calculate linear momentum integrals over primitive Cartesian GTOs.
+ *  A class that can calculate electronic dipole integrals over primitive Cartesian GTOs.
  */
-class PrimitiveLinearMomentumIntegralEngine:
+class PrimitiveDipoleIntegralEngine:
     public PrimitiveCartesianOperatorIntegralEngine {
 public:
-    static constexpr auto Components = LinearMomentumOperator::NumberOfComponents;
-    using IntegralScalar = LinearMomentumOperator::Scalar;
+    static constexpr auto Components = ElectronicDipoleOperator::NumberOfComponents;
+    using IntegralScalar = ElectronicDipoleOperator::Scalar;
 
     // The type of shell that this integral engine is related to.
     using Shell = GTOShell;
@@ -42,9 +42,19 @@ public:
     using Primitive = Shell::Primitive;
 
 
+private:
+    ElectronicDipoleOperator dipole_operator;  // the dipole operator over which this engine should calculate integrals
+
+
 public:
     // CONSTRUCTORS
-    using PrimitiveCartesianOperatorIntegralEngine::PrimitiveCartesianOperatorIntegralEngine;  // inherit base constructors
+    /**
+     *  Construct a PrimitiveDipoleIntegralEngine from its members.
+     * 
+     *  @param dipole_operator              the dipole operator over which this engine should calculate integrals
+     *  @param component                    the initial component of the dipole operator this engine should calculate integrals over
+     */
+    PrimitiveDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component = CartesianDirection::x);
 
 
     // PUBLIC METHODS
@@ -53,7 +63,7 @@ public:
      *  @param left             the left Cartesian GTO (primitive)
      *  @param right            the right Cartesian GTO (primitive)
      * 
-     *  @return the linear momentum integral (of the current component) over the two given primitives
+     *  @return the dipole integral (of the current component) over the two given primitives
      */
     IntegralScalar calculate(const CartesianGTO& left, const CartesianGTO& right);
 
@@ -65,7 +75,7 @@ public:
      *  @param L                the (directional coordinate of the) center of the right 1-D primitive
      *  @param j                the Cartesian exponent of the right 1-D primitive
      * 
-     *  @return the linear momentum integral over the two given 1-D primitives
+     *  @return the dipole integral over the two given 1-D primitives
      */
     IntegralScalar calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j);
 };

@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "Basis/Integrals/McMurchieDavidsonCoefficient.hpp"
+#include "Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"

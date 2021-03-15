@@ -15,37 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp"
 
-#include "Basis/Integrals/McMurchieDavidsonCoefficient.hpp"
-#include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
-
-#include <boost/math/constants/constants.hpp>
+#include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
+#include "Utilities/literals.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  Construct a PrimitiveDipoleIntegralEngine from its members.
- * 
- *  @param dipole_operator              the dipole operator over which this engine should calculate integrals
- *  @param component                    the current component of the dipole operator this engine can calculate integrals over
+/*
+ *  PUBLIC METHODS
  */
-PrimitiveDipoleIntegralEngine::PrimitiveDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component) :
-    dipole_operator {dipole_operator},
-    PrimitiveCartesianOperatorIntegralEngine(component) {}
-
-
-// PUBLIC METHODS
 
 /**
  *  @param left             the left Cartesian GTO (primitive)
  *  @param right            the right Cartesian GTO (primitive)
  * 
- *  @return the dipole integral (of the current component) over the two given primitives
+ *  @return the linear momentum integral (of the current component) over the two given primitives
  */
-PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
+PrimitiveLinearMomentumIntegralEngine::IntegralScalar PrimitiveLinearMomentumIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 
     // Prepare some variables.
     const auto i = static_cast<int>(left.cartesianExponents().value(CartesianDirection::x));
@@ -89,6 +78,7 @@ PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::cal
     }
 }
 
+
 /**
  *  @param alpha            the Gaussian exponent of the left 1-D primitive
  *  @param K                the (directional coordinate of the) center of the left 1-D primitive
@@ -97,19 +87,15 @@ PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::cal
  *  @param L                the (directional coordinate of the) center of the right 1-D primitive
  *  @param j                the Cartesian exponent of the right 1-D primitive
  * 
- *  @return the dipole integral over the two given 1-D primitives
+ *  @return the linear momentum integral over the two given 1-D primitives
  */
-PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
+PrimitiveLinearMomentumIntegralEngine::IntegralScalar PrimitiveLinearMomentumIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
 
-    // Prepare some variables.
-    const auto p = alpha + beta;
-    const auto P = (alpha * K + beta * L) / p;  // one of the components of the center of mass of the Gaussian overlap distribution
+    PrimitiveOverlapIntegralEngine<GTOShell> overlap_engine;
 
-    const auto Delta_PO = P - this->dipole_operator.reference()(this->component);  // one of the components of the distance of P and the origin of the dipole operator
-
-    // Calculate the dipole integral over the current component.
-    const McMurchieDavidsonCoefficient E {K, alpha, L, beta};
-    return -std::pow(boost::math::constants::pi<IntegralScalar>() / p, 0.5) * (E(i, j, 1) + Delta_PO * E(i, j, 0));  // the minus sign comes from the electronic dipole operator
+    using namespace GQCP::literals;
+    return 2.0 * 1.0_ii * beta * overlap_engine.calculate1D(alpha, K, i, beta, L, j + 1) -
+           1.0_ii * static_cast<double>(j) * overlap_engine.calculate1D(alpha, K, i, beta, L, j - 1);
 }
 
 

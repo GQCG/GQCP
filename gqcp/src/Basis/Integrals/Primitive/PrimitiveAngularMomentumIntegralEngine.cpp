@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp"
 
-#include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
-#include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
-#include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
 
 
 namespace GQCP {
