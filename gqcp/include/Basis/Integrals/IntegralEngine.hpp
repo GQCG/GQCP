@@ -24,8 +24,8 @@
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
-#include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -65,13 +65,15 @@ public:
     static OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
 
     /**
-     *  @param op               the kinetic energy operator
+     *  Create an in-house one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
      * 
-     *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
+     *  @param op               The kinetic energy operator.
      * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     *  @return A one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
      */
-    static OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> InHouse(const KineticOperator& op);
+    static OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<GTOShell>> InHouse(const KineticOperator& op);
 
     /**
      *  @param op               the linear momentum operator

@@ -93,7 +93,7 @@ public:
         }
 
         return primitive_integral;
-    };
+    }
 
 
     /**
@@ -157,7 +157,7 @@ public:
         }
 
         return primitive_integral;
-    };
+    }
 
 
     /**
