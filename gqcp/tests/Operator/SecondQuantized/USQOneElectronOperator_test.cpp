@@ -20,9 +20,9 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
+#include "Physical/units.hpp"
 #include "QCModel/HF/UHF.hpp"
 #include "Utilities/miscellaneous.hpp"
-#include "Utilities/units.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

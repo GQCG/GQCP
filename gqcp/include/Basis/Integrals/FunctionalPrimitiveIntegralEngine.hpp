@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 
 #include <functional>
@@ -31,13 +32,20 @@ namespace GQCP {
  *  @param _IntegralScalar          The scalar representation of one of the primitive integrals.
  */
 template <typename _IntegralScalar>
-class FunctionalPrimitiveEngine {
+class FunctionalPrimitiveIntegralEngine {
 public:
     // The scalar representation of one of the primitive integrals.
     using IntegralScalar = _IntegralScalar;
 
     // The number of components of the operator over which the primitive engine can calculate integrals.
     static constexpr auto Components = 1;
+
+    // The type of shell that this integral engine is related to.
+    using Shell = GTOShell;
+
+    // The type of primitive that underlies the type of shell.
+    using Primitive = Shell::Primitive;
+
 
 private:
     // A user-supplied custom function that can calculate primitive integrals over two Cartesian GTOs.
@@ -52,7 +60,7 @@ public:
     /**
      *  @param function             A user-supplied custom function that can calculate primitive integrals over two Cartesian GTOs.
      */
-    FunctionalPrimitiveEngine(const std::function<IntegralScalar(const CartesianGTO&, const CartesianGTO&)>& function) :
+    FunctionalPrimitiveIntegralEngine(const std::function<IntegralScalar(const CartesianGTO&, const CartesianGTO&)>& function) :
         function {function} {}
 
 

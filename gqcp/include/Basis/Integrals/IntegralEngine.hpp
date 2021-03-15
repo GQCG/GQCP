@@ -24,8 +24,8 @@
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
-#include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -65,15 +65,6 @@ public:
     static OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
 
     /**
-     *  @param op               the kinetic energy operator
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
-     * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
-     */
-    static OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> InHouse(const KineticOperator& op);
-
-    /**
      *  @param op               the linear momentum operator
      * 
      *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator
@@ -83,13 +74,38 @@ public:
     static OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> InHouse(const LinearMomentumOperator& op);
 
     /**
-     *  @param op               the overlap operator
+     *  Create an in-house one-electron integral engine that can calculate integrals over the overlap operator.
      * 
-     *  @return a one-electron integral engine that can calculate integrals over the overlap operator
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
      * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     *  @param op               The overlap operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the overlap operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
      */
-    static OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> InHouse(const OverlapOperator& op);
+    template <typename Shell>
+    static auto InHouse(const OverlapOperator& op) -> OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>>(PrimitiveOverlapIntegralEngine<Shell>());
+    }
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
+     * 
+     *  @param op               The canonical kinetic energy operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    template <typename Shell>
+    static auto InHouse(const KineticOperator& op) -> OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>>(PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>());
+    }
 
 
     /*

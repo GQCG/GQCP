@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(overlap_integrals) {
     // Calculate the overlap integrals and check if they are equal.
     const auto ref_S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::Overlap());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::Overlap());
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(S.isApprox(ref_S, 1.0e-12));
@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_CASE(kinetic_energy_integrals) {
     // Calculate the kinetic energy integrals and check if they are equal.
     const auto ref_T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::Kinetic());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::Kinetic());
     const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(T.isApprox(ref_T, 1.0e-12));
@@ -353,4 +353,140 @@ BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(angular_momentum_integrals[i].isApprox(ref_angular_momentum_integrals[i], 1.0e-07));
     }
+}
+
+
+/**
+ *  Check if the London overlap integrals are gauge invariant.
+ */
+BOOST_AUTO_TEST_CASE(London_S_gauge_invariant) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
+
+    const GQCP::HomogeneousMagneticField B1 {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis1 {molecule, "STO-3G", B1};
+
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Overlap());
+    const auto S1 = GQCP::IntegralCalculator::calculate(engine, scalar_basis1.shellSet(), scalar_basis1.shellSet())[0];
+
+
+    const GQCP::HomogeneousMagneticField B2 {{0.0, 0.0, 1.0}, {5.0, 5.0, 5.0}};  // Gauge origin at (5.0, 5.0, 5.0).
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis2 {molecule, "STO-3G", B1};
+
+    const auto S2 = GQCP::IntegralCalculator::calculate(engine, scalar_basis2.shellSet(), scalar_basis2.shellSet())[0];
+
+    BOOST_CHECK(S1.isApprox(S2, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London overlap integrals are implemented correctly, for a magnetic field of B=(0,0,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_overlap_001) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Overlap());
+    const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+
+    // Read in the reference values.
+    const auto S_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_overlap_chronusq_real.data", nbf, nbf);
+    const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_overlap_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> S_ref = S_ref_real + std::complex<double>(0, 1) * S_ref_complex;
+
+    BOOST_CHECK(S.isApprox(S_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London overlap integrals are implemented correctly, for a magnetic field of B=(1,1,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_overlap_111) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{1.0, 1.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Overlap());
+    const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+
+    // Read in the reference values.
+    const auto S_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_overlap_chronusq_real.data", nbf, nbf);
+    const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_overlap_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> S_ref = S_ref_real + std::complex<double>(0, 1) * S_ref_complex;
+
+    BOOST_CHECK(S.isApprox(S_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London canonical kinetic integrals are implemented correctly, for a magnetic field of B=(0,0,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_canonical_kinetic_001) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Kinetic());
+    const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+
+    // Read in the reference values.
+    const auto T_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_kinetic_chronusq_real.data", nbf, nbf);
+    const auto T_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_kinetic_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> T_ref = T_ref_real + std::complex<double>(0, 1) * T_ref_complex;
+
+    BOOST_CHECK(T.isApprox(T_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London canonical kinetic integrals are implemented correctly, for a magnetic field of B=(1,1,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_canonical_kinetic_111) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{1.0, 1.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Kinetic());
+    const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+
+    // Read in the reference values.
+    const auto T_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_kinetic_chronusq_real.data", nbf, nbf);
+    const auto T_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_kinetic_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> T_ref = T_ref_real + std::complex<double>(0, 1) * T_ref_complex;
+
+    BOOST_CHECK(T.isApprox(T_ref, 1.0e-12));
 }

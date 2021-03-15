@@ -19,7 +19,10 @@
 
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Physical/HomogeneousMagneticField.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <algorithm>
 #include <initializer_list>
@@ -30,70 +33,110 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a set of shells
+ *  A collection of shells.
  * 
- *  @tparam _Shell          the type of shell that is contained in this set
+ *  @tparam _Shell          The type of shell that this shell set contains.
  */
 template <typename _Shell>
 class ShellSet {
 public:
-    using Shell = _Shell;  // the type of shell that is contained in this set
+    // The type of shell that this shell set contains.
+    using Shell = _Shell;
 
-    using Primitive = typename Shell::Primitive;          // the type of primitives that this shell set contains
-    using BasisFunction = typename Shell::BasisFunction;  // the type of basis functions that this shell can produce
+    // The type of primitives that this shell set contains.
+    using Primitive = typename Shell::Primitive;
+
+    // The type of basis functions that this shell contains.
+    using BasisFunction = typename Shell::BasisFunction;
 
 
 private:
-    std::vector<Shell> shells;  // all the shells represented by a vector
+    // The collection of shells represented by a vector.
+    std::vector<Shell> shells;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     * @param shells            all the shells represented by a vector
+     * @param shells            The collection of shells represented by a vector.
      */
     ShellSet(const std::vector<Shell>& shells) :
         shells {shells} {}
 
 
     /**
-     *  Construct a ShellSet using an initializer_list
+     *  Construct a ShellSet using an `initializer_list`.
+     * 
+     *  @param list             The `initializer_list`.
      */
     ShellSet(const std::initializer_list<GTOShell>& list) :
         shells {list} {}
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Normalization
      */
 
     /**
-     *  @return a vector of the underlying shells that this shellset describes
+     *  For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients.
      */
-    const std::vector<Shell>& asVector() const { return this->shells; }
+    void embedNormalizationFactors() {
 
-    /**
-     *  @param shell_index      the index of the shell
-     *
-     *  @return the (total basis function) index that corresponds to the first basis function in the given shell
-     */
-    size_t basisFunctionIndex(const size_t shell_index) const {
-
-        // Count the number of basis functions before the given index
-        size_t bf_index {};
-        for (size_t i = 0; i < shell_index; i++) {
-            bf_index += this->shells[i].numberOfBasisFunctions();
+        for (auto& shell : this->shells) {
+            shell.embedNormalizationFactor();
         }
-
-        return bf_index;
     }
 
 
     /**
-     *  @return the basis functions that 'are' in this shell
+     *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function has no effect.
+     *
+     *  @note The normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO.
+     */
+    void embedNormalizationFactorsOfPrimitives() {
+
+        for (auto& shell : this->shells) {
+            shell.embedNormalizationFactorsOfPrimitives();
+        }
+    }
+
+
+    /**
+     *  For every of the shells, unembed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function has no effect.
+     *
+     *  @note The normalization factor that is unembedded corresponds to the spherical (or axis-aligned Cartesian) GTO.
+     */
+    void unEmbedNormalizationFactorsOfPrimitives() {
+
+        for (auto& shell : this->shells) {
+            shell.unEmbedNormalizationFactorsOfPrimitives();
+        }
+    }
+
+
+    /*
+     *  MARK: Basis functions
+     */
+
+    /**
+     *  @return The number of basis functions in this shell set.
+     */
+    size_t numberOfBasisFunctions() const {
+
+        size_t value {};
+        for (const auto& shell : this->shells) {
+            value += shell.numberOfBasisFunctions();
+        }
+
+        return value;
+    }
+
+
+    /**
+     *  @return The basis functions that are in this shell.
      */
     std::vector<BasisFunction> basisFunctions() const {
 
@@ -111,71 +154,42 @@ public:
 
 
     /**
-     *  For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
-     */
-    void embedNormalizationFactors() {
-
-        for (auto& shell : this->shells) {
-            shell.embedNormalizationFactor();
-        }
-    }
-
-
-    /**
-     *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *  @param shell_index      The index of the shell.
      *
-     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @return The index of the given shell's first basis function in the total set of basis functions of this shell.
      */
-    void embedNormalizationFactorsOfPrimitives() {
+    size_t basisFunctionIndex(const size_t shell_index) const {
 
-        for (auto& shell : this->shells) {
-            shell.embedNormalizationFactorsOfPrimitives();
+        // Count the number of basis functions before the given index.
+        size_t bf_index {};
+        for (size_t i = 0; i < shell_index; i++) {
+            bf_index += this->shells[i].numberOfBasisFunctions();
         }
+
+        return bf_index;
     }
 
 
-    /**
-     *  @return the maximum angular momentum of the shells
+    /*
+     *  MARK: General information
      */
-    size_t maximumAngularMomentum() const {
-
-        // Generate a list of all the angular momenta and then check its maximum.
-        std::vector<size_t> angular_momenta {};  // will contain the number of primitives for each of the shells
-        angular_momenta.reserve(this->numberOfShells());
-
-        for (const auto& shell : this->asVector()) {
-            angular_momenta.push_back(shell.angularMomentum());
-        }
-
-        const auto it = std::max_element(angular_momenta.begin(), angular_momenta.end());  // iterator
-        return *it;
-    }
-
 
     /**
-     *  @return the maximum number of primitives that are used inside the shells
+     *  @return The collection of this shell set's shells represented by a vector.
      */
-    size_t maximumNumberOfPrimitives() const {
-
-        // Generate a list of all the number of primitives momenta and then check its maximum.
-        std::vector<size_t> number_of_primitives {};  // will contain the number of primitives for each of the shells
-        number_of_primitives.reserve(this->numberOfShells());
-
-        for (const auto& shell : this->asVector()) {
-            number_of_primitives.push_back(shell.contractionSize());
-        }
-
-        const auto it = std::max_element(number_of_primitives.begin(), number_of_primitives.end());  // iterator
-        return *it;
-    }
-
+    const std::vector<Shell>& asVector() const { return this->shells; }
 
     /**
-     *  @return an ordered vector of the unique nuclei in this shell set
+     *  @return The number of shells in this shell set.
+     */
+    size_t numberOfShells() const { return this->shells.size(); }
+
+    /**
+     *  @return An ordered vector of the unique nuclei in this shell set.
      */
     std::vector<Nucleus> nuclei() const {
 
-        // Append every unique nucleus in this shell set's shells
+        // Append every unique nucleus in this shell set's shells.
         std::vector<Nucleus> nuclei {};
         for (const auto& shell : this->shells) {
             const auto& nucleus = shell.nucleus();
@@ -185,7 +199,7 @@ public:
             };
             const auto& p = std::find_if(nuclei.begin(), nuclei.end(), unary_predicate);
 
-            if (p == nuclei.end()) {  // if unique
+            if (p == nuclei.end()) {  // If the nucleus is unique.
                 nuclei.push_back(nucleus);
             }
         }
@@ -195,35 +209,64 @@ public:
 
 
     /**
-     *  @return the number of basis functions in this shell set
+     *  @return The maximum angular momentum of the shells.
      */
-    size_t numberOfBasisFunctions() const {
+    size_t maximumAngularMomentum() const {
 
-        size_t value {};
-        for (const auto& shell : this->shells) {
-            value += shell.numberOfBasisFunctions();
+        // Generate a list of all the angular momenta and then check its maximum.
+        std::vector<size_t> angular_momenta {};  // This will contain the number of primitives for each of the shells.
+        angular_momenta.reserve(this->numberOfShells());
+
+        for (const auto& shell : this->asVector()) {
+            angular_momenta.push_back(shell.angularMomentum());
         }
 
-        return value;
+        const auto it = std::max_element(angular_momenta.begin(), angular_momenta.end());  // 'it' for iterator.
+        return *it;
     }
 
 
     /**
-     *  @return the number of shells in this shell set
+     *  @return The maximum number of primitives that are used inside the shells.
      */
-    size_t numberOfShells() const { return this->shells.size(); }
+    size_t maximumNumberOfPrimitives() const {
 
+        // Generate a list of all the number of primitives momenta and then check its maximum.
+        std::vector<size_t> number_of_primitives {};  // This will contain the number of primitives for each of the shells.
+        number_of_primitives.reserve(this->numberOfShells());
+
+        for (const auto& shell : this->asVector()) {
+            number_of_primitives.push_back(shell.contractionSize());
+        }
+
+        const auto it = std::max_element(number_of_primitives.begin(), number_of_primitives.end());  // 'it' for iterator.
+        return *it;
+    }
+
+
+    /*
+     *  MARK: London modifications
+     */
 
     /**
-     *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
-     *
-     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  Apply a London- (gauge-including) modification to each shell.
+     * 
+     *  @param B            The homogeneous magnetic field.
+     * 
+     *  @return A new shell shet whose underlying shells have been London-modified.
      */
-    void unEmbedNormalizationFactorsOfPrimitives() {
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, GTOShell>::value, ShellSet<LondonGTOShell>> applyLondonModification(const HomogeneousMagneticField& B) const {
 
-        for (auto& shell : this->shells) {
-            shell.unEmbedNormalizationFactorsOfPrimitives();
+        // Run over each `GTOShell` and construct the corresponding `LondonGTOShell`.
+        std::vector<LondonGTOShell> london_shells;
+        london_shells.reserve(this->numberOfShells());
+        for (const auto& gto_shell : this->asVector()) {
+            LondonGTOShell london_shell {gto_shell, B};
+            london_shells.push_back(london_shell);
         }
+
+        return ShellSet<LondonGTOShell>(london_shells);
     }
 };
 

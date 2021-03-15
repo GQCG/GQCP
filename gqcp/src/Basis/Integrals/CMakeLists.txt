@@ -5,9 +5,7 @@ target_sources(gqcp
         PrimitiveAngularMomentumIntegralEngine.cpp
         PrimitiveCartesianOperatorIntegralEngine.cpp
         PrimitiveDipoleIntegralEngine.cpp
-        PrimitiveKineticEnergyIntegralEngine.cpp
         PrimitiveLinearMomentumIntegralEngine.cpp
-        PrimitiveOverlapIntegralEngine.cpp
 )
 
 add_subdirectory(Interfaces)

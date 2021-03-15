@@ -18,6 +18,7 @@
 #pragma once
 
 #include "Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 
@@ -33,6 +34,12 @@ class PrimitiveLinearMomentumIntegralEngine:
 public:
     static constexpr auto Components = LinearMomentumOperator::NumberOfComponents;
     using IntegralScalar = LinearMomentumOperator::Scalar;
+
+    // The type of shell that this integral engine is related to.
+    using Shell = GTOShell;
+
+    // The type of primitive that underlies the type of shell.
+    using Primitive = Shell::Primitive;
 
 
 public:

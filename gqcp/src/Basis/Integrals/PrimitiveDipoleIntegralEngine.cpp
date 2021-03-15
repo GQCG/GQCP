@@ -67,7 +67,7 @@ PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::cal
     const auto L_y = right.center()(CartesianDirection::y);
     const auto L_z = right.center()(CartesianDirection::z);
 
-    PrimitiveOverlapIntegralEngine overlap_engine;
+    PrimitiveOverlapIntegralEngine<GTOShell> overlap_engine;
 
 
     // For the current component, the integral can be calculated as a product of three contributions.

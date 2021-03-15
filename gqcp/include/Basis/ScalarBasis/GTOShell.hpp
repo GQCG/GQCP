@@ -30,72 +30,96 @@ namespace GQCP {
  *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus.
  */
 class GTOShell {
+public:
+    // The type of primitive that underlies this shell.
+    using Primitive = CartesianGTO;
+
+    // The type of basis function that this shell can produce.
+    using BasisFunction = LinearCombination<double, Primitive>;
+
+
 private:
-    bool pure;                                          // true if spherical, false if Cartesian
-    bool embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
-    bool normalized;                                    // if the total normalization factor is already embedded in the contraction coefficients
-    size_t l;                                           // the angular momentum of the shell
-    Nucleus m_nucleus;                                  // nucleus on which the shell is centered
-    std::vector<double> gaussian_exponents;             // Gaussian exponents (i.e. for the exponential), shared for every contraction
+    // If this shell is considered to be 'pure', i.e. a spherical shell is pure, a Cartesian shell is not pure.
+    bool pure;
+
+    // If the normalization factors of the primitives are embedded in the contraction coefficients.
+    bool are_embedded_normalization_factors_of_primitives;
+
+    // If the total normalization factor of the contracted GTO is already embedded in the contraction coefficients.
+    bool normalized;
+
+    // The angular momentum of the shell, i.e. the sum of the Cartesian exponents of this shell.
+    size_t l;
+
+    // The nucleus on which the shell is centered.
+    Nucleus m_nucleus;
+
+    // The Gaussian exponents for this shell, i.e. the exponents for the exponential. These are shared for every contraction.
+    std::vector<double> gaussian_exponents;
+
+    // The contraction coefficients for this shell.
     std::vector<double> contraction_coefficients;
 
 
 public:
-    using Primitive = CartesianGTO;                              // the type of primitives that this shell is made up with
-    using BasisFunction = LinearCombination<double, Primitive>;  // the type of basis functions that this shell can produce
+    /*
+     *  MARK: Constructors
+     */
 
-
-public:
-    // CONSTRUCTORS
     /**
-     *  @param l                                                    the angular momentum of the shell
-     *  @param nucleus                                              the nucleus on which the shell is centered
-     *  @param gaussian_exponents                                   the Gaussian exponents, which are shared for every contraction
-     *  @param contraction_coefficients                             the contraction coefficients
-     *  @param pure                                                 whether the shell is considered to be spherical or not
-     *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
-     *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
+     *  Create a `GTOShell` from all its specifications.
+     * 
+     *  @param l                                                        The angular momentum of the shell, i.e. the sum of the Cartesian exponents of this shell.
+     *  @param nucleus                                                  The nucleus on which the shell is centered.
+     *  @param gaussian_exponents                                       The Gaussian exponents for this shell, i.e. the exponents for the exponential. These are shared for every contraction.
+     *  @param contraction_coefficients                                 The contraction coefficients for this shell.
+     *  @param pure                                                     If this shell is considered to be 'pure', i.e. a spherical shell is pure, a Cartesian shell is not pure.
+     *  @param are_embedded_normalization_factors_of_primitives         If the normalization factors of the primitives are embedded in the contraction coefficients.
+     *  @param is_normalized                                            If the total normalization factor of the contracted GTO is already embedded in the contraction coefficients.
      */
     GTOShell(const size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, const bool pure = true, const bool are_embedded_normalization_factors_of_primitives = false, const bool is_normalized = false);
 
 
-    // OPERATORS
-    /**
-     *  @param rhs      the right-hand side of the operator ==
-     *
-     *  @return if this shell is considered equal to the other
+    /*
+     *  MARK: Shell characteristics
      */
-    bool operator==(const GTOShell& rhs) const;
-
-
-    // PUBLIC METHODS
 
     /**
-     *  @return the angular momentum of the shell
+     *  @return The angular momentum of this shell.
      */
     size_t angularMomentum() const { return this->l; }
 
     /**
-     *  @return if the normalization factors of the primitives are embedded in the contraction coefficients
+     *  @return The Gaussian exponents for this shell, i.e. the exponents for the exponential. These are shared for every contraction.
      */
-    bool areEmbeddedNormalizationFactorsOfPrimitives() const { return this->embedded_normalization_factors_of_primitives; }
+    const std::vector<double>& gaussianExponents() const { return this->gaussian_exponents; }
 
     /**
-     *  @return the basis functions that correspond to this shell
-     * 
-     *  @note The basis functions are ordered lexicographically. This means x < y < z.
+     *  @return If this shell is considered to be 'pure', i.e. a spherical shell is pure, a Cartesian shell is not pure.
      */
-    std::vector<BasisFunction> basisFunctions() const;
+    bool isPure() const { return this->pure; }
 
     /**
-     *  @return the contraction coefficients for this shell
+     *  @return The nucleus on which this shell is centered.
      */
-    const std::vector<double>& contractionCoefficients() const { return this->contraction_coefficients; }
+    const Nucleus& nucleus() const { return this->m_nucleus; }
 
     /**
-     *  @return the size of the contraction in the shell, i.e. the number of primitives contracted in this shell
+     *  @param rhs      The right-hand side.
+     *
+     *  @return If this shell is considered equal to the other.
      */
-    size_t contractionSize() const { return this->contraction_coefficients.size(); }
+    bool operator==(const GTOShell& rhs) const;
+
+
+    /*
+     *  MARK: Normalization
+     */
+
+    /**
+     *  @return If the total normalization factor of the contracted GTO is already embedded in the contraction coefficients.
+     */
+    bool isNormalized() const { return this->normalized; }
 
     /**
      *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients.
@@ -103,48 +127,62 @@ public:
     void embedNormalizationFactor();
 
     /**
+     *  @return If the normalization factors of the primitives are embedded in this shell's contraction coefficients.
+     */
+    bool areEmbeddedNormalizationFactorsOfPrimitives() const { return this->are_embedded_normalization_factors_of_primitives; }
+
+    /**
      *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
      *
-     *  @note The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @note The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO.
      */
     void embedNormalizationFactorsOfPrimitives();
 
     /**
-     *  @return the Gaussian exponents (i.e. for the exponential) for this shell, shared for every contraction
+     *  Un-embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
+     *
+     *  @note The the normalization factor that is un-embedded corresponds to the spherical (or axis-aligned Cartesian) GTO.
      */
-    const std::vector<double>& gaussianExponents() const { return this->gaussian_exponents; }
+    void unEmbedNormalizationFactorsOfPrimitives();
+
+
+    /*
+     *  MARK: Contractions
+     */
 
     /**
-     *  @return a list of the Cartesian exponents that have this shell's angular momentum (in lexicographical ordering).
+     *  @return The contraction coefficients for this shell.
      */
-    std::vector<CartesianExponents> generateCartesianExponents() const;
+    const std::vector<double>& contractionCoefficients() const { return this->contraction_coefficients; }
 
     /**
-     *  @return if the total normalization factor is already embedded in the contraction coefficients
+     *  @return The size of the contraction in the shell, i.e. the number of primitives contracted in this shell.
      */
-    bool isNormalized() const { return this->normalized; }
+    size_t contractionSize() const { return this->contraction_coefficients.size(); }
+
+
+    /*
+     *  MARK: Basis functions
+     */
 
     /**
-     *  @return true if the GTO shell is spherical, false if it is Cartesian
-     */
-    bool isPure() const { return this->pure; }
-
-    /**
-     *  @return The nucleus on which the shell is centered.
-     */
-    const Nucleus& nucleus() const { return this->m_nucleus; }
-
-    /**
-     *  @return the number of basis functions that are in this shell
+     *  @return The number of basis functions that this shell contains.
      */
     size_t numberOfBasisFunctions() const;
 
     /**
-     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
-     *
-     *  @note The the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @return A list of the Cartesian exponents that have this shell's angular momentum (in lexicographical ordering).
      */
-    void unEmbedNormalizationFactorsOfPrimitives();
+    std::vector<CartesianExponents> generateCartesianExponents() const;
+
+    /**
+     *  Construct all basis functions contained in this shell.
+     * 
+     *  @return The basis functions that correspond to this shell.
+     * 
+     *  @note The basis functions are ordered lexicographically. This means x < y < z.
+     */
+    std::vector<BasisFunction> basisFunctions() const;
 };
 
 

@@ -18,6 +18,7 @@
 #pragma once
 
 #include "Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 
@@ -31,8 +32,17 @@ namespace GQCP {
 class PrimitiveAngularMomentumIntegralEngine:
     public PrimitiveCartesianOperatorIntegralEngine {
 public:
+    // The scalar representation of an integral.
     using IntegralScalar = AngularMomentumOperator::Scalar;
+
+    // The number of components the operator has.
     static constexpr auto Components = AngularMomentumOperator::NumberOfComponents;
+
+    // The type of shell that this integral engine is related to.
+    using Shell = GTOShell;
+
+    // The type of primitive that underlies the type of shell.
+    using Primitive = Shell::Primitive;
 
 
 private:

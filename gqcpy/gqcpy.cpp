@@ -27,7 +27,7 @@ namespace gqcpy {
 
 
 // Basis - Integrals
-void bindFunctionalPrimitiveEngine(py::module& module);
+void bindFunctionalPrimitiveIntegralEngine(py::module& module);
 void bindFunctionalOneElectronIntegralEngine(py::module& module);
 void bindMcMurchieDavidsonCoefficient(py::module& module);
 void bindIntegralEngine(py::module& module);
@@ -240,7 +240,7 @@ void bindVersion(py::module& module);
 PYBIND11_MODULE(gqcpy, module) {
 
     // Basis - Integrals
-    gqcpy::bindFunctionalPrimitiveEngine(module);
+    gqcpy::bindFunctionalPrimitiveIntegralEngine(module);
     gqcpy::bindFunctionalOneElectronIntegralEngine(module);
     gqcpy::bindMcMurchieDavidsonCoefficient(module);
     gqcpy::bindIntegralEngine(module);

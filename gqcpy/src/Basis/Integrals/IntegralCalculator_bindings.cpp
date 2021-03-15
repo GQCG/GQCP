@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/FunctionalPrimitiveEngine.hpp"
+#include "Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
@@ -44,7 +44,7 @@ void bindIntegralEngine(py::module& module) {
 
     py_module_IntegralCalculator.def(
         "calculate",
-        [](OneElectronIntegralEngine<FunctionalPrimitiveEngine<double>>& engine, const ShellSet<GTOShell>& left_shell_set, const ShellSet<GTOShell>& right_shell_set) {
+        [](OneElectronIntegralEngine<FunctionalPrimitiveIntegralEngine<double>>& engine, const ShellSet<GTOShell>& left_shell_set, const ShellSet<GTOShell>& right_shell_set) {
             return IntegralCalculator::calculate(engine, left_shell_set, right_shell_set)[0];
         },
         "Calculate all one-electron integrals over the basis functions inside the given shell sets.");

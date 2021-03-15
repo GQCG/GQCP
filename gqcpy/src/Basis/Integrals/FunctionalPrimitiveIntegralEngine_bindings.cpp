@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/FunctionalPrimitiveEngine.hpp"
+#include "Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp"
 #include "Utilities/aliases.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
@@ -32,25 +32,25 @@ using namespace GQCP;
 
 
 /**
- *  Register `FunctionalPrimitiveEngine_d` and `FunctionalPrimitiveEngine_cd` to the gqcpy module and expose a part of their C++ interface to Python.
+ *  Register `FunctionalPrimitiveIntegralEngine_d` and `FunctionalPrimitiveIntegralEngine_cd` to the gqcpy module and expose a part of their C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `FunctionalPrimitiveEngine_d` and `FunctionalPrimitiveEngine_cd` should be registered.
+ *  @param module           The Pybind11 module in which `FunctionalPrimitiveIntegralEngine_d` and `FunctionalPrimitiveIntegralEngine_cd` should be registered.
  */
-void bindFunctionalPrimitiveEngine(py::module& module) {
+void bindFunctionalPrimitiveIntegralEngine(py::module& module) {
 
-    // Define the Python class for `FunctionalPrimitiveEngine_d`.
-    py::class_<FunctionalPrimitiveEngine<double>> py_FunctionalPrimitiveEngine_d {module, "FunctionalPrimitiveEngine_d", "A custom primitive engine that can real-valued calculate one-electron integrals over Cartesian GTOs according to a custom implementation."};
+    // Define the Python class for `FunctionalPrimitiveIntegralEngine_d`.
+    py::class_<FunctionalPrimitiveIntegralEngine<double>> py_FunctionalPrimitiveIntegralEngine_d {module, "FunctionalPrimitiveIntegralEngine_d", "A custom primitive engine that can real-valued calculate one-electron integrals over Cartesian GTOs according to a custom implementation."};
 
-    py_FunctionalPrimitiveEngine_d
+    py_FunctionalPrimitiveIntegralEngine_d
         .def(py::init<const std::function<double(const CartesianGTO&, const CartesianGTO&)>&>(),
              py::arg("function"));
 
 
-    // Define the Python class for `FunctionalPrimitiveEngine_cd`.
-    py::class_<FunctionalPrimitiveEngine<complex>>
-        py_FunctionalPrimitiveEngine_cd {module, "FunctionalPrimitiveEngine_cd", "A custom primitive engine that can calculate complex-valued one-electron integrals over Cartesian GTOs according to a custom implementation.."};
+    // Define the Python class for `FunctionalPrimitiveIntegralEngine_cd`.
+    py::class_<FunctionalPrimitiveIntegralEngine<complex>>
+        py_FunctionalPrimitiveIntegralEngine_cd {module, "FunctionalPrimitiveIntegralEngine_cd", "A custom primitive engine that can calculate complex-valued one-electron integrals over Cartesian GTOs according to a custom implementation.."};
 
-    py_FunctionalPrimitiveEngine_cd
+    py_FunctionalPrimitiveIntegralEngine_cd
         .def(py::init<const std::function<complex(const CartesianGTO&, const CartesianGTO&)>&>(),
              py::arg("function"));
 }

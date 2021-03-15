@@ -28,90 +28,88 @@ namespace GQCP {
 /**
  *  An integral engine that can calculate one-electron integrals over shells.
  * 
- *  @tparam _PrimitiveIntegralEngine            the type of integral engine that is used for calculating integrals over primitives
+ *  @tparam _PrimitiveIntegralEngine            The type of integral engine that is used for calculating integrals over primitives.
  */
 template <typename _PrimitiveIntegralEngine>
 class OneElectronIntegralEngine:
-    public BaseOneElectronIntegralEngine<GTOShell, _PrimitiveIntegralEngine::Components, typename _PrimitiveIntegralEngine::IntegralScalar> {
+    public BaseOneElectronIntegralEngine<typename _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, typename _PrimitiveIntegralEngine::IntegralScalar> {
 public:
+    // The type of integral engine that is used for calculating integrals over primitives.
     using PrimitiveIntegralEngine = _PrimitiveIntegralEngine;
-    using Shell = GTOShell;
+
+    // The type of shell that this engine can calculate integrals over.
+    using Shell = typename _PrimitiveIntegralEngine::Shell;
+
+    // The scalar representation of one of the integrals.
     using IntegralScalar = typename _PrimitiveIntegralEngine::IntegralScalar;
 
+    // The number of components the operator has.
     static constexpr auto N = _PrimitiveIntegralEngine::Components;
 
 
 private:
-    PrimitiveIntegralEngine primitive_engine;  // the integral engine that is used for calculating integrals over primitives
+    // The integral engine that is used for calculating integrals over primitives.
+    PrimitiveIntegralEngine primitive_engine;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  @param primitive_engine             the integral engine that is used for calculating integrals over primitives
+     *  @param primitive_engine             The integral engine that is used for calculating integrals over primitives.
      */
     OneElectronIntegralEngine(const PrimitiveIntegralEngine& primitive_engine) :
         primitive_engine {primitive_engine} {}
 
 
     /*
-     *  PUBLIC OVERRIDDEN METHODS
+     *  MARK: Integral calculations.
      */
 
     /**
-     *  Calculate all the overlap integrals over the given shells.
+     *  Calculate all the integrals over the given shells.
      * 
-     *  @param shell1           the first shell
-     *  @param shell2           the second shell
+     *  @param shell1           The first shell.
+     *  @param shell2           The second shell.
      * 
-     *  @note This method is not marked const to allow the Engine's internals to be changed
+     *  @note This method is not marked const to allow the Engine's internals to be changed.
      * 
-     *  @return a buffer containing the calculated integrals
+     *  @return A buffer containing the calculated integrals.
      */
     std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const Shell& shell1, const Shell& shell2) override {
 
-        // Prepare some variables.
-        const auto K = shell1.nucleus().position();
-        const auto L = shell2.nucleus().position();
+        // In this function, we loop over all basis functions that the shells contain.
+        const auto basis_functions1 = shell1.basisFunctions();
+        const auto basis_functions2 = shell2.basisFunctions();
 
-        const auto& gaussian_exponents1 = shell1.gaussianExponents();
-        const auto& gaussian_exponents2 = shell2.gaussianExponents();
+        std::array<std::vector<IntegralScalar>, N> integrals;  // A "buffer" that stores the calculated integrals.
 
-        const auto& contraction_coefficients1 = shell1.contractionCoefficients();
-        const auto& contraction_coefficients2 = shell2.contractionCoefficients();
-
-
-        // Loop over all basis functions that are contained in the shell. Since they are contracted GTOs, we will have to generate all the primitives.
-        const auto all_cartesian_exponents1 = shell1.generateCartesianExponents();
-        const auto all_cartesian_exponents2 = shell2.generateCartesianExponents();
-        std::array<std::vector<IntegralScalar>, N> integrals;  // a "buffer" that stores the calculated integrals
-
-        for (size_t i = 0; i < N; i++) {  // loop over all components of the operator
+        for (size_t i = 0; i < N; i++) {  // Loop over all components of the operator.
             this->primitive_engine.prepareStateForComponent(i);
 
-            for (const auto cartesian_exponents1 : all_cartesian_exponents1) {
-                for (const auto cartesian_exponents2 : all_cartesian_exponents2) {
+            for (const auto& bf1 : basis_functions1) {
+                const auto& coefficients1 = bf1.coefficients();
+                const auto& primitives1 = bf1.functions();
 
-                    // Calculate the contracted integral as a contraction over the contraction coefficients and the primitive integrals.
-                    IntegralScalar integral = 0.0;
-                    for (size_t c1 = 0; c1 < shell1.contractionSize(); c1++) {
-                        const auto alpha = gaussian_exponents1[c1];
-                        const CartesianGTO primitive1 {alpha, cartesian_exponents1, K};
-                        const auto d1 = contraction_coefficients1[c1];
+                for (const auto& bf2 : basis_functions2) {
+                    const auto& coefficients2 = bf2.coefficients();
+                    const auto& primitives2 = bf2.functions();
 
-                        for (size_t c2 = 0; c2 < shell2.contractionSize(); c2++) {
-                            const auto beta = gaussian_exponents2[c2];
-                            const CartesianGTO primitive2 {beta, cartesian_exponents2, L};
-                            const auto d2 = contraction_coefficients2[c2];
+                    IntegralScalar integral {};
+                    for (size_t c1 = 0; c1 < bf1.length(); c1++) {
+                        const auto& d1 = coefficients1[c1];
+                        const auto& primitive1 = primitives1[c1];
+
+                        for (size_t c2 = 0; c2 < bf2.length(); c2++) {
+                            const auto& d2 = coefficients2[c2];
+                            const auto& primitive2 = primitives2[c2];
 
                             const auto primitive_integral = this->primitive_engine.calculate(primitive1, primitive2);
                             integral += d1 * d2 * primitive_integral;
                         }
                     }
-
                     integrals[i].push_back(integral);
                 }
             }
