@@ -25,9 +25,12 @@
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
+#include "Basis/Integrals/TwoElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -106,6 +109,28 @@ public:
 
         return OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>>(PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>());
     }
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+     * 
+     *  @param op               The nuclear attraction operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    static OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>> InHouse(const NuclearAttractionOperator& op);
+
+    /**
+     *  Create an in-house two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+     * 
+     *  @param op               The Coulomb repulsion operator.
+     * 
+     *  @return A two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    static TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<GTOShell>> InHouse(const CoulombRepulsionOperator& op);
 
 
     /*

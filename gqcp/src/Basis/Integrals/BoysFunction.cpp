@@ -15,40 +15,30 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Physical/HomogeneousMagneticField.hpp"
+#include "Mathematical/Functions/BoysFunction.hpp"
+
+#include <boost/math/special_functions/hypergeometric_1F1.hpp>
 
 
 namespace GQCP {
 
+
 /*
- *  MARK: Constructors
+ *  MARK: Function evaluation
  */
 
 /**
- *  Initialize a `HomogeneousMagneticField` from a field strength and gauge origin.
+ *  Calculate the value for the Boys function F_n(x).
  * 
- *  @param B            The field strength.
- *  @param G            The gauge origin.
- */
-HomogeneousMagneticField::HomogeneousMagneticField(const Vector<double, 3>& B, const Vector<double, 3>& G) :
-    B {B},
-    G {G} {}
-
-
-/*
- *  MARK: Physics
- */
-
-/**
- *  Calculate the vector potential at a point in space.
+ *  @param n        The degree of the Boys function.
+ *  @param x        The argument for the Boys function.
  * 
- *  @param r        A point in space.
- * 
- *  @return The vector potential evaluated at the given point.
+ *  @return The value F_n(x).
  */
-Vector<double, 3> HomogeneousMagneticField::vectorPotentialAt(const Vector<double, 3>& r) const {
+double BoysFunction::operator()(const size_t n, const double x) const {
 
-    return 0.5 * this->strength().cross(r - this->gaugeOrigin());
+    const auto n_ = static_cast<double>(n);
+    return boost::math::hypergeometric_1F1(n_ + 0.5, n_ + 1.5, -x) / (2 * n_ + 1);
 }
 
 

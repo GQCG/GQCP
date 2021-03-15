@@ -57,7 +57,7 @@ GTOShell::GTOShell(const size_t l, const Nucleus& nucleus, const std::vector<dou
 
 
 /*
- *  Shell characteristics
+ *  MARK: Shell characteristics
  */
 
 /**

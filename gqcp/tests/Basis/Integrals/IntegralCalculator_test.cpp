@@ -172,6 +172,10 @@ BOOST_AUTO_TEST_CASE(libcint_vs_libint2_dipole_origin) {
 */
 
 
+/*
+ *  MARK: In-house Cartesian GTO integrals
+ */
+
 /**
  *  Check if our implementation of the overlap integrals yields the same result as Libint.
  */
@@ -209,6 +213,26 @@ BOOST_AUTO_TEST_CASE(kinetic_energy_integrals) {
     const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(T.isApprox(ref_T, 1.0e-12));
+}
+
+
+/**
+ *  Check if our implementation of the nuclear attraction integrals yields the same result as Libint.
+ */
+BOOST_AUTO_TEST_CASE(nuclear_attraction_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+    const auto op = GQCP::Operator::NuclearAttraction(molecule);
+
+    // Calculate the nuclear attraction integrals and check if they are equal.
+    const auto ref_V = GQCP::IntegralCalculator::calculateLibintIntegrals(op, scalar_basis);
+
+    auto engine = GQCP::IntegralEngine::InHouse(op);
+    const auto V = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    BOOST_CHECK(V.isApprox(ref_V, 1.0e-12));
 }
 
 
@@ -355,6 +379,31 @@ BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
     }
 }
 
+
+/*
+ *  Check if our implementation of the Coulomb repulsion integrals yields the same result as Libint.
+ */
+BOOST_AUTO_TEST_CASE(Coulomb_repulsion_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Calculate the Coulomb repulsion integrals and check if they are equal.
+    const auto op = GQCP::Operator::Coulomb();
+    const auto ref_g = GQCP::IntegralCalculator::calculateLibintIntegrals(op, scalar_basis);
+
+    auto engine = GQCP::IntegralEngine::InHouse(op);
+    const auto g = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    BOOST_CHECK(g.isApprox(ref_g, 1.0e-12));
+}
+
+
+/*
+ *  MARK: In-house London Cartesian GTO integrals
+ */
 
 /**
  *  Check if the London overlap integrals are gauge invariant.

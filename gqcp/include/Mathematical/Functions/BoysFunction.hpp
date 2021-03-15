@@ -15,41 +15,34 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Physical/HomogeneousMagneticField.hpp"
+#pragma once
+
+
+#include <cstddef>
 
 
 namespace GQCP {
 
-/*
- *  MARK: Constructors
- */
 
 /**
- *  Initialize a `HomogeneousMagneticField` from a field strength and gauge origin.
- * 
- *  @param B            The field strength.
- *  @param G            The gauge origin.
+ *  An implementation of the Boys function, through its relation with the confluent hypergeometric function.
  */
-HomogeneousMagneticField::HomogeneousMagneticField(const Vector<double, 3>& B, const Vector<double, 3>& G) :
-    B {B},
-    G {G} {}
+class BoysFunction {
+public:
+    /*
+     *  MARK: Function evaluation
+     */
 
-
-/*
- *  MARK: Physics
- */
-
-/**
- *  Calculate the vector potential at a point in space.
- * 
- *  @param r        A point in space.
- * 
- *  @return The vector potential evaluated at the given point.
- */
-Vector<double, 3> HomogeneousMagneticField::vectorPotentialAt(const Vector<double, 3>& r) const {
-
-    return 0.5 * this->strength().cross(r - this->gaugeOrigin());
-}
+    /**
+     *  Calculate the value for the Boys function F_n(x).
+     * 
+     *  @param n        The degree of the Boys function.
+     *  @param x        The argument for the Boys function.
+     * 
+     *  @return The value F_n(x).
+     */
+    double operator()(const size_t n, const double x) const;
+};
 
 
 }  // namespace GQCP

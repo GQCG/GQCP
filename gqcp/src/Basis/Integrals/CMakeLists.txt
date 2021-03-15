@@ -1,5 +1,7 @@
 target_sources(gqcp
     PRIVATE
+        BoysFunction.cpp
+        HermiteCoulombIntegral.cpp
         IntegralEngine.cpp
         McMurchieDavidsonCoefficient.cpp
         PrimitiveAngularMomentumIntegralEngine.cpp

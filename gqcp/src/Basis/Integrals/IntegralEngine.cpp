@@ -58,6 +58,36 @@ OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> IntegralEngine:
 }
 
 
+/**
+ *  Create an in-house one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+ * 
+ *  @param op               The nuclear attraction operator.
+ * 
+ *  @return A one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+ * 
+ *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+ */
+OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>> IntegralEngine::InHouse(const NuclearAttractionOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>>(PrimitiveNuclearAttractionIntegralEngine<GTOShell>(op));
+}
+
+
+/**
+ *  Create an in-house two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+ * 
+ *  @param op               The Coulomb repulsion operator.
+ * 
+ *  @return A two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+ * 
+ *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+ */
+TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<GTOShell>> IntegralEngine::InHouse(const CoulombRepulsionOperator& op) {
+
+    return TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<GTOShell>>(PrimitiveCoulombRepulsionIntegralEngine<GTOShell>());
+}
+
+
 /*
  *  LIBINT
  */
