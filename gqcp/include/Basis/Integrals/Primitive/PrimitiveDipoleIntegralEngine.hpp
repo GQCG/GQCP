@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "Basis/Integrals/Primitive/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
@@ -30,7 +30,7 @@ namespace GQCP {
  *  A class that can calculate electronic dipole integrals over primitive Cartesian GTOs.
  */
 class PrimitiveDipoleIntegralEngine:
-    public PrimitiveCartesianOperatorIntegralEngine {
+    public BaseVectorPrimitiveIntegralEngine {
 public:
     static constexpr auto Components = ElectronicDipoleOperator::NumberOfComponents;
     using IntegralScalar = ElectronicDipoleOperator::Scalar;

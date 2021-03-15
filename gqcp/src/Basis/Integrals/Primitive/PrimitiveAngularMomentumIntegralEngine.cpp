@@ -37,7 +37,7 @@ namespace GQCP {
  */
 PrimitiveAngularMomentumIntegralEngine::PrimitiveAngularMomentumIntegralEngine(const AngularMomentumOperator& angular_momentum_operator, const CartesianDirection component) :
     angular_momentum_operator {angular_momentum_operator},
-    PrimitiveCartesianOperatorIntegralEngine(component) {}
+    BaseVectorPrimitiveIntegralEngine(component) {}
 
 
 /*

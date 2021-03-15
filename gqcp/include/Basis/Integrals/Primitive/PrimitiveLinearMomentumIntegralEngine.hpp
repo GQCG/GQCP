@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "Basis/Integrals/Primitive/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
@@ -30,7 +30,7 @@ namespace GQCP {
  *  A class that can calculate linear momentum integrals over primitive Cartesian GTOs.
  */
 class PrimitiveLinearMomentumIntegralEngine:
-    public PrimitiveCartesianOperatorIntegralEngine {
+    public BaseVectorPrimitiveIntegralEngine {
 public:
     static constexpr auto Components = LinearMomentumOperator::NumberOfComponents;
     using IntegralScalar = LinearMomentumOperator::Scalar;
@@ -44,7 +44,7 @@ public:
 
 public:
     // CONSTRUCTORS
-    using PrimitiveCartesianOperatorIntegralEngine::PrimitiveCartesianOperatorIntegralEngine;  // inherit base constructors
+    using BaseVectorPrimitiveIntegralEngine::BaseVectorPrimitiveIntegralEngine;  // inherit base constructors
 
 
     // PUBLIC METHODS

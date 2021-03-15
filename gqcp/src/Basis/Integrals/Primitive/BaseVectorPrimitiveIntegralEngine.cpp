@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/Primitive/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp"
 
 #include <stdexcept>
 
@@ -24,40 +24,40 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  MARK: Constructors
  */
 
-/**
- *  Construct a PrimitiveCartesianOperatorIntegralEngine from its members.
+/** 
+ *  @param component                    The initial component of the Cartesian operator over which the primitive engine is prepared to calculate integrals.
  * 
- *  @param component                    the initial component of the Cartesian operator this engine should calculate integrals over
- * 
- *  @note The primitive engine's state may be changed through the prepareStateForComponent method.
+ *  @note The primitive engine's state may be changed through the `prepareStateForComponent` method.
  */
-PrimitiveCartesianOperatorIntegralEngine::PrimitiveCartesianOperatorIntegralEngine(const CartesianDirection component) :
+BaseVectorPrimitiveIntegralEngine::BaseVectorPrimitiveIntegralEngine(const CartesianDirection component) :
     component {component} {}
 
 
 /*
- *  DESTRUCTOR
+ *  MARK: Destructor
  */
 
 /**
- *  A pure virtual destructor should have an empty body.
+ *  A pure virtual destructor in order to make this class abstract.
  */
-PrimitiveCartesianOperatorIntegralEngine::~PrimitiveCartesianOperatorIntegralEngine() {}
+BaseVectorPrimitiveIntegralEngine::~BaseVectorPrimitiveIntegralEngine() {}
 
 
 /*
- *  PUBLIC METHODS
+ *  MARK: Components
  */
 
 /**
  *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
  * 
- *  @param component                the index of the component of the operator
+ *  @param component                The index of the component of the operator.
+ * 
+ *  @note See also `CartesianDirection`.
  */
-void PrimitiveCartesianOperatorIntegralEngine::prepareStateForComponent(const size_t component) {
+void BaseVectorPrimitiveIntegralEngine::prepareStateForComponent(const size_t component) {
 
     switch (component) {
     case 0: {
@@ -76,7 +76,7 @@ void PrimitiveCartesianOperatorIntegralEngine::prepareStateForComponent(const si
     }
 
     default: {
-        throw std::invalid_argument("PrimitiveDipoleIntegralEngine::prepareStateForComponent(const size_t): The given component is out of bound for the number of components of the primitive dipole integral engine.");
+        throw std::invalid_argument("BaseVectorPrimitiveIntegralEngine::prepareStateForComponent(const size_t): The given component is out of bound for the number of components of a vector primitive integral engine.");
         break;
     }
     }

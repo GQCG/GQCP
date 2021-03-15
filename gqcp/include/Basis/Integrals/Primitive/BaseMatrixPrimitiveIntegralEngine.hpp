@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Functions/CartesianDirection.hpp"
+#include "Mathematical/Functions/DyadicCartesianDirection.hpp"
 
 #include <cstddef>
 
@@ -27,40 +27,47 @@ namespace GQCP {
 
 
 /**
- *  A base class for integral engines over a Cartesian operator, i.e. an operator with three vector components (x, y, z).
+ *  A base class for integral engines over an operator with nine components (x, y, z) x (x, y, z).
  */
-class PrimitiveCartesianOperatorIntegralEngine {
+class BaseMatrixPrimitiveIntegralEngine {
 protected:
-    CartesianDirection component;
+    // The component over which the primitive engine is prepared to calculate integrals.
+    DyadicCartesianDirection component;
 
 
 public:
-    // CONSTRUCTORS
-
-    /**
-     *  Construct a PrimitiveCartesianOperatorIntegralEngine from its members.
-     * 
-     *  @param component                    the initial component of the Cartesian operator this engine should calculate integrals over
-     * 
-     *  @note The primitive engine's state may be changed through the prepareStateForComponent method.
+    /*
+     *  MARK: Constructors
      */
-    PrimitiveCartesianOperatorIntegralEngine(const CartesianDirection component = CartesianDirection::x);
+
+    /** 
+     *  @param component                    The initial component of the dyadic Cartesian operator over which the primitive engine is prepared to calculate integrals.
+     * 
+     *  @note The primitive engine's state may be changed through the `prepareStateForComponent` method.
+     */
+    BaseMatrixPrimitiveIntegralEngine(const DyadicCartesianDirection component = DyadicCartesianDirection::xx);
 
 
-    // DESTRUCTOR
+    /*
+     *  MARK: Destructor
+     */
 
     /**
      *  A pure virtual destructor in order to make this class abstract.
      */
-    virtual ~PrimitiveCartesianOperatorIntegralEngine() = 0;
+    virtual ~BaseMatrixPrimitiveIntegralEngine() = 0;
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: Components
+     */
 
     /**
      *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
      * 
-     *  @param component                the index of the component of the operator
+     *  @param component                The index of the component of the operator.
+     * 
+     *  @note See also `DyadicCartesianDirection`.
      */
     void prepareStateForComponent(const size_t component);
 };

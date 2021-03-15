@@ -15,20 +15,34 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
+#include "Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  An enumeration containing the Cartesian directions.
+/*
+ *  MARK: Destructor
  */
-enum CartesianDirection {
-    x = 0,
-    y = 1,
-    z = 2
-};
+
+/**
+ *  A pure virtual destructor in order to make this class abstract.
+ */
+BaseScalarPrimitiveIntegralEngine::~BaseScalarPrimitiveIntegralEngine() {}
+
+
+/*
+ *  MARK: Components
+ */
+
+/**
+ *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
+ * 
+ *  @param component                The index of the component of the operator.
+ * 
+ *  @note Since a scalar operator has only 1 component, this method has no effect.
+ */
+void BaseScalarPrimitiveIntegralEngine::prepareStateForComponent(const size_t component) {}
 
 
 }  // namespace GQCP

@@ -34,7 +34,7 @@ namespace GQCP {
  */
 PrimitiveDipoleIntegralEngine::PrimitiveDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component) :
     dipole_operator {dipole_operator},
-    PrimitiveCartesianOperatorIntegralEngine(component) {}
+    BaseVectorPrimitiveIntegralEngine(component) {}
 
 
 // PUBLIC METHODS

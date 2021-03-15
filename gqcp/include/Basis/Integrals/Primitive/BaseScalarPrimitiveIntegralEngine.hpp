@@ -18,16 +18,39 @@
 #pragma once
 
 
+#include <cstddef>
+
+
 namespace GQCP {
 
 
 /**
- *  An enumeration containing the Cartesian directions.
+ *  A base class for primitive integral engines that can calculate integrals over scalar operators.
  */
-enum CartesianDirection {
-    x = 0,
-    y = 1,
-    z = 2
+class BaseScalarPrimitiveIntegralEngine {
+public:
+    /*
+     *  MARK: Destructor
+     */
+
+    /**
+     *  A pure virtual destructor in order to make this class abstract.
+     */
+    virtual ~BaseScalarPrimitiveIntegralEngine() = 0;
+
+
+    /*
+     *  MARK: Components
+     */
+
+    /**
+     *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
+     * 
+     *  @param component                The index of the component of the operator.
+     * 
+     *  @note Since a scalar operator has only 1 component, this method has no effect.
+     */
+    void prepareStateForComponent(const size_t component);
 };
 
 

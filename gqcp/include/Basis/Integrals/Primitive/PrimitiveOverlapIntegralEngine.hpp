@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
@@ -39,7 +40,8 @@ namespace GQCP {
  *  @tparam _Shell              The type of shell that this integral engine is related to.
  */
 template <typename _Shell>
-class PrimitiveOverlapIntegralEngine {
+class PrimitiveOverlapIntegralEngine:
+    public BaseScalarPrimitiveIntegralEngine {
 public:
     // The type of shell that this integral engine is related to.
     using Shell = _Shell;
@@ -55,20 +57,6 @@ public:
 
 
 public:
-    /**
-     *  MARK: Components
-     */
-
-    /**
-     *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
-     * 
-     *  @param component                The index of the component of the operator.
-     * 
-     *  @note Since the overlap operator has only 1 component, this method has no effect.
-     */
-    void prepareStateForComponent(const size_t component) {};
-
-
     /*
      *  MARK: CartesianGTO integrals
      */

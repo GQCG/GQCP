@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "Basis/Integrals/Primitive/PrimitiveCartesianOperatorIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
@@ -30,7 +30,7 @@ namespace GQCP {
  *  A one-electron primitive integral engine that can calculate integrals over the angular momentum operator.
  */
 class PrimitiveAngularMomentumIntegralEngine:
-    public PrimitiveCartesianOperatorIntegralEngine {
+    public BaseVectorPrimitiveIntegralEngine {
 public:
     // The scalar representation of an integral.
     using IntegralScalar = AngularMomentumOperator::Scalar;

@@ -22,12 +22,18 @@ namespace GQCP {
 
 
 /**
- *  An enumeration containing the Cartesian directions.
+ *  An enumeration containing the dyadic Cartesian directions.
  */
-enum CartesianDirection {
-    x = 0,
-    y = 1,
-    z = 2
+enum DyadicCartesianDirection {
+    xx = 0,
+    xy = 1,
+    xz = 2,
+    yx = 3,
+    yy = 4,
+    yz = 5,
+    zx = 6,
+    zy = 7,
+    zz = 8
 };
 
 
