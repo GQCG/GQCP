@@ -20,6 +20,12 @@
       <node id="28">
         <label>functional</label>
       </node>
+      <node id="33">
+        <label>Physical/HomogeneousMagneticField.hpp</label>
+        <link refid="_homogeneous_magnetic_field_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
       <node id="11">
         <label>Utilities/Eigen.hpp</label>
         <link refid="_eigen_8hpp"/>
@@ -29,10 +35,10 @@
       <node id="24">
         <label>boost/lexical_cast.hpp</label>
       </node>
-      <node id="31">
+      <node id="34">
         <label>Molecule/Molecule.hpp</label>
         <link refid="_molecule_8hpp"/>
-        <childnode refid="32" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -64,7 +70,7 @@
       <node id="21">
         <label>boost/format.hpp</label>
       </node>
-      <node id="32">
+      <node id="35">
         <label>Molecule/NuclearFramework.hpp</label>
         <link refid="_nuclear_framework_8hpp"/>
         <childnode refid="5" relation="include">
@@ -162,6 +168,18 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
+      <node id="32">
+        <label>Mathematical/Functions/LondonCartesianGTO.hpp</label>
+        <link refid="_london_cartesian_g_t_o_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
       <node id="6">
         <label>array</label>
       </node>
@@ -170,6 +188,16 @@
       </node>
       <node id="20">
         <label>iostream</label>
+      </node>
+      <node id="31">
+        <label>Basis/ScalarBasis/LondonGTOShell.hpp</label>
+        <link refid="_london_g_t_o_shell_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
       </node>
       <node id="4">
         <label>Mathematical/Functions/CartesianExponents.hpp</label>
@@ -187,7 +215,7 @@
       <node id="16">
         <label>complex</label>
       </node>
-      <node id="33">
+      <node id="36">
         <label>algorithm</label>
       </node>
       <node id="30">
@@ -197,9 +225,15 @@
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
         <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -211,9 +245,9 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
@@ -222,7 +256,7 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="34">
+      <node id="37">
         <label>initializer_list</label>
       </node>
       <node id="2">

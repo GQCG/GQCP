@@ -73,7 +73,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="_base_one_electron_integral_engine_8hpp_source.html">Basis/Integrals/BaseOneElectronIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_base_two_electron_integral_buffer_8hpp_source.html">Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_base_two_electron_integral_engine_8hpp_source.html">Basis/Integrals/BaseTwoElectronIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_functional_primitive_engine_8hpp_source.html">Basis/Integrals/FunctionalPrimitiveEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_functional_primitive_integral_engine_8hpp_source.html">Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_integral_calculator_8hpp_source.html">Basis/Integrals/IntegralCalculator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_integral_engine_8hpp_source.html">Basis/Integrals/IntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_libcint_interfacer_8hpp_source.html">Basis/Integrals/Interfaces/LibcintInterfacer.hpp</a>&quot;</code><br />
@@ -90,9 +90,9 @@ $(function() {
 <code>#include &quot;<a class="el" href="_one_electron_integral_buffer_8hpp_source.html">Basis/Integrals/OneElectronIntegralBuffer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_one_electron_integral_engine_8hpp_source.html">Basis/Integrals/OneElectronIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_primitive_angular_momentum_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_canonical_kinetic_energy_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_primitive_cartesian_operator_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_primitive_dipole_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_kinetic_energy_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_primitive_linear_momentum_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_primitive_overlap_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_g_mulliken_partitioning_8hpp_source.html">Basis/MullikenPartitioning/GMullikenPartitioning.hpp</a>&quot;</code><br />
@@ -101,6 +101,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="_u_mulliken_partitioning_component_8hpp_source.html">Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_g_t_o_basis_set_8hpp_source.html">Basis/ScalarBasis/GTOBasisSet.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_g_t_o_shell_8hpp_source.html">Basis/ScalarBasis/GTOShell.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_london_g_t_o_shell_8hpp_source.html">Basis/ScalarBasis/LondonGTOShell.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_scalar_basis_8hpp_source.html">Basis/ScalarBasis/ScalarBasis.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_shell_set_8hpp_source.html">Basis/ScalarBasis/ShellSet.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_g_spinor_basis_8hpp_source.html">Basis/SpinorBasis/GSpinorBasis.hpp</a>&quot;</code><br />
@@ -233,6 +234,8 @@ $(function() {
 <code>#include &quot;<a class="el" href="_u_s_q_one_electron_operator_8hpp_source.html">Operator/SecondQuantized/USQOneElectronOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_u_s_q_one_electron_operator_component_8hpp_source.html">Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_u_s_q_two_electron_operator_8hpp_source.html">Operator/SecondQuantized/USQTwoElectronOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_homogeneous_magnetic_field_8hpp_source.html">Physical/HomogeneousMagneticField.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="units_8hpp_source.html">Physical/units.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_base_electrical_response_solver_8hpp_source.html">Processing/Properties/BaseElectricalResponseSolver.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_c_i_electrical_response_solver_8hpp_source.html">Processing/Properties/CIElectricalResponseSolver.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_dyson_orbital_8hpp_source.html">Processing/Properties/DysonOrbital.hpp</a>&quot;</code><br />
@@ -325,7 +328,6 @@ $(function() {
 <code>#include &quot;<a class="el" href="memory_8hpp_source.html">Utilities/memory.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="miscellaneous_8hpp_source.html">Utilities/miscellaneous.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="type__traits_8hpp_source.html">Utilities/type_traits.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="units_8hpp_source.html">Utilities/units.hpp</a>&quot;</code><br />
 <code>#include &quot;version.hpp&quot;</code><br />
 </div>
 <p><a href="gqcp_8hpp_source.html">Go to the source code of this file.</a></p>

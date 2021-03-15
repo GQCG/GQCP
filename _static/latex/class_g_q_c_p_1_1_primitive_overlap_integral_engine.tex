@@ -1,12 +1,12 @@
-\hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{}\doxysection{GQCP\+::Primitive\+Overlap\+Integral\+Engine Class Reference}
-\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine}\index{GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}}
+\hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{}\doxysection{GQCP\+::Primitive\+Overlap\+Integral\+Engine$<$ \+\_\+\+Shell $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine}\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
 
 
 {\ttfamily \#include $<$Primitive\+Overlap\+Integral\+Engine.\+hpp$>$}
 
 
 
-Collaboration diagram for GQCP\+::Primitive\+Overlap\+Integral\+Engine\+:
+Collaboration diagram for GQCP\+::Primitive\+Overlap\+Integral\+Engine$<$ \+\_\+\+Shell $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -17,88 +17,180 @@ Collaboration diagram for GQCP\+::Primitive\+Overlap\+Integral\+Engine\+:
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}{Integral\+Scalar}} = \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Overlap\+Operator\+::\+Scalar}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a201abfc83ece872d3af91a3b96ca3334}{Shell}} = \+\_\+\+Shell
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5c8908dbe85b8dc45f432053fe816aa0}{Primitive}} = typename Shell\+::\+Primitive
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}} = \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Overlap\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued $>$
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a4747e05292354a151755c097e2432152}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right)
+void \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a6882414eca98812b02bf14d3c941839e}{prepare\+State\+For\+Component}} (const size\+\_\+t component)
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5583c13d295b912592c3aa5a27165167}{calculate1D}} (const double \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}, const double K, const int i, const double \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}, const double L, const int j)
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a587b7a75b51ad5fa8724d3614cb93a96}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right)
 \item 
-void \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a2c5dce97c16a752ca5b0ff831790ac2f}{prepare\+State\+For\+Component}} (const size\+\_\+t component)
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a9edc7f130735ba38aa76edbcd65f9de5}{calculate1D}} (const double a, const double K, const int i, const double b, const double L, const int j)
+\item 
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a48e33652f532b9ccefda0da754d348ea}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&right)
+\item 
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a65f4ea11edfb45f12cac951fdd10501f}{calculate1D}} (const \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} k1, const double a, const double K, const int i, const double b, const double L, const int j)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a43144ce8b4e5a7d8b0e22914f8c8886e}{Components}} = \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Overlap\+Operator\+::\+Number\+Of\+Components}}
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_ad4e652b1fa170342eb190fe2a0944bd1}{Components}} = \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Overlap\+Operator\+::\+Number\+Of\+Components}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-A class that can calculate overlap integrals over primitive Cartesian GTOs. 
+\subsubsection*{template$<$typename \+\_\+\+Shell$>$\newline
+class GQCP\+::\+Primitive\+Overlap\+Integral\+Engine$<$ \+\_\+\+Shell $>$}
+
+A class that can calculate overlap integrals.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Shell} & The type of shell that this integral engine is related to. \\
+\hline
+\end{DoxyTemplParams}
+
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}} 
-\index{GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}!IntegralScalar@{IntegralScalar}}
-\index{IntegralScalar@{IntegralScalar}!GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine\+::\+Integral\+Scalar}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Overlap\+Operator\+::\+Scalar}}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}} =  \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Overlap\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5c8908dbe85b8dc45f432053fe816aa0}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5c8908dbe85b8dc45f432053fe816aa0}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5c8908dbe85b8dc45f432053fe816aa0}{Primitive}} =  typename Shell\+::\+Primitive}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a201abfc83ece872d3af91a3b96ca3334}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a201abfc83ece872d3af91a3b96ca3334}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a201abfc83ece872d3af91a3b96ca3334}{Shell}} =  \+\_\+\+Shell}
 
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a4747e05292354a151755c097e2432152}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a4747e05292354a151755c097e2432152}} 
-\index{GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}!calculate@{calculate}}
-\index{calculate@{calculate}!GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}}
-\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}{Primitive\+Overlap\+Integral\+Engine\+::\+Integral\+Scalar}} GQCP\+::\+Primitive\+Overlap\+Integral\+Engine\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a587b7a75b51ad5fa8724d3614cb93a96}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a587b7a75b51ad5fa8724d3614cb93a96}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the overlap integral over two Cartesian GTOs.
 
 
 \begin{DoxyParams}{Parameters}
-{\em left} & the left Cartesian GTO (primitive) \\
+{\em left} & The left Cartesian GTO. \\
 \hline
-{\em right} & the right Cartesian GTO (primitive)\\
+{\em right} & The right Cartesian GTO.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the overlap integral over the two given primitives 
+The overlap integral over the two given Cartesian GTOs. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5583c13d295b912592c3aa5a27165167}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5583c13d295b912592c3aa5a27165167}} 
-\index{GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}!calculate1D@{calculate1D}}
-\index{calculate1D@{calculate1D}!GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}}
-\doxysubsubsection{\texorpdfstring{calculate1D()}{calculate1D()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa499d812649ad6bb129bb5e2f4c2cd9e}{Primitive\+Overlap\+Integral\+Engine\+::\+Integral\+Scalar}} GQCP\+::\+Primitive\+Overlap\+Integral\+Engine\+::calculate1D (\begin{DoxyParamCaption}\item[{const double}]{alpha,  }\item[{const double}]{K,  }\item[{const int}]{i,  }\item[{const double}]{beta,  }\item[{const double}]{L,  }\item[{const int}]{j }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a48e33652f532b9ccefda0da754d348ea}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a48e33652f532b9ccefda0da754d348ea}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the overlap integral over two London Cartesian GTOs.
 
 
 \begin{DoxyParams}{Parameters}
-{\em alpha} & the Gaussian exponent of the left 1-\/D primitive \\
+{\em left} & The left London Cartesian GTO. \\
 \hline
-{\em K} & the (directional coordinate of the) center of the left 1-\/D primitive \\
-\hline
-{\em i} & the Cartesian exponent of the left 1-\/D primitive \\
-\hline
-{\em beta} & the Gaussian exponent of the right 1-\/D primitive \\
-\hline
-{\em L} & the (directional coordinate of the) center of the right 1-\/D primitive \\
-\hline
-{\em j} & the Cartesian exponent of the right 1-\/D primitive\\
+{\em right} & The right London Cartesian GTO.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the overlap integral over the two given 1-\/D primitives 
+The overlap integral over the two given London Cartesian GTOs. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a2c5dce97c16a752ca5b0ff831790ac2f}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a2c5dce97c16a752ca5b0ff831790ac2f}} 
-\index{GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}!prepareStateForComponent@{prepareStateForComponent}}
-\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a65f4ea11edfb45f12cac951fdd10501f}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a65f4ea11edfb45f12cac951fdd10501f}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!calculate1D@{calculate1D}}
+\index{calculate1D@{calculate1D}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1D()}{calculate1D()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate1D (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}}]{k1,  }\item[{const double}]{a,  }\item[{const double}]{K,  }\item[{const int}]{i,  }\item[{const double}]{b,  }\item[{const double}]{L,  }\item[{const int}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the overlap integral over two London Cartesian GTO 1-\/D primitives.
+
+
+\begin{DoxyParams}{Parameters}
+{\em k1} & The (directional component of the) k-\/vector of the London overlap distribution. \\
+\hline
+{\em a} & The Gaussian exponent of the left 1-\/D primitive. \\
+\hline
+{\em K} & The (directional coordinate of the) center of the left 1-\/D primitive. \\
+\hline
+{\em i} & The Cartesian exponent of the left 1-\/D primitive. \\
+\hline
+{\em b} & The Gaussian exponent of the right 1-\/D primitive. \\
+\hline
+{\em L} & The (directional coordinate of the) center of the right 1-\/D primitive. \\
+\hline
+{\em j} & The Cartesian exponent of the right 1-\/D primitive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The overlap integral over the two London Cartesian GTO 1-\/D primitives. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a9edc7f130735ba38aa76edbcd65f9de5}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a9edc7f130735ba38aa76edbcd65f9de5}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!calculate1D@{calculate1D}}
+\index{calculate1D@{calculate1D}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1D()}{calculate1D()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_aa917af9486471e317439a55374a5ae3b}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate1D (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{K,  }\item[{const int}]{i,  }\item[{const double}]{b,  }\item[{const double}]{L,  }\item[{const int}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the overlap integral over two Cartesian GTO 1-\/D primitives.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The Gaussian exponent of the left 1-\/D primitive. \\
+\hline
+{\em K} & The (directional coordinate of the) center of the left 1-\/D primitive. \\
+\hline
+{\em i} & The Cartesian exponent of the left 1-\/D primitive. \\
+\hline
+{\em b} & The Gaussian exponent of the right 1-\/D primitive. \\
+\hline
+{\em L} & The (directional coordinate of the) center of the right 1-\/D primitive. \\
+\hline
+{\em j} & The Cartesian exponent of the right 1-\/D primitive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The overlap integral over the two Cartesian GTO 1-\/D primitives. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a6882414eca98812b02bf14d3c941839e}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a6882414eca98812b02bf14d3c941839e}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!prepareStateForComponent@{prepareStateForComponent}}
+\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{prepareStateForComponent()}{prepareStateForComponent()}}
-{\footnotesize\ttfamily void GQCP\+::\+Primitive\+Overlap\+Integral\+Engine\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
+MARK\+: Components Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
 
 
 \begin{DoxyParams}{Parameters}
-{\em component} & the index of the component of the operator\\
+{\em component} & The index of the component of the operator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
@@ -107,15 +199,15 @@ Since the overlap operator has only 1 component, this method has no effect.
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a43144ce8b4e5a7d8b0e22914f8c8886e}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a43144ce8b4e5a7d8b0e22914f8c8886e}} 
-\index{GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}!Components@{Components}}
-\index{Components@{Components}!GQCP::PrimitiveOverlapIntegralEngine@{GQCP::PrimitiveOverlapIntegralEngine}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_overlap_integral_engine_ad4e652b1fa170342eb190fe2a0944bd1}\label{class_g_q_c_p_1_1_primitive_overlap_integral_engine_ad4e652b1fa170342eb190fe2a0944bd1}} 
+\index{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}!Components@{Components}}
+\index{Components@{Components}!GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveOverlapIntegralEngine$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{Components}{Components}}
-{\footnotesize\ttfamily constexpr auto GQCP\+::\+Primitive\+Overlap\+Integral\+Engine\+::\+Components = \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Overlap\+Operator\+::\+Number\+Of\+Components}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{GQCP\+::\+Primitive\+Overlap\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::Components = \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Overlap\+Operator\+::\+Number\+Of\+Components}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_overlap_integral_engine_8hpp}{Primitive\+Overlap\+Integral\+Engine.\+hpp}}\item 
-/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_overlap_integral_engine_8cpp}{Primitive\+Overlap\+Integral\+Engine.\+cpp}}\end{DoxyCompactItemize}
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_overlap_integral_engine_8hpp}{Primitive\+Overlap\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

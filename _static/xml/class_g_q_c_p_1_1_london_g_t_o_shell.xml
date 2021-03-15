@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_london_g_t_o_shell" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::LondonGTOShell</compoundname>
+    <includes refid="_london_g_t_o_shell_8hpp" local="no">LondonGTOShell.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_london_g_t_o_shell_1a67f63a29854b9027664ef9177d84491b" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref></type>
+        <definition>using GQCP::LondonGTOShell::Primitive =  LondonCartesianGTO</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_london_g_t_o_shell_1a04efc63dad5c088da5d9b6107e28695a" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a67f63a29854b9027664ef9177d84491b" kindref="member">Primitive</ref> &gt;</type>
+        <definition>using GQCP::LondonGTOShell::BasisFunction =  LinearCombination&lt;double, Primitive&gt;</definition>
+        <argsstring></argsstring>
+        <name>BasisFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_london_g_t_o_shell_1a387fdf5a1726a996a1a9ddcf0e8cb029" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref></type>
+        <definition>HomogeneousMagneticField GQCP::LondonGTOShell::m_field</definition>
+        <argsstring></argsstring>
+        <name>m_field</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="43" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_london_g_t_o_shell_1ac8304e8709d90b8f77094ad2b4da20a3" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref></type>
+        <definition>GTOShell GQCP::LondonGTOShell::gto_shell</definition>
+        <argsstring></argsstring>
+        <name>gto_shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="46" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_g_t_o_shell_1a0df79343dffe481f2ffa31eb8d095be1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::LondonGTOShell::LondonGTOShell</definition>
+        <argsstring>(const GTOShell &amp;shell, const HomogeneousMagneticField &amp;field)</argsstring>
+        <name>LondonGTOShell</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
+          <declname>shell</declname>
+          <defname>gto_shell</defname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a gauge-including shell from a field-free shell and a magnetic field.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gto_shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field-free GTO shell. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The specificiation of the magnetic field for this GIAO. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/LondonGTOShell.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_g_t_o_shell_1abb4e513349c099b9038f76e13f5a05e3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+        <definition>const HomogeneousMagneticField&amp; GQCP::LondonGTOShell::magneticField</definition>
+        <argsstring>() const</argsstring>
+        <name>magneticField</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The specificiation of the magnetic field for this GIAO. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="70" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_g_t_o_shell_1aaeec2d270cada06fac0d843e55f4b00a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
+        <definition>const GTOShell&amp; GQCP::LondonGTOShell::gtoShell</definition>
+        <argsstring>() const</argsstring>
+        <name>gtoShell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The field-free GTO shell. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="76" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_g_t_o_shell_1af4c6335d46526cfe8ac63816a3ebdb61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::LondonGTOShell::embedNormalizationFactorsOfPrimitives</definition>
+        <argsstring>()</argsstring>
+        <name>embedNormalizationFactorsOfPrimitives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.</para>
+<para><simplesect kind="note"><para>The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="88" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_g_t_o_shell_1a23d3b8963a5db95a32cd17dd733dbc06" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::LondonGTOShell::numberOfBasisFunctions</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfBasisFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of basis functions that this shell contains. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="98" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_g_t_o_shell_1a27669e0c2b59f06e854b7aebeaaa3d4b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a04efc63dad5c088da5d9b6107e28695a" kindref="member">BasisFunction</ref> &gt;</type>
+        <definition>std::vector&lt; LondonGTOShell::BasisFunction &gt; GQCP::LondonGTOShell::basisFunctions</definition>
+        <argsstring>() const</argsstring>
+        <name>basisFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct all basis functions contained in this shell.</para>
+<para><simplesect kind="return"><para>The basis functions that correspond to this shell.</para>
+</simplesect>
+<simplesect kind="note"><para>The basis functions are ordered lexicographically. This means x &lt; y &lt; z. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="107" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/LondonGTOShell.cpp" bodystart="50" bodyend="74"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A GTO shell with London-type modifications. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::LondonGTOShell</label>
+        <link refid="class_g_q_c_p_1_1_london_g_t_o_shell"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp" bodystart="32" bodyend="108"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a04efc63dad5c088da5d9b6107e28695a" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>BasisFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a27669e0c2b59f06e854b7aebeaaa3d4b" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>basisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1af4c6335d46526cfe8ac63816a3ebdb61" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>embedNormalizationFactorsOfPrimitives</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1ac8304e8709d90b8f77094ad2b4da20a3" prot="private" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>gto_shell</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1aaeec2d270cada06fac0d843e55f4b00a" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>gtoShell</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a0df79343dffe481f2ffa31eb8d095be1" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>LondonGTOShell</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a387fdf5a1726a996a1a9ddcf0e8cb029" prot="private" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>m_field</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1abb4e513349c099b9038f76e13f5a05e3" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>magneticField</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a23d3b8963a5db95a32cd17dd733dbc06" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>numberOfBasisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a67f63a29854b9027664ef9177d84491b" prot="public" virt="non-virtual"><scope>GQCP::LondonGTOShell</scope><name>Primitive</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,135 @@
+\hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell}{}\doxysection{GQCP\+::London\+GTOShell Class Reference}
+\label{class_g_q_c_p_1_1_london_g_t_o_shell}\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+
+
+{\ttfamily \#include $<$London\+GTOShell.\+hpp$>$}
+
+
+
+Collaboration diagram for GQCP\+::London\+GTOShell\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{class_g_q_c_p_1_1_london_g_t_o_shell__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a67f63a29854b9027664ef9177d84491b}{Primitive}} = \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a04efc63dad5c088da5d9b6107e28695a}{Basis\+Function}} = \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a67f63a29854b9027664ef9177d84491b}{Primitive}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a0df79343dffe481f2ffa31eb8d095be1}{London\+GTOShell}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} \&shell, const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&field)
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_abb4e513349c099b9038f76e13f5a05e3}{magnetic\+Field}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_aaeec2d270cada06fac0d843e55f4b00a}{gto\+Shell}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_af4c6335d46526cfe8ac63816a3ebdb61}{embed\+Normalization\+Factors\+Of\+Primitives}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a23d3b8963a5db95a32cd17dd733dbc06}{number\+Of\+Basis\+Functions}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a04efc63dad5c088da5d9b6107e28695a}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a27669e0c2b59f06e854b7aebeaaa3d4b}{basis\+Functions}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A GTO shell with London-\/type modifications. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_a04efc63dad5c088da5d9b6107e28695a}\label{class_g_q_c_p_1_1_london_g_t_o_shell_a04efc63dad5c088da5d9b6107e28695a}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!BasisFunction@{BasisFunction}}
+\index{BasisFunction@{BasisFunction}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{BasisFunction}{BasisFunction}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a04efc63dad5c088da5d9b6107e28695a}{GQCP\+::\+London\+GTOShell\+::\+Basis\+Function}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a67f63a29854b9027664ef9177d84491b}{Primitive}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_a67f63a29854b9027664ef9177d84491b}\label{class_g_q_c_p_1_1_london_g_t_o_shell_a67f63a29854b9027664ef9177d84491b}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a67f63a29854b9027664ef9177d84491b}{GQCP\+::\+London\+GTOShell\+::\+Primitive}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_a0df79343dffe481f2ffa31eb8d095be1}\label{class_g_q_c_p_1_1_london_g_t_o_shell_a0df79343dffe481f2ffa31eb8d095be1}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!LondonGTOShell@{LondonGTOShell}}
+\index{LondonGTOShell@{LondonGTOShell}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{LondonGTOShell()}{LondonGTOShell()}}
+{\footnotesize\ttfamily GQCP\+::\+London\+GTOShell\+::\+London\+GTOShell (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} \&}]{gto\+\_\+shell,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{field }\end{DoxyParamCaption})}
+
+Construct a gauge-\/including shell from a field-\/free shell and a magnetic field.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gto\+\_\+shell} & The field-\/free GTO shell. \\
+\hline
+{\em field} & The specificiation of the magnetic field for this GIAO. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_a27669e0c2b59f06e854b7aebeaaa3d4b}\label{class_g_q_c_p_1_1_london_g_t_o_shell_a27669e0c2b59f06e854b7aebeaaa3d4b}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!basisFunctions@{basisFunctions}}
+\index{basisFunctions@{basisFunctions}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{basisFunctions()}{basisFunctions()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell_a04efc63dad5c088da5d9b6107e28695a}{London\+GTOShell\+::\+Basis\+Function}} $>$ GQCP\+::\+London\+GTOShell\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Construct all basis functions contained in this shell.
+
+\begin{DoxyReturn}{Returns}
+The basis functions that correspond to this shell.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The basis functions are ordered lexicographically. This means x $<$ y $<$ z. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_af4c6335d46526cfe8ac63816a3ebdb61}\label{class_g_q_c_p_1_1_london_g_t_o_shell_af4c6335d46526cfe8ac63816a3ebdb61}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!embedNormalizationFactorsOfPrimitives@{embedNormalizationFactorsOfPrimitives}}
+\index{embedNormalizationFactorsOfPrimitives@{embedNormalizationFactorsOfPrimitives}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{embedNormalizationFactorsOfPrimitives()}{embedNormalizationFactorsOfPrimitives()}}
+{\footnotesize\ttfamily void GQCP\+::\+London\+GTOShell\+::embed\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
+
+\begin{DoxyNote}{Note}
+The normalization factor that is embedded, corresponds to the spherical (or axis-\/aligned Cartesian) GTO. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_aaeec2d270cada06fac0d843e55f4b00a}\label{class_g_q_c_p_1_1_london_g_t_o_shell_aaeec2d270cada06fac0d843e55f4b00a}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!gtoShell@{gtoShell}}
+\index{gtoShell@{gtoShell}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{gtoShell()}{gtoShell()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}\& GQCP\+::\+London\+GTOShell\+::gto\+Shell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The field-\/free GTO shell. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_abb4e513349c099b9038f76e13f5a05e3}\label{class_g_q_c_p_1_1_london_g_t_o_shell_abb4e513349c099b9038f76e13f5a05e3}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!magneticField@{magneticField}}
+\index{magneticField@{magneticField}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{magneticField()}{magneticField()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}}\& GQCP\+::\+London\+GTOShell\+::magnetic\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The specificiation of the magnetic field for this GIAO. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_g_t_o_shell_a23d3b8963a5db95a32cd17dd733dbc06}\label{class_g_q_c_p_1_1_london_g_t_o_shell_a23d3b8963a5db95a32cd17dd733dbc06}} 
+\index{GQCP::LondonGTOShell@{GQCP::LondonGTOShell}!numberOfBasisFunctions@{numberOfBasisFunctions}}
+\index{numberOfBasisFunctions@{numberOfBasisFunctions}!GQCP::LondonGTOShell@{GQCP::LondonGTOShell}}
+\doxysubsubsection{\texorpdfstring{numberOfBasisFunctions()}{numberOfBasisFunctions()}}
+{\footnotesize\ttfamily size\+\_\+t GQCP\+::\+London\+GTOShell\+::number\+Of\+Basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The number of basis functions that this shell contains. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Scalar\+Basis/\mbox{\hyperlink{_london_g_t_o_shell_8hpp}{London\+GTOShell.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Scalar\+Basis/\mbox{\hyperlink{_london_g_t_o_shell_8cpp}{London\+GTOShell.\+cpp}}\end{DoxyCompactItemize}

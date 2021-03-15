@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GQCP: GQCP::PrimitiveOverlapIntegralEngine Class Reference</title>
+<title>GQCP: GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,50 +71,105 @@ $(function() {
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_g_q_c_p_1_1_primitive_overlap_integral_engine-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">GQCP::PrimitiveOverlapIntegralEngine Class Reference</div>  </div>
+<div class="title">GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="_primitive_overlap_integral_engine_8hpp_source.html">PrimitiveOverlapIntegralEngine.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for GQCP::PrimitiveOverlapIntegralEngine:</div>
+Collaboration diagram for GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_g_q_c_p_1_1_primitive_overlap_integral_engine__coll__graph.png" border="0" usemap="#a_g_q_c_p_1_1_primitive_overlap_integral_engine_coll__map" alt="Collaboration graph"/></div>
-<map name="a_g_q_c_p_1_1_primitive_overlap_integral_engine_coll__map" id="a_g_q_c_p_1_1_primitive_overlap_integral_engine_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,232,127"/>
+<div class="center"><img src="class_g_q_c_p_1_1_primitive_overlap_integral_engine__coll__graph.png" border="0" usemap="#a_g_q_c_p_1_1_primitive_overlap_integral_engine_3_01___shell_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="a_g_q_c_p_1_1_primitive_overlap_integral_engine_3_01___shell_01_4_coll__map" id="a_g_q_c_p_1_1_primitive_overlap_integral_engine_3_01___shell_01_4_coll__map">
+<area shape="rect" title=" " alt="" coords="5,5,232,156"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aa499d812649ad6bb129bb5e2f4c2cd9e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa499d812649ad6bb129bb5e2f4c2cd9e">IntegralScalar</a> = <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">OverlapOperator::Scalar</a></td></tr>
-<tr class="separator:aa499d812649ad6bb129bb5e2f4c2cd9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201abfc83ece872d3af91a3b96ca3334"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a201abfc83ece872d3af91a3b96ca3334">Shell</a> = _Shell</td></tr>
+<tr class="separator:a201abfc83ece872d3af91a3b96ca3334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c8908dbe85b8dc45f432053fe816aa0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a5c8908dbe85b8dc45f432053fe816aa0">Primitive</a> = typename Shell::Primitive</td></tr>
+<tr class="separator:a5c8908dbe85b8dc45f432053fe816aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa917af9486471e317439a55374a5ae3b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a> = <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">OverlapOperator::Scalar</a>, typename Primitive::Valued &gt;</td></tr>
+<tr class="separator:aa917af9486471e317439a55374a5ae3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4747e05292354a151755c097e2432152"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa499d812649ad6bb129bb5e2f4c2cd9e">IntegralScalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a4747e05292354a151755c097e2432152">calculate</a> (const <a class="el" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a> &amp;left, const <a class="el" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a> &amp;right)</td></tr>
-<tr class="separator:a4747e05292354a151755c097e2432152"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5583c13d295b912592c3aa5a27165167"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa499d812649ad6bb129bb5e2f4c2cd9e">IntegralScalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a5583c13d295b912592c3aa5a27165167">calculate1D</a> (const double <a class="el" href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6">alpha</a>, const double K, const int i, const double <a class="el" href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5">beta</a>, const double L, const int j)</td></tr>
-<tr class="separator:a5583c13d295b912592c3aa5a27165167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c5dce97c16a752ca5b0ff831790ac2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a2c5dce97c16a752ca5b0ff831790ac2f">prepareStateForComponent</a> (const size_t component)</td></tr>
-<tr class="separator:a2c5dce97c16a752ca5b0ff831790ac2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6882414eca98812b02bf14d3c941839e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a6882414eca98812b02bf14d3c941839e">prepareStateForComponent</a> (const size_t component)</td></tr>
+<tr class="separator:a6882414eca98812b02bf14d3c941839e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587b7a75b51ad5fa8724d3614cb93a96"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:a587b7a75b51ad5fa8724d3614cb93a96"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a> &gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a587b7a75b51ad5fa8724d3614cb93a96">calculate</a> (const <a class="el" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a> &amp;left, const <a class="el" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a> &amp;right)</td></tr>
+<tr class="separator:a587b7a75b51ad5fa8724d3614cb93a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9edc7f130735ba38aa76edbcd65f9de5"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:a9edc7f130735ba38aa76edbcd65f9de5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a> &gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a9edc7f130735ba38aa76edbcd65f9de5">calculate1D</a> (const double a, const double K, const int i, const double b, const double L, const int j)</td></tr>
+<tr class="separator:a9edc7f130735ba38aa76edbcd65f9de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e33652f532b9ccefda0da754d348ea"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:a48e33652f532b9ccefda0da754d348ea"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a48e33652f532b9ccefda0da754d348ea">calculate</a> (const <a class="el" href="class_g_q_c_p_1_1_london_cartesian_g_t_o.html">LondonCartesianGTO</a> &amp;left, const <a class="el" href="class_g_q_c_p_1_1_london_cartesian_g_t_o.html">LondonCartesianGTO</a> &amp;right)</td></tr>
+<tr class="separator:a48e33652f532b9ccefda0da754d348ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65f4ea11edfb45f12cac951fdd10501f"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:a65f4ea11edfb45f12cac951fdd10501f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a65f4ea11edfb45f12cac951fdd10501f">calculate1D</a> (const <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> k1, const double a, const double K, const int i, const double b, const double L, const int j)</td></tr>
+<tr class="separator:a65f4ea11edfb45f12cac951fdd10501f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a43144ce8b4e5a7d8b0e22914f8c8886e"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a43144ce8b4e5a7d8b0e22914f8c8886e">Components</a> = <a class="el" href="class_g_q_c_p_1_1_base_scalar_f_q_operator.html#a7bf7164b798fb0becf494a29e8d54eb7">OverlapOperator::NumberOfComponents</a></td></tr>
-<tr class="separator:a43144ce8b4e5a7d8b0e22914f8c8886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4e652b1fa170342eb190fe2a0944bd1"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#ad4e652b1fa170342eb190fe2a0944bd1">Components</a> = <a class="el" href="class_g_q_c_p_1_1_base_scalar_f_q_operator.html#a7bf7164b798fb0becf494a29e8d54eb7">OverlapOperator::NumberOfComponents</a></td></tr>
+<tr class="separator:ad4e652b1fa170342eb190fe2a0944bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A class that can calculate overlap integrals over primitive Cartesian GTOs. </p>
+<div class="textblock"><h3>template&lt;typename _Shell&gt;<br />
+class GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;</h3>
+
+<p>A class that can calculate overlap integrals.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">_Shell</td><td>The type of shell that this integral engine is related to. </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="aa499d812649ad6bb129bb5e2f4c2cd9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa499d812649ad6bb129bb5e2f4c2cd9e">&#9670;&nbsp;</a></span>IntegralScalar</h2>
+<a id="aa917af9486471e317439a55374a5ae3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa917af9486471e317439a55374a5ae3b">&#9670;&nbsp;</a></span>IntegralScalar</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa499d812649ad6bb129bb5e2f4c2cd9e">GQCP::PrimitiveOverlapIntegralEngine::IntegralScalar</a> =  <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">OverlapOperator::Scalar</a></td>
+          <td class="memname">using <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::<a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a> =  <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt;<a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">OverlapOperator::Scalar</a>, typename Primitive::Valued&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c8908dbe85b8dc45f432053fe816aa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c8908dbe85b8dc45f432053fe816aa0">&#9670;&nbsp;</a></span>Primitive</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::<a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a5c8908dbe85b8dc45f432053fe816aa0">Primitive</a> =  typename Shell::Primitive</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a201abfc83ece872d3af91a3b96ca3334"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201abfc83ece872d3af91a3b96ca3334">&#9670;&nbsp;</a></span>Shell</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::<a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a201abfc83ece872d3af91a3b96ca3334">Shell</a> =  _Shell</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -122,14 +177,21 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4747e05292354a151755c097e2432152"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4747e05292354a151755c097e2432152">&#9670;&nbsp;</a></span>calculate()</h2>
+<a id="a587b7a75b51ad5fa8724d3614cb93a96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a587b7a75b51ad5fa8724d3614cb93a96">&#9670;&nbsp;</a></span>calculate() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Shell&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa499d812649ad6bb129bb5e2f4c2cd9e">PrimitiveOverlapIntegralEngine::IntegralScalar</a> GQCP::PrimitiveOverlapIntegralEngine::calculate </td>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a>&gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a>&gt; <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::calculate </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a> &amp;&#160;</td>
           <td class="paramname"><em>left</em>, </td>
@@ -146,29 +208,97 @@ Static Public Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<p>Calculate the overlap integral over two Cartesian GTOs.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">left</td><td>the left Cartesian GTO (primitive) </td></tr>
-    <tr><td class="paramname">right</td><td>the right Cartesian GTO (primitive)</td></tr>
+    <tr><td class="paramname">left</td><td>The left Cartesian GTO. </td></tr>
+    <tr><td class="paramname">right</td><td>The right Cartesian GTO.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the overlap integral over the two given primitives </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The overlap integral over the two given Cartesian GTOs. </dd></dl>
 
 </div>
 </div>
-<a id="a5583c13d295b912592c3aa5a27165167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5583c13d295b912592c3aa5a27165167">&#9670;&nbsp;</a></span>calculate1D()</h2>
+<a id="a48e33652f532b9ccefda0da754d348ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48e33652f532b9ccefda0da754d348ea">&#9670;&nbsp;</a></span>calculate() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Shell&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa499d812649ad6bb129bb5e2f4c2cd9e">PrimitiveOverlapIntegralEngine::IntegralScalar</a> GQCP::PrimitiveOverlapIntegralEngine::calculate1D </td>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a>&gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a>&gt; <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::calculate </td>
           <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_london_cartesian_g_t_o.html">LondonCartesianGTO</a> &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_london_cartesian_g_t_o.html">LondonCartesianGTO</a> &amp;&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculate the overlap integral over two London Cartesian GTOs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>The left London Cartesian GTO. </td></tr>
+    <tr><td class="paramname">right</td><td>The right London Cartesian GTO.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The overlap integral over the two given London Cartesian GTOs. </dd></dl>
+
+</div>
+</div>
+<a id="a65f4ea11edfb45f12cac951fdd10501f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65f4ea11edfb45f12cac951fdd10501f">&#9670;&nbsp;</a></span>calculate1D() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Shell&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a>&gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a>&gt; <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::calculate1D </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>&#160;</td>
+          <td class="paramname"><em>k1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>alpha</em>, </td>
+          <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -186,7 +316,7 @@ Static Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>beta</em>, </td>
+          <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -206,33 +336,119 @@ Static Public Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<p>Calculate the overlap integral over two London Cartesian GTO 1-D primitives.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">alpha</td><td>the Gaussian exponent of the left 1-D primitive </td></tr>
-    <tr><td class="paramname">K</td><td>the (directional coordinate of the) center of the left 1-D primitive </td></tr>
-    <tr><td class="paramname">i</td><td>the Cartesian exponent of the left 1-D primitive </td></tr>
-    <tr><td class="paramname">beta</td><td>the Gaussian exponent of the right 1-D primitive </td></tr>
-    <tr><td class="paramname">L</td><td>the (directional coordinate of the) center of the right 1-D primitive </td></tr>
-    <tr><td class="paramname">j</td><td>the Cartesian exponent of the right 1-D primitive</td></tr>
+    <tr><td class="paramname">k1</td><td>The (directional component of the) k-vector of the London overlap distribution. </td></tr>
+    <tr><td class="paramname">a</td><td>The Gaussian exponent of the left 1-D primitive. </td></tr>
+    <tr><td class="paramname">K</td><td>The (directional coordinate of the) center of the left 1-D primitive. </td></tr>
+    <tr><td class="paramname">i</td><td>The Cartesian exponent of the left 1-D primitive. </td></tr>
+    <tr><td class="paramname">b</td><td>The Gaussian exponent of the right 1-D primitive. </td></tr>
+    <tr><td class="paramname">L</td><td>The (directional coordinate of the) center of the right 1-D primitive. </td></tr>
+    <tr><td class="paramname">j</td><td>The Cartesian exponent of the right 1-D primitive.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the overlap integral over the two given 1-D primitives </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The overlap integral over the two London Cartesian GTO 1-D primitives. </dd></dl>
 
 </div>
 </div>
-<a id="a2c5dce97c16a752ca5b0ff831790ac2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c5dce97c16a752ca5b0ff831790ac2f">&#9670;&nbsp;</a></span>prepareStateForComponent()</h2>
+<a id="a9edc7f130735ba38aa76edbcd65f9de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9edc7f130735ba38aa76edbcd65f9de5">&#9670;&nbsp;</a></span>calculate1D() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Shell&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void GQCP::PrimitiveOverlapIntegralEngine::prepareStateForComponent </td>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a>&gt;::value, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#aa917af9486471e317439a55374a5ae3b">IntegralScalar</a>&gt; <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::calculate1D </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>K</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>L</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculate the overlap integral over two Cartesian GTO 1-D primitives.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The Gaussian exponent of the left 1-D primitive. </td></tr>
+    <tr><td class="paramname">K</td><td>The (directional coordinate of the) center of the left 1-D primitive. </td></tr>
+    <tr><td class="paramname">i</td><td>The Cartesian exponent of the left 1-D primitive. </td></tr>
+    <tr><td class="paramname">b</td><td>The Gaussian exponent of the right 1-D primitive. </td></tr>
+    <tr><td class="paramname">L</td><td>The (directional coordinate of the) center of the right 1-D primitive. </td></tr>
+    <tr><td class="paramname">j</td><td>The Cartesian exponent of the right 1-D primitive.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The overlap integral over the two Cartesian GTO 1-D primitives. </dd></dl>
+
+</div>
+</div>
+<a id="a6882414eca98812b02bf14d3c941839e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6882414eca98812b02bf14d3c941839e">&#9670;&nbsp;</a></span>prepareStateForComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::prepareStateForComponent </td>
           <td>(</td>
           <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>component</em></td><td>)</td>
@@ -245,10 +461,10 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.</p>
+<p>MARK: Components Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">component</td><td>the index of the component of the operator</td></tr>
+    <tr><td class="paramname">component</td><td>The index of the component of the operator.</td></tr>
   </table>
   </dd>
 </dl>
@@ -257,17 +473,19 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a43144ce8b4e5a7d8b0e22914f8c8886e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43144ce8b4e5a7d8b0e22914f8c8886e">&#9670;&nbsp;</a></span>Components</h2>
+<a id="ad4e652b1fa170342eb190fe2a0944bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4e652b1fa170342eb190fe2a0944bd1">&#9670;&nbsp;</a></span>Components</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Shell &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto GQCP::PrimitiveOverlapIntegralEngine::Components = <a class="el" href="class_g_q_c_p_1_1_base_scalar_f_q_operator.html#a7bf7164b798fb0becf494a29e8d54eb7">OverlapOperator::NumberOfComponents</a></td>
+          <td class="memname">constexpr auto <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html">GQCP::PrimitiveOverlapIntegralEngine</a>&lt; _Shell &gt;::Components = <a class="el" href="class_g_q_c_p_1_1_base_scalar_f_q_operator.html#a7bf7164b798fb0becf494a29e8d54eb7">OverlapOperator::NumberOfComponents</a></td>
         </tr>
       </table>
   </td>
@@ -279,9 +497,8 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/<a class="el" href="_primitive_overlap_integral_engine_8hpp_source.html">PrimitiveOverlapIntegralEngine.hpp</a></li>
-<li>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/<a class="el" href="_primitive_overlap_integral_engine_8cpp.html">PrimitiveOverlapIntegralEngine.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

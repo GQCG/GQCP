@@ -4,6 +4,7 @@
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions</compoundname>
     <innerfile refid="_cartesian_exponents_8cpp">CartesianExponents.cpp</innerfile>
     <innerfile refid="_cartesian_g_t_o_8cpp">CartesianGTO.cpp</innerfile>
+    <innerfile refid="_london_cartesian_g_t_o_8cpp">LondonCartesianGTO.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

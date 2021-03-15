@@ -117,16 +117,15 @@ Static Public Attributes</h2></td></tr>
 <div class="textblock"><h3>template&lt;typename _Shell, size_t _N, typename _IntegralScalar&gt;<br />
 class GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</h3>
 
-<p>A base class to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the <a class="el" href="class_g_q_c_p_1_1_base_one_electron_integral_engine.html#aa72a849494df30951a5466471fdc246f">calculate()</a> call</p>
+<p>A base class that helps to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells. see also the <a class="el" href="class_g_q_c_p_1_1_base_one_electron_integral_engine.html#aa72a849494df30951a5466471fdc246f">calculate()</a> call.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">_Shell</td><td>the type of shell the integral engine is able to handle </td></tr>
-    <tr><td class="paramname">_N</td><td>the number of components the operator has </td></tr>
-    <tr><td class="paramname">_IntegralScalar</td><td>the scalar representation of an integral</td></tr>
+    <tr><td class="paramname">_Shell</td><td>The type of shell the integral engine is able to handle. This enables compile-time checking of correct arguments. </td></tr>
+    <tr><td class="paramname">_N</td><td>The number of components the operator has. </td></tr>
+    <tr><td class="paramname">_IntegralScalar</td><td>The scalar representation of an integral. </td></tr>
   </table>
   </dd>
 </dl>
-<p>_Shell is a template parameter because that enables compile-time checking of correct arguments </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aebe2d404144f1c0ed72257f6fc7e2620"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aebe2d404144f1c0ed72257f6fc7e2620">&#9670;&nbsp;</a></span>IntegralScalar</h2>
@@ -224,15 +223,16 @@ template&lt;typename _Shell , size_t _N, typename _IntegralScalar &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Calculate all the integrals over the given shells </p><dl class="section note"><dt>Note</dt><dd>This method is not marked const to allow the Engine's internals to be changed</dd></dl>
+<p>Calculate all the integrals over the given shells.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shell1</td><td>the first shell </td></tr>
-    <tr><td class="paramname">shell2</td><td>the second shell</td></tr>
+    <tr><td class="paramname">shell1</td><td>The first shell. </td></tr>
+    <tr><td class="paramname">shell2</td><td>The second shell.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a buffer containing the calculated integrals </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A buffer containing the calculated integrals.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This method is not marked const to allow the Engine's internals to be changed </dd></dl>
 
 <p>Implemented in <a class="el" href="class_g_q_c_p_1_1_one_electron_integral_engine.html#ae4d0cafa515f1537853318284e813a93">GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;</a>, and <a class="el" href="class_g_q_c_p_1_1_libint_one_electron_integral_engine.html#a23dd8c30d8a8f48fa616cab87ec3463d">GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;</a>.</p>
 

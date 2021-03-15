@@ -1,0 +1,91 @@
+\hypertarget{class_g_q_c_p_1_1_homogeneous_magnetic_field}{}\doxysection{GQCP\+::Homogeneous\+Magnetic\+Field Class Reference}
+\label{class_g_q_c_p_1_1_homogeneous_magnetic_field}\index{GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}}
+
+
+{\ttfamily \#include $<$Homogeneous\+Magnetic\+Field.\+hpp$>$}
+
+
+
+Collaboration diagram for GQCP\+::Homogeneous\+Magnetic\+Field\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{class_g_q_c_p_1_1_homogeneous_magnetic_field__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field_a1364b7650c6ad6371c79b72b81fe44b9}{Homogeneous\+Magnetic\+Field}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&B, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&G=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::Zero())
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field_a9f8bdee3712135ffd567a8fd70e6f17d}{strength}} () const
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field_a95f3b7e6c4a7cd043a91c605554f9169}{gauge\+Origin}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field_a4fee6f65d571b25f0341cedf3f64269c}{vector\+Potential\+At}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A type that represents a homogeneous magnetic field. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_homogeneous_magnetic_field_a1364b7650c6ad6371c79b72b81fe44b9}\label{class_g_q_c_p_1_1_homogeneous_magnetic_field_a1364b7650c6ad6371c79b72b81fe44b9}} 
+\index{GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}!HomogeneousMagneticField@{HomogeneousMagneticField}}
+\index{HomogeneousMagneticField@{HomogeneousMagneticField}!GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}}
+\doxysubsubsection{\texorpdfstring{HomogeneousMagneticField()}{HomogeneousMagneticField()}}
+{\footnotesize\ttfamily GQCP\+::\+Homogeneous\+Magnetic\+Field\+::\+Homogeneous\+Magnetic\+Field (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{B,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{G = {\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double,~3$>$\+:\+:Zero()} }\end{DoxyParamCaption})}
+
+Initialize a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}}} from a field strength and gauge origin.
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The field strength. \\
+\hline
+{\em G} & The gauge origin. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_homogeneous_magnetic_field_a95f3b7e6c4a7cd043a91c605554f9169}\label{class_g_q_c_p_1_1_homogeneous_magnetic_field_a95f3b7e6c4a7cd043a91c605554f9169}} 
+\index{GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}!gaugeOrigin@{gaugeOrigin}}
+\index{gaugeOrigin@{gaugeOrigin}!GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}}
+\doxysubsubsection{\texorpdfstring{gaugeOrigin()}{gaugeOrigin()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double, 3$>$\& GQCP\+::\+Homogeneous\+Magnetic\+Field\+::gauge\+Origin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The gauge origin of this homogeneous magnetic field. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_homogeneous_magnetic_field_a9f8bdee3712135ffd567a8fd70e6f17d}\label{class_g_q_c_p_1_1_homogeneous_magnetic_field_a9f8bdee3712135ffd567a8fd70e6f17d}} 
+\index{GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}!strength@{strength}}
+\index{strength@{strength}!GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}}
+\doxysubsubsection{\texorpdfstring{strength()}{strength()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double, 3$>$\& GQCP\+::\+Homogeneous\+Magnetic\+Field\+::strength (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The field strength of this homogeneous magnetic field. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_homogeneous_magnetic_field_a4fee6f65d571b25f0341cedf3f64269c}\label{class_g_q_c_p_1_1_homogeneous_magnetic_field_a4fee6f65d571b25f0341cedf3f64269c}} 
+\index{GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}!vectorPotentialAt@{vectorPotentialAt}}
+\index{vectorPotentialAt@{vectorPotentialAt}!GQCP::HomogeneousMagneticField@{GQCP::HomogeneousMagneticField}}
+\doxysubsubsection{\texorpdfstring{vectorPotentialAt()}{vectorPotentialAt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ GQCP\+::\+Homogeneous\+Magnetic\+Field\+::vector\+Potential\+At (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{r }\end{DoxyParamCaption}) const}
+
+Calculate the vector potential at a point in space.
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & A point in space.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector potential evaluated at the given point. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Physical/\mbox{\hyperlink{_homogeneous_magnetic_field_8hpp}{Homogeneous\+Magnetic\+Field.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Physical/\mbox{\hyperlink{_homogeneous_magnetic_field_8cpp}{Homogeneous\+Magnetic\+Field.\+cpp}}\end{DoxyCompactItemize}

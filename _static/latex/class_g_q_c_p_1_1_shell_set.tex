@@ -30,27 +30,29 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a48ecd4d67ae529405cc6fdd1ca62
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_ad364127deebe828f3239656dd510255e}{Shell\+Set}} (const std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ \&list)
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a4d526a30292159e7edc9c5bc0225967f}{Shell}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a2e91b38cfc6f64e7ce3f8a221be12b53}{as\+Vector}} () const
-\item 
-size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_afe8bd19fea107b47391923d99763ddae}{basis\+Function\+Index}} (const size\+\_\+t shell\+\_\+index) const
-\item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a48ecd4d67ae529405cc6fdd1ca622f9f}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a63065c1fe4c4732b54c2c329c6d8619a}{basis\+Functions}} () const
-\item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a4409d48541063e67371594aa305687a9}{embed\+Normalization\+Factors}} ()
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_aedd598eb82a83d2542b06db08c06cd16}{embed\+Normalization\+Factors\+Of\+Primitives}} ()
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a81c243c231826670d3f653a758efc4d7}{un\+Embed\+Normalization\+Factors\+Of\+Primitives}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_abe949af8f29058c15b0f462797b19970}{number\+Of\+Basis\+Functions}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a48ecd4d67ae529405cc6fdd1ca622f9f}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a63065c1fe4c4732b54c2c329c6d8619a}{basis\+Functions}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_afe8bd19fea107b47391923d99763ddae}{basis\+Function\+Index}} (const size\+\_\+t shell\+\_\+index) const
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a4d526a30292159e7edc9c5bc0225967f}{Shell}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a2e91b38cfc6f64e7ce3f8a221be12b53}{as\+Vector}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a9b7a4bee7ad1c6a87d3f5d60423f4ae3}{number\+Of\+Shells}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a128975ef5fca1719a8257eacef8c7270}{nuclei}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a5a5e583e3b3824b70377ef9d045aef38}{maximum\+Angular\+Momentum}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_af106eaf05bf9defbfc0bac771464ada3}{maximum\+Number\+Of\+Primitives}} () const
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a128975ef5fca1719a8257eacef8c7270}{nuclei}} () const
-\item 
-size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_abe949af8f29058c15b0f462797b19970}{number\+Of\+Basis\+Functions}} () const
-\item 
-size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a9b7a4bee7ad1c6a87d3f5d60423f4ae3}{number\+Of\+Shells}} () const
-\item 
-void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a81c243c231826670d3f653a758efc4d7}{un\+Embed\+Normalization\+Factors\+Of\+Primitives}} ()
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a96ee037283668363f32625833c4b18da}{apply\+London\+Modification}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B) const
 \end{DoxyCompactItemize}
 
 
@@ -58,11 +60,11 @@ void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a81c243c231826670d3f653a758efc
 \subsubsection*{template$<$typename \+\_\+\+Shell$>$\newline
 class GQCP\+::\+Shell\+Set$<$ \+\_\+\+Shell $>$}
 
-A class that represents a set of shells
+A collection of shells.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Shell} & the type of shell that is contained in this set \\
+{\em \+\_\+\+Shell} & The type of shell that this shell set contains. \\
 \hline
 \end{DoxyTemplParams}
 
@@ -101,7 +103,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+
 
 
 \begin{DoxyParams}{Parameters}
-{\em shells} & all the shells represented by a vector \\
+{\em shells} & The collection of shells represented by a vector. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_ad364127deebe828f3239656dd510255e}\label{class_g_q_c_p_1_1_shell_set_ad364127deebe828f3239656dd510255e}} 
@@ -111,9 +113,34 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ \&}]{list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} using an initializer\+\_\+list 
+Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} using an {\ttfamily initializer\+\_\+list}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The {\ttfamily initializer\+\_\+list}. \\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a96ee037283668363f32625833c4b18da}\label{class_g_q_c_p_1_1_shell_set_a96ee037283668363f32625833c4b18da}} 
+\index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!applyLondonModification@{applyLondonModification}}
+\index{applyLondonModification@{applyLondonModification}!GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{applyLondonModification()}{applyLondonModification()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::apply\+London\+Modification (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Apply a London-\/ (gauge-\/including) modification to each shell.
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The homogeneous magnetic field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new shell shet whose underlying shells have been London-\/modified. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a2e91b38cfc6f64e7ce3f8a221be12b53}\label{class_g_q_c_p_1_1_shell_set_a2e91b38cfc6f64e7ce3f8a221be12b53}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!asVector@{asVector}}
 \index{asVector@{asVector}!GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}}
@@ -122,7 +149,7 @@ Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}} using an 
 const std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a4d526a30292159e7edc9c5bc0225967f}{Shell}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::as\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-a vector of the underlying shells that this shellset describes 
+The collection of this shell set\textquotesingle{}s shells represented by a vector. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_afe8bd19fea107b47391923d99763ddae}\label{class_g_q_c_p_1_1_shell_set_afe8bd19fea107b47391923d99763ddae}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!basisFunctionIndex@{basisFunctionIndex}}
@@ -133,11 +160,11 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}
 
 
 \begin{DoxyParams}{Parameters}
-{\em shell\+\_\+index} & the index of the shell\\
+{\em shell\+\_\+index} & The index of the shell.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the (total basis function) index that corresponds to the first basis function in the given shell 
+The index of the given shell\textquotesingle{}s first basis function in the total set of basis functions of this shell. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a63065c1fe4c4732b54c2c329c6d8619a}\label{class_g_q_c_p_1_1_shell_set_a63065c1fe4c4732b54c2c329c6d8619a}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!basisFunctions@{basisFunctions}}
@@ -147,7 +174,7 @@ the (total basis function) index that corresponds to the first basis function in
 std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a48ecd4d67ae529405cc6fdd1ca622f9f}{Basis\+Function}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-the basis functions that \textquotesingle{}are\textquotesingle{} in this shell 
+The basis functions that are in this shell. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a4409d48541063e67371594aa305687a9}\label{class_g_q_c_p_1_1_shell_set_a4409d48541063e67371594aa305687a9}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!embedNormalizationFactors@{embedNormalizationFactors}}
@@ -156,16 +183,19 @@ the basis functions that \textquotesingle{}are\textquotesingle{} in this shell
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::embed\+Normalization\+Factors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-\/aligned Cartesian) GTOs into the contraction coefficients \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_aedd598eb82a83d2542b06db08c06cd16}\label{class_g_q_c_p_1_1_shell_set_aedd598eb82a83d2542b06db08c06cd16}} 
+For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-\/aligned Cartesian) GTOs into the contraction coefficients. \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_aedd598eb82a83d2542b06db08c06cd16}\label{class_g_q_c_p_1_1_shell_set_aedd598eb82a83d2542b06db08c06cd16}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!embedNormalizationFactorsOfPrimitives@{embedNormalizationFactorsOfPrimitives}}
 \index{embedNormalizationFactorsOfPrimitives@{embedNormalizationFactorsOfPrimitives}!GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{embedNormalizationFactorsOfPrimitives()}{embedNormalizationFactorsOfPrimitives()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::embed\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function has no effect.
 
-Note that the normalization factor that is embedded corresponds to the spherical (or axis-\/aligned Cartesian) GTO \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a5a5e583e3b3824b70377ef9d045aef38}\label{class_g_q_c_p_1_1_shell_set_a5a5e583e3b3824b70377ef9d045aef38}} 
+\begin{DoxyNote}{Note}
+The normalization factor that is embedded corresponds to the spherical (or axis-\/aligned Cartesian) GTO. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a5a5e583e3b3824b70377ef9d045aef38}\label{class_g_q_c_p_1_1_shell_set_a5a5e583e3b3824b70377ef9d045aef38}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!maximumAngularMomentum@{maximumAngularMomentum}}
 \index{maximumAngularMomentum@{maximumAngularMomentum}!GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{maximumAngularMomentum()}{maximumAngularMomentum()}}
@@ -173,7 +203,7 @@ Note that the normalization factor that is embedded corresponds to the spherical
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::maximum\+Angular\+Momentum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-the maximum angular momentum of the shells 
+The maximum angular momentum of the shells. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_af106eaf05bf9defbfc0bac771464ada3}\label{class_g_q_c_p_1_1_shell_set_af106eaf05bf9defbfc0bac771464ada3}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!maximumNumberOfPrimitives@{maximumNumberOfPrimitives}}
@@ -183,7 +213,7 @@ the maximum angular momentum of the shells
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::maximum\+Number\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-the maximum number of primitives that are used inside the shells 
+The maximum number of primitives that are used inside the shells. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a128975ef5fca1719a8257eacef8c7270}\label{class_g_q_c_p_1_1_shell_set_a128975ef5fca1719a8257eacef8c7270}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!nuclei@{nuclei}}
@@ -193,7 +223,7 @@ the maximum number of primitives that are used inside the shells
 std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::nuclei (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-an ordered vector of the unique nuclei in this shell set 
+An ordered vector of the unique nuclei in this shell set. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_abe949af8f29058c15b0f462797b19970}\label{class_g_q_c_p_1_1_shell_set_abe949af8f29058c15b0f462797b19970}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!numberOfBasisFunctions@{numberOfBasisFunctions}}
@@ -203,7 +233,7 @@ an ordered vector of the unique nuclei in this shell set
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::number\+Of\+Basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-the number of basis functions in this shell set 
+The number of basis functions in this shell set. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a9b7a4bee7ad1c6a87d3f5d60423f4ae3}\label{class_g_q_c_p_1_1_shell_set_a9b7a4bee7ad1c6a87d3f5d60423f4ae3}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!numberOfShells@{numberOfShells}}
@@ -213,7 +243,7 @@ the number of basis functions in this shell set
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::number\+Of\+Shells (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-the number of shells in this shell set 
+The number of shells in this shell set. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_shell_set_a81c243c231826670d3f653a758efc4d7}\label{class_g_q_c_p_1_1_shell_set_a81c243c231826670d3f653a758efc4d7}} 
 \index{GQCP::ShellSet$<$ \_Shell $>$@{GQCP::ShellSet$<$ \_Shell $>$}!unEmbedNormalizationFactorsOfPrimitives@{unEmbedNormalizationFactorsOfPrimitives}}
@@ -222,9 +252,12 @@ the number of shells in this shell set
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 void \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{GQCP\+::\+Shell\+Set}}$<$ \+\_\+\+Shell $>$\+::un\+Embed\+Normalization\+Factors\+Of\+Primitives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+For every of the shells, unembed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function has no effect.
 
-Note that the normalization factor that is embedded corresponds to the spherical (or axis-\/aligned Cartesian) GTO 
+\begin{DoxyNote}{Note}
+The normalization factor that is unembedded corresponds to the spherical (or axis-\/aligned Cartesian) GTO. 
+\end{DoxyNote}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -6,13 +6,14 @@
     <includes refid="_linear_combination_8hpp" local="yes">Mathematical/Functions/LinearCombination.hpp</includes>
     <includes refid="_scalar_function_8hpp" local="yes">Mathematical/Functions/ScalarFunction.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
-    <includedby refid="_functional_primitive_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp</includedby>
+    <includedby refid="_functional_primitive_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp</includedby>
     <includedby refid="_primitive_angular_momentum_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includedby>
     <includedby refid="_primitive_dipole_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</includedby>
-    <includedby refid="_primitive_kinetic_energy_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp</includedby>
     <includedby refid="_primitive_linear_momentum_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</includedby>
     <includedby refid="_primitive_overlap_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</includedby>
     <includedby refid="_g_t_o_shell_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp</includedby>
+    <includedby refid="_london_cartesian_g_t_o_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp</includedby>
     <includedby refid="_libint_interfacer_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp</includedby>
     <includedby refid="_g_t_o_shell_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp</includedby>
     <includedby refid="_cartesian_g_t_o_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp</includedby>
@@ -156,7 +157,7 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="128">
+      <node id="126">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
         <link refid="_u_spin_orbital_basis_component_8hpp"/>
         <childnode refid="2" relation="include">
@@ -272,7 +273,7 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp</label>
         <link refid="_a_p_i_g_geminal_coefficients_8cpp"/>
       </node>
-      <node id="105">
+      <node id="106">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</label>
         <link refid="_primitive_dipole_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -281,7 +282,7 @@
         </childnode>
         <childnode refid="104" relation="include">
         </childnode>
-        <childnode refid="106" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
       </node>
       <node id="68">
@@ -312,7 +313,7 @@
         <childnode refid="60" relation="include">
         </childnode>
       </node>
-      <node id="124">
+      <node id="122">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libint_two_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -331,19 +332,21 @@
         </childnode>
         <childnode refid="105" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="106" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
         </childnode>
         <childnode refid="111" relation="include">
         </childnode>
-        <childnode refid="113" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="122" relation="include">
+        <childnode refid="120" relation="include">
         </childnode>
         <childnode refid="130" relation="include">
         </childnode>
-        <childnode refid="131" relation="include">
+        <childnode refid="133" relation="include">
         </childnode>
       </node>
       <node id="57">
@@ -352,18 +355,18 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="115">
+      <node id="113">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp</label>
         <link refid="_libcint_interfacer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
         <childnode refid="116" relation="include">
-        </childnode>
-        <childnode refid="117" relation="include">
-        </childnode>
-        <childnode refid="118" relation="include">
         </childnode>
       </node>
       <node id="50">
@@ -412,14 +415,14 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="127">
+      <node id="125">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp</label>
         <link refid="_simple_spin_orbital_basis_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="128" relation="include">
+        <childnode refid="126" relation="include">
         </childnode>
       </node>
       <node id="76">
@@ -488,15 +491,9 @@
         <childnode refid="50" relation="include">
         </childnode>
       </node>
-      <node id="131">
+      <node id="133">
         <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp</label>
         <link refid="_cartesian_g_t_o_8cpp"/>
-      </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveEngine.hpp</label>
-        <link refid="_functional_primitive_engine_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
       <node id="81">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp</label>
@@ -508,7 +505,7 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="126">
+      <node id="124">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp</label>
         <link refid="_scalar_basis_8hpp"/>
         <childnode refid="2" relation="include">
@@ -517,7 +514,7 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="127" relation="include">
+        <childnode refid="125" relation="include">
         </childnode>
       </node>
       <node id="25">
@@ -580,6 +577,10 @@
         <childnode refid="36" relation="include">
         </childnode>
       </node>
+      <node id="129">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/LondonGTOShell.cpp</label>
+        <link refid="_london_g_t_o_shell_8cpp"/>
+      </node>
       <node id="45">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDiagonalization.hpp</label>
         <link refid="_g_h_f_fock_matrix_diagonalization_8hpp"/>
@@ -590,11 +591,11 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="106">
+      <node id="107">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp</label>
         <link refid="_primitive_dipole_integral_engine_8cpp"/>
       </node>
-      <node id="122">
+      <node id="120">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp</label>
         <link refid="_libint_interfacer_8cpp"/>
       </node>
@@ -633,16 +634,6 @@
       <node id="70">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp</label>
         <link refid="_e_r_jacobi_localizer_8cpp"/>
-      </node>
-      <node id="107">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp</label>
-        <link refid="_primitive_kinetic_energy_integral_engine_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
       </node>
       <node id="37">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp</label>
@@ -722,13 +713,21 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="112">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveOverlapIntegralEngine.cpp</label>
-        <link refid="_primitive_overlap_integral_engine_8cpp"/>
-      </node>
       <node id="17">
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/BaseElectricalResponseSolver.cpp</label>
         <link refid="_base_electrical_response_solver_8cpp"/>
+      </node>
+      <node id="131">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp</label>
+        <link refid="_london_cartesian_g_t_o_8hpp"/>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
       </node>
       <node id="39">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFEnvironment.hpp</label>
@@ -822,12 +821,12 @@
         <childnode refid="86" relation="include">
         </childnode>
       </node>
-      <node id="120">
+      <node id="118">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
         <link refid="_libint_one_electron_integral_buffer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="121" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
       </node>
       <node id="67">
@@ -842,7 +841,7 @@
         <childnode refid="71" relation="include">
         </childnode>
       </node>
-      <node id="109">
+      <node id="108">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</label>
         <link refid="_primitive_linear_momentum_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -851,7 +850,7 @@
         </childnode>
         <childnode refid="104" relation="include">
         </childnode>
-        <childnode refid="110" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
       </node>
       <node id="82">
@@ -886,7 +885,7 @@
         <childnode refid="100" relation="include">
         </childnode>
       </node>
-      <node id="116">
+      <node id="114">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp</label>
         <link refid="_libcint_one_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -894,7 +893,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="110">
+      <node id="109">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.cpp</label>
         <link refid="_primitive_linear_momentum_integral_engine_8cpp"/>
       </node>
@@ -970,9 +969,25 @@
         <childnode refid="101" relation="include">
         </childnode>
       </node>
-      <node id="118">
+      <node id="116">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibcintInterfacer.cpp</label>
         <link refid="_libcint_interfacer_8cpp"/>
+      </node>
+      <node id="127">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp</label>
+        <link refid="_london_g_t_o_shell_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
       </node>
       <node id="95">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp</label>
@@ -980,9 +995,9 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="108">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.cpp</label>
-        <link refid="_primitive_kinetic_energy_integral_engine_8cpp"/>
+      <node id="132">
+        <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp</label>
+        <link refid="_london_cartesian_g_t_o_8cpp"/>
       </node>
       <node id="102">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp</label>
@@ -1032,23 +1047,23 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="119">
+      <node id="117">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintInterfacer.hpp</label>
         <link refid="_libint_interfacer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
         <childnode refid="120" relation="include">
         </childnode>
         <childnode refid="121" relation="include">
         </childnode>
-        <childnode refid="122" relation="include">
-        </childnode>
-        <childnode refid="123" relation="include">
-        </childnode>
       </node>
-      <node id="117">
+      <node id="115">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libcint_two_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1072,12 +1087,26 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
+      <node id="105">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
+        <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
       <node id="56">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
         <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp</label>
+        <link refid="_functional_primitive_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="96">
@@ -1098,22 +1127,20 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="111">
+      <node id="110">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</label>
         <link refid="_primitive_overlap_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
         <childnode refid="104" relation="include">
         </childnode>
-        <childnode refid="106" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
       </node>
       <node id="83">
@@ -1144,20 +1171,20 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="129">
+      <node id="128">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp</label>
         <link refid="_shell_set_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="115" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
-        <childnode refid="119" relation="include">
+        <childnode refid="117" relation="include">
         </childnode>
-        <childnode refid="125" relation="include">
+        <childnode refid="123" relation="include">
         </childnode>
-        <childnode refid="126" relation="include">
+        <childnode refid="124" relation="include">
         </childnode>
       </node>
       <node id="88">
@@ -1176,14 +1203,14 @@
         <childnode refid="89" relation="include">
         </childnode>
       </node>
-      <node id="125">
+      <node id="123">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp</label>
         <link refid="_g_t_o_basis_set_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="126" relation="include">
+        <childnode refid="124" relation="include">
         </childnode>
-        <childnode refid="123" relation="include">
+        <childnode refid="121" relation="include">
         </childnode>
       </node>
       <node id="20">
@@ -1216,7 +1243,7 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="114">
+      <node id="112">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralEngine.hpp</label>
         <link refid="_one_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1242,7 +1269,7 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="121">
+      <node id="119">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</label>
         <link refid="_libint_one_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1258,26 +1285,40 @@
         <childnode refid="50" relation="include">
         </childnode>
       </node>
-      <node id="113">
+      <node id="111">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp</label>
         <link refid="_g_t_o_shell_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="114" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="115" relation="include">
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
         </childnode>
         <childnode refid="119" relation="include">
         </childnode>
-        <childnode refid="121" relation="include">
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
         </childnode>
         <childnode refid="124" relation="include">
         </childnode>
-        <childnode refid="125" relation="include">
-        </childnode>
-        <childnode refid="126" relation="include">
-        </childnode>
-        <childnode refid="129" relation="include">
+        <childnode refid="128" relation="include">
         </childnode>
         <childnode refid="94" relation="include">
         </childnode>
@@ -1388,7 +1429,7 @@
         <childnode refid="91" relation="include">
         </childnode>
       </node>
-      <node id="123">
+      <node id="121">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp</label>
         <link refid="_g_t_o_basis_set_8cpp"/>
       </node>
@@ -1436,54 +1477,60 @@
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="class_g_q_c_p_1_1_cartesian_g_t_o" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction</ref>&lt;double,<sp/>double,<sp/>3&gt;<sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>exponent<sp/>of<sp/>the<sp/>exponential</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref><sp/>cartesian_exponents;<sp/><sp/></highlight><highlight class="comment">//<sp/>exponents<sp/>of<sp/>(x-X),<sp/>(y-Y),<sp/>(z-Z)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref><sp/>m_center;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>center<sp/>of<sp/>the<sp/>GTO<sp/>(X,<sp/>Y,<sp/>Z)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="class_g_q_c_p_1_1_cartesian_g_t_o" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction</ref>&lt;double,<sp/>double,<sp/>3&gt;<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>return<sp/>type<sp/>of<sp/>the<sp/>call<sp/>operator,<sp/>i.e.<sp/>the<sp/>valuedness<sp/>of<sp/>the<sp/>scalar<sp/>function.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ad015401d3ba16a0fcb8ee88f538be78c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ad015401d3ba16a0fcb8ee88f538be78c" kindref="member">Valued</ref><sp/>=<sp/>double;</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CONSTRUCTORS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1bf3c912ca8f57b29f6d768b53f4ff31" kindref="member">CartesianGTO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref>&amp;<sp/>cartesian_exponents,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" kindref="member">center</ref>);</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1bf3c912ca8f57b29f6d768b53f4ff31" kindref="member">CartesianGTO</ref>();</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>exponent<sp/>of<sp/>the<sp/>exponential</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref><sp/>cartesian_exponents;<sp/><sp/></highlight><highlight class="comment">//<sp/>exponents<sp/>of<sp/>(x-X),<sp/>(y-Y),<sp/>(z-Z)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref><sp/>m_center;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>center<sp/>of<sp/>the<sp/>GTO<sp/>(X,<sp/>Y,<sp/>Z)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CONSTRUCTORS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1bf3c912ca8f57b29f6d768b53f4ff31" kindref="member">CartesianGTO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref>&amp;<sp/>cartesian_exponents,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" kindref="member">center</ref>);</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>OPERATORS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ad58879bd9fcc2ebbb6292382548c4d4e" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1d2981debed95c7be81c1b8380a7e776" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>STATIC<sp/>PUBLIC<sp/>METHODS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a59333cb8b8aa5cbc9a319195f8b1480f" kindref="member">calculateNormalizationFactorComponent</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>cartesian_exponent);</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1aee5504defedb8cf4ad5ed6fc3bc4c357" kindref="member">calculateNormalizationFactor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref>&amp;<sp/>cartesian_exponents);</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>PUBLIC<sp/>METHODS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;cartesian_exponents;<sp/>}</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination&lt;double, CartesianGTO&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a78aeebf0fa23d409235f8a5bbba3493c" kindref="member">calculatePositionDerivative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref><sp/>direction)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;LinearCombination&lt;double, CartesianGTO&gt;</ref>,<sp/>3&gt;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a390dad269fb60af20306777986049661" kindref="member">calculatePositionGradient</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" kindref="member">center</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_center;<sp/>}</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a13b07048f2f30318060dff528cbbad55" kindref="member">description</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="129" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" kindref="member">gaussianExponent</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;gaussian_exponent;<sp/>}</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a91f6a839c472a31e276893eb54693ca5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a91f6a839c472a31e276893eb54693ca5" kindref="member">normalizationFactor</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1aee5504defedb8cf4ad5ed6fc3bc4c357" kindref="member">CartesianGTO::calculateNormalizationFactor</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" kindref="member">gaussianExponent</ref>(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>());<sp/>}</highlight></codeline>
-<codeline lineno="135"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1bf3c912ca8f57b29f6d768b53f4ff31" kindref="member">CartesianGTO</ref>();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>OPERATORS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ad58879bd9fcc2ebbb6292382548c4d4e" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1d2981debed95c7be81c1b8380a7e776" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>STATIC<sp/>PUBLIC<sp/>METHODS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a59333cb8b8aa5cbc9a319195f8b1480f" kindref="member">calculateNormalizationFactorComponent</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>cartesian_exponent);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1aee5504defedb8cf4ad5ed6fc3bc4c357" kindref="member">calculateNormalizationFactor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gaussian_exponent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref>&amp;<sp/>cartesian_exponents);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>PUBLIC<sp/>METHODS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;cartesian_exponents;<sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination&lt;double, CartesianGTO&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a78aeebf0fa23d409235f8a5bbba3493c" kindref="member">calculatePositionDerivative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref><sp/>direction)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;LinearCombination&lt;double, CartesianGTO&gt;</ref>,<sp/>3&gt;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a390dad269fb60af20306777986049661" kindref="member">calculatePositionGradient</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" kindref="member">center</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_center;<sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a13b07048f2f30318060dff528cbbad55" kindref="member">description</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" kindref="member">gaussianExponent</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;gaussian_exponent;<sp/>}</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"></highlight></codeline>
-<codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="138"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a91f6a839c472a31e276893eb54693ca5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a91f6a839c472a31e276893eb54693ca5" kindref="member">normalizationFactor</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1aee5504defedb8cf4ad5ed6fc3bc4c357" kindref="member">CartesianGTO::calculateNormalizationFactor</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" kindref="member">gaussianExponent</ref>(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp"/>
   </compounddef>

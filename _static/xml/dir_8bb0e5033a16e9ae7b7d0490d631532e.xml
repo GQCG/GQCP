@@ -9,7 +9,6 @@
     <innerfile refid="memory_8hpp">memory.hpp</innerfile>
     <innerfile refid="miscellaneous_8hpp">miscellaneous.hpp</innerfile>
     <innerfile refid="type__traits_8hpp">type_traits.hpp</innerfile>
-    <innerfile refid="units_8hpp">units.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

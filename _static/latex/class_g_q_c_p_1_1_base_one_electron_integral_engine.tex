@@ -49,18 +49,18 @@ static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integ
 \subsubsection*{template$<$typename \+\_\+\+Shell, size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar$>$\newline
 class GQCP\+::\+Base\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Shell, \+\_\+\+N, \+\_\+\+Integral\+Scalar $>$}
 
-A base class to implement one-\/electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}{calculate()}} call
+A base class that helps to implement one-\/electron integral engines. Integral engines are used calculate integrals of operators over shells. see also the \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aa72a849494df30951a5466471fdc246f}{calculate()}} call.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Shell} & the type of shell the integral engine is able to handle \\
+{\em \+\_\+\+Shell} & The type of shell the integral engine is able to handle. This enables compile-\/time checking of correct arguments. \\
 \hline
-{\em \+\_\+N} & the number of components the operator has \\
+{\em \+\_\+N} & The number of components the operator has. \\
 \hline
-{\em \+\_\+\+Integral\+Scalar} & the scalar representation of an integral\\
+{\em \+\_\+\+Integral\+Scalar} & The scalar representation of an integral. \\
 \hline
 \end{DoxyTemplParams}
-\+\_\+\+Shell is a template parameter because that enables compile-\/time checking of correct arguments 
+
 
 \doxysubsection{Member Typedef Documentation}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}\label{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}} 
@@ -97,19 +97,21 @@ virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{GQ
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell , size\+\_\+t \+\_\+N, typename \+\_\+\+Integral\+Scalar $>$ \\
 virtual std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{Base\+One\+Electron\+Integral\+Buffer}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_aebe2d404144f1c0ed72257f6fc7e2620}{Integral\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a038d65de177b191cf901b58810bd0542}{N}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine}{GQCP\+::\+Base\+One\+Electron\+Integral\+Engine}}$<$ \+\_\+\+Shell, \+\_\+N, \+\_\+\+Integral\+Scalar $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} \&}]{shell1,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_engine_a9441338b4cd372511833a39b42e2aa0f}{Shell}} \&}]{shell2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
-Calculate all the integrals over the given shells \begin{DoxyNote}{Note}
-This method is not marked const to allow the Engine\textquotesingle{}s internals to be changed
-\end{DoxyNote}
+Calculate all the integrals over the given shells.
+
 
 \begin{DoxyParams}{Parameters}
-{\em shell1} & the first shell \\
+{\em shell1} & The first shell. \\
 \hline
-{\em shell2} & the second shell\\
+{\em shell2} & The second shell.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a buffer containing the calculated integrals 
+A buffer containing the calculated integrals.
 \end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is not marked const to allow the Engine\textquotesingle{}s internals to be changed 
+\end{DoxyNote}
 
 
 Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine_ae4d0cafa515f1537853318284e813a93}{GQCP\+::\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+Primitive\+Integral\+Engine $>$}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine_a23dd8c30d8a8f48fa616cab87ec3463d}{GQCP\+::\+Libint\+One\+Electron\+Integral\+Engine$<$ \+\_\+\+N $>$}}.

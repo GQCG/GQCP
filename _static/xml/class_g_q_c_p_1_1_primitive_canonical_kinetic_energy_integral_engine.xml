@@ -1,0 +1,446 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</compoundname>
+    <includes refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="no">PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad502d3b4324ca1965151a5a4bd831025" prot="public" static="no">
+        <type>_Shell</type>
+        <definition>using GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::Shell =  _Shell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a27e3bba613936ceabf2e22b3cd5be5b2" prot="public" static="no">
+        <type>typename Shell::Primitive</type>
+        <definition>using GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::Primitive =  typename Shell::Primitive</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">KineticOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
+        <definition>using GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;KineticOperator::Scalar, typename Primitive::Valued&gt;</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="51" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1aa66fbc9b5db0d57651b16555218c6cee" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::Components</definition>
+        <argsstring></argsstring>
+        <name>Components</name>
+        <initializer>= <ref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" kindref="member">KineticOperator::NumberOfComponents</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="48" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1add1e33684cf63d42576ee49475d34af1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::prepareStateForComponent</definition>
+        <argsstring>(const size_t component)</argsstring>
+        <name>prepareStateForComponent</name>
+        <param>
+          <type>const size_t</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Components Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the component of the operator</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Since the canonical kinetic energy operator has only 1 component, this method has no effect. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="66" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad502d3b4324ca1965151a5a4bd831025" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right)</argsstring>
+        <name>calculate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the canonical kinetic energy integral over two Cartesian GTOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left Cartesian GTO. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right Cartesian GTO.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The canonical kinetic energy integral over the two given Cartesian GTOs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="82" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="82" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad502d3b4324ca1965151a5a4bd831025" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
+        <argsstring>(const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
+        <name>calculate1D</name>
+        <param>
+          <type>const double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>L</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the canonical kinetic energy integral over two Cartesian GTO 1-D primitives.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Gaussian exponent of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional coordinate of the) center of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian exponent of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Gaussian exponent of the right 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>L</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional coordinate of the) center of the right 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian exponent of the right 1-D primitive.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The canonical kinetic energy integral over the two Cartesian GTO given 1-D primitives. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="128" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="128" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad502d3b4324ca1965151a5a4bd831025" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
+        <name>calculate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the canonical kinetic energy integral over two London Cartesian GTOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left London Cartesian GTO. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right London Cartesian GTO.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The canonical kinetic energy integral over the two given London Cartesian GTOs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="152" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="152" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad502d3b4324ca1965151a5a4bd831025" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
+        <argsstring>(const complex k_K, const double a, const double K, const int i, const complex k_L, const double b, const double L, const int j)</argsstring>
+        <name>calculate1D</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
+          <declname>k_K</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
+          <declname>k_L</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>L</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the canonical kinetic energy integral over two London Cartesian GTO 1-D primitives.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k_K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional component of the) k-vector of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Gaussian exponent of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional coordinate of the) center of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian exponent of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k_L</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional component of the) k-vector of the right 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Gaussian exponent of the right 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>L</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional coordinate of the) center of the right 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian exponent of the right 1-D primitive.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The canonical kinetic energy integral over the two London Cartesian GTO given 1-D primitives. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="216" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="216" bodyend="229"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that can calculate integrals over the canonical kinetic energy operator, i.e. - 1/2 nabla^2.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of shell that this integral engine is related to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="39" bodyend="230"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate1D</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate1D</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1aa66fbc9b5db0d57651b16555218c6cee" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1add1e33684cf63d42576ee49475d34af1" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a27e3bba613936ceabf2e22b3cd5be5b2" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>Primitive</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad502d3b4324ca1965151a5a4bd831025" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>Shell</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

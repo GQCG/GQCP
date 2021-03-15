@@ -6,16 +6,16 @@
     <innerclass refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" prot="public">GQCP::BaseOneElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public">GQCP::BaseTwoElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public">GQCP::BaseTwoElectronIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_functional_primitive_engine" prot="public">GQCP::FunctionalPrimitiveEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_functional_primitive_integral_engine" prot="public">GQCP::FunctionalPrimitiveIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_calculator" prot="public">GQCP::IntegralCalculator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_engine" prot="public">GQCP::IntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" prot="public">GQCP::McMurchieDavidsonCoefficient</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_buffer" prot="public">GQCP::OneElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_engine" prot="public">GQCP::OneElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public">GQCP::PrimitiveAngularMomentumIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" prot="public">GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" prot="public">GQCP::PrimitiveCartesianOperatorIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" prot="public">GQCP::PrimitiveDipoleIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_kinetic_energy_integral_engine" prot="public">GQCP::PrimitiveKineticEnergyIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public">GQCP::PrimitiveLinearMomentumIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public">GQCP::PrimitiveOverlapIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_interfacer" prot="public">GQCP::LibcintInterfacer</innerclass>
@@ -34,6 +34,7 @@
     <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" prot="public">GQCP::UMullikenPartitioningComponent</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_t_o_basis_set" prot="public">GQCP::GTOBasisSet</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_t_o_shell" prot="public">GQCP::GTOShell</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_london_g_t_o_shell" prot="public">GQCP::LondonGTOShell</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_scalar_basis" prot="public">GQCP::ScalarBasis</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_shell_set" prot="public">GQCP::ShellSet</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_spinor_basis" prot="public">GQCP::GSpinorBasis</innerclass>
@@ -131,6 +132,7 @@
     <innerclass refid="struct_g_q_c_p_1_1_cartesian_exponents" prot="public">GQCP::CartesianExponents</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_cartesian_g_t_o" prot="public">GQCP::CartesianGTO</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_linear_combination" prot="public">GQCP::LinearCombination</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" prot="public">GQCP::LondonCartesianGTO</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_scalar_function" prot="public">GQCP::ScalarFunction</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_scalar_function_product" prot="public">GQCP::ScalarFunctionProduct</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public">GQCP::VectorSpaceArithmetic</innerclass>
@@ -243,6 +245,7 @@
     <innerclass refid="class_g_q_c_p_1_1_adjacency_matrix" prot="public">GQCP::AdjacencyMatrix</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_hopping_matrix" prot="public">GQCP::HoppingMatrix</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_hubbard_hamiltonian" prot="public">GQCP::HubbardHamiltonian</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" prot="public">GQCP::HomogeneousMagneticField</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_electrical_response_solver" prot="public">GQCP::BaseElectricalResponseSolver</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_dyson_orbital" prot="public">GQCP::DysonOrbital</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_h_f_electrical_response_solver" prot="public">GQCP::RHFElectricalResponseSolver</innerclass>

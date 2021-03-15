@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/units.hpp" line="42" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/units.hpp" bodystart="42" bodyend="42"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/units.hpp" line="42" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/Physical/units.hpp" bodystart="42" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="namespace_g_q_c_p_1_1units_1abf3f55c739a0f2039db14a423955c5fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -60,13 +60,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/units.hpp" line="50" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/units.hpp" bodystart="50" bodyend="50"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/units.hpp" line="50" column="15" bodyfile="/__w/GQCP/GQCP/gqcp/include/Physical/units.hpp" bodystart="50" bodyend="50"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/units.hpp" line="22" column="1"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Physical/units.hpp" line="22" column="1"/>
   </compounddef>
 </doxygen>

@@ -91,7 +91,7 @@ $(function() {
 , <a class="el" href="class_g_q_c_p_1_1_r_mulliken_partitioning.html#a5d1211c20ef5124b72cb1ea5eb817262">GQCP::RMullikenPartitioning&lt; _Scalar &gt;</a>
 </li>
 <li>PartitionMatrix()
-: <a class="el" href="class_g_q_c_p_1_1_square_matrix.html#a0762291135e1043da5582add757a5240">GQCP::SquareMatrix&lt; _Scalar &gt;</a>
+: <a class="el" href="class_g_q_c_p_1_1_square_matrix.html#afce67055c3293379cc196854bb235e75">GQCP::SquareMatrix&lt; _Scalar &gt;</a>
 </li>
 <li>partitionMatrix()
 : <a class="el" href="class_g_q_c_p_1_1_u_mulliken_partitioning.html#a7af997cb70a1cc02384def069f308a9a">GQCP::UMullikenPartitioning&lt; _Scalar &gt;</a>
@@ -110,6 +110,9 @@ $(function() {
 </li>
 <li>PerturbativeCCSD()
 : <a class="el" href="class_g_q_c_p_1_1_c_c_s_d_environment.html#aad57786295828bb1e0c1b5e448473bc4">GQCP::CCSDEnvironment&lt; _Scalar &gt;</a>
+</li>
+<li>phaseFactor()
+: <a class="el" href="class_g_q_c_p_1_1_london_cartesian_g_t_o.html#ad3e406f8301c2c00d4c2bb477ddf1317">GQCP::LondonCartesianGTO</a>
 </li>
 <li>Plain()
 : <a class="el" href="class_g_q_c_p_1_1_c_c_d_solver.html#a246f6c40282aa89c88d0647df263d033">GQCP::CCDSolver&lt; _Scalar &gt;</a>
@@ -149,14 +152,21 @@ $(function() {
 , <a class="el" href="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer.html#a7059d13f4c52ef77baec8567a9e72eb1">GQCP::QCMethodNewtonOrbitalOptimizer</a>
 </li>
 <li>prepareStateForComponent()
-: <a class="el" href="class_g_q_c_p_1_1_functional_primitive_engine.html#a7cf67d03745b9a160c39bfd35f6287a3">GQCP::FunctionalPrimitiveEngine&lt; _IntegralScalar &gt;</a>
+: <a class="el" href="class_g_q_c_p_1_1_functional_primitive_integral_engine.html#acb2f72817a42f2b2e930754830ad7df6">GQCP::FunctionalPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</a>
+, <a class="el" href="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine.html#add1e33684cf63d42576ee49475d34af1">GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;</a>
 , <a class="el" href="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine.html#abc3fd20e83b16565852112d4594c7ba8">GQCP::PrimitiveCartesianOperatorIntegralEngine</a>
-, <a class="el" href="class_g_q_c_p_1_1_primitive_kinetic_energy_integral_engine.html#a69082d0fc6d873236c55b9735e99cc71">GQCP::PrimitiveKineticEnergyIntegralEngine</a>
-, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a2c5dce97c16a752ca5b0ff831790ac2f">GQCP::PrimitiveOverlapIntegralEngine</a>
+, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a6882414eca98812b02bf14d3c941839e">GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;</a>
 </li>
 <li>Primitive
-: <a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#ac605d1a1c6a417c9dfe63329f0e894e4">GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;</a>
+: <a class="el" href="class_g_q_c_p_1_1_functional_primitive_integral_engine.html#a86dcaac121f1b241b10acd279d2a0471">GQCP::FunctionalPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</a>
+, <a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#ac605d1a1c6a417c9dfe63329f0e894e4">GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;</a>
 , <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html#acea61a547f79a88268b0cda0ced7befd">GQCP::GTOShell</a>
+, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html#a67f63a29854b9027664ef9177d84491b">GQCP::LondonGTOShell</a>
+, <a class="el" href="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine.html#a79e23277bc7a2affeee47f72b3b29b4a">GQCP::PrimitiveAngularMomentumIntegralEngine</a>
+, <a class="el" href="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine.html#a27e3bba613936ceabf2e22b3cd5be5b2">GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;</a>
+, <a class="el" href="class_g_q_c_p_1_1_primitive_dipole_integral_engine.html#a5ba0d3bf690d9a6ba2096a0afb8adbc5">GQCP::PrimitiveDipoleIntegralEngine</a>
+, <a class="el" href="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine.html#ac332e062fd8fdc09fad0c29f1c6f8acc">GQCP::PrimitiveLinearMomentumIntegralEngine</a>
+, <a class="el" href="class_g_q_c_p_1_1_primitive_overlap_integral_engine.html#a5c8908dbe85b8dc45f432053fe816aa0">GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;</a>
 , <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html#af95118cd66ddd598ec1c6b350e46c5c7">GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;</a>
 , <a class="el" href="class_g_q_c_p_1_1_scalar_basis.html#aca51beca0624a8c632902a9cd06617ed">GQCP::ScalarBasis&lt; _Shell &gt;</a>
 , <a class="el" href="class_g_q_c_p_1_1_shell_set.html#a4434580128915230eabf525c93a56dde">GQCP::ShellSet&lt; _Shell &gt;</a>

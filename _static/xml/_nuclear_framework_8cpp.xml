@@ -5,14 +5,10 @@
     <includes refid="_nuclear_framework_8hpp" local="yes">Molecule/NuclearFramework.hpp</includes>
     <includes refid="elements_8hpp" local="yes">Molecule/elements.hpp</includes>
     <includes refid="miscellaneous_8hpp" local="yes">Utilities/miscellaneous.hpp</includes>
-    <includes refid="units_8hpp" local="yes">Utilities/units.hpp</includes>
+    <includes refid="units_8hpp" local="yes">Physical/units.hpp</includes>
     <includes local="no">boost/math/constants/constants.hpp</includes>
     <includes local="no">cmath</includes>
     <incdepgraph>
-      <node id="24">
-        <label>Utilities/units.hpp</label>
-        <link refid="units_8hpp"/>
-      </node>
       <node id="14">
         <label>boost/algorithm/string.hpp</label>
       </node>
@@ -170,6 +166,10 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
+      <node id="24">
+        <label>Physical/units.hpp</label>
+        <link refid="units_8hpp"/>
+      </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
     <briefdescription>
@@ -198,7 +198,7 @@
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="elements_8hpp" kindref="compound">Molecule/elements.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="miscellaneous_8hpp" kindref="compound">Utilities/miscellaneous.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="units_8hpp" kindref="compound">Utilities/units.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="units_8hpp" kindref="compound">Physical/units.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/math/constants/constants.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>

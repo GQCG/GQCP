@@ -300,7 +300,7 @@
 \input{class_g_q_c_p_1_1_e_r_newton_localizer}
 \input{class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator}
 \input{class_g_q_c_p_1_1_field}
-\input{class_g_q_c_p_1_1_functional_primitive_engine}
+\input{class_g_q_c_p_1_1_functional_primitive_integral_engine}
 \input{class_g_q_c_p_1_1_functional_step}
 \input{class_g_q_c_p_1_1_g1_d_m}
 \input{class_g_q_c_p_1_1_g2_d_m}
@@ -324,6 +324,7 @@
 \input{class_g_q_c_p_1_1_g_t_o_shell}
 \input{class_g_q_c_p_1_1_g_transformation}
 \input{class_g_q_c_p_1_1_guess_vector_update}
+\input{class_g_q_c_p_1_1_homogeneous_magnetic_field}
 \input{class_g_q_c_p_1_1_hopping_matrix}
 \input{class_g_q_c_p_1_1_hubbard_hamiltonian}
 \input{class_g_q_c_p_1_1_implicit_matrix_slice}
@@ -378,6 +379,8 @@
 \input{class_g_q_c_p_1_1_linear_combination}
 \input{class_g_q_c_p_1_1_linear_expansion}
 \input{class_g_q_c_p_1_1_linear_momentum_operator}
+\input{class_g_q_c_p_1_1_london_cartesian_g_t_o}
+\input{class_g_q_c_p_1_1_london_g_t_o_shell}
 \input{class_g_q_c_p_1_1_matrix}
 \input{class_g_q_c_p_1_1_matrix_representation_evaluation_container}
 \input{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4}
@@ -424,9 +427,9 @@
 \input{class_g_q_c_p_1_1_orbital_space}
 \input{class_g_q_c_p_1_1_overlap_operator}
 \input{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}
+\input{class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_dipole_integral_engine}
-\input{class_g_q_c_p_1_1_primitive_kinetic_energy_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine}
 \input{class_g_q_c_p_1_1_primitive_overlap_integral_engine}
 \input{class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component}
@@ -529,7 +532,7 @@
 \input{_base_one_electron_integral_engine_8hpp}
 \input{_base_two_electron_integral_buffer_8hpp}
 \input{_base_two_electron_integral_engine_8hpp}
-\input{_functional_primitive_engine_8hpp}
+\input{_functional_primitive_integral_engine_8hpp}
 \input{_integral_calculator_8hpp}
 \input{_integral_engine_8hpp}
 \input{_libcint_interfacer_8hpp}
@@ -546,9 +549,9 @@
 \input{_one_electron_integral_buffer_8hpp}
 \input{_one_electron_integral_engine_8hpp}
 \input{_primitive_angular_momentum_integral_engine_8hpp}
+\input{_primitive_canonical_kinetic_energy_integral_engine_8hpp}
 \input{_primitive_cartesian_operator_integral_engine_8hpp}
 \input{_primitive_dipole_integral_engine_8hpp}
-\input{_primitive_kinetic_energy_integral_engine_8hpp}
 \input{_primitive_linear_momentum_integral_engine_8hpp}
 \input{_primitive_overlap_integral_engine_8hpp}
 \input{_g_mulliken_partitioning_8hpp}
@@ -557,6 +560,7 @@
 \input{_u_mulliken_partitioning_component_8hpp}
 \input{_g_t_o_basis_set_8hpp}
 \input{_g_t_o_shell_8hpp}
+\input{_london_g_t_o_shell_8hpp}
 \input{_scalar_basis_8hpp}
 \input{_shell_set_8hpp}
 \input{_g_spinor_basis_8hpp}
@@ -610,6 +614,7 @@
 \input{_cartesian_exponents_8hpp}
 \input{_cartesian_g_t_o_8hpp}
 \input{_linear_combination_8hpp}
+\input{_london_cartesian_g_t_o_8hpp}
 \input{_scalar_function_8hpp}
 \input{_vector_space_arithmetic_8hpp}
 \input{_cubic_grid_8hpp}
@@ -690,6 +695,8 @@
 \input{_u_s_q_one_electron_operator_8hpp}
 \input{_u_s_q_one_electron_operator_component_8hpp}
 \input{_u_s_q_two_electron_operator_8hpp}
+\input{_homogeneous_magnetic_field_8hpp}
+\input{units_8hpp}
 \input{_base_electrical_response_solver_8hpp}
 \input{_c_i_electrical_response_solver_8hpp}
 \input{_dyson_orbital_8hpp}
@@ -780,7 +787,6 @@
 \input{memory_8hpp}
 \input{miscellaneous_8hpp}
 \input{type__traits_8hpp}
-\input{units_8hpp}
 \input{_integral_engine_8cpp}
 \input{_libcint_interfacer_8cpp}
 \input{_libint_interfacer_8cpp}
@@ -788,16 +794,16 @@
 \input{_primitive_angular_momentum_integral_engine_8cpp}
 \input{_primitive_cartesian_operator_integral_engine_8cpp}
 \input{_primitive_dipole_integral_engine_8cpp}
-\input{_primitive_kinetic_energy_integral_engine_8cpp}
 \input{_primitive_linear_momentum_integral_engine_8cpp}
-\input{_primitive_overlap_integral_engine_8cpp}
 \input{_g_t_o_basis_set_8cpp}
 \input{_g_t_o_shell_8cpp}
+\input{_london_g_t_o_shell_8cpp}
 \input{_orbital_space_8cpp}
 \input{_jacobi_rotation_8cpp}
 \input{_orbital_rotation_generators_8cpp}
 \input{_cartesian_exponents_8cpp}
 \input{_cartesian_g_t_o_8cpp}
+\input{_london_cartesian_g_t_o_8cpp}
 \input{_cubic_grid_8cpp}
 \input{_weighted_grid_8cpp}
 \input{_iterative_identities_hessian_modifier_8cpp}
@@ -821,6 +827,7 @@
 \input{_nuclear_dipole_operator_8cpp}
 \input{_nuclear_repulsion_operator_8cpp}
 \input{_adjacency_matrix_8cpp}
+\input{_homogeneous_magnetic_field_8cpp}
 \input{_base_electrical_response_solver_8cpp}
 \input{properties_8cpp}
 \input{_r_h_f_electrical_response_solver_8cpp}

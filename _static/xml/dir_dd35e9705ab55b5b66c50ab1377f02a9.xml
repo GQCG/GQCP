@@ -4,6 +4,7 @@
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis</compoundname>
     <innerfile refid="_g_t_o_basis_set_8cpp">GTOBasisSet.cpp</innerfile>
     <innerfile refid="_g_t_o_shell_8cpp">GTOShell.cpp</innerfile>
+    <innerfile refid="_london_g_t_o_shell_8cpp">LondonGTOShell.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

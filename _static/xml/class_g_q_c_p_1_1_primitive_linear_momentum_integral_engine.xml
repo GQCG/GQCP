@@ -16,7 +16,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="35" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="36" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a176d3e3960caa84ef99633580e399dbe" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref></type>
+        <definition>using GQCP::PrimitiveLinearMomentumIntegralEngine::Shell =  GTOShell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1ac332e062fd8fdc09fad0c29f1c6f8acc" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" kindref="member">Shell::Primitive</ref></type>
+        <definition>using GQCP::PrimitiveLinearMomentumIntegralEngine::Primitive =  Shell::Primitive</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-attrib">
@@ -32,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="34" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="34" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="35" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -75,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="51" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.cpp" bodystart="36" bodyend="78"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="58" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.cpp" bodystart="37" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1afa6ea81662fee97590d9f8c687b984d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1aa814dc419c28e37502c2fb906cb5c414" kindref="member">IntegralScalar</ref></type>
@@ -164,7 +190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="63" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.cpp" bodystart="91" bodyend="98"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="70" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.cpp" bodystart="92" bodyend="99"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a5ae4f80cc95067e1919a1d7336d46d42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -195,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.cpp" bodystart="37" bodyend="38"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.cpp" bodystart="37" bodyend="38"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -227,7 +253,7 @@
         <link refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="32" bodyend="64"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="33" bodyend="71"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a0c6a1b2540d2ec6af8ea336b129086ac" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1afa6ea81662fee97590d9f8c687b984d5" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>calculate1D</name></member>
@@ -235,8 +261,10 @@
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1ab77f15f3cf6472b7f9c0dbf36dd7bfde" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>Components</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1aa814dc419c28e37502c2fb906cb5c414" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1abc3fd20e83b16565852112d4594c7ba8" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1ac332e062fd8fdc09fad0c29f1c6f8acc" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a5ae4f80cc95067e1919a1d7336d46d42" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>PrimitiveCartesianOperatorIntegralEngine</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a5ae4f80cc95067e1919a1d7336d46d42" prot="public" virt="non-virtual" ambiguityscope="GQCP::PrimitiveCartesianOperatorIntegralEngine::"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>PrimitiveCartesianOperatorIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a176d3e3960caa84ef99633580e399dbe" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>Shell</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a14f348eef8b2b49487a42b887b407334" prot="public" virt="pure-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>~PrimitiveCartesianOperatorIntegralEngine</name></member>
     </listofallmembers>
   </compounddef>

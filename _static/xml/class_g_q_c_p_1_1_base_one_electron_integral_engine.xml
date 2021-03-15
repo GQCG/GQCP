@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="41" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aebe2d404144f1c0ed72257f6fc7e2620" prot="public" static="no">
         <type>_IntegralScalar</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-attrib">
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="43" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="46" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -73,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="48" column="13"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="53" column="13"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" kindref="compound">BaseOneElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aebe2d404144f1c0ed72257f6fc7e2620" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a038d65de177b191cf901b58810bd0542" kindref="member">N</ref> &gt; &gt;</type>
@@ -93,14 +93,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculate all the integrals over the given shells <simplesect kind="note"><para>This method is not marked const to allow the Engine&apos;s internals to be changed</para>
-</simplesect>
-<parameterlist kind="param"><parameteritem>
+<para>Calculate all the integrals over the given shells.</para>
+<para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>shell1</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the first shell </para>
+<para>The first shell. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -108,29 +107,31 @@
 <parametername>shell2</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the second shell</para>
+<para>The second shell.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>a buffer containing the calculated integrals </para>
+<simplesect kind="return"><para>A buffer containing the calculated integrals.</para>
+</simplesect>
+<simplesect kind="note"><para>This method is not marked const to allow the Engine&apos;s internals to be changed </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="62" column="29"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="70" column="29"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A base class to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" kindref="member">calculate()</ref> call</para>
+<para>A base class that helps to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells. see also the <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" kindref="member">calculate()</ref> call.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>_Shell</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of shell the integral engine is able to handle </para>
+<para>The type of shell the integral engine is able to handle. This enables compile-time checking of correct arguments. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -138,7 +139,7 @@
 <parametername>_N</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the number of components the operator has </para>
+<para>The number of components the operator has. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -146,11 +147,11 @@
 <parametername>_IntegralScalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar representation of an integral</para>
+<para>The scalar representation of an integral. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-_Shell is a template parameter because that enables compile-time checking of correct arguments </para>
+</para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">
@@ -170,7 +171,7 @@ _Shell is a template parameter because that enables compile-time checking of cor
         <link refid="class_g_q_c_p_1_1_base_one_electron_integral_engine"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="39" bodyend="63"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="37" bodyend="71"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" prot="public" virt="pure-virtual"><scope>GQCP::BaseOneElectronIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aebe2d404144f1c0ed72257f6fc7e2620" prot="public" virt="non-virtual"><scope>GQCP::BaseOneElectronIntegralEngine</scope><name>IntegralScalar</name></member>

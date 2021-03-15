@@ -7,16 +7,16 @@
     <innerfile refid="_base_one_electron_integral_engine_8hpp">BaseOneElectronIntegralEngine.hpp</innerfile>
     <innerfile refid="_base_two_electron_integral_buffer_8hpp">BaseTwoElectronIntegralBuffer.hpp</innerfile>
     <innerfile refid="_base_two_electron_integral_engine_8hpp">BaseTwoElectronIntegralEngine.hpp</innerfile>
-    <innerfile refid="_functional_primitive_engine_8hpp">FunctionalPrimitiveEngine.hpp</innerfile>
+    <innerfile refid="_functional_primitive_integral_engine_8hpp">FunctionalPrimitiveIntegralEngine.hpp</innerfile>
     <innerfile refid="_integral_calculator_8hpp">IntegralCalculator.hpp</innerfile>
     <innerfile refid="_integral_engine_8hpp">IntegralEngine.hpp</innerfile>
     <innerfile refid="_mc_murchie_davidson_coefficient_8hpp">McMurchieDavidsonCoefficient.hpp</innerfile>
     <innerfile refid="_one_electron_integral_buffer_8hpp">OneElectronIntegralBuffer.hpp</innerfile>
     <innerfile refid="_one_electron_integral_engine_8hpp">OneElectronIntegralEngine.hpp</innerfile>
     <innerfile refid="_primitive_angular_momentum_integral_engine_8hpp">PrimitiveAngularMomentumIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp">PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</innerfile>
     <innerfile refid="_primitive_cartesian_operator_integral_engine_8hpp">PrimitiveCartesianOperatorIntegralEngine.hpp</innerfile>
     <innerfile refid="_primitive_dipole_integral_engine_8hpp">PrimitiveDipoleIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_kinetic_energy_integral_engine_8hpp">PrimitiveKineticEnergyIntegralEngine.hpp</innerfile>
     <innerfile refid="_primitive_linear_momentum_integral_engine_8hpp">PrimitiveLinearMomentumIntegralEngine.hpp</innerfile>
     <innerfile refid="_primitive_overlap_integral_engine_8hpp">PrimitiveOverlapIntegralEngine.hpp</innerfile>
     <briefdescription>

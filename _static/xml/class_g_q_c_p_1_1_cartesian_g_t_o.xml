@@ -4,6 +4,21 @@
     <compoundname>GQCP::CartesianGTO</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_scalar_function" prot="public" virt="non-virtual">GQCP::ScalarFunction&lt; double, double, 3 &gt;</basecompoundref>
     <includes refid="_cartesian_g_t_o_8hpp" local="no">CartesianGTO.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_cartesian_g_t_o_1ad015401d3ba16a0fcb8ee88f538be78c" prot="public" static="no">
+        <type>double</type>
+        <definition>using GQCP::CartesianGTO::Valued =  double</definition>
+        <argsstring></argsstring>
+        <name>Valued</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a4310ad95283175f2b01ea8910ca65458" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -16,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="38" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="38" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="44" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a67d89e6da4dc7b0a2db92927e26bef76" prot="private" static="no" mutable="no">
         <type><ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref></type>
@@ -29,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="39" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="39" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="45" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a8bf12e08c1a8cd64f0f37bb7337c2ec4" prot="private" static="no" mutable="no">
         <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
@@ -42,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="40" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="40" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="46" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -96,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="41" bodyend="49"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="41" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a1bf3c912ca8f57b29f6d768b53f4ff31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -110,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="55" bodyend="56"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="55" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1ad58879bd9fcc2ebbb6292382548c4d4e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -139,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="68" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="68" bodyend="78"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="74" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="68" bodyend="78"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a1d2981debed95c7be81c1b8380a7e776" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -168,7 +183,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="75" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="86" bodyend="90"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="81" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="86" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
@@ -184,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="102" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="102" bodyend="102"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="108" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="108" bodyend="108"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a78aeebf0fa23d409235f8a5bbba3493c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &gt;</type>
@@ -213,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="109" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="143" bodyend="169"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="115" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="143" bodyend="169"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a390dad269fb60af20306777986049661" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &gt;, 3 &gt;</type>
@@ -229,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="114" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="175" bodyend="184"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="120" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="175" bodyend="184"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
@@ -245,7 +260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="119" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="119" bodyend="119"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="125" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="125" bodyend="125"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a13b07048f2f30318060dff528cbbad55" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -261,7 +276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="124" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="190" bodyend="193"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="130" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="190" bodyend="193"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -277,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="129" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="129" bodyend="129"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="135" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="135" bodyend="135"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a91f6a839c472a31e276893eb54693ca5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -293,7 +308,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="134" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="134" bodyend="134"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="140" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="140" bodyend="140"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -336,7 +351,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="86" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="103" bodyend="114"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="92" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="103" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1aee5504defedb8cf4ad5ed6fc3bc4c357" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -377,7 +392,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="94" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="123" bodyend="131"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="100" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="123" bodyend="131"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -416,7 +431,7 @@
         <link refid="class_g_q_c_p_1_1_scalar_function"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="36" bodyend="135"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="37" bodyend="141"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1aee5504defedb8cf4ad5ed6fc3bc4c357" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>calculateNormalizationFactor</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a59333cb8b8aa5cbc9a319195f8b1480f" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>calculateNormalizationFactorComponent</name></member>
@@ -437,7 +452,7 @@
       <member refid="class_g_q_c_p_1_1_scalar_function_1a92e4862c14d2cf4574625dfba796eaf6" prot="public" virt="pure-virtual" ambiguityscope="ScalarFunction&lt; double, double, 3 &gt;::"><scope>GQCP::CartesianGTO</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1d2981debed95c7be81c1b8380a7e776" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>operator==</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_function_1ad77eaa1489e5194e620aa19c106c610c" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>Scalar</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_function_1a7ffb7b8bd8a40c048d82737d0ae93e65" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>Valued</name></member>
+      <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ad015401d3ba16a0fcb8ee88f538be78c" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>Valued</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_function_1a0f4c43609c40b1754b07aba9b69b66f6" prot="public" virt="virtual"><scope>GQCP::CartesianGTO</scope><name>~ScalarFunction</name></member>
     </listofallmembers>
   </compounddef>

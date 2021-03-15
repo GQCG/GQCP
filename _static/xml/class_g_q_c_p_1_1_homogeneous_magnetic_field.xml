@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_homogeneous_magnetic_field" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::HomogeneousMagneticField</compoundname>
+    <includes refid="_homogeneous_magnetic_field_8hpp" local="no">HomogeneousMagneticField.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a93a8adb6bebd554874219a78222e3d61" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::HomogeneousMagneticField::B</definition>
+        <argsstring></argsstring>
+        <name>B</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" line="33" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a852823b4d105ded2b651ee653a72b3e6" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::HomogeneousMagneticField::G</definition>
+        <argsstring></argsstring>
+        <name>G</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" line="36" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a1364b7650c6ad6371c79b72b81fe44b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::HomogeneousMagneticField::HomogeneousMagneticField</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;B, const Vector&lt; double, 3 &gt; &amp;G=Vector&lt; double, 3 &gt;::Zero())</argsstring>
+        <name>HomogeneousMagneticField</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>G</declname>
+          <defval><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;::Zero()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize a <computeroutput><ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref></computeroutput> from a field strength and gauge origin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field strength. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gauge origin. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Physical/HomogeneousMagneticField.cpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a9f8bdee3712135ffd567a8fd70e6f17d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::HomogeneousMagneticField::strength</definition>
+        <argsstring>() const</argsstring>
+        <name>strength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The field strength of this homogeneous magnetic field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" line="60" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a95f3b7e6c4a7cd043a91c605554f9169" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::HomogeneousMagneticField::gaugeOrigin</definition>
+        <argsstring>() const</argsstring>
+        <name>gaugeOrigin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The gauge origin of this homogeneous magnetic field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" line="65" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a4fee6f65d571b25f0341cedf3f64269c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt; double, 3 &gt; GQCP::HomogeneousMagneticField::vectorPotentialAt</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;r) const</argsstring>
+        <name>vectorPotentialAt</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the vector potential at a point in space.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A point in space.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The vector potential evaluated at the given point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" line="74" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Physical/HomogeneousMagneticField.cpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that represents a homogeneous magnetic field. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::HomogeneousMagneticField</label>
+        <link refid="class_g_q_c_p_1_1_homogeneous_magnetic_field"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Physical/HomogeneousMagneticField.hpp" bodystart="30" bodyend="75"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a93a8adb6bebd554874219a78222e3d61" prot="private" virt="non-virtual"><scope>GQCP::HomogeneousMagneticField</scope><name>B</name></member>
+      <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a852823b4d105ded2b651ee653a72b3e6" prot="private" virt="non-virtual"><scope>GQCP::HomogeneousMagneticField</scope><name>G</name></member>
+      <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a95f3b7e6c4a7cd043a91c605554f9169" prot="public" virt="non-virtual"><scope>GQCP::HomogeneousMagneticField</scope><name>gaugeOrigin</name></member>
+      <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a1364b7650c6ad6371c79b72b81fe44b9" prot="public" virt="non-virtual"><scope>GQCP::HomogeneousMagneticField</scope><name>HomogeneousMagneticField</name></member>
+      <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a9f8bdee3712135ffd567a8fd70e6f17d" prot="public" virt="non-virtual"><scope>GQCP::HomogeneousMagneticField</scope><name>strength</name></member>
+      <member refid="class_g_q_c_p_1_1_homogeneous_magnetic_field_1a4fee6f65d571b25f0341cedf3f64269c" prot="public" virt="non-virtual"><scope>GQCP::HomogeneousMagneticField</scope><name>vectorPotentialAt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

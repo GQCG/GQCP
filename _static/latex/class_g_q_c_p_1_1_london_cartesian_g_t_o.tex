@@ -1,0 +1,152 @@
+\hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o}{}\doxysection{GQCP\+::London\+Cartesian\+GTO Class Reference}
+\label{class_g_q_c_p_1_1_london_cartesian_g_t_o}\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+
+
+{\ttfamily \#include $<$London\+Cartesian\+GTO.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::London\+Cartesian\+GTO\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{class_g_q_c_p_1_1_london_cartesian_g_t_o__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::London\+Cartesian\+GTO\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{class_g_q_c_p_1_1_london_cartesian_g_t_o__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}{Valued}} = \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a39905eabc409cb2014bc698ed95e82e2}{London\+Cartesian\+GTO}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&gto)
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a9aa089d9f30b2394d3b1f1fa3366fbc0}{magnetic\+Field}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}{k\+Vector}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a5eb481aeee373774272b161714e9d453}{cartesian\+GTO}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ad3e406f8301c2c00d4c2bb477ddf1317}{phase\+Factor}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a228010922e242c6b61b6cbf1987d2aed}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A London-\/modified Cartesian GTO.
+
+\begin{DoxyNote}{Note}
+Mathematically speaking, a Cartesian GTO is a complex-\/valued scalar function taking an Euclidean vector (3D-\/vector) as argument, which is why we inherit from \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{Scalar\+Function}}. 
+
+Calling operator() returns the value of the unnormalized London GTO. 
+
+Contracted London GTOs can be expressed as linear combinations of GTOs\+: Linear\+Combination$<$\+London\+Cartesian\+GTO$>$. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!Valued@{Valued}}
+\index{Valued@{Valued}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{Valued}{Valued}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}{GQCP\+::\+London\+Cartesian\+GTO\+::\+Valued}} =  \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a39905eabc409cb2014bc698ed95e82e2}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a39905eabc409cb2014bc698ed95e82e2}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!LondonCartesianGTO@{LondonCartesianGTO}}
+\index{LondonCartesianGTO@{LondonCartesianGTO}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{LondonCartesianGTO()}{LondonCartesianGTO()}}
+{\footnotesize\ttfamily GQCP\+::\+London\+Cartesian\+GTO\+::\+London\+Cartesian\+GTO (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{gto }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The homogeneous magnetic field appearing in the London modification. \\
+\hline
+{\em gto} & The base Cartesian GTO. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a5eb481aeee373774272b161714e9d453}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a5eb481aeee373774272b161714e9d453}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!cartesianGTO@{cartesianGTO}}
+\index{cartesianGTO@{cartesianGTO}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{cartesianGTO()}{cartesianGTO()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}}\& GQCP\+::\+London\+Cartesian\+GTO\+::cartesian\+GTO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The base Cartesian GTO. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!kVector@{kVector}}
+\index{kVector@{kVector}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{kVector()}{kVector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ GQCP\+::\+London\+Cartesian\+GTO\+::k\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+The k-\/vector of the London plane wave, i.\+e. the value of the vector potential at the Gaussian center. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a9aa089d9f30b2394d3b1f1fa3366fbc0}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a9aa089d9f30b2394d3b1f1fa3366fbc0}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!magneticField@{magneticField}}
+\index{magneticField@{magneticField}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{magneticField()}{magneticField()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}}\& GQCP\+::\+London\+Cartesian\+GTO\+::magnetic\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The homogeneous magnetic field appearing in the London modification. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a228010922e242c6b61b6cbf1987d2aed}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a228010922e242c6b61b6cbf1987d2aed}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} GQCP\+::\+London\+Cartesian\+GTO\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{r }\end{DoxyParamCaption}) const}
+
+Evaluate the London (Cartesian) GTO at a given point in space.
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The point in space.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the London (Cartesian) GTO at the given point. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_ad3e406f8301c2c00d4c2bb477ddf1317}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_ad3e406f8301c2c00d4c2bb477ddf1317}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!phaseFactor@{phaseFactor}}
+\index{phaseFactor@{phaseFactor}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{phaseFactor()}{phaseFactor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} GQCP\+::\+London\+Cartesian\+GTO\+::phase\+Factor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{r }\end{DoxyParamCaption}) const}
+
+Evaluate the London prefactor at a given point in space.
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The point in space.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The London plane wave phase factor at the given point. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Mathematical/\+Functions/\mbox{\hyperlink{_london_cartesian_g_t_o_8hpp}{London\+Cartesian\+GTO.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Mathematical/\+Functions/\mbox{\hyperlink{_london_cartesian_g_t_o_8cpp}{London\+Cartesian\+GTO.\+cpp}}\end{DoxyCompactItemize}

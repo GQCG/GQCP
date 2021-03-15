@@ -4,6 +4,7 @@
     <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis</compoundname>
     <innerfile refid="_g_t_o_basis_set_8hpp">GTOBasisSet.hpp</innerfile>
     <innerfile refid="_g_t_o_shell_8hpp">GTOShell.hpp</innerfile>
+    <innerfile refid="_london_g_t_o_shell_8hpp">LondonGTOShell.hpp</innerfile>
     <innerfile refid="_scalar_basis_8hpp">ScalarBasis.hpp</innerfile>
     <innerfile refid="_shell_set_8hpp">ShellSet.hpp</innerfile>
     <briefdescription>

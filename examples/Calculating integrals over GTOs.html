@@ -26,7 +26,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.c441f2ba0852f4cabcb80105e3a46ae6.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -551,7 +551,8 @@
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -661,10 +662,10 @@
 </div>
 </div>
 </div>
-<p>We’ll wrap this function in to a <code class="docutils literal notranslate"><span class="pre">FunctionalPrimitiveEngine</span></code>, and then supply it as the primitive engine that should be used in a <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronIntegralEngine</span></code>. We’re doing this in order to use GQCP’s internal handling of the shells and contractions through the <code class="docutils literal notranslate"><span class="pre">IntegralCalculator.calculate</span></code> call.</p>
+<p>We’ll wrap this function in to a <code class="docutils literal notranslate"><span class="pre">FunctionalPrimitiveIntegralEngine</span></code>, and then supply it as the primitive engine that should be used in a <code class="docutils literal notranslate"><span class="pre">FunctionalOneElectronIntegralEngine</span></code>. We’re doing this in order to use GQCP’s internal handling of the shells and contractions through the <code class="docutils literal notranslate"><span class="pre">IntegralCalculator.calculate</span></code> call.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_overlap_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalPrimitiveEngine_d</span><span class="p">(</span><span class="n">overlap_function</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_overlap_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalPrimitiveIntegralEngine_d</span><span class="p">(</span><span class="n">overlap_function</span><span class="p">)</span>
 <span class="n">overlap_engine</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalOneElectronIntegralEngine_d</span><span class="p">(</span><span class="n">primitive_overlap_engine</span><span class="p">)</span>
 </pre></div>
 </div>

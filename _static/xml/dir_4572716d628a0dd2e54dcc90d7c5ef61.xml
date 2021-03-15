@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_4572716d628a0dd2e54dcc90d7c5ef61" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Physical</compoundname>
+    <innerfile refid="_homogeneous_magnetic_field_8cpp">HomogeneousMagneticField.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Physical/"/>
+  </compounddef>
+</doxygen>

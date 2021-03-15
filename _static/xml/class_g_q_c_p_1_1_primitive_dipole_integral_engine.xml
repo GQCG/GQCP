@@ -16,7 +16,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="35" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="36" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a2e6ff2d05289e239e09cfa5ab4a79ebf" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref></type>
+        <definition>using GQCP::PrimitiveDipoleIntegralEngine::Shell =  GTOShell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="39" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a5ba0d3bf690d9a6ba2096a0afb8adbc5" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" kindref="member">Shell::Primitive</ref></type>
+        <definition>using GQCP::PrimitiveDipoleIntegralEngine::Primitive =  Shell::Primitive</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-attrib">
@@ -32,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="34" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="34" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="35" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -47,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="39" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="39" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="46" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -108,7 +134,7 @@ Construct a <ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kind
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp" bodystart="35" bodyend="37"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp" bodystart="35" bodyend="37"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a52037e4720ba8388a7d56b37d135129d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1ae3b14b76459c1612a777a6f9f5ec7906" kindref="member">IntegralScalar</ref></type>
@@ -149,7 +175,7 @@ Construct a <ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kind
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="61" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp" bodystart="48" bodyend="90"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="68" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp" bodystart="48" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a66141f0cff314bc8e680a479d5b5171f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1ae3b14b76459c1612a777a6f9f5ec7906" kindref="member">IntegralScalar</ref></type>
@@ -238,7 +264,7 @@ Construct a <ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kind
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="73" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp" bodystart="102" bodyend="113"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="80" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp" bodystart="102" bodyend="113"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -270,7 +296,7 @@ Construct a <ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kind
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="32" bodyend="74"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp" bodystart="33" bodyend="81"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a52037e4720ba8388a7d56b37d135129d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a66141f0cff314bc8e680a479d5b5171f" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>calculate1D</name></member>
@@ -279,8 +305,10 @@ Construct a <ref refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" kind
       <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1aa6d4cbb046c2b0232406757ec4521f7b" prot="private" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>dipole_operator</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1ae3b14b76459c1612a777a6f9f5ec7906" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1abc3fd20e83b16565852112d4594c7ba8" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a5ba0d3bf690d9a6ba2096a0afb8adbc5" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a5ae4f80cc95067e1919a1d7336d46d42" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>PrimitiveCartesianOperatorIntegralEngine</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a5f86a52f03d1e58697e2362d702c2218" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>PrimitiveDipoleIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine_1a2e6ff2d05289e239e09cfa5ab4a79ebf" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>Shell</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_1a14f348eef8b2b49487a42b887b407334" prot="public" virt="pure-virtual"><scope>GQCP::PrimitiveDipoleIntegralEngine</scope><name>~PrimitiveCartesianOperatorIntegralEngine</name></member>
     </listofallmembers>
   </compounddef>
