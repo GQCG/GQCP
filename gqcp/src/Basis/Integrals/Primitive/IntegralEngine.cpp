@@ -41,9 +41,9 @@ OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine> IntegralEngine
  * 
  *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
  */
-OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> IntegralEngine::InHouse(const ElectronicDipoleOperator& op) {
+OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine> IntegralEngine::InHouse(const ElectronicDipoleOperator& op) {
 
-    return OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine>(PrimitiveDipoleIntegralEngine(op));
+    return OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine>(PrimitiveElectronicDipoleIntegralEngine(op));
 }
 
 

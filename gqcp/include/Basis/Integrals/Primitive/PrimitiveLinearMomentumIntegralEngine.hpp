@@ -32,7 +32,6 @@ namespace GQCP {
 class PrimitiveLinearMomentumIntegralEngine:
     public BaseVectorPrimitiveIntegralEngine {
 public:
-    static constexpr auto Components = LinearMomentumOperator::NumberOfComponents;
     using IntegralScalar = LinearMomentumOperator::Scalar;
 
     // The type of shell that this integral engine is related to.

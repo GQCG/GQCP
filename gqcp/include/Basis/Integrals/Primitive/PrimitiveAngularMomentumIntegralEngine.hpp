@@ -35,9 +35,6 @@ public:
     // The scalar representation of an integral.
     using IntegralScalar = AngularMomentumOperator::Scalar;
 
-    // The number of components the operator has.
-    static constexpr auto Components = AngularMomentumOperator::NumberOfComponents;
-
     // The type of shell that this integral engine is related to.
     using Shell = GTOShell;
 

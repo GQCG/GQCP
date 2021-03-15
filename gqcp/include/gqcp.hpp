@@ -46,7 +46,7 @@
 #include "Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp"
-#include "Basis/Integrals/Primitive/PrimitiveDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"

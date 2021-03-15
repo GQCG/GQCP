@@ -17,7 +17,7 @@
 
 #include "Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp"
 
-#include "Basis/Integrals/Primitive/PrimitiveDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
 
@@ -76,7 +76,7 @@ PrimitiveAngularMomentumIntegralEngine::IntegralScalar PrimitiveAngularMomentumI
     // For each component of the angular momentum operator, the integrals can be calculated through overlap integrals, linear momentum integrals and position/dipole integrals.
     PrimitiveOverlapIntegralEngine<GTOShell> overlap_engine;
     PrimitiveLinearMomentumIntegralEngine linear_momentum_engine;
-    PrimitiveDipoleIntegralEngine dipole_engine {ElectronicDipoleOperator(this->angular_momentum_operator.reference())};
+    PrimitiveElectronicDipoleIntegralEngine dipole_engine {ElectronicDipoleOperator(this->angular_momentum_operator.reference())};
 
 
     // We'll have to switch sign because we use dipole integrals instead of position integrals.

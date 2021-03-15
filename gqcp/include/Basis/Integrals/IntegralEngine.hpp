@@ -26,7 +26,7 @@
 #include "Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp"
-#include "Basis/Integrals/Primitive/PrimitiveDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
@@ -65,7 +65,7 @@ public:
      * 
      *  @note This integral engine can only calculate integrals over Cartesian d-shells.
      */
-    static OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
+    static OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
 
     /**
      *  @param op               the linear momentum operator

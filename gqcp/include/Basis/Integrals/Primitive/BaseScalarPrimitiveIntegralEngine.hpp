@@ -43,6 +43,9 @@ public:
      *  MARK: Components
      */
 
+    // The number of components the operator has. For a scalar operator, this is equal to 1.
+    static constexpr size_t Components = 1;
+
     /**
      *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
      * 

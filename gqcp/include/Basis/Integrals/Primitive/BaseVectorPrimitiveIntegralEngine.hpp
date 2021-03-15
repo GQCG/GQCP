@@ -30,6 +30,7 @@ namespace GQCP {
  *  A base class for integral engines over an operator with three vector components (x, y, z).
  */
 class BaseVectorPrimitiveIntegralEngine {
+public:
 protected:
     // The component over which the primitive engine is prepared to calculate integrals.
     CartesianDirection component;
@@ -61,6 +62,9 @@ public:
     /*
      *  MARK: Components
      */
+
+    // The number of components the operator has. For a vector operator, this is equal to 3.
+    static constexpr size_t Components = 3;
 
     /**
      *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.

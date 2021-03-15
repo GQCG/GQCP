@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Integrals/Primitive/PrimitiveDipoleIntegralEngine.hpp"
-
 #include "Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
 
 #include <boost/math/constants/constants.hpp>
@@ -27,12 +26,12 @@ namespace GQCP {
 
 
 /**
- *  Construct a PrimitiveDipoleIntegralEngine from its members.
+ *  Construct a PrimitiveElectronicDipoleIntegralEngine from its members.
  * 
  *  @param dipole_operator              the dipole operator over which this engine should calculate integrals
  *  @param component                    the current component of the dipole operator this engine can calculate integrals over
  */
-PrimitiveDipoleIntegralEngine::PrimitiveDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component) :
+PrimitiveElectronicDipoleIntegralEngine::PrimitiveElectronicDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component) :
     dipole_operator {dipole_operator},
     BaseVectorPrimitiveIntegralEngine(component) {}
 
@@ -45,7 +44,7 @@ PrimitiveDipoleIntegralEngine::PrimitiveDipoleIntegralEngine(const ElectronicDip
  * 
  *  @return the dipole integral (of the current component) over the two given primitives
  */
-PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
+PrimitiveElectronicDipoleIntegralEngine::IntegralScalar PrimitiveElectronicDipoleIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 
     // Prepare some variables.
     const auto i = static_cast<int>(left.cartesianExponents().value(CartesianDirection::x));
@@ -99,7 +98,7 @@ PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::cal
  * 
  *  @return the dipole integral over the two given 1-D primitives
  */
-PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
+PrimitiveElectronicDipoleIntegralEngine::IntegralScalar PrimitiveElectronicDipoleIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
 
     // Prepare some variables.
     const auto p = alpha + beta;

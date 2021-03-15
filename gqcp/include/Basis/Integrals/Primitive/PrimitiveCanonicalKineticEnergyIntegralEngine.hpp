@@ -46,9 +46,6 @@ public:
     // The type of primitive that underlies the type of shell.
     using Primitive = typename Shell::Primitive;
 
-    // The number of components the canonical kinetic energy operator has.
-    static constexpr auto Components = KineticOperator::NumberOfComponents;
-
     // The scalar representation of a canonical kinetic energy integral.
     using IntegralScalar = product_t<KineticOperator::Scalar, typename Primitive::Valued>;
 

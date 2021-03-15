@@ -45,9 +45,6 @@ public:
     // The scalar representation of one of the primitive integrals.
     using IntegralScalar = _IntegralScalar;
 
-    // The number of components of the operator over which the primitive engine can calculate integrals.
-    static constexpr auto Components = 1;
-
 
 private:
     // A user-supplied custom function that can calculate primitive integrals over four Cartesian GTOs.

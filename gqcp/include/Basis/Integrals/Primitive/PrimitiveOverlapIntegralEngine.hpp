@@ -49,9 +49,6 @@ public:
     // The type of primitive that underlies the type of shell.
     using Primitive = typename Shell::Primitive;
 
-    // The number of components the overlap operator has.
-    static constexpr auto Components = OverlapOperator::NumberOfComponents;
-
     // The scalar representation of an overlap integral.
     using IntegralScalar = product_t<OverlapOperator::Scalar, typename Primitive::Valued>;
 

@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A base class for integral engines over an operator with nine components (x, y, z) x (x, y, z).
+ *  A base class for integral engines over an operator with nine components (x, y, z) times (x, y, z).
  */
 class BaseMatrixPrimitiveIntegralEngine {
 protected:
@@ -61,6 +61,9 @@ public:
     /*
      *  MARK: Components
      */
+
+    // The number of components the operator has. For a scalar operator, this is equal to 9.
+    static constexpr size_t Components = 9;
 
     /**
      *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.

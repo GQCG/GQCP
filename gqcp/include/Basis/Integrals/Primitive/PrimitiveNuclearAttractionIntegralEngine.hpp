@@ -44,9 +44,6 @@ public:
     // The type of primitive that underlies the type of shell.
     using Primitive = typename Shell::Primitive;
 
-    // The number of components the nuclear attraction operator has.
-    static constexpr auto Components = NuclearAttractionOperator::NumberOfComponents;
-
     // The scalar representation of a nuclear attraction integral.
     using IntegralScalar = product_t<NuclearAttractionOperator::Scalar, typename Primitive::Valued>;
 

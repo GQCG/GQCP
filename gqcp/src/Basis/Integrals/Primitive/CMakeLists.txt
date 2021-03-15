@@ -7,6 +7,6 @@ target_sources(gqcp
         IntegralEngine.cpp
         McMurchieDavidsonCoefficient.cpp
         PrimitiveAngularMomentumIntegralEngine.cpp
-        PrimitiveDipoleIntegralEngine.cpp
+        PrimitiveElectronicDipoleIntegralEngine.cpp
         PrimitiveLinearMomentumIntegralEngine.cpp
 )

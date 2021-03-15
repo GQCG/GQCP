@@ -27,12 +27,14 @@ namespace GQCP {
 
 
 /**
- *  A class that can calculate electronic dipole integrals over primitive Cartesian GTOs.
+ *  A class that can calculate electronic dipole integrals, i.e. over the negative of the position operator.
+ * 
+ *  @note The integrals that this primitive engine produces include the minus sign due to the charge of the electron.
  */
-class PrimitiveDipoleIntegralEngine:
+class PrimitiveElectronicDipoleIntegralEngine:
     public BaseVectorPrimitiveIntegralEngine {
 public:
-    static constexpr auto Components = ElectronicDipoleOperator::NumberOfComponents;
+    // static constexpr auto Components = ElectronicDipoleOperator::NumberOfComponents;
     using IntegralScalar = ElectronicDipoleOperator::Scalar;
 
     // The type of shell that this integral engine is related to.
@@ -49,12 +51,12 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Construct a PrimitiveDipoleIntegralEngine from its members.
+     *  Construct a PrimitiveElectronicDipoleIntegralEngine from its members.
      * 
      *  @param dipole_operator              the dipole operator over which this engine should calculate integrals
      *  @param component                    the initial component of the dipole operator this engine should calculate integrals over
      */
-    PrimitiveDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component = CartesianDirection::x);
+    PrimitiveElectronicDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component = CartesianDirection::x);
 
 
     // PUBLIC METHODS
