@@ -18,55 +18,121 @@
 #pragma once
 
 #include "Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
+#include "Utilities/literals.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that can calculate linear momentum integrals over primitive Cartesian GTOs.
+ *  A class that can calculate linear momentum integrals.
+ * 
+ *  @tparam _Shell              The type of shell that this integral engine is related to.
  */
+template <typename _Shell>
 class PrimitiveLinearMomentumIntegralEngine:
     public BaseVectorPrimitiveIntegralEngine {
 public:
-    using IntegralScalar = LinearMomentumOperator::Scalar;
-
     // The type of shell that this integral engine is related to.
-    using Shell = GTOShell;
+    using Shell = _Shell;
 
     // The type of primitive that underlies the type of shell.
-    using Primitive = Shell::Primitive;
+    using Primitive = typename Shell::Primitive;
+
+    // The scalar representation of a linear momentum integral.
+    using IntegralScalar = product_t<LinearMomentumOperator::Scalar, typename Primitive::Valued>;
 
 
 public:
-    // CONSTRUCTORS
-    using BaseVectorPrimitiveIntegralEngine::BaseVectorPrimitiveIntegralEngine;  // inherit base constructors
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `BaseVectorPrimitiveIntegralEngine`'s constructors.
+    using BaseVectorPrimitiveIntegralEngine::BaseVectorPrimitiveIntegralEngine;
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: CartesianGTO integrals
+     */
 
     /**
-     *  @param left             the left Cartesian GTO (primitive)
-     *  @param right            the right Cartesian GTO (primitive)
+     *  Calculate the linear momentum integral (of the current component) over the two Cartesian GTOs.
      * 
-     *  @return the linear momentum integral (of the current component) over the two given primitives
+     *  @param left             The left Cartesian GTO.
+     *  @param right            The right Cartesian GTO.
+     * 
+     *  @return The linear momentum integral over the two given Cartesian GTOs.
      */
-    IntegralScalar calculate(const CartesianGTO& left, const CartesianGTO& right);
+    IntegralScalar calculate(const CartesianGTO& left, const CartesianGTO& right) {
+
+        // Prepare some variables.
+        const auto i = static_cast<int>(left.cartesianExponents().value(CartesianDirection::x));
+        const auto k = static_cast<int>(left.cartesianExponents().value(CartesianDirection::y));
+        const auto m = static_cast<int>(left.cartesianExponents().value(CartesianDirection::z));
+
+        const auto j = static_cast<int>(right.cartesianExponents().value(CartesianDirection::x));
+        const auto l = static_cast<int>(right.cartesianExponents().value(CartesianDirection::y));
+        const auto n = static_cast<int>(right.cartesianExponents().value(CartesianDirection::z));
+
+        const auto a = left.gaussianExponent();
+        const auto b = right.gaussianExponent();
+
+        const auto K_x = left.center()(CartesianDirection::x);
+        const auto K_y = left.center()(CartesianDirection::y);
+        const auto K_z = left.center()(CartesianDirection::z);
+
+        const auto L_x = right.center()(CartesianDirection::x);
+        const auto L_y = right.center()(CartesianDirection::y);
+        const auto L_z = right.center()(CartesianDirection::z);
+
+        PrimitiveOverlapIntegralEngine<GTOShell> S;
+
+
+        // For the current component, the integral can be calculated as a product of three contributions.
+        switch (this->component) {
+        case CartesianDirection::x: {
+            return this->calculate1D(a, K_x, i, b, L_x, j) * S.calculate1D(a, K_y, k, b, L_y, l) * S.calculate1D(a, K_z, m, b, L_z, n);
+            break;
+        }
+
+        case CartesianDirection::y: {
+            return S.calculate1D(a, K_x, i, b, L_x, j) * this->calculate1D(a, K_y, k, b, L_y, l) * S.calculate1D(a, K_z, m, b, L_z, n);
+            break;
+        }
+
+        case CartesianDirection::z: {
+            return S.calculate1D(a, K_x, i, b, L_x, j) * S.calculate1D(a, K_y, k, b, L_y, l) * this->calculate1D(a, K_z, m, b, L_z, n);
+            break;
+        }
+        }
+    }
+
 
     /**
-     *  @param alpha            the Gaussian exponent of the left 1-D primitive
-     *  @param K                the (directional coordinate of the) center of the left 1-D primitive
-     *  @param i                the Cartesian exponent of the left 1-D primitive
-     *  @param beta             the Gaussian exponent of the right 1-D primitive
-     *  @param L                the (directional coordinate of the) center of the right 1-D primitive
-     *  @param j                the Cartesian exponent of the right 1-D primitive
+     *  Calculate the linear momentum integral over two Cartesian GTO 1-D primitives.
      * 
-     *  @return the linear momentum integral over the two given 1-D primitives
+     *  @param a                The Gaussian exponent of the left 1-D primitive.
+     *  @param K                The (directional coordinate of the) center of the left 1-D primitive.
+     *  @param i                The Cartesian exponent of the left 1-D primitive.
+     *  @param b                The Gaussian exponent of the right 1-D primitive.
+     *  @param L                The (directional coordinate of the) center of the right 1-D primitive.
+     *  @param j                The Cartesian exponent of the right 1-D primitive.
+     * 
+     *  @return The linear momentum integral over the two given 1-D primitives.
      */
-    IntegralScalar calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j);
+    IntegralScalar calculate1D(const double a, const double K, const int i, const double b, const double L, const int j) {
+
+        PrimitiveOverlapIntegralEngine<GTOShell> S;
+
+        using namespace GQCP::literals;
+        return 2.0 * 1.0_ii * b * S.calculate1D(a, K, i, b, L, j + 1) -
+               1.0_ii * static_cast<double>(j) * S.calculate1D(a, K, i, b, L, j - 1);
+    }
 };
 
 

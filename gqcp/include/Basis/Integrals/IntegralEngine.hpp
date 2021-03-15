@@ -44,37 +44,10 @@ namespace GQCP {
 class IntegralEngine {
 public:
     /*
-     *  GQCP ("In-house")
+     *  MARK: GQCP ("In-house") integral engines
      * 
-     *  These integral engines can only calculate integrals over Cartesian d-shells.
+     *  These integral engines can only calculate integrals over Cartesian d-shells, not over spherical d-shells.
      */
-
-    /**
-     *  @param op               the angular momentum operator
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the angular momentum operator
-     * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
-     */
-    static OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine> InHouse(const AngularMomentumOperator& op);
-
-    /**
-     *  @param op               the electronic dipole operator
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
-     * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
-     */
-    static OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
-
-    /**
-     *  @param op               the linear momentum operator
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator
-     * 
-     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
-     */
-    static OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> InHouse(const LinearMomentumOperator& op);
 
     /**
      *  Create an in-house one-electron integral engine that can calculate integrals over the overlap operator.
@@ -93,6 +66,43 @@ public:
         return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>>(PrimitiveOverlapIntegralEngine<Shell>());
     }
 
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the electronic dipole operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
+     * 
+     *  @param op               The electronic dipole operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the electronic dipole operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    template <typename Shell>
+    static auto InHouse(const ElectronicDipoleOperator& op) -> OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine<Shell>>(PrimitiveElectronicDipoleIntegralEngine<Shell>(op));
+    }
+
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the linear momentum operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
+     * 
+     *  @param op               The linear momentum operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the linear momentum operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    template <typename Shell>
+    static auto InHouse(const LinearMomentumOperator& op) -> OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine<Shell>>(PrimitiveLinearMomentumIntegralEngine<Shell>());
+    }
+
+
     /**
      *  Create an in-house one-electron integral engine that can calculate integrals over the canonical kinetic energy operator.
      * 
@@ -110,8 +120,29 @@ public:
         return OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>>(PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>());
     }
 
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the angular momentum operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
+     * 
+     *  @param op               The angular momentum operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the angular momentum operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    template <typename Shell>
+    static auto InHouse(const AngularMomentumOperator& op) -> OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine<Shell>>(PrimitiveAngularMomentumIntegralEngine<Shell>(op));
+    }
+
+
     /**
      *  Create an in-house one-electron integral engine that can calculate integrals over the nuclear attraction operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
      * 
      *  @param op               The nuclear attraction operator.
      * 
@@ -119,10 +150,17 @@ public:
      * 
      *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
      */
-    static OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<GTOShell>> InHouse(const NuclearAttractionOperator& op);
+    template <typename Shell>
+    static auto InHouse(const NuclearAttractionOperator& op) -> OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<Shell>>(PrimitiveNuclearAttractionIntegralEngine<Shell>(op));
+    };
+
 
     /**
      *  Create an in-house two-electron integral engine that can calculate integrals over the Coulomb repulsion operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
      * 
      *  @param op               The Coulomb repulsion operator.
      * 
@@ -130,7 +168,11 @@ public:
      * 
      *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
      */
-    static TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<GTOShell>> InHouse(const CoulombRepulsionOperator& op);
+    template <typename Shell>
+    static auto InHouse(const CoulombRepulsionOperator& op) -> TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<Shell>> {
+
+        return TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<Shell>>(PrimitiveCoulombRepulsionIntegralEngine<Shell>());
+    }
 
 
     /*

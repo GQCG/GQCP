@@ -18,6 +18,9 @@
 #pragma once
 
 #include "Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
@@ -27,46 +30,126 @@ namespace GQCP {
 
 
 /**
- *  A one-electron primitive integral engine that can calculate integrals over the angular momentum operator.
+ *  A class that can calculate integrals over the angular momentum operator.
+ * 
+ *  @tparam _Shell              The type of shell that this integral engine is related to.
  */
+template <typename _Shell>
 class PrimitiveAngularMomentumIntegralEngine:
     public BaseVectorPrimitiveIntegralEngine {
 public:
-    // The scalar representation of an integral.
-    using IntegralScalar = AngularMomentumOperator::Scalar;
-
     // The type of shell that this integral engine is related to.
-    using Shell = GTOShell;
+    using Shell = _Shell;
 
     // The type of primitive that underlies the type of shell.
-    using Primitive = Shell::Primitive;
+    using Primitive = typename Shell::Primitive;
+
+    // The scalar representation of an angular momentum integral.
+    using IntegralScalar = product_t<AngularMomentumOperator::Scalar, typename Primitive::Valued>;
 
 
 private:
-    AngularMomentumOperator angular_momentum_operator;  // the angular momentum operator over which the integrals should be calculated
+    // The angular momentum operator over which the integrals are calculated.
+    AngularMomentumOperator angular_momentum_operator;
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
 
     /**
-     *  Construct a PrimitiveAngularMomentumIntegralEngine from its members.
-     * 
-     *  @param angular_momentum_operator                the angular momentum operator over which the integrals should be calculated
-     *  @param component                                the initial component of the angular momentum operator this engine should calculate integrals over
+     *  @param angular_momentum_operator                The angular momentum operator over which the integrals are calculated.
+     *  @param component                                The initial component of the angular momentum operator over which this engine should calculate integrals.
      */
-    PrimitiveAngularMomentumIntegralEngine(const AngularMomentumOperator& angular_momentum_operator, const CartesianDirection component = CartesianDirection::x);
+    PrimitiveAngularMomentumIntegralEngine(const AngularMomentumOperator& angular_momentum_operator, const CartesianDirection component = CartesianDirection::x) :
+        angular_momentum_operator {angular_momentum_operator},
+        BaseVectorPrimitiveIntegralEngine(component) {}
 
 
-    // PUBLIC METHODS
+    /*
+    *  MARK: CartesianGTO integrals
+    */
 
     /**
-     *  @param left             the left Cartesian GTO (primitive)
-     *  @param right            the right Cartesian GTO (primitive)
+     *  Calculate the angular momentum integral (of the current component) over the two Cartesian GTOs.
      * 
-     *  @return the angular momentum integral (of the current component) over the two given primitives
+     *  @param left             The left Cartesian GTO.
+     *  @param right            The right Cartesian GTO.
+     * 
+     *  @return The angular momentum integral over the two given Cartesian GTOs.
      */
-    IntegralScalar calculate(const CartesianGTO& left, const CartesianGTO& right);
+    IntegralScalar calculate(const CartesianGTO& left, const CartesianGTO& right) {
+
+        // Prepare some variables.
+        const auto i = static_cast<int>(left.cartesianExponents().value(CartesianDirection::x));
+        const auto k = static_cast<int>(left.cartesianExponents().value(CartesianDirection::y));
+        const auto m = static_cast<int>(left.cartesianExponents().value(CartesianDirection::z));
+
+        const auto j = static_cast<int>(right.cartesianExponents().value(CartesianDirection::x));
+        const auto l = static_cast<int>(right.cartesianExponents().value(CartesianDirection::y));
+        const auto n = static_cast<int>(right.cartesianExponents().value(CartesianDirection::z));
+
+        const auto alpha = left.gaussianExponent();
+        const auto beta = right.gaussianExponent();
+
+        const auto K_x = left.center()(CartesianDirection::x);
+        const auto K_y = left.center()(CartesianDirection::y);
+        const auto K_z = left.center()(CartesianDirection::z);
+
+        const auto L_x = right.center()(CartesianDirection::x);
+        const auto L_y = right.center()(CartesianDirection::y);
+        const auto L_z = right.center()(CartesianDirection::z);
+
+
+        // For each component of the angular momentum operator, the integrals can be calculated through overlap integrals, linear momentum integrals and position/dipole integrals.
+        PrimitiveOverlapIntegralEngine<GTOShell> S0;
+        PrimitiveLinearMomentumIntegralEngine<GTOShell> T1;
+        PrimitiveElectronicDipoleIntegralEngine<GTOShell> S1 {ElectronicDipoleOperator(this->angular_momentum_operator.reference())};
+
+
+        // The sign factors in the following formulas are required to switch from electronic dipole integrals to position integrals.
+        switch (this->component) {
+        case CartesianDirection::x: {
+            S1.prepareStateForComponent(CartesianDirection::y);
+            T1.prepareStateForComponent(CartesianDirection::z);
+            const IntegralScalar term1 = -S1.calculate1D(alpha, K_y, k, beta, L_y, l) * T1.calculate1D(alpha, K_z, m, beta, L_z, n);
+
+            T1.prepareStateForComponent(CartesianDirection::y);
+            S1.prepareStateForComponent(CartesianDirection::z);
+            const IntegralScalar term2 = -T1.calculate1D(alpha, K_y, k, beta, L_y, l) * S1.calculate1D(alpha, K_z, m, beta, L_z, n);
+
+            return S0.calculate1D(alpha, K_x, i, beta, L_x, j) * (term1 - term2);  // Calculate a component of the cross product.
+            break;
+        }
+
+        case CartesianDirection::y: {
+            S1.prepareStateForComponent(CartesianDirection::z);
+            T1.prepareStateForComponent(CartesianDirection::x);
+            const IntegralScalar term1 = -S1.calculate1D(alpha, K_z, m, beta, L_z, n) * T1.calculate1D(alpha, K_x, i, beta, L_x, j);
+
+            T1.prepareStateForComponent(CartesianDirection::z);
+            S1.prepareStateForComponent(CartesianDirection::x);
+            const IntegralScalar term2 = -T1.calculate1D(alpha, K_z, m, beta, L_z, n) * S1.calculate1D(alpha, K_x, i, beta, L_x, j);
+
+            return S0.calculate1D(alpha, K_y, k, beta, L_y, l) * (term1 - term2);  // Calculate a component of the cross product.
+            break;
+        }
+
+        case CartesianDirection::z: {
+            S1.prepareStateForComponent(CartesianDirection::x);
+            T1.prepareStateForComponent(CartesianDirection::y);
+            const IntegralScalar term1 = -S1.calculate1D(alpha, K_x, i, beta, L_x, j) * T1.calculate1D(alpha, K_y, k, beta, L_y, l);
+
+            T1.prepareStateForComponent(CartesianDirection::x);
+            S1.prepareStateForComponent(CartesianDirection::y);
+            const IntegralScalar term2 = -T1.calculate1D(alpha, K_x, i, beta, L_x, j) * S1.calculate1D(alpha, K_y, k, beta, L_y, l);
+
+            return S0.calculate1D(alpha, K_z, m, beta, L_z, n) * (term1 - term2);  // Calculate a component of the cross product.
+            break;
+        }
+        }
+    }
 };
 
 

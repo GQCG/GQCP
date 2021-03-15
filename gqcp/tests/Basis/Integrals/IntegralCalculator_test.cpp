@@ -229,7 +229,7 @@ BOOST_AUTO_TEST_CASE(nuclear_attraction_integrals) {
     // Calculate the nuclear attraction integrals and check if they are equal.
     const auto ref_V = GQCP::IntegralCalculator::calculateLibintIntegrals(op, scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse(op);
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(op);
     const auto V = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(V.isApprox(ref_V, 1.0e-12));
@@ -250,7 +250,7 @@ BOOST_AUTO_TEST_CASE(electronic_dipole_integrals) {
     const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
     const auto ref_dipole_integrals = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::ElectronicDipole(origin));
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::ElectronicDipole(origin));
     const auto dipole_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
     for (size_t i = 0; i < 3; i++) {
@@ -309,7 +309,7 @@ BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
 
 
     // Calculate our own linear momentum integrals and check if they are correct.
-    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::LinearMomentum());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::LinearMomentum());
     const auto linear_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
 
@@ -370,7 +370,7 @@ BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
 
     // Calculate our own angular momentum integrals (with respect to a reference different from the origin) and check if they are correct.
     const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
-    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::AngularMomentum(origin));
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::AngularMomentum(origin));
     const auto angular_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
 
@@ -394,7 +394,7 @@ BOOST_AUTO_TEST_CASE(Coulomb_repulsion_integrals) {
     const auto op = GQCP::Operator::Coulomb();
     const auto ref_g = GQCP::IntegralCalculator::calculateLibintIntegrals(op, scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse(op);
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(op);
     const auto g = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(g.isApprox(ref_g, 1.0e-12));

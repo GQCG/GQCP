@@ -6,7 +6,4 @@ target_sources(gqcp
         HermiteCoulombIntegral.cpp
         IntegralEngine.cpp
         McMurchieDavidsonCoefficient.cpp
-        PrimitiveAngularMomentumIntegralEngine.cpp
-        PrimitiveElectronicDipoleIntegralEngine.cpp
-        PrimitiveLinearMomentumIntegralEngine.cpp
 )
