@@ -34,7 +34,7 @@ namespace GQCP {
  *  @param P            The center of the Hermite Gaussian.
  *  @param C            The center of the Coulomb potential.
  */
-LondonHermiteCoulombIntegral(const Vector<double, 3>& k1, const double p, const Vector<double, 3>& P, const Vector<double, 3>& C) :
+LondonHermiteCoulombIntegral::LondonHermiteCoulombIntegral(const Vector<double, 3>& k1, const double p, const Vector<double, 3>& P, const Vector<double, 3>& C) :
     p {p},
     k1 {k1},
     P {P},
@@ -60,7 +60,6 @@ complex LondonHermiteCoulombIntegral::operator()(const size_t n, const int t, co
     // Prepare some variables.
     const Vector<complex, 3> P_ = this->P - (1.0_ii / (2 * this->p)) * this->k1;  // The modified overlap distribution center.
     const Vector<complex, 3> R_P_C = P_ - this->C;
-    const Vector<double, 3> R_PC = this->P - this->C;
 
 
     // If any of the arguments is smaller than 0, the London Hermite Coulomb integral should vanish.
@@ -82,23 +81,23 @@ complex LondonHermiteCoulombIntegral::operator()(const size_t n, const int t, co
     // Recurrence for v.
     else if ((t == 0) && (u == 0)) {
         return -1.0_ii * this->k1(CartesianDirection::z) * this->operator()(n, t, u, v - 1) +
-               (v - 1) * this->operator()(n + 1, t, u, v - 2) +
-               R_PC(CartesianDirection::z) * this->operator()(n + 1, t, u, v - 1);
+               static_cast<double>(v - 1) * this->operator()(n + 1, t, u, v - 2) +
+               R_P_C(CartesianDirection::z) * this->operator()(n + 1, t, u, v - 1);
     }
 
 
     // Recurrence for u.
     else if (t == 0) {
         return -1.0_ii * this->k1(CartesianDirection::y) * this->operator()(n, t, u - 1, v) +
-               (u - 1) * this->operator()(n + 1, t, u - 2, v) +
-               R_PC(CartesianDirection::y) * this->operator()(n + 1, t, u - 1, v);
+               static_cast<double>(u - 1) * this->operator()(n + 1, t, u - 2, v) +
+               R_P_C(CartesianDirection::y) * this->operator()(n + 1, t, u - 1, v);
     }
 
     // Recurrence for t.
     else {
         return -1.0_ii * this->k1(CartesianDirection::x) * this->operator()(n, t - 1, u, v) +
-               (t - 1) * this->operator()(n + 1, t - 2, u, v) +
-               R_PC(CartesianDirection::x) * this->operator()(n + 1, t - 1, u, v);
+               static_cast<double>(t - 1) * this->operator()(n + 1, t - 2, u, v) +
+               R_P_C(CartesianDirection::x) * this->operator()(n + 1, t - 1, u, v);
     }
 }
 

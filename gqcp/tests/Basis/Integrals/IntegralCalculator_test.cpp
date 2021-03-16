@@ -827,3 +827,61 @@ BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_111) {
     BOOST_CHECK(Q_yz.isApprox(Q_yz_ref, 1.0e-12));
     BOOST_CHECK(Q_zz.isApprox(Q_zz_ref, 1.0e-12));
 }
+
+
+/**
+ *  Check if the London nuclear attraction integrals are implemented correctly, for a magnetic field of B=(0,0,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_nuclear_001) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the nuclear attraction integrals through our own engines.
+    const auto op = GQCP::Operator::NuclearAttraction(molecule);
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
+    const auto V = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+
+    // Read in the reference values.
+    const auto V_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_nuclear_chronusq_real.data", nbf, nbf);
+    const auto V_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_nuclear_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> V_ref = V_ref_real + std::complex<double>(0, 1) * V_ref_complex;
+
+    BOOST_CHECK(V.isApprox(V_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London nuclear attraction integrals are implemented correctly, for a magnetic field of B=(1,1,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_nuclear_111) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{1.0, 1.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the nuclear attraction integrals through our own engines.
+    const auto op = GQCP::Operator::NuclearAttraction(molecule);
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
+    const auto V = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+
+    // Read in the reference values.
+    const auto V_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_nuclear_chronusq_real.data", nbf, nbf);
+    const auto V_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_nuclear_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> V_ref = V_ref_real + std::complex<double>(0, 1) * V_ref_complex;
+
+    BOOST_CHECK(V.isApprox(V_ref, 1.0e-12));
+}
