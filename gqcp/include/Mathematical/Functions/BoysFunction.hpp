@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Utilities/aliases.hpp"
+
 #include <cstddef>
 
 
@@ -25,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  An implementation of the Boys function, through its relation with the confluent hypergeometric function.
+ *  An implementation of the Boys function.
  */
 class BoysFunction {
 public:
@@ -34,14 +36,26 @@ public:
      */
 
     /**
-     *  Calculate the value for the Boys function F_n(x).
+     *  Calculate the value for the real-valued Boys function F_n(x).
      * 
      *  @param n        The degree of the Boys function.
-     *  @param x        The argument for the Boys function.
+     *  @param x        The real-valued argument for the Boys function.
      * 
      *  @return The value F_n(x).
      */
     double operator()(const size_t n, const double x) const;
+
+    /**
+     *  Calculate the value for the complex-valued Boys function F_n(z).
+     * 
+     *  @param n        The degree of the Boys function.
+     *  @param z        The real-valued argument for the Boys function.
+     * 
+     *  @return The value F_n(z).
+     * 
+     *  @note This method follows the implementation in Tellgren 2008, section II.C.
+     */
+    complex operator()(const size_t n, const complex z) const;
 };
 
 
