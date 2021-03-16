@@ -1,0 +1,9 @@
+target_sources(gqcp
+    PRIVATE
+        BaseMatrixPrimitiveIntegralEngine.cpp
+        BaseScalarPrimitiveIntegralEngine.cpp
+        BaseVectorPrimitiveIntegralEngine.cpp
+        HermiteCoulombIntegral.cpp
+        IntegralEngine.cpp
+        McMurchieDavidsonCoefficient.cpp
+)

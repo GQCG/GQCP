@@ -18,8 +18,6 @@
 #pragma once
 
 
-#include "Mathematical/Functions/CartesianDirection.hpp"
-
 #include <cstddef>
 
 
@@ -27,40 +25,33 @@ namespace GQCP {
 
 
 /**
- *  A base class for integral engines over a Cartesian operator, i.e. an operator with three vector components (x, y, z).
+ *  A base class for primitive integral engines that can calculate integrals over scalar operators.
  */
-class PrimitiveCartesianOperatorIntegralEngine {
-protected:
-    CartesianDirection component;
-
-
+class BaseScalarPrimitiveIntegralEngine {
 public:
-    // CONSTRUCTORS
-
-    /**
-     *  Construct a PrimitiveCartesianOperatorIntegralEngine from its members.
-     * 
-     *  @param component                    the initial component of the Cartesian operator this engine should calculate integrals over
-     * 
-     *  @note The primitive engine's state may be changed through the prepareStateForComponent method.
+    /*
+     *  MARK: Destructor
      */
-    PrimitiveCartesianOperatorIntegralEngine(const CartesianDirection component = CartesianDirection::x);
-
-
-    // DESTRUCTOR
 
     /**
      *  A pure virtual destructor in order to make this class abstract.
      */
-    virtual ~PrimitiveCartesianOperatorIntegralEngine() = 0;
+    virtual ~BaseScalarPrimitiveIntegralEngine() = 0;
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: Components
+     */
+
+    // The number of components the operator has. For a scalar operator, this is equal to 1.
+    static constexpr size_t Components = 1;
 
     /**
      *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
      * 
-     *  @param component                the index of the component of the operator
+     *  @param component                The index of the component of the operator.
+     * 
+     *  @note Since a scalar operator has only 1 component, this method has no effect.
      */
     void prepareStateForComponent(const size_t component);
 };

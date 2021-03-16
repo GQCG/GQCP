@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 
@@ -32,7 +33,8 @@ namespace GQCP {
  *  @param _IntegralScalar          The scalar representation of one of the primitive integrals.
  */
 template <typename _IntegralScalar>
-class FunctionalOneElectronPrimitiveIntegralEngine {
+class FunctionalOneElectronPrimitiveIntegralEngine:
+    public BaseScalarPrimitiveIntegralEngine {
 public:
     // The type of shell that this integral engine is related to.
     using Shell = GTOShell;
@@ -42,9 +44,6 @@ public:
 
     // The scalar representation of one of the primitive integrals.
     using IntegralScalar = _IntegralScalar;
-
-    // The number of components of the operator over which the primitive engine can calculate integrals.
-    static constexpr auto Components = 1;
 
 
 private:
@@ -67,15 +66,6 @@ public:
     /*
      *  MARK: Integral calculation
      */
-
-    /**
-     *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
-     * 
-     *  @param component                The index of the component of the operator.
-     * 
-     *  @note Since this kind of primitive engine is limited to 1-component operators (i.e. scalar operators), this method has no effect.
-     */
-    void prepareStateForComponent(const size_t component) {}
 
     /**
      *  Calculate the primitive integral over two `CartesianGTO`s.

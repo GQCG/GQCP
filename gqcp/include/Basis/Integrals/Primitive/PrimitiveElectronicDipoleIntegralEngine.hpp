@@ -17,26 +17,29 @@
 
 #pragma once
 
-#include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
-#include "Mathematical/Functions/LondonCartesianGTO.hpp"
-#include "Operator/FirstQuantized/KineticOperator.hpp"
-#include "Utilities/literals.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Utilities/type_traits.hpp"
+
+#include <boost/math/constants/constants.hpp>
 
 
 namespace GQCP {
 
 
 /**
- *  A class that can calculate integrals over the canonical kinetic energy operator, i.e. - 1/2 nabla^2.
+ *  A class that can calculate electronic dipole integrals, i.e. over the negative of the position operator.
  * 
  *  @tparam _Shell              The type of shell that this integral engine is related to.
+ * 
+ *  @note The integrals that this primitive engine produces include the minus sign due to the charge of the electron.
  */
 template <typename _Shell>
-class PrimitiveCanonicalKineticEnergyIntegralEngine {
+class PrimitiveElectronicDipoleIntegralEngine:
+    public BaseVectorPrimitiveIntegralEngine {
 public:
     // The type of shell that this integral engine is related to.
     using Shell = _Shell;
@@ -44,26 +47,27 @@ public:
     // The type of primitive that underlies the type of shell.
     using Primitive = typename Shell::Primitive;
 
-    // The number of components the canonical kinetic energy operator has.
-    static constexpr auto Components = KineticOperator::NumberOfComponents;
+    // The scalar representation of an overlap integral.
+    using IntegralScalar = product_t<ElectronicDipoleOperator::Scalar, typename Primitive::Valued>;
 
-    // The scalar representation of a canonical kinetic energy integral.
-    using IntegralScalar = product_t<KineticOperator::Scalar, typename Primitive::Valued>;
+
+private:
+    // The electronic dipole operator over which integrals should be calculated.
+    ElectronicDipoleOperator dipole_operator;
 
 
 public:
-    /**
-     *  MARK: Components
+    /*
+     *  MARK: Constructors
      */
 
     /**
-     *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
-     * 
-     *  @param component                the index of the component of the operator
-     * 
-     *  @note Since the canonical kinetic energy operator has only 1 component, this method has no effect.
+     *  @param dipole_operator              The electronic dipole operator over which integrals should be calculated.
+     *  @param component                    The initial component of the electronic dipole operator over which this primitive engine should calculate integrals.
      */
-    void prepareStateForComponent(const size_t component) {};
+    PrimitiveElectronicDipoleIntegralEngine(const ElectronicDipoleOperator& dipole_operator, const CartesianDirection component = CartesianDirection::x) :
+        dipole_operator {dipole_operator},
+        BaseVectorPrimitiveIntegralEngine(component) {}
 
 
     /*
@@ -71,12 +75,12 @@ public:
      */
 
     /**
-     *  Calculate the canonical kinetic energy integral over two Cartesian GTOs.
+     *  Calculate the electronic dipole integral over two Cartesian GTOs.
      * 
      *  @param left             The left Cartesian GTO.
      *  @param right            The right Cartesian GTO.
      * 
-     *  @return The canonical kinetic energy integral over the two given Cartesian GTOs.
+     *  @return The electronic dipole integral over the two given Cartesian GTOs.
      */
     template <typename Z = Shell>
     enable_if_t<std::is_same<Z, GTOShell>::value, IntegralScalar> calculate(const CartesianGTO& left, const CartesianGTO& right) {
@@ -101,19 +105,30 @@ public:
         const auto L_y = right.center()(CartesianDirection::y);
         const auto L_z = right.center()(CartesianDirection::z);
 
+        PrimitiveOverlapIntegralEngine<GTOShell> S;
 
-        // The 3D canonical kinetic energy integral is a sum of three contributions (dx^2, dy^2, dz^2).
-        PrimitiveOverlapIntegralEngine<GTOShell> primitive_overlap_engine;
 
-        IntegralScalar primitive_integral = 1.0;
-        return this->calculate1D(a, K_x, i, b, L_x, j) * primitive_overlap_engine.calculate1D(a, K_y, k, b, L_y, l) * primitive_overlap_engine.calculate1D(a, K_z, m, b, L_z, n) +
-               primitive_overlap_engine.calculate1D(a, K_x, i, b, L_x, j) * this->calculate1D(a, K_y, k, b, L_y, l) * primitive_overlap_engine.calculate1D(a, K_z, m, b, L_z, n) +
-               primitive_overlap_engine.calculate1D(a, K_x, i, b, L_x, j) * primitive_overlap_engine.calculate1D(a, K_y, k, b, L_y, l) * this->calculate1D(a, K_z, m, b, L_z, n);
+        // For the current component, the integral can be calculated as a product of three contributions.
+        switch (this->component) {
+        case CartesianDirection::x: {
+            return this->calculate1D(a, K_x, i, b, L_x, j) * S.calculate1D(a, K_y, k, b, L_y, l) * S.calculate1D(a, K_z, m, b, L_z, n);
+            break;
+        }
+
+        case CartesianDirection::y: {
+            return S.calculate1D(a, K_x, i, b, L_x, j) * this->calculate1D(a, K_y, k, b, L_y, l) * S.calculate1D(a, K_z, m, b, L_z, n);
+            break;
+        }
+
+        case CartesianDirection::z: {
+            return S.calculate1D(a, K_x, i, b, L_x, j) * S.calculate1D(a, K_y, k, b, L_y, l) * this->calculate1D(a, K_z, m, b, L_z, n);
+            break;
+        }
+        }
     }
 
-
     /**
-     *  Calculate the canonical kinetic energy integral over two Cartesian GTO 1-D primitives.
+     *  Calculate the electronic dipole integral over two Cartesian GTO 1-D primitives.
      * 
      *  @param a                The Gaussian exponent of the left 1-D primitive.
      *  @param K                The (directional coordinate of the) center of the left 1-D primitive.
@@ -122,31 +137,35 @@ public:
      *  @param L                The (directional coordinate of the) center of the right 1-D primitive.
      *  @param j                The Cartesian exponent of the right 1-D primitive.
      * 
-     *  @return The canonical kinetic energy integral over the two Cartesian GTO given 1-D primitives.
+     *  @return The electronic dipole integral over the two given 1-D primitives.
      */
     template <typename Z = Shell>
     enable_if_t<std::is_same<Z, GTOShell>::value, IntegralScalar> calculate1D(const double a, const double K, const int i, const double b, const double L, const int j) {
 
-        // The canonical kinetic 1D integral is a sum of three 1D overlap integrals.
-        PrimitiveOverlapIntegralEngine<GTOShell> primitive_overlap_engine;
+        // Prepare some variables.
+        const McMurchieDavidsonCoefficient E {K, a, L, b};
+        const auto P = E.centerOfMass();
+        const auto p = a + b;
 
-        return -2 * std::pow(b, 2) * primitive_overlap_engine.calculate1D(a, K, i, b, L, j + 2) +
-               b * (2 * j + 1) * primitive_overlap_engine.calculate1D(a, K, i, b, L, j) -
-               0.5 * j * (j - 1) * primitive_overlap_engine.calculate1D(a, K, i, b, L, j - 2);
+        const auto X_PC = P - this->dipole_operator.reference()(this->component);  // The distance between P and the origin of the dipole operator.
+
+
+        // Calculate the dipole integral over the current component. The minus sign comes from the charge of the electron.
+        return -std::pow(boost::math::constants::pi<double>() / p, 0.5) * (E(i, j, 1) + X_PC * E(i, j, 0));
     }
 
 
     /*
-     *  MARK: LondonCartesianGTO integrals
+     *  MARK: London CartesianGTO integrals
      */
 
     /**
-     *  Calculate the canonical kinetic energy integral over two London Cartesian GTOs.
+     *  Calculate the electronic dipole integral over two London Cartesian GTOs.
      * 
      *  @param left             The left London Cartesian GTO.
      *  @param right            The right London Cartesian GTO.
      * 
-     *  @return The canonical kinetic energy integral over the two given London Cartesian GTOs.
+     *  @return The electronic dipole integral over the two given London Cartesian GTOs.
      */
     template <typename Z = Shell>
     enable_if_t<std::is_same<Z, LondonGTOShell>::value, IntegralScalar> calculate(const LondonCartesianGTO& left, const LondonCartesianGTO& right) {
@@ -171,61 +190,59 @@ public:
         const auto L_y = right.cartesianGTO().center()(CartesianDirection::y);
         const auto L_z = right.cartesianGTO().center()(CartesianDirection::z);
 
-        const auto k_K = left.kVector();
-        const auto k_L = right.kVector();
         const Vector<double, 3> k1 = right.kVector() - left.kVector();  // The k-vector of the London overlap distribution.
-
-        const auto k_K_x = k_K(CartesianDirection::x);
-        const auto k_K_y = k_K(CartesianDirection::y);
-        const auto k_K_z = k_K(CartesianDirection::z);
-
-        const auto k_L_x = k_L(CartesianDirection::x);
-        const auto k_L_y = k_L(CartesianDirection::y);
-        const auto k_L_z = k_L(CartesianDirection::z);
 
         const auto k1_x = k1(CartesianDirection::x);
         const auto k1_y = k1(CartesianDirection::y);
         const auto k1_z = k1(CartesianDirection::z);
 
-
-        // The 3D canonical kinetic energy integral is a sum of three contributions (dx^2, dy^2, dz^2).
         PrimitiveOverlapIntegralEngine<LondonGTOShell> S;
 
-        IntegralScalar primitive_integral = 1.0;
-        return this->calculate1D(k_K_x, a, K_x, i, k_L_x, b, L_x, j) * S.calculate1D(k1_y, a, K_y, k, b, L_y, l) * S.calculate1D(k1_z, a, K_z, m, b, L_z, n) +
-               S.calculate1D(k1_x, a, K_x, i, b, L_x, j) * this->calculate1D(k_K_y, a, K_y, k, k_L_y, b, L_y, l) * S.calculate1D(k1_z, a, K_z, m, b, L_z, n) +
-               S.calculate1D(k1_x, a, K_x, i, b, L_x, j) * S.calculate1D(k1_y, a, K_y, k, b, L_y, l) * this->calculate1D(k_K_z, a, K_z, m, k_L_z, b, L_z, n);
+
+        // For the current component, the integral can be calculated as a product of three contributions.
+        switch (this->component) {
+        case CartesianDirection::x: {
+            return this->calculate1D(k1_x, a, K_x, i, b, L_x, j) * S.calculate1D(k1_y, a, K_y, k, b, L_y, l) * S.calculate1D(k1_z, a, K_z, m, b, L_z, n);
+            break;
+        }
+
+        case CartesianDirection::y: {
+            return S.calculate1D(k1_x, a, K_x, i, b, L_x, j) * this->calculate1D(k1_y, a, K_y, k, b, L_y, l) * S.calculate1D(k1_z, a, K_z, m, b, L_z, n);
+            break;
+        }
+
+        case CartesianDirection::z: {
+            return S.calculate1D(k1_x, a, K_x, i, b, L_x, j) * S.calculate1D(k1_y, a, K_y, k, b, L_y, l) * this->calculate1D(k1_z, a, K_z, m, b, L_z, n);
+            break;
+        }
+        }
     }
 
 
     /**
-     *  Calculate the canonical kinetic energy integral over two London Cartesian GTO 1-D primitives.
+     *  Calculate the electronic dipole integral over two London Cartesian GTO 1-D primitives.
      * 
-     *  @param k_K              The (directional component of the) k-vector of the left 1-D primitive.
+     *  @param k1               The (directional component of the) k-vector of the London overlap distribution.
      *  @param a                The Gaussian exponent of the left 1-D primitive.
      *  @param K                The (directional coordinate of the) center of the left 1-D primitive.
      *  @param i                The Cartesian exponent of the left 1-D primitive.
-     *  @param k_L              The (directional component of the) k-vector of the right 1-D primitive.
      *  @param b                The Gaussian exponent of the right 1-D primitive.
      *  @param L                The (directional coordinate of the) center of the right 1-D primitive.
      *  @param j                The Cartesian exponent of the right 1-D primitive.
      * 
-     *  @return The canonical kinetic energy integral over the two London Cartesian GTO given 1-D primitives.
+     *  @return The electronic dipole integral over the two London Cartesian GTO 1-D primitives.
      */
     template <typename Z = Shell>
-    enable_if_t<std::is_same<Z, LondonGTOShell>::value, IntegralScalar> calculate1D(const complex k_K, const double a, const double K, const int i, const complex k_L, const double b, const double L, const int j) {
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, IntegralScalar> calculate1D(const complex k1, const double a, const double K, const int i, const double b, const double L, const int j) {
 
-        using namespace GQCP::literals;
+        // Prepare some variables.
+        const auto X_KC = K - this->dipole_operator.reference()(this->component);  // The distance between K and the origin of the dipole operator.
 
-        // The canonical kinetic 1D integral is a sum of five 1-D overlap integrals. We'll order them from highest to lowest angular momentum.
-        const auto k1 = k_L - k_K;  // The (directional component of the) k-vector of the London overlap distribution.
+
+        // The 1-D electronic dipole integral can be calculated completely from overlap integrals. The sign factor is included to account for the sign of the electron.
         PrimitiveOverlapIntegralEngine<LondonGTOShell> S;
-
-        return -2 * std::pow(b, 2) * S.calculate1D(k1, a, K, i, b, L, j + 2) -
-               2 * b * 1.0_ii * k_L * S.calculate1D(k1, a, K, i, b, L, j + 1) +
-               (b * (2 * j + 1) + 0.5 * std::pow(k_L, 2)) * S.calculate1D(k1, a, K, i, b, L, j) +
-               static_cast<double>(j) * 1.0_ii * k_L * S.calculate1D(k1, a, K, i, b, L, j - 1) -
-               0.5 * j * (j - 1) * S.calculate1D(k1, a, K, i, b, L, j - 2);
+        return (-1.0) * (S.calculate1D(k1, a, K, i + 1, b, L, j) +
+                         X_KC * S.calculate1D(k1, a, K, i, b, L, j));
     }
 };
 

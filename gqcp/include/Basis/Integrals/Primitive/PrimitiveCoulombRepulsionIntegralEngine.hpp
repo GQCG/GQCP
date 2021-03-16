@@ -17,8 +17,9 @@
 
 #pragma once
 
-#include "Basis/Integrals/HermiteCoulombIntegral.hpp"
-#include "Basis/Integrals/McMurchieDavidsonCoefficient.hpp"
+#include "Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp"
+#include "Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 
@@ -36,7 +37,8 @@ namespace GQCP {
  *  @tparam _Shell              The type of shell that this integral engine is related to.
  */
 template <typename _Shell>
-class PrimitiveCoulombRepulsionIntegralEngine {
+class PrimitiveCoulombRepulsionIntegralEngine:
+    public BaseScalarPrimitiveIntegralEngine {
 public:
     // The type of shell that this integral engine is related to.
     using Shell = _Shell;
@@ -44,28 +46,11 @@ public:
     // The type of primitive that underlies the type of shell.
     using Primitive = typename Shell::Primitive;
 
-    // The number of components the nuclear attraction operator has.
-    static constexpr auto Components = CoulombRepulsionOperator::NumberOfComponents;
-
     // The scalar representation of a nuclear attraction integral.
     using IntegralScalar = product_t<CoulombRepulsionOperator::Scalar, typename Primitive::Valued>;
 
 
 public:
-    /**
-     *  MARK: Components
-     */
-
-    /**
-     *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
-     * 
-     *  @param component                The index of the component of the operator.
-     * 
-     *  @note Since the Coulomb repulsion operator has only 1 component, this method has no effect.
-     */
-    void prepareStateForComponent(const size_t component) {};
-
-
     /*
      *  MARK: CartesianGTO integrals
      */
