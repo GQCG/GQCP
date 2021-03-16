@@ -709,3 +709,121 @@ BOOST_AUTO_TEST_CASE(London_angular_momentum_111) {
     BOOST_CHECK(L_y.isApprox(L_y_ref, 1.0e-12));
     BOOST_CHECK(L_z.isApprox(L_z_ref, 1.0e-12));
 }
+
+
+/**
+ *  Check if the London electronic quadrupole integrals are implemented correctly, for a magnetic field of B=(0,0,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_001) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::ElectronicQuadrupole());  // Reference point at the origin.
+    const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+    const auto Q_xx = integrals[0];
+    const auto Q_xy = integrals[1];
+    const auto Q_xz = integrals[2];
+    const auto Q_yy = integrals[4];
+    const auto Q_yz = integrals[5];
+    const auto Q_zz = integrals[8];
+
+
+    // Read in the reference values.
+    const GQCP::MatrixX<double> Q_xx_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_xx_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_xx_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_xx_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_xx_ref = Q_xx_ref_real + std::complex<double>(0, 1) * Q_xx_ref_complex;
+
+    const GQCP::MatrixX<double> Q_xy_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_xy_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_xy_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_xy_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_xy_ref = Q_xy_ref_real + std::complex<double>(0, 1) * Q_xy_ref_complex;
+
+    const GQCP::MatrixX<double> Q_xz_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_xz_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_xz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_xz_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_xz_ref = Q_xz_ref_real + std::complex<double>(0, 1) * Q_xz_ref_complex;
+
+    const GQCP::MatrixX<double> Q_yy_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_yy_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_yy_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_yy_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_yy_ref = Q_yy_ref_real + std::complex<double>(0, 1) * Q_yy_ref_complex;
+
+    const GQCP::MatrixX<double> Q_yz_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_yz_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_yz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_yz_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_yz_ref = Q_yz_ref_real + std::complex<double>(0, 1) * Q_yz_ref_complex;
+
+    const GQCP::MatrixX<double> Q_zz_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_zz_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_zz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_zz_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_zz_ref = Q_zz_ref_real + std::complex<double>(0, 1) * Q_zz_ref_complex;
+
+    BOOST_CHECK(Q_xx.isApprox(Q_xx_ref, 1.0e-12));
+    BOOST_CHECK(Q_xy.isApprox(Q_xy_ref, 1.0e-12));
+    BOOST_CHECK(Q_xz.isApprox(Q_xz_ref, 1.0e-12));
+    BOOST_CHECK(Q_yy.isApprox(Q_yy_ref, 1.0e-12));
+    BOOST_CHECK(Q_yz.isApprox(Q_yz_ref, 1.0e-12));
+    BOOST_CHECK(Q_zz.isApprox(Q_zz_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the London electronic quadrupole integrals are implemented correctly, for a magnetic field of B=(1,1,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_111) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{1.0, 1.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+    // Calculate the overlap integrals through our own engines.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::ElectronicQuadrupole());  // Reference point at the origin.
+    const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+    const auto Q_xx = integrals[0];
+    const auto Q_xy = integrals[1];
+    const auto Q_xz = integrals[2];
+    const auto Q_yy = integrals[4];
+    const auto Q_yz = integrals[5];
+    const auto Q_zz = integrals[8];
+
+
+    // Read in the reference values.
+    const GQCP::MatrixX<double> Q_xx_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_xx_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_xx_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_xx_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_xx_ref = Q_xx_ref_real + std::complex<double>(0, 1) * Q_xx_ref_complex;
+
+    const GQCP::MatrixX<double> Q_xy_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_xy_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_xy_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_xy_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_xy_ref = Q_xy_ref_real + std::complex<double>(0, 1) * Q_xy_ref_complex;
+
+    const GQCP::MatrixX<double> Q_xz_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_xz_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_xz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_xz_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_xz_ref = Q_xz_ref_real + std::complex<double>(0, 1) * Q_xz_ref_complex;
+
+    const GQCP::MatrixX<double> Q_yy_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_yy_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_yy_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_yy_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_yy_ref = Q_yy_ref_real + std::complex<double>(0, 1) * Q_yy_ref_complex;
+
+    const GQCP::MatrixX<double> Q_yz_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_yz_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_yz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_yz_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_yz_ref = Q_yz_ref_real + std::complex<double>(0, 1) * Q_yz_ref_complex;
+
+    const GQCP::MatrixX<double> Q_zz_ref_real = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_zz_chronusq_real.data", nbf, nbf);
+    const GQCP::MatrixX<double> Q_zz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_zz_chronusq_complex.data", nbf, nbf);
+    GQCP::MatrixX<std::complex<double>> Q_zz_ref = Q_zz_ref_real + std::complex<double>(0, 1) * Q_zz_ref_complex;
+
+    BOOST_CHECK(Q_xx.isApprox(Q_xx_ref, 1.0e-12));
+    BOOST_CHECK(Q_xy.isApprox(Q_xy_ref, 1.0e-12));
+    BOOST_CHECK(Q_xz.isApprox(Q_xz_ref, 1.0e-12));
+    BOOST_CHECK(Q_yy.isApprox(Q_yy_ref, 1.0e-12));
+    BOOST_CHECK(Q_yz.isApprox(Q_yz_ref, 1.0e-12));
+    BOOST_CHECK(Q_zz.isApprox(Q_zz_ref, 1.0e-12));
+}
