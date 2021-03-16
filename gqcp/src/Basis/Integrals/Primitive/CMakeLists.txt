@@ -3,6 +3,7 @@ target_sources(gqcp
         BaseMatrixPrimitiveIntegralEngine.cpp
         BaseScalarPrimitiveIntegralEngine.cpp
         BaseVectorPrimitiveIntegralEngine.cpp
+        LondonHermiteCoulombIntegral.cpp
         HermiteCoulombIntegral.cpp
         IntegralEngine.cpp
         McMurchieDavidsonCoefficient.cpp
