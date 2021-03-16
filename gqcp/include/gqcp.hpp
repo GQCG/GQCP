@@ -284,4 +284,3 @@
 #include "Utilities/memory.hpp"
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/type_traits.hpp"
-#include "version.hpp"
