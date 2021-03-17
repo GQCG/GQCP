@@ -48,10 +48,10 @@ LondonHermiteCoulombIntegral::LondonHermiteCoulombIntegral(const Vector<double, 
 /**
  *  Calculate the value for the (auxiliary) London Hermite Coulomb integral R^{k1, n}_{tuv}(p, P, C).
  * 
- *  @param n            The order of the Hermite Coulomb integral, i.e. the order of the Boys function.
- *  @param t            The degree of the Hermite polynomial in x.
- *  @param u            The degree of the Hermite polynomial in y.
- *  @param v            The degree of the Hermite polynomial in z.
+ *  @param n            The order of the London Hermite Coulomb integral, i.e. the order of the Boys function.
+ *  @param t            The derivative degree in P_x.
+ *  @param u            The derivative degree in P_y.
+ *  @param v            The derivative degree in P_z.
  */
 complex LondonHermiteCoulombIntegral::operator()(const size_t n, const int t, const int u, const int v) const {
 
@@ -62,7 +62,7 @@ complex LondonHermiteCoulombIntegral::operator()(const size_t n, const int t, co
     const Vector<complex, 3> R_P_C = P_ - this->C;
 
 
-    // If any of the arguments is smaller than 0, the London Hermite Coulomb integral should vanish.
+    // If any of the degrees is smaller than 0, the London Hermite Coulomb integral should vanish.
     if ((t < 0) || (u < 0) || (v < 0)) {
         return 0.0;
     }

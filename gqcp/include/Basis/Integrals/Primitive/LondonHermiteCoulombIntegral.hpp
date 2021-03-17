@@ -64,10 +64,10 @@ public:
     /**
      *  Calculate the value for the (auxiliary) London Hermite Coulomb integral R^{k1, n}_{tuv}(p, P, C).
      * 
-     *  @param n            The order of the Hermite Coulomb integral, i.e. the order of the Boys function.
-     *  @param t            The degree of the Hermite polynomial in x.
-     *  @param u            The degree of the Hermite polynomial in y.
-     *  @param v            The degree of the Hermite polynomial in z.
+     *  @param n            The order of the London Hermite Coulomb integral, i.e. the order of the Boys function.
+     *  @param t            The derivative degree in P_x.
+     *  @param u            The derivative degree in P_y.
+     *  @param v            The derivative degree in P_z.
      */
     complex operator()(const size_t n, const int t, const int u, const int v) const;
 };
