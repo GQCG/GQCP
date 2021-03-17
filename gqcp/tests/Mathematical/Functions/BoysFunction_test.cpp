@@ -19,7 +19,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/Integrals/Interfaces/ChronusQ/engines.hpp"
 #include "Mathematical/Functions/BoysFunction.hpp"
 
 
