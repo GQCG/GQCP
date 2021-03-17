@@ -81,7 +81,7 @@ complex DoubleLondonHermiteCoulombIntegral::operator()(const size_t n, const int
         const auto alpha = this->p * this->q / (this->p + this->q);
         const complex R2_P_Q_ = R_P_Q_.array().square().sum();
 
-        return std::pow(-2.0 * this->p, n) *
+        return std::pow(-2.0 * alpha, n) *
                std::exp(-1.0_ii * this->k1.dot(this->P) - 1.0_ii * this->k2.dot(this->Q)) *
                BoysFunction()(n, alpha * R2_P_Q_);
     }
@@ -116,7 +116,7 @@ complex DoubleLondonHermiteCoulombIntegral::operator()(const size_t n, const int
 
     // Recurrence for v.
     else if ((t == 0) && (u == 0)) {
-        return -1.0_ii * this->k1(CartesianDirection::z) * this->operator()(n, t, u, v - 1, tau, mu, nu) -
+        return -1.0_ii * this->k1(CartesianDirection::z) * this->operator()(n, t, u, v - 1, tau, mu, nu) +
                R_P_Q_(CartesianDirection::z) * this->operator()(n + 1, t, u, v - 1, tau, mu, nu) +
                static_cast<double>(v - 1) * this->operator()(n + 1, t, u, v - 2, tau, mu, nu) -
                static_cast<double>(nu) * this->operator()(n + 1, t, u, v - 1, tau, mu, nu - 1);
@@ -125,15 +125,16 @@ complex DoubleLondonHermiteCoulombIntegral::operator()(const size_t n, const int
 
     // Recurrence for u.
     else if (t == 0) {
-        return -1.0_ii * this->k1(CartesianDirection::y) * this->operator()(n, t, u - 1, v, tau, mu, nu) -
+        return -1.0_ii * this->k1(CartesianDirection::y) * this->operator()(n, t, u - 1, v, tau, mu, nu) +
                R_P_Q_(CartesianDirection::y) * this->operator()(n + 1, t, u - 1, v, tau, mu, nu) +
                static_cast<double>(u - 1) * this->operator()(n + 1, t, u - 2, v, tau, mu, nu) -
                static_cast<double>(mu) * this->operator()(n + 1, t, u - 1, v, tau, mu - 1, nu);
     }
 
+
     // Recurrence for t.
     else {
-        return -1.0_ii * this->k1(CartesianDirection::x) * this->operator()(n, t - 1, u, v, tau, mu, nu) -
+        return -1.0_ii * this->k1(CartesianDirection::x) * this->operator()(n, t - 1, u, v, tau, mu, nu) +
                R_P_Q_(CartesianDirection::x) * this->operator()(n + 1, t - 1, u, v, tau, mu, nu) +
                static_cast<double>(t - 1) * this->operator()(n + 1, t - 2, u, v, tau, mu, nu) -
                static_cast<double>(tau) * this->operator()(n + 1, t - 1, u, v, tau - 1, mu, nu);

@@ -885,3 +885,61 @@ BOOST_AUTO_TEST_CASE(London_nuclear_111) {
 
     BOOST_CHECK(V.isApprox(V_ref, 1.0e-12));
 }
+
+
+/*
+ *  Check if the London Coulomb repulsion integrals are implemented correctly, for a magnetic field of B=(0,0,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_coulomb_001) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+
+    // Calculate the Coulomb repulsion integrals through our own engines.
+    const auto op = GQCP::Operator::Coulomb();
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
+    const auto g = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    // Read in the reference values.
+    const auto g_ref_real = GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_6-31g_001_eri_chronusq_real.data", nbf);
+    const auto g_ref_complex = GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_6-31g_001_eri_chronusq_complex.data", nbf);
+
+    BOOST_CHECK(GQCP::SquareRankFourTensor<double>(g.real()).isApprox(g_ref_real, 1.0e-06));
+    BOOST_CHECK(GQCP::SquareRankFourTensor<double>(g.imag()).isApprox(g_ref_complex, 1.0e-06));
+}
+
+
+/*
+ *  Check if the London Coulomb repulsion integrals are implemented correctly, for a magnetic field of B=(0,0,1).
+ * 
+ *  The references values are by generated through ChronusQ.
+ */
+BOOST_AUTO_TEST_CASE(London_coulomb_111) {
+
+    // Set up a scalar basis with London GTO shells.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    const GQCP::HomogeneousMagneticField B {{1.0, 1.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis {molecule, "6-31G", B};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+
+    // Calculate the Coulomb repulsion integrals through our own engines.
+    const auto op = GQCP::Operator::Coulomb();
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
+    const auto g = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    // Read in the reference values.
+    const auto g_ref_real = GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_6-31g_111_eri_chronusq_real.data", nbf);
+    const auto g_ref_complex = GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_6-31g_111_eri_chronusq_complex.data", nbf);
+
+    BOOST_CHECK(GQCP::SquareRankFourTensor<double>(g.real()).isApprox(g_ref_real, 1.0e-06));
+    BOOST_CHECK(GQCP::SquareRankFourTensor<double>(g.imag()).isApprox(g_ref_complex, 1.0e-06));
+}
