@@ -13,7 +13,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into
 # Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
 execute_process(
     COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
     OUTPUT_VARIABLE GIT_SHA1
     ERROR_QUIET
     OUTPUT_STRIP_TRAILING_WHITESPACE
