@@ -18,6 +18,7 @@
 #pragma once
 
 #include "Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/DoubleLondonHermiteCoulombIntegral.hpp"
 #include "Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp"
 #include "Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
@@ -148,6 +149,111 @@ public:
         }
 
         return 2 * std::pow(boost::math::constants::pi<double>(), 2.5) / (p * q * std::sqrt(p + q)) * integral;
+    }
+
+
+    /*
+     *  MARK: CartesianGTO integrals
+     */
+
+    /**
+     *  Calculate the Coulomb repulsion integral over four London Cartesian GTOs.
+     * 
+     *  @param left1            The first left London Cartesian GTO.
+     *  @param left2            The second left London Cartesian GTO.
+     *  @param right1           The first right London Cartesian GTO.
+     *  @param right2           The second right London Cartesian GTO.
+     * 
+     *  @return The Coulomb repulsion integral over the four given London Cartesian GTOs.
+     */
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, IntegralScalar> calculate(const LondonCartesianGTO& left1, const LondonCartesianGTO& left2, const LondonCartesianGTO& right1, const LondonCartesianGTO& right2) {
+
+        // Prepare some variables. Those with an extra underscore represent the 'primed' indices in the notes.
+        const auto i = static_cast<int>(left1.cartesianGTO().cartesianExponents().value(CartesianDirection::x));
+        const auto k = static_cast<int>(left1.cartesianGTO().cartesianExponents().value(CartesianDirection::y));
+        const auto m = static_cast<int>(left1.cartesianGTO().cartesianExponents().value(CartesianDirection::z));
+
+        const auto j = static_cast<int>(left2.cartesianGTO().cartesianExponents().value(CartesianDirection::x));
+        const auto l = static_cast<int>(left2.cartesianGTO().cartesianExponents().value(CartesianDirection::y));
+        const auto n = static_cast<int>(left2.cartesianGTO().cartesianExponents().value(CartesianDirection::z));
+
+        const auto i_ = static_cast<int>(right1.cartesianGTO().cartesianExponents().value(CartesianDirection::x));
+        const auto k_ = static_cast<int>(right1.cartesianGTO().cartesianExponents().value(CartesianDirection::y));
+        const auto m_ = static_cast<int>(right1.cartesianGTO().cartesianExponents().value(CartesianDirection::z));
+
+        const auto j_ = static_cast<int>(right2.cartesianGTO().cartesianExponents().value(CartesianDirection::x));
+        const auto l_ = static_cast<int>(right2.cartesianGTO().cartesianExponents().value(CartesianDirection::y));
+        const auto n_ = static_cast<int>(right2.cartesianGTO().cartesianExponents().value(CartesianDirection::z));
+
+        const auto a = left1.cartesianGTO().gaussianExponent();
+        const auto b = left2.cartesianGTO().gaussianExponent();
+        const auto c = right1.cartesianGTO().gaussianExponent();
+        const auto d = right2.cartesianGTO().gaussianExponent();
+
+        const auto K_x = left1.cartesianGTO().center()(CartesianDirection::x);
+        const auto K_y = left1.cartesianGTO().center()(CartesianDirection::y);
+        const auto K_z = left1.cartesianGTO().center()(CartesianDirection::z);
+
+        const auto L_x = left2.cartesianGTO().center()(CartesianDirection::x);
+        const auto L_y = left2.cartesianGTO().center()(CartesianDirection::y);
+        const auto L_z = left2.cartesianGTO().center()(CartesianDirection::z);
+
+        const auto M_x = right1.cartesianGTO().center()(CartesianDirection::x);
+        const auto M_y = right1.cartesianGTO().center()(CartesianDirection::y);
+        const auto M_z = right1.cartesianGTO().center()(CartesianDirection::z);
+
+        const auto N_x = right2.cartesianGTO().center()(CartesianDirection::x);
+        const auto N_y = right2.cartesianGTO().center()(CartesianDirection::y);
+        const auto N_z = right2.cartesianGTO().center()(CartesianDirection::z);
+
+
+        const Vector<double, 3> k1 = left2.kVector() - left1.kVector();    // The k-vector of the left London overlap distribution.
+        const Vector<double, 3> k2 = right2.kVector() - right1.kVector();  // The k-vector of the rightLondon overlap distribution.
+
+
+        // Prepare the McMurchie-Davidson coefficients.
+        const McMurchieDavidsonCoefficient E_x {K_x, a, L_x, b};
+        const McMurchieDavidsonCoefficient E_y {K_y, a, L_y, b};
+        const McMurchieDavidsonCoefficient E_z {K_z, a, L_z, b};
+
+        const McMurchieDavidsonCoefficient E_x_ {M_x, c, N_x, d};
+        const McMurchieDavidsonCoefficient E_y_ {M_y, c, N_y, d};
+        const McMurchieDavidsonCoefficient E_z_ {M_z, c, N_z, d};
+
+
+        // Prepare the double London Hermite Coulomb integral.
+        const double p = a + b;
+        const double q = c + d;
+
+        const Vector<double, 3> P {E_x.centerOfMass(), E_y.centerOfMass(), E_z.centerOfMass()};
+        const Vector<double, 3> Q {E_x_.centerOfMass(), E_y_.centerOfMass(), E_z_.centerOfMass()};
+
+        const DoubleLondonHermiteCoulombIntegral R {k1, p, P, k2, q, Q};
+
+
+        // Calculate the Coulomb repulsion integrals over the primitives.
+        complex integral {};
+        for (int t = 0; t <= i + j; t++) {
+            for (int u = 0; u <= k + l; u++) {
+                for (int v = 0; v <= m + n; v++) {
+                    for (int tau = 0; tau <= i_ + j_; tau++) {
+                        for (int mu = 0; mu <= k_ + l_; mu++) {
+                            for (int nu = 0; nu <= m_ + n_; nu++) {
+                                // Add the contribution to the integral. The prefactor will be applied at the end.
+                                integral += E_x(i, j, t) * E_y(k, l, u) * E_z(m, n, v) *
+                                            E_x_(i_, j_, tau) * E_y_(k_, l_, mu) * E_z_(m_, n_, nu) *
+                                            R(0, t, u, v, tau, mu, nu);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return 2 * std::pow(boost::math::constants::pi<double>(), 2.5) / (p * q * std::sqrt(p + q)) *
+               std::exp(-k1.squaredNorm() / (4 * p)) * std::exp(-k2.squaredNorm() / (4 * q)) *
+               integral;
     }
 };
 

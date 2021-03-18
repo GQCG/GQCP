@@ -27,6 +27,7 @@
 #include "Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
@@ -136,6 +137,24 @@ public:
     static auto InHouse(const AngularMomentumOperator& op) -> OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine<Shell>> {
 
         return OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine<Shell>>(PrimitiveAngularMomentumIntegralEngine<Shell>(op));
+    }
+
+
+    /**
+     *  Create an in-house one-electron integral engine that can calculate integrals over the electronic quadrupole operator.
+     * 
+     *  @tparam Shell           The type of shell that the integrals should be calculated over.
+     * 
+     *  @param op               The electronic quadrupole operator.
+     * 
+     *  @return A one-electron integral engine that can calculate integrals over the electronic quadrupole operator.
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells, not spherical d-shells.
+     */
+    template <typename Shell>
+    static auto InHouse(const ElectronicQuadrupoleOperator& op) -> OneElectronIntegralEngine<PrimitiveElectronicQuadrupoleIntegralEngine<Shell>> {
+
+        return OneElectronIntegralEngine<PrimitiveElectronicQuadrupoleIntegralEngine<Shell>>(PrimitiveElectronicQuadrupoleIntegralEngine<Shell>(op));
     }
 
 

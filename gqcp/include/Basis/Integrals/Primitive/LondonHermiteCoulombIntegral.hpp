@@ -19,23 +19,27 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An implementation of the (auxiliary) Hermite Coulomb integral R^n_{tuv}.
+ *  An implementation of the (auxiliary) London Hermite Coulomb integral R^{k1, n}_{tuv}.
  */
-class HermiteCoulombIntegral {
+class LondonHermiteCoulombIntegral {
 private:
     // The exponent of the Hermite Gaussian.
     double p;
 
+    // The k-vector of the London overlap distribution.
+    Vector<double, 3> k1;
+
     // The center of the Hermite Gaussian.
     Vector<double, 3> P;
 
-    // The nuclear center.
+    // The center of the Coulomb potential.
     Vector<double, 3> C;
 
 
@@ -45,26 +49,27 @@ public:
      */
 
     /**
+     *  @param k1           The k-vector of the London overlap distribution.
      *  @param p            The exponent of the Hermite Gaussian.
      *  @param P            The center of the Hermite Gaussian.
-     *  @param C            The nuclear center.
+     *  @param C            The center of the Coulomb potential.
      */
-    HermiteCoulombIntegral(const double p, const Vector<double, 3>& P, const Vector<double, 3>& C);
+    LondonHermiteCoulombIntegral(const Vector<double, 3>& k1, const double p, const Vector<double, 3>& P, const Vector<double, 3>& C);
 
 
     /*
-     *  MARK: Hermite Coulomb integral implementation
+     *  MARK: London Hermite Coulomb integral implementation
      */
 
     /**
-     *  Calculate the value for the (auxiliary) Hermite Coulomb integral R^n_{tuv}(p, P, C).
+     *  Calculate the value for the (auxiliary) London Hermite Coulomb integral R^{k1, n}_{tuv}(p, P, C).
      * 
-     *  @param n            The order of the Hermite Coulomb integral, i.e. the order of the Boys function.
+     *  @param n            The order of the London Hermite Coulomb integral, i.e. the order of the Boys function.
      *  @param t            The derivative degree in P_x.
      *  @param u            The derivative degree in P_y.
      *  @param v            The derivative degree in P_z.
      */
-    double operator()(const size_t n, const int t, const int u, const int v) const;
+    complex operator()(const size_t n, const int t, const int u, const int v) const;
 };
 
 

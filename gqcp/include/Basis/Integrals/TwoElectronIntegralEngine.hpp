@@ -32,15 +32,15 @@ namespace GQCP {
  */
 template <typename _PrimitiveIntegralEngine>
 class TwoElectronIntegralEngine:
-    public BaseTwoElectronIntegralEngine<GTOShell, _PrimitiveIntegralEngine::Components, typename _PrimitiveIntegralEngine::IntegralScalar> {
+    public BaseTwoElectronIntegralEngine<typename _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, typename _PrimitiveIntegralEngine::IntegralScalar> {
 public:
     // The type of integral engine that is used for calculating integrals over primitives.
     using PrimitiveIntegralEngine = _PrimitiveIntegralEngine;
 
-    // The type of shell that integrals can be calculated over.
-    using Shell = GTOShell;
+    // The type of shell that this engine can calculate integrals over.
+    using Shell = typename _PrimitiveIntegralEngine::Shell;
 
-    // The scalar representation of an integral.
+    // The scalar representation of one of the integrals.
     using IntegralScalar = typename _PrimitiveIntegralEngine::IntegralScalar;
 
     // The number of components the operator has.
