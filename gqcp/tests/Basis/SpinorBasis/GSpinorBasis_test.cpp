@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(Coulomb_quantization_zero_blocks) {
 
 
     // Quantize the Coulomb operator and check some ought-to-be-zero elements.
-    const auto g = spinor_basis.quantize(GQCP::Operator::Coulomb()).parameters();
+    const auto g = spinor_basis.quantize(GQCP::CoulombRepulsionOperator()).parameters();
 
     /**
      *  For this system, K_alpha = 2 and K_beta = 2, so we expect:

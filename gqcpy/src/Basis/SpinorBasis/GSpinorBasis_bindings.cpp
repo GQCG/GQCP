@@ -18,7 +18,6 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>

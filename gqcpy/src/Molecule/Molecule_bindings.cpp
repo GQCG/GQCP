@@ -101,7 +101,11 @@ void bindMolecule(py::module& module) {
 
         .def("numberOfElectronPairs",
              &Molecule::numberOfElectronPairs,
-             "Return the number of electron pairs in this molecule. For odd numbers of electrons, the number of electron pairs is equal to that of the (N-1)-even-electron system.");
+             "Return the number of electron pairs in this molecule. For odd numbers of electrons, the number of electron pairs is equal to that of the (N-1)-even-electron system.")
+
+        .def("nuclearFramework",
+             &Molecule::nuclearFramework,
+             "Return the underlying nuclear framework.");
 }
 
 

@@ -21,7 +21,6 @@
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
 
 
 /**

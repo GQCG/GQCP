@@ -21,7 +21,7 @@
 
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(restricted_selected_FCI) {
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 
@@ -87,6 +87,6 @@ BOOST_AUTO_TEST_CASE(unrestricted_selected_FCI) {
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }

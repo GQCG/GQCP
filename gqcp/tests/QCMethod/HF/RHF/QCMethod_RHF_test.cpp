@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
@@ -38,18 +39,18 @@ BOOST_AUTO_TEST_CASE(h2_sto3g_szabo_plain) {
     const double ref_total_energy = -1.1167;
 
     // Create the molecular Hamiltonian in an AO basis.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {h2, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, h2);  // In an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
     // Create a plain RHF SCF solver and solve the SCF equations.
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     plain_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(h2).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-04);
 }
 
@@ -78,17 +79,17 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_plain) {
     const GQCP::RTransformation<double> ref_C {ref_C_matrix};
 
     // Perform our own RHF calculation.
-    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, water);  // In an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     plain_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the calculated results with the reference.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(rhf_environment.orbital_energies.back(), 1.0e-06));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back().matrix(), 1.0e-05));
@@ -104,20 +105,20 @@ BOOST_AUTO_TEST_CASE(crawdad_h2o_sto3g_plain) {
 
 
     // Do our own RHF calculation.
-    const auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text.
-    BOOST_REQUIRE(std::abs(water.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
+    BOOST_REQUIRE(std::abs(molecule.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
 
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, water);  // In an AO basis.
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     plain_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 
@@ -130,14 +131,14 @@ BOOST_AUTO_TEST_CASE(crawdad_ch4_sto3g_plain) {
     const double ref_total_energy = -39.726850324347;
 
     // Do our own RHF calculation.
-    const auto methane = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies.
-    BOOST_CHECK(std::abs(methane.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
+    BOOST_CHECK(std::abs(molecule.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
 
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {methane, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, methane);  // In an AO basis.
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 
@@ -146,7 +147,7 @@ BOOST_AUTO_TEST_CASE(crawdad_ch4_sto3g_plain) {
 
 
     // Check the total energy.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(methane).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 
@@ -159,11 +160,11 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_plain) {
     const double ref_electronic_energy = -1.84444667247;
 
     // Perform our own RHF calculation.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {h2, "6-31G**"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, h2);  // In an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G**"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     plain_rhf_scf_solver.perform(rhf_environment);
 
@@ -196,17 +197,17 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_damped) {
     const GQCP::RTransformation<double> ref_C {ref_C_matrix};
 
     // Perform our own RHF calculation.
-    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, water);  // In an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto damped_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DensityDamped(0.95);
     damped_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the calculated results with the reference.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(rhf_environment.orbital_energies.back(), 1.0e-06));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back().matrix(), 1.0e-05));
@@ -221,18 +222,18 @@ BOOST_AUTO_TEST_CASE(h2_sto3g_szabo_diis) {
     const double ref_total_energy = -1.1167;
 
     // Create the molecular Hamiltonian in an AO basis.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {h2, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, h2);  // In an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
     // Create a DIIS RHF SCF solver and solve the SCF equations.
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
     diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(h2).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-04);
 }
 
@@ -261,17 +262,17 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_diis) {
     const GQCP::RTransformation<double> ref_C {ref_C_matrix};
 
     // perform our own RHF calculation.
-    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, water);  // In an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
     diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the calculated results with the reference.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(rhf_environment.orbital_energies.back(), 1.0e-06));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back().matrix(), 1.0e-05));
@@ -287,20 +288,20 @@ BOOST_AUTO_TEST_CASE(crawdad_h2o_sto3g_diis) {
 
 
     // Do our own RHF calculation.
-    const auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text.
-    BOOST_REQUIRE(std::abs(water.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
+    BOOST_REQUIRE(std::abs(molecule.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
 
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, water);  // In an AO basis.
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
     diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 
@@ -314,20 +315,20 @@ BOOST_AUTO_TEST_CASE(crawdad_ch4_sto3g_diis) {
 
 
     // Do our own RHF calculation.
-    const auto methane = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies.
-    BOOST_CHECK(std::abs(methane.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
+    BOOST_CHECK(std::abs(molecule.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
 
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {methane, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, methane);  // In an AO basis.
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
     diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy.
-    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(methane).value();
+    const double total_energy = rhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 
@@ -340,11 +341,11 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_diis) {
     const double ref_electronic_energy = -1.84444667247;
 
     // Perform our own RHF calculation.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {h2, "6-31G**"};
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, h2);  // In an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G**"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
     diis_rhf_scf_solver.perform(rhf_environment);
 

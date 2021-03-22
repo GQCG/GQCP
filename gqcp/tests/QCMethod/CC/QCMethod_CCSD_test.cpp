@@ -21,6 +21,7 @@
 
 #include "Basis/Transformations/transform.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CC/CCSD.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
@@ -55,7 +56,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
 
     // Check if the intermediate RHF results are correct. We can't continue if this isn't the case.
-    const auto rhf_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto rhf_energy = rhf_qc_structure.groundStateEnergy() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     const double ref_rhf_energy = -74.942079928192;
     BOOST_REQUIRE(std::abs(rhf_energy - ref_rhf_energy) < 1.0e-09);
 

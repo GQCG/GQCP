@@ -25,7 +25,13 @@
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/GTransformation.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 
@@ -318,10 +324,10 @@ public:
 
 
         // 1. Calculate the necessary overlap integrals over the scalar bases.
-        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().alpha());
-        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().alpha(), this->scalarBases().beta());
-        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().beta(), this->scalarBases().alpha());
-        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().beta());
+        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(OverlapOperator(), this->scalarBases().alpha());
+        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(OverlapOperator(), this->scalarBases().alpha(), this->scalarBases().beta());
+        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(OverlapOperator(), this->scalarBases().beta(), this->scalarBases().alpha());
+        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(OverlapOperator(), this->scalarBases().beta());
 
 
         // 2. Place the overlaps into the correct blocks.
@@ -361,10 +367,10 @@ public:
         //  3. Transform the operator using the current coefficient matrix.
 
         // 1. Calculate the Coulomb integrals in the underlying scalar bases.
-        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().alpha());
-        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().alpha(), this->scalarBases().beta());
-        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().beta(), this->scalarBases().alpha());
-        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().beta());
+        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(CoulombRepulsionOperator(), this->scalarBases().alpha());
+        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(CoulombRepulsionOperator(), this->scalarBases().alpha(), this->scalarBases().beta());
+        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(CoulombRepulsionOperator(), this->scalarBases().beta(), this->scalarBases().alpha());
+        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(CoulombRepulsionOperator(), this->scalarBases().beta());
 
 
         // 2. Place the calculated integrals as 'blocks' in the larger representation

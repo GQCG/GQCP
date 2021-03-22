@@ -24,6 +24,7 @@
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
@@ -70,7 +71,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
 
 
     // Check our result with the reference.
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 
@@ -150,7 +151,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
 
 
     // Check our result with the reference.
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 
@@ -191,7 +192,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
 
 
     // Check our result with the reference
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 
@@ -233,7 +234,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
 
 
     // Check our result with the reference.
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 
@@ -312,7 +313,7 @@ BOOST_AUTO_TEST_CASE(unrestricted_FCI_dense) {
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 
@@ -345,7 +346,7 @@ BOOST_AUTO_TEST_CASE(generalized_FCI_dense) {
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinUnresolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
-    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 

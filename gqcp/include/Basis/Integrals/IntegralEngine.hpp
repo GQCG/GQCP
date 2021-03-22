@@ -32,7 +32,6 @@
 #include "Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp"
 #include "Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp"
 #include "Basis/Integrals/TwoElectronIntegralEngine.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
 
 

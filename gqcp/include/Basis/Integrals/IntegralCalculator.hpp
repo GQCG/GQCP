@@ -27,7 +27,6 @@
 #include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
 
 #include <algorithm>

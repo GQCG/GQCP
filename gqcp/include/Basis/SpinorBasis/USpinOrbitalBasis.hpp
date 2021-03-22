@@ -24,7 +24,12 @@
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
@@ -322,7 +327,7 @@ public:
      * 
      *  @return The second-quantized overlap operator.
      */
-    ScalarUSQOneElectronOperator<ExpansionScalar> overlap() const { return this->quantize(Operator::Overlap()); }
+    ScalarUSQOneElectronOperator<ExpansionScalar> overlap() const { return this->quantize(OverlapOperator()); }
 
 
     /**

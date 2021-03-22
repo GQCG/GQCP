@@ -42,7 +42,7 @@
 //     // Prepare the molecular Hamiltonian in the canonical RHF basis.
 //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
 //     const auto N_P = molecule.numberOfElectrons() / 2;
-//     const auto internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();  // 0.713176780299327
+//     const auto internuclear_repulsion_energy = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();  // 0.713176780299327
 
 //     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
@@ -88,7 +88,7 @@
 //     // Prepare the molecular Hamiltonian in the canonical RHF basis.
 //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
 //     const auto N_P = molecule.numberOfElectrons() / 2;
-//     const auto internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();  // 0.713176780299327
+//     const auto internuclear_repulsion_energy = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();  // 0.713176780299327
 
 //     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();

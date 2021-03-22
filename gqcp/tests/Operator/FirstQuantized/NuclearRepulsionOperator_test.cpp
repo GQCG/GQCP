@@ -30,8 +30,8 @@ BOOST_AUTO_TEST_CASE(NuclearRepulsion_h2) {
     const double ref_internuclear_repulsion_energy = 0.714285658963;
 
     // Create the dihydrogen nuclear framework.
-    const auto molecule = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
-    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(molecule).value() - ref_internuclear_repulsion_energy) < 1.0e-07);
+    const auto nuclear_framework = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
+    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(nuclear_framework).value() - ref_internuclear_repulsion_energy) < 1.0e-07);
 }
 
 
@@ -43,6 +43,6 @@ BOOST_AUTO_TEST_CASE(NuclearRepulsion_h2o) {
     const double ref_internuclear_repulsion_energy = 8.00236693455;
 
     // Create the water nuclear framework.
-    const auto molecule = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
-    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(molecule).value() - ref_internuclear_repulsion_energy) < 1.0e-07);
+    const auto nuclear_framework = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
+    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(nuclear_framework).value() - ref_internuclear_repulsion_energy) < 1.0e-07);
 }

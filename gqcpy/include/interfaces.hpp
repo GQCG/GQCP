@@ -20,7 +20,10 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/OperatorTraits.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "gqcpy/include/utilities.hpp"
@@ -378,30 +381,30 @@ void bindSpinorBasisQuantizationInterface(Class& py_class) {
 
     py_class
         .def(
-            "quantizeCoulombRepulsionOperator",
-            [](const Type& spinor_basis) {
-                return spinor_basis.quantize(Operator::Coulomb());
+            "quantize",
+            [](const Type& spinor_basis, const CoulombRepulsionOperator& op) {
+                return spinor_basis.quantize(op);
             },
             "Return the Coulomb operator expressed in this spinor basis.")
 
         .def(
-            "quantizeKineticOperator",
-            [](const Type& spinor_basis) {
-                return spinor_basis.quantize(Operator::Kinetic());
+            "quantize",
+            [](const Type& spinor_basis, const KineticOperator& op) {
+                return spinor_basis.quantize(op);
             },
             "Return the kinetic energy operator expressed in this spinor basis.")
 
         .def(
-            "quantizeNuclearAttractionOperator",
-            [](const Type& spinor_basis, const Molecule& molecule) {
-                return spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+            "quantize",
+            [](const Type& spinor_basis, const NuclearAttractionOperator& op) {
+                return spinor_basis.quantize(op);
             },
             "Return the nuclear attraction operator expressed in this spinor basis.")
 
         .def(
-            "quantizeOverlapOperator",
-            [](const Type& spinor_basis) {
-                return spinor_basis.quantize(Operator::Overlap());
+            "quantize",
+            [](const Type& spinor_basis, const OverlapOperator& op) {
+                return spinor_basis.quantize(op);
             },
             "Return the overlap operator expressed in this spinor basis.");
 }

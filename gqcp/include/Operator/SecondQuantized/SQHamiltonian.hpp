@@ -207,11 +207,11 @@ public:
     static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinOrbitalBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto T = spinor_basis.quantize(Operator::Kinetic());
-        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto T = spinor_basis.quantize(KineticOperator());
+        const auto V = spinor_basis.quantize(NuclearAttractionOperator(molecule.nuclearFramework()));
         const auto H = T + V;
 
-        const auto g = spinor_basis.quantize(Operator::Coulomb());
+        const auto g = spinor_basis.quantize(CoulombRepulsionOperator());
 
         return Self {H, g};
     }
@@ -228,11 +228,11 @@ public:
     static enable_if_t<std::is_same<Z, UnrestrictedSpinOrbitalTag>::value, Self> Molecular(const USpinOrbitalBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto T = spinor_basis.quantize(Operator::Kinetic());
-        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto T = spinor_basis.quantize(KineticOperator());
+        const auto V = spinor_basis.quantize(NuclearAttractionOperator(molecule.nuclearFramework()));
         const auto H = T + V;
 
-        const auto g = spinor_basis.quantize(Operator::Coulomb());
+        const auto g = spinor_basis.quantize(CoulombRepulsionOperator());
 
         return Self {H, g};
     }
@@ -249,11 +249,11 @@ public:
     static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, Self> Molecular(const GSpinorBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto T = spinor_basis.quantize(Operator::Kinetic());
-        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto T = spinor_basis.quantize(KineticOperator());
+        const auto V = spinor_basis.quantize(NuclearAttractionOperator(molecule.nuclearFramework()));
         const auto H = T + V;
 
-        const auto g = spinor_basis.quantize(Operator::Coulomb());
+        const auto g = spinor_basis.quantize(CoulombRepulsionOperator());
 
         return Self {H, g};
     }

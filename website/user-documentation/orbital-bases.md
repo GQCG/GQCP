@@ -40,18 +40,18 @@ Below, we can find examples how the overlap, kinetic energy, potential energy an
 ```python
 S_op = spinor_basis.quantizeOverlapOperator()
 T_op = spinor_basis.quantizeKineticOperator()
-V_op = spinor_basis.quantizeNuclearAttractionOperator(molecule)  # the nuclear attraction operator is defined with respect to the molecule's nuclear framework
+V_op = spinor_basis.quantizeNuclearAttractionOperator(molecule.nuclearFramework())  # the nuclear attraction operator is defined with respect to the molecule's nuclear framework
 
 g_op = spinor_basis.quantizeCoulombRepulsionOperator()
 ```
 
 <!--C++-->
 ```C++
-const auto S = spinor_basis.quantize(GQCP::Operator::Overlap());
-const auto T = spinor_basis.quantize(GQCP::Operator::Kinetic());
-const auto V = spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule));  // the nuclear attraction operator is defined with respect to the molecule's nuclear framework
+const auto S = spinor_basis.quantize(GQCP::OverlapOperator());
+const auto T = spinor_basis.quantize(GQCP::KineticOperator());
+const auto V = spinor_basis.quantize(GQCP::NuclearAttractionOperator(molecule.nuclearFramework()));  // the nuclear attraction operator is defined with respect to the molecule's nuclear framework
 
-const auto g = spinor_basis.quantize(GQCP::Operator::Coulomb());
+const auto g = spinor_basis.quantize(GQCP::CoulombRepulsionOperator());
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 

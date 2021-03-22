@@ -20,6 +20,7 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -114,7 +115,7 @@ public:
     /**
      *  @return The overlap (one-electron) operator of this spinor basis.
      */
-    SQOverlapOperator overlap() const { return this->derived().quantize(Operator::Overlap()); }
+    SQOverlapOperator overlap() const { return this->derived().quantize(OverlapOperator()); }
 
     /**
      *  Check if this spinor basis is orthonormal within the given precision.

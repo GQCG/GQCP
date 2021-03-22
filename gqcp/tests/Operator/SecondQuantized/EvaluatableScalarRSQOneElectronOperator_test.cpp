@@ -21,7 +21,6 @@
 
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
-#include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
@@ -191,7 +190,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
 
 
     // Calculate the RHF density.
-    const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
+    const auto rho_op = spinor_basis.quantize(GQCP::ElectronicDensityOperator());
     const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
     const auto density = rho_op.calculateDensity(D);
 
@@ -225,7 +224,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 
 
     // Calculate the RHF density.
-    const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
+    const auto rho_op = spinor_basis.quantize(GQCP::ElectronicDensityOperator());
     const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
     const auto density = rho_op.calculateDensity(D);
 
