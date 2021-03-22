@@ -680,15 +680,15 @@ BOOST_AUTO_TEST_CASE(unoccupiedIndices) {
 BOOST_AUTO_TEST_CASE(GHF_overlap) {
 
     // Obtain the canonical RHF spin-orbitals.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    const auto N = h2.numberOfElectrons();
-    const auto N_P = h2.numberOfElectronPairs();
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const auto N = molecule.numberOfElectrons();
+    const auto N_P = molecule.numberOfElectronPairs();
 
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
     const auto S_restricted = r_spinor_basis.overlap().parameters();
 
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, h2);  // In an AO basis.
+    auto sq_hamiltonian = r_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S_restricted);
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();

@@ -33,8 +33,8 @@
 BOOST_AUTO_TEST_CASE(Lowdin_orthonormal) {
 
     // Construct the initial restricted spinor basis (corresponding to the underlying GTOs)
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     BOOST_REQUIRE_EQUAL(spinor_basis.numberOfSpatialOrbitals(), 2);
 
 
@@ -50,8 +50,8 @@ BOOST_AUTO_TEST_CASE(Lowdin_orthonormal) {
 BOOST_AUTO_TEST_CASE(lowdinOrthonormalization) {
 
     // Construct the initial restricted spinor basis (corresponding to the underlying GTOs) and calculate the corresponding Löwdin orthonormalization matrix
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto T_lowdin_1 = spinor_basis.lowdinOrthonormalization();
 
 

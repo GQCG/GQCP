@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(evaluateOperatorDiagonal) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Set up the specific and generic ONV bases.
     const GQCP::SeniorityZeroONVBasis sz_onv_basis {K, N_P};

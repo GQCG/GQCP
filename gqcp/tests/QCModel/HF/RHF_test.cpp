@@ -19,10 +19,12 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 #include "QCModel/HF/RHF.hpp"
+
 
 /**
  *  Check for valid and invalid arguments for GQCP::QCModel::RHF::calculateOrthonormalBasis1DM().
@@ -107,7 +109,7 @@ BOOST_AUTO_TEST_CASE(RHF_DMs) {
     // Perform an RHF calculation.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spin_orbital_basis.overlap());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();

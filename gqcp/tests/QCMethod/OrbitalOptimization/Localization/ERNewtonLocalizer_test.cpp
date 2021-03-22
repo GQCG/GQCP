@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(localization_index_raises) {
 
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the Löwdin basis
+    auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in the Löwdin basis
 
 
     // Do an Edmiston-Ruedenberg localization and keep track of the value of the ER-index before and after.

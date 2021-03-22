@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(evaluate_RSQOneElectronOperator_dense) {
     const auto molecule = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Set up the full spin-resolved ONV basis and its 'selected' equivalent.
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(evaluate_RSQTwoElectronOperator_dense) {
     const auto molecule = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Set up the full spin-resolved ONV basis and its 'selected' equivalent.
@@ -122,7 +122,7 @@ BOOST_AUTO_TEST_CASE(evaluate_RSQHamiltonian_dense) {
     const auto molecule = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Set up the full spin-resolved ONV basis and its 'selected' equivalent.
     const auto K = hamiltonian.numberOfOrbitals();
@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE(restricted_one_electron_operator_diagonal) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
     const auto K = hamiltonian.numberOfOrbitals();
 
     // Set up the full spin-unresolved ONV basis.
@@ -175,7 +175,7 @@ BOOST_AUTO_TEST_CASE(restricted_hamiltonian_diagonal) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
     const auto K = hamiltonian.numberOfOrbitals();
 
     // Set up the full spin-unresolved ONV basis.
@@ -200,7 +200,7 @@ BOOST_AUTO_TEST_CASE(restricted_one_electron_operator_dense_vs_matvec) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Set up the full spin-resolved ONV basis.
     const auto K = hamiltonian.numberOfOrbitals();
@@ -229,7 +229,7 @@ BOOST_AUTO_TEST_CASE(restricted_Hamiltonian_dense_vs_matvec) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Set up the full spin-resolved ONV basis.
     const auto K = hamiltonian.numberOfOrbitals();
@@ -258,7 +258,7 @@ BOOST_AUTO_TEST_CASE(evaluate_USQHamiltonian_dense) {
     const auto molecule = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    auto hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
     const auto K = hamiltonian.numberOfOrbitals();
     hamiltonian.rotate(GQCP::UTransformation<double>::RandomUnitary(K));
 
@@ -287,7 +287,7 @@ BOOST_AUTO_TEST_CASE(unrestricted_hamiltonian_diagonal) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::USpinorBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    const auto hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
     const auto K = hamiltonian.numberOfOrbitals();
 
     // Set up the full spin-unresolved ONV basis.
@@ -312,7 +312,7 @@ BOOST_AUTO_TEST_CASE(unrestricted_dense_vs_matvec) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     spin_orbital_basis.lowdinOrthonormalize();
-    auto hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
     const auto K = hamiltonian.numberOfOrbitals();
     hamiltonian.rotate(GQCP::UTransformation<double>::RandomUnitary(K));
 

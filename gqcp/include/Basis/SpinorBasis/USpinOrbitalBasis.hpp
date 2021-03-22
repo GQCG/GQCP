@@ -27,9 +27,11 @@
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
+#include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
@@ -371,6 +373,24 @@ public:
         g.transform(this->expansion());  // Now, g is expressed in the current spin-orbital basis.
 
         return g;
+    }
+
+
+    /**
+     *  Quantize the molecular Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular Hamiltonian.
+     * 
+     *  @return The second-quantized molecular Hamiltonian.
+     */
+    USQHamiltonian<ExpansionScalar> quantize(const FQMolecularHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return USQHamiltonian<ExpansionScalar> {T + V, g};
     }
 
 

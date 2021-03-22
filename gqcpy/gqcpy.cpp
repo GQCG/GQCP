@@ -126,8 +126,11 @@ void bindSpinUnresolvedONVBasis(py::module& module);
 // Operator - FirstQuantized
 void bindCoulombRepulsionOperator(py::module& module);
 void bindElectronicDipoleOperator(py::module& module);
+void bindFQMolecularHamiltonian(py::module& module);
 void bindKineticOperator(py::module& module);
 void bindNuclearAttractionOperator(py::module& module);
+void bindNuclearDipoleOperator(py::module& module);
+void bindNuclearRepulsionOperator(py::module& module);
 void bindOverlapOperator(py::module& module);
 
 
@@ -348,7 +351,10 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindCoulombRepulsionOperator(module);
     gqcpy::bindElectronicDipoleOperator(module);
     gqcpy::bindKineticOperator(module);
+    gqcpy::bindFQMolecularHamiltonian(module);
     gqcpy::bindNuclearAttractionOperator(module);
+    gqcpy::bindNuclearDipoleOperator(module);
+    gqcpy::bindNuclearRepulsionOperator(module);
     gqcpy::bindOverlapOperator(module);
 
 

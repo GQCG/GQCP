@@ -48,7 +48,7 @@ GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"
 const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 spinor_basis.lowdinOrthonormalize();
-auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 // Do a dense FCI calculation.
 const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};

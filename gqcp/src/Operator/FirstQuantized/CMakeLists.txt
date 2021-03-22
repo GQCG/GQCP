@@ -5,6 +5,7 @@ target_sources(gqcp
         BaseReferenceDependentOperator.cpp
         ElectronicDipoleOperator.cpp
         ElectronicSpinOperator.cpp
+        FQMolecularHamiltonian.cpp
         LinearMomentumOperator.cpp
         NuclearDipoleOperator.cpp
         NuclearRepulsionOperator.cpp

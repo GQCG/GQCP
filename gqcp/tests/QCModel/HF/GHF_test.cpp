@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "QCMethod/HF/GHF/GHF.hpp"
 #include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
 #include "QCModel/HF/GHF.hpp"
@@ -32,7 +33,7 @@ BOOST_AUTO_TEST_CASE(GHF_DMs) {
     // Perform a GHF calculation.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    auto hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
+    auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
     auto ghf_environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spinor_basis.overlap().parameters());
     auto plain_ghf_scf_solver = GQCP::GHFSCFSolver<double>::Plain();

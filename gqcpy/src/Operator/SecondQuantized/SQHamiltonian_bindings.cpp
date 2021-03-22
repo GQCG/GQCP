@@ -36,12 +36,11 @@ using namespace GQCP;
  *  Bind a specific templated second-quantized Hamiltonian.
  * 
  *  @tparam Hamiltonian         The type of the second-quantized Hamiltonian.
- *  @tparam SpinorBasis         The type of spinor basis that is related to the Hamiltonian. TODO: This can be rewritten after #423.
  *  
  *  @param name                 The final class name of the second-quantized Hamiltonian in the Python bindings.
  *  @param description          The description of the Python class.
  */
-template <typename Hamiltonian, typename SpinorBasis>
+template <typename Hamiltonian>
 py::class_<Hamiltonian> bindSQHamiltonian(py::module& module, const std::string& name, const std::string& description) {
 
     // Alias some types related to the given Hamiltonian.
@@ -56,20 +55,6 @@ py::class_<Hamiltonian> bindSQHamiltonian(py::module& module, const std::string&
 
     // Expose the actual Python bindings.
     py_Hamiltonian
-
-        /*
-         *  MARK: Named constructors
-         */
-
-        .def_static(
-            "Molecular",
-            [](const SpinorBasis& spinor_basis, const Molecule& molecule) {
-                return Hamiltonian::Molecular(spinor_basis, molecule);
-            },
-            py::arg("spinor_basis"),
-            py::arg("molecule"),
-            "Construct the molecular Hamiltonian in a spinor basis.")
-
 
         /*
          *  MARK: Access
@@ -133,7 +118,7 @@ py::class_<Hamiltonian> bindSQHamiltonian(py::module& module, const std::string&
  */
 void bindSQHamiltonians(py::module& module) {
 
-    auto py_RSQHamiltonian_d = bindSQHamiltonian<RSQHamiltonian<double>, RSpinOrbitalBasis<double, GTOShell>>(module, "RSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
+    auto py_RSQHamiltonian_d = bindSQHamiltonian<RSQHamiltonian<double>>(module, "RSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
     py_RSQHamiltonian_d
         .def_static(
             "FromHubbard",
@@ -142,9 +127,9 @@ void bindSQHamiltonians(py::module& module) {
             });
 
 
-    bindSQHamiltonian<RSQHamiltonian<complex>, RSpinOrbitalBasis<complex, GTOShell>>(module, "RSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
+    bindSQHamiltonian<RSQHamiltonian<complex>>(module, "RSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a restricted spin-orbital basis.");
 
-    auto py_USQHamiltonian_d = bindSQHamiltonian<USQHamiltonian<double>, USpinOrbitalBasis<double, GTOShell>>(module, "USQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
+    auto py_USQHamiltonian_d = bindSQHamiltonian<USQHamiltonian<double>>(module, "USQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
     py_USQHamiltonian_d
         .def_static(
             "FromRestricted",
@@ -152,10 +137,10 @@ void bindSQHamiltonians(py::module& module) {
                 return USQHamiltonian<double>::FromRestricted(r_hamiltonian);
             });
 
-    bindSQHamiltonian<USQHamiltonian<complex>, USpinOrbitalBasis<complex, GTOShell>>(module, "USQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
+    bindSQHamiltonian<USQHamiltonian<complex>>(module, "USQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in an unrestricted spin-orbital basis.");
 
-    bindSQHamiltonian<GSQHamiltonian<double>, GSpinorBasis<double, GTOShell>>(module, "GSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a generalized spinor basis.");
-    bindSQHamiltonian<GSQHamiltonian<complex>, GSpinorBasis<complex, GTOShell>>(module, "GSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a generalized spinor basis.");
+    bindSQHamiltonian<GSQHamiltonian<double>>(module, "GSQHamiltonian_d", "A (real) second-quantized Hamiltonian expressed in a generalized spinor basis.");
+    bindSQHamiltonian<GSQHamiltonian<complex>>(module, "GSQHamiltonian_cd", "A (complex) second-quantized Hamiltonian expressed in a generalized spinor basis.");
 }
 
 

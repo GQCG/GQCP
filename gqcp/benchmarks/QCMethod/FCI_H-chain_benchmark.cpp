@@ -42,7 +42,7 @@ static void fci_dense_molecule(benchmark::State& state) {
     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
-    auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // Represented in AO basis.
+    auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // Represented in AO basis.
 
     // Solve the SCF equations using a plain solver to find the canonical spinors.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, hamiltonian, spinor_basis.overlap().parameters());
@@ -88,7 +88,7 @@ static void fci_davidson_molecule(benchmark::State& state) {
     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
-    auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // Represented in AO basis.
+    auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // Represented in AO basis.
 
 
     // Solve the SCF equations using a plain solver to find the canonical spinors.

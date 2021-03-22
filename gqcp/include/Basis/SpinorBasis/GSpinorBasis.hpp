@@ -29,11 +29,13 @@
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
+#include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -412,6 +414,24 @@ public:
         ResultOperator g_op {g_par};  // 'op' for 'operator'
         g_op.transform(this->expansion());
         return g_op;
+    }
+
+
+    /**
+     *  Quantize the molecular Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular Hamiltonian.
+     * 
+     *  @return The second-quantized molecular Hamiltonian.
+     */
+    GSQHamiltonian<ExpansionScalar> quantize(const FQMolecularHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return GSQHamiltonian<ExpansionScalar> {T + V, g};
     }
 
 

@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap();
 
-    const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Perform a GHF SCF calculation
     auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap();
 
-    const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Create a solver and associated environment and let the QCMethod do its job.
     GQCP::SquareMatrix<double> C_initial_matrix {6};
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
     const auto S = g_spinor_basis.overlap();
 
     // Create a Hamiltonian in the AO basis.
-    const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Perform a GHF SCF calculation
     auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);

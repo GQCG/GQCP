@@ -18,10 +18,7 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
-#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
@@ -190,72 +187,6 @@ public:
         const auto g_u = ScalarUSQTwoElectronOperator<Scalar>::FromRestricted(r_hamiltonian.twoElectron());
 
         return Self {h_u, g_u};
-    }
-
-
-    // FIXME: The following APIs should be moved to SpinorBasis.
-
-    /**
-     *  Quantize the molecular Hamiltonian in a restricted spin-orbital basis.
-     * 
-     *  @param spinor_basis         The spinor basis in which the Hamiltonian should be expressed.
-     *  @param molecule             The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.
-     *
-     *  @return A second-quantized molecular Hamiltonian.
-     */
-    template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinOrbitalBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
-
-        // Calculate the integrals for the molecular Hamiltonian
-        const auto T = spinor_basis.quantize(KineticOperator());
-        const auto V = spinor_basis.quantize(NuclearAttractionOperator(molecule.nuclearFramework()));
-        const auto H = T + V;
-
-        const auto g = spinor_basis.quantize(CoulombRepulsionOperator());
-
-        return Self {H, g};
-    }
-
-    /**
-     *  Quantize the molecular Hamiltonian in an unrestricted spin-orbital basis.
-     * 
-     *  @param spinor_basis         The spinor basis in which the Hamiltonian should be expressed.
-     *  @param molecule             The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.
-     *
-     *  @return A second-quantized molecular Hamiltonian.
-     */
-    template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, UnrestrictedSpinOrbitalTag>::value, Self> Molecular(const USpinOrbitalBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
-
-        // Calculate the integrals for the molecular Hamiltonian
-        const auto T = spinor_basis.quantize(KineticOperator());
-        const auto V = spinor_basis.quantize(NuclearAttractionOperator(molecule.nuclearFramework()));
-        const auto H = T + V;
-
-        const auto g = spinor_basis.quantize(CoulombRepulsionOperator());
-
-        return Self {H, g};
-    }
-
-    /**
-     *  Quantize the molecular Hamiltonian in a general spinor basis.
-     * 
-     *  @param spinor_basis         The spinor basis in which the Hamiltonian should be expressed.
-     *  @param molecule             The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.
-     *
-     *  @return A second-quantized molecular Hamiltonian.
-     */
-    template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, Self> Molecular(const GSpinorBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
-
-        // Calculate the integrals for the molecular Hamiltonian
-        const auto T = spinor_basis.quantize(KineticOperator());
-        const auto V = spinor_basis.quantize(NuclearAttractionOperator(molecule.nuclearFramework()));
-        const auto H = T + V;
-
-        const auto g = spinor_basis.quantize(CoulombRepulsionOperator());
-
-        return Self {H, g};
     }
 
 

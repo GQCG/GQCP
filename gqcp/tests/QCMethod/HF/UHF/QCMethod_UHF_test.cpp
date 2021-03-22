@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
@@ -58,7 +59,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     const auto N_beta = molecule.numberOfElectronPairs();
 
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
     auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());
     auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
@@ -106,7 +107,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     const auto N_beta = molecule.numberOfElectronPairs();
 
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
     auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap());
     auto diis_uhf_scf_solver = GQCP::UHFSCFSolver<double>::DIIS();
