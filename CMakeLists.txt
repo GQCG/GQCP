@@ -10,6 +10,15 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(GQCP VERSION 0.0.1 LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
+# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
+execute_process(
+    COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+    OUTPUT_VARIABLE GIT_SHA1
+    ERROR_QUIET
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 # Add the versioning as a separate library. Whenever the version changes, only the version.cpp source file will be recompiled 
 # and only gqcp needs to be relinked. This way, gqcp does not need to be recompiled if the version should be modified.
 # Add configuration file containing version of current library.
