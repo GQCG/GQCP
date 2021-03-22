@@ -34,7 +34,7 @@ Before we go over to the calculation of integrals, an [orbital basis](#orbital_b
 <!--Python-->
 ```python
 spinor_basis = gqcpy.RSpinOrbitalBasis(molecule, "STO-3G")
-S = spinor_basis.quantizeOverlapOperator().parameters()
+S = spinor_basis.quantize(gqcpy.OverlapOperator()).parameters()
 ```
 
 <!--C++-->
@@ -164,7 +164,7 @@ Before we go over to the calculation of integrals, an [orbital basis](#orbital_b
 <!--Python-->
 ```python
 spinor_basis = gqcpy.RSpinOrbitalBasis(molecule, "STO-3G")
-S = spinor_basis.quantizeOverlapOperator().parameters()
+S = spinor_basis.quantize(gqcpy.OverlapOperator()).parameters()
 ```
 
 <!--C++-->

@@ -38,7 +38,7 @@ Below, we can find examples how the overlap, kinetic energy, potential energy an
 
 <!--Python-->
 ```python
-S_op = spinor_basis.quantizeOverlapOperator()
+S_op = spinor_basis.quantize(gqcpy.OverlapOperator())
 T_op = spinor_basis.quantizeKineticOperator()
 V_op = spinor_basis.quantizeNuclearAttractionOperator(molecule.nuclearFramework())  # the nuclear attraction operator is defined with respect to the molecule's nuclear framework
 

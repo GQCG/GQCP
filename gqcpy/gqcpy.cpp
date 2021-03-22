@@ -110,6 +110,7 @@ void bindNonLinearEquationSolver(py::module& module);
 
 // Molecule
 void bindMolecule(py::module& module);
+void bindNuclearFramework(py::module& module);
 void bindNucleus(py::module& module);
 
 
@@ -123,7 +124,11 @@ void bindSpinUnresolvedONVBasis(py::module& module);
 
 
 // Operator - FirstQuantized
-void bindOperator(py::module& module);
+void bindCoulombRepulsionOperator(py::module& module);
+void bindElectronicDipoleOperator(py::module& module);
+void bindKineticOperator(py::module& module);
+void bindNuclearAttractionOperator(py::module& module);
+void bindOverlapOperator(py::module& module);
 
 
 // Operator - SecondQuantized - ModelHamiltonian
@@ -326,6 +331,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Molecule
     gqcpy::bindMolecule(module);
+    gqcpy::bindNuclearFramework(module);
     gqcpy::bindNucleus(module);
 
 
@@ -339,7 +345,11 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Operator - FirstQuantized
-    gqcpy::bindOperator(module);
+    gqcpy::bindCoulombRepulsionOperator(module);
+    gqcpy::bindElectronicDipoleOperator(module);
+    gqcpy::bindKineticOperator(module);
+    gqcpy::bindNuclearAttractionOperator(module);
+    gqcpy::bindOverlapOperator(module);
 
 
     // Operator - SecondQuantized - ModelHamiltonian
