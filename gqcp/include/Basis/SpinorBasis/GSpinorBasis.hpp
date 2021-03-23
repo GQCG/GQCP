@@ -28,6 +28,7 @@
 #include "Basis/Transformations/GTransformation.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
@@ -560,6 +561,48 @@ public:
         const auto L = this->quantize(op.angularMomentum());
         const auto& B = op.magneticField().strength();
         return 0.5 * L.dot(B);
+    }
+
+
+    /**
+     *  Quantize the diamagnetic operator in this general spinor basis.
+     * 
+     *  @param fq_one_op        The (first-quantized) diamagnetic operator.
+     * 
+     *  @return The diamagnetic operator expressed in this spinor basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const DiamagneticOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<DiamagneticOperator::Scalar, ExpansionScalar>, DiamagneticOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<DiamagneticOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, DiamagneticOperator::Vectorizer>;
+
+
+        // Return the diamagnetic operator as a contraction beween the magnetic field and the electronic quadrupole operator.
+        const auto Q = this->quantize(op.electronicQuadrupole()).allParameters();
+        const auto& B = op.magneticField().strength();
+
+        // Prepare some variables.
+        const auto& B_x = B(CartesianDirection::x);
+        const auto& B_y = B(CartesianDirection::y);
+        const auto& B_z = B(CartesianDirection::z);
+
+        const auto& Q_xx = Q[DyadicCartesianDirection::xx];
+        const auto& Q_xy = Q[DyadicCartesianDirection::xy];
+        const auto& Q_xz = Q[DyadicCartesianDirection::xz];
+        const auto& Q_yy = Q[DyadicCartesianDirection::yy];
+        const auto& Q_yz = Q[DyadicCartesianDirection::yz];
+        const auto& Q_zz = Q[DyadicCartesianDirection::zz];
+
+
+        SquareMatrix<ResultScalar> D_par = 0.125 * ((std::pow(B_y, 2) + std::pow(B_z, 2)) * Q_xx +
+                                                    (std::pow(B_x, 2) + std::pow(B_z, 2)) * Q_yy +
+                                                    (std::pow(B_x, 2) + std::pow(B_y, 2)) * Q_zz -
+                                                    2 * B_x * B_y * Q_xy -
+                                                    2 * B_x * B_z * Q_xz -
+                                                    2 * B_y * B_z * Q_yz);
+
+        return ResultOperator {D_par};
     }
 
 

@@ -140,3 +140,34 @@ BOOST_AUTO_TEST_CASE(Coulomb_quantization_zero_blocks) {
     BOOST_CHECK(std::abs(g(0, 2, 0, 0)) < 1.0e-12);
     BOOST_CHECK(std::abs(g(2, 3, 1, 3)) < 1.0e-12);
 }
+
+
+/**
+ *  Check if the magnetic kinetic operator, i.e. (T + P + D) is gauge origin invariant.
+ */
+BOOST_AUTO_TEST_CASE(magnetic_kinetic_gauge_invariance) {
+
+    // Prepare two London spinor bases, one for each gauge origin.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const GQCP::HomogeneousMagneticField B1 {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis1 {molecule, "STO-3G", B1};
+
+    const GQCP::HomogeneousMagneticField B2 {{0.0, 0.0, 1.0}, {-5.0, 3.0, 0.23}};  // Gauge origin at a random point.
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis2 {molecule, "STO-3G", B2};
+
+
+    // Prepare the kinetic, paramagnetic and diamagnetic operators.
+    const GQCP::KineticOperator T_op;
+    const GQCP::ParamagneticOperator P_op1 {B1, B1.gaugeOrigin()};
+    const GQCP::DiamagneticOperator D_op1 {B1, B1.gaugeOrigin()};
+
+    const GQCP::ParamagneticOperator P_op2 {B2, B2.gaugeOrigin()};
+    const GQCP::DiamagneticOperator D_op2 {B2, B2.gaugeOrigin()};
+
+
+    // Calculate the second-quantized representations of (T + P + D) and check if they don't depend on the value of the gauge origin.
+    const auto K1 = spinor_basis1.quantize(T_op) + spinor_basis1.quantize(P_op1) + spinor_basis1.quantize(D_op1);
+    const auto K2 = spinor_basis2.quantize(T_op) + spinor_basis2.quantize(P_op2) + spinor_basis2.quantize(D_op2);
+
+    BOOST_CHECK(K1.parameters().isApprox(K2.parameters(), 1.0e-12));
+}

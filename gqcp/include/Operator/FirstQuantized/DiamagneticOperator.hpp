@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/BaseFQOperator.hpp"
 #include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp"
 #include "Physical/HomogeneousMagneticField.hpp"
 
 
@@ -28,10 +28,10 @@ namespace GQCP {
 
 
 /**
- *  The paramagnetic operator, i.e. the part of the scalar kinetic energy operator that is linear in the magnetic field.
+ *  The diagmagnetic operator, i.e. the part of the scalar kinetic energy operator that is quadratric in the magnetic field.
  */
-class ParamagneticOperator:
-    public BaseScalarFQOneElectronOperator<complex>,
+class DiamagneticOperator:
+    public BaseScalarFQOneElectronOperator<double>,
     public BaseReferenceDependentOperator {
 private:
     // The external, homogeneous magnetic field.
@@ -44,12 +44,12 @@ public:
      */
 
     /**
-     *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field and a reference point.
+     *  Construct a `DiamagneticOperator` from its underlying homogeneous magnetic field and a reference point.
      * 
      *  @param B                    The external, homogeneous magnetic field.
-     *  @param reference            The reference point about which the paramagnetic operator is calculated.
+     *  @param reference            The reference point about which the diamagnetic operator is calculated.
      */
-    ParamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference = Vector<double, 3>::Zero());
+    DiamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference = Vector<double, 3>::Zero());
 
 
     /*
@@ -67,9 +67,9 @@ public:
      */
 
     /**
-     *  @return The angular momentum operator that is related to this paramagnetic operator.
+     *  @return The electronic quadrupole operator that is related to this diamagnetic operator.
      */
-    AngularMomentumOperator angularMomentum() const { return AngularMomentumOperator(this->reference()); }
+    ElectronicQuadrupoleOperator electronicQuadrupole() const { return ElectronicQuadrupoleOperator(this->reference()); }
 };
 
 

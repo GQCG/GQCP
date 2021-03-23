@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
+#include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 
 
 namespace GQCP {
@@ -25,14 +25,13 @@ namespace GQCP {
  *  MARK: Constructors
  */
 
-
 /**
- *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field and a reference point.
+ *  Construct a `DiamagneticOperator` from its underlying homogeneous magnetic field and a reference point.
  * 
  *  @param B                    The external, homogeneous magnetic field.
- *  @param reference            The reference point about which the paramagnetic operator is calculated.
+ *  @param reference            The reference point about which the diamagnetic operator is calculated.
  */
-ParamagneticOperator::ParamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference) :
+DiamagneticOperator::DiamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference) :
     B {B},
     BaseReferenceDependentOperator(reference) {}
 
