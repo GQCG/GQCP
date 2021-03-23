@@ -20,6 +20,7 @@
 
 #include "Basis/MullikenPartitioning/GMullikenPartitioning.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
@@ -169,6 +170,20 @@ public:
 
 
     /**
+     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).
+     *
+     *  @param molecule                 The molecule containing the nuclei on which the shells should be centered.
+     *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
+     *
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
+     */
+    template <typename Z = Shell>
+    GSpinorBasis(const Molecule& molecule, const std::string& basisset_name, const HomogeneousMagneticField& B,
+                 typename std::enable_if<std::is_same<Z, LondonGTOShell>::value>::type* = 0) :
+        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name, B)) {}
+
+
+    /**
      *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).
      *
      *  @param nuclear_framework            The nuclear framework containing the nuclei on which the shells should be centered.
@@ -266,11 +281,11 @@ public:
      */
 
     /**
-     *  Quantize a one-electron operator in this general spinor basis.
+     *  Quantize a scalar spin-independent one-electron operator in this general spinor basis. Spin-independent one-electron operators are those whose two-component matrix operator form contains the same scalar operator in the top-left and bottom-right corner.
      * 
-     *  @param fq_one_op        a spin-independent first-quantized operator (i.e. whose two-component matrix operator form contains the same scalar operator in the upper-left and lower-right corners)
+     *  @param fq_one_op            A spin-independent first-quantized operator.
      * 
-     *  @return the second-quantized operator corresponding to the given spin-independent first-quantized operator
+     *  @return The second-quantized representation of the given operator.
      */
     template <typename FQOneElectronOperator, typename Z = Shell>
     auto quantize(const FQOneElectronOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, GSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
@@ -407,6 +422,182 @@ public:
                             g_par(mu_, nu_, rho_, lambda_) = g_bbaa(mu, nu, rho, lambda);
                         } else if ((mu_ >= K_alpha) && (nu_ >= K_alpha) && (rho_ >= K_alpha) && (lambda_ >= K_alpha)) {
                             g_par(mu_, nu_, rho_, lambda_) = g_bbbb(mu, nu, rho, lambda);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        // 3. Transform the operator using the current coefficient matrix.
+        ResultOperator g_op {g_par};  // 'op' for 'operator'
+        g_op.transform(this->expansion());
+        return g_op;
+    }
+
+
+    /*
+     *  MARK: Quantization of first-quantized operators (LondonGTOShell)
+     */
+
+    /**
+     *  Quantize a spin-independent one-electron operator in this general spinor basis. Spin-independent one-electron operators are those whose two-component matrix operator form contains the same scalar operator in the top-left and bottom-right corner.
+     * 
+     *  @param fq_one_op            A spin-independent first-quantized operator.
+     * 
+     *  @return The second-quantized representation of the given operator.
+     */
+    template <typename FQOneElectronOperator, typename Z = Shell>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
+        using Vectorizer = typename FQOneElectronOperator::Vectorizer;
+
+        const auto N = FQOneElectronOperator::NumberOfComponents;
+        const auto& vectorizer = FQOneElectronOperator::vectorizer;
+
+
+        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
+        //  1. Express the operator in the underlying scalar bases; and
+        //  2. Afterwards transform them using the current coefficient matrix.
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
+        const auto M = this->numberOfSpinors();
+
+
+        // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
+        auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(fq_one_op);
+        const auto F_aa = GQCP::IntegralCalculator::calculate(engine, this->scalarBases().alpha().shellSet(), this->scalarBases().alpha().shellSet());
+        const auto F_bb = GQCP::IntegralCalculator::calculate(engine, this->scalarBases().beta().shellSet(), this->scalarBases().beta().shellSet());
+
+        // For each of the components of the operator, place the scalar basis representations into the spinor basis representation.
+        std::array<SquareMatrix<ResultScalar>, N> fs;
+        for (size_t i = 0; i < N; i++) {
+            SquareMatrix<ResultScalar> f = SquareMatrix<ResultScalar>::Zero(M);
+
+            f.topLeftCorner(K_alpha, K_alpha) = F_aa[i];
+            f.bottomRightCorner(K_beta, K_beta) = F_bb[i];
+
+            fs[i] = f;
+        }
+
+
+        // 2. Transform using the current coefficient matrix.
+        StorageArray<SquareMatrix<ResultScalar>, Vectorizer> array {fs, vectorizer};
+        ResultOperator op {array};  // 'op' for 'operator'.
+        op.transform(this->expansion());
+        return op;
+    }
+
+
+    /**
+     *  Quantize the electronic spin operator in this general spinor basis.
+     * 
+     *  @param fq_one_op        The (first-quantized) electronic spin operator.
+     * 
+     *  @return The electronic spin operator expressed in this spinor basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Vectorizer>;
+
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
+        const auto M = this->numberOfSpinors();
+
+        // The strategy to quantize the spin operator is as follows.
+        //  1. First, calculate the necessary overlap integrals over the scalar bases.
+        //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
+        //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
+
+        SquareMatrix<ResultScalar> S_x = SquareMatrix<ResultScalar>::Zero(M);
+        SquareMatrix<ResultScalar> S_y = SquareMatrix<ResultScalar>::Zero(M);
+        SquareMatrix<ResultScalar> S_z = SquareMatrix<ResultScalar>::Zero(M);
+
+
+        // 1. Calculate the necessary overlap integrals over the scalar bases.
+        auto overlap_engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(OverlapOperator());
+        const auto S_aa = GQCP::IntegralCalculator::calculate(overlap_engine, this->scalarBases().alpha().shellSet(), this->scalarBases().alpha().shellSet())[0];
+        const auto S_ab = GQCP::IntegralCalculator::calculate(overlap_engine, this->scalarBases().alpha().shellSet(), this->scalarBases().beta().shellSet())[0];
+        const auto S_ba = GQCP::IntegralCalculator::calculate(overlap_engine, this->scalarBases().beta().shellSet(), this->scalarBases().alpha().shellSet())[0];
+        const auto S_bb = GQCP::IntegralCalculator::calculate(overlap_engine, this->scalarBases().beta().shellSet(), this->scalarBases().beta().shellSet())[0];
+
+
+        // 2. Place the overlaps into the correct blocks.
+        S_x.block(0, K_alpha, K_alpha, K_beta) = 0.5 * S_ab;
+        S_x.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * S_ba;
+
+        using namespace GQCP::literals;
+        S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * 1_ii * S_ab;
+        S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * 1_ii * S_ba;
+
+        S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
+        S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
+
+
+        // 3. Transform using the coefficient matrix
+        ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
+        spin_op.transform(this->expansion());
+        return spin_op;
+    }
+
+
+    /**
+     *  Quantize the Coulomb operator in this general spinor basis.
+     * 
+     *  @param coulomb_op           The first-quantized Coulomb operator.
+     * 
+     *  @return The second-quantized operator corresponding to the Coulomb operator.
+     * 
+     *  @note For efficiency reasons (two-electron integrals over London orbitals are particularly slow to calculate), we assume that the alpha and beta scalar bases are equal.
+     */
+    template <typename Z = Shell>
+    auto quantize(const CoulombRepulsionOperator& coulomb_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = GSQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Vectorizer>;
+
+        // The strategy for calculating the matrix representation of the two-electron operator in this spinor basis is to:
+        //  1. Calculate the Coulomb integrals in the underlying scalar bases;
+        //  2. Place the calculated integrals as 'blocks' in the larger representation, so that we can;
+        //  3. Transform the operator using the current coefficient matrix.
+
+        // 1. Calculate the Coulomb integrals in the underlying scalar bases.
+        auto coulomb_engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(CoulombRepulsionOperator());
+        const auto g = GQCP::IntegralCalculator::calculate(coulomb_engine, this->scalarBases().alpha().shellSet(), this->scalarBases().alpha().shellSet())[0];
+
+
+        // 2. Place the calculated integrals as 'blocks' in the larger representation
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
+
+        const auto M = this->numberOfSpinors();
+        auto g_par = SquareRankFourTensor<ResultScalar>::Zero(M);  // 'par' for 'parameters'
+
+        // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
+        for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'
+            const size_t mu = mu_ % K_alpha;
+
+            for (size_t nu_ = 0; nu_ < M; nu_++) {  // nu 'prime'
+                const size_t nu = nu_ % K_alpha;
+
+                for (size_t rho_ = 0; rho_ < M; rho_++) {  // rho 'prime'
+                    const size_t rho = rho_ % K_alpha;
+
+                    for (size_t lambda_ = 0; lambda_ < M; lambda_++) {  // lambda 'prime'
+                        const size_t lambda = lambda_ % K_alpha;
+
+                        if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g(mu, nu, rho, lambda);
+                        } else if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ >= K_alpha) && (lambda_ >= K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g(mu, nu, rho, lambda);
+                        } else if ((mu_ >= K_alpha) && (nu_ >= K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g(mu, nu, rho, lambda);
+                        } else if ((mu_ >= K_alpha) && (nu_ >= K_alpha) && (rho_ >= K_alpha) && (lambda_ >= K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g(mu, nu, rho, lambda);
                         }
                     }
                 }
