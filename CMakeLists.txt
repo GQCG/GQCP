@@ -22,15 +22,16 @@ execute_process(
 # Add the versioning as a separate library. Whenever the version changes, only the version.cpp source file will be recompiled 
 # and only gqcp needs to be relinked. This way, gqcp does not need to be recompiled if the version should be modified.
 # Add configuration file containing version of current library.
-configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in version/version.hpp)
-configure_file(${CMAKE_SOURCE_DIR}/cmake/version.cpp.in version/version.cpp)
+configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in gqcp/version/version.hpp)
+configure_file(${CMAKE_SOURCE_DIR}/cmake/version.cpp.in gqcp/version/version.cpp)
 
-add_library(gqcp_version STATIC ${CMAKE_CURRENT_BINARY_DIR}/version/version.cpp)
+add_library(gqcp_version STATIC ${CMAKE_CURRENT_BINARY_DIR}/gqcp/version/version.cpp)
 target_compile_features(gqcp_version PUBLIC cxx_std_14)
 target_include_directories(gqcp_version
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/version>
-        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/version>
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/gqcp/version>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/gqcp/version>
+        $<INSTALL_INTERFACE:${CMAKE_PREFIX_PATH}/include/gqcp/version>
 )
 
 # List the supported options.
@@ -127,8 +128,13 @@ include(GNUInstallDirs)
 install(
     TARGETS gqcp_version
     EXPORT gqcp-targets
-    ARCHIVE DESTINATION include/version
+    LIBRARY DESTINATION lib/gqcp
+    ARCHIVE DESTINATION lib/gqcp
+    RUNTIME DESTINATION bin/gqcp
+    INCLUDES DESTINATION include/gqcp/version
 )
+
+install(DIRECTORY ${CMAKE_BINARY_DIR}/gqcp/version/ DESTINATION include/gqcp/version)
 
 install(
     TARGETS gqcp
@@ -136,7 +142,7 @@ install(
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
     RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include/gqcp include/version
+    INCLUDES DESTINATION include/gqcp
 )
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/gqcp/include/ DESTINATION include/gqcp)

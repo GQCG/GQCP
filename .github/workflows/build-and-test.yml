@@ -24,5 +24,11 @@ jobs:
     - name: Build, test and install
       run: |
         mkdir build && cd build
-        cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=/usr/local/miniconda3 -DPYTHON_EXECUTABLE=/usr/local/miniconda3/bin/python3 -DPYTHON_LIBRARY=/usr/local/miniconda3/lib/libpython3.8m.a
+        cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=/usr/local/miniconda3 -DCMAKE_PREFIX_PATH=/usr/local/miniconda3 -DPYTHON_EXECUTABLE=/usr/local/miniconda3/bin/python3 -DPYTHON_LIBRARY=/usr/local/miniconda3/lib/libpython3.8m.a
         make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && make install
+    - name: Link test
+      run: |
+        cd tools/link-test
+        mkdir build && cd build
+        cmake .. -DCMAKE_MODULE_PATH=/usr/local/miniconda3/cmake
+        make -j2 VERBOSE=1 && ./link

@@ -3,6 +3,7 @@
 - part: "User documentation"
   chapters:
     - file: user-documentation/getting-started
+    - file: user-documentation/external-packages
     - file: user-documentation/introduction
     - file: user-documentation/molecules
     - file: user-documentation/orbital-bases
