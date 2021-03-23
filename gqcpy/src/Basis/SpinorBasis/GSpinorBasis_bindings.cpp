@@ -182,7 +182,14 @@ void bindGSpinorBases(py::module& module) {
             [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const DiamagneticOperator& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the diamagnetic operator expressed in this spinor basis.");
+            "Return the diamagnetic operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const FQMolecularMagneticHamiltonian& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the molecular magnetic Hamiltonian expressed in this spinor basis.");
 
     bindGSpinorBasisInterface(py_LondonGSpinorBasis);
 }

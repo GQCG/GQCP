@@ -33,6 +33,7 @@
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
@@ -670,6 +671,28 @@ public:
         ResultOperator g_op {g_par};  // 'op' for 'operator'
         g_op.transform(this->expansion());
         return g_op;
+    }
+
+
+    /**
+     *  Quantize the molecular magnetic Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
+     * 
+     *  @return The second-quantized molecular magnetic Hamiltonian.
+     */
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQHamiltonian<ExpansionScalar>> quantize(const FQMolecularMagneticHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto P = this->quantize(fq_hamiltonian.paramagnetic());
+        const auto D = this->quantize(fq_hamiltonian.diamagnetic());
+
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return GSQHamiltonian<ExpansionScalar> {{T, P, D, V}, {g}};
     }
 
 

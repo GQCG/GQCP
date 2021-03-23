@@ -61,6 +61,21 @@ public:
      *  @param B                The external, homogeneous magnetic field.
      */
     FQMolecularMagneticHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B);
+
+
+    /*
+     *  MARK: Operators
+     */
+
+    /**
+     *  @return The paramagnetic operator.
+     */
+    const ParamagneticOperator& paramagnetic() const { return this->P; }
+
+    /**
+     *  @return The diamagnetic operator.
+     */
+    const DiamagneticOperator& diamagnetic() const { return this->D; }
 };
 
 

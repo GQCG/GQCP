@@ -130,6 +130,7 @@ void bindDiamagneticOperator(py::module& module);
 void bindElectronicDipoleOperator(py::module& module);
 void bindElectronicQuadrupoleOperator(py::module& module);
 void bindFQMolecularHamiltonian(py::module& module);
+void bindFQMolecularMagneticHamiltonian(py::module& module);
 void bindKineticOperator(py::module& module);
 void bindNuclearAttractionOperator(py::module& module);
 void bindNuclearDipoleOperator(py::module& module);
@@ -363,6 +364,7 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindElectronicQuadrupoleOperator(module);
     gqcpy::bindKineticOperator(module);
     gqcpy::bindFQMolecularHamiltonian(module);
+    gqcpy::bindFQMolecularMagneticHamiltonian(module);
     gqcpy::bindNuclearAttractionOperator(module);
     gqcpy::bindNuclearDipoleOperator(module);
     gqcpy::bindNuclearRepulsionOperator(module);

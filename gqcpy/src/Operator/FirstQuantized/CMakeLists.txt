@@ -5,6 +5,7 @@ list(APPEND python_bindings_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/ElectronicDipoleOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ElectronicQuadrupoleOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/FQMolecularHamiltonian_bindings.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/FQMolecularMagneticHamiltonian_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/KineticOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/NuclearAttractionOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/NuclearRepulsionOperator_bindings.cpp
