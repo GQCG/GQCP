@@ -20,6 +20,7 @@
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
@@ -105,7 +106,7 @@ public:
 
 
     /*
-     *  MARK: Quantization of first-quantized operators
+     *  MARK: Quantization of first-quantized operators (GTOShell)
      */
 
     /**
@@ -117,8 +118,8 @@ public:
      * 
      *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
+    template <typename FQOneElectronOperator, typename Z = Shell>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = RSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
@@ -138,7 +139,8 @@ public:
      * 
      *  @return The second-quantized operator corresponding to the Coulomb operator.
      */
-    auto quantize(const CoulombRepulsionOperator& fq_op) const -> RSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer> {
+    template <typename Z = Shell>
+    auto quantize(const CoulombRepulsionOperator& fq_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer>> {
 
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = RSQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Vectorizer>;
@@ -162,6 +164,10 @@ public:
         return op;
     }
 
+
+    /*
+     *  MARK: Quantization of first-quantized operators
+     */
 
     /**
      *  Quantize the (one-electron) electronic density operator.
