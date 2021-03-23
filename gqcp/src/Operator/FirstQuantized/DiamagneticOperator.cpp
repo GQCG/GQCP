@@ -36,4 +36,15 @@ DiamagneticOperator::DiamagneticOperator(const HomogeneousMagneticField& B, cons
     BaseReferenceDependentOperator(reference) {}
 
 
+/**
+ *  Construct a `DiamagneticOperator` from its underlying homogeneous magnetic field.
+ * 
+ *  @param B                    The external, homogeneous magnetic field.
+ * 
+ *  @note The reference point is chosen to be the gauge origin of the magnetic field.
+ */
+DiamagneticOperator::DiamagneticOperator(const HomogeneousMagneticField& B) :
+    DiamagneticOperator(B, B.gaugeOrigin()) {}
+
+
 }  // namespace GQCP

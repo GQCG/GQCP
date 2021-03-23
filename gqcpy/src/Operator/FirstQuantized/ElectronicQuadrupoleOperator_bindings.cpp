@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -30,39 +30,26 @@ using namespace GQCP;
 
 
 /**
- *  Register `ParamagneticOperator` to the gqcpy module and expose parts of its C++ interface to Python.
+ *  Register `ElectronicQuadrupoleOperator` to the gqcpy module and expose parts of its C++ interface to Python.
  * 
  *  @param module           The Pybind11 module in which the class should be registered.
  */
-void bindParamagneticOperator(py::module& module) {
+void bindElectronicQuadrupoleOperator(py::module& module) {
 
-    py::class_<ParamagneticOperator> py_ParamagneticOperator {module, "ParamagneticOperator", "The (one-electron) paramagnetic operator."};
+    py::class_<ElectronicQuadrupoleOperator> py_ElectronicQuadrupoleOperator {module, "ElectronicQuadrupoleOperator", "The (one-electron) electronic quadrupole operator."};
 
-    py_ParamagneticOperator
+    py_ElectronicQuadrupoleOperator
 
         /*
          *  MARK: Constructors
          */
 
-        .def(py::init<>([](const HomogeneousMagneticField& B, const Eigen::Vector3d& reference) {
-                 return ParamagneticOperator(B, reference);
-             }),
-             py::arg("B"),
-             py::arg("reference"))
-
-        .def(py::init<const HomogeneousMagneticField&>(),
-             py::arg("B"))
-
-
-        /*
-         *  MARK: Access
-         */
-
-        .def("magneticField",
-             &ParamagneticOperator::magneticField)
-
-        .def("angularMomentum",
-             &ParamagneticOperator::angularMomentum);
+        .def(
+            py::init<>(
+                [](const Eigen::Vector3d& o) {
+                    return ElectronicQuadrupoleOperator(o);
+                }),
+            py::arg("o") = Eigen::Vector3d::Zero());
 }
 
 

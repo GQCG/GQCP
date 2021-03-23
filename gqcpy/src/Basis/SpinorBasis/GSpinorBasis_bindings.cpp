@@ -165,10 +165,24 @@ void bindGSpinorBases(py::module& module) {
 
         .def(
             "quantize",
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ElectronicQuadrupoleOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the electronic quadrupole operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
             [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ParamagneticOperator& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the paramagnetic operator expressed in this spinor basis.");
+            "Return the paramagnetic operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const DiamagneticOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the diamagnetic operator expressed in this spinor basis.");
 
     bindGSpinorBasisInterface(py_LondonGSpinorBasis);
 }

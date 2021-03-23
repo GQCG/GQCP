@@ -49,7 +49,16 @@ public:
      *  @param B                    The external, homogeneous magnetic field.
      *  @param reference            The reference point about which the diamagnetic operator is calculated.
      */
-    DiamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference = Vector<double, 3>::Zero());
+    DiamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference);
+
+    /**
+     *  Construct a `DiamagneticOperator` from its underlying homogeneous magnetic field.
+     * 
+     *  @param B                    The external, homogeneous magnetic field.
+     * 
+     *  @note The reference point is chosen to be the gauge origin of the magnetic field.
+     */
+    DiamagneticOperator(const HomogeneousMagneticField& B);
 
 
     /*

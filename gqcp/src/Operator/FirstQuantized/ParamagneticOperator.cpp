@@ -37,4 +37,15 @@ ParamagneticOperator::ParamagneticOperator(const HomogeneousMagneticField& B, co
     BaseReferenceDependentOperator(reference) {}
 
 
+/**
+ *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field.
+ * 
+ *  @param B                    The external, homogeneous magnetic field.
+ * 
+ *  @note The reference point is chosen to be the gauge origin of the magnetic field.
+ */
+ParamagneticOperator::ParamagneticOperator(const HomogeneousMagneticField& B) :
+    ParamagneticOperator(B, B.gaugeOrigin()) {}
+
+
 }  // namespace GQCP

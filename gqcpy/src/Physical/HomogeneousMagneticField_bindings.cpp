@@ -47,7 +47,8 @@ void bindHomogeneousMagneticField(py::module& module) {
         .def(py::init<>([](const Eigen::Vector3d& B, const Eigen::Vector3d& G) {
                  return HomogeneousMagneticField(B, G);
              }),
-             py::arg("B"), py::arg("G") = Eigen::Vector3d::Zero())
+             py::arg("B"),
+             py::arg("G") = Eigen::Vector3d::Zero())
 
 
         /*
