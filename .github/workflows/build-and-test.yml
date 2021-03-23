@@ -32,4 +32,3 @@ jobs:
         mkdir build && cd build
         cmake .. -DCMAKE_MODULE_PATH=/usr/local/miniconda3/cmake
         make -j2 VERBOSE=1 && ./link
-        
