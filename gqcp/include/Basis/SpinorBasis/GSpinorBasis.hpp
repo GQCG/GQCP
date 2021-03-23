@@ -35,6 +35,7 @@
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -542,6 +543,23 @@ public:
         ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
         spin_op.transform(this->expansion());
         return spin_op;
+    }
+
+
+    /**
+     *  Quantize the paramagnetic operator in this general spinor basis.
+     * 
+     *  @param fq_one_op        The (first-quantized) paramagnetic operator.
+     * 
+     *  @return The paramagnetic operator expressed in this spinor basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const ParamagneticOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<ParamagneticOperator::Scalar, ExpansionScalar>, ParamagneticOperator::Vectorizer>> {
+
+        // Return the paramagnetic operator as a contraction beween the magnetic field and the angular momentum operator.
+        const auto L = this->quantize(op.angularMomentum());
+        const auto& B = op.magneticField().strength();
+        return 0.5 * L.dot(B);
     }
 
 

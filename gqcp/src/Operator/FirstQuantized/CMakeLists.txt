@@ -9,4 +9,5 @@ target_sources(gqcp
         LinearMomentumOperator.cpp
         NuclearDipoleOperator.cpp
         NuclearRepulsionOperator.cpp
+        ParamagneticOperator.cpp
 )

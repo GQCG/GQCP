@@ -154,7 +154,21 @@ void bindGSpinorBases(py::module& module) {
         .def(py::init<const Molecule&, const std::string&, const HomogeneousMagneticField&>(),
              py::arg("molecule"),
              py::arg("basisset_name"),
-             py::arg("B"));
+             py::arg("B"))
+
+        .def(
+            "quantize",
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const AngularMomentumOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the angular momentum operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ParamagneticOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the paramagnetic operator expressed in this spinor basis.");
 
     bindGSpinorBasisInterface(py_LondonGSpinorBasis);
 }

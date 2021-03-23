@@ -15,18 +15,32 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
+#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
 
 
 namespace GQCP {
 
 
 /*
- *  MARK: Vectorizer
+ *  MARK: Constructors
  */
 
-// Instantiate the static const vectorizer.
-const VectorVectorizer AngularMomentumOperator::vectorizer {{AngularMomentumOperator::NumberOfComponents}};
+/**
+ *  @param L                The angular momentum operator.
+ *  @param B                The external, homogeneous magnetic field.
+ */
+ParamagneticOperator::ParamagneticOperator(const AngularMomentumOperator& L, const HomogeneousMagneticField& B) :
+    B {B},
+    L {L} {}
+
+
+/**
+ *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field. The reference point for the calculation of the angular momentum operator is the gauge origin of the magnetic field.
+ * 
+ *  @param B                The external, homogeneous magnetic field.
+ */
+ParamagneticOperator::ParamagneticOperator(const HomogeneousMagneticField& B) :
+    ParamagneticOperator(AngularMomentumOperator(B.gaugeOrigin()), B) {}
 
 
 }  // namespace GQCP
