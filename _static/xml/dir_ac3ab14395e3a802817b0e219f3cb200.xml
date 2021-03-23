@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_ac3ab14395e3a802817b0e219f3cb200" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive</compoundname>
+    <innerfile refid="_base_matrix_primitive_integral_engine_8hpp">BaseMatrixPrimitiveIntegralEngine.hpp</innerfile>
+    <innerfile refid="_base_scalar_primitive_integral_engine_8hpp">BaseScalarPrimitiveIntegralEngine.hpp</innerfile>
+    <innerfile refid="_base_vector_primitive_integral_engine_8hpp">BaseVectorPrimitiveIntegralEngine.hpp</innerfile>
+    <innerfile refid="_double_london_hermite_coulomb_integral_8hpp">DoubleLondonHermiteCoulombIntegral.hpp</innerfile>
+    <innerfile refid="_functional_one_electron_primitive_integral_engine_8hpp">FunctionalOneElectronPrimitiveIntegralEngine.hpp</innerfile>
+    <innerfile refid="_functional_two_electron_primitive_integral_engine_8hpp">FunctionalTwoElectronPrimitiveIntegralEngine.hpp</innerfile>
+    <innerfile refid="_hermite_coulomb_integral_8hpp">HermiteCoulombIntegral.hpp</innerfile>
+    <innerfile refid="_london_hermite_coulomb_integral_8hpp">LondonHermiteCoulombIntegral.hpp</innerfile>
+    <innerfile refid="_mc_murchie_davidson_coefficient_8hpp">McMurchieDavidsonCoefficient.hpp</innerfile>
+    <innerfile refid="_primitive_angular_momentum_integral_engine_8hpp">PrimitiveAngularMomentumIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp">PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_coulomb_repulsion_integral_engine_8hpp">PrimitiveCoulombRepulsionIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_electronic_dipole_integral_engine_8hpp">PrimitiveElectronicDipoleIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_electronic_quadrupole_integral_engine_8hpp">PrimitiveElectronicQuadrupoleIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_linear_momentum_integral_engine_8hpp">PrimitiveLinearMomentumIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_nuclear_attraction_integral_engine_8hpp">PrimitiveNuclearAttractionIntegralEngine.hpp</innerfile>
+    <innerfile refid="_primitive_overlap_integral_engine_8hpp">PrimitiveOverlapIntegralEngine.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/"/>
+  </compounddef>
+</doxygen>

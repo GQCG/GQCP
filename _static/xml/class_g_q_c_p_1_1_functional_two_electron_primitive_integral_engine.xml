@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseScalarPrimitiveIntegralEngine</basecompoundref>
     <includes refid="_functional_two_electron_primitive_integral_engine_8hpp" local="no">FunctionalTwoElectronPrimitiveIntegralEngine.hpp</includes>
     <templateparamlist>
       <param>
@@ -20,7 +21,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="38" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a57f0d0279413aae5de63748322bce448" prot="public" static="no">
         <type>typename <ref refid="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" kindref="member">Shell::Primitive</ref></type>
@@ -33,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="41" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1acc8012becffe7327cfe96f0afa04365b" prot="public" static="no">
         <type>_IntegralScalar</type>
@@ -46,23 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="44" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a38ac1ccf295a4ac40e7305f10bbe7bd4" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr auto</type>
-        <definition>constexpr auto GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::Components</definition>
-        <argsstring></argsstring>
-        <name>Components</name>
-        <initializer>= 1</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="47" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="47" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -77,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="52" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="51" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -106,37 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="63" bodyend="64"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a67bb04ec0b696b5d607cc59d5b3cb76a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::prepareStateForComponent</definition>
-        <argsstring>(const size_t component)</argsstring>
-        <name>prepareStateForComponent</name>
-        <param>
-          <type>const size_t</type>
-          <declname>component</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>component</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The index of the component of the operator.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>Since this kind of primitive engine is limited to 1-component operators (i.e. scalar operators), this method has no effect. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="78" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="78" bodyend="78"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="62" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1ac94b5e1362f1a3871ecf62bac3a8180c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1acc8012becffe7327cfe96f0afa04365b" kindref="member">IntegralScalar</ref></type>
@@ -202,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="90" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="90" bodyend="90"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="80" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="80" bodyend="80"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -220,22 +175,41 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <collaborationgraph>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="35" bodyend="91"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp" bodystart="37" bodyend="81"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1ac94b5e1362f1a3871ecf62bac3a8180c" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a38ac1ccf295a4ac40e7305f10bbe7bd4" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>Components</name></member>
       <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a0e9118db1857b0d2fb796b6229a3fc9b" prot="private" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>function</name></member>
       <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a9224161c171f780f25cd80f11547601e" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>FunctionalTwoElectronPrimitiveIntegralEngine</name></member>
       <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1acc8012becffe7327cfe96f0afa04365b" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>IntegralScalar</name></member>
-      <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a67bb04ec0b696b5d607cc59d5b3cb76a" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1a57f0d0279413aae5de63748322bce448" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_1afb32a888ce1f3fb1299474ca19994093" prot="public" virt="non-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a6ae028b962575ec84353d8a0b53fea62" prot="public" virt="pure-virtual"><scope>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</scope><name>~BaseScalarPrimitiveIntegralEngine</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

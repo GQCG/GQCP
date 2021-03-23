@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseMatrixPrimitiveIntegralEngine</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <includes refid="_base_matrix_primitive_integral_engine_8hpp" local="no">BaseMatrixPrimitiveIntegralEngine.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a0723270c5eff6d385d215230e421e03f" prot="protected" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8" kindref="member">DyadicCartesianDirection</ref></type>
+        <definition>DyadicCartesianDirection GQCP::BaseMatrixPrimitiveIntegralEngine::component</definition>
+        <argsstring></argsstring>
+        <name>component</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" line="35" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1aa9571368c5d98c9e0b123c1c7ed6eb7e" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t GQCP::BaseMatrixPrimitiveIntegralEngine::Components</definition>
+        <argsstring></argsstring>
+        <name>Components</name>
+        <initializer>= 9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" line="66" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1acf3a6853813e2dac35ff1139369f180c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::BaseMatrixPrimitiveIntegralEngine::BaseMatrixPrimitiveIntegralEngine</definition>
+        <argsstring>(const DyadicCartesianDirection component=DyadicCartesianDirection::xx)</argsstring>
+        <name>BaseMatrixPrimitiveIntegralEngine</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8" kindref="member">DyadicCartesianDirection</ref></type>
+          <declname>component</declname>
+          <defval>DyadicCartesianDirection::xx</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial component of the dyadic Cartesian operator over which the primitive engine is prepared to calculate integrals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The primitive engine&apos;s state may be changed through the <computeroutput>prepareStateForComponent</computeroutput> method. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.cpp" bodystart="35" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a63ad6a27524711da0e32eb22d5845848" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>GQCP::BaseMatrixPrimitiveIntegralEngine::~BaseMatrixPrimitiveIntegralEngine</definition>
+        <argsstring>()=0</argsstring>
+        <name>~BaseMatrixPrimitiveIntegralEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A pure virtual destructor in order to make this class abstract. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" line="58" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.cpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a52f963b442f8a09e9968b7eb0449d94b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::BaseMatrixPrimitiveIntegralEngine::prepareStateForComponent</definition>
+        <argsstring>(const size_t component)</argsstring>
+        <name>prepareStateForComponent</name>
+        <param>
+          <type>const size_t</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the component of the operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>See also <computeroutput>DyadicCartesianDirection</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" line="75" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.cpp" bodystart="60" bodyend="113"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base class for integral engines over an operator with nine components (x, y, z) times (x, y, z). </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::BaseMatrixPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine"/>
+      </node>
+      <node id="2">
+        <label>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseMatrixPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp" bodystart="32" bodyend="76"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1acf3a6853813e2dac35ff1139369f180c" prot="public" virt="non-virtual"><scope>GQCP::BaseMatrixPrimitiveIntegralEngine</scope><name>BaseMatrixPrimitiveIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a0723270c5eff6d385d215230e421e03f" prot="protected" virt="non-virtual"><scope>GQCP::BaseMatrixPrimitiveIntegralEngine</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1aa9571368c5d98c9e0b123c1c7ed6eb7e" prot="public" virt="non-virtual"><scope>GQCP::BaseMatrixPrimitiveIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a52f963b442f8a09e9968b7eb0449d94b" prot="public" virt="non-virtual"><scope>GQCP::BaseMatrixPrimitiveIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a63ad6a27524711da0e32eb22d5845848" prot="public" virt="pure-virtual"><scope>GQCP::BaseMatrixPrimitiveIntegralEngine</scope><name>~BaseMatrixPrimitiveIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

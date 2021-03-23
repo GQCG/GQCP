@@ -9,6 +9,7 @@
     <innerfile refid="_coulomb_repulsion_operator_8hpp">CoulombRepulsionOperator.hpp</innerfile>
     <innerfile refid="_electronic_density_operator_8hpp">ElectronicDensityOperator.hpp</innerfile>
     <innerfile refid="_electronic_dipole_operator_8hpp">ElectronicDipoleOperator.hpp</innerfile>
+    <innerfile refid="_electronic_quadrupole_operator_8hpp">ElectronicQuadrupoleOperator.hpp</innerfile>
     <innerfile refid="_electronic_spin__z_operator_8hpp">ElectronicSpin_zOperator.hpp</innerfile>
     <innerfile refid="_electronic_spin_operator_8hpp">ElectronicSpinOperator.hpp</innerfile>
     <innerfile refid="_kinetic_operator_8hpp">KineticOperator.hpp</innerfile>

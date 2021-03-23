@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GQCP: /__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp File Reference</title>
+<title>GQCP: /__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_97189f8bdcb13d91395c09d841162246.html">gqcp</a></li><li class="navelem"><a class="el" href="dir_0f303d9e90ecbf2958f248aff9125567.html">include</a></li><li class="navelem"><a class="el" href="dir_b2d1647eeffb5c0b5b0687b9ad8acce5.html">Basis</a></li><li class="navelem"><a class="el" href="dir_f03c06cc3ef56f8c95f606de7e6c42ea.html">Integrals</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_97189f8bdcb13d91395c09d841162246.html">gqcp</a></li><li class="navelem"><a class="el" href="dir_0f303d9e90ecbf2958f248aff9125567.html">include</a></li><li class="navelem"><a class="el" href="dir_b2d1647eeffb5c0b5b0687b9ad8acce5.html">Basis</a></li><li class="navelem"><a class="el" href="dir_f03c06cc3ef56f8c95f606de7e6c42ea.html">Integrals</a></li><li class="navelem"><a class="el" href="dir_ac3ab14395e3a802817b0e219f3cb200.html">Primitive</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -72,74 +72,78 @@ $(function() {
 <div class="title">PrimitiveNuclearAttractionIntegralEngine.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_hermite_coulomb_integral_8hpp_source.html">Basis/Integrals/HermiteCoulombIntegral.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_mc_murchie_davidson_coefficient_8hpp_source.html">Basis/Integrals/McMurchieDavidsonCoefficient.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_base_scalar_primitive_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_hermite_coulomb_integral_8hpp_source.html">Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_london_hermite_coulomb_integral_8hpp_source.html">Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_mc_murchie_davidson_coefficient_8hpp_source.html">Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_g_t_o_shell_8hpp_source.html">Basis/ScalarBasis/GTOShell.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_nuclear_attraction_operator_8hpp_source.html">Operator/FirstQuantized/NuclearAttractionOperator.hpp</a>&quot;</code><br />
 <code>#include &lt;boost/math/constants/constants.hpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for PrimitiveNuclearAttractionIntegralEngine.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="_primitive_nuclear_attraction_integral_engine_8hpp__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_nuclear_attraction_integral_engine_8hpp" alt=""/></div>
-<map name="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_nuclear_attraction_integral_engine_8hpp" id="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_nuclear_attraction_integral_engine_8hpp">
-<area shape="rect" title=" " alt="" coords="664,5,913,76"/>
-<area shape="rect" href="_hermite_coulomb_integral_8hpp.html" title=" " alt="" coords="287,213,520,255"/>
-<area shape="rect" href="_mc_murchie_davidson_coefficient_8hpp.html" title=" " alt="" coords="164,124,355,165"/>
-<area shape="rect" href="_g_t_o_shell_8hpp.html" title=" " alt="" coords="675,131,903,158"/>
-<area shape="rect" href="_nuclear_attraction_operator_8hpp.html" title=" " alt="" coords="965,124,1189,165"/>
-<area shape="rect" title=" " alt="" coords="1213,124,1375,165"/>
-<area shape="rect" href="_matrix_8hpp.html" title=" " alt="" coords="250,481,463,523"/>
-<area shape="rect" href="_cartesian_direction_8hpp.html" title=" " alt="" coords="1285,571,1461,612"/>
+<div class="center"><img src="_primitive_nuclear_attraction_integral_engine_8hpp__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_2_primitive_nuclear_attraction_integral_engine_8hpp" alt=""/></div>
+<map name="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_2_primitive_nuclear_attraction_integral_engine_8hpp" id="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_2_primitive_nuclear_attraction_integral_engine_8hpp">
+<area shape="rect" title=" " alt="" coords="960,5,1223,76"/>
+<area shape="rect" href="_base_scalar_primitive_integral_engine_8hpp.html" title=" " alt="" coords="1851,213,2129,255"/>
+<area shape="rect" href="_hermite_coulomb_integral_8hpp.html" title=" " alt="" coords="300,213,515,255"/>
+<area shape="rect" href="_london_hermite_coulomb_integral_8hpp.html" title=" " alt="" coords="235,392,497,433"/>
+<area shape="rect" href="_mc_murchie_davidson_coefficient_8hpp.html" title=" " alt="" coords="64,124,319,165"/>
+<area shape="rect" href="_g_t_o_shell_8hpp.html" title=" " alt="" coords="977,131,1205,158"/>
+<area shape="rect" href="_nuclear_attraction_operator_8hpp.html" title=" " alt="" coords="1245,124,1469,165"/>
+<area shape="rect" title=" " alt="" coords="1543,124,1706,165"/>
+<area shape="rect" title=" " alt="" coords="2009,399,2080,426"/>
+<area shape="rect" href="_matrix_8hpp.html" title=" " alt="" coords="283,481,497,523"/>
+<area shape="rect" href="_cartesian_direction_8hpp.html" title=" " alt="" coords="1281,571,1457,612"/>
 <area shape="rect" href="_eigen_8hpp.html" title=" " alt="" coords="103,578,245,605"/>
-<area shape="rect" href="aliases_8hpp.html" title=" " alt="" coords="589,578,740,605"/>
+<area shape="rect" href="aliases_8hpp.html" title=" " alt="" coords="599,578,749,605"/>
 <area shape="rect" href="type__traits_8hpp.html" title=" " alt="" coords="445,660,620,687"/>
-<area shape="rect" title=" " alt="" coords="269,578,463,605"/>
+<area shape="rect" title=" " alt="" coords="319,578,514,605"/>
 <area shape="rect" title=" " alt="" coords="5,578,79,605"/>
-<area shape="rect" title=" " alt="" coords="765,578,845,605"/>
+<area shape="rect" title=" " alt="" coords="1111,578,1191,605"/>
 <area shape="rect" title=" " alt="" coords="123,660,225,687"/>
 <area shape="rect" title=" " alt="" coords="644,660,723,687"/>
-<area shape="rect" title=" " alt="" coords="789,660,855,687"/>
-<area shape="rect" title=" " alt="" coords="1341,660,1404,687"/>
+<area shape="rect" title=" " alt="" coords="895,660,960,687"/>
+<area shape="rect" title=" " alt="" coords="1587,660,1649,687"/>
 <area shape="rect" title=" " alt="" coords="487,735,579,761"/>
-<area shape="rect" href="_cartesian_g_t_o_8hpp.html" title=" " alt="" coords="701,213,877,255"/>
-<area shape="rect" href="_linear_combination_8hpp.html" title=" " alt="" coords="573,303,751,344"/>
-<area shape="rect" href="_nucleus_8hpp.html" title=" " alt="" coords="876,399,1040,426"/>
-<area shape="rect" href="_cartesian_exponents_8hpp.html" title=" " alt="" coords="1386,303,1570,344"/>
-<area shape="rect" href="_scalar_function_8hpp.html" title=" " alt="" coords="675,392,851,433"/>
-<area shape="rect" title=" " alt="" coords="1586,399,1642,426"/>
-<area shape="rect" title=" " alt="" coords="539,489,673,515"/>
-<area shape="rect" href="_vector_space_arithmetic_8hpp.html" title=" " alt="" coords="398,392,601,433"/>
-<area shape="rect" title=" " alt="" coords="207,399,373,426"/>
-<area shape="rect" href="_c_r_t_p_8hpp.html" title=" " alt="" coords="90,489,226,515"/>
-<area shape="rect" href="elements_8hpp.html" title=" " alt="" coords="1111,489,1285,515"/>
-<area shape="rect" title=" " alt="" coords="901,489,988,515"/>
-<area shape="rect" title=" " alt="" coords="1013,489,1087,515"/>
-<area shape="rect" title=" " alt="" coords="1151,578,1210,605"/>
-<area shape="rect" href="_base_f_q_operator_8hpp.html" title=" " alt="" coords="1427,213,1603,255"/>
-<area shape="rect" href="_base_nuclear_operator_8hpp.html" title=" " alt="" coords="1029,213,1221,255"/>
-<area shape="rect" href="_dense_vectorizer_8hpp.html" title=" " alt="" coords="1595,303,1809,344"/>
-<area shape="rect" title=" " alt="" coords="1765,399,1836,426"/>
-<area shape="rect" title=" " alt="" coords="1666,399,1741,426"/>
-<area shape="rect" href="_nuclear_framework_8hpp.html" title=" " alt="" coords="1063,310,1298,337"/>
+<area shape="rect" href="_cartesian_g_t_o_8hpp.html" title=" " alt="" coords="1003,213,1179,255"/>
+<area shape="rect" href="_linear_combination_8hpp.html" title=" " alt="" coords="877,303,1055,344"/>
+<area shape="rect" href="_nucleus_8hpp.html" title=" " alt="" coords="1191,399,1355,426"/>
+<area shape="rect" href="_cartesian_exponents_8hpp.html" title=" " alt="" coords="1543,303,1727,344"/>
+<area shape="rect" href="_scalar_function_8hpp.html" title=" " alt="" coords="522,392,698,433"/>
+<area shape="rect" title=" " alt="" coords="1830,399,1886,426"/>
+<area shape="rect" title=" " alt="" coords="901,489,1036,515"/>
+<area shape="rect" href="_vector_space_arithmetic_8hpp.html" title=" " alt="" coords="722,392,925,433"/>
+<area shape="rect" title=" " alt="" coords="1000,399,1167,426"/>
+<area shape="rect" href="_c_r_t_p_8hpp.html" title=" " alt="" coords="741,489,877,515"/>
+<area shape="rect" href="elements_8hpp.html" title=" " alt="" coords="1531,489,1705,515"/>
+<area shape="rect" title=" " alt="" coords="1169,489,1256,515"/>
+<area shape="rect" title=" " alt="" coords="1281,489,1355,515"/>
+<area shape="rect" title=" " alt="" coords="1589,578,1647,605"/>
+<area shape="rect" href="_base_f_q_operator_8hpp.html" title=" " alt="" coords="1561,213,1737,255"/>
+<area shape="rect" href="_base_nuclear_operator_8hpp.html" title=" " alt="" coords="1277,213,1469,255"/>
+<area shape="rect" href="_dense_vectorizer_8hpp.html" title=" " alt="" coords="1762,303,1975,344"/>
+<area shape="rect" title=" " alt="" coords="1910,399,1985,426"/>
+<area shape="rect" href="_nuclear_framework_8hpp.html" title=" " alt="" coords="1271,310,1506,337"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="_primitive_nuclear_attraction_integral_engine_8hpp__dep__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_nuclear_attraction_integral_engine_8hppdep" alt=""/></div>
-<map name="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_nuclear_attraction_integral_engine_8hppdep" id="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_nuclear_attraction_integral_engine_8hppdep">
-<area shape="rect" title=" " alt="" coords="4383,5,4633,76"/>
+<div class="center"><img src="_primitive_nuclear_attraction_integral_engine_8hpp__dep__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_2_primitive_nuclear_attraction_integral_engine_8hppdep" alt=""/></div>
+<map name="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_2_primitive_nuclear_attraction_integral_engine_8hppdep" id="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_integrals_2_primitive_2_primitive_nuclear_attraction_integral_engine_8hppdep">
+<area shape="rect" title=" " alt="" coords="4398,5,4661,76"/>
 <area shape="rect" href="gqcp_8hpp.html" title=" " alt="" coords="2397,1312,2565,1353"/>
-<area shape="rect" href="_integral_engine_8hpp.html" title=" " alt="" coords="4360,124,4533,180"/>
+<area shape="rect" href="_integral_engine_8hpp.html" title=" " alt="" coords="4372,124,4545,180"/>
 <area shape="rect" href="_integral_calculator_8hpp.html" title=" " alt="" coords="4176,228,4349,284"/>
-<area shape="rect" href="_integral_engine_8cpp.html" title=" " alt="" coords="4424,228,4592,284"/>
-<area shape="rect" href="_r_spin_orbital_basis_8hpp.html" title=" " alt="" coords="3123,332,3315,388"/>
-<area shape="rect" href="_g_spinor_basis_8hpp.html" title=" " alt="" coords="2784,540,2976,596"/>
-<area shape="rect" href="_s_q_hamiltonian_8hpp.html" title=" " alt="" coords="1435,748,1685,804"/>
+<area shape="rect" href="_integral_engine_8cpp.html" title=" " alt="" coords="4424,228,4635,284"/>
+<area shape="rect" href="_r_spin_orbital_basis_8hpp.html" title=" " alt="" coords="3112,332,3304,388"/>
+<area shape="rect" href="_g_spinor_basis_8hpp.html" title=" " alt="" coords="2773,540,2965,596"/>
+<area shape="rect" href="_s_q_hamiltonian_8hpp.html" title=" " alt="" coords="1433,748,1684,804"/>
 <area shape="rect" href="transform_8hpp.html" title=" " alt="" coords="2987,859,3208,915"/>
 <area shape="rect" href="_base_orbital_optimizer_8hpp.html" title=" " alt="" coords="3553,859,3829,915"/>
 <area shape="rect" href="_linear_expansion_8hpp.html" title=" " alt="" coords="3304,644,3472,700"/>
-<area shape="rect" href="_u_spin_orbital_basis_8hpp.html" title=" " alt="" coords="3053,436,3245,492"/>
+<area shape="rect" href="_u_spin_orbital_basis_8hpp.html" title=" " alt="" coords="3043,436,3235,492"/>
 <area shape="rect" href="_base_electrical_response_solver_8hpp.html" title=" " alt="" coords="1136,1075,1387,1145"/>
 <area shape="rect" href="expectation__values_8hpp.html" title=" " alt="" coords="2747,852,2920,923"/>
 <area shape="rect" href="_c_c_s_d_environment_8hpp.html" title=" " alt="" coords="2345,1082,2519,1138"/>

@@ -1,12 +1,12 @@
-\hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{}\doxysection{GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine Class Reference}
-\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}\index{GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}}
+\hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{}\doxysection{GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine$<$ \+\_\+\+Shell $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}\index{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}}
 
 
 {\ttfamily \#include $<$Primitive\+Angular\+Momentum\+Integral\+Engine.\+hpp$>$}
 
 
 
-Inheritance diagram for GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine\+:
+Inheritance diagram for GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine$<$ \+\_\+\+Shell $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine\+
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine\+:
+Collaboration diagram for GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine$<$ \+\_\+\+Shell $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -27,98 +27,121 @@ Collaboration diagram for GQCP\+::Primitive\+Angular\+Momentum\+Integral\+Engine
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a71be55900950f18d53ee737c6e4269e6}{Integral\+Scalar}} = \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Angular\+Momentum\+Operator\+::\+Scalar}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a73fd9fb11a696882382cf8c3faad01e7}{Shell}} = \+\_\+\+Shell
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a57157a8129d60ecab865d76c7e313e42}{Shell}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_ad72efb4b7c06697ca1defe8fdb62f9b7}{Primitive}} = typename Shell\+::\+Primitive
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a79e23277bc7a2affeee47f72b3b29b4a}{Primitive}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Shell\+::\+Primitive}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}{Integral\+Scalar}} = \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Angular\+Momentum\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued $>$
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a31e7391fda4b8d7a9162447144e25d6d}{Primitive\+Angular\+Momentum\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} \&angular\+\_\+momentum\+\_\+operator, const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine_a7d77d8c96bbaf6ecf9e4b4873b06a264}{component}}=Cartesian\+Direction\+::x)
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_afb6dce386fe9047e116dae8f173d9819}{Primitive\+Angular\+Momentum\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} \&angular\+\_\+momentum\+\_\+operator, const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine_ae7e8b1f36eaa6edbf7883183a133e9af}{component}}=Cartesian\+Direction\+::x)
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a71be55900950f18d53ee737c6e4269e6}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a4e2a3a81c5fa68f1d5ade42709afc379}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right)
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Public Attributes}
-\begin{DoxyCompactItemize}
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a305ef2d2f3c8fd85f3b7751c7ad1c775}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right)
 \item 
-static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_acd4c3c2436b3830aa82d0a5d2ed8be5e}{Components}} = \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator_a50a46d4f3093f9d3392b725fc0736299}{Angular\+Momentum\+Operator\+::\+Number\+Of\+Components}}
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_ab07e13d6285124b97a2f3c507736416a}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&right)
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
-A one-\/electron primitive integral engine that can calculate integrals over the angular momentum operator. 
+\subsubsection*{template$<$typename \+\_\+\+Shell$>$\newline
+class GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine$<$ \+\_\+\+Shell $>$}
+
+A class that can calculate integrals over the angular momentum operator.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Shell} & The type of shell that this integral engine is related to. \\
+\hline
+\end{DoxyTemplParams}
+
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a71be55900950f18d53ee737c6e4269e6}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a71be55900950f18d53ee737c6e4269e6}} 
-\index{GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}!IntegralScalar@{IntegralScalar}}
-\index{IntegralScalar@{IntegralScalar}!GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}} 
+\index{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a71be55900950f18d53ee737c6e4269e6}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine\+::\+Integral\+Scalar}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Angular\+Momentum\+Operator\+::\+Scalar}}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}{Integral\+Scalar}} =  \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Angular\+Momentum\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued$>$}
 
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a79e23277bc7a2affeee47f72b3b29b4a}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a79e23277bc7a2affeee47f72b3b29b4a}} 
-\index{GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}!Primitive@{Primitive}}
-\index{Primitive@{Primitive}!GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_ad72efb4b7c06697ca1defe8fdb62f9b7}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_ad72efb4b7c06697ca1defe8fdb62f9b7}} 
+\index{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a79e23277bc7a2affeee47f72b3b29b4a}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine\+::\+Primitive}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Shell\+::\+Primitive}}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_ad72efb4b7c06697ca1defe8fdb62f9b7}{Primitive}} =  typename Shell\+::\+Primitive}
 
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a57157a8129d60ecab865d76c7e313e42}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a57157a8129d60ecab865d76c7e313e42}} 
-\index{GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}!Shell@{Shell}}
-\index{Shell@{Shell}!GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a73fd9fb11a696882382cf8c3faad01e7}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a73fd9fb11a696882382cf8c3faad01e7}} 
+\index{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{Shell}{Shell}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a57157a8129d60ecab865d76c7e313e42}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine\+::\+Shell}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a73fd9fb11a696882382cf8c3faad01e7}{Shell}} =  \+\_\+\+Shell}
 
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a31e7391fda4b8d7a9162447144e25d6d}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a31e7391fda4b8d7a9162447144e25d6d}} 
-\index{GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}!PrimitiveAngularMomentumIntegralEngine@{PrimitiveAngularMomentumIntegralEngine}}
-\index{PrimitiveAngularMomentumIntegralEngine@{PrimitiveAngularMomentumIntegralEngine}!GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_afb6dce386fe9047e116dae8f173d9819}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_afb6dce386fe9047e116dae8f173d9819}} 
+\index{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}!PrimitiveAngularMomentumIntegralEngine@{PrimitiveAngularMomentumIntegralEngine}}
+\index{PrimitiveAngularMomentumIntegralEngine@{PrimitiveAngularMomentumIntegralEngine}!GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{PrimitiveAngularMomentumIntegralEngine()}{PrimitiveAngularMomentumIntegralEngine()}}
-{\footnotesize\ttfamily GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} \&}]{angular\+\_\+momentum\+\_\+operator,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{component = {\ttfamily CartesianDirection\+:\+:x} }\end{DoxyParamCaption})}
-
-Construct a \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{Primitive\+Angular\+Momentum\+Integral\+Engine}} from its members.
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{Primitive\+Angular\+Momentum\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} \&}]{angular\+\_\+momentum\+\_\+operator,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{component = {\ttfamily CartesianDirection\+:\+:x} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
-{\em angular\+\_\+momentum\+\_\+operator} & the angular momentum operator over which the integrals should be calculated \\
+{\em angular\+\_\+momentum\+\_\+operator} & The angular momentum operator over which the integrals are calculated. \\
 \hline
-{\em component} & the initial component of the angular momentum operator this engine should calculate integrals over \\
+{\em component} & The initial component of the angular momentum operator over which this engine should calculate integrals. \\
 \hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a4e2a3a81c5fa68f1d5ade42709afc379}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a4e2a3a81c5fa68f1d5ade42709afc379}} 
-\index{GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}!calculate@{calculate}}
-\index{calculate@{calculate}!GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}}
-\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a71be55900950f18d53ee737c6e4269e6}{Primitive\+Angular\+Momentum\+Integral\+Engine\+::\+Integral\+Scalar}} GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a305ef2d2f3c8fd85f3b7751c7ad1c775}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a305ef2d2f3c8fd85f3b7751c7ad1c775}} 
+\index{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the angular momentum integral (of the current component) over the two Cartesian GTOs.
 
 
 \begin{DoxyParams}{Parameters}
-{\em left} & the left Cartesian GTO (primitive) \\
+{\em left} & The left Cartesian GTO. \\
 \hline
-{\em right} & the right Cartesian GTO (primitive)\\
+{\em right} & The right Cartesian GTO.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the angular momentum integral (of the current component) over the two given primitives 
+The angular momentum integral over the two given Cartesian GTOs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_ab07e13d6285124b97a2f3c507736416a}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_ab07e13d6285124b97a2f3c507736416a}} 
+\index{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveAngularMomentumIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_a8b18be46fe5ac76e999bc88f742e2ded}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the angular momentum integral over two London Cartesian GTOs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The left London Cartesian GTO. \\
+\hline
+{\em right} & The right London Cartesian GTO.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The angular momentum integral over the two given London Cartesian GTOs. 
 \end{DoxyReturn}
 
 
-\doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_acd4c3c2436b3830aa82d0a5d2ed8be5e}\label{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_acd4c3c2436b3830aa82d0a5d2ed8be5e}} 
-\index{GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}!Components@{Components}}
-\index{Components@{Components}!GQCP::PrimitiveAngularMomentumIntegralEngine@{GQCP::PrimitiveAngularMomentumIntegralEngine}}
-\doxysubsubsection{\texorpdfstring{Components}{Components}}
-{\footnotesize\ttfamily constexpr auto GQCP\+::\+Primitive\+Angular\+Momentum\+Integral\+Engine\+::\+Components = \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator_a50a46d4f3093f9d3392b725fc0736299}{Angular\+Momentum\+Operator\+::\+Number\+Of\+Components}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
-
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_angular_momentum_integral_engine_8hpp}{Primitive\+Angular\+Momentum\+Integral\+Engine.\+hpp}}\item 
-/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Integrals/\mbox{\hyperlink{_primitive_angular_momentum_integral_engine_8cpp}{Primitive\+Angular\+Momentum\+Integral\+Engine.\+cpp}}\end{DoxyCompactItemize}
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_primitive_angular_momentum_integral_engine_8hpp}{Primitive\+Angular\+Momentum\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseMatrixPrimitiveIntegralEngine</basecompoundref>
+    <includes refid="_primitive_electronic_quadrupole_integral_engine_8hpp" local="no">PrimitiveElectronicQuadrupoleIntegralEngine.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Shell</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a2281cddace63361938fa51b185da23df" prot="public" static="no">
+        <type>_Shell</type>
+        <definition>using GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::Shell =  _Shell</definition>
+        <argsstring></argsstring>
+        <name>Shell</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a3b5c0d98f0ad15210e4650a0f87a7020" prot="public" static="no">
+        <type>typename Shell::Primitive</type>
+        <definition>using GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::Primitive =  typename Shell::Primitive</definition>
+        <argsstring></argsstring>
+        <name>Primitive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">ElectronicQuadrupoleOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
+        <definition>using GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;ElectronicQuadrupoleOperator::Scalar, typename Primitive::Valued&gt;</definition>
+        <argsstring></argsstring>
+        <name>IntegralScalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a56af3557b27589d3e6da890ccb7f9b67" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" kindref="compound">ElectronicQuadrupoleOperator</ref></type>
+        <definition>ElectronicQuadrupoleOperator GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::quadrupole_operator</definition>
+        <argsstring></argsstring>
+        <name>quadrupole_operator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="57" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1ab84680f8e73482f5ded7e7628ea38ffa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::PrimitiveElectronicQuadrupoleIntegralEngine</definition>
+        <argsstring>(const ElectronicQuadrupoleOperator &amp;quadrupole_operator, const DyadicCartesianDirection component=DyadicCartesianDirection::xx)</argsstring>
+        <name>PrimitiveElectronicQuadrupoleIntegralEngine</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" kindref="compound">ElectronicQuadrupoleOperator</ref> &amp;</type>
+          <declname>quadrupole_operator</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8" kindref="member">DyadicCartesianDirection</ref></type>
+          <declname>component</declname>
+          <defval>DyadicCartesianDirection::xx</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>quadrupole_operator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The electronic quadrupole operator over which integrals should be calculated. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial component of the electronic quadrupole operator over which this primitive engine should calculate integrals. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="69" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="69" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1aed40f0f3938d1b27e0594af6547395e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a2281cddace63361938fa51b185da23df" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
+        <name>calculate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the electronic quadrupole integral over two London Cartesian GTOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left London Cartesian GTO. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right London Cartesian GTO.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The electronic quadrupole integral over the two given London Cartesian GTOs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="87" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="87" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1aefa1f19bf5f9b670fe3d0a44f34d2436" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a2281cddace63361938fa51b185da23df" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
+        <argsstring>(const complex k1, const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
+        <name>calculate1D</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>L</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the electronic quadrupole integral over two London Cartesian GTO 1-D primitives.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional component of the) k-vector of the London overlap distribution. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Gaussian exponent of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional coordinate of the) center of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian exponent of the left 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Gaussian exponent of the right 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>L</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (directional coordinate of the) center of the right 1-D primitive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Cartesian exponent of the right 1-D primitive.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The electronic quadrupole integral over the two London Cartesian GTO 1-D primitives. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="184" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="184" bodyend="212"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class that can calculate electronic dipole integrals, i.e. over the negative of the position operator.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Shell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of shell that this integral engine is related to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The integrals that this primitive engine produces include the minus sign due to the charge of the electron. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseMatrixPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseMatrixPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="43" bodyend="213"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1acf3a6853813e2dac35ff1139369f180c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>BaseMatrixPrimitiveIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1aed40f0f3938d1b27e0594af6547395e9" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1aefa1f19bf5f9b670fe3d0a44f34d2436" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>calculate1D</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a0723270c5eff6d385d215230e421e03f" prot="protected" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1aa9571368c5d98c9e0b123c1c7ed6eb7e" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a52f963b442f8a09e9968b7eb0449d94b" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a3b5c0d98f0ad15210e4650a0f87a7020" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>Primitive</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1ab84680f8e73482f5ded7e7628ea38ffa" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>PrimitiveElectronicQuadrupoleIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a56af3557b27589d3e6da890ccb7f9b67" prot="private" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>quadrupole_operator</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a2281cddace63361938fa51b185da23df" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a63ad6a27524711da0e32eb22d5845848" prot="public" virt="pure-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>~BaseMatrixPrimitiveIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -4,6 +4,7 @@
     <compoundname>GQCP::BaseReferenceDependentOperator</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_angular_momentum_operator" prot="public" virt="non-virtual">GQCP::AngularMomentumOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public" virt="non-virtual">GQCP::ElectronicDipoleOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" prot="public" virt="non-virtual">GQCP::ElectronicQuadrupoleOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" prot="public" virt="non-virtual">GQCP::NuclearDipoleOperator</derivedcompoundref>
     <includes refid="_base_reference_dependent_operator_8hpp" local="no">BaseReferenceDependentOperator.hpp</includes>
       <sectiondef kind="private-attrib">
@@ -98,11 +99,17 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="4">
+        <label>GQCP::ElectronicQuadrupoleOperator</label>
+        <link refid="class_g_q_c_p_1_1_electronic_quadrupole_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>GQCP::BaseReferenceDependentOperator</label>
         <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
       </node>
-      <node id="4">
+      <node id="5">
         <label>GQCP::NuclearDipoleOperator</label>
         <link refid="class_g_q_c_p_1_1_nuclear_dipole_operator"/>
         <childnode refid="1" relation="public-inheritance">

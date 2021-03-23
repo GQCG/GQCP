@@ -4,7 +4,7 @@
     <compoundname>KineticOperator.hpp</compoundname>
     <includes refid="_base_f_q_operator_8hpp" local="yes">Operator/FirstQuantized/BaseFQOperator.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
-    <includedby refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includedby>
     <includedby refid="_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp</includedby>
     <incdepgraph>
       <node id="2">
@@ -149,10 +149,6 @@
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-      </node>
-      <node id="102">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp</label>
-        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="64">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
@@ -598,6 +594,14 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
+        <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="83">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp"/>
@@ -854,14 +858,6 @@
         <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
-        <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
       <node id="95">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/properties.hpp</label>
         <link refid="properties_8hpp"/>
@@ -987,6 +983,10 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
+      </node>
+      <node id="102">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
+        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="72">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</label>

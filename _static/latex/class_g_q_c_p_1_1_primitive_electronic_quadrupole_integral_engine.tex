@@ -1,0 +1,160 @@
+\hypertarget{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{}\doxysection{GQCP\+::Primitive\+Electronic\+Quadrupole\+Integral\+Engine$<$ \+\_\+\+Shell $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}\index{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}}
+
+
+{\ttfamily \#include $<$Primitive\+Electronic\+Quadrupole\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Primitive\+Electronic\+Quadrupole\+Integral\+Engine$<$ \+\_\+\+Shell $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Primitive\+Electronic\+Quadrupole\+Integral\+Engine$<$ \+\_\+\+Shell $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a2281cddace63361938fa51b185da23df}{Shell}} = \+\_\+\+Shell
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a3b5c0d98f0ad15210e4650a0f87a7020}{Primitive}} = typename Shell\+::\+Primitive
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}{Integral\+Scalar}} = \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Quadrupole\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_ab84680f8e73482f5ded7e7628ea38ffa}{Primitive\+Electronic\+Quadrupole\+Integral\+Engine}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator}{Electronic\+Quadrupole\+Operator}} \&quadrupole\+\_\+operator, const \mbox{\hyperlink{namespace_g_q_c_p_a637d38e9ff6e57c7933b057dd552aba8}{Dyadic\+Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a0723270c5eff6d385d215230e421e03f}{component}}=Dyadic\+Cartesian\+Direction\+::xx)
+\item 
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_aed40f0f3938d1b27e0594af6547395e9}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&right)
+\item 
+{\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}{Integral\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_aefa1f19bf5f9b670fe3d0a44f34d2436}{calculate1D}} (const \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} k1, const double a, const double K, const int i, const double b, const double L, const int j)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Shell$>$\newline
+class GQCP\+::\+Primitive\+Electronic\+Quadrupole\+Integral\+Engine$<$ \+\_\+\+Shell $>$}
+
+A class that can calculate electronic dipole integrals, i.\+e. over the negative of the position operator.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Shell} & The type of shell that this integral engine is related to.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+The integrals that this primitive engine produces include the minus sign due to the charge of the electron. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}\label{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}} 
+\index{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}!IntegralScalar@{IntegralScalar}}
+\index{IntegralScalar@{IntegralScalar}!GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{GQCP\+::\+Primitive\+Electronic\+Quadrupole\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}{Integral\+Scalar}} =  \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Quadrupole\+Operator\+::\+Scalar}}, typename Primitive\+::\+Valued$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a3b5c0d98f0ad15210e4650a0f87a7020}\label{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a3b5c0d98f0ad15210e4650a0f87a7020}} 
+\index{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{GQCP\+::\+Primitive\+Electronic\+Quadrupole\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a3b5c0d98f0ad15210e4650a0f87a7020}{Primitive}} =  typename Shell\+::\+Primitive}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a2281cddace63361938fa51b185da23df}\label{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a2281cddace63361938fa51b185da23df}} 
+\index{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}!Shell@{Shell}}
+\index{Shell@{Shell}!GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{Shell}{Shell}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{GQCP\+::\+Primitive\+Electronic\+Quadrupole\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a2281cddace63361938fa51b185da23df}{Shell}} =  \+\_\+\+Shell}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_ab84680f8e73482f5ded7e7628ea38ffa}\label{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_ab84680f8e73482f5ded7e7628ea38ffa}} 
+\index{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}!PrimitiveElectronicQuadrupoleIntegralEngine@{PrimitiveElectronicQuadrupoleIntegralEngine}}
+\index{PrimitiveElectronicQuadrupoleIntegralEngine@{PrimitiveElectronicQuadrupoleIntegralEngine}!GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{PrimitiveElectronicQuadrupoleIntegralEngine()}{PrimitiveElectronicQuadrupoleIntegralEngine()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{GQCP\+::\+Primitive\+Electronic\+Quadrupole\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{Primitive\+Electronic\+Quadrupole\+Integral\+Engine}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator}{Electronic\+Quadrupole\+Operator}} \&}]{quadrupole\+\_\+operator,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a637d38e9ff6e57c7933b057dd552aba8}{Dyadic\+Cartesian\+Direction}}}]{component = {\ttfamily DyadicCartesianDirection\+:\+:xx} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em quadrupole\+\_\+operator} & The electronic quadrupole operator over which integrals should be calculated. \\
+\hline
+{\em component} & The initial component of the electronic quadrupole operator over which this primitive engine should calculate integrals. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_aed40f0f3938d1b27e0594af6547395e9}\label{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_aed40f0f3938d1b27e0594af6547395e9}} 
+\index{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}!calculate@{calculate}}
+\index{calculate@{calculate}!GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{GQCP\+::\+Primitive\+Electronic\+Quadrupole\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&}]{left,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} \&}]{right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the electronic quadrupole integral over two London Cartesian GTOs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The left London Cartesian GTO. \\
+\hline
+{\em right} & The right London Cartesian GTO.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The electronic quadrupole integral over the two given London Cartesian GTOs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_aefa1f19bf5f9b670fe3d0a44f34d2436}\label{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_aefa1f19bf5f9b670fe3d0a44f34d2436}} 
+\index{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}!calculate1D@{calculate1D}}
+\index{calculate1D@{calculate1D}!GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$@{GQCP::PrimitiveElectronicQuadrupoleIntegralEngine$<$ \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1D()}{calculate1D()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
+template$<$typename Z  = Shell$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_a15b334c3c3414e85f73242eed39fffc7}{Integral\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{GQCP\+::\+Primitive\+Electronic\+Quadrupole\+Integral\+Engine}}$<$ \+\_\+\+Shell $>$\+::calculate1D (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}}]{k1,  }\item[{const double}]{a,  }\item[{const double}]{K,  }\item[{const int}]{i,  }\item[{const double}]{b,  }\item[{const double}]{L,  }\item[{const int}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the electronic quadrupole integral over two London Cartesian GTO 1-\/D primitives.
+
+
+\begin{DoxyParams}{Parameters}
+{\em k1} & The (directional component of the) k-\/vector of the London overlap distribution. \\
+\hline
+{\em a} & The Gaussian exponent of the left 1-\/D primitive. \\
+\hline
+{\em K} & The (directional coordinate of the) center of the left 1-\/D primitive. \\
+\hline
+{\em i} & The Cartesian exponent of the left 1-\/D primitive. \\
+\hline
+{\em b} & The Gaussian exponent of the right 1-\/D primitive. \\
+\hline
+{\em L} & The (directional coordinate of the) center of the right 1-\/D primitive. \\
+\hline
+{\em j} & The Cartesian exponent of the right 1-\/D primitive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The electronic quadrupole integral over the two London Cartesian GTO 1-\/D primitives. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_primitive_electronic_quadrupole_integral_engine_8hpp}{Primitive\+Electronic\+Quadrupole\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

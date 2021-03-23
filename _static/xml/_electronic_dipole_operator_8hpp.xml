@@ -5,7 +5,7 @@
     <includes refid="_base_f_q_operator_8hpp" local="yes">Operator/FirstQuantized/BaseFQOperator.hpp</includes>
     <includes refid="_base_reference_dependent_operator_8hpp" local="yes">Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
-    <includedby refid="_primitive_dipole_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_electronic_dipole_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</includedby>
     <includedby refid="_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp</includedby>
     <includedby refid="_electronic_dipole_operator_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/ElectronicDipoleOperator.cpp</includedby>
     <incdepgraph>
@@ -210,25 +210,9 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
       </node>
-      <node id="103">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.cpp</label>
-        <link refid="_primitive_angular_momentum_integral_engine_8cpp"/>
-      </node>
       <node id="98">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp</label>
         <link refid="_a_p_i_g_geminal_coefficients_8cpp"/>
-      </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</label>
-        <link refid="_primitive_dipole_integral_engine_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
       </node>
       <node id="67">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp</label>
@@ -245,10 +229,6 @@
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-      </node>
-      <node id="102">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp</label>
-        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="64">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
@@ -466,13 +446,29 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="104">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp</label>
-        <link refid="_primitive_dipole_integral_engine_8cpp"/>
-      </node>
       <node id="113">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp</label>
         <link refid="_libint_interfacer_8cpp"/>
+      </node>
+      <node id="104">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</label>
+        <link refid="_primitive_electronic_quadrupole_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</label>
+        <link refid="_primitive_electronic_dipole_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
       </node>
       <node id="105">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp</label>
@@ -974,6 +970,14 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
+      <node id="103">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</label>
+        <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="82">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp</label>
         <link refid="_t2_amplitudes_8hpp"/>
@@ -1081,6 +1085,10 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
+      </node>
+      <node id="102">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
+        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="72">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</label>

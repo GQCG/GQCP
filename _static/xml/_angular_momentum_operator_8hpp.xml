@@ -7,7 +7,7 @@
     <includes refid="_base_reference_dependent_operator_8hpp" local="yes">Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</includes>
     <includes refid="aliases_8hpp" local="yes">Utilities/aliases.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
-    <includedby refid="_primitive_angular_momentum_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_angular_momentum_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</includedby>
     <includedby refid="_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp</includedby>
     <includedby refid="_angular_momentum_operator_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/AngularMomentumOperator.cpp</includedby>
     <incdepgraph>
@@ -170,16 +170,6 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</label>
-        <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-      </node>
       <node id="30">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDIntermediatesUpdate.hpp</label>
         <link refid="_c_c_s_d_intermediates_update_8hpp"/>
@@ -211,9 +201,9 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="103" relation="include">
         </childnode>
-        <childnode refid="114" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
       </node>
       <node id="27">
@@ -238,10 +228,6 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
       </node>
-      <node id="103">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.cpp</label>
-        <link refid="_primitive_angular_momentum_integral_engine_8cpp"/>
-      </node>
       <node id="98">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp</label>
         <link refid="_a_p_i_g_geminal_coefficients_8cpp"/>
@@ -262,10 +248,6 @@
         <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="102">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp</label>
-        <link refid="_integral_engine_8cpp"/>
-      </node>
       <node id="64">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
         <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
@@ -280,18 +262,18 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="105">
+      <node id="104">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp</label>
         <link refid="_libcint_interfacer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
         <childnode refid="106" relation="include">
         </childnode>
         <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -482,11 +464,11 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="112">
+      <node id="111">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp</label>
         <link refid="_libint_interfacer_8cpp"/>
       </node>
-      <node id="104">
+      <node id="103">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp</label>
         <link refid="_operator_8hpp"/>
         <childnode refid="2" relation="include">
@@ -495,11 +477,11 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="105" relation="include">
+        <childnode refid="104" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="108" relation="include">
         </childnode>
-        <childnode refid="111" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -718,12 +700,12 @@
         <childnode refid="85" relation="include">
         </childnode>
       </node>
-      <node id="110">
+      <node id="109">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
         <link refid="_libint_one_electron_integral_buffer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="111" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
       </node>
       <node id="66">
@@ -770,7 +752,7 @@
         <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="106">
+      <node id="105">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp</label>
         <link refid="_libcint_one_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -850,7 +832,7 @@
         <childnode refid="100" relation="include">
         </childnode>
       </node>
-      <node id="108">
+      <node id="107">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibcintInterfacer.cpp</label>
         <link refid="_libcint_interfacer_8cpp"/>
       </node>
@@ -908,12 +890,14 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="109">
+      <node id="108">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintInterfacer.hpp</label>
         <link refid="_libint_interfacer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
         </childnode>
         <childnode refid="110" relation="include">
         </childnode>
@@ -921,10 +905,8 @@
         </childnode>
         <childnode refid="112" relation="include">
         </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
       </node>
-      <node id="107">
+      <node id="106">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libcint_two_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -974,6 +956,14 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</label>
+        <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="82">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp</label>
         <link refid="_t2_amplitudes_8hpp"/>
@@ -1002,7 +992,7 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="114">
+      <node id="113">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/AngularMomentumOperator.cpp</label>
         <link refid="_angular_momentum_operator_8cpp"/>
       </node>
@@ -1070,7 +1060,7 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="111">
+      <node id="110">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</label>
         <link refid="_libint_one_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1085,6 +1075,10 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
+      </node>
+      <node id="102">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
+        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="72">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</label>
@@ -1190,7 +1184,7 @@
         <childnode refid="90" relation="include">
         </childnode>
       </node>
-      <node id="113">
+      <node id="112">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp</label>
         <link refid="_g_t_o_basis_set_8cpp"/>
       </node>

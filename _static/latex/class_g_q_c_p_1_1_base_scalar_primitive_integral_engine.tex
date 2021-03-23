@@ -1,0 +1,84 @@
+\hypertarget{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine}{}\doxysection{GQCP\+::Base\+Scalar\+Primitive\+Integral\+Engine Class Reference}
+\label{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine}\index{GQCP::BaseScalarPrimitiveIntegralEngine@{GQCP::BaseScalarPrimitiveIntegralEngine}}
+
+
+{\ttfamily \#include $<$Base\+Scalar\+Primitive\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Base\+Scalar\+Primitive\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Base\+Scalar\+Primitive\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a6ae028b962575ec84353d8a0b53fea62}{$\sim$\+Base\+Scalar\+Primitive\+Integral\+Engine}} ()=0
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a99dc2b6e86c306c236e071a915f9af5d}{prepare\+State\+For\+Component}} (const size\+\_\+t component)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a4ec278364231e8424df004d317e9573c}{Components}} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A base class for primitive integral engines that can calculate integrals over scalar operators. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a6ae028b962575ec84353d8a0b53fea62}\label{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a6ae028b962575ec84353d8a0b53fea62}} 
+\index{GQCP::BaseScalarPrimitiveIntegralEngine@{GQCP::BaseScalarPrimitiveIntegralEngine}!````~BaseScalarPrimitiveIntegralEngine@{$\sim$BaseScalarPrimitiveIntegralEngine}}
+\index{````~BaseScalarPrimitiveIntegralEngine@{$\sim$BaseScalarPrimitiveIntegralEngine}!GQCP::BaseScalarPrimitiveIntegralEngine@{GQCP::BaseScalarPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseScalarPrimitiveIntegralEngine()}{~BaseScalarPrimitiveIntegralEngine()}}
+{\footnotesize\ttfamily GQCP\+::\+Base\+Scalar\+Primitive\+Integral\+Engine\+::$\sim$\+Base\+Scalar\+Primitive\+Integral\+Engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+A pure virtual destructor in order to make this class abstract. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a99dc2b6e86c306c236e071a915f9af5d}\label{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a99dc2b6e86c306c236e071a915f9af5d}} 
+\index{GQCP::BaseScalarPrimitiveIntegralEngine@{GQCP::BaseScalarPrimitiveIntegralEngine}!prepareStateForComponent@{prepareStateForComponent}}
+\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::BaseScalarPrimitiveIntegralEngine@{GQCP::BaseScalarPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{prepareStateForComponent()}{prepareStateForComponent()}}
+{\footnotesize\ttfamily void GQCP\+::\+Base\+Scalar\+Primitive\+Integral\+Engine\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})}
+
+Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & The index of the component of the operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Since a scalar operator has only 1 component, this method has no effect. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a4ec278364231e8424df004d317e9573c}\label{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_a4ec278364231e8424df004d317e9573c}} 
+\index{GQCP::BaseScalarPrimitiveIntegralEngine@{GQCP::BaseScalarPrimitiveIntegralEngine}!Components@{Components}}
+\index{Components@{Components}!GQCP::BaseScalarPrimitiveIntegralEngine@{GQCP::BaseScalarPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{Components}{Components}}
+{\footnotesize\ttfamily constexpr size\+\_\+t GQCP\+::\+Base\+Scalar\+Primitive\+Integral\+Engine\+::\+Components = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_base_scalar_primitive_integral_engine_8hpp}{Base\+Scalar\+Primitive\+Integral\+Engine.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_base_scalar_primitive_integral_engine_8cpp}{Base\+Scalar\+Primitive\+Integral\+Engine.\+cpp}}\end{DoxyCompactItemize}

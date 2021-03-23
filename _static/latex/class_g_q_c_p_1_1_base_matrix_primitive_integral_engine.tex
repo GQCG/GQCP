@@ -1,0 +1,111 @@
+\hypertarget{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine}{}\doxysection{GQCP\+::Base\+Matrix\+Primitive\+Integral\+Engine Class Reference}
+\label{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine}\index{GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}}
+
+
+{\ttfamily \#include $<$Base\+Matrix\+Primitive\+Integral\+Engine.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Base\+Matrix\+Primitive\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Base\+Matrix\+Primitive\+Integral\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_acf3a6853813e2dac35ff1139369f180c}{Base\+Matrix\+Primitive\+Integral\+Engine}} (const \mbox{\hyperlink{namespace_g_q_c_p_a637d38e9ff6e57c7933b057dd552aba8}{Dyadic\+Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a0723270c5eff6d385d215230e421e03f}{component}}=Dyadic\+Cartesian\+Direction\+::xx)
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a63ad6a27524711da0e32eb22d5845848}{$\sim$\+Base\+Matrix\+Primitive\+Integral\+Engine}} ()=0
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a52f963b442f8a09e9968b7eb0449d94b}{prepare\+State\+For\+Component}} (const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a0723270c5eff6d385d215230e421e03f}{component}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_aa9571368c5d98c9e0b123c1c7ed6eb7e}{Components}} = 9
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a637d38e9ff6e57c7933b057dd552aba8}{Dyadic\+Cartesian\+Direction}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a0723270c5eff6d385d215230e421e03f}{component}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A base class for integral engines over an operator with nine components (x, y, z) times (x, y, z). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_acf3a6853813e2dac35ff1139369f180c}\label{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_acf3a6853813e2dac35ff1139369f180c}} 
+\index{GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}!BaseMatrixPrimitiveIntegralEngine@{BaseMatrixPrimitiveIntegralEngine}}
+\index{BaseMatrixPrimitiveIntegralEngine@{BaseMatrixPrimitiveIntegralEngine}!GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{BaseMatrixPrimitiveIntegralEngine()}{BaseMatrixPrimitiveIntegralEngine()}}
+{\footnotesize\ttfamily GQCP\+::\+Base\+Matrix\+Primitive\+Integral\+Engine\+::\+Base\+Matrix\+Primitive\+Integral\+Engine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a637d38e9ff6e57c7933b057dd552aba8}{Dyadic\+Cartesian\+Direction}}}]{component = {\ttfamily DyadicCartesianDirection\+:\+:xx} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & The initial component of the dyadic Cartesian operator over which the primitive engine is prepared to calculate integrals.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The primitive engine\textquotesingle{}s state may be changed through the {\ttfamily prepare\+State\+For\+Component} method. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a63ad6a27524711da0e32eb22d5845848}\label{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a63ad6a27524711da0e32eb22d5845848}} 
+\index{GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}!````~BaseMatrixPrimitiveIntegralEngine@{$\sim$BaseMatrixPrimitiveIntegralEngine}}
+\index{````~BaseMatrixPrimitiveIntegralEngine@{$\sim$BaseMatrixPrimitiveIntegralEngine}!GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseMatrixPrimitiveIntegralEngine()}{~BaseMatrixPrimitiveIntegralEngine()}}
+{\footnotesize\ttfamily GQCP\+::\+Base\+Matrix\+Primitive\+Integral\+Engine\+::$\sim$\+Base\+Matrix\+Primitive\+Integral\+Engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+A pure virtual destructor in order to make this class abstract. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a52f963b442f8a09e9968b7eb0449d94b}\label{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a52f963b442f8a09e9968b7eb0449d94b}} 
+\index{GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}!prepareStateForComponent@{prepareStateForComponent}}
+\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{prepareStateForComponent()}{prepareStateForComponent()}}
+{\footnotesize\ttfamily void GQCP\+::\+Base\+Matrix\+Primitive\+Integral\+Engine\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})}
+
+Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & The index of the component of the operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+See also {\ttfamily Dyadic\+Cartesian\+Direction}. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a0723270c5eff6d385d215230e421e03f}\label{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_a0723270c5eff6d385d215230e421e03f}} 
+\index{GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}!component@{component}}
+\index{component@{component}!GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{component}{component}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a637d38e9ff6e57c7933b057dd552aba8}{Dyadic\+Cartesian\+Direction}} GQCP\+::\+Base\+Matrix\+Primitive\+Integral\+Engine\+::component\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_aa9571368c5d98c9e0b123c1c7ed6eb7e}\label{class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_aa9571368c5d98c9e0b123c1c7ed6eb7e}} 
+\index{GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}!Components@{Components}}
+\index{Components@{Components}!GQCP::BaseMatrixPrimitiveIntegralEngine@{GQCP::BaseMatrixPrimitiveIntegralEngine}}
+\doxysubsubsection{\texorpdfstring{Components}{Components}}
+{\footnotesize\ttfamily constexpr size\+\_\+t GQCP\+::\+Base\+Matrix\+Primitive\+Integral\+Engine\+::\+Components = 9\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_base_matrix_primitive_integral_engine_8hpp}{Base\+Matrix\+Primitive\+Integral\+Engine.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_base_matrix_primitive_integral_engine_8cpp}{Base\+Matrix\+Primitive\+Integral\+Engine.\+cpp}}\end{DoxyCompactItemize}

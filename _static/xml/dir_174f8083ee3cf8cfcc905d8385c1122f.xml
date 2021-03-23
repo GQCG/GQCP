@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_174f8083ee3cf8cfcc905d8385c1122f" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive</compoundname>
+    <innerfile refid="_base_matrix_primitive_integral_engine_8cpp">BaseMatrixPrimitiveIntegralEngine.cpp</innerfile>
+    <innerfile refid="_base_scalar_primitive_integral_engine_8cpp">BaseScalarPrimitiveIntegralEngine.cpp</innerfile>
+    <innerfile refid="_base_vector_primitive_integral_engine_8cpp">BaseVectorPrimitiveIntegralEngine.cpp</innerfile>
+    <innerfile refid="_double_london_hermite_coulomb_integral_8cpp">DoubleLondonHermiteCoulombIntegral.cpp</innerfile>
+    <innerfile refid="_hermite_coulomb_integral_8cpp">HermiteCoulombIntegral.cpp</innerfile>
+    <innerfile refid="_integral_engine_8cpp">IntegralEngine.cpp</innerfile>
+    <innerfile refid="_london_hermite_coulomb_integral_8cpp">LondonHermiteCoulombIntegral.cpp</innerfile>
+    <innerfile refid="_mc_murchie_davidson_coefficient_8cpp">McMurchieDavidsonCoefficient.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_london_hermite_coulomb_integral" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::LondonHermiteCoulombIntegral</compoundname>
+    <includes refid="_london_hermite_coulomb_integral_8hpp" local="no">LondonHermiteCoulombIntegral.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1afda8561a2b67a6cbe843ad4019d20a70" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GQCP::LondonHermiteCoulombIntegral::p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="34" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1a905768d4d5dcf8b30b51634d5784f92d" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::LondonHermiteCoulombIntegral::k1</definition>
+        <argsstring></argsstring>
+        <name>k1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="37" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1af81913623a37330bc9e01e3cd706ba9e" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::LondonHermiteCoulombIntegral::P</definition>
+        <argsstring></argsstring>
+        <name>P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="40" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1aaf205ff7a9d32d69ce5a94a405b87cec" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;</type>
+        <definition>Vector&lt;double, 3&gt; GQCP::LondonHermiteCoulombIntegral::C</definition>
+        <argsstring></argsstring>
+        <name>C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="43" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1a219bc0b69e7463cfca77c1788b3cf01a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::LondonHermiteCoulombIntegral::LondonHermiteCoulombIntegral</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;k1, const double p, const Vector&lt; double, 3 &gt; &amp;P, const Vector&lt; double, 3 &gt; &amp;C)</argsstring>
+        <name>LondonHermiteCoulombIntegral</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The k-vector of the London overlap distribution. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exponent of the Hermite Gaussian. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The center of the Hermite Gaussian. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The center of the Coulomb potential. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp" bodystart="37" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1a0efa0509352fd0ae8a148a9e9af80d3c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
+        <definition>complex GQCP::LondonHermiteCoulombIntegral::operator()</definition>
+        <argsstring>(const size_t n, const int t, const int u, const int v) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the value for the (auxiliary) London Hermite Coulomb integral R^{k1, n}_{tuv}(p, P, C).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The order of the London Hermite Coulomb integral, i.e. the order of the Boys function. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative degree in P_x. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative degree in P_y. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative degree in P_z. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="72" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp" bodystart="56" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An implementation of the (auxiliary) London Hermite Coulomb integral R^{k1, n}_{tuv}. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::LondonHermiteCoulombIntegral</label>
+        <link refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" bodystart="31" bodyend="73"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1aaf205ff7a9d32d69ce5a94a405b87cec" prot="private" virt="non-virtual"><scope>GQCP::LondonHermiteCoulombIntegral</scope><name>C</name></member>
+      <member refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1a905768d4d5dcf8b30b51634d5784f92d" prot="private" virt="non-virtual"><scope>GQCP::LondonHermiteCoulombIntegral</scope><name>k1</name></member>
+      <member refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1a219bc0b69e7463cfca77c1788b3cf01a" prot="public" virt="non-virtual"><scope>GQCP::LondonHermiteCoulombIntegral</scope><name>LondonHermiteCoulombIntegral</name></member>
+      <member refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1a0efa0509352fd0ae8a148a9e9af80d3c" prot="public" virt="non-virtual"><scope>GQCP::LondonHermiteCoulombIntegral</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1afda8561a2b67a6cbe843ad4019d20a70" prot="private" virt="non-virtual"><scope>GQCP::LondonHermiteCoulombIntegral</scope><name>p</name></member>
+      <member refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1af81913623a37330bc9e01e3cd706ba9e" prot="private" virt="non-virtual"><scope>GQCP::LondonHermiteCoulombIntegral</scope><name>P</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

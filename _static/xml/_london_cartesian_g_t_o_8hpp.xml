@@ -6,8 +6,9 @@
     <includes refid="_scalar_function_8hpp" local="yes">Mathematical/Functions/ScalarFunction.hpp</includes>
     <includes refid="_homogeneous_magnetic_field_8hpp" local="yes">Physical/HomogeneousMagneticField.hpp</includes>
     <includes refid="aliases_8hpp" local="yes">Utilities/aliases.hpp</includes>
-    <includedby refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includedby>
-    <includedby refid="_primitive_overlap_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_electronic_quadrupole_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</includedby>
+    <includedby refid="_primitive_overlap_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp</includedby>
     <includedby refid="_london_g_t_o_shell_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp</includedby>
     <includedby refid="_london_cartesian_g_t_o_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp</includedby>
     <incdepgraph>
@@ -168,7 +169,7 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="110">
+      <node id="111">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
         <link refid="_u_spin_orbital_basis_component_8hpp"/>
         <childnode refid="3" relation="include">
@@ -266,10 +267,6 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
       </node>
-      <node id="104">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.cpp</label>
-        <link refid="_primitive_angular_momentum_integral_engine_8cpp"/>
-      </node>
       <node id="98">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp</label>
         <link refid="_a_p_i_g_geminal_coefficients_8cpp"/>
@@ -290,10 +287,6 @@
         <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="102">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp</label>
-        <link refid="_integral_engine_8cpp"/>
-      </node>
       <node id="64">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
         <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
@@ -308,18 +301,18 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="112">
+      <node id="113">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp</label>
         <link refid="_libcint_interfacer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
         <childnode refid="114" relation="include">
         </childnode>
         <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -368,14 +361,14 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="109">
+      <node id="110">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp</label>
         <link refid="_simple_spin_orbital_basis_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="110" relation="include">
+        <childnode refid="111" relation="include">
         </childnode>
       </node>
       <node id="75">
@@ -450,7 +443,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="108">
+      <node id="109">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp</label>
         <link refid="_scalar_basis_8hpp"/>
         <childnode refid="3" relation="include">
@@ -459,7 +452,7 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
       </node>
       <node id="24">
@@ -522,7 +515,7 @@
         <childnode refid="35" relation="include">
         </childnode>
       </node>
-      <node id="122">
+      <node id="123">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/LondonGTOShell.cpp</label>
         <link refid="_london_g_t_o_shell_8cpp"/>
       </node>
@@ -536,13 +529,29 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="105">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveDipoleIntegralEngine.cpp</label>
-        <link refid="_primitive_dipole_integral_engine_8cpp"/>
-      </node>
-      <node id="119">
+      <node id="120">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp</label>
         <link refid="_libint_interfacer_8cpp"/>
+      </node>
+      <node id="103">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</label>
+        <link refid="_primitive_electronic_quadrupole_integral_engine_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="106">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</label>
+        <link refid="_primitive_electronic_dipole_integral_engine_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
       </node>
       <node id="6">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp</label>
@@ -669,9 +678,11 @@
         </childnode>
         <childnode refid="103" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="104" relation="include">
         </childnode>
-        <childnode refid="123" relation="include">
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
         </childnode>
       </node>
       <node id="38">
@@ -699,6 +710,24 @@
       <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="104">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp</label>
+        <link refid="_primitive_overlap_integral_engine_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
       </node>
       <node id="10">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp</label>
@@ -748,6 +777,24 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
+      <node id="107">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp</label>
+        <link refid="_primitive_linear_momentum_integral_engine_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
+        <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="83">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp"/>
@@ -766,12 +813,12 @@
         <childnode refid="85" relation="include">
         </childnode>
       </node>
-      <node id="117">
+      <node id="118">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
         <link refid="_libint_one_electron_integral_buffer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="118" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
       </node>
       <node id="66">
@@ -818,17 +865,13 @@
         <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="113">
+      <node id="114">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp</label>
         <link refid="_libcint_one_electron_integral_engine_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="106">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.cpp</label>
-        <link refid="_primitive_linear_momentum_integral_engine_8cpp"/>
       </node>
       <node id="42">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFErrorCalculation.hpp</label>
@@ -902,11 +945,11 @@
         <childnode refid="100" relation="include">
         </childnode>
       </node>
-      <node id="115">
+      <node id="116">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibcintInterfacer.cpp</label>
         <link refid="_libcint_interfacer_8cpp"/>
       </node>
-      <node id="107">
+      <node id="108">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/LondonGTOShell.hpp</label>
         <link refid="_london_g_t_o_shell_8hpp"/>
         <childnode refid="3" relation="include">
@@ -915,11 +958,13 @@
         </childnode>
         <childnode refid="103" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="104" relation="include">
         </childnode>
-        <childnode refid="111" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
-        <childnode refid="122" relation="include">
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
         </childnode>
       </node>
       <node id="94">
@@ -928,7 +973,7 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="123">
+      <node id="124">
         <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp</label>
         <link refid="_london_cartesian_g_t_o_8cpp"/>
       </node>
@@ -980,14 +1025,12 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="116">
+      <node id="117">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintInterfacer.hpp</label>
         <link refid="_libint_interfacer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="117" relation="include">
         </childnode>
         <childnode refid="118" relation="include">
         </childnode>
@@ -995,8 +1038,10 @@
         </childnode>
         <childnode refid="120" relation="include">
         </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
       </node>
-      <node id="114">
+      <node id="115">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libcint_two_electron_integral_engine_8hpp"/>
         <childnode refid="3" relation="include">
@@ -1028,14 +1073,6 @@
         <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
-        <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
       <node id="95">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/properties.hpp</label>
         <link refid="properties_8hpp"/>
@@ -1054,20 +1091,12 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="103">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</label>
-        <link refid="_primitive_overlap_integral_engine_8hpp"/>
+      <node id="105">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</label>
+        <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="105" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
         </childnode>
       </node>
       <node id="82">
@@ -1098,20 +1127,20 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="111">
+      <node id="112">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp</label>
         <link refid="_shell_set_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
-        <childnode refid="116" relation="include">
+        <childnode refid="117" relation="include">
         </childnode>
-        <childnode refid="121" relation="include">
+        <childnode refid="122" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
       </node>
       <node id="87">
@@ -1130,14 +1159,14 @@
         <childnode refid="88" relation="include">
         </childnode>
       </node>
-      <node id="121">
+      <node id="122">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp</label>
         <link refid="_g_t_o_basis_set_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
-        <childnode refid="120" relation="include">
+        <childnode refid="121" relation="include">
         </childnode>
       </node>
       <node id="19">
@@ -1188,7 +1217,7 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="118">
+      <node id="119">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</label>
         <link refid="_libint_one_electron_integral_engine_8hpp"/>
         <childnode refid="3" relation="include">
@@ -1203,6 +1232,10 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
+      </node>
+      <node id="102">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
+        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="72">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</label>
@@ -1308,7 +1341,7 @@
         <childnode refid="90" relation="include">
         </childnode>
       </node>
-      <node id="120">
+      <node id="121">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp</label>
         <link refid="_g_t_o_basis_set_8cpp"/>
       </node>

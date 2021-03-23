@@ -1,5 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="5,5,323,61"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_s_q_hamiltonian.html" title=" " alt="" coords="371,49,613,105"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="23,86,305,157"/>
+<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_base_vector_primitive_integral_engine.html" title=" " alt="" coords="5,79,204,120"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine.html" title=" " alt="" coords="252,5,503,47"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine.html" title=" " alt="" coords="282,71,473,127"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine.html" title=" " alt="" coords="257,152,497,193"/>
 </map>

@@ -6,23 +6,10 @@
     <innerclass refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" prot="public">GQCP::BaseOneElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public">GQCP::BaseTwoElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public">GQCP::BaseTwoElectronIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" prot="public">GQCP::FunctionalOneElectronPrimitiveIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_functional_primitive_integral_engine" prot="public">GQCP::FunctionalPrimitiveIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine" prot="public">GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_hermite_coulomb_integral" prot="public">GQCP::HermiteCoulombIntegral</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_calculator" prot="public">GQCP::IntegralCalculator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_integral_engine" prot="public">GQCP::IntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" prot="public">GQCP::McMurchieDavidsonCoefficient</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_buffer" prot="public">GQCP::OneElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_one_electron_integral_engine" prot="public">GQCP::OneElectronIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public">GQCP::PrimitiveAngularMomentumIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" prot="public">GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_cartesian_operator_integral_engine" prot="public">GQCP::PrimitiveCartesianOperatorIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine" prot="public">GQCP::PrimitiveCoulombRepulsionIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_dipole_integral_engine" prot="public">GQCP::PrimitiveDipoleIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public">GQCP::PrimitiveLinearMomentumIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" prot="public">GQCP::PrimitiveNuclearAttractionIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public">GQCP::PrimitiveOverlapIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_two_electron_integral_buffer" prot="public">GQCP::TwoElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_two_electron_integral_engine" prot="public">GQCP::TwoElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libcint_interfacer" prot="public">GQCP::LibcintInterfacer</innerclass>
@@ -35,6 +22,23 @@
     <innerclass refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" prot="public">GQCP::LibintOneElectronIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libint_two_electron_integral_buffer" prot="public">GQCP::LibintTwoElectronIntegralBuffer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine" prot="public">GQCP::LibintTwoElectronIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine" prot="public">GQCP::BaseMatrixPrimitiveIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" prot="public">GQCP::BaseScalarPrimitiveIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine" prot="public">GQCP::BaseVectorPrimitiveIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_double_london_hermite_coulomb_integral" prot="public">GQCP::DoubleLondonHermiteCoulombIntegral</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" prot="public">GQCP::FunctionalOneElectronPrimitiveIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine" prot="public">GQCP::FunctionalTwoElectronPrimitiveIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_hermite_coulomb_integral" prot="public">GQCP::HermiteCoulombIntegral</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_london_hermite_coulomb_integral" prot="public">GQCP::LondonHermiteCoulombIntegral</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" prot="public">GQCP::McMurchieDavidsonCoefficient</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public">GQCP::PrimitiveAngularMomentumIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" prot="public">GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine" prot="public">GQCP::PrimitiveCoulombRepulsionIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine" prot="public">GQCP::PrimitiveElectronicDipoleIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine" prot="public">GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public">GQCP::PrimitiveLinearMomentumIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" prot="public">GQCP::PrimitiveNuclearAttractionIntegralEngine</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public">GQCP::PrimitiveOverlapIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_mulliken_partitioning" prot="public">GQCP::GMullikenPartitioning</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_mulliken_partitioning" prot="public">GQCP::RMullikenPartitioning</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning" prot="public">GQCP::UMullikenPartitioning</innerclass>
@@ -192,6 +196,7 @@
     <innerclass refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" prot="public">GQCP::CoulombRepulsionOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_density_operator" prot="public">GQCP::ElectronicDensityOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public">GQCP::ElectronicDipoleOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" prot="public">GQCP::ElectronicQuadrupoleOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_spin__z_operator" prot="public">GQCP::ElectronicSpin_zOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_spin_operator" prot="public">GQCP::ElectronicSpinOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_kinetic_operator" prot="public">GQCP::KineticOperator</innerclass>
@@ -398,11 +403,95 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>An enumeration containing the Cartesian directions </para>
+<para>An enumeration containing the Cartesian directions. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianDirection.hpp" line="27" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianDirection.hpp" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DyadicCartesianDirection</name>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8a864db11d769267fbd0c8560ad7334199" prot="public">
+          <name>xx</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8a83aaee977be2aa0a74747821d09385ea" prot="public">
+          <name>xy</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8a4428828cdfaba0bfb56aed813dafb46a" prot="public">
+          <name>xz</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8a7a1ec4d0a90ac488f35e2f4647e5017c" prot="public">
+          <name>yx</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8a738026b3a875282c992c81af1f240e30" prot="public">
+          <name>yy</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8a9f7ed74131a859666d4f43dc067f0d13" prot="public">
+          <name>yz</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8a23c24c7aebf7d3e329b4b13f3c85ea0c" prot="public">
+          <name>zx</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8ab99689886319ae54695018c1b6083053" prot="public">
+          <name>zy</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_g_q_c_p_1a637d38e9ff6e57c7933b057dd552aba8abbe13bc2c965b1d916c442cbdcb26163" prot="public">
+          <name>zz</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>An enumeration containing the dyadic Cartesian directions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/DyadicCartesianDirection.hpp" line="27" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/DyadicCartesianDirection.hpp" bodystart="27" bodyend="37"/>
       </memberdef>
       <memberdef kind="enum" id="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" prot="public" static="no" strong="yes">
         <type></type>

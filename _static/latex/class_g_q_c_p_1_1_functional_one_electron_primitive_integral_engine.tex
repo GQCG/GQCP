@@ -6,6 +6,16 @@
 
 
 
+Inheritance diagram for GQCP\+::Functional\+One\+Electron\+Primitive\+Integral\+Engine$<$ \+\_\+\+Integral\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine__inherit__graph}
+\end{center}
+\end{figure}
+
+
 Collaboration diagram for GQCP\+::Functional\+One\+Electron\+Primitive\+Integral\+Engine$<$ \+\_\+\+Integral\+Scalar $>$\+:
 \nopagebreak
 \begin{figure}[H]
@@ -28,15 +38,9 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integ
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a66093ca4810e7eeabfba68a72d616e0e}{Functional\+One\+Electron\+Primitive\+Integral\+Engine}} (const std\+::function$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a20c63b51eb4c8ed4355254fa9b9ecc3b}{Integral\+Scalar}}(const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&)$>$ \&function)
 \item 
-void \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a69a6850adcad39a1f897464feee8fd96}{prepare\+State\+For\+Component}} (const size\+\_\+t component)
-\item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a20c63b51eb4c8ed4355254fa9b9ecc3b}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_acee62d21ba8e54a743afac6bc64eb6cb}{calculate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&left, const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \&right) const
 \end{DoxyCompactItemize}
-\doxysubsection*{Static Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a1e517e9ec18989d61e368895346fca85}{Components}} = 1
-\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
@@ -111,35 +115,8 @@ Calculate the primitive integral over two {\ttfamily \mbox{\hyperlink{class_g_q_
 \begin{DoxyReturn}{Returns}
 The value of the integral over the two given {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}}}s. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a69a6850adcad39a1f897464feee8fd96}\label{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a69a6850adcad39a1f897464feee8fd96}} 
-\index{GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$}!prepareStateForComponent@{prepareStateForComponent}}
-\index{prepareStateForComponent@{prepareStateForComponent}!GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$}}
-\doxysubsubsection{\texorpdfstring{prepareStateForComponent()}{prepareStateForComponent()}}
-{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar $>$ \\
-void \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine}{GQCP\+::\+Functional\+One\+Electron\+Primitive\+Integral\+Engine}}$<$ \+\_\+\+Integral\+Scalar $>$\+::prepare\+State\+For\+Component (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-Prepare this engine\textquotesingle{}s internal state such that it is able to calculate integrals over the given component of the operator.
-
-
-\begin{DoxyParams}{Parameters}
-{\em component} & The index of the component of the operator.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-Since this kind of primitive engine is limited to 1-\/component operators (i.\+e. scalar operators), this method has no effect. 
-\end{DoxyNote}
-
-
-\doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a1e517e9ec18989d61e368895346fca85}\label{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_a1e517e9ec18989d61e368895346fca85}} 
-\index{GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$}!Components@{Components}}
-\index{Components@{Components}!GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$@{GQCP::FunctionalOneElectronPrimitiveIntegralEngine$<$ \_IntegralScalar $>$}}
-\doxysubsubsection{\texorpdfstring{Components}{Components}}
-{\footnotesize\ttfamily template$<$typename \+\_\+\+Integral\+Scalar $>$ \\
-constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine}{GQCP\+::\+Functional\+One\+Electron\+Primitive\+Integral\+Engine}}$<$ \+\_\+\+Integral\+Scalar $>$\+::Components = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
-
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\mbox{\hyperlink{_functional_one_electron_primitive_integral_engine_8hpp}{Functional\+One\+Electron\+Primitive\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_functional_one_electron_primitive_integral_engine_8hpp}{Functional\+One\+Electron\+Primitive\+Integral\+Engine.\+hpp}}\end{DoxyCompactItemize}

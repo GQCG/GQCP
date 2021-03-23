@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseScalarPrimitiveIntegralEngine</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveCoulombRepulsionIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <includes refid="_base_scalar_primitive_integral_engine_8hpp" local="no">BaseScalarPrimitiveIntegralEngine.hpp</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t GQCP::BaseScalarPrimitiveIntegralEngine::Components</definition>
+        <argsstring></argsstring>
+        <name>Components</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp" line="47" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a6ae028b962575ec84353d8a0b53fea62" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>GQCP::BaseScalarPrimitiveIntegralEngine::~BaseScalarPrimitiveIntegralEngine</definition>
+        <argsstring>()=0</argsstring>
+        <name>~BaseScalarPrimitiveIntegralEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A pure virtual destructor in order to make this class abstract. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp" line="39" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.cpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::BaseScalarPrimitiveIntegralEngine::prepareStateForComponent</definition>
+        <argsstring>(const size_t component)</argsstring>
+        <name>prepareStateForComponent</name>
+        <param>
+          <type>const size_t</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the component of the operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Since a scalar operator has only 1 component, this method has no effect. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp" line="56" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.cpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base class for primitive integral engines that can calculate integrals over scalar operators. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
+      <node id="3">
+        <label>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::PrimitiveCoulombRepulsionIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp" line="30" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp" bodystart="30" bodyend="57"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::BaseScalarPrimitiveIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::BaseScalarPrimitiveIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a6ae028b962575ec84353d8a0b53fea62" prot="public" virt="pure-virtual"><scope>GQCP::BaseScalarPrimitiveIntegralEngine</scope><name>~BaseScalarPrimitiveIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

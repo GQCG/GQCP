@@ -205,10 +205,6 @@
         <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="102">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp</label>
-        <link refid="_integral_engine_8cpp"/>
-      </node>
       <node id="64">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
         <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
@@ -948,6 +944,10 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
+      </node>
+      <node id="102">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
+        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="72">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</label>

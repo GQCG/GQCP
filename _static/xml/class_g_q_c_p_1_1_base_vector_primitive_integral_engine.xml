@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_base_vector_primitive_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::BaseVectorPrimitiveIntegralEngine</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
+    <includes refid="_base_vector_primitive_integral_engine_8hpp" local="no">BaseVectorPrimitiveIntegralEngine.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1ae7e8b1f36eaa6edbf7883183a133e9af" prot="protected" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+        <definition>CartesianDirection GQCP::BaseVectorPrimitiveIntegralEngine::component</definition>
+        <argsstring></argsstring>
+        <name>component</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" line="36" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a032301395e9f07b12ca835518ea2b934" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t GQCP::BaseVectorPrimitiveIntegralEngine::Components</definition>
+        <argsstring></argsstring>
+        <name>Components</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" line="67" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1aef88dc22cdd5ef0e282aca66812fbe65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::BaseVectorPrimitiveIntegralEngine::BaseVectorPrimitiveIntegralEngine</definition>
+        <argsstring>(const CartesianDirection component=CartesianDirection::x)</argsstring>
+        <name>BaseVectorPrimitiveIntegralEngine</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+          <declname>component</declname>
+          <defval>CartesianDirection::x</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial component of the Cartesian operator over which the primitive engine is prepared to calculate integrals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The primitive engine&apos;s state may be changed through the <computeroutput>prepareStateForComponent</computeroutput> method. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.cpp" bodystart="35" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1adc8d26b0fba15bb4cd3e16665cbcbda5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>GQCP::BaseVectorPrimitiveIntegralEngine::~BaseVectorPrimitiveIntegralEngine</definition>
+        <argsstring>()=0</argsstring>
+        <name>~BaseVectorPrimitiveIntegralEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A pure virtual destructor in order to make this class abstract. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" line="59" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.cpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a766119a77e95306dfb88dbdd1095a684" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::BaseVectorPrimitiveIntegralEngine::prepareStateForComponent</definition>
+        <argsstring>(const size_t component)</argsstring>
+        <name>prepareStateForComponent</name>
+        <param>
+          <type>const size_t</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>component</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the component of the operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>See also <computeroutput>CartesianDirection</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" line="76" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.cpp" bodystart="60" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base class for integral engines over an operator with three vector components (x, y, z). </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp" bodystart="32" bodyend="77"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1aef88dc22cdd5ef0e282aca66812fbe65" prot="public" virt="non-virtual"><scope>GQCP::BaseVectorPrimitiveIntegralEngine</scope><name>BaseVectorPrimitiveIntegralEngine</name></member>
+      <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1ae7e8b1f36eaa6edbf7883183a133e9af" prot="protected" virt="non-virtual"><scope>GQCP::BaseVectorPrimitiveIntegralEngine</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a032301395e9f07b12ca835518ea2b934" prot="public" virt="non-virtual"><scope>GQCP::BaseVectorPrimitiveIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a766119a77e95306dfb88dbdd1095a684" prot="public" virt="non-virtual"><scope>GQCP::BaseVectorPrimitiveIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1adc8d26b0fba15bb4cd3e16665cbcbda5" prot="public" virt="pure-virtual"><scope>GQCP::BaseVectorPrimitiveIntegralEngine</scope><name>~BaseVectorPrimitiveIntegralEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

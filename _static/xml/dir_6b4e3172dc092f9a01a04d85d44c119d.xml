@@ -3,14 +3,7 @@
   <compounddef id="dir_6b4e3172dc092f9a01a04d85d44c119d" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals</compoundname>
     <innerdir refid="dir_09d6c7a98a9abdede9731b9eae52264b">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces</innerdir>
-    <innerfile refid="_boys_function_8cpp">BoysFunction.cpp</innerfile>
-    <innerfile refid="_hermite_coulomb_integral_8cpp">HermiteCoulombIntegral.cpp</innerfile>
-    <innerfile refid="_integral_engine_8cpp">IntegralEngine.cpp</innerfile>
-    <innerfile refid="_mc_murchie_davidson_coefficient_8cpp">McMurchieDavidsonCoefficient.cpp</innerfile>
-    <innerfile refid="_primitive_angular_momentum_integral_engine_8cpp">PrimitiveAngularMomentumIntegralEngine.cpp</innerfile>
-    <innerfile refid="_primitive_cartesian_operator_integral_engine_8cpp">PrimitiveCartesianOperatorIntegralEngine.cpp</innerfile>
-    <innerfile refid="_primitive_dipole_integral_engine_8cpp">PrimitiveDipoleIntegralEngine.cpp</innerfile>
-    <innerfile refid="_primitive_linear_momentum_integral_engine_8cpp">PrimitiveLinearMomentumIntegralEngine.cpp</innerfile>
+    <innerdir refid="dir_174f8083ee3cf8cfcc905d8385c1122f">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive</innerdir>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

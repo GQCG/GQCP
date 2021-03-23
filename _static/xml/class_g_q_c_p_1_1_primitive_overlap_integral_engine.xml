@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::PrimitiveOverlapIntegralEngine</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseScalarPrimitiveIntegralEngine</basecompoundref>
     <includes refid="_primitive_overlap_integral_engine_8hpp" local="no">PrimitiveOverlapIntegralEngine.hpp</includes>
     <templateparamlist>
       <param>
@@ -20,7 +21,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a5c8908dbe85b8dc45f432053fe816aa0" prot="public" static="no">
         <type>typename Shell::Primitive</type>
@@ -33,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" prot="public" static="no">
         <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">OverlapOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
@@ -46,56 +47,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="54" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="54" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1ad4e652b1fa170342eb190fe2a0944bd1" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr auto</type>
-        <definition>constexpr auto GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::Components</definition>
-        <argsstring></argsstring>
-        <name>Components</name>
-        <initializer>= <ref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" kindref="member">OverlapOperator::NumberOfComponents</ref></initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="51" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a6882414eca98812b02bf14d3c941839e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::prepareStateForComponent</definition>
-        <argsstring>(const size_t component)</argsstring>
-        <name>prepareStateForComponent</name>
-        <param>
-          <type>const size_t</type>
-          <declname>component</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>MARK: Components Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>component</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The index of the component of the operator.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>Since the overlap operator has only 1 component, this method has no effect. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="69" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="69" bodyend="69"/>
-      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -142,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="85" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="85" bodyend="97"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="70" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="70" bodyend="82"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -238,7 +193,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="113" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="113" bodyend="125"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="98" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="98" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -286,7 +241,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="141" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="141" bodyend="161"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="126" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="126" bodyend="146"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -394,7 +349,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="178" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="178" bodyend="203"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="163" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="163" bodyend="188"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -412,23 +367,42 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <collaborationgraph>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;</label>
         <link refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp" bodystart="42" bodyend="204"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="44" bodyend="189"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate1D</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate1D</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1ad4e652b1fa170342eb190fe2a0944bd1" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>Components</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>IntegralScalar</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a6882414eca98812b02bf14d3c941839e" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a5c8908dbe85b8dc45f432053fe816aa0" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a201abfc83ece872d3af91a3b96ca3334" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a6ae028b962575ec84353d8a0b53fea62" prot="public" virt="pure-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>~BaseScalarPrimitiveIntegralEngine</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

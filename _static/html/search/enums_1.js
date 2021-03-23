@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['occupationtype_3207',['OccupationType',['../namespace_g_q_c_p.html#a3030f130c450e7134eb0670b39ab246b',1,'GQCP']]],
-  ['ordering_3208',['Ordering',['../namespace_g_q_c_p.html#aa03d875bac2a1696d399ae8136c705e5',1,'GQCP']]]
+  ['dyadiccartesiandirection_3251',['DyadicCartesianDirection',['../namespace_g_q_c_p.html#a637d38e9ff6e57c7933b057dd552aba8',1,'GQCP']]]
 ];

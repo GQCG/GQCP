@@ -1,7 +1,8 @@
 <map id="GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;" name="GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="472,5,669,97"/>
+<area shape="rect" id="node1" title=" " alt="" coords="635,5,832,97"/>
 <area shape="rect" id="node2" href="$class_g_q_c_p_1_1_angular_momentum_operator.html" title=" " alt="" coords="5,145,277,252"/>
 <area shape="rect" id="node3" href="$class_g_q_c_p_1_1_electronic_dipole_operator.html" title=" " alt="" coords="301,145,573,252"/>
-<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_electronic_spin_operator.html" title=" " alt="" coords="597,145,813,252"/>
-<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_linear_momentum_operator.html" title=" " alt="" coords="838,145,1077,252"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_electronic_quadrupole_operator.html" title=" " alt="" coords="597,145,869,252"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_electronic_spin_operator.html" title=" " alt="" coords="893,145,1109,252"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_linear_momentum_operator.html" title=" " alt="" coords="1134,145,1373,252"/>
 </map>

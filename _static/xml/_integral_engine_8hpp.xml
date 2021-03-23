@@ -7,34 +7,23 @@
     <includes refid="_libint_one_electron_integral_engine_8hpp" local="yes">Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</includes>
     <includes refid="_libint_two_electron_integral_engine_8hpp" local="yes">Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</includes>
     <includes refid="_one_electron_integral_engine_8hpp" local="yes">Basis/Integrals/OneElectronIntegralEngine.hpp</includes>
-    <includes refid="_primitive_angular_momentum_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</includes>
-    <includes refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includes>
-    <includes refid="_primitive_coulomb_repulsion_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp</includes>
-    <includes refid="_primitive_dipole_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</includes>
-    <includes refid="_primitive_linear_momentum_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</includes>
-    <includes refid="_primitive_nuclear_attraction_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp</includes>
-    <includes refid="_primitive_overlap_integral_engine_8hpp" local="yes">Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</includes>
+    <includes refid="_primitive_angular_momentum_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</includes>
+    <includes refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includes>
+    <includes refid="_primitive_coulomb_repulsion_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp</includes>
+    <includes refid="_primitive_electronic_dipole_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</includes>
+    <includes refid="_primitive_electronic_quadrupole_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</includes>
+    <includes refid="_primitive_linear_momentum_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp</includes>
+    <includes refid="_primitive_nuclear_attraction_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp</includes>
+    <includes refid="_primitive_overlap_integral_engine_8hpp" local="yes">Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp</includes>
     <includes refid="_two_electron_integral_engine_8hpp" local="yes">Basis/Integrals/TwoElectronIntegralEngine.hpp</includes>
     <includes refid="_operator_8hpp" local="yes">Operator/FirstQuantized/Operator.hpp</includes>
     <includes refid="aliases_8hpp" local="yes">Utilities/aliases.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_integral_calculator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp</includedby>
-    <includedby refid="_integral_engine_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp</includedby>
+    <includedby refid="_integral_engine_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</includedby>
     <incdepgraph>
       <node id="15">
         <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="82">
-        <label>Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</label>
-        <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
-        <childnode refid="83" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
       </node>
       <node id="44">
         <label>Operator/FirstQuantized/AngularMomentumOperator.hpp</label>
@@ -54,10 +43,10 @@
       <node id="33">
         <label>functional</label>
       </node>
-      <node id="95">
+      <node id="102">
         <label>Basis/Integrals/TwoElectronIntegralBuffer.hpp</label>
         <link refid="_two_electron_integral_buffer_8hpp"/>
-        <childnode refid="69" relation="include">
+        <childnode refid="70" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -68,10 +57,10 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="72">
+      <node id="73">
         <label>Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp</label>
         <link refid="_libcint_two_electron_integral_buffer_8hpp"/>
-        <childnode refid="69" relation="include">
+        <childnode refid="70" relation="include">
         </childnode>
       </node>
       <node id="48">
@@ -86,25 +75,11 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="87">
+      <node id="89">
         <label>boost/math/constants/constants.hpp</label>
       </node>
-      <node id="66">
+      <node id="67">
         <label>iterator</label>
-      </node>
-      <node id="93">
-        <label>Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp</label>
-        <link refid="_primitive_nuclear_attraction_integral_engine_8hpp"/>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="87" relation="include">
-        </childnode>
       </node>
       <node id="29">
         <label>boost/lexical_cast.hpp</label>
@@ -117,7 +92,7 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="56">
+      <node id="57">
         <label>Operator/FirstQuantized/LinearMomentumOperator.hpp</label>
         <link refid="_linear_momentum_operator_8hpp"/>
         <childnode refid="45" relation="include">
@@ -137,19 +112,35 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="91">
-        <label>Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</label>
-        <link refid="_primitive_dipole_integral_engine_8hpp"/>
-        <childnode refid="83" relation="include">
+      <node id="98">
+        <label>Mathematical/Functions/DyadicCartesianDirection.hpp</label>
+        <link refid="_dyadic_cartesian_direction_8hpp"/>
+      </node>
+      <node id="99">
+        <label>Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp</label>
+        <link refid="_primitive_nuclear_attraction_integral_engine_8hpp"/>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
-      <node id="64">
+      <node id="88">
+        <label>Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp</label>
+        <link refid="_mc_murchie_davidson_coefficient_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
         <label>Utilities/literals.hpp</label>
         <link refid="literals_8hpp"/>
         <childnode refid="10" relation="include">
@@ -157,14 +148,22 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="78">
+      <node id="79">
         <label>Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libint_two_electron_integral_engine_8hpp"/>
-        <childnode refid="68" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="79" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp</label>
+        <link refid="_electronic_quadrupole_operator_8hpp"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
       <node id="25">
@@ -202,10 +201,10 @@
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="63" relation="include">
         </childnode>
       </node>
-      <node id="65">
+      <node id="66">
         <label>Utilities/miscellaneous.hpp</label>
         <link refid="miscellaneous_8hpp"/>
         <childnode refid="41" relation="include">
@@ -216,7 +215,7 @@
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
+        <childnode refid="67" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
@@ -226,13 +225,13 @@
       <node id="26">
         <label>boost/format.hpp</label>
       </node>
-      <node id="54">
+      <node id="55">
         <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
         <link refid="_electronic_spin__z_operator_8hpp"/>
         <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="90">
+      <node id="95">
         <label>cmath</label>
       </node>
       <node id="51">
@@ -254,16 +253,10 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="60">
+      <node id="61">
         <label>Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
         <link refid="_nuclear_repulsion_operator_8hpp"/>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="86">
-        <label>Basis/Integrals/McMurchieDavidsonCoefficient.hpp</label>
-        <link refid="_mc_murchie_davidson_coefficient_8hpp"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -271,29 +264,31 @@
         <link refid="_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="67" relation="include">
+        <childnode refid="68" relation="include">
         </childnode>
-        <childnode refid="73" relation="include">
+        <childnode refid="74" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="84" relation="include">
-        </childnode>
-        <childnode refid="88" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="91" relation="include">
         </childnode>
         <childnode refid="92" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
-        </childnode>
         <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -303,13 +298,21 @@
       <node id="32">
         <label>string</label>
       </node>
-      <node id="55">
+      <node id="56">
         <label>Operator/FirstQuantized/KineticOperator.hpp</label>
         <link refid="_kinetic_operator_8hpp"/>
         <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="71">
+      <node id="93">
+        <label>Basis/Integrals/Primitive/DoubleLondonHermiteCoulombIntegral.hpp</label>
+        <link refid="_double_london_hermite_coulomb_integral_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
       <node id="30">
@@ -328,37 +331,35 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="94">
+      <node id="101">
         <label>Basis/Integrals/TwoElectronIntegralEngine.hpp</label>
         <link refid="_two_electron_integral_engine_8hpp"/>
-        <childnode refid="68" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="58">
         <label>Operator/FirstQuantized/NuclearAttractionOperator.hpp</label>
         <link refid="_nuclear_attraction_operator_8hpp"/>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="83">
-        <label>Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp</label>
-        <link refid="_primitive_cartesian_operator_integral_engine_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-      </node>
-      <node id="75">
+      <node id="76">
         <label>boost/preprocessor.hpp</label>
       </node>
       <node id="16">
         <label>fstream</label>
+      </node>
+      <node id="87">
+        <label>Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp</label>
+        <link refid="_base_scalar_primitive_integral_engine_8hpp"/>
+        <childnode refid="46" relation="include">
+        </childnode>
       </node>
       <node id="31">
         <label>Molecule/elements.hpp</label>
@@ -366,10 +367,24 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="58">
+      <node id="59">
         <label>Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
         <link refid="_base_nuclear_operator_8hpp"/>
         <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp</label>
+        <link refid="_base_vector_primitive_integral_engine_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="94">
+        <label>Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp</label>
+        <link refid="_hermite_coulomb_integral_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -378,7 +393,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="81">
+      <node id="82">
         <label>Basis/Integrals/OneElectronIntegralBuffer.hpp</label>
         <link refid="_one_electron_integral_buffer_8hpp"/>
         <childnode refid="4" relation="include">
@@ -386,10 +401,48 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="69">
+      <node id="96">
+        <label>Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</label>
+        <link refid="_primitive_electronic_quadrupole_integral_engine_8hpp"/>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</label>
+        <link refid="_primitive_electronic_dipole_integral_engine_8hpp"/>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
         <label>Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp</label>
         <link refid="_base_two_electron_integral_buffer_8hpp"/>
-        <childnode refid="70" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -421,11 +474,13 @@
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -445,7 +500,7 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="53">
+      <node id="54">
         <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
         <link refid="_electronic_spin_operator_8hpp"/>
         <childnode refid="48" relation="include">
@@ -453,13 +508,7 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="89">
-        <label>Basis/Integrals/HermiteCoulombIntegral.hpp</label>
-        <link refid="_hermite_coulomb_integral_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="61">
+      <node id="62">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
         <link refid="_overlap_operator_8hpp"/>
         <childnode refid="48" relation="include">
@@ -502,22 +551,6 @@
       <node id="14">
         <label>vector</label>
       </node>
-      <node id="88">
-        <label>Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp</label>
-        <link refid="_primitive_coulomb_repulsion_integral_engine_8hpp"/>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="87" relation="include">
-        </childnode>
-        <childnode refid="90" relation="include">
-        </childnode>
-      </node>
       <node id="9">
         <label>Utilities/aliases.hpp</label>
         <link refid="aliases_8hpp"/>
@@ -542,27 +575,99 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="18">
-        <label>array</label>
-      </node>
-      <node id="77">
-        <label>Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
-        <link refid="_libint_one_electron_integral_buffer_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="86">
+        <label>Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp</label>
+        <link refid="_primitive_overlap_integral_engine_8hpp"/>
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
-      <node id="92">
-        <label>Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</label>
+      <node id="90">
+        <label>Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp</label>
         <link refid="_primitive_linear_momentum_integral_engine_8hpp"/>
-        <childnode refid="83" relation="include">
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
+        <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
         <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>array</label>
+      </node>
+      <node id="78">
+        <label>Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
+        <link refid="_libint_one_electron_integral_buffer_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+      </node>
+      <node id="92">
+        <label>Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp</label>
+        <link refid="_primitive_coulomb_repulsion_integral_engine_8hpp"/>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
         </childnode>
       </node>
       <node id="52">
@@ -580,19 +685,27 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
         <childnode refid="64" relation="include">
         </childnode>
         <childnode refid="65" relation="include">
         </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="68">
+      <node id="100">
+        <label>Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp</label>
+        <link refid="_london_hermite_coulomb_integral_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="69">
         <label>Basis/Integrals/BaseTwoElectronIntegralEngine.hpp</label>
         <link refid="_base_two_electron_integral_engine_8hpp"/>
-        <childnode refid="69" relation="include">
+        <childnode refid="70" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -609,7 +722,7 @@
       <node id="17">
         <label>iostream</label>
       </node>
-      <node id="63">
+      <node id="64">
         <label>Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp</label>
         <link refid="_libcint_one_electron_integral_buffer_8hpp"/>
         <childnode refid="4" relation="include">
@@ -628,10 +741,10 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="62">
+      <node id="63">
         <label>cint.h</label>
       </node>
-      <node id="76">
+      <node id="77">
         <label>libint2.hpp</label>
       </node>
       <node id="23">
@@ -644,7 +757,7 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="74">
+      <node id="75">
         <label>Basis/Integrals/Interfaces/LibintInterfacer.hpp</label>
         <link refid="_libint_interfacer_8hpp"/>
         <childnode refid="21" relation="include">
@@ -655,41 +768,21 @@
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
         <childnode refid="76" relation="include">
         </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
       </node>
-      <node id="67">
+      <node id="68">
         <label>Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libcint_two_electron_integral_engine_8hpp"/>
-        <childnode refid="68" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="72" relation="include">
+        <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-      </node>
-      <node id="84">
-        <label>Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
-        <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
-        <childnode refid="85" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="66" relation="include">
         </childnode>
       </node>
       <node id="11">
@@ -701,44 +794,38 @@
         <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="79">
+      <node id="80">
         <label>Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp</label>
         <link refid="_libint_two_electron_integral_buffer_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="59">
+      <node id="60">
         <label>Operator/FirstQuantized/NuclearDipoleOperator.hpp</label>
         <link refid="_nuclear_dipole_operator_8hpp"/>
-        <childnode refid="58" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="85">
-        <label>Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</label>
-        <link refid="_primitive_overlap_integral_engine_8hpp"/>
+      <node id="83">
+        <label>Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</label>
+        <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
         <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
       <node id="12">
@@ -767,12 +854,12 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="80">
+      <node id="81">
         <label>Basis/Integrals/OneElectronIntegralEngine.hpp</label>
         <link refid="_one_electron_integral_engine_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -781,7 +868,7 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="70">
+      <node id="71">
         <label>Mathematical/Representation/Tensor.hpp</label>
         <link refid="_tensor_8hpp"/>
         <childnode refid="5" relation="include">
@@ -790,7 +877,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="71" relation="include">
+        <childnode refid="72" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
@@ -799,14 +886,22 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="73">
+      <node id="97">
+        <label>Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp</label>
+        <link refid="_base_matrix_primitive_integral_engine_8hpp"/>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
         <label>Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</label>
         <link refid="_libint_one_electron_integral_engine_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -948,10 +1043,6 @@
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-      </node>
-      <node id="100">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/IntegralEngine.cpp</label>
-        <link refid="_integral_engine_8cpp"/>
       </node>
       <node id="62">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
@@ -1677,6 +1768,10 @@
         <childnode refid="47" relation="include">
         </childnode>
       </node>
+      <node id="100">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
+        <link refid="_integral_engine_8cpp"/>
+      </node>
       <node id="70">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</label>
         <link refid="_q_c_method_newton_orbital_optimizer_8hpp"/>
@@ -1822,84 +1917,118 @@
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_libint_one_electron_integral_engine_8hpp" kindref="compound">Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_libint_two_electron_integral_engine_8hpp" kindref="compound">Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_one_electron_integral_engine_8hpp" kindref="compound">Basis/Integrals/OneElectronIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_angular_momentum_integral_engine_8hpp" kindref="compound">Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" kindref="compound">Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_coulomb_repulsion_integral_engine_8hpp" kindref="compound">Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_dipole_integral_engine_8hpp" kindref="compound">Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_linear_momentum_integral_engine_8hpp" kindref="compound">Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_nuclear_attraction_integral_engine_8hpp" kindref="compound">Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_overlap_integral_engine_8hpp" kindref="compound">Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_two_electron_integral_engine_8hpp" kindref="compound">Basis/Integrals/TwoElectronIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_operator_8hpp" kindref="compound">Operator/FirstQuantized/Operator.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aliases_8hpp" kindref="compound">Utilities/aliases.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_angular_momentum_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_coulomb_repulsion_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_electronic_dipole_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_electronic_quadrupole_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_linear_momentum_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_nuclear_attraction_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_primitive_overlap_integral_engine_8hpp" kindref="compound">Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_two_electron_integral_engine_8hpp" kindref="compound">Basis/Integrals/TwoElectronIntegralEngine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_operator_8hpp" kindref="compound">Operator/FirstQuantized/Operator.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aliases_8hpp" kindref="compound">Utilities/aliases.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="class_g_q_c_p_1_1_integral_engine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_integral_engine" kindref="compound">IntegralEngine</ref><sp/>{</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="47"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>GQCP<sp/>(&quot;In-house&quot;)</highlight></codeline>
-<codeline lineno="48"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
-<codeline lineno="49"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>These<sp/>integral<sp/>engines<sp/>can<sp/>only<sp/>calculate<sp/>integrals<sp/>over<sp/>Cartesian<sp/>d-shells.</highlight></codeline>
-<codeline lineno="50"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveAngularMomentumIntegralEngine&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref>&amp;<sp/>op);</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveDipoleIntegralEngine&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="class_g_q_c_p_1_1_integral_engine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_integral_engine" kindref="compound">IntegralEngine</ref><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>GQCP<sp/>(&quot;In-house&quot;)<sp/>integral<sp/>engines</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>These<sp/>integral<sp/>engines<sp/>can<sp/>only<sp/>calculate<sp/>integrals<sp/>over<sp/>Cartesian<sp/>d-shells,<sp/>not<sp/>over<sp/>spherical<sp/>d-shells.</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="65" refid="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveOverlapIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveOverlapIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kindref="compound">PrimitiveOverlapIntegralEngine&lt;Shell&gt;</ref>());</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveLinearMomentumIntegralEngine&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref>&amp;<sp/>op);</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="91" refid="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveOverlapIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveOverlapIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kindref="compound">PrimitiveOverlapIntegralEngine&lt;Shell&gt;</ref>());</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="108" refid="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveCanonicalKineticEnergyIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveCanonicalKineticEnergyIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" kindref="compound">PrimitiveCanonicalKineticEnergyIntegralEngine&lt;Shell&gt;</ref>());</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveNuclearAttractionIntegralEngine&lt;GTOShell&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="83" refid="class_g_q_c_p_1_1_integral_engine_1a91d02ffde81b71a1e48b11dee9ebfda7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a91d02ffde81b71a1e48b11dee9ebfda7" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveElectronicDipoleIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveElectronicDipoleIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine" kindref="compound">PrimitiveElectronicDipoleIntegralEngine&lt;Shell&gt;</ref>(op));</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="101" refid="class_g_q_c_p_1_1_integral_engine_1a66c017d2b104224813e6371be96f316d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a66c017d2b104224813e6371be96f316d" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveLinearMomentumIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveLinearMomentumIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" kindref="compound">PrimitiveLinearMomentumIntegralEngine&lt;Shell&gt;</ref>());</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="119" refid="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveCanonicalKineticEnergyIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveCanonicalKineticEnergyIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" kindref="compound">PrimitiveCanonicalKineticEnergyIntegralEngine&lt;Shell&gt;</ref>());</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_two_electron_integral_engine" kindref="compound">TwoElectronIntegralEngine&lt;PrimitiveCoulombRepulsionIntegralEngine&lt;GTOShell&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1aab2454c2e10aa09c1a90e201641636cb" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>&amp;<sp/>op);</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"></highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="137"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>LIBINT</highlight></codeline>
-<codeline lineno="138"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="139"><highlight class="normal"></highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine" kindref="compound">LibintTwoElectronIntegralEngine&lt;CoulombRepulsionOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;ElectronicDipoleOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;NuclearAttractionOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;KineticOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
-<codeline lineno="175"><highlight class="normal"></highlight></codeline>
-<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;OverlapOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
-<codeline lineno="184"><highlight class="normal"></highlight></codeline>
-<codeline lineno="185"><highlight class="normal"></highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="187"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>LIBCINT</highlight></codeline>
-<codeline lineno="188"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine" kindref="compound">LibcintTwoElectronIntegralEngine&lt;GTOShell, CoulombRepulsionOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
-<codeline lineno="197"><highlight class="normal"></highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, ElectronicDipoleOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"></highlight></codeline>
-<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, NuclearAttractionOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
-<codeline lineno="213"><highlight class="normal"></highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, KineticOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"></highlight></codeline>
-<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, OverlapOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
-<codeline lineno="229"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="230"><highlight class="normal"></highlight></codeline>
-<codeline lineno="231"><highlight class="normal"></highlight></codeline>
-<codeline lineno="232"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="137" refid="class_g_q_c_p_1_1_integral_engine_1a3d8dda7bbd43c52c6c92be609edc534e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a3d8dda7bbd43c52c6c92be609edc534e" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveAngularMomentumIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveAngularMomentumIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" kindref="compound">PrimitiveAngularMomentumIntegralEngine&lt;Shell&gt;</ref>(op));</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="155" refid="class_g_q_c_p_1_1_integral_engine_1a4a066e523a4bfe6346700cf0d4e92d66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a4a066e523a4bfe6346700cf0d4e92d66" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" kindref="compound">ElectronicQuadrupoleOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveElectronicQuadrupoleIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveElectronicQuadrupoleIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine" kindref="compound">PrimitiveElectronicQuadrupoleIntegralEngine&lt;Shell&gt;</ref>(op));</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="173" refid="class_g_q_c_p_1_1_integral_engine_1a09d60dc73bf58da92bcda5c3c0599890" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a09d60dc73bf58da92bcda5c3c0599890" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveNuclearAttractionIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_one_electron_integral_engine" kindref="compound">OneElectronIntegralEngine&lt;PrimitiveNuclearAttractionIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" kindref="compound">PrimitiveNuclearAttractionIntegralEngine&lt;Shell&gt;</ref>(op));</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell&gt;</highlight></codeline>
+<codeline lineno="191" refid="class_g_q_c_p_1_1_integral_engine_1a38f49009cb9d182ecbec6dd6d19914a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1a38f49009cb9d182ecbec6dd6d19914a5" kindref="member">InHouse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>&amp;<sp/>op)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_two_electron_integral_engine" kindref="compound">TwoElectronIntegralEngine&lt;PrimitiveCoulombRepulsionIntegralEngine&lt;Shell&gt;</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_two_electron_integral_engine" kindref="compound">TwoElectronIntegralEngine&lt;PrimitiveCoulombRepulsionIntegralEngine&lt;Shell&gt;</ref>&gt;(<ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine" kindref="compound">PrimitiveCoulombRepulsionIntegralEngine&lt;Shell&gt;</ref>());</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>LIBINT</highlight></codeline>
+<codeline lineno="199"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine" kindref="compound">LibintTwoElectronIntegralEngine&lt;CoulombRepulsionOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;ElectronicDipoleOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;NuclearAttractionOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;KineticOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1ab787d80066396f64d88877c848535aed" kindref="member">Libint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine&lt;OverlapOperator::NumberOfComponents&gt;</ref>;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="248"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>LIBCINT</highlight></codeline>
+<codeline lineno="249"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine" kindref="compound">LibcintTwoElectronIntegralEngine&lt;GTOShell, CoulombRepulsionOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, ElectronicDipoleOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, NuclearAttractionOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, KineticOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" kindref="member">Libcint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet&lt;GTOShell&gt;</ref>&amp;<sp/>shell_set)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kindref="compound">LibcintOneElectronIntegralEngine&lt;GTOShell, OverlapOperator::NumberOfComponents, double&gt;</ref>;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp"/>
   </compounddef>

@@ -12,14 +12,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create an <ref refid="class_g_q_c_p_1_1_electronic_density_operator" kindref="compound">ElectronicDensityOperator</ref>.</para>
-<para><simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_electronic_density_operator" kindref="compound">ElectronicDensityOperator</ref>. </para>
+<para><simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_density_operator" kindref="compound">ElectronicDensityOperator</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="53" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="53" bodyend="53"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="52" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="52" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a728f7c30e7e9f6c7f16e6ed0b7cd5943" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref></type>
@@ -29,14 +28,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create a <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>.</para>
-<para><simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>. </para>
+<para><simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="60" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="60" bodyend="60"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="57" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="57" bodyend="57"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a18a056da0ee2446c39e7db2301523639" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref></type>
@@ -50,7 +48,6 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> related to a nuclear framework.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>nuclear_framework</parametername>
@@ -60,13 +57,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref></computeroutput> corresponding to the given nuclear framework. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="69" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="69" bodyend="69"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="64" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="64" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1ae9d4528a06d5366bbb3406ff13792e92" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref></type>
@@ -80,7 +77,6 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> related to a molecule.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>molecule</parametername>
@@ -90,13 +86,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref></computeroutput> corresponding to the given molecule. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="78" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="78" bodyend="78"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="71" column="38" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="71" bodyend="71"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1ad08e5c4315fed9cffc6ce111d92a2313" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref></type>
@@ -106,14 +102,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create an <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>.</para>
-<para><simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>. </para>
+<para><simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="85" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="85" bodyend="85"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="76" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="76" bodyend="76"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a9fca941eaaf9582c224a3dcb04740e73" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" kindref="compound">ElectronicSpin_zOperator</ref></type>
@@ -123,14 +118,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create an <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" kindref="compound">ElectronicSpin_zOperator</ref></computeroutput>.</para>
 <para><simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" kindref="compound">ElectronicSpin_zOperator</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="92" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="92" bodyend="92"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="81" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="81" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a926505d6d1fcd356dc3b7a2ae2b70c72" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref></type>
@@ -145,7 +139,6 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create an <ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref> about a reference point.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>reference</parametername>
@@ -155,13 +148,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref>. </para>
+<simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref></computeroutput> relative to the given reference point. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="105" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="105" bodyend="105"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="93" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="93" bodyend="93"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1acc6e78d49a5cd051a8abab888431f635" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref></type>
@@ -176,7 +169,6 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create an <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> with the given point as a reference.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>origin</parametername>
@@ -186,13 +178,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>. </para>
+<simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref></computeroutput> relative to the given origin. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="114" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="114" bodyend="114"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="100" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="100" bodyend="100"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a685577f87d959bdeba8704c1f82d7c36" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref></type>
@@ -202,14 +194,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create an <ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref>.</para>
-<para><simplesect kind="return"><para>An <ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref>. </para>
+<para><simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="121" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="121" bodyend="121"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="105" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="105" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1ae414e28e2038e24768cb8522ebf57c7e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref></type>
@@ -219,14 +210,43 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create a <ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref>.</para>
-<para><simplesect kind="return"><para>a <ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref>. </para>
+<para><simplesect kind="return"><para>a <computeroutput><ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="128" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="128" bodyend="128"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="110" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1af2b2e5acb7b42dce8cee8ef95e295da6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" kindref="compound">ElectronicQuadrupoleOperator</ref></type>
+        <definition>static ElectronicQuadrupoleOperator GQCP::Operator::ElectronicQuadrupole</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;origin=Vector&lt; double, 3 &gt;::Zero())</argsstring>
+        <name>ElectronicQuadrupole</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>origin</declname>
+          <defval><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;::Zero()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>origin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The origin of the quadrupole operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An <computeroutput><ref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" kindref="compound">ElectronicQuadrupoleOperator</ref></computeroutput> relative to the given origin. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="122" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="122" bodyend="122"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a1c608e9830f1e160de0d9dc3101d0feb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref></type>
@@ -236,14 +256,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create a <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>.</para>
-<para><simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref>. </para>
+<para><simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="140" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="140" bodyend="140"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="132" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="132" bodyend="132"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a33d30f358782ec0bd2224cd100d7d930" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" kindref="compound">NuclearDipoleOperator</ref></type>
@@ -262,7 +281,6 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" kindref="compound">NuclearDipoleOperator</ref> from a molecule and a reference point for the dipole.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>molecule</parametername>
@@ -280,13 +298,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" kindref="compound">NuclearDipoleOperator</ref>. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_nuclear_dipole_operator" kindref="compound">NuclearDipoleOperator</ref></computeroutput> for the given molecule and reference point. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="155" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="155" bodyend="155"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="145" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="145" bodyend="145"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_operator_1a1b8ed96bc5cbec4d3405a2bce2d1fffc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" kindref="compound">NuclearRepulsionOperator</ref></type>
@@ -300,7 +318,6 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Create a <ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" kindref="compound">NuclearRepulsionOperator</ref> from a molecule.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>molecule</parametername>
@@ -310,13 +327,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" kindref="compound">NuclearRepulsionOperator</ref>. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" kindref="compound">NuclearRepulsionOperator</ref></computeroutput> related to the given molecule. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="164" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="164" bodyend="164"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="152" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="152" bodyend="152"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -330,12 +347,13 @@
         <link refid="class_g_q_c_p_1_1_operator"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="42" bodyend="165"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/Operator.hpp" bodystart="43" bodyend="153"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_operator_1a926505d6d1fcd356dc3b7a2ae2b70c72" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>AngularMomentum</name></member>
       <member refid="class_g_q_c_p_1_1_operator_1a1c608e9830f1e160de0d9dc3101d0feb" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>Coulomb</name></member>
       <member refid="class_g_q_c_p_1_1_operator_1ada6654c5287020ce46f39d2dea5e0cbf" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicDensity</name></member>
       <member refid="class_g_q_c_p_1_1_operator_1acc6e78d49a5cd051a8abab888431f635" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicDipole</name></member>
+      <member refid="class_g_q_c_p_1_1_operator_1af2b2e5acb7b42dce8cee8ef95e295da6" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicQuadrupole</name></member>
       <member refid="class_g_q_c_p_1_1_operator_1a685577f87d959bdeba8704c1f82d7c36" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicSpin</name></member>
       <member refid="class_g_q_c_p_1_1_operator_1a9fca941eaaf9582c224a3dcb04740e73" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>ElectronicSpin_z</name></member>
       <member refid="class_g_q_c_p_1_1_operator_1a728f7c30e7e9f6c7f16e6ed0b7cd5943" prot="public" virt="non-virtual"><scope>GQCP::Operator</scope><name>Kinetic</name></member>

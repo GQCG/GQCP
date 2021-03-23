@@ -1,6 +1,7 @@
 <map id="GQCP::BaseReferenceDependentOperator" name="GQCP::BaseReferenceDependentOperator">
-<area shape="rect" id="node1" title=" " alt="" coords="296,5,579,127"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_angular_momentum_operator.html" title=" " alt="" coords="5,175,277,267"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_electronic_dipole_operator.html" title=" " alt="" coords="301,175,573,267"/>
-<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_nuclear_dipole_operator.html" title=" " alt="" coords="597,175,813,267"/>
+<area shape="rect" id="node1" title=" " alt="" coords="444,5,727,127"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_angular_momentum_operator.html" title=" " alt="" coords="5,182,277,274"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_electronic_dipole_operator.html" title=" " alt="" coords="301,182,573,274"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_electronic_quadrupole_operator.html" title=" " alt="" coords="597,175,869,281"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_nuclear_dipole_operator.html" title=" " alt="" coords="893,182,1109,274"/>
 </map>

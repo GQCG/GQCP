@@ -73,9 +73,6 @@ $(function() {
 <code>#include &quot;<a class="el" href="_base_one_electron_integral_engine_8hpp_source.html">Basis/Integrals/BaseOneElectronIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_base_two_electron_integral_buffer_8hpp_source.html">Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_base_two_electron_integral_engine_8hpp_source.html">Basis/Integrals/BaseTwoElectronIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_functional_one_electron_primitive_integral_engine_8hpp_source.html">Basis/Integrals/FunctionalOneElectronPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_functional_two_electron_primitive_integral_engine_8hpp_source.html">Basis/Integrals/FunctionalTwoElectronPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_hermite_coulomb_integral_8hpp_source.html">Basis/Integrals/HermiteCoulombIntegral.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_integral_calculator_8hpp_source.html">Basis/Integrals/IntegralCalculator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_integral_engine_8hpp_source.html">Basis/Integrals/IntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_libcint_interfacer_8hpp_source.html">Basis/Integrals/Interfaces/LibcintInterfacer.hpp</a>&quot;</code><br />
@@ -88,17 +85,25 @@ $(function() {
 <code>#include &quot;<a class="el" href="_libint_one_electron_integral_engine_8hpp_source.html">Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_libint_two_electron_integral_buffer_8hpp_source.html">Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_libint_two_electron_integral_engine_8hpp_source.html">Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_mc_murchie_davidson_coefficient_8hpp_source.html">Basis/Integrals/McMurchieDavidsonCoefficient.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_one_electron_integral_buffer_8hpp_source.html">Basis/Integrals/OneElectronIntegralBuffer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_one_electron_integral_engine_8hpp_source.html">Basis/Integrals/OneElectronIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_angular_momentum_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_canonical_kinetic_energy_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_cartesian_operator_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveCartesianOperatorIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_coulomb_repulsion_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveCoulombRepulsionIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_dipole_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_linear_momentum_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_nuclear_attraction_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_primitive_overlap_integral_engine_8hpp_source.html">Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_base_matrix_primitive_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/BaseMatrixPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_base_scalar_primitive_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_base_vector_primitive_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_double_london_hermite_coulomb_integral_8hpp_source.html">Basis/Integrals/Primitive/DoubleLondonHermiteCoulombIntegral.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_functional_one_electron_primitive_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/FunctionalOneElectronPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_functional_two_electron_primitive_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_hermite_coulomb_integral_8hpp_source.html">Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_london_hermite_coulomb_integral_8hpp_source.html">Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_mc_murchie_davidson_coefficient_8hpp_source.html">Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_angular_momentum_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_canonical_kinetic_energy_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_coulomb_repulsion_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_electronic_dipole_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_electronic_quadrupole_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_linear_momentum_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_nuclear_attraction_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_primitive_overlap_integral_engine_8hpp_source.html">Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_two_electron_integral_buffer_8hpp_source.html">Basis/Integrals/TwoElectronIntegralBuffer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_two_electron_integral_engine_8hpp_source.html">Basis/Integrals/TwoElectronIntegralEngine.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_g_mulliken_partitioning_8hpp_source.html">Basis/MullikenPartitioning/GMullikenPartitioning.hpp</a>&quot;</code><br />
@@ -157,6 +162,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="_cartesian_direction_8hpp_source.html">Mathematical/Functions/CartesianDirection.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_cartesian_exponents_8hpp_source.html">Mathematical/Functions/CartesianExponents.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_cartesian_g_t_o_8hpp_source.html">Mathematical/Functions/CartesianGTO.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_dyadic_cartesian_direction_8hpp_source.html">Mathematical/Functions/DyadicCartesianDirection.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_linear_combination_8hpp_source.html">Mathematical/Functions/LinearCombination.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_scalar_function_8hpp_source.html">Mathematical/Functions/ScalarFunction.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_vector_space_arithmetic_8hpp_source.html">Mathematical/Functions/VectorSpaceArithmetic.hpp</a>&quot;</code><br />
@@ -214,6 +220,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="_base_reference_dependent_operator_8hpp_source.html">Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_coulomb_repulsion_operator_8hpp_source.html">Operator/FirstQuantized/CoulombRepulsionOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_electronic_dipole_operator_8hpp_source.html">Operator/FirstQuantized/ElectronicDipoleOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_electronic_quadrupole_operator_8hpp_source.html">Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_electronic_spin_operator_8hpp_source.html">Operator/FirstQuantized/ElectronicSpinOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_electronic_spin__z_operator_8hpp_source.html">Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_kinetic_operator_8hpp_source.html">Operator/FirstQuantized/KineticOperator.hpp</a>&quot;</code><br />
@@ -335,7 +342,6 @@ $(function() {
 <code>#include &quot;<a class="el" href="memory_8hpp_source.html">Utilities/memory.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="miscellaneous_8hpp_source.html">Utilities/miscellaneous.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="type__traits_8hpp_source.html">Utilities/type_traits.hpp</a>&quot;</code><br />
-<code>#include &quot;version.hpp&quot;</code><br />
 </div>
 <p><a href="gqcp_8hpp_source.html">Go to the source code of this file.</a></p>
 </div><!-- contents -->

@@ -4,6 +4,7 @@
     <compoundname>GQCP::BaseFQOperator</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_angular_momentum_operator" prot="public" virt="non-virtual">GQCP::AngularMomentumOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public" virt="non-virtual">GQCP::ElectronicDipoleOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" prot="public" virt="non-virtual">GQCP::ElectronicQuadrupoleOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_spin_operator" prot="public" virt="non-virtual">GQCP::ElectronicSpinOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_linear_momentum_operator" prot="public" virt="non-virtual">GQCP::LinearMomentumOperator</derivedcompoundref>
     <includes refid="_base_f_q_operator_8hpp" local="no">BaseFQOperator.hpp</includes>
@@ -117,7 +118,7 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>GQCP::ElectronicSpinOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_electronic_spin_operator"/>
         <childnode refid="1" relation="public-inheritance">
@@ -127,9 +128,15 @@
         <label>GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
-      <node id="5">
+      <node id="6">
         <label>GQCP::LinearMomentumOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_linear_momentum_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::ElectronicQuadrupoleOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_electronic_quadrupole_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

@@ -3,27 +3,15 @@
   <compounddef id="dir_f03c06cc3ef56f8c95f606de7e6c42ea" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals</compoundname>
     <innerdir refid="dir_37617fc2218eedfce52b62599adbd81f">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces</innerdir>
+    <innerdir refid="dir_ac3ab14395e3a802817b0e219f3cb200">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive</innerdir>
     <innerfile refid="_base_one_electron_integral_buffer_8hpp">BaseOneElectronIntegralBuffer.hpp</innerfile>
     <innerfile refid="_base_one_electron_integral_engine_8hpp">BaseOneElectronIntegralEngine.hpp</innerfile>
     <innerfile refid="_base_two_electron_integral_buffer_8hpp">BaseTwoElectronIntegralBuffer.hpp</innerfile>
     <innerfile refid="_base_two_electron_integral_engine_8hpp">BaseTwoElectronIntegralEngine.hpp</innerfile>
-    <innerfile refid="_functional_one_electron_primitive_integral_engine_8hpp">FunctionalOneElectronPrimitiveIntegralEngine.hpp</innerfile>
-    <innerfile refid="_functional_primitive_integral_engine_8hpp">FunctionalPrimitiveIntegralEngine.hpp</innerfile>
-    <innerfile refid="_functional_two_electron_primitive_integral_engine_8hpp">FunctionalTwoElectronPrimitiveIntegralEngine.hpp</innerfile>
-    <innerfile refid="_hermite_coulomb_integral_8hpp">HermiteCoulombIntegral.hpp</innerfile>
     <innerfile refid="_integral_calculator_8hpp">IntegralCalculator.hpp</innerfile>
     <innerfile refid="_integral_engine_8hpp">IntegralEngine.hpp</innerfile>
-    <innerfile refid="_mc_murchie_davidson_coefficient_8hpp">McMurchieDavidsonCoefficient.hpp</innerfile>
     <innerfile refid="_one_electron_integral_buffer_8hpp">OneElectronIntegralBuffer.hpp</innerfile>
     <innerfile refid="_one_electron_integral_engine_8hpp">OneElectronIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_angular_momentum_integral_engine_8hpp">PrimitiveAngularMomentumIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp">PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_cartesian_operator_integral_engine_8hpp">PrimitiveCartesianOperatorIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_coulomb_repulsion_integral_engine_8hpp">PrimitiveCoulombRepulsionIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_dipole_integral_engine_8hpp">PrimitiveDipoleIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_linear_momentum_integral_engine_8hpp">PrimitiveLinearMomentumIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_nuclear_attraction_integral_engine_8hpp">PrimitiveNuclearAttractionIntegralEngine.hpp</innerfile>
-    <innerfile refid="_primitive_overlap_integral_engine_8hpp">PrimitiveOverlapIntegralEngine.hpp</innerfile>
     <innerfile refid="_two_electron_integral_buffer_8hpp">TwoElectronIntegralBuffer.hpp</innerfile>
     <innerfile refid="_two_electron_integral_engine_8hpp">TwoElectronIntegralEngine.hpp</innerfile>
     <briefdescription>

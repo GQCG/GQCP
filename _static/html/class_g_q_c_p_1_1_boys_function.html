@@ -79,7 +79,7 @@ Collaboration diagram for GQCP::BoysFunction:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_g_q_c_p_1_1_boys_function__coll__graph.png" border="0" usemap="#a_g_q_c_p_1_1_boys_function_coll__map" alt="Collaboration graph"/></div>
 <map name="a_g_q_c_p_1_1_boys_function_coll__map" id="a_g_q_c_p_1_1_boys_function_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,159,83"/>
+<area shape="rect" title=" " alt="" coords="5,5,159,97"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -87,12 +87,52 @@ Collaboration diagram for GQCP::BoysFunction:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a60397de44d83f3e7231bb75f9ee897c4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_boys_function.html#a60397de44d83f3e7231bb75f9ee897c4">operator()</a> (const size_t n, const double <a class="el" href="namespace_g_q_c_p.html#ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5">x</a>) const</td></tr>
 <tr class="separator:a60397de44d83f3e7231bb75f9ee897c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a510fa6027da1e45cb976cd6a05914c46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_boys_function.html#a510fa6027da1e45cb976cd6a05914c46">operator()</a> (const size_t n, const <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> <a class="el" href="namespace_g_q_c_p.html#ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7">z</a>) const</td></tr>
+<tr class="separator:a510fa6027da1e45cb976cd6a05914c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An implementation of the Boys function, through its relation with the confluent hypergeometric function. </p>
+<div class="textblock"><p>An implementation of the Boys function. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a510fa6027da1e45cb976cd6a05914c46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a510fa6027da1e45cb976cd6a05914c46">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> GQCP::BoysFunction::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculate the value for the complex-valued Boys function F_n(z).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>The degree of the Boys function. </td></tr>
+    <tr><td class="paramname">z</td><td>The real-valued argument for the Boys function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value F_n(z).</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This method follows the implementation in Tellgren 2008, section II.C. </dd></dl>
+
+</div>
+</div>
 <a id="a60397de44d83f3e7231bb75f9ee897c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60397de44d83f3e7231bb75f9ee897c4">&#9670;&nbsp;</a></span>operator()()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a60397de44d83f3e7231bb75f9ee897c4">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,6 +156,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculate the value for the real-valued Boys function F_n(x).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>The degree of the Boys function. </td></tr>
+    <tr><td class="paramname">x</td><td>The real-valued argument for the Boys function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value F_n(x).</dd></dl>
 <p>Calculate the value for the Boys function F_n(x).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -130,7 +179,7 @@ Public Member Functions</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/<a class="el" href="_boys_function_8hpp_source.html">BoysFunction.hpp</a></li>
-<li>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/<a class="el" href="_boys_function_8cpp.html">BoysFunction.cpp</a></li>
+<li>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/<a class="el" href="_boys_function_8cpp.html">BoysFunction.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

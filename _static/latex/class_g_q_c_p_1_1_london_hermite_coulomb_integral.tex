@@ -1,0 +1,74 @@
+\hypertarget{class_g_q_c_p_1_1_london_hermite_coulomb_integral}{}\doxysection{GQCP\+::London\+Hermite\+Coulomb\+Integral Class Reference}
+\label{class_g_q_c_p_1_1_london_hermite_coulomb_integral}\index{GQCP::LondonHermiteCoulombIntegral@{GQCP::LondonHermiteCoulombIntegral}}
+
+
+{\ttfamily \#include $<$London\+Hermite\+Coulomb\+Integral.\+hpp$>$}
+
+
+
+Collaboration diagram for GQCP\+::London\+Hermite\+Coulomb\+Integral\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{class_g_q_c_p_1_1_london_hermite_coulomb_integral__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_london_hermite_coulomb_integral_a219bc0b69e7463cfca77c1788b3cf01a}{London\+Hermite\+Coulomb\+Integral}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&k1, const double p, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&P, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&C)
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_london_hermite_coulomb_integral_a0efa0509352fd0ae8a148a9e9af80d3c}{operator()}} (const size\+\_\+t n, const int t, const int u, const int v) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An implementation of the (auxiliary) London Hermite Coulomb integral R$^\wedge$\{k1, n\}\+\_\+\{tuv\}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_hermite_coulomb_integral_a219bc0b69e7463cfca77c1788b3cf01a}\label{class_g_q_c_p_1_1_london_hermite_coulomb_integral_a219bc0b69e7463cfca77c1788b3cf01a}} 
+\index{GQCP::LondonHermiteCoulombIntegral@{GQCP::LondonHermiteCoulombIntegral}!LondonHermiteCoulombIntegral@{LondonHermiteCoulombIntegral}}
+\index{LondonHermiteCoulombIntegral@{LondonHermiteCoulombIntegral}!GQCP::LondonHermiteCoulombIntegral@{GQCP::LondonHermiteCoulombIntegral}}
+\doxysubsubsection{\texorpdfstring{LondonHermiteCoulombIntegral()}{LondonHermiteCoulombIntegral()}}
+{\footnotesize\ttfamily GQCP\+::\+London\+Hermite\+Coulomb\+Integral\+::\+London\+Hermite\+Coulomb\+Integral (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{k1,  }\item[{const double}]{p,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{P,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{C }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em k1} & The k-\/vector of the London overlap distribution. \\
+\hline
+{\em p} & The exponent of the Hermite Gaussian. \\
+\hline
+{\em P} & The center of the Hermite Gaussian. \\
+\hline
+{\em C} & The center of the Coulomb potential. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_hermite_coulomb_integral_a0efa0509352fd0ae8a148a9e9af80d3c}\label{class_g_q_c_p_1_1_london_hermite_coulomb_integral_a0efa0509352fd0ae8a148a9e9af80d3c}} 
+\index{GQCP::LondonHermiteCoulombIntegral@{GQCP::LondonHermiteCoulombIntegral}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::LondonHermiteCoulombIntegral@{GQCP::LondonHermiteCoulombIntegral}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} GQCP\+::\+London\+Hermite\+Coulomb\+Integral\+::operator() (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{n,  }\item[{const int}]{t,  }\item[{const int}]{u,  }\item[{const int}]{v }\end{DoxyParamCaption}) const}
+
+Calculate the value for the (auxiliary) London Hermite Coulomb integral R$^\wedge$\{k1, n\}\+\_\+\{tuv\}(p, P, C).
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The order of the London Hermite Coulomb integral, i.\+e. the order of the Boys function. \\
+\hline
+{\em t} & The derivative degree in P\+\_\+x. \\
+\hline
+{\em u} & The derivative degree in P\+\_\+y. \\
+\hline
+{\em v} & The derivative degree in P\+\_\+z. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_london_hermite_coulomb_integral_8hpp}{London\+Hermite\+Coulomb\+Integral.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Basis/\+Integrals/\+Primitive/\mbox{\hyperlink{_london_hermite_coulomb_integral_8cpp}{London\+Hermite\+Coulomb\+Integral.\+cpp}}\end{DoxyCompactItemize}

@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_two_electron_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::TwoElectronIntegralEngine</compoundname>
-    <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralEngine&lt; GTOShell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</basecompoundref>
     <includes refid="_two_electron_integral_engine_8hpp" local="no">TwoElectronIntegralEngine.hpp</includes>
     <templateparamlist>
       <param>
@@ -23,9 +23,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralEngine.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralEngine.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_two_electron_integral_engine_1aab076b71ff1efd1dfd523e2e4826ec78" prot="public" static="no">
-        <type><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref></type>
-        <definition>using GQCP::TwoElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::Shell =  GTOShell</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_two_electron_integral_engine_1ad4a02df3dbc934b66cba1875c4644cb1" prot="public" static="no">
+        <type>typename _PrimitiveIntegralEngine::Shell</type>
+        <definition>using GQCP::TwoElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::Shell =  typename _PrimitiveIntegralEngine::Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
         <briefdescription>
@@ -116,19 +116,19 @@
         <name>calculate</name>
         <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2b36d7ebbf6ee7aa876b6f15df77c18b">calculate</reimplements>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1aab076b71ff1efd1dfd523e2e4826ec78" kindref="member">Shell</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ad4a02df3dbc934b66cba1875c4644cb1" kindref="member">Shell</ref> &amp;</type>
           <declname>shell1</declname>
         </param>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1aab076b71ff1efd1dfd523e2e4826ec78" kindref="member">Shell</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ad4a02df3dbc934b66cba1875c4644cb1" kindref="member">Shell</ref> &amp;</type>
           <declname>shell2</declname>
         </param>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1aab076b71ff1efd1dfd523e2e4826ec78" kindref="member">Shell</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ad4a02df3dbc934b66cba1875c4644cb1" kindref="member">Shell</ref> &amp;</type>
           <declname>shell3</declname>
         </param>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1aab076b71ff1efd1dfd523e2e4826ec78" kindref="member">Shell</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ad4a02df3dbc934b66cba1875c4644cb1" kindref="member">Shell</ref> &amp;</type>
           <declname>shell4</declname>
         </param>
         <briefdescription>
@@ -195,27 +195,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::TwoElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;</label>
         <link refid="class_g_q_c_p_1_1_two_electron_integral_engine"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseTwoElectronIntegralEngine&lt; GTOShell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::TwoElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;</label>
         <link refid="class_g_q_c_p_1_1_two_electron_integral_engine"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseTwoElectronIntegralEngine&lt; GTOShell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_engine"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralEngine.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralEngine.hpp" bodystart="35" bodyend="144"/>
@@ -225,7 +225,7 @@
       <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1abad8e518fb09f8c734e6bd9548275933" prot="public" virt="non-virtual"><scope>GQCP::TwoElectronIntegralEngine</scope><name>N</name></member>
       <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1a32ef28b4e04bf07ef0f1c282916c9e1c" prot="private" virt="non-virtual"><scope>GQCP::TwoElectronIntegralEngine</scope><name>primitive_engine</name></member>
       <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ad176ab612e5497f7228128642a8ab156" prot="public" virt="non-virtual"><scope>GQCP::TwoElectronIntegralEngine</scope><name>PrimitiveIntegralEngine</name></member>
-      <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1aab076b71ff1efd1dfd523e2e4826ec78" prot="public" virt="non-virtual"><scope>GQCP::TwoElectronIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1ad4a02df3dbc934b66cba1875c4644cb1" prot="public" virt="non-virtual"><scope>GQCP::TwoElectronIntegralEngine</scope><name>Shell</name></member>
       <member refid="class_g_q_c_p_1_1_two_electron_integral_engine_1a4175bc3fc3a722df8175d0612eb475d2" prot="public" virt="non-virtual"><scope>GQCP::TwoElectronIntegralEngine</scope><name>TwoElectronIntegralEngine</name></member>
       <member refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1ae5e5b288c06cc335f171292ca652eca2" prot="public" virt="virtual"><scope>GQCP::TwoElectronIntegralEngine</scope><name>~BaseTwoElectronIntegralEngine</name></member>
     </listofallmembers>

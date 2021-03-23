@@ -79,7 +79,7 @@ Collaboration diagram for GQCP::Operator:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_g_q_c_p_1_1_operator__coll__graph.png" border="0" usemap="#a_g_q_c_p_1_1_operator_coll__map" alt="Collaboration graph"/></div>
 <map name="a_g_q_c_p_1_1_operator_coll__map" id="a_g_q_c_p_1_1_operator_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,176,259"/>
+<area shape="rect" title=" " alt="" coords="5,5,192,273"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -105,6 +105,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a685577f87d959bdeba8704c1f82d7c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae414e28e2038e24768cb8522ebf57c7e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_linear_momentum_operator.html">LinearMomentumOperator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_operator.html#ae414e28e2038e24768cb8522ebf57c7e">LinearMomentum</a> ()</td></tr>
 <tr class="separator:ae414e28e2038e24768cb8522ebf57c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2b2e5acb7b42dce8cee8ef95e295da6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_electronic_quadrupole_operator.html">ElectronicQuadrupoleOperator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_operator.html#af2b2e5acb7b42dce8cee8ef95e295da6">ElectronicQuadrupole</a> (const <a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">Vector</a>&lt; double, 3 &gt; &amp;origin=<a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">Vector</a>&lt; double, 3 &gt;::Zero())</td></tr>
+<tr class="separator:af2b2e5acb7b42dce8cee8ef95e295da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c608e9830f1e160de0d9dc3101d0feb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_coulomb_repulsion_operator.html">CoulombRepulsionOperator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_operator.html#a1c608e9830f1e160de0d9dc3101d0feb">Coulomb</a> ()</td></tr>
 <tr class="separator:a1c608e9830f1e160de0d9dc3101d0feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33d30f358782ec0bd2224cd100d7d930"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_nuclear_dipole_operator.html">NuclearDipoleOperator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_operator.html#a33d30f358782ec0bd2224cd100d7d930">NuclearDipole</a> (const <a class="el" href="class_g_q_c_p_1_1_molecule.html">Molecule</a> &amp;molecule, const <a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">Vector</a>&lt; double, 3 &gt; &amp;origin=<a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">Vector</a>&lt; double, 3 &gt;::Zero())</td></tr>
@@ -138,14 +140,13 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an <a class="el" href="class_g_q_c_p_1_1_angular_momentum_operator.html">AngularMomentumOperator</a> about a reference point.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">reference</td><td>The reference point about which the angular momentum is defined.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="class_g_q_c_p_1_1_angular_momentum_operator.html">AngularMomentumOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An <code><a class="el" href="class_g_q_c_p_1_1_angular_momentum_operator.html">AngularMomentumOperator</a></code> relative to the given reference point. </dd></dl>
 
 </div>
 </div>
@@ -171,8 +172,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="class_g_q_c_p_1_1_coulomb_repulsion_operator.html">CoulombRepulsionOperator</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_g_q_c_p_1_1_coulomb_repulsion_operator.html">CoulombRepulsionOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="class_g_q_c_p_1_1_coulomb_repulsion_operator.html">CoulombRepulsionOperator</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -198,8 +198,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an <a class="el" href="class_g_q_c_p_1_1_electronic_density_operator.html">ElectronicDensityOperator</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="class_g_q_c_p_1_1_electronic_density_operator.html">ElectronicDensityOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An <code><a class="el" href="class_g_q_c_p_1_1_electronic_density_operator.html">ElectronicDensityOperator</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -226,14 +225,46 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an <a class="el" href="class_g_q_c_p_1_1_electronic_dipole_operator.html">ElectronicDipoleOperator</a> with the given point as a reference.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">origin</td><td>The origin of the dipole operator.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="class_g_q_c_p_1_1_electronic_dipole_operator.html">ElectronicDipoleOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An <code><a class="el" href="class_g_q_c_p_1_1_electronic_dipole_operator.html">ElectronicDipoleOperator</a></code> relative to the given origin. </dd></dl>
+
+</div>
+</div>
+<a id="af2b2e5acb7b42dce8cee8ef95e295da6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2b2e5acb7b42dce8cee8ef95e295da6">&#9670;&nbsp;</a></span>ElectronicQuadrupole()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_g_q_c_p_1_1_electronic_quadrupole_operator.html">ElectronicQuadrupoleOperator</a> GQCP::Operator::ElectronicQuadrupole </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">Vector</a>&lt; double, 3 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>origin</em> = <code><a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">Vector</a>&lt;double,&#160;3&gt;::Zero()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin</td><td>The origin of the quadrupole operator.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An <code><a class="el" href="class_g_q_c_p_1_1_electronic_quadrupole_operator.html">ElectronicQuadrupoleOperator</a></code> relative to the given origin. </dd></dl>
 
 </div>
 </div>
@@ -259,8 +290,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an <a class="el" href="class_g_q_c_p_1_1_electronic_spin_operator.html">ElectronicSpinOperator</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="class_g_q_c_p_1_1_electronic_spin_operator.html">ElectronicSpinOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An <code><a class="el" href="class_g_q_c_p_1_1_electronic_spin_operator.html">ElectronicSpinOperator</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -286,7 +316,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an <code><a class="el" href="class_g_q_c_p_1_1_electronic_spin__z_operator.html">ElectronicSpin_zOperator</a></code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>An <code><a class="el" href="class_g_q_c_p_1_1_electronic_spin__z_operator.html">ElectronicSpin_zOperator</a></code>. </dd></dl>
 
 </div>
@@ -313,8 +342,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="class_g_q_c_p_1_1_kinetic_operator.html">KineticOperator</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_g_q_c_p_1_1_kinetic_operator.html">KineticOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="class_g_q_c_p_1_1_kinetic_operator.html">KineticOperator</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -340,8 +368,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="class_g_q_c_p_1_1_linear_momentum_operator.html">LinearMomentumOperator</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="class_g_q_c_p_1_1_linear_momentum_operator.html">LinearMomentumOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a <code><a class="el" href="class_g_q_c_p_1_1_linear_momentum_operator.html">LinearMomentumOperator</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -368,14 +395,13 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="class_g_q_c_p_1_1_nuclear_attraction_operator.html">NuclearAttractionOperator</a> related to a molecule.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">molecule</td><td>The molecule that contains the nuclear framework.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_g_q_c_p_1_1_nuclear_attraction_operator.html">NuclearAttractionOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="class_g_q_c_p_1_1_nuclear_attraction_operator.html">NuclearAttractionOperator</a></code> corresponding to the given molecule. </dd></dl>
 
 </div>
 </div>
@@ -402,14 +428,13 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="class_g_q_c_p_1_1_nuclear_attraction_operator.html">NuclearAttractionOperator</a> related to a nuclear framework.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nuclear_framework</td><td>The nuclear framework.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_g_q_c_p_1_1_nuclear_attraction_operator.html">NuclearAttractionOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="class_g_q_c_p_1_1_nuclear_attraction_operator.html">NuclearAttractionOperator</a></code> corresponding to the given nuclear framework. </dd></dl>
 
 </div>
 </div>
@@ -446,7 +471,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="class_g_q_c_p_1_1_nuclear_dipole_operator.html">NuclearDipoleOperator</a> from a molecule and a reference point for the dipole.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">molecule</td><td>The molecule that contains the nuclear framework. </td></tr>
@@ -454,7 +478,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_g_q_c_p_1_1_nuclear_dipole_operator.html">NuclearDipoleOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="class_g_q_c_p_1_1_nuclear_dipole_operator.html">NuclearDipoleOperator</a></code> for the given molecule and reference point. </dd></dl>
 
 </div>
 </div>
@@ -481,14 +505,13 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="class_g_q_c_p_1_1_nuclear_repulsion_operator.html">NuclearRepulsionOperator</a> from a molecule.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">molecule</td><td>The molecule that contains the nuclear framework.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_g_q_c_p_1_1_nuclear_repulsion_operator.html">NuclearRepulsionOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="class_g_q_c_p_1_1_nuclear_repulsion_operator.html">NuclearRepulsionOperator</a></code> related to the given molecule. </dd></dl>
 
 </div>
 </div>
@@ -514,8 +537,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an <a class="el" href="class_g_q_c_p_1_1_overlap_operator.html">OverlapOperator</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="class_g_q_c_p_1_1_overlap_operator.html">OverlapOperator</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An <code><a class="el" href="class_g_q_c_p_1_1_overlap_operator.html">OverlapOperator</a></code>. </dd></dl>
 
 </div>
 </div>

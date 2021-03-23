@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseScalarPrimitiveIntegralEngine</basecompoundref>
     <includes refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp" local="no">PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</includes>
     <templateparamlist>
       <param>
@@ -20,7 +21,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a27e3bba613936ceabf2e22b3cd5be5b2" prot="public" static="no">
         <type>typename Shell::Primitive</type>
@@ -33,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" prot="public" static="no">
         <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">KineticOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
@@ -46,56 +47,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="51" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="51" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1aa66fbc9b5db0d57651b16555218c6cee" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr auto</type>
-        <definition>constexpr auto GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::Components</definition>
-        <argsstring></argsstring>
-        <name>Components</name>
-        <initializer>= <ref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" kindref="member">KineticOperator::NumberOfComponents</ref></initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="48" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1add1e33684cf63d42576ee49475d34af1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;::prepareStateForComponent</definition>
-        <argsstring>(const size_t component)</argsstring>
-        <name>prepareStateForComponent</name>
-        <param>
-          <type>const size_t</type>
-          <declname>component</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>MARK: Components Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>component</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the index of the component of the operator</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>Since the canonical kinetic energy operator has only 1 component, this method has no effect. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="66" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="66" bodyend="66"/>
-      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -142,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="82" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="82" bodyend="112"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="67" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="67" bodyend="97"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -238,7 +193,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="128" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="128" bodyend="136"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="113" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="113" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -286,7 +241,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="152" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="152" bodyend="198"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="137" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="137" bodyend="183"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -406,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="216" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="216" bodyend="229"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="201" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="201" bodyend="214"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -424,23 +379,42 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <collaborationgraph>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;</label>
         <link refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="39" bodyend="230"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp" bodystart="41" bodyend="215"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate1D</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>calculate1D</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1aa66fbc9b5db0d57651b16555218c6cee" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>Components</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>IntegralScalar</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1add1e33684cf63d42576ee49475d34af1" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a27e3bba613936ceabf2e22b3cd5be5b2" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad502d3b4324ca1965151a5a4bd831025" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a6ae028b962575ec84353d8a0b53fea62" prot="public" virt="pure-virtual"><scope>GQCP::PrimitiveCanonicalKineticEnergyIntegralEngine</scope><name>~BaseScalarPrimitiveIntegralEngine</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

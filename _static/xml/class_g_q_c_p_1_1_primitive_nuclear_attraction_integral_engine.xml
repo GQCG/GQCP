@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::PrimitiveNuclearAttractionIntegralEngine</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseScalarPrimitiveIntegralEngine</basecompoundref>
     <includes refid="_primitive_nuclear_attraction_integral_engine_8hpp" local="no">PrimitiveNuclearAttractionIntegralEngine.hpp</includes>
     <templateparamlist>
       <param>
@@ -20,7 +21,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="40" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4afc2d193bab6338b10e1065c88790c4" prot="public" static="no">
         <type>typename Shell::Primitive</type>
@@ -33,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" prot="public" static="no">
         <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">NuclearAttractionOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
@@ -46,23 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="49" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a2c654df1d5a52d062e8b0bae850ad4c0" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr auto</type>
-        <definition>constexpr auto GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;::Components</definition>
-        <argsstring></argsstring>
-        <name>Components</name>
-        <initializer>= <ref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" kindref="member">NuclearAttractionOperator::NumberOfComponents</ref></initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="46" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -77,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="54" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="54" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="54" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -106,37 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="65" bodyend="66"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a03c7d86440812fa223b0f15a67c8237c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;::prepareStateForComponent</definition>
-        <argsstring>(const size_t component)</argsstring>
-        <name>prepareStateForComponent</name>
-        <param>
-          <type>const size_t</type>
-          <declname>component</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>MARK: Components Prepare this engine&apos;s internal state such that it is able to calculate integrals over the given component of the operator.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>component</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The index of the component of the operator.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>Since the nuclear attraction operator has only 1 component, this method has no effect. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="80" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="80" bodyend="80"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="65" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a2c42221c90f7aa1442eecc6245a40bcb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -184,7 +139,55 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="96" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="96" bodyend="151"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="82" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="82" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1aa4c83d27329d45494fd4ad07abfadcff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4250779f16a3c00b6e5b5699ad465b5a" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" kindref="member">IntegralScalar</ref> &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
+        <name>calculate</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the nuclear attraction integral over two London Cartesian GTOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left London Cartesian GTO. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right London Cartesian GTO.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The nuclear integral over the two given London Cartesian GTOs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="153" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="153" bodyend="212"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -202,22 +205,42 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <collaborationgraph>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;</label>
         <link refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
+      </node>
+      <node id="1">
+        <label>GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="37" bodyend="152"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="40" bodyend="213"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a2c42221c90f7aa1442eecc6245a40bcb" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a2c654df1d5a52d062e8b0bae850ad4c0" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>Components</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1aa4c83d27329d45494fd4ad07abfadcff" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>Components</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1af42947f87325cb0c278b2c1e7b6085eb" prot="private" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>nuclear_attraction_operator</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a03c7d86440812fa223b0f15a67c8237c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>prepareStateForComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4afc2d193bab6338b10e1065c88790c4" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1ae26d808dd3e029c6e37125a45be7276b" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>PrimitiveNuclearAttractionIntegralEngine</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4250779f16a3c00b6e5b5699ad465b5a" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>Shell</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a6ae028b962575ec84353d8a0b53fea62" prot="public" virt="pure-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>~BaseScalarPrimitiveIntegralEngine</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
