@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="814" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="814" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="745" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="745" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -37,7 +37,7 @@
         <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="811" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="811" bodyend="815"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="742" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="742" bodyend="746"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_s_q_hamiltonian_3_01_scalar_s_q_one_electron_ope00587fd7cd98dde7a918eb5c533a9e4c_1a9dc942609c25849392792191e20569a5" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; SQHamiltonian&lt; ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator &gt; &gt;</scope><name>JacobiRotationType</name></member>
     </listofallmembers>

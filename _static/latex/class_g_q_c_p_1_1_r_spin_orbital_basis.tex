@@ -50,11 +50,13 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a5bcee2b4b1b
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a89c30d78567b003c9020c6b31520eaa8}{number\+Of\+Spin\+Orbitals}} () const
 \item 
-{\footnotesize template$<$typename FQOne\+Electron\+Operator $>$ }\\auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a6633da0cc38c0089254de3778c731e2c}{quantize}} (const FQOne\+Electron\+Operator \&fq\+\_\+one\+\_\+op) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ typename FQOne\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$, typename FQOne\+Electron\+Operator\+::\+Vectorizer $>$
+{\footnotesize template$<$typename FQOne\+Electron\+Operator , typename Z  = Shell$>$ }\\auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_ab1e01ff713e55d85f15fe454e41a25c4}{quantize}} (const FQOne\+Electron\+Operator \&fq\+\_\+one\+\_\+op) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ typename FQOne\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$, typename FQOne\+Electron\+Operator\+::\+Vectorizer $>$$>$
 \item 
-auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_ad5f906f989853bc821ba0150a221eec7}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&fq\+\_\+op) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_two_electron_operator}{RSQTwo\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}} $>$
+{\footnotesize template$<$typename Z  = Shell$>$ }\\auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_afd7a524a373ed667b850fca3e7f1a277}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&fq\+\_\+op) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_two_electron_operator}{RSQTwo\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}} $>$$>$
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator}{Evaluatable\+Scalar\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{Scalar\+Function\+Product}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}} $>$ $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_aa742e5dc57b287170d71b8f2bcd8e06f}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_density_operator}{Electronic\+Density\+Operator}} \&fq\+\_\+density\+\_\+op) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a549e7755fca88107858a6b54bfbbf202}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecular\+Hamiltonian}} \&fq\+\_\+hamiltonian) const
 \item 
 std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a36cc50b784a2dba257914a00bfe85d89}{Spatial\+Orbital}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_aa1c01d076a42f04ede664dfe6c901e33}{spatial\+Orbitals}} () const
 \item 
@@ -199,12 +201,13 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+R
 \begin{DoxyReturn}{Returns}
 The number of spinors that are described by this restricted spin-\/orbital basis. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_ad5f906f989853bc821ba0150a221eec7}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_ad5f906f989853bc821ba0150a221eec7}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_afd7a524a373ed667b850fca3e7f1a277}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_afd7a524a373ed667b850fca3e7f1a277}} 
 \index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
-auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{fq\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_two_electron_operator}{RSQTwo\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}}$>$ \hspace{0.3cm}{\ttfamily [inline]}}
+template$<$typename Z  = Shell$>$ \\
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{fq\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_two_electron_operator}{RSQTwo\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
 
 Quantize the Coulomb operator in this restricted spin-\/orbital basis.
 
@@ -219,7 +222,7 @@ The second-\/quantized operator corresponding to the Coulomb operator.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_aa742e5dc57b287170d71b8f2bcd8e06f}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_aa742e5dc57b287170d71b8f2bcd8e06f}} 
 \index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 \mbox{\hyperlink{class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator}{Evaluatable\+Scalar\+RSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function_product}{Scalar\+Function\+Product}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}}$>$ $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_density_operator}{Electronic\+Density\+Operator}} \&}]{fq\+\_\+density\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -233,13 +236,30 @@ Quantize the (one-\/electron) electronic density operator.
 \begin{DoxyReturn}{Returns}
 the second-\/quantized density operator 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_a6633da0cc38c0089254de3778c731e2c}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_a6633da0cc38c0089254de3778c731e2c}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_a549e7755fca88107858a6b54bfbbf202}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_a549e7755fca88107858a6b54bfbbf202}} 
 \index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
-template$<$typename FQOne\+Electron\+Operator $>$ \\
-auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const FQOne\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename FQOne\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$, typename FQOne\+Electron\+Operator\+::\+Vectorizer$>$ \hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecular\+Hamiltonian}} \&}]{fq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Quantize the molecular Hamiltonian.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+hamiltonian} & The molecular Hamiltonian.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The second-\/quantized molecular Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_ab1e01ff713e55d85f15fe454e41a25c4}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_ab1e01ff713e55d85f15fe454e41a25c4}} 
+\index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
+\index{quantize@{quantize}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+template$<$typename FQOne\+Electron\+Operator , typename Z  = Shell$>$ \\
+auto \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const FQOne\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename FQOne\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$, typename FQOne\+Electron\+Operator\+::\+Vectorizer$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
 
 Quantize a first-\/quantized one-\/electron operator in this restricted spin-\/orbital basis.
 

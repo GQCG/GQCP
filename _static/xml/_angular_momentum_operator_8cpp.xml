@@ -153,11 +153,15 @@
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Instantiate<sp/>the<sp/>static<sp/>const<sp/>vectorizer.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref><sp/><ref refid="class_g_q_c_p_1_1_angular_momentum_operator_1afdf281977c1f7d85c8d8dfa4e3fd71ba" kindref="member">AngularMomentumOperator::vectorizer</ref><sp/>{{<ref refid="class_g_q_c_p_1_1_angular_momentum_operator_1a50a46d4f3093f9d3392b725fc0736299" kindref="member">AngularMomentumOperator::NumberOfComponents</ref>}};</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Vectorizer</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Instantiate<sp/>the<sp/>static<sp/>const<sp/>vectorizer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref><sp/><ref refid="class_g_q_c_p_1_1_angular_momentum_operator_1afdf281977c1f7d85c8d8dfa4e3fd71ba" kindref="member">AngularMomentumOperator::vectorizer</ref><sp/>{{<ref refid="class_g_q_c_p_1_1_angular_momentum_operator_1a50a46d4f3093f9d3392b725fc0736299" kindref="member">AngularMomentumOperator::NumberOfComponents</ref>}};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/AngularMomentumOperator.cpp"/>
   </compounddef>

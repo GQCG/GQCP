@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::FQMolecularMagneticHamiltonian</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian" prot="public" virt="non-virtual">GQCP::FQMolecularHamiltonian</basecompoundref>
+    <includes refid="_f_q_molecular_magnetic_hamiltonian_8hpp" local="no">FQMolecularMagneticHamiltonian.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a91689af8003c21990884719b743707ed" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_paramagnetic_operator" kindref="compound">ParamagneticOperator</ref></type>
+        <definition>ParamagneticOperator GQCP::FQMolecularMagneticHamiltonian::P</definition>
+        <argsstring></argsstring>
+        <name>P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" line="36" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ae7e6740db5cced2ba7a4d880155b4e6b" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_diamagnetic_operator" kindref="compound">DiamagneticOperator</ref></type>
+        <definition>DiamagneticOperator GQCP::FQMolecularMagneticHamiltonian::D</definition>
+        <argsstring></argsstring>
+        <name>D</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" line="39" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ad0c49d2429b19ec8ed79f5fe4d4fba0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian</definition>
+        <argsstring>(const KineticOperator &amp;T, const ParamagneticOperator &amp;P, const DiamagneticOperator &amp;D, const NuclearAttractionOperator &amp;V, const CoulombRepulsionOperator &amp;g)</argsstring>
+        <name>FQMolecularMagneticHamiltonian</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_paramagnetic_operator" kindref="compound">ParamagneticOperator</ref> &amp;</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_diamagnetic_operator" kindref="compound">DiamagneticOperator</ref> &amp;</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
+          <declname>V</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The kinetic energy operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The paramagnetic operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The diamagnetic operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>V</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nuclear attraction operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The two-electron repulsion operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" line="54" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.cpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a437d23d3d0b4ae7cf9cc18d484275e86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian</definition>
+        <argsstring>(const Molecule &amp;molecule, const HomogeneousMagneticField &amp;B)</argsstring>
+        <name>FQMolecularMagneticHamiltonian</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian" kindref="compound">FQMolecularMagneticHamiltonian</ref></computeroutput> from a molecule and underlying homogeneous magnetic field.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The external, homogeneous magnetic field. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.cpp" bodystart="47" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a681e2fc6a6fe8a4f5a55f2d81e8d8fa5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_paramagnetic_operator" kindref="compound">ParamagneticOperator</ref> &amp;</type>
+        <definition>const ParamagneticOperator&amp; GQCP::FQMolecularMagneticHamiltonian::paramagnetic</definition>
+        <argsstring>() const</argsstring>
+        <name>paramagnetic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The paramagnetic operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" line="73" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a9ab6848d23b02227d9f3569ca59ade2d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_diamagnetic_operator" kindref="compound">DiamagneticOperator</ref> &amp;</type>
+        <definition>const DiamagneticOperator&amp; GQCP::FQMolecularMagneticHamiltonian::diamagnetic</definition>
+        <argsstring>() const</argsstring>
+        <name>diamagnetic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The diamagnetic operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" line="78" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The first-quantized, molecular electronic Hamiltonian for systems in a magnetic field. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::FQMolecularMagneticHamiltonian</label>
+        <link refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::FQMolecularHamiltonian</label>
+        <link refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>GQCP::KineticOperator</label>
+        <link refid="class_g_q_c_p_1_1_kinetic_operator"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::CoulombRepulsionOperator</label>
+        <link refid="class_g_q_c_p_1_1_coulomb_repulsion_operator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::NuclearAttractionOperator</label>
+        <link refid="class_g_q_c_p_1_1_nuclear_attraction_operator"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>GQCP::BaseNuclearOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_nuclear_operator"/>
+      </node>
+      <node id="6">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::FQMolecularMagneticHamiltonian</label>
+        <link refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>BaseScalarFQOneElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+      <node id="2">
+        <label>GQCP::FQMolecularHamiltonian</label>
+        <link refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#g</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>#V</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>#T</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>BaseScalarFQTwoElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp" bodystart="33" bodyend="79"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1a7503d7530e4e4bcdb1b21eb4eddfc109" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>coulombRepulsion</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ae7e6740db5cced2ba7a4d880155b4e6b" prot="private" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>D</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a9ab6848d23b02227d9f3569ca59ade2d" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>diamagnetic</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1a66825f1517e478bb83671904db8733d0" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>FQMolecularHamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1aa9b5591ec3a8e9ec1d09ebecb18e52b6" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>FQMolecularHamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ad0c49d2429b19ec8ed79f5fe4d4fba0d" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>FQMolecularMagneticHamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a437d23d3d0b4ae7cf9cc18d484275e86" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>FQMolecularMagneticHamiltonian</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1add0865ddadc4bdba0ccad0e7188cb503" prot="protected" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>g</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1a64af403ad687229af6f46d10f6ad0e16" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>kinetic</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1a5164e11ed7cb82e09d15e964adc29f0d" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>nuclearAttraction</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a91689af8003c21990884719b743707ed" prot="private" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>P</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a681e2fc6a6fe8a4f5a55f2d81e8d8fa5" prot="public" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>paramagnetic</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1adf886236e764f18e51eaa36af2a08e07" prot="protected" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>T</name></member>
+      <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1a55cf9cb8082e3af90aa36c8ec4d66d95" prot="protected" virt="non-virtual"><scope>GQCP::FQMolecularMagneticHamiltonian</scope><name>V</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

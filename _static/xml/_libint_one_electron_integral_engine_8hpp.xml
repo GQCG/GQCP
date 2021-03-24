@@ -6,24 +6,11 @@
     <includes refid="_libint_interfacer_8hpp" local="yes">Basis/Integrals/Interfaces/LibintInterfacer.hpp</includes>
     <includes refid="_libint_one_electron_integral_buffer_8hpp" local="yes">Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</includes>
     <includes refid="_g_t_o_shell_8hpp" local="yes">Basis/ScalarBasis/GTOShell.hpp</includes>
-    <includes refid="_operator_8hpp" local="yes">Operator/FirstQuantized/Operator.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_integral_engine_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp</includedby>
     <incdepgraph>
       <node id="14">
         <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="43">
-        <label>Operator/FirstQuantized/AngularMomentumOperator.hpp</label>
-        <link refid="_angular_momentum_operator_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
       </node>
       <node id="33">
         <label>iomanip</label>
@@ -37,7 +24,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="43">
         <label>Operator/FirstQuantized/BaseFQOperator.hpp</label>
         <link refid="_base_f_q_operator_8hpp"/>
         <childnode refid="44" relation="include">
@@ -60,16 +47,6 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="56">
-        <label>Operator/FirstQuantized/LinearMomentumOperator.hpp</label>
-        <link refid="_linear_momentum_operator_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
       <node id="38">
         <label>Molecule/Molecule.hpp</label>
         <link refid="_molecule_8hpp"/>
@@ -78,14 +55,6 @@
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="52">
-        <label>Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp</label>
-        <link refid="_electronic_quadrupole_operator_8hpp"/>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
         </childnode>
       </node>
       <node id="24">
@@ -113,18 +82,6 @@
       <node id="25">
         <label>boost/format.hpp</label>
       </node>
-      <node id="54">
-        <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
-        <link refid="_electronic_spin__z_operator_8hpp"/>
-        <childnode refid="47" relation="include">
-        </childnode>
-      </node>
-      <node id="50">
-        <label>Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
-        <link refid="_electronic_density_operator_8hpp"/>
-        <childnode refid="47" relation="include">
-        </childnode>
-      </node>
       <node id="46">
         <label>numeric</label>
       </node>
@@ -138,19 +95,13 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="60">
-        <label>Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
-        <link refid="_nuclear_repulsion_operator_8hpp"/>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
       <node id="31">
         <label>string</label>
       </node>
-      <node id="55">
+      <node id="49">
         <label>Operator/FirstQuantized/KineticOperator.hpp</label>
         <link refid="_kinetic_operator_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
       <node id="29">
@@ -169,15 +120,15 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="50">
         <label>Operator/FirstQuantized/NuclearAttractionOperator.hpp</label>
         <link refid="_nuclear_attraction_operator_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
       </node>
-      <node id="62">
+      <node id="53">
         <label>boost/preprocessor.hpp</label>
       </node>
       <node id="15">
@@ -189,7 +140,7 @@
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="58">
+      <node id="51">
         <label>Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
         <link refid="_base_nuclear_operator_8hpp"/>
         <childnode refid="39" relation="include">
@@ -204,38 +155,6 @@
       <node id="27">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
-      </node>
-      <node id="42">
-        <label>Operator/FirstQuantized/Operator.hpp</label>
-        <link refid="_operator_8hpp"/>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
       </node>
       <node id="7">
         <label>Eigen/Dense</label>
@@ -254,18 +173,10 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="53">
-        <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
-        <link refid="_electronic_spin_operator_8hpp"/>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="61">
+      <node id="52">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
         <link refid="_overlap_operator_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -332,7 +243,7 @@
       <node id="17">
         <label>array</label>
       </node>
-      <node id="64">
+      <node id="55">
         <label>Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
         <link refid="_libint_one_electron_integral_buffer_8hpp"/>
         <childnode refid="3" relation="include">
@@ -340,10 +251,10 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="47">
         <label>Operator/FirstQuantized/ElectronicDipoleOperator.hpp</label>
         <link refid="_electronic_dipole_operator_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
@@ -375,7 +286,7 @@
         <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="63">
+      <node id="54">
         <label>libint2.hpp</label>
       </node>
       <node id="22">
@@ -399,28 +310,26 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
         </childnode>
       </node>
       <node id="10">
         <label>type_traits</label>
       </node>
-      <node id="49">
+      <node id="42">
         <label>Operator/FirstQuantized/CoulombRepulsionOperator.hpp</label>
         <link refid="_coulomb_repulsion_operator_8hpp"/>
-        <childnode refid="47" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>Operator/FirstQuantized/NuclearDipoleOperator.hpp</label>
-        <link refid="_nuclear_dipole_operator_8hpp"/>
-        <childnode refid="58" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
       <node id="11">
@@ -460,11 +369,9 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
         </childnode>
       </node>
       <node id="18">
@@ -493,134 +400,20 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="52">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
-        <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="45">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
-        <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="39">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFSolver.hpp</label>
-        <link refid="_g_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
-        <link refid="_c_c_s_d_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="62">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
-        <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</label>
-        <link refid="_c_c_d_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDIntermediatesUpdate.hpp</label>
-        <link refid="_c_c_s_d_intermediates_update_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="40">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFElectronicEnergyCalculation.hpp</label>
-        <link refid="_g_h_f_electronic_energy_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp</label>
-        <link refid="_c_c_s_d_energy_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDAmplitudesUpdate.hpp</label>
-        <link refid="_c_c_s_d_amplitudes_update_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="78">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp</label>
-        <link refid="_q_c_model_2_c_c_2_c_c_d_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="75">
+      <node id="43">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
       </node>
-      <node id="97">
+      <node id="28">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp</label>
         <link refid="_a_p_i_g_geminal_coefficients_8cpp"/>
       </node>
-      <node id="66">
+      <node id="13">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-      </node>
-      <node id="60">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
-        <link refid="_u_h_f_error_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="63">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
-        <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="55">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
-        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="48">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
-        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -630,8 +423,6 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
       </node>
       <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp</label>
@@ -640,35 +431,19 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-      </node>
-      <node id="69">
-        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
-        <link refid="_jacobi_orbital_optimizer_8cpp"/>
-      </node>
-      <node id="49">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
-        <link refid="_r_h_f_density_matrix_damper_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
       </node>
       <node id="38">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp</label>
-        <link refid="_g_h_f_density_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
+        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
+        <link refid="_jacobi_orbital_optimizer_8cpp"/>
       </node>
-      <node id="74">
+      <node id="42">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp</label>
         <link refid="_e_r_newton_localizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -679,130 +454,24 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="89">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</label>
-        <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="90" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
+      <node id="32">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp</label>
         <link refid="transform_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
       </node>
-      <node id="47">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp</label>
-        <link refid="_r_h_f_density_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="79">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp</label>
-        <link refid="_q_c_model_2_c_c_2_c_c_s_d_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDEnergyCalculation.hpp</label>
-        <link refid="_c_c_d_energy_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="46">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFEnvironment.hpp</label>
-        <link refid="_r_h_f_s_c_f_environment_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="84">
+      <node id="24">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/vAP1roG.cpp</label>
         <link refid="v_a_p1ro_g_8cpp"/>
       </node>
-      <node id="51">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
-        <link refid="_r_h_f_error_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/expectation_values.hpp</label>
-        <link refid="expectation__values_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="72">
+      <node id="15">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp</label>
         <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-      </node>
-      <node id="43">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDiagonalization.hpp</label>
-        <link refid="_g_h_f_fock_matrix_diagonalization_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -812,519 +481,223 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="100" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
       </node>
-      <node id="61">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
-        <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
-        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="68">
+      <node id="37">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp</label>
         <link refid="_e_r_jacobi_localizer_8cpp"/>
       </node>
-      <node id="35">
+      <node id="23">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp</label>
         <link refid="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="20">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDAmplitudesUpdate.hpp</label>
-        <link refid="_c_c_d_amplitudes_update_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
-        <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="91">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</label>
-        <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/RHFElectricalResponseSolver.hpp</label>
-        <link refid="_r_h_f_electrical_response_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="34">
+      <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
       </node>
-      <node id="73">
+      <node id="41">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.cpp</label>
         <link refid="_q_c_method_newton_orbital_optimizer_8cpp"/>
       </node>
-      <node id="87">
+      <node id="26">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roGGeminalCoefficients.cpp</label>
         <link refid="_a_p1ro_g_geminal_coefficients_8cpp"/>
-      </node>
-      <node id="44">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp</label>
-        <link refid="_g_h_f_fock_matrix_d_i_i_s_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp</label>
-        <link refid="_q_c_method_2_c_c_2_c_c_d_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/BaseElectricalResponseSolver.cpp</label>
-        <link refid="_base_electrical_response_solver_8cpp"/>
-      </node>
-      <node id="37">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFEnvironment.hpp</label>
-        <link refid="_g_h_f_s_c_f_environment_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
       </node>
       <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
-      <node id="9">
+      <node id="33">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp</label>
         <link refid="_base_orbital_optimizer_8cpp"/>
       </node>
-      <node id="56">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
-        <link refid="_u_h_f_s_c_f_environment_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="62" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="33">
+      <node id="19">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</label>
         <link refid="_p_s_environment_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/BaseElectricalResponseSolver.hpp</label>
-        <link refid="_base_electrical_response_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="17">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="65">
+      <node id="35">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.hpp</label>
         <link refid="_jacobi_orbital_optimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-        <childnode refid="67" relation="include">
-        </childnode>
-        <childnode refid="69" relation="include">
-        </childnode>
-      </node>
-      <node id="80">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T1Amplitudes.hpp</label>
-        <link refid="_t1_amplitudes_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
-        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
-      </node>
-      <node id="92">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp</label>
-        <link refid="_linear_expansion_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="93" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
-        </childnode>
-        <childnode refid="95" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="96" relation="include">
-        </childnode>
-        <childnode refid="98" relation="include">
-        </childnode>
-      </node>
-      <node id="41">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFErrorCalculation.hpp</label>
-        <link refid="_g_h_f_error_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2ErrorCalculation.hpp</label>
-        <link refid="_t2_error_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="36">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHF.hpp</label>
-        <link refid="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="85">
-        <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp</label>
-        <link refid="_a_p1ro_g_8cpp"/>
-      </node>
-      <node id="88">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp</label>
-        <link refid="_q_c_model_2_h_f_2_g_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp</label>
+        <link refid="_linear_expansion_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="64">
+      <node id="25">
+        <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roG.cpp</label>
+        <link refid="_a_p1ro_g_8cpp"/>
+      </node>
+      <node id="34">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp</label>
         <link refid="_base_orbital_optimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="70" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="22">
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/vAP1roGElectricalResponseSolver.cpp</label>
         <link refid="v_a_p1ro_g_electrical_response_solver_8cpp"/>
       </node>
-      <node id="98">
+      <node id="29">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp</label>
         <link refid="_geminal_coefficients_interface_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="99" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
-      <node id="93">
+      <node id="8">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp</label>
         <link refid="_dyson_orbital_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="100">
+      <node id="31">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp</label>
         <link refid="_u_spin_orbital_basis_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
       </node>
-      <node id="99">
+      <node id="30">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/GeminalCoefficientsInterface.cpp</label>
         <link refid="_geminal_coefficients_interface_8cpp"/>
       </node>
-      <node id="32">
+      <node id="14">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
       </node>
-      <node id="77">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
-        <link refid="_r_m_p2_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="83">
+      <node id="20">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/vAP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="21">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/vAP1roGElectricalResponseSolver.hpp</label>
         <link refid="v_a_p1ro_g_electrical_response_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="90">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
-        <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDIntermediatesUpdate.hpp</label>
-        <link refid="_c_c_d_intermediates_update_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="54">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
-        <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="94">
+      <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/properties.hpp</label>
         <link refid="properties_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="95">
+      <node id="11">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
         <link refid="_c_i_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="10">
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="81">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp</label>
-        <link refid="_t2_amplitudes_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="78" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-      </node>
-      <node id="67">
+      <node id="36">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp</label>
         <link refid="_e_r_jacobi_localizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="68" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="22">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp</label>
-        <link refid="_t2_d_i_i_s_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="86">
+      <node id="12">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roGGeminalCoefficients.hpp</label>
         <link refid="_a_p1ro_g_geminal_coefficients_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="72" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="83" relation="include">
-        </childnode>
-        <childnode refid="87" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp</label>
-        <link refid="_c_c_s_d_environment_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
         <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-      </node>
-      <node id="53">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDiagonalization.hpp</label>
-        <link refid="_r_h_f_fock_matrix_diagonalization_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="42">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp</label>
-        <link refid="_g_h_f_fock_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-      </node>
-      <node id="50">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
-        <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -1335,120 +708,52 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="101">
+      <node id="45">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
         <link refid="_integral_engine_8cpp"/>
       </node>
-      <node id="71">
+      <node id="40">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</label>
         <link refid="_q_c_method_newton_orbital_optimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="72" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="73" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="96">
+      <node id="27">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp</label>
         <link refid="_a_p_i_g_geminal_coefficients_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="97" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
       </node>
-      <node id="76">
+      <node id="44">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp</label>
         <link refid="_newton_orbital_optimizer_8cpp"/>
       </node>
-      <node id="25">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSD.hpp</label>
-        <link refid="_q_c_method_2_c_c_2_c_c_s_d_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="70">
+      <node id="39">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp</label>
         <link refid="_newton_orbital_optimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="71" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
-        </childnode>
-      </node>
-      <node id="57">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp</label>
-        <link refid="_u_h_f_density_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp</label>
-        <link refid="_s_q_hamiltonian_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="78" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="80" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="83" relation="include">
-        </childnode>
-        <childnode refid="88" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
+      <node id="18">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp</label>
         <link refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -1483,72 +788,71 @@
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_libint_interfacer_8hpp" kindref="compound">Basis/Integrals/Interfaces/LibintInterfacer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_libint_one_electron_integral_buffer_8hpp" kindref="compound">Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_g_t_o_shell_8hpp" kindref="compound">Basis/ScalarBasis/GTOShell.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_operator_8hpp" kindref="compound">Operator/FirstQuantized/Operator.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>_N&gt;</highlight></codeline>
-<codeline lineno="37" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" kindref="compound">BaseOneElectronIntegralEngine</ref>&lt;GTOShell,<sp/>_N,<sp/>double&gt;<sp/>{</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="39" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a4f3de27fe215afa94ca40359da86fb2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a4f3de27fe215afa94ca40359da86fb2e" kindref="member">IntegralScalar</ref><sp/>=<sp/>double;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>scalar<sp/>representation<sp/>of<sp/>an<sp/>integral<sp/>for<sp/>libint<sp/>is<sp/>always<sp/>a<sp/>real<sp/>number</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0b7145b2e812d88b6a4bf169fbb8b76b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0b7145b2e812d88b6a4bf169fbb8b76b" kindref="member">N</ref><sp/>=<sp/>_N;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>number<sp/>of<sp/>components<sp/>the<sp/>operator<sp/>has</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>_N&gt;</highlight></codeline>
+<codeline lineno="36" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kindref="compound">LibintOneElectronIntegralEngine</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" kindref="compound">BaseOneElectronIntegralEngine</ref>&lt;GTOShell,<sp/>_N,<sp/>double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="38" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a4f3de27fe215afa94ca40359da86fb2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a4f3de27fe215afa94ca40359da86fb2e" kindref="member">IntegralScalar</ref><sp/>=<sp/>double;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>scalar<sp/>representation<sp/>of<sp/>an<sp/>integral<sp/>for<sp/>libint<sp/>is<sp/>always<sp/>a<sp/>real<sp/>number</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0b7145b2e812d88b6a4bf169fbb8b76b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0b7145b2e812d88b6a4bf169fbb8b76b" kindref="member">N</ref><sp/>=<sp/>_N;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>number<sp/>of<sp/>components<sp/>the<sp/>operator<sp/>has</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::Engine<sp/>libint2_engine;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>libint2::Engine<sp/>libint2_engine;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Parameters<sp/>to<sp/>give<sp/>to<sp/>the<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>component_offset<sp/>=<sp/>0;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>number<sp/>of<sp/>libint<sp/>components<sp/>that<sp/>should<sp/>be<sp/>skipped<sp/>during<sp/>access<sp/>of<sp/>calculated<sp/>values<sp/>(libint2::Operator::emultipole1<sp/>has<sp/>4<sp/>libint2<sp/>components,<sp/>but<sp/>in<sp/>reality<sp/>there<sp/>should<sp/>only<sp/>be<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scaling_factor<sp/>=<sp/>1.0;<sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>factor<sp/>that<sp/>is<sp/>multiplied<sp/>to<sp/>all<sp/>of<sp/>the<sp/>calculated<sp/>integrals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Parameters<sp/>to<sp/>give<sp/>to<sp/>the<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>component_offset<sp/>=<sp/>0;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>number<sp/>of<sp/>libint<sp/>components<sp/>that<sp/>should<sp/>be<sp/>skipped<sp/>during<sp/>access<sp/>of<sp/>calculated<sp/>values<sp/>(libint2::Operator::emultipole1<sp/>has<sp/>4<sp/>libint2<sp/>components,<sp/>but<sp/>in<sp/>reality<sp/>there<sp/>should<sp/>only<sp/>be<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scaling_factor<sp/>=<sp/>1.0;<sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>factor<sp/>that<sp/>is<sp/>multiplied<sp/>to<sp/>all<sp/>of<sp/>the<sp/>calculated<sp/>integrals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="54"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
-<codeline lineno="55"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a5d1dce40c1384dd9953d2d6a54320e58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a5d1dce40c1384dd9953d2d6a54320e58" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)},</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>component_offset<sp/>{1},<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>emultipole1<sp/>has<sp/>[overlap,<sp/>x,<sp/>y,<sp/>z],<sp/>we<sp/>don&apos;t<sp/>need<sp/>the<sp/>overlap</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scaling_factor<sp/>{-1.0}<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>apply<sp/>the<sp/>minus<sp/>sign<sp/>which<sp/>comes<sp/>from<sp/>the<sp/>charge<sp/>of<sp/>the<sp/>electrons<sp/>-e</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>3&gt;<sp/>libint2_origin_array<sp/>{op.<ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" kindref="member">reference</ref>().x(),<sp/>op.<ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" kindref="member">reference</ref>().y(),<sp/>op.<ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" kindref="member">reference</ref>().z()};</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;libint2_engine.set_params(libint2_origin_array);</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="76" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1abafd6b319e98014dd8dd074842e74f10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1abafd6b319e98014dd8dd074842e74f10" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)}<sp/>{}</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a2dfa057022f73f592f9069a81feefbe0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a2dfa057022f73f592f9069a81feefbe0" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)}<sp/>{</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_atoms<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1a8a24a71b6a4c013badc0a484966b4e22" kindref="member">LibintInterfacer::get</ref>().<ref refid="class_g_q_c_p_1_1_libint_interfacer_1a0b80aec11ef1d1fd1773b6f51ced15fb" kindref="member">interface</ref>(op.<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" kindref="member">nucleiAsVector</ref>());</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;libint2_engine.set_params(libint2::make_point_charges(libint_atoms));</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0f765f003b6c9ee602a63e75c4076bed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0f765f003b6c9ee602a63e75c4076bed" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)}<sp/>{}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a5d1dce40c1384dd9953d2d6a54320e58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a5d1dce40c1384dd9953d2d6a54320e58" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)},</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>component_offset<sp/>{1},<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>emultipole1<sp/>has<sp/>[overlap,<sp/>x,<sp/>y,<sp/>z],<sp/>we<sp/>don&apos;t<sp/>need<sp/>the<sp/>overlap</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scaling_factor<sp/>{-1.0}<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>apply<sp/>the<sp/>minus<sp/>sign<sp/>which<sp/>comes<sp/>from<sp/>the<sp/>charge<sp/>of<sp/>the<sp/>electrons<sp/>-e</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>3&gt;<sp/>libint2_origin_array<sp/>{op.<ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" kindref="member">reference</ref>().x(),<sp/>op.<ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" kindref="member">reference</ref>().y(),<sp/>op.<ref refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" kindref="member">reference</ref>().z()};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;libint2_engine.set_params(libint2_origin_array);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1abafd6b319e98014dd8dd074842e74f10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1abafd6b319e98014dd8dd074842e74f10" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)}<sp/>{}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a2dfa057022f73f592f9069a81feefbe0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a2dfa057022f73f592f9069a81feefbe0" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)}<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_atoms<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1a8a24a71b6a4c013badc0a484966b4e22" kindref="member">LibintInterfacer::get</ref>().<ref refid="class_g_q_c_p_1_1_libint_interfacer_1a0b80aec11ef1d1fd1773b6f51ced15fb" kindref="member">interface</ref>(op.<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" kindref="member">nucleiAsVector</ref>());</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;libint2_engine.set_params(libint2::make_point_charges(libint_atoms));</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0f765f003b6c9ee602a63e75c4076bed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0f765f003b6c9ee602a63e75c4076bed" kindref="member">LibintOneElectronIntegralEngine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>&amp;<sp/>op,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_nprim,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_l)<sp/>:</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>libint2_engine<sp/>{<ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref>::get().createEngine(op,<sp/>max_nprim,<sp/>max_l)}<sp/>{}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="100"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>PUBLIC<sp/>OVERRIDDEN<sp/>METHODS</highlight></codeline>
-<codeline lineno="101"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a23dd8c30d8a8f48fa616cab87ec3463d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;BaseOneElectronIntegralBuffer&lt;IntegralScalar,<sp/>N&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a23dd8c30d8a8f48fa616cab87ec3463d" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref>&amp;<sp/>shell1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref>&amp;<sp/>shell2)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_shell1<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1a8a24a71b6a4c013badc0a484966b4e22" kindref="member">LibintInterfacer::get</ref>().<ref refid="class_g_q_c_p_1_1_libint_interfacer_1a0b80aec11ef1d1fd1773b6f51ced15fb" kindref="member">interface</ref>(shell1);</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_shell2<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1a8a24a71b6a4c013badc0a484966b4e22" kindref="member">LibintInterfacer::get</ref>().<ref refid="class_g_q_c_p_1_1_libint_interfacer_1a0b80aec11ef1d1fd1773b6f51ced15fb" kindref="member">interface</ref>(shell2);</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>libint2_buffer<sp/>=<sp/>this-&gt;libint2_engine.results();</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;libint2_engine.compute(libint_shell1,<sp/>libint_shell2);</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_shared&lt;LibintOneElectronIntegralBuffer&lt;N&gt;&gt;(libint2_buffer,<sp/>shell1.<ref refid="class_g_q_c_p_1_1_g_t_o_shell_1a0e0e16ddc671dcbe8a9fa94ec0a92aa3" kindref="member">numberOfBasisFunctions</ref>(),<sp/>shell2.<ref refid="class_g_q_c_p_1_1_g_t_o_shell_1a0e0e16ddc671dcbe8a9fa94ec0a92aa3" kindref="member">numberOfBasisFunctions</ref>(),<sp/>this-&gt;component_offset,<sp/>this-&gt;scaling_factor);</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="116"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>PUBLIC<sp/>OVERRIDDEN<sp/>METHODS</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a23dd8c30d8a8f48fa616cab87ec3463d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;BaseOneElectronIntegralBuffer&lt;IntegralScalar,<sp/>N&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a23dd8c30d8a8f48fa616cab87ec3463d" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref>&amp;<sp/>shell1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref>&amp;<sp/>shell2)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_shell1<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1a8a24a71b6a4c013badc0a484966b4e22" kindref="member">LibintInterfacer::get</ref>().<ref refid="class_g_q_c_p_1_1_libint_interfacer_1a0b80aec11ef1d1fd1773b6f51ced15fb" kindref="member">interface</ref>(shell1);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>libint_shell2<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_libint_interfacer_1a8a24a71b6a4c013badc0a484966b4e22" kindref="member">LibintInterfacer::get</ref>().<ref refid="class_g_q_c_p_1_1_libint_interfacer_1a0b80aec11ef1d1fd1773b6f51ced15fb" kindref="member">interface</ref>(shell2);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>libint2_buffer<sp/>=<sp/>this-&gt;libint2_engine.results();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;libint2_engine.compute(libint_shell1,<sp/>libint_shell2);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_shared&lt;LibintOneElectronIntegralBuffer&lt;N&gt;&gt;(libint2_buffer,<sp/>shell1.<ref refid="class_g_q_c_p_1_1_g_t_o_shell_1a0e0e16ddc671dcbe8a9fa94ec0a92aa3" kindref="member">numberOfBasisFunctions</ref>(),<sp/>shell2.<ref refid="class_g_q_c_p_1_1_g_t_o_shell_1a0e0e16ddc671dcbe8a9fa94ec0a92aa3" kindref="member">numberOfBasisFunctions</ref>(),<sp/>this-&gt;component_offset,<sp/>this-&gt;scaling_factor);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"/>
   </compounddef>

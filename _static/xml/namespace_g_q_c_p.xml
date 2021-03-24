@@ -194,18 +194,21 @@
     <innerclass refid="class_g_q_c_p_1_1_base_nuclear_operator" prot="public">GQCP::BaseNuclearOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_reference_dependent_operator" prot="public">GQCP::BaseReferenceDependentOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" prot="public">GQCP::CoulombRepulsionOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_diamagnetic_operator" prot="public">GQCP::DiamagneticOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_density_operator" prot="public">GQCP::ElectronicDensityOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public">GQCP::ElectronicDipoleOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" prot="public">GQCP::ElectronicQuadrupoleOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_spin__z_operator" prot="public">GQCP::ElectronicSpin_zOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_spin_operator" prot="public">GQCP::ElectronicSpinOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian" prot="public">GQCP::FQMolecularHamiltonian</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian" prot="public">GQCP::FQMolecularMagneticHamiltonian</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_kinetic_operator" prot="public">GQCP::KineticOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_linear_momentum_operator" prot="public">GQCP::LinearMomentumOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_attraction_operator" prot="public">GQCP::NuclearAttractionOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_dipole_operator" prot="public">GQCP::NuclearDipoleOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" prot="public">GQCP::NuclearRepulsionOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_operator" prot="public">GQCP::Operator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_overlap_operator" prot="public">GQCP::OverlapOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_paramagnetic_operator" prot="public">GQCP::ParamagneticOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" prot="public">GQCP::EvaluatableScalarRSQOneElectronOperator</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" prot="public">GQCP::GSQOneElectronOperator</innerclass>
@@ -560,7 +563,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="53" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="53" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="57" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ab9e82f4c5fc3ac406b005fcbea227dfb" prot="public" static="no">
         <type>std::function&lt; int(double *, const int *, const int *, int, const int *, int, const double *, const CINTOpt *)&gt;</type>
@@ -573,7 +576,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="54" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="54" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="58" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1af6c0e3151a6af439a47e0812512aea6b" prot="public" static="no">
         <type>std::function&lt; void(CINTOpt **, const int *, const int, const int *, const int, const double *)&gt;</type>
@@ -586,7 +589,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" line="59" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a1ceb6c549993f7c5099525c4e0000a16" prot="public" static="no">
         <templateparamlist>
@@ -607,7 +610,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="281" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="281" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="312" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="312" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ac56b6631b5b2d8034ad931616abfa7a7" prot="public" static="no">
         <templateparamlist>
@@ -628,7 +631,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="425" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="425" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="458" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="458" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a706c3a9a009dc8c9706ed57ac3ade708" prot="public" static="no">
         <templateparamlist>
@@ -1507,7 +1510,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="825" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="825" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="756" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="756" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" prot="public" static="no">
         <templateparamlist>
@@ -1525,7 +1528,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="830" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="830" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="761" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="761" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a18949b2153b626c420238dab2a4e7185" prot="public" static="no">
         <templateparamlist>
@@ -1543,7 +1546,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="835" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="835" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="766" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="766" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a0f84799c58b7a75a614bc2de9deb9dda" prot="public" static="no">
         <templateparamlist>

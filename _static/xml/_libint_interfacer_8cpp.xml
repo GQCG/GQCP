@@ -12,18 +12,6 @@
       <node id="19">
         <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="40">
-        <label>Operator/FirstQuantized/AngularMomentumOperator.hpp</label>
-        <link refid="_angular_momentum_operator_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
       <node id="30">
         <label>iomanip</label>
       </node>
@@ -36,10 +24,10 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="62">
+      <node id="53">
         <label>boost/math/special_functions/factorials.hpp</label>
       </node>
-      <node id="44">
+      <node id="40">
         <label>Operator/FirstQuantized/BaseFQOperator.hpp</label>
         <link refid="_base_f_q_operator_8hpp"/>
         <childnode refid="41" relation="include">
@@ -51,21 +39,11 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="61">
+      <node id="52">
         <label>boost/math/constants/constants.hpp</label>
       </node>
       <node id="25">
         <label>boost/lexical_cast.hpp</label>
-      </node>
-      <node id="53">
-        <label>Operator/FirstQuantized/LinearMomentumOperator.hpp</label>
-        <link refid="_linear_momentum_operator_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
       </node>
       <node id="35">
         <label>Molecule/Molecule.hpp</label>
@@ -75,14 +53,6 @@
         <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="49">
-        <label>Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp</label>
-        <link refid="_electronic_quadrupole_operator_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -110,18 +80,6 @@
       <node id="22">
         <label>boost/format.hpp</label>
       </node>
-      <node id="51">
-        <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
-        <link refid="_electronic_spin__z_operator_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="47">
-        <label>Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
-        <link refid="_electronic_density_operator_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
       <node id="43">
         <label>numeric</label>
       </node>
@@ -135,19 +93,13 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="57">
-        <label>Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
-        <link refid="_nuclear_repulsion_operator_8hpp"/>
-        <childnode refid="55" relation="include">
-        </childnode>
-      </node>
       <node id="28">
         <label>string</label>
       </node>
-      <node id="52">
+      <node id="46">
         <label>Operator/FirstQuantized/KineticOperator.hpp</label>
         <link refid="_kinetic_operator_8hpp"/>
-        <childnode refid="44" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
       </node>
       <node id="26">
@@ -166,15 +118,15 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="54">
+      <node id="47">
         <label>Operator/FirstQuantized/NuclearAttractionOperator.hpp</label>
         <link refid="_nuclear_attraction_operator_8hpp"/>
-        <childnode refid="44" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="59">
+      <node id="50">
         <label>boost/preprocessor.hpp</label>
       </node>
       <node id="20">
@@ -186,7 +138,7 @@
         <childnode refid="28" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="48">
         <label>Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
         <link refid="_base_nuclear_operator_8hpp"/>
         <childnode refid="36" relation="include">
@@ -205,50 +157,18 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="61" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
       </node>
       <node id="24">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
-      </node>
-      <node id="39">
-        <label>Operator/FirstQuantized/Operator.hpp</label>
-        <link refid="_operator_8hpp"/>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
       </node>
       <node id="13">
         <label>Eigen/Dense</label>
@@ -267,18 +187,10 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="50">
-        <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
-        <link refid="_electronic_spin_operator_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
+      <node id="49">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
         <link refid="_overlap_operator_8hpp"/>
-        <childnode refid="44" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
       </node>
       <node id="11">
@@ -345,13 +257,13 @@
       <node id="7">
         <label>array</label>
       </node>
-      <node id="63">
+      <node id="54">
         <label>sstream</label>
       </node>
-      <node id="48">
+      <node id="44">
         <label>Operator/FirstQuantized/ElectronicDipoleOperator.hpp</label>
         <link refid="_electronic_dipole_operator_8hpp"/>
-        <childnode refid="44" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
@@ -375,7 +287,7 @@
         <childnode refid="34" relation="include">
         </childnode>
       </node>
-      <node id="60">
+      <node id="51">
         <label>libint2.hpp</label>
       </node>
       <node id="5">
@@ -399,28 +311,26 @@
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
         </childnode>
       </node>
       <node id="16">
         <label>type_traits</label>
       </node>
-      <node id="46">
+      <node id="39">
         <label>Operator/FirstQuantized/CoulombRepulsionOperator.hpp</label>
         <link refid="_coulomb_repulsion_operator_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="56">
-        <label>Operator/FirstQuantized/NuclearDipoleOperator.hpp</label>
-        <link refid="_nuclear_dipole_operator_8hpp"/>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
       </node>
       <node id="17">

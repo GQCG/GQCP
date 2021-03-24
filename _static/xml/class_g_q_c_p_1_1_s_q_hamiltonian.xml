@@ -25,7 +25,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="60" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" prot="public" static="no">
         <type>_ScalarSQTwoElectronOperator</type>
@@ -38,7 +38,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="63" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" prot="public" static="no">
         <type>typename ScalarSQOneElectronOperator::SpinorTag</type>
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="69" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="69" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="66" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" prot="public" static="no">
         <type>typename ScalarSQOneElectronOperator::Scalar</type>
@@ -64,7 +64,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="75" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="75" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="72" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">SQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref>, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt;</type>
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="78" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="75" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" kindref="member">OneDM</ref></type>
@@ -90,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="81" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="81" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aeed7e445ae80d653e082bea209c62b06" kindref="member">TwoDM</ref></type>
@@ -103,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="84" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="84" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="81" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aaa8c64045c2c95ffb8c3e014131514c9" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1aaa8c64045c2c95ffb8c3e014131514c9" kindref="member">Transformation</ref></type>
@@ -116,7 +116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="87" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="87" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="84" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" kindref="member">JacobiRotationType</ref></type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="90" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="90" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="87" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -144,7 +144,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="95" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="95" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="92" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a630ce850937a7d66957fd52d141e9e54" prot="private" static="no" mutable="no">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref></type>
@@ -157,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="98" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="98" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="95" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="95" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a609f706c461a51aab832587559d6ba98" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt;</type>
@@ -170,7 +170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="101" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="101" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="98" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a0d3a286e01c10e2a6717952b0f94f998" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt;</type>
@@ -183,7 +183,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="104" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="104" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="101" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -225,7 +225,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="118" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="118" bodyend="142"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="115" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="115" bodyend="139"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1af2c43e32c5c2346c0cb86e1a78fb97d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -265,7 +265,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="151" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="151" bodyend="153"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="148" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="148" bodyend="150"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a572840d48ec7a3a022cd1d433f3ad972" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
@@ -281,7 +281,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="387" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="387" bodyend="387"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="318" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="318" bodyend="318"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ac9c751574b0f9dca664a442df6ea2b33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &amp;</type>
@@ -297,7 +297,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="392" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="392" bodyend="392"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="323" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="323" bodyend="323"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1adc6fed95f3c845ea6f24ee7f3d229624" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt; &amp;</type>
@@ -313,7 +313,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="397" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="397" bodyend="397"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="328" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="328" bodyend="328"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a7ea14fa9a59af319f5f72aaed1bc7c02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kindref="member">ScalarSQOneElectronOperator</ref> &gt; &amp;</type>
@@ -329,7 +329,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="402" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="402" bodyend="402"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="333" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="333" bodyend="333"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a7a542abe14c404fc287b64da5e6dc1d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
@@ -345,7 +345,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="407" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="407" bodyend="407"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="338" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="338" bodyend="338"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a136ec162928cfc02ea5e64584e5bfa1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &amp;</type>
@@ -361,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="412" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="412" bodyend="412"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="343" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="343" bodyend="343"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a9cf67ce36b24ceaed5d0bd1d47f3c3ee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt; &amp;</type>
@@ -377,7 +377,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="417" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="417" bodyend="417"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="348" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="348" bodyend="348"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aafdb7b33179bfd5ea2b42ca0415312bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad80a88634fa62991bf5657113bddfd07" kindref="member">ScalarSQTwoElectronOperator</ref> &gt; &amp;</type>
@@ -393,7 +393,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="422" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="422" bodyend="422"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="353" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="353" bodyend="353"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a9beb3656dcb386bb52a74e74f7723ad2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -409,7 +409,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="432" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="432" bodyend="432"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="363" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="363" bodyend="363"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a372711fc8e6dbe6045215ad1690370cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -447,7 +447,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="449" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="449" bodyend="460"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="380" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="380" bodyend="391"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad5f38ac2839431dff5307442e003e970" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -472,7 +472,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="471" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="471" bodyend="474"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="402" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="402" bodyend="405"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a20459a50f5bd5370b7f95dd1f9749d74" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref></type>
@@ -514,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="485" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="485" bodyend="489"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="416" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="416" bodyend="420"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a51eeaf42d6ab6a74a741a1b2e8ce521f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -564,7 +564,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="503" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="503" bodyend="507"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="434" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="434" bodyend="438"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a41c38368fb562cb742997acd24968c3d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -612,7 +612,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="519" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="519" bodyend="523"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="450" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="450" bodyend="454"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a1974cfedfd2f65a7c3c11cae50624761" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -648,7 +648,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="534" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="534" bodyend="553"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="465" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="465" bodyend="484"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aa0da4c96496c98f106bb15ebdae1c78f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -684,7 +684,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="564" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="564" bodyend="583"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="495" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="495" bodyend="514"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a42ddb132b31bc893a31de4b17e950531" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
@@ -714,7 +714,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="597" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="597" bodyend="615"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="528" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="528" bodyend="546"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aceec524481b666ab9f1bcf7465f6a3ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
@@ -745,7 +745,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="636" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="636" bodyend="654"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="567" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="567" bodyend="585"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a4ecea9448380ac865f268ab182fac42b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
@@ -763,7 +763,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="667" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="667" bodyend="674"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="598" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="598" bodyend="605"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a5d99b8e0b87b7a592eaf67c4e9616714" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
@@ -781,7 +781,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="697" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="697" bodyend="701"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="628" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="628" bodyend="632"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad806906fb1a4760234aaec2c19c4d2f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
@@ -799,7 +799,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="720" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="720" bodyend="727"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="651" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="651" bodyend="658"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1aef1abfcc4f1b119bcbcc42adbabe68db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &amp;</type>
@@ -817,7 +817,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="750" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="750" bodyend="754"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="681" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="681" bodyend="685"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -861,7 +861,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="170" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="170" bodyend="176"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="167" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="167" bodyend="173"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ac283b1f7779667fe1b7ac8db0028526f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -897,151 +897,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="187" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="187" bodyend="193"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a11f4d2bfa0f8d2fda1e58aea4416af04" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
-          </param>
-        </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" kindref="member">RestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z, RestrictedSpinOrbitalTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
-        <argsstring>(const RSpinOrbitalBasis&lt; Scalar, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
-        <name>Molecular</name>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kindref="compound">RSpinOrbitalBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
-          <declname>spinor_basis</declname>
-        </param>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
-          <declname>molecule</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Quantize the molecular Hamiltonian in a restricted spin-orbital basis.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>spinor_basis</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The spinor basis in which the Hamiltonian should be expressed. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>molecule</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A second-quantized molecular Hamiltonian. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="207" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="207" bodyend="217"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a6fc3562f19b18a955a7e1e7c8ad857ac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
-          </param>
-        </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a4e2fa2707828e181d1a0dbe949627abf" kindref="member">UnrestrictedSpinOrbitalTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z, UnrestrictedSpinOrbitalTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
-        <argsstring>(const USpinOrbitalBasis&lt; Scalar, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
-        <name>Molecular</name>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kindref="compound">USpinOrbitalBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
-          <declname>spinor_basis</declname>
-        </param>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
-          <declname>molecule</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Quantize the molecular Hamiltonian in an unrestricted spin-orbital basis.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>spinor_basis</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The spinor basis in which the Hamiltonian should be expressed. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>molecule</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A second-quantized molecular Hamiltonian. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="228" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="228" bodyend="238"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a1d921704d5557be179a967b4be47fa29" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a0ff4aff618ccdce4444e23d2fef5c3c1" kindref="member">SpinorTag</ref></defval>
-          </param>
-        </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_general_spinor_tag" kindref="compound">GeneralSpinorTag</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref> &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z, GeneralSpinorTag&gt;::value, Self&gt; GQCP::SQHamiltonian&lt; _ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator &gt;::Molecular</definition>
-        <argsstring>(const GSpinorBasis&lt; Scalar, GTOShell &gt; &amp;spinor_basis, const Molecule &amp;molecule)</argsstring>
-        <name>Molecular</name>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a71125369a2644554e4737fcb4241d1ce" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
-          <declname>spinor_basis</declname>
-        </param>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
-          <declname>molecule</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Quantize the molecular Hamiltonian in a general spinor basis.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>spinor_basis</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The spinor basis in which the Hamiltonian should be expressed. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>molecule</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The molecule that contains the nuclear framework upon which the nuclear attraction operator is based.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A second-quantized molecular Hamiltonian. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="249" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="249" bodyend="259"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="184" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="184" bodyend="190"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a885418972b6a0e608bdcab54aa4f66b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1079,7 +935,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="272" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="272" bodyend="278"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="203" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="203" bodyend="209"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a62d5e77135791639f73c6e1ac5b497f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1121,7 +977,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="291" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="291" bodyend="377"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="222" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="222" bodyend="308"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
@@ -1145,7 +1001,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="680" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="680" bodyend="683"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="611" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="611" bodyend="614"/>
       </memberdef>
       <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a99baa6883252bcfcf356e9fcb7bfe8b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
@@ -1167,7 +1023,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="689" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="689" bodyend="691"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="620" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="620" bodyend="622"/>
       </memberdef>
       <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1abd8c34dbfa3cd8a425d856d2516d9d1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
@@ -1189,7 +1045,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="707" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="707" bodyend="710"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="638" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="638" bodyend="641"/>
       </memberdef>
       <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ad75b89e4e1c4988efd5e6bb1645895c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
@@ -1211,7 +1067,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="733" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="733" bodyend="736"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="664" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="664" bodyend="667"/>
       </memberdef>
       <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1ae4ea8e312e33a1d461aba5bb3121fe99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
@@ -1233,7 +1089,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="742" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="742" bodyend="744"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="673" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="673" bodyend="675"/>
       </memberdef>
       <memberdef kind="friend" id="class_g_q_c_p_1_1_s_q_hamiltonian_1a83c5e92d4ecd908efe920531a87f60b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a09eb549be0a2ee97c1be277c967809b7" kindref="member">Self</ref></type>
@@ -1255,7 +1111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="760" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="760" bodyend="763"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="691" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="691" bodyend="694"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1317,7 +1173,7 @@
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="57" bodyend="764"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" line="52" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp" bodystart="54" bodyend="695"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a372711fc8e6dbe6045215ad1690370cb" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateEdmistonRuedenbergLocalizationIndex</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1ad5f38ac2839431dff5307442e003e970" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>calculateEffectiveOneElectronIntegrals</name></member>
@@ -1338,9 +1194,6 @@
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a27495850582382747dd2e64c4674d7e7" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>h</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a609f706c461a51aab832587559d6ba98" prot="private" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>h_contributions</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7dc51b7c9ce481aabbef73c0fb3cf3c3" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>JacobiRotationType</name></member>
-      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a11f4d2bfa0f8d2fda1e58aea4416af04" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
-      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a6fc3562f19b18a955a7e1e7c8ad857ac" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
-      <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a1d921704d5557be179a967b4be47fa29" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>Molecular</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a9beb3656dcb386bb52a74e74f7723ad2" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a40eb5c140f476ec958cb06cbd33d9ae0" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>OneDM</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a9c3b31820ee74a6b0ccf34e52e0ae83f" prot="public" virt="non-virtual"><scope>GQCP::SQHamiltonian</scope><name>operator+</name></member>

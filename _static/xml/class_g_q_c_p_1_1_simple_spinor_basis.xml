@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" prot="public" static="no">
         <type>_FinalSpinorBasis</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="61" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref></type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="64" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" kindref="member">JacobiRotationType</ref></type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="67" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="68" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" prot="public" static="no">
         <type>typename <ref refid="struct_g_q_c_p_1_1_spinor_basis_traits" kindref="compound">SpinorBasisTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" kindref="member">SQOverlapOperator</ref></type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="70" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="71" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-attrib">
@@ -95,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="75" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="75" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="76" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -124,7 +124,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="86" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="86" bodyend="87"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="87" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="87" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1ad150aa71df288eda895400a1970976d2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref> &amp;</type>
@@ -140,7 +140,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="97" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="97" bodyend="97"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="98" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="98" bodyend="98"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1abbad8e4366b720933a378ea276bf9502" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="107" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="107" bodyend="107"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="108" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="108" bodyend="108"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a42b2813a11f43e74c7fa60ee90a5ae0e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" kindref="member">SQOverlapOperator</ref></type>
@@ -172,7 +172,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="117" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="117" bodyend="117"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="118" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="118" bodyend="118"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa00b804a0f522ee6b046e45d9e39a7b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -203,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="126" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="126" bodyend="132"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="127" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="127" bodyend="133"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a7dcbcf5803cb8c3b4b65cb49ce3f5f69" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1ab9db1b00c22813762c69cdb4c020487f" kindref="member">Transformation</ref></type>
@@ -219,7 +219,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="137" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="137" bodyend="143"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="138" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="138" bodyend="144"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a53160b32246fe945f0fb7aa46d15c4e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -233,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="148" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="148" bodyend="148"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="149" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="149" bodyend="149"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1aa6d146421985b3aefc1b4a9ec4aa6c54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref></type>
@@ -263,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="162" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="162" bodyend="167"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="163" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="163" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spinor_basis_1a35d1cde61d7596a61df2c39ddef578b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kindref="member">FinalSpinorBasis</ref></type>
@@ -294,7 +294,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="187" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="187" bodyend="191"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="188" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="188" bodyend="192"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -399,7 +399,7 @@
         <link refid="struct_g_q_c_p_1_1_basis_transformable_traits"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="51" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="54" bodyend="195"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="52" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="55" bodyend="196"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a9abca647ddeb9772b5c58fe7366204ac" prot="protected" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>C</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinorBasis</scope><name>derived</name></member>

@@ -5,7 +5,7 @@
     <includes refid="_operator_traits_8hpp" local="no">OperatorTraits.hpp</includes>
     <templateparamlist>
       <param>
-        <type>typename <ref refid="class_g_q_c_p_1_1_operator" kindref="compound">Operator</ref></type>
+        <type>typename Operator</type>
       </param>
     </templateparamlist>
     <briefdescription>

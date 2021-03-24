@@ -5,12 +5,16 @@
     <innerfile refid="_angular_momentum_operator_8cpp">AngularMomentumOperator.cpp</innerfile>
     <innerfile refid="_base_nuclear_operator_8cpp">BaseNuclearOperator.cpp</innerfile>
     <innerfile refid="_base_reference_dependent_operator_8cpp">BaseReferenceDependentOperator.cpp</innerfile>
+    <innerfile refid="_diamagnetic_operator_8cpp">DiamagneticOperator.cpp</innerfile>
     <innerfile refid="_electronic_dipole_operator_8cpp">ElectronicDipoleOperator.cpp</innerfile>
     <innerfile refid="_electronic_quadrupole_operator_8cpp">ElectronicQuadrupoleOperator.cpp</innerfile>
     <innerfile refid="_electronic_spin_operator_8cpp">ElectronicSpinOperator.cpp</innerfile>
+    <innerfile refid="_f_q_molecular_hamiltonian_8cpp">FQMolecularHamiltonian.cpp</innerfile>
+    <innerfile refid="_f_q_molecular_magnetic_hamiltonian_8cpp">FQMolecularMagneticHamiltonian.cpp</innerfile>
     <innerfile refid="_linear_momentum_operator_8cpp">LinearMomentumOperator.cpp</innerfile>
     <innerfile refid="_nuclear_dipole_operator_8cpp">NuclearDipoleOperator.cpp</innerfile>
     <innerfile refid="_nuclear_repulsion_operator_8cpp">NuclearRepulsionOperator.cpp</innerfile>
+    <innerfile refid="_paramagnetic_operator_8cpp">ParamagneticOperator.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

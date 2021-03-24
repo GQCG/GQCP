@@ -74,70 +74,79 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_u_mulliken_partitioning_8hpp_source.html">Basis/MullikenPartitioning/UMullikenPartitioning.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_g_t_o_shell_8hpp_source.html">Basis/ScalarBasis/GTOShell.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_r_spin_orbital_basis_8hpp_source.html">Basis/SpinorBasis/RSpinOrbitalBasis.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_u_spin_orbital_basis_component_8hpp_source.html">Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_spin_resolved_basis_transformable_8hpp_source.html">Basis/Transformations/SpinResolvedBasisTransformable.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_spin_resolved_jacobi_rotatable_8hpp_source.html">Basis/Transformations/SpinResolvedJacobiRotatable.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_u_transformation_8hpp_source.html">Basis/Transformations/UTransformation.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_operator_8hpp_source.html">Operator/FirstQuantized/Operator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_coulomb_repulsion_operator_8hpp_source.html">Operator/FirstQuantized/CoulombRepulsionOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_electronic_dipole_operator_8hpp_source.html">Operator/FirstQuantized/ElectronicDipoleOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_electronic_spin__z_operator_8hpp_source.html">Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_f_q_molecular_hamiltonian_8hpp_source.html">Operator/FirstQuantized/FQMolecularHamiltonian.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_kinetic_operator_8hpp_source.html">Operator/FirstQuantized/KineticOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_nuclear_attraction_operator_8hpp_source.html">Operator/FirstQuantized/NuclearAttractionOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_overlap_operator_8hpp_source.html">Operator/FirstQuantized/OverlapOperator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_s_q_hamiltonian_8hpp_source.html">Operator/SecondQuantized/SQHamiltonian.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_u_s_q_one_electron_operator_8hpp_source.html">Operator/SecondQuantized/USQOneElectronOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_u_s_q_two_electron_operator_8hpp_source.html">Operator/SecondQuantized/USQTwoElectronOperator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_spin_resolved_base_8hpp_source.html">QuantumChemical/SpinResolvedBase.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="type__traits_8hpp_source.html">Utilities/type_traits.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for USpinOrbitalBasis.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="_u_spin_orbital_basis_8hpp__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_spinor_basis_2_u_spin_orbital_basis_8hpp" alt=""/></div>
 <map name="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_spinor_basis_2_u_spin_orbital_basis_8hpp" id="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_spinor_basis_2_u_spin_orbital_basis_8hpp">
-<area shape="rect" title=" " alt="" coords="5185,5,5377,61"/>
-<area shape="rect" href="_u_mulliken_partitioning_8hpp.html" title=" " alt="" coords="4947,206,5141,247"/>
-<area shape="rect" href="_u_transformation_8hpp.html" title=" " alt="" coords="5291,303,5458,344"/>
-<area shape="rect" href="_spin_resolved_basis_transformable_8hpp.html" title=" " alt="" coords="5544,392,5813,433"/>
-<area shape="rect" href="_spin_resolved_jacobi_rotatable_8hpp.html" title=" " alt="" coords="5277,392,5520,433"/>
-<area shape="rect" href="_spin_resolved_base_8hpp.html" title=" " alt="" coords="5072,571,5307,612"/>
-<area shape="rect" href="_r_spin_orbital_basis_8hpp.html" title=" " alt="" coords="3490,109,3713,151"/>
-<area shape="rect" href="_operator_8hpp.html" title=" " alt="" coords="1916,303,2092,344"/>
-<area shape="rect" href="_u_spin_orbital_basis_component_8hpp.html" title=" " alt="" coords="4453,303,4675,344"/>
-<area shape="rect" href="_u_s_q_one_electron_operator_8hpp.html" title=" " alt="" coords="5097,109,5314,151"/>
-<area shape="rect" href="_u_s_q_two_electron_operator_8hpp.html" title=" " alt="" coords="5681,109,5897,151"/>
-<area shape="rect" href="_u_mulliken_partitioning_component_8hpp.html" title=" " alt="" coords="4318,481,4586,523"/>
-<area shape="rect" href="_spin_resolved_8hpp.html" title=" " alt="" coords="4902,310,5165,337"/>
-<area shape="rect" href="_u_transformation_component_8hpp.html" title=" " alt="" coords="4420,571,4657,612"/>
-<area shape="rect" href="_square_matrix_8hpp.html" title=" " alt="" coords="3569,571,3783,612"/>
-<area shape="rect" href="_r_transformation_8hpp.html" title=" " alt="" coords="3985,481,4151,523"/>
-<area shape="rect" href="_basis_transformable_8hpp.html" title=" " alt="" coords="5606,481,5789,523"/>
-<area shape="rect" href="_jacobi_rotatable_8hpp.html" title=" " alt="" coords="5315,481,5482,523"/>
-<area shape="rect" href="_u_jacobi_rotation_8hpp.html" title=" " alt="" coords="5831,481,5998,523"/>
-<area shape="rect" href="_jacobi_rotation_8hpp.html" title=" " alt="" coords="4849,571,5015,612"/>
-<area shape="rect" href="_integral_calculator_8hpp.html" title=" " alt="" coords="2187,206,2359,247"/>
-<area shape="rect" href="aliases_8hpp.html" title=" " alt="" coords="289,489,439,515"/>
-<area shape="rect" href="type__traits_8hpp.html" title=" " alt="" coords="277,578,451,605"/>
-<area shape="rect" href="_r_mulliken_partitioning_8hpp.html" title=" " alt="" coords="3824,392,4016,433"/>
-<area shape="rect" href="_simple_spin_orbital_basis_8hpp.html" title=" " alt="" coords="3563,392,3749,433"/>
-<area shape="rect" href="_spinor_8hpp.html" title=" " alt="" coords="3715,213,3925,240"/>
-<area shape="rect" href="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp.html" title=" " alt="" coords="3290,199,3539,255"/>
-<area shape="rect" href="_r_s_q_one_electron_operator_8hpp.html" title=" " alt="" coords="4051,303,4267,344"/>
-<area shape="rect" href="_r_s_q_two_electron_operator_8hpp.html" title=" " alt="" coords="4153,206,4367,247"/>
-<area shape="rect" href="_molecule_8hpp.html" title=" " alt="" coords="3165,489,3336,515"/>
-<area shape="rect" href="_angular_momentum_operator_8hpp.html" title=" " alt="" coords="619,392,853,433"/>
-<area shape="rect" href="_coulomb_repulsion_operator_8hpp.html" title=" " alt="" coords="878,392,1109,433"/>
-<area shape="rect" href="_electronic_density_operator_8hpp.html" title=" " alt="" coords="1133,392,1357,433"/>
-<area shape="rect" href="_electronic_dipole_operator_8hpp.html" title=" " alt="" coords="1381,392,1597,433"/>
-<area shape="rect" href="_electronic_quadrupole_operator_8hpp.html" title=" " alt="" coords="1622,392,1871,433"/>
-<area shape="rect" href="_electronic_spin_operator_8hpp.html" title=" " alt="" coords="144,392,347,433"/>
-<area shape="rect" href="_electronic_spin__z_operator_8hpp.html" title=" " alt="" coords="1896,392,2112,433"/>
-<area shape="rect" href="_kinetic_operator_8hpp.html" title=" " alt="" coords="2136,392,2312,433"/>
-<area shape="rect" href="_linear_momentum_operator_8hpp.html" title=" " alt="" coords="371,392,595,433"/>
-<area shape="rect" href="_nuclear_attraction_operator_8hpp.html" title=" " alt="" coords="2336,392,2560,433"/>
-<area shape="rect" href="_nuclear_dipole_operator_8hpp.html" title=" " alt="" coords="2584,392,2787,433"/>
-<area shape="rect" href="_nuclear_repulsion_operator_8hpp.html" title=" " alt="" coords="2811,392,3034,433"/>
-<area shape="rect" href="_overlap_operator_8hpp.html" title=" " alt="" coords="3059,392,3235,433"/>
-<area shape="rect" href="_u_s_q_one_electron_operator_component_8hpp.html" title=" " alt="" coords="4243,392,4536,433"/>
-<area shape="rect" href="spinor__tags_8hpp.html" title=" " alt="" coords="4712,392,4899,433"/>
-<area shape="rect" href="_spin_resolved1_d_m_8hpp.html" title=" " alt="" coords="5442,206,5654,247"/>
-<area shape="rect" href="_spin_resolved2_d_m_8hpp.html" title=" " alt="" coords="5858,206,6070,247"/>
-<area shape="rect" href="_vector_space_arithmetic_8hpp.html" title=" " alt="" coords="5635,303,5837,344"/>
-<area shape="rect" href="_doubly_spin_resolved_basis_transformable_8hpp.html" title=" " alt="" coords="6275,303,6589,344"/>
-<area shape="rect" href="_doubly_spin_resolved_jacobi_rotatable_8hpp.html" title=" " alt="" coords="5963,303,6251,344"/>
+<area shape="rect" title=" " alt="" coords="2344,5,2536,61"/>
+<area shape="rect" href="_u_mulliken_partitioning_8hpp.html" title=" " alt="" coords="214,392,407,433"/>
+<area shape="rect" href="_u_transformation_8hpp.html" title=" " alt="" coords="483,481,650,523"/>
+<area shape="rect" href="_spin_resolved_basis_transformable_8hpp.html" title=" " alt="" coords="432,571,701,612"/>
+<area shape="rect" href="_spin_resolved_jacobi_rotatable_8hpp.html" title=" " alt="" coords="776,571,1019,612"/>
+<area shape="rect" href="_spin_resolved_base_8hpp.html" title=" " alt="" coords="175,749,409,791"/>
+<area shape="rect" href="_g_t_o_shell_8hpp.html" title=" " alt="" coords="4446,206,4674,233"/>
+<area shape="rect" href="_r_spin_orbital_basis_8hpp.html" title=" " alt="" coords="2717,109,2939,151"/>
+<area shape="rect" href="type__traits_8hpp.html" title=" " alt="" coords="2403,399,2578,426"/>
+<area shape="rect" href="_coulomb_repulsion_operator_8hpp.html" title=" " alt="" coords="3350,295,3581,337"/>
+<area shape="rect" href="_electronic_dipole_operator_8hpp.html" title=" " alt="" coords="4205,199,4421,240"/>
+<area shape="rect" href="_f_q_molecular_hamiltonian_8hpp.html" title=" " alt="" coords="3478,199,3693,240"/>
+<area shape="rect" href="_kinetic_operator_8hpp.html" title=" " alt="" coords="3605,295,3781,337"/>
+<area shape="rect" href="_nuclear_attraction_operator_8hpp.html" title=" " alt="" coords="3805,295,4029,337"/>
+<area shape="rect" href="_overlap_operator_8hpp.html" title=" " alt="" coords="3277,199,3453,240"/>
+<area shape="rect" href="_s_q_hamiltonian_8hpp.html" title=" " alt="" coords="1566,199,1762,240"/>
+<area shape="rect" href="_u_s_q_one_electron_operator_8hpp.html" title=" " alt="" coords="550,295,767,337"/>
+<area shape="rect" href="_u_s_q_two_electron_operator_8hpp.html" title=" " alt="" coords="893,295,1109,337"/>
+<area shape="rect" href="_u_spin_orbital_basis_component_8hpp.html" title=" " alt="" coords="1154,481,1377,523"/>
+<area shape="rect" href="_electronic_spin__z_operator_8hpp.html" title=" " alt="" coords="4629,109,4845,151"/>
+<area shape="rect" href="_u_mulliken_partitioning_component_8hpp.html" title=" " alt="" coords="1150,660,1418,701"/>
+<area shape="rect" href="_spin_resolved_8hpp.html" title=" " alt="" coords="94,489,357,515"/>
+<area shape="rect" href="_u_transformation_component_8hpp.html" title=" " alt="" coords="1079,749,1316,791"/>
+<area shape="rect" href="_square_matrix_8hpp.html" title=" " alt="" coords="2676,749,2889,791"/>
+<area shape="rect" href="_r_transformation_8hpp.html" title=" " alt="" coords="2110,660,2277,701"/>
+<area shape="rect" href="_basis_transformable_8hpp.html" title=" " alt="" coords="891,660,1074,701"/>
+<area shape="rect" href="_jacobi_rotatable_8hpp.html" title=" " alt="" coords="1494,660,1661,701"/>
+<area shape="rect" href="_u_jacobi_rotation_8hpp.html" title=" " alt="" coords="701,660,867,701"/>
+<area shape="rect" href="_jacobi_rotation_8hpp.html" title=" " alt="" coords="1554,749,1721,791"/>
+<area shape="rect" href="_cartesian_g_t_o_8hpp.html" title=" " alt="" coords="4697,295,4873,337"/>
+<area shape="rect" href="_linear_combination_8hpp.html" title=" " alt="" coords="4571,392,4749,433"/>
+<area shape="rect" href="_nucleus_8hpp.html" title=" " alt="" coords="4458,303,4622,329"/>
+<area shape="rect" href="_integral_calculator_8hpp.html" title=" " alt="" coords="2681,199,2853,240"/>
+<area shape="rect" href="aliases_8hpp.html" title=" " alt="" coords="2529,303,2679,329"/>
+<area shape="rect" href="_r_mulliken_partitioning_8hpp.html" title=" " alt="" coords="2600,571,2792,612"/>
+<area shape="rect" href="_simple_spin_orbital_basis_8hpp.html" title=" " alt="" coords="2867,571,3053,612"/>
+<area shape="rect" href="_spinor_8hpp.html" title=" " alt="" coords="3819,206,4029,233"/>
+<area shape="rect" href="_electronic_density_operator_8hpp.html" title=" " alt="" coords="2979,199,3203,240"/>
+<area shape="rect" href="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp.html" title=" " alt="" coords="2703,288,2953,344"/>
+<area shape="rect" href="_r_s_q_one_electron_operator_8hpp.html" title=" " alt="" coords="2035,481,2251,523"/>
+<area shape="rect" href="_r_s_q_two_electron_operator_8hpp.html" title=" " alt="" coords="1774,392,1989,433"/>
+<area shape="rect" href="_molecule_8hpp.html" title=" " alt="" coords="2904,667,3075,694"/>
+<area shape="rect" href="_base_f_q_operator_8hpp.html" title=" " alt="" coords="3605,392,3781,433"/>
+<area shape="rect" href="_base_reference_dependent_operator_8hpp.html" title=" " alt="" coords="4155,295,4434,337"/>
+<area shape="rect" href="_base_nuclear_operator_8hpp.html" title=" " alt="" coords="3821,392,4013,433"/>
+<area shape="rect" href="_u_s_q_one_electron_operator_component_8hpp.html" title=" " alt="" coords="1368,571,1661,612"/>
+<area shape="rect" href="_orbital_space_8hpp.html" title=" " alt="" coords="1475,295,1661,337"/>
+<area shape="rect" href="_g_s_q_one_electron_operator_8hpp.html" title=" " alt="" coords="1182,392,1399,433"/>
+<area shape="rect" href="_g_s_q_two_electron_operator_8hpp.html" title=" " alt="" coords="1133,295,1349,337"/>
+<area shape="rect" href="_hubbard_hamiltonian_8hpp.html" title=" " alt="" coords="1837,295,2149,337"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -145,56 +154,35 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_u_spin_orbital_basis_8hpp__dep__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_spinor_basis_2_u_spin_orbital_basis_8hppdep" alt=""/></div>
 <map name="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_spinor_basis_2_u_spin_orbital_basis_8hppdep" id="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_basis_2_spinor_basis_2_u_spin_orbital_basis_8hppdep">
-<area shape="rect" title=" " alt="" coords="2154,5,2346,61"/>
-<area shape="rect" href="gqcp_8hpp.html" title=" " alt="" coords="2337,985,2505,1027"/>
-<area shape="rect" href="_g_spinor_basis_8hpp.html" title=" " alt="" coords="2154,109,2346,165"/>
-<area shape="rect" href="_s_q_hamiltonian_8hpp.html" title=" " alt="" coords="1991,213,2242,269"/>
-<area shape="rect" href="transform_8hpp.html" title=" " alt="" coords="4333,317,4554,373"/>
-<area shape="rect" href="_linear_expansion_8hpp.html" title=" " alt="" coords="438,317,606,373"/>
-<area shape="rect" href="_base_electrical_response_solver_8hpp.html" title=" " alt="" coords="2559,748,2810,819"/>
-<area shape="rect" href="expectation__values_8hpp.html" title=" " alt="" coords="1141,421,1314,492"/>
-<area shape="rect" href="_c_c_s_d_environment_8hpp.html" title=" " alt="" coords="3427,540,3601,596"/>
-<area shape="rect" href="_q_c_method_2_geminals_2_a_p1ro_g_8hpp.html" title=" " alt="" coords="2122,755,2333,811"/>
-<area shape="rect" href="_p_s_environment_8hpp.html" title=" " alt="" coords="1583,755,1794,811"/>
-<area shape="rect" href="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp.html" title=" " alt="" coords="1298,874,1509,930"/>
-<area shape="rect" href="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp.html" title=" " alt="" coords="898,429,1066,485"/>
-<area shape="rect" href="_g_h_f_s_c_f_environment_8hpp.html" title=" " alt="" coords="753,317,971,373"/>
-<area shape="rect" href="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp.html" title=" " alt="" coords="1703,429,1871,485"/>
-<area shape="rect" href="_r_h_f_s_c_f_environment_8hpp.html" title=" " alt="" coords="1653,317,1871,373"/>
-<area shape="rect" href="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp.html" title=" " alt="" coords="1849,540,2017,596"/>
-<area shape="rect" href="_u_h_f_s_c_f_environment_8hpp.html" title=" " alt="" coords="1946,429,2165,485"/>
-<area shape="rect" href="_base_orbital_optimizer_8hpp.html" title=" " alt="" coords="4032,317,4308,373"/>
-<area shape="rect" href="_r_m_p2_8hpp.html" title=" " alt="" coords="2239,429,2423,485"/>
-<area shape="rect" href="_q_c_model_2_c_c_2_c_c_d_8hpp.html" title=" " alt="" coords="4077,429,4245,485"/>
-<area shape="rect" href="_q_c_model_2_c_c_2_c_c_s_d_8hpp.html" title=" " alt="" coords="2678,429,2846,485"/>
-<area shape="rect" href="_t1_amplitudes_8hpp.html" title=" " alt="" coords="2701,317,2869,373"/>
-<area shape="rect" href="_t2_amplitudes_8hpp.html" title=" " alt="" coords="3430,317,3598,373"/>
-<area shape="rect" href="_q_c_model_2_geminals_2_a_p1ro_g_8hpp.html" title=" " alt="" coords="1449,644,1651,700"/>
-<area shape="rect" href="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp.html" title=" " alt="" coords="1307,755,1508,811"/>
-<area shape="rect" href="_a_p1ro_g_geminal_coefficients_8hpp.html" title=" " alt="" coords="1191,540,1426,596"/>
-<area shape="rect" href="_q_c_model_2_h_f_2_g_h_f_8hpp.html" title=" " alt="" coords="1046,317,1214,373"/>
-<area shape="rect" href="_q_c_model_2_h_f_2_r_h_f_8hpp.html" title=" " alt="" coords="2093,317,2261,373"/>
-<area shape="rect" href="_base_orbital_optimizer_8cpp.html" title=" " alt="" coords="4319,429,4567,485"/>
-<area shape="rect" href="_r_h_f_electrical_response_solver_8hpp.html" title=" " alt="" coords="2611,867,2855,937"/>
-<area shape="rect" href="v_a_p1ro_g_electrical_response_solver_8hpp.html" title=" " alt="" coords="2020,867,2232,937"/>
-<area shape="rect" href="_base_electrical_response_solver_8cpp.html" title=" " alt="" coords="2879,874,3125,930"/>
-<area shape="rect" href="properties_8cpp.html" title=" " alt="" coords="826,540,1015,596"/>
-<area shape="rect" href="_q_c_method_2_c_c_2_c_c_d_8hpp.html" title=" " alt="" coords="4298,644,4466,700"/>
-<area shape="rect" href="_c_c_d_amplitudes_update_8hpp.html" title=" " alt="" coords="3970,644,4173,700"/>
-<area shape="rect" href="_c_c_d_solver_8hpp.html" title=" " alt="" coords="3685,874,3853,930"/>
-<area shape="rect" href="_t2_d_i_i_s_8hpp.html" title=" " alt="" coords="3806,755,3974,811"/>
-<area shape="rect" href="_c_c_d_energy_calculation_8hpp.html" title=" " alt="" coords="3410,755,3610,811"/>
-<area shape="rect" href="_c_c_d_intermediates_update_8hpp.html" title=" " alt="" coords="3675,644,3895,700"/>
-<area shape="rect" href="_q_c_method_2_c_c_2_c_c_s_d_8hpp.html" title=" " alt="" coords="2610,644,2778,700"/>
-<area shape="rect" href="_c_c_s_d_amplitudes_update_8hpp.html" title=" " alt="" coords="3338,644,3549,700"/>
-<area shape="rect" href="_c_c_s_d_solver_8hpp.html" title=" " alt="" coords="3117,755,3285,811"/>
-<area shape="rect" href="_c_c_s_d_energy_calculation_8hpp.html" title=" " alt="" coords="2802,644,3010,700"/>
-<area shape="rect" href="_c_c_s_d_intermediates_update_8hpp.html" title=" " alt="" coords="3085,644,3313,700"/>
-<area shape="rect" href="_dyson_orbital_8hpp.html" title=" " alt="" coords="491,540,700,596"/>
-<area shape="rect" href="properties_8hpp.html" title=" " alt="" coords="560,429,751,485"/>
-<area shape="rect" href="_c_i_8hpp.html" title=" " alt="" coords="298,874,466,930"/>
-<area shape="rect" href="_a_p_i_g_geminal_coefficients_8hpp.html" title=" " alt="" coords="5,540,223,596"/>
-<area shape="rect" href="_geminal_coefficients_interface_8hpp.html" title=" " alt="" coords="120,429,364,485"/>
+<area shape="rect" title=" " alt="" coords="2421,5,2613,61"/>
+<area shape="rect" href="gqcp_8hpp.html" title=" " alt="" coords="1859,867,2027,908"/>
+<area shape="rect" href="_g_spinor_basis_8hpp.html" title=" " alt="" coords="2307,109,2499,165"/>
+<area shape="rect" href="_linear_expansion_8hpp.html" title=" " alt="" coords="2008,213,2176,269"/>
+<area shape="rect" href="transform_8hpp.html" title=" " alt="" coords="2523,109,2744,165"/>
+<area shape="rect" href="_dyson_orbital_8hpp.html" title=" " alt="" coords="2169,525,2378,581"/>
+<area shape="rect" href="properties_8hpp.html" title=" " alt="" coords="1997,317,2187,373"/>
+<area shape="rect" href="_c_i_8hpp.html" title=" " alt="" coords="2263,317,2431,373"/>
+<area shape="rect" href="_a_p1ro_g_geminal_coefficients_8hpp.html" title=" " alt="" coords="1028,421,1263,477"/>
+<area shape="rect" href="_a_p_i_g_geminal_coefficients_8hpp.html" title=" " alt="" coords="1703,421,1921,477"/>
+<area shape="rect" href="_geminal_coefficients_interface_8hpp.html" title=" " alt="" coords="1435,317,1679,373"/>
+<area shape="rect" href="properties_8cpp.html" title=" " alt="" coords="1996,421,2185,477"/>
+<area shape="rect" href="_a_p1ro_g_jacobi_orbital_optimizer_8hpp.html" title=" " alt="" coords="1657,629,1905,685"/>
+<area shape="rect" href="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp.html" title=" " alt="" coords="5,741,336,797"/>
+<area shape="rect" href="_q_c_model_2_geminals_2_a_p1ro_g_8hpp.html" title=" " alt="" coords="994,525,1195,581"/>
+<area shape="rect" href="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp.html" title=" " alt="" coords="562,629,763,685"/>
+<area shape="rect" href="_a_p1ro_g_geminal_coefficients_8cpp.html" title=" " alt="" coords="1443,525,1677,581"/>
+<area shape="rect" href="_a_p1ro_g_jacobi_orbital_optimizer_8cpp.html" title=" " alt="" coords="1391,741,1638,797"/>
+<area shape="rect" href="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp.html" title=" " alt="" coords="325,852,565,923"/>
+<area shape="rect" href="_q_c_method_2_geminals_2_a_p1ro_g_8hpp.html" title=" " alt="" coords="1423,629,1633,685"/>
+<area shape="rect" href="_p_s_environment_8hpp.html" title=" " alt="" coords="940,629,1151,685"/>
+<area shape="rect" href="v_a_p1ro_g_8cpp.html" title=" " alt="" coords="645,741,819,797"/>
+<area shape="rect" href="_a_p1ro_g_8cpp.html" title=" " alt="" coords="1175,629,1348,685"/>
+<area shape="rect" href="v_a_p1ro_g_electrical_response_solver_8hpp.html" title=" " alt="" coords="893,733,1105,804"/>
+<area shape="rect" href="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp.html" title=" " alt="" coords="411,741,621,797"/>
+<area shape="rect" href="v_a_p1ro_g_electrical_response_solver_8cpp.html" title=" " alt="" coords="863,859,1134,915"/>
+<area shape="rect" href="_a_p_i_g_geminal_coefficients_8cpp.html" title=" " alt="" coords="1704,525,1920,581"/>
+<area shape="rect" href="_geminal_coefficients_interface_8cpp.html" title=" " alt="" coords="1436,421,1679,477"/>
+<area shape="rect" href="_base_orbital_optimizer_8cpp.html" title=" " alt="" coords="2475,213,2723,269"/>
 </map>
 </div>
 </div>

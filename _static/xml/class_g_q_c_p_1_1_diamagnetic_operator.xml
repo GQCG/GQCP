@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_diamagnetic_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::DiamagneticOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseScalarFQOperator&lt; double &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_reference_dependent_operator" prot="public" virt="non-virtual">GQCP::BaseReferenceDependentOperator</basecompoundref>
+    <includes refid="_diamagnetic_operator_8hpp" local="no">DiamagneticOperator.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_diamagnetic_operator_1a18fb71d12c431e6bf364879f670ea368" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref></type>
+        <definition>HomogeneousMagneticField GQCP::DiamagneticOperator::B</definition>
+        <argsstring></argsstring>
+        <name>B</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" line="38" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_diamagnetic_operator_1aa48ed8f317e97b7fae312bfc001ea2e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::DiamagneticOperator::DiamagneticOperator</definition>
+        <argsstring>(const HomogeneousMagneticField &amp;B, const Vector&lt; double, 3 &gt; &amp;reference)</argsstring>
+        <name>DiamagneticOperator</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>reference</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_diamagnetic_operator" kindref="compound">DiamagneticOperator</ref></computeroutput> from its underlying homogeneous magnetic field and a reference point.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The external, homogeneous magnetic field. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference point about which the diamagnetic operator is calculated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/DiamagneticOperator.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_diamagnetic_operator_1a8696ef0b3d4de908338b927e84d972fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::DiamagneticOperator::DiamagneticOperator</definition>
+        <argsstring>(const HomogeneousMagneticField &amp;B)</argsstring>
+        <name>DiamagneticOperator</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_diamagnetic_operator" kindref="compound">DiamagneticOperator</ref></computeroutput> from its underlying homogeneous magnetic field.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The external, homogeneous magnetic field.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The reference point is chosen to be the gauge origin of the magnetic field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/DiamagneticOperator.cpp" bodystart="46" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_diamagnetic_operator_1a71556f4587de2a42c765e54f199ec8e8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+        <definition>const HomogeneousMagneticField&amp; GQCP::DiamagneticOperator::magneticField</definition>
+        <argsstring>() const</argsstring>
+        <name>magneticField</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The external, homogeneous magnetic field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" line="71" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_diamagnetic_operator_1a2c28a337cf83504a74d46e39e71beed5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" kindref="compound">ElectronicQuadrupoleOperator</ref></type>
+        <definition>ElectronicQuadrupoleOperator GQCP::DiamagneticOperator::electronicQuadrupole</definition>
+        <argsstring>() const</argsstring>
+        <name>electronicQuadrupole</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The electronic quadrupole operator that is related to this diamagnetic operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" line="81" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The diagmagnetic operator, i.e. the part of the scalar kinetic energy operator that is quadratric in the magnetic field. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::DiamagneticOperator</label>
+        <link refid="class_g_q_c_p_1_1_diamagnetic_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BaseScalarFQOneElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::DiamagneticOperator</label>
+        <link refid="class_g_q_c_p_1_1_diamagnetic_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BaseScalarFQOneElectronOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/DiamagneticOperator.hpp" bodystart="35" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_diamagnetic_operator_1a18fb71d12c431e6bf364879f670ea368" prot="private" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>B</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a54a0c94b11d3c1b094b91de2c1125083" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>BaseReferenceDependentOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_diamagnetic_operator_1aa48ed8f317e97b7fae312bfc001ea2e6" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>DiamagneticOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_diamagnetic_operator_1a8696ef0b3d4de908338b927e84d972fb" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>DiamagneticOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_diamagnetic_operator_1a2c28a337cf83504a74d46e39e71beed5" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>electronicQuadrupole</name></member>
+      <member refid="class_g_q_c_p_1_1_diamagnetic_operator_1a71556f4587de2a42c765e54f199ec8e8" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>magneticField</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>NumberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1ae56208bbc85e6d9d401fa4540f20a573" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>NumberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>reference</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1ad07fca0083a7212821250e3beff14242" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a3bf379636691d7d74ea96afc8f5049cf" prot="public" virt="non-virtual"><scope>GQCP::DiamagneticOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a1f47a08d6dbad212da9370b4d55fd522" prot="public" virt="virtual"><scope>GQCP::DiamagneticOperator</scope><name>~BaseFQOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a67db3a2bf7e00d38db5fcba98dec06ed" prot="public" virt="pure-virtual"><scope>GQCP::DiamagneticOperator</scope><name>~BaseReferenceDependentOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -130,7 +130,7 @@ $(function() {
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        shell_set {shell_set} {}</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = GTOShell&gt;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = Shell&gt;</div>
 <div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_scalar_basis.html#adfc218e2641da59116cecd9c573b8403">   79</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html#adfc218e2641da59116cecd9c573b8403">ScalarBasis</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_nuclear_framework.html">NuclearFramework</a>&amp; nuclear_framework, <span class="keyword">const</span> std::string&amp; basisset_name,</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keyword">typename</span> std::enable_if&lt;std::is_same&lt;Z, GTOShell&gt;::value&gt;::type* = 0) :</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html">ScalarBasis</a>(<a class="code" href="class_g_q_c_p_1_1_g_t_o_basis_set.html">GTOBasisSet</a>(basisset_name).generate(nuclear_framework)) {</div>
@@ -139,13 +139,13 @@ $(function() {
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = GTOShell&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = Shell&gt;</div>
 <div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_scalar_basis.html#a039b66e5dc34f865d172d669cad0f20a">   96</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html#a039b66e5dc34f865d172d669cad0f20a">ScalarBasis</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_molecule.html">Molecule</a>&amp; molecule, <span class="keyword">const</span> std::string&amp; basisset_name,</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keyword">typename</span> std::enable_if&lt;std::is_same&lt;Z, GTOShell&gt;::value&gt;::type* = 0) :</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html">ScalarBasis</a>(molecule.nuclearFramework(), basisset_name) {}</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = LondonGTOShell&gt;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = Shell&gt;</div>
 <div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_scalar_basis.html#afe320a0e48627402e35e9d7c58c61bef">  111</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html#afe320a0e48627402e35e9d7c58c61bef">ScalarBasis</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_nuclear_framework.html">NuclearFramework</a>&amp; nuclear_framework, <span class="keyword">const</span> std::string&amp; basisset_name, <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_homogeneous_magnetic_field.html">HomogeneousMagneticField</a>&amp; B,</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keyword">typename</span> std::enable_if&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value&gt;::type* = 0) :</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html">ScalarBasis</a>(<a class="code" href="class_g_q_c_p_1_1_g_t_o_basis_set.html">GTOBasisSet</a>(basisset_name).generate(nuclear_framework).applyLondonModification(B)) {</div>
@@ -154,7 +154,7 @@ $(function() {
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = LondonGTOShell&gt;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Z = Shell&gt;</div>
 <div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_scalar_basis.html#aab3d105699f8e3929c1d4e090243a117">  129</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html#aab3d105699f8e3929c1d4e090243a117">ScalarBasis</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_molecule.html">Molecule</a>&amp; molecule, <span class="keyword">const</span> std::string&amp; basisset_name, <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_homogeneous_magnetic_field.html">HomogeneousMagneticField</a>&amp; B,</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                <span class="keyword">typename</span> std::enable_if&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value&gt;::type* = 0) :</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_scalar_basis.html">ScalarBasis</a>(molecule.nuclearFramework(), basisset_name, B) {}</div>

@@ -7,18 +7,21 @@
     <innerfile refid="_base_nuclear_operator_8hpp">BaseNuclearOperator.hpp</innerfile>
     <innerfile refid="_base_reference_dependent_operator_8hpp">BaseReferenceDependentOperator.hpp</innerfile>
     <innerfile refid="_coulomb_repulsion_operator_8hpp">CoulombRepulsionOperator.hpp</innerfile>
+    <innerfile refid="_diamagnetic_operator_8hpp">DiamagneticOperator.hpp</innerfile>
     <innerfile refid="_electronic_density_operator_8hpp">ElectronicDensityOperator.hpp</innerfile>
     <innerfile refid="_electronic_dipole_operator_8hpp">ElectronicDipoleOperator.hpp</innerfile>
     <innerfile refid="_electronic_quadrupole_operator_8hpp">ElectronicQuadrupoleOperator.hpp</innerfile>
     <innerfile refid="_electronic_spin__z_operator_8hpp">ElectronicSpin_zOperator.hpp</innerfile>
     <innerfile refid="_electronic_spin_operator_8hpp">ElectronicSpinOperator.hpp</innerfile>
+    <innerfile refid="_f_q_molecular_hamiltonian_8hpp">FQMolecularHamiltonian.hpp</innerfile>
+    <innerfile refid="_f_q_molecular_magnetic_hamiltonian_8hpp">FQMolecularMagneticHamiltonian.hpp</innerfile>
     <innerfile refid="_kinetic_operator_8hpp">KineticOperator.hpp</innerfile>
     <innerfile refid="_linear_momentum_operator_8hpp">LinearMomentumOperator.hpp</innerfile>
     <innerfile refid="_nuclear_attraction_operator_8hpp">NuclearAttractionOperator.hpp</innerfile>
     <innerfile refid="_nuclear_dipole_operator_8hpp">NuclearDipoleOperator.hpp</innerfile>
     <innerfile refid="_nuclear_repulsion_operator_8hpp">NuclearRepulsionOperator.hpp</innerfile>
-    <innerfile refid="_operator_8hpp">Operator.hpp</innerfile>
     <innerfile refid="_overlap_operator_8hpp">OverlapOperator.hpp</innerfile>
+    <innerfile refid="_paramagnetic_operator_8hpp">ParamagneticOperator.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

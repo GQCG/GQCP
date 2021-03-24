@@ -19,7 +19,7 @@
         <link refid="struct_g_q_c_p_1_1_spinor_basis_traits"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="37" bodyend="37"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinorBasis.hpp" bodystart="38" bodyend="38"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

@@ -1,0 +1,139 @@
+\hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{}\doxysection{GQCP\+::FQMolecular\+Hamiltonian Class Reference}
+\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+
+
+{\ttfamily \#include $<$FQMolecular\+Hamiltonian.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::FQMolecular\+Hamiltonian\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{class_g_q_c_p_1_1_f_q_molecular_hamiltonian__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::FQMolecular\+Hamiltonian\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_f_q_molecular_hamiltonian__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a66825f1517e478bb83671904db8733d0}{FQMolecular\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_adf886236e764f18e51eaa36af2a08e07}{T}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a55cf9cb8082e3af90aa36c8ec4d66d95}{V}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_add0865ddadc4bdba0ccad0e7188cb503}{g}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_aa9b5591ec3a8e9ec1d09ebecb18e52b6}{FQMolecular\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule)
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a64af403ad687229af6f46d10f6ad0e16}{kinetic}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a5164e11ed7cb82e09d15e964adc29f0d}{nuclear\+Attraction}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7503d7530e4e4bcdb1b21eb4eddfc109}{coulomb\+Repulsion}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_adf886236e764f18e51eaa36af2a08e07}{T}}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a55cf9cb8082e3af90aa36c8ec4d66d95}{V}}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_add0865ddadc4bdba0ccad0e7188cb503}{g}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The first-\/quantized, molecular electronic Hamiltonian. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a66825f1517e478bb83671904db8733d0}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a66825f1517e478bb83671904db8733d0}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!FQMolecularHamiltonian@{FQMolecularHamiltonian}}
+\index{FQMolecularHamiltonian@{FQMolecularHamiltonian}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{FQMolecularHamiltonian()}{FQMolecularHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily GQCP\+::\+FQMolecular\+Hamiltonian\+::\+FQMolecular\+Hamiltonian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{T,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{V,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{g }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em T} & The kinetic energy operator. \\
+\hline
+{\em V} & The nuclear attraction operator. \\
+\hline
+{\em g} & The two-\/electron repulsion operator. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_aa9b5591ec3a8e9ec1d09ebecb18e52b6}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_aa9b5591ec3a8e9ec1d09ebecb18e52b6}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!FQMolecularHamiltonian@{FQMolecularHamiltonian}}
+\index{FQMolecularHamiltonian@{FQMolecularHamiltonian}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{FQMolecularHamiltonian()}{FQMolecularHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily GQCP\+::\+FQMolecular\+Hamiltonian\+::\+FQMolecular\+Hamiltonian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule }\end{DoxyParamCaption})}
+
+Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecular\+Hamiltonian}}} from a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em molecule} & The molecule. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7503d7530e4e4bcdb1b21eb4eddfc109}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7503d7530e4e4bcdb1b21eb4eddfc109}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!coulombRepulsion@{coulombRepulsion}}
+\index{coulombRepulsion@{coulombRepulsion}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{coulombRepulsion()}{coulombRepulsion()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}}\& GQCP\+::\+FQMolecular\+Hamiltonian\+::coulomb\+Repulsion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The two-\/electron repulsion operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a64af403ad687229af6f46d10f6ad0e16}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a64af403ad687229af6f46d10f6ad0e16}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!kinetic@{kinetic}}
+\index{kinetic@{kinetic}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{kinetic()}{kinetic()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}}\& GQCP\+::\+FQMolecular\+Hamiltonian\+::kinetic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The kinetic energy operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a5164e11ed7cb82e09d15e964adc29f0d}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a5164e11ed7cb82e09d15e964adc29f0d}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!nuclearAttraction@{nuclearAttraction}}
+\index{nuclearAttraction@{nuclearAttraction}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{nuclearAttraction()}{nuclearAttraction()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}}\& GQCP\+::\+FQMolecular\+Hamiltonian\+::nuclear\+Attraction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The nuclear attraction operator. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_add0865ddadc4bdba0ccad0e7188cb503}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_add0865ddadc4bdba0ccad0e7188cb503}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!g@{g}}
+\index{g@{g}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} GQCP\+::\+FQMolecular\+Hamiltonian\+::g\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_adf886236e764f18e51eaa36af2a08e07}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_adf886236e764f18e51eaa36af2a08e07}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!T@{T}}
+\index{T@{T}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{T}{T}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} GQCP\+::\+FQMolecular\+Hamiltonian\+::T\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a55cf9cb8082e3af90aa36c8ec4d66d95}\label{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a55cf9cb8082e3af90aa36c8ec4d66d95}} 
+\index{GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}!V@{V}}
+\index{V@{V}!GQCP::FQMolecularHamiltonian@{GQCP::FQMolecularHamiltonian}}
+\doxysubsubsection{\texorpdfstring{V}{V}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} GQCP\+::\+FQMolecular\+Hamiltonian\+::V\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Operator/\+First\+Quantized/\mbox{\hyperlink{_f_q_molecular_hamiltonian_8hpp}{FQMolecular\+Hamiltonian.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Operator/\+First\+Quantized/\mbox{\hyperlink{_f_q_molecular_hamiltonian_8cpp}{FQMolecular\+Hamiltonian.\+cpp}}\end{DoxyCompactItemize}

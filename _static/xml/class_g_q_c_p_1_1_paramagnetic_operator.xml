@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_paramagnetic_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ParamagneticOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseScalarFQOperator&lt; complex &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_reference_dependent_operator" prot="public" virt="non-virtual">GQCP::BaseReferenceDependentOperator</basecompoundref>
+    <includes refid="_paramagnetic_operator_8hpp" local="no">ParamagneticOperator.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_paramagnetic_operator_1a75ac5772016ee874102d09f63d7478dd" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref></type>
+        <definition>HomogeneousMagneticField GQCP::ParamagneticOperator::B</definition>
+        <argsstring></argsstring>
+        <name>B</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" line="38" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_paramagnetic_operator_1a4a7670f48c2c88b97dd63b79b356f682" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ParamagneticOperator::ParamagneticOperator</definition>
+        <argsstring>(const HomogeneousMagneticField &amp;B, const Vector&lt; double, 3 &gt; &amp;reference)</argsstring>
+        <name>ParamagneticOperator</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>reference</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_paramagnetic_operator" kindref="compound">ParamagneticOperator</ref></computeroutput> from its underlying homogeneous magnetic field and a reference point.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The external, homogeneous magnetic field. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference point about which the paramagnetic operator is calculated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/ParamagneticOperator.cpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_paramagnetic_operator_1ab7736fcf34ba0d379f8e3a69bb0f1ec2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::ParamagneticOperator::ParamagneticOperator</definition>
+        <argsstring>(const HomogeneousMagneticField &amp;B)</argsstring>
+        <name>ParamagneticOperator</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_paramagnetic_operator" kindref="compound">ParamagneticOperator</ref></computeroutput> from its underlying homogeneous magnetic field.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The external, homogeneous magnetic field.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The reference point is chosen to be the gauge origin of the magnetic field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/ParamagneticOperator.cpp" bodystart="47" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_paramagnetic_operator_1a3afa1ecd39363b4b87cd2956b278f40d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+        <definition>const HomogeneousMagneticField&amp; GQCP::ParamagneticOperator::magneticField</definition>
+        <argsstring>() const</argsstring>
+        <name>magneticField</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The external, homogeneous magnetic field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" line="71" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_paramagnetic_operator_1a1b457633f1e8f4cafbb1c31003138c9d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref></type>
+        <definition>AngularMomentumOperator GQCP::ParamagneticOperator::angularMomentum</definition>
+        <argsstring>() const</argsstring>
+        <name>angularMomentum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The angular momentum operator that is related to this paramagnetic operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" line="81" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The paramagnetic operator, i.e. the part of the scalar kinetic energy operator that is linear in the magnetic field. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BaseScalarFQOneElectronOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::ParamagneticOperator</label>
+        <link refid="class_g_q_c_p_1_1_paramagnetic_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BaseScalarFQOneElectronOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ParamagneticOperator</label>
+        <link refid="class_g_q_c_p_1_1_paramagnetic_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::BaseReferenceDependentOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_reference_dependent_operator"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp" bodystart="35" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a1b457633f1e8f4cafbb1c31003138c9d" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>angularMomentum</name></member>
+      <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a75ac5772016ee874102d09f63d7478dd" prot="private" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>B</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a54a0c94b11d3c1b094b91de2c1125083" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>BaseReferenceDependentOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a3afa1ecd39363b4b87cd2956b278f40d" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>magneticField</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>NumberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1ae56208bbc85e6d9d401fa4540f20a573" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>NumberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a4a7670f48c2c88b97dd63b79b356f682" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>ParamagneticOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1ab7736fcf34ba0d379f8e3a69bb0f1ec2" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>ParamagneticOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1aa303dae66a990df61f90a740d3192036" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>reference</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1ad07fca0083a7212821250e3beff14242" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a3bf379636691d7d74ea96afc8f5049cf" prot="public" virt="non-virtual"><scope>GQCP::ParamagneticOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a1f47a08d6dbad212da9370b4d55fd522" prot="public" virt="virtual"><scope>GQCP::ParamagneticOperator</scope><name>~BaseFQOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_base_reference_dependent_operator_1a67db3a2bf7e00d38db5fcba98dec06ed" prot="public" virt="pure-virtual"><scope>GQCP::ParamagneticOperator</scope><name>~BaseReferenceDependentOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

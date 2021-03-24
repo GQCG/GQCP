@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="62" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="62" bodyend="99"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="61" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="61" bodyend="98"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1aab8c12c103101dad574031123584203a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -182,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="114" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="114" bodyend="163"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="113" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="113" bodyend="162"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a22ede51fbb3db63443ccfc14bee0a049" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -250,7 +250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="182" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="182" bodyend="196"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="181" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="181" bodyend="195"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a7bd1eea9e12d51c8212b2d5fdaa0df40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -306,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="210" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="210" bodyend="213"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="209" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="209" bodyend="212"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1ad0b15cb4f0dd307f1a946792384673f2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; double &gt;, 3 &gt;</type>
@@ -360,7 +360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="225" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="225" bodyend="239"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="224" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="224" bodyend="238"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a5bf2580e445a1a802155e0ba352a5a4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;, 3 &gt;</type>
@@ -402,7 +402,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="250" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="250" bodyend="260"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="249" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="249" bodyend="259"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a10887381671314dd68e323e62a83226f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
@@ -444,7 +444,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="271" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="271" bodyend="274"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="270" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="270" bodyend="273"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a7ca1915303a249a751dc46fb4552617f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; double, 4 &gt;</type>
@@ -498,7 +498,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="286" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="286" bodyend="300"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="285" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="285" bodyend="299"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1aac73e6f31105eac4c38cd187178f9519" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -556,7 +556,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="321" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="321" bodyend="328"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="320" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="320" bodyend="327"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a96408c2f33740b4790122c63f2ecc965" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;, 3 &gt;</type>
@@ -600,7 +600,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="341" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="341" bodyend="348"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="340" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="340" bodyend="347"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1ae24e36b858b4c464ce16b8483df25dda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
@@ -644,7 +644,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="361" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="361" bodyend="368"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="360" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="360" bodyend="367"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -658,7 +658,7 @@
         <link refid="class_g_q_c_p_1_1_integral_calculator"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="44" bodyend="369"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="43" bodyend="368"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_integral_calculator_1ad04f586e4635103bc9f61fc573811eb3" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_integral_calculator_1aab8c12c103101dad574031123584203a" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculate</name></member>

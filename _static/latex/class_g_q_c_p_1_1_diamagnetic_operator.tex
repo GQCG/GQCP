@@ -1,0 +1,102 @@
+\hypertarget{class_g_q_c_p_1_1_diamagnetic_operator}{}\doxysection{GQCP\+::Diamagnetic\+Operator Class Reference}
+\label{class_g_q_c_p_1_1_diamagnetic_operator}\index{GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}}
+
+
+{\ttfamily \#include $<$Diamagnetic\+Operator.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Diamagnetic\+Operator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_diamagnetic_operator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Diamagnetic\+Operator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_g_q_c_p_1_1_diamagnetic_operator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_aa48ed8f317e97b7fae312bfc001ea2e6}{Diamagnetic\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_aa303dae66a990df61f90a740d3192036}{reference}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_a8696ef0b3d4de908338b927e84d972fb}{Diamagnetic\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B)
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_a71556f4587de2a42c765e54f199ec8e8}{magnetic\+Field}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator}{Electronic\+Quadrupole\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_a2c28a337cf83504a74d46e39e71beed5}{electronic\+Quadrupole}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The diagmagnetic operator, i.\+e. the part of the scalar kinetic energy operator that is quadratric in the magnetic field. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_diamagnetic_operator_aa48ed8f317e97b7fae312bfc001ea2e6}\label{class_g_q_c_p_1_1_diamagnetic_operator_aa48ed8f317e97b7fae312bfc001ea2e6}} 
+\index{GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}!DiamagneticOperator@{DiamagneticOperator}}
+\index{DiamagneticOperator@{DiamagneticOperator}!GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}}
+\doxysubsubsection{\texorpdfstring{DiamagneticOperator()}{DiamagneticOperator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily GQCP\+::\+Diamagnetic\+Operator\+::\+Diamagnetic\+Operator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{reference }\end{DoxyParamCaption})}
+
+Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}}} from its underlying homogeneous magnetic field and a reference point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The external, homogeneous magnetic field. \\
+\hline
+{\em reference} & The reference point about which the diamagnetic operator is calculated. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_diamagnetic_operator_a8696ef0b3d4de908338b927e84d972fb}\label{class_g_q_c_p_1_1_diamagnetic_operator_a8696ef0b3d4de908338b927e84d972fb}} 
+\index{GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}!DiamagneticOperator@{DiamagneticOperator}}
+\index{DiamagneticOperator@{DiamagneticOperator}!GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}}
+\doxysubsubsection{\texorpdfstring{DiamagneticOperator()}{DiamagneticOperator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily GQCP\+::\+Diamagnetic\+Operator\+::\+Diamagnetic\+Operator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B }\end{DoxyParamCaption})}
+
+Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}}} from its underlying homogeneous magnetic field.
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The external, homogeneous magnetic field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The reference point is chosen to be the gauge origin of the magnetic field. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_diamagnetic_operator_a2c28a337cf83504a74d46e39e71beed5}\label{class_g_q_c_p_1_1_diamagnetic_operator_a2c28a337cf83504a74d46e39e71beed5}} 
+\index{GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}!electronicQuadrupole@{electronicQuadrupole}}
+\index{electronicQuadrupole@{electronicQuadrupole}!GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}}
+\doxysubsubsection{\texorpdfstring{electronicQuadrupole()}{electronicQuadrupole()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator}{Electronic\+Quadrupole\+Operator}} GQCP\+::\+Diamagnetic\+Operator\+::electronic\+Quadrupole (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The electronic quadrupole operator that is related to this diamagnetic operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_diamagnetic_operator_a71556f4587de2a42c765e54f199ec8e8}\label{class_g_q_c_p_1_1_diamagnetic_operator_a71556f4587de2a42c765e54f199ec8e8}} 
+\index{GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}!magneticField@{magneticField}}
+\index{magneticField@{magneticField}!GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}}
+\doxysubsubsection{\texorpdfstring{magneticField()}{magneticField()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}}\& GQCP\+::\+Diamagnetic\+Operator\+::magnetic\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The external, homogeneous magnetic field. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Operator/\+First\+Quantized/\mbox{\hyperlink{_diamagnetic_operator_8hpp}{Diamagnetic\+Operator.\+hpp}}\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+Operator/\+First\+Quantized/\mbox{\hyperlink{_diamagnetic_operator_8cpp}{Diamagnetic\+Operator.\+cpp}}\end{DoxyCompactItemize}

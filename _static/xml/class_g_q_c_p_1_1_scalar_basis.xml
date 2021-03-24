@@ -96,7 +96,7 @@
         <templateparamlist>
           <param>
             <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref></defval>
+            <defval><ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
         <type></type>
@@ -148,7 +148,7 @@
         <templateparamlist>
           <param>
             <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref></defval>
+            <defval><ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
         <type></type>
@@ -200,7 +200,7 @@
         <templateparamlist>
           <param>
             <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref></defval>
+            <defval><ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
         <type></type>
@@ -264,7 +264,7 @@
         <templateparamlist>
           <param>
             <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref></defval>
+            <defval><ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
         <type></type>
