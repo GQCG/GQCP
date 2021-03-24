@@ -38,6 +38,7 @@
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/FirstQuantized/SpinZeemanOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -551,7 +552,7 @@ public:
     /**
      *  Quantize the orbital Zeeman operator in this general spinor basis.
      * 
-     *  @param fq_one_op        The (first-quantized) orbital Zeeman operator.
+     *  @param op               The (first-quantized) orbital Zeeman operator.
      * 
      *  @return The orbital Zeeman operator expressed in this spinor basis.
      */
@@ -568,7 +569,7 @@ public:
     /**
      *  Quantize the diamagnetic operator in this general spinor basis.
      * 
-     *  @param fq_one_op        The (first-quantized) diamagnetic operator.
+     *  @param op               The (first-quantized) diamagnetic operator.
      * 
      *  @return The diamagnetic operator expressed in this spinor basis.
      */
@@ -604,6 +605,23 @@ public:
                                                     2 * B_y * B_z * Q_yz);
 
         return ResultOperator {D_par};
+    }
+
+
+    /**
+     *  Quantize the spin Zeeman operator in this general spinor basis.
+     * 
+     *  @param op               The (first-quantized) spin Zeeman  operator.
+     * 
+     *  @return The diamagnetic operator expressed in this spinor basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const SpinZeemanOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<SpinZeemanOperator::Scalar, ExpansionScalar>, SpinZeemanOperator::Vectorizer>> {
+
+        // Return the spin Zeeman operator as a contraction beween the magnetic field and the spin operator.
+        const auto S = this->quantize(ElectronicSpinOperator());
+        const auto& B = op.magneticField().strength();
+        return 0.5 * S.dot(B);
     }
 
 
@@ -685,14 +703,16 @@ public:
     enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQHamiltonian<ExpansionScalar>> quantize(const FQMolecularMagneticHamiltonian& fq_hamiltonian) const {
 
         const auto T = this->quantize(fq_hamiltonian.kinetic());
-        const auto P = this->quantize(fq_hamiltonian.orbitalZeeman());
+        const auto OZ = this->quantize(fq_hamiltonian.orbitalZeeman());
         const auto D = this->quantize(fq_hamiltonian.diamagnetic());
+
+        const auto SZ = this->quantize(fq_hamiltonian.spinZeeman());
 
         const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
 
         const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
 
-        return GSQHamiltonian<ExpansionScalar> {{T, P, D, V}, {g}};
+        return GSQHamiltonian<ExpansionScalar> {{T, OZ, D, SZ, V}, {g}};
     }
 
 
