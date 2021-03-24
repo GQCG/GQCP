@@ -852,6 +852,7 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Minimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/NonLinearEquation" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Representation" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Molecule" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/ONVBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Operator" \

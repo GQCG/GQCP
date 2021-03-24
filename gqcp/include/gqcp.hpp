@@ -153,6 +153,7 @@
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
+#include "Mathematical/Representation/LeviCivitaTensor.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
