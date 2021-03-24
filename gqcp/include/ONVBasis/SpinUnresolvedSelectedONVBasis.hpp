@@ -123,7 +123,7 @@ public:
 
     /**
      *  Calculate the dense matrix representation of a generalized one-electron operator in this ONV basis.
-     *
+     * 
      *  @tparam Scalar          The scalar representation of a one-electron parameter: real or complex.
      * 
      *  @param f                A generalized one-electron operator expressed in an orthonormal orbital basis.
@@ -145,6 +145,54 @@ public:
     }
 
 
+    /**
+     *  Calculate the dense matrix representation of a generalized two-electron operator in this ONV basis.
+     * 
+     *  @tparam Scalar          The scalar representation of a one-electron parameter: real or complex.
+     * 
+     *  @param g                A generalized two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the two-electron operator.
+     */
+    // template <typename Scalar>
+    // SquareMatrix<Scalar> evaluateOperatorDense(const ScalarGSQTwoElectronOperator<Scalar>& g) const {
+
+    //     if (g.numberOfOrbitals() != this->numberOfOrbitals()) {
+    //         throw std::invalid_argument("SpinUnresolvedSelectedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>&): The number of orbitals of this ONV basis and the given one-electron operator are incompatible.");
+    //     }
+
+    //     // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
+    //     MatrixRepresentationEvaluationContainer<SquareMatrix<Scalar>> container {this->dimension()};
+    //     this->evaluate<SquareMatrix<Scalar>>(g, container);
+
+    //     return container.evaluation();
+    // }
+
+
+    /**
+     *  Calculate the dense matrix representation of a generalized Hamiltonian in this ONV basis.
+     * 
+     *  @tparam Scalar          The scalar representation of a one-electron parameter: real or complex.
+     * 
+     *  @param hamiltonian      A generalized Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    template <typename Scalar>
+    SquareMatrix<Scalar> evaluateOperatorDense(const GSQHamiltonian<Scalar>& hamiltonian) const {
+
+        if (hamiltonian.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SpinUnresolvedSelectedONVBasis::evaluateOperatorDense(const GSQHamiltonian<double>&): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible.");
+        }
+
+        // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
+        MatrixRepresentationEvaluationContainer<SquareMatrix<Scalar>> container {this->dimension()};
+        this->evaluate<SquareMatrix<Scalar>>(hamiltonian, container);
+
+        return container.evaluation();
+    }
+
+
     /*
      *  MARK: Operator evaluations - general implementations - containers
      */
@@ -155,7 +203,7 @@ public:
      *  @tparam Matrix                      The type of matrix used to store the evaluations.
      *  @tparam Scalar                      The scalar representation of a one-electron parameter: real or complex.
      *
-     *  @param f_op                         A generalized one-electron operator expressed in an orthonormal spin-orbital basis.
+     *  @param f_op                         A generalized one-electron operator expressed in an orthonormal spinor basis.
      *  @param container                    A specialized container for emplacing evaluations/matrix elements.
      */
     template <typename Matrix, typename Scalar>
@@ -198,6 +246,70 @@ public:
                 }
             }
         }
+    }
+
+
+    /**
+     *  Calculate the matrix representation of a generalized Hamiltonian in this ONV basis and emplace it in the given container.
+     * 
+     *  @tparam Matrix                      The type of matrix used to store the evaluations.
+     *  @tparam Scalar                      The scalar representation of a Hamiltonian parameter: real or complex.
+     *
+     *  @param f_op                         A generalized Hamiltonian expressed in an orthonormal spinor basis.
+     *  @param container                    A specialized container for emplacing evaluations/matrix elements.
+     */
+    template <typename Matrix, typename Scalar>
+    void evaluate(const GSQHamiltonian<Scalar>& hamiltonian, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
+
+        // Prepare some variables.
+        const auto K = this->numberOfOrbitals();
+        const auto dim = this->dimension();
+
+        const auto& h = hamiltonian.core().parameters();
+        const auto& g = hamiltonian.twoElectron().parameters();
+
+
+        // Loop over all bra indices I.
+        // for (; !container.isFinished(); container.increment()) {
+        //     auto onv_I = this->onvWithIndex(container.index);
+
+        //     // Calculate the diagonal elements.
+        //     for (size_t p = 0; p < K; p++) {
+        //         if (onv_I.isOccupied(p)) {
+        //             container.addRowwise(container.index, h(p, p));  // H(I,I)
+        //         }
+
+        //         for (size_t q = 0; q < K; q++) {
+        //             if (p != q) {  // Can't create/annihilate on the same index twice.
+        //                 if (onv_I.isOccupied(q)) {
+        //                     container.addRowwise(container.index, 0.5 * g(p, p, q, q));   // H(I,I)
+        //                     container.addRowwise(container.index, -0.5 * g(p, q, q, p));  // H(I,I)
+        //                 }
+        //             }
+        //         }
+        //     }
+
+
+        //     // Calculate the off-diagonal elements, by going over all other ket ONVs J. (I != J)
+        //     for (size_t J = container.index + 1; J < dim; J++) {
+        //         auto onv_J = this->onvWithIndex(J);
+
+        //         // If I and J are only 1 excitation away, they can couple through the operator.
+        //         if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+        //             auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but not in J.
+        //             auto q = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but not in I.
+        //             // We're sure that there is only 1 element in the vectors above.
+
+        //             // Calculate the total sign and emplace the correct value in the container.
+        //             const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_J.operatorPhaseFactor(q));
+        //             const auto value = sign * f(p, q);
+        //             const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
+
+        //             container.addRowwise(J, value);                // F(I,J)
+        //             container.addColumnwise(J, conjugated_value);  // F(J,I)
+        //         }
+        //     }
+        // }
     }
 };
 
