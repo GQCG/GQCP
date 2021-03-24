@@ -435,27 +435,6 @@ void SpinUnresolvedONVBasis::forEach(const std::function<void(const SpinUnresolv
  */
 
 /**
- *  Calculate the dense matrix representation of a generalized one-electron operator in this ONV basis.
- *
- *  @param f                A generalized one-electron operator expressed in an orthonormal orbital basis.
- *
- *  @return A dense matrix represention of the one-electron operator.
- */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& f) const {
-
-    if (f.numberOfOrbitals() != this->numberOfOrbitals()) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>&): The number of orbitals of this ONV basis and the given one-electron operator are incompatible.");
-    }
-
-    // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
-    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container {this->dimension()};
-    this->evaluate<SquareMatrix<double>>(f, container);
-
-    return container.evaluation();
-}
-
-
-/**
  *  Calculate the dense matrix representation of a generalized two-electron operator in this ONV basis.
  *
  *  @param g                A generalized two-electron operator expressed in an orthonormal orbital basis.

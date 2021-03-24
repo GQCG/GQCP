@@ -19,9 +19,11 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
@@ -199,7 +201,7 @@ BOOST_AUTO_TEST_CASE(transformONVToNextPermutation) {
 
 
 /**
- *  Check if the dense evaluation of a one-electron operator in a spin-unresolved ONV basis matches the evaluation in a spin-resolved selected ONV basis with only alpha electrons.
+ *  Check if the dense evaluation of a one-electron operator in a spin-unresolved ONV basis matches the evaluation in a spin-unresolved selected ONV basis.
  * 
  *  The test system is a H6(2+)-chain with internuclear separation of 0.742 (a.u.) in an STO-3G basis.
  */
@@ -209,22 +211,21 @@ BOOST_AUTO_TEST_CASE(evaluate_one_electron_operator_dense) {
     const auto molecule = GQCP::Molecule::HChain(6, 0.742, +2);
     const auto N = molecule.numberOfElectrons();
 
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto M = spinor_basis.numberOfSpatialOrbitals();
+    GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto M = spinor_basis.numberOfSpinors();
     spinor_basis.lowdinOrthonormalize();
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
     // Set up the two equivalent ONV bases.
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
-    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {GQCP::SpinResolvedONVBasis(M, N, 0)};  // No beta electrons, to mimic a spin-unresolved case.
+    const GQCP::SpinUnresolvedSelectedONVBasis selected_onv_basis {onv_basis};
 
 
-    // Check the evaluation of the core Hamiltonian. We'll have to convert the restricted operator to a generalized operator in order to use the semantically correct APIs.
+    // Check the evaluation of the core Hamiltonian.
     const auto& h = sq_hamiltonian.core();
-    const auto h_alpha_generalized = GQCP::ScalarGSQOneElectronOperator<double>::FromUnrestrictedComponent(h.alpha());
 
     // Check the dense evaluation.
-    const auto h_dense = onv_basis.evaluateOperatorDense(h_alpha_generalized);
+    const auto h_dense = onv_basis.evaluateOperatorDense(h);
     const auto h_dense_selected = selected_onv_basis.evaluateOperatorDense(h);
     BOOST_CHECK(h_dense.isApprox(h_dense_selected, 1.0e-12));
 }

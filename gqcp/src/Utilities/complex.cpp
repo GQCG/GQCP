@@ -15,38 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
-
-
 #include "Utilities/complex.hpp"
-#include "Utilities/type_traits.hpp"
-
-#include <cstdlib>
-#include <vector>
-
-
-/**
- *  A header that contains general aliases inside the GQCP namespace.
- */
 
 
 namespace GQCP {
 
 
 /**
- *  A SFINAE expression that checks if the given type T is real, a.k.a. 'double'.
+ *  Calculate the conjugate of a complex number.
+ * 
+ *  @param c            The complex number.
+ * 
+ *  @return The conjugate of the given complex number.
  */
-template <typename T>
-using IsReal = enable_if_t<std::is_same<T, double>::value>;
+complex conj(const complex& c) { return std::conj(c); }
 
-template <typename T>
-using IsComplex = enable_if_t<std::is_same<T, complex>::value>;
 
-template <typename T, typename U>
-using product_t = decltype(std::declval<T>() * std::declval<U>());
-
-template <typename T, typename U>
-using sum_t = decltype(std::declval<T>() + std::declval<U>());
+/**
+ *  An overload for `GQCP::conj` for real numbers. This is an identity function.
+ */
+double conj(const double d) { return d; }
 
 
 }  // namespace GQCP
