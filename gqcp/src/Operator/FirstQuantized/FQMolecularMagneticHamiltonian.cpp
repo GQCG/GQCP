@@ -36,6 +36,7 @@ namespace GQCP {
 FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g) :
     OZ {OZ},
     D {D},
+    SZ {SZ},
     FQMolecularHamiltonian(T, V, g) {}
 
 
