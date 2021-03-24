@@ -20,7 +20,7 @@
 
 #include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
-#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
+#include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 
 
 namespace GQCP {
@@ -32,8 +32,8 @@ namespace GQCP {
 class FQMolecularMagneticHamiltonian:
     public FQMolecularHamiltonian {
 private:
-    // The paramagnetic operator.
-    ParamagneticOperator P;
+    // The orbital Zeeman operator.
+    OrbitalZeemanOperator OZ;
 
     // The diamagnetic operator.
     DiamagneticOperator D;
@@ -46,12 +46,12 @@ public:
 
     /**
      *  @param T            The kinetic energy operator.
-     *  @param P            The paramagnetic operator.
+     *  @param OZ           The orbital Zeeman operator.
      *  @param D            The diamagnetic operator.
      *  @param V            The nuclear attraction operator.
      *  @param g            The two-electron repulsion operator.
      */
-    FQMolecularMagneticHamiltonian(const KineticOperator& T, const ParamagneticOperator& P, const DiamagneticOperator& D, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
+    FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
 
 
     /**
@@ -68,9 +68,9 @@ public:
      */
 
     /**
-     *  @return The paramagnetic operator.
+     *  @return The orbital Zeeman operator.
      */
-    const ParamagneticOperator& paramagnetic() const { return this->P; }
+    const OrbitalZeemanOperator& orbitalZeeman() const { return this->OZ; }
 
     /**
      *  @return The diamagnetic operator.

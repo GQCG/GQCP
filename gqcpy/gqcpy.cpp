@@ -136,7 +136,7 @@ void bindNuclearAttractionOperator(py::module& module);
 void bindNuclearDipoleOperator(py::module& module);
 void bindNuclearRepulsionOperator(py::module& module);
 void bindOverlapOperator(py::module& module);
-void bindParamagneticOperator(py::module& module);
+void bindOrbitalZeemanOperator(py::module& module);
 
 
 // Operator - SecondQuantized - ModelHamiltonian
@@ -369,7 +369,7 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindNuclearDipoleOperator(module);
     gqcpy::bindNuclearRepulsionOperator(module);
     gqcpy::bindOverlapOperator(module);
-    gqcpy::bindParamagneticOperator(module);
+    gqcpy::bindOrbitalZeemanOperator(module);
 
     // Operator - SecondQuantized - ModelHamiltonian
     gqcpy::bindAdjacencyMatrix(module);

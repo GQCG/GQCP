@@ -156,12 +156,12 @@ BOOST_AUTO_TEST_CASE(magnetic_kinetic_gauge_invariance) {
     const GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis2 {molecule, "STO-3G", B2};
 
 
-    // Prepare the kinetic, paramagnetic and diamagnetic operators.
+    // Prepare the kinetic, orbital Zeeman and diamagnetic operators.
     const GQCP::KineticOperator T_op;
-    const GQCP::ParamagneticOperator P_op1 {B1, B1.gaugeOrigin()};
+    const GQCP::OrbitalZeemanOperator P_op1 {B1, B1.gaugeOrigin()};
     const GQCP::DiamagneticOperator D_op1 {B1, B1.gaugeOrigin()};
 
-    const GQCP::ParamagneticOperator P_op2 {B2, B2.gaugeOrigin()};
+    const GQCP::OrbitalZeemanOperator P_op2 {B2, B2.gaugeOrigin()};
     const GQCP::DiamagneticOperator D_op2 {B2, B2.gaugeOrigin()};
 
 

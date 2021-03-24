@@ -28,9 +28,9 @@ namespace GQCP {
 
 
 /**
- *  The paramagnetic operator, i.e. the part of the scalar kinetic energy operator that is linear in the magnetic field.
+ *  The orbital Zeeman operator, i.e. the part of the scalar kinetic energy operator that is linear in the magnetic field.
  */
-class ParamagneticOperator:
+class OrbitalZeemanOperator:
     public BaseScalarFQOneElectronOperator<complex>,
     public BaseReferenceDependentOperator {
 private:
@@ -44,21 +44,21 @@ public:
      */
 
     /**
-     *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field and a reference point.
+     *  Construct a `OrbitalZeemanOperator` from its underlying homogeneous magnetic field and a reference point.
      * 
      *  @param B                    The external, homogeneous magnetic field.
-     *  @param reference            The reference point about which the paramagnetic operator is calculated.
+     *  @param reference            The reference point about which the orbital Zeeman operator is calculated.
      */
-    ParamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference);
+    OrbitalZeemanOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference);
 
     /**
-     *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field.
+     *  Construct a `OrbitalZeemanOperator` from its underlying homogeneous magnetic field.
      * 
      *  @param B                    The external, homogeneous magnetic field.
      * 
      *  @note The reference point is chosen to be the gauge origin of the magnetic field.
      */
-    ParamagneticOperator(const HomogeneousMagneticField& B);
+    OrbitalZeemanOperator(const HomogeneousMagneticField& B);
 
 
     /*
@@ -76,7 +76,7 @@ public:
      */
 
     /**
-     *  @return The angular momentum operator that is related to this paramagnetic operator.
+     *  @return The angular momentum operator that is related to this orbital Zeeman operator.
      */
     AngularMomentumOperator angularMomentum() const { return AngularMomentumOperator(this->reference()); }
 };

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
+#include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -30,22 +30,22 @@ using namespace GQCP;
 
 
 /**
- *  Register `ParamagneticOperator` to the gqcpy module and expose parts of its C++ interface to Python.
+ *  Register `OrbitalZeemanOperator` to the gqcpy module and expose parts of its C++ interface to Python.
  * 
  *  @param module           The Pybind11 module in which the class should be registered.
  */
-void bindParamagneticOperator(py::module& module) {
+void bindOrbitalZeemanOperator(py::module& module) {
 
-    py::class_<ParamagneticOperator> py_ParamagneticOperator {module, "ParamagneticOperator", "The (one-electron) paramagnetic operator."};
+    py::class_<OrbitalZeemanOperator> py_OrbitalZeemanOperator {module, "OrbitalZeemanOperator", "The (one-electron) orbital Zeeman operator."};
 
-    py_ParamagneticOperator
+    py_OrbitalZeemanOperator
 
         /*
          *  MARK: Constructors
          */
 
         .def(py::init<>([](const HomogeneousMagneticField& B, const Eigen::Vector3d& reference) {
-                 return ParamagneticOperator(B, reference);
+                 return OrbitalZeemanOperator(B, reference);
              }),
              py::arg("B"),
              py::arg("reference"))
@@ -59,10 +59,10 @@ void bindParamagneticOperator(py::module& module) {
          */
 
         .def("magneticField",
-             &ParamagneticOperator::magneticField)
+             &OrbitalZeemanOperator::magneticField)
 
         .def("angularMomentum",
-             &ParamagneticOperator::angularMomentum);
+             &OrbitalZeemanOperator::angularMomentum);
 }
 
 
