@@ -13,4 +13,5 @@ target_sources(gqcp
         NuclearDipoleOperator.cpp
         NuclearRepulsionOperator.cpp
         OrbitalZeemanOperator.cpp
+        SpinZeemanOperator.cpp
 )

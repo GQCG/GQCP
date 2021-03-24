@@ -181,6 +181,7 @@
 #include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 #include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/FirstQuantized/SpinZeemanOperator.hpp"
 #include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"

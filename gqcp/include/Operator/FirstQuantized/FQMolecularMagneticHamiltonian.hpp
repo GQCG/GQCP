@@ -21,6 +21,7 @@
 #include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
+#include "Operator/FirstQuantized/SpinZeemanOperator.hpp"
 
 
 namespace GQCP {
@@ -38,6 +39,9 @@ private:
     // The diamagnetic operator.
     DiamagneticOperator D;
 
+    // The spin Zeeman operator.
+    SpinZeemanOperator SZ;
+
 
 public:
     /*
@@ -48,10 +52,11 @@ public:
      *  @param T            The kinetic energy operator.
      *  @param OZ           The orbital Zeeman operator.
      *  @param D            The diamagnetic operator.
+     *  @param SZ           The spin Zeeman operator.
      *  @param V            The nuclear attraction operator.
      *  @param g            The two-electron repulsion operator.
      */
-    FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
+    FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
 
 
     /**
@@ -76,6 +81,11 @@ public:
      *  @return The diamagnetic operator.
      */
     const DiamagneticOperator& diamagnetic() const { return this->D; }
+
+    /**
+     *  @return The spin Zeeman operator.
+     */
+    const SpinZeemanOperator& spinZeeman() const { return this->SZ; }
 };
 
 

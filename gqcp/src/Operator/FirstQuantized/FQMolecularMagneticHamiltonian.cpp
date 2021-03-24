@@ -29,10 +29,11 @@ namespace GQCP {
  *  @param T            The kinetic energy operator.
  *  @param OZ           The orbital Zeeman operator.
  *  @param D            The diamagnetic operator.
+ *  @param SZ           The spin Zeeman operator.
  *  @param V            The nuclear attraction operator.
  *  @param g            The two-electron repulsion operator.
  */
-FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g) :
+FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g) :
     OZ {OZ},
     D {D},
     FQMolecularHamiltonian(T, V, g) {}
@@ -45,7 +46,7 @@ FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const KineticOper
  *  @param B                The external, homogeneous magnetic field.
  */
 FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B) :
-    FQMolecularMagneticHamiltonian(KineticOperator(), OrbitalZeemanOperator(B), DiamagneticOperator(B), NuclearAttractionOperator(molecule.nuclearFramework()), CoulombRepulsionOperator()) {}
+    FQMolecularMagneticHamiltonian(KineticOperator(), OrbitalZeemanOperator(B), DiamagneticOperator(B), SpinZeemanOperator(B), NuclearAttractionOperator(molecule.nuclearFramework()), CoulombRepulsionOperator()) {}
 
 
 }  // namespace GQCP
