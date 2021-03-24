@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
-    // Perform a GHF SCF calculation
+    // Perform a GHF SCF calculation.
     auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
@@ -142,7 +142,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
     // Create a Hamiltonian in the AO basis.
     const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
-    // Perform a GHF SCF calculation
+    // Perform a GHF SCF calculation.
     auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-05, 5000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);

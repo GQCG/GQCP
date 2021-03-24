@@ -93,10 +93,10 @@ BOOST_AUTO_TEST_CASE(calculateInternuclearDistanceBetween) {
  */
 BOOST_AUTO_TEST_CASE(methods_h2) {
 
-    // Create the dihydrogen nuclear framework
+    // Create the dihydrogen nuclear framework.
     const auto molecule = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
 
-    // Test the basic methods
+    // Test the basic methods.
     BOOST_CHECK_EQUAL(molecule.numberOfNuclei(), 2);
     BOOST_CHECK_EQUAL(molecule.totalNucleicCharge(), 2);
 }

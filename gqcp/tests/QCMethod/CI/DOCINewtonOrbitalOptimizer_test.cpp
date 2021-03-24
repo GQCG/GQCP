@@ -47,7 +47,7 @@
 //     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-//     auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in an AO basis
+//     auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
 //     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
 //     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
@@ -93,7 +93,7 @@
 //     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-//     auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in an AO basis
+//     auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
 //     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
 //     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();

@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
 
     // Set up a complex spinor basis that can quantize the electronic spin operator.
     const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
-    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator.
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);
@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
     // Set up a complex spinor basis that can quantize the electronic spin operator.
     const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
-    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator.
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);
@@ -228,7 +228,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
 
     // Set up a complex spinor basis that can quantize the electronic spin operator.
     const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
-    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator.
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);

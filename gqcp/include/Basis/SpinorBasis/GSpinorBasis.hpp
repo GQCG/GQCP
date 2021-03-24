@@ -462,7 +462,7 @@ public:
 
 
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
-        //  1. Express the operator in the underlying scalar bases; and
+        //  1. Express the operator in the underlying scalar bases and;
         //  2. Afterwards transform them using the current coefficient matrix.
         const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
@@ -541,8 +541,8 @@ public:
         S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
 
 
-        // 3. Transform using the coefficient matrix
-        ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
+        // 3. Transform using the coefficient matrix.
+        ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator.
         spin_op.transform(this->expansion());
         return spin_op;
     }
@@ -632,24 +632,24 @@ public:
         const auto g = GQCP::IntegralCalculator::calculate(coulomb_engine, this->scalarBases().alpha().shellSet(), this->scalarBases().alpha().shellSet())[0];
 
 
-        // 2. Place the calculated integrals as 'blocks' in the larger representation
+        // 2. Place the calculated integrals as 'blocks' in the larger representation.
         const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
 
         const auto M = this->numberOfSpinors();
-        auto g_par = SquareRankFourTensor<ResultScalar>::Zero(M);  // 'par' for 'parameters'
+        auto g_par = SquareRankFourTensor<ResultScalar>::Zero(M);  // 'par' for 'parameters'.
 
         // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
-        for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'
+        for (size_t mu_ = 0; mu_ < M; mu_++) {  // Mu 'prime'.
             const size_t mu = mu_ % K_alpha;
 
-            for (size_t nu_ = 0; nu_ < M; nu_++) {  // nu 'prime'
+            for (size_t nu_ = 0; nu_ < M; nu_++) {  // Nu 'prime'.
                 const size_t nu = nu_ % K_alpha;
 
-                for (size_t rho_ = 0; rho_ < M; rho_++) {  // rho 'prime'
+                for (size_t rho_ = 0; rho_ < M; rho_++) {  // Rho 'prime'.
                     const size_t rho = rho_ % K_alpha;
 
-                    for (size_t lambda_ = 0; lambda_ < M; lambda_++) {  // lambda 'prime'
+                    for (size_t lambda_ = 0; lambda_ < M; lambda_++) {  // Lambda 'prime'.
                         const size_t lambda = lambda_ % K_alpha;
 
                         if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
@@ -668,7 +668,7 @@ public:
 
 
         // 3. Transform the operator using the current coefficient matrix.
-        ResultOperator g_op {g_par};  // 'op' for 'operator'
+        ResultOperator g_op {g_par};  // 'op' for 'operator'.
         g_op.transform(this->expansion());
         return g_op;
     }

@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(energy_as_contraction) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     const auto N_P = molecule.numberOfElectrons() / 2;
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
-    auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in an AO basis
+    auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
     // Transform the Hamiltonian to the canonical RHF basis.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());

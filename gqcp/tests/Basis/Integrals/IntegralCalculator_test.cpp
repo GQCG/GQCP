@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(Szabo_integrals_h2_sto3g) {
     BOOST_CHECK_EQUAL(scalar_basis.numberOfBasisFunctions(), 2);
 
 
-    // Let Libint2 calculate some integrals
+    // Let Libint2 calculate some integrals.
     const auto S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::OverlapOperator(), scalar_basis);
     const auto T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::KineticOperator(), scalar_basis);
     const auto V = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::NuclearAttractionOperator(molecule.nuclearFramework()), scalar_basis);
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(Szabo_integrals_h2_sto3g) {
     const auto g = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::CoulombRepulsionOperator(), scalar_basis);
 
 
-    // Check the one-electron integrals with the reference
+    // Check the one-electron integrals with the reference.
     GQCP::SquareMatrix<double> ref_S {2};
     // clang-format off
     ref_S << 1.0,    0.6593,
@@ -94,14 +94,14 @@ BOOST_AUTO_TEST_CASE(HORTON_integrals_h2o_sto3g) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
 
-    // Calculate some integrals
+    // Calculate some integrals.
     const auto S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::OverlapOperator(), scalar_basis);
     const auto T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::KineticOperator(), scalar_basis);
     const auto V = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::NuclearAttractionOperator(molecule.nuclearFramework()), scalar_basis);
     const auto g = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::CoulombRepulsionOperator(), scalar_basis);
 
 
-    // Read in reference data from HORTON
+    // Read in reference data from HORTON.
     const auto ref_S = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
     const auto ref_T = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
     const auto ref_V = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
