@@ -21,6 +21,10 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: Vectorizer
+ */
+
 // Instantiate the static const vectorizer.
 const VectorVectorizer AngularMomentumOperator::vectorizer {{AngularMomentumOperator::NumberOfComponents}};
 

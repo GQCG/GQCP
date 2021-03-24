@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/Transformations/transform.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
@@ -69,7 +70,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     const auto S = spin_orbital_basis.overlap();
 
-    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
     const auto K = hamiltonian.numberOfOrbitals();
 
 
@@ -103,7 +104,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
 
 
         // Calculate the total internuclear energy as a contribution from three sources, and check with the reference value.
-        const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();
+        const double internuclear_repulsion_energy = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
         double total_energy = rhf_qc_structure.groundStateEnergy() + lambda * mulliken_population + internuclear_repulsion_energy;
 
         BOOST_CHECK(std::abs(total_energy - CO_data(index, 2)) < 1.0e-4);
@@ -166,7 +167,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
     spin_orbital_basis.transform(T);
     const auto S = spin_orbital_basis.overlap();
 
-    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
 
 
     // Prepare the Mulliken partitioning on 'C'.
@@ -199,7 +200,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
 
 
         // Calculate the total internuclear energy as a contribution from three sources, and check with the reference value.
-        const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();
+        const double internuclear_repulsion_energy = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
         double total_energy = rhf_qc_structure.groundStateEnergy() + lambda * mulliken_population + internuclear_repulsion_energy;
 
         BOOST_CHECK(std::abs(total_energy - CO_data(index, 2)) < 1.0e-4);

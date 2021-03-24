@@ -17,7 +17,6 @@
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
@@ -74,9 +73,10 @@ void bindRSpinOrbitalBasisInterface(Class& py_class) {
                 return spin_orbital_basis.numberOfSpatialOrbitals();
             },
             "Return the number of different spatial orbitals that are used in this spinor basis.")
-            
-            
-        .def("scalarBasis",
+
+
+        .def(
+            "scalarBasis",
             [](const RSpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis) {
                 return spin_orbital_basis.scalarBasis();
             },
@@ -107,11 +107,11 @@ void bindRSpinOrbitalBases(py::module& module) {
 
     py_RSpinOrbitalBasis_d
         .def(
-            "quantizeDipoleOperator",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const Vector<double, 3>& origin) {
-                return spin_orbital_basis.quantize(Operator::ElectronicDipole(origin));
+            "quantize",
+            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const ElectronicDipoleOperator& op) {
+                return spin_orbital_basis.quantize(op);
             },
-            py::arg("origin") = Vector<double, 3>::Zero(), "Return the electronic dipole operator expressed in this spinor basis.");
+            "Return the electronic dipole operator expressed in this spinor basis.");
 
     bindRSpinOrbitalBasisInterface(py_RSpinOrbitalBasis_d);
 

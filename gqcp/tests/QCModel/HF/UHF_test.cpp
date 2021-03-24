@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/UHF/UHF.hpp"
 #include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
@@ -107,10 +108,10 @@ BOOST_AUTO_TEST_CASE(UHF_DMs) {
     // Perform a UHF calculation.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spin_orbital_basis {molecule, "STO-3G"};
-    auto hamiltonian = GQCP::USQHamiltonian<double>::Molecular(u_spin_orbital_basis, molecule);  // In an AO basis.
+    auto hamiltonian = u_spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
-    const auto N_a = molecule.numberOfElectronPairs();                                                                             // The number of alpha electrons.
-    const auto N_b = molecule.numberOfElectronPairs();                                                                             // The number of beta electrons.
+    const auto N_a = molecule.numberOfElectronPairs();  // The number of alpha electrons.
+    const auto N_b = molecule.numberOfElectronPairs();  // The number of beta electrons.
     auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_a, N_b, hamiltonian, u_spin_orbital_basis.overlap());
     auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
 
@@ -121,7 +122,7 @@ BOOST_AUTO_TEST_CASE(UHF_DMs) {
     // Determine the UHF energy through the expectation value of the Hamiltonian, and check the result.
     // Do the calculations in the UHF MO basis, in order to check the implementation of the UHF density matrices in MO basis.
     const auto u_spin_orbital_basis_mo = u_spin_orbital_basis.transformed(uhf_parameters.expansion());
-    auto u_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(u_spin_orbital_basis_mo, molecule);
+    auto u_hamiltonian = u_spin_orbital_basis_mo.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     const auto D_MO = uhf_parameters.calculateOrthonormalBasis1DM();
     const auto d_MO = uhf_parameters.calculateOrthonormalBasis2DM();

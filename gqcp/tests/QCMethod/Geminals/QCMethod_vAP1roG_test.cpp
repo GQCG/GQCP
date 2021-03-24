@@ -37,13 +37,13 @@
 BOOST_AUTO_TEST_CASE(energy_as_contraction) {
 
     // Prepare the molecular Hamiltonian in the AO basis.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    const auto N_P = h2.numberOfElectrons() / 2;
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "6-31G**"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
+    auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
     // Transform the Hamiltonian to the canonical RHF basis.
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();

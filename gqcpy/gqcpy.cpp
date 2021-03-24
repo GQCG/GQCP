@@ -110,6 +110,7 @@ void bindNonLinearEquationSolver(py::module& module);
 
 // Molecule
 void bindMolecule(py::module& module);
+void bindNuclearFramework(py::module& module);
 void bindNucleus(py::module& module);
 
 
@@ -123,7 +124,19 @@ void bindSpinUnresolvedONVBasis(py::module& module);
 
 
 // Operator - FirstQuantized
-void bindOperator(py::module& module);
+void bindAngularMomentumOperator(py::module& module);
+void bindCoulombRepulsionOperator(py::module& module);
+void bindDiamagneticOperator(py::module& module);
+void bindElectronicDipoleOperator(py::module& module);
+void bindElectronicQuadrupoleOperator(py::module& module);
+void bindFQMolecularHamiltonian(py::module& module);
+void bindFQMolecularMagneticHamiltonian(py::module& module);
+void bindKineticOperator(py::module& module);
+void bindNuclearAttractionOperator(py::module& module);
+void bindNuclearDipoleOperator(py::module& module);
+void bindNuclearRepulsionOperator(py::module& module);
+void bindOverlapOperator(py::module& module);
+void bindParamagneticOperator(py::module& module);
 
 
 // Operator - SecondQuantized - ModelHamiltonian
@@ -143,6 +156,10 @@ void bindSQHamiltonians(py::module& module);
 void bindUSQOneElectronOperator(py::module& module);
 void bindUSQOneElectronOperatorComponent(py::module& module);
 void bindUSQTwoElectronOperator(py::module& module);
+
+
+// Physical
+void bindHomogeneousMagneticField(py::module& module);
 
 
 // Processing - Properties
@@ -326,6 +343,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Molecule
     gqcpy::bindMolecule(module);
+    gqcpy::bindNuclearFramework(module);
     gqcpy::bindNucleus(module);
 
 
@@ -339,8 +357,19 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Operator - FirstQuantized
-    gqcpy::bindOperator(module);
-
+    gqcpy::bindAngularMomentumOperator(module);
+    gqcpy::bindCoulombRepulsionOperator(module);
+    gqcpy::bindDiamagneticOperator(module);
+    gqcpy::bindElectronicDipoleOperator(module);
+    gqcpy::bindElectronicQuadrupoleOperator(module);
+    gqcpy::bindKineticOperator(module);
+    gqcpy::bindFQMolecularHamiltonian(module);
+    gqcpy::bindFQMolecularMagneticHamiltonian(module);
+    gqcpy::bindNuclearAttractionOperator(module);
+    gqcpy::bindNuclearDipoleOperator(module);
+    gqcpy::bindNuclearRepulsionOperator(module);
+    gqcpy::bindOverlapOperator(module);
+    gqcpy::bindParamagneticOperator(module);
 
     // Operator - SecondQuantized - ModelHamiltonian
     gqcpy::bindAdjacencyMatrix(module);
@@ -359,6 +388,10 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindUSQOneElectronOperator(module);
     gqcpy::bindUSQOneElectronOperatorComponent(module);
     gqcpy::bindUSQTwoElectronOperator(module);
+
+
+    // Physical
+    gqcpy::bindHomogeneousMagneticField(module);
 
 
     // Processing - Properties

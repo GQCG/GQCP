@@ -20,15 +20,23 @@
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -98,7 +106,7 @@ public:
 
 
     /*
-     *  MARK: Quantization of first-quantized operators
+     *  MARK: Quantization of first-quantized operators (GTOShell)
      */
 
     /**
@@ -110,8 +118,8 @@ public:
      * 
      *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
+    template <typename FQOneElectronOperator, typename Z = Shell>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = RSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
@@ -131,7 +139,8 @@ public:
      * 
      *  @return The second-quantized operator corresponding to the Coulomb operator.
      */
-    auto quantize(const CoulombRepulsionOperator& fq_op) const -> RSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer> {
+    template <typename Z = Shell>
+    auto quantize(const CoulombRepulsionOperator& fq_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer>> {
 
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = RSQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Vectorizer>;
@@ -155,6 +164,10 @@ public:
         return op;
     }
 
+
+    /*
+     *  MARK: Quantization of first-quantized operators
+     */
 
     /**
      *  Quantize the (one-electron) electronic density operator.
@@ -180,6 +193,24 @@ public:
         }
 
         return ResultOperator(rho_par);
+    }
+
+
+    /**
+     *  Quantize the molecular Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular Hamiltonian.
+     * 
+     *  @return The second-quantized molecular Hamiltonian.
+     */
+    RSQHamiltonian<ExpansionScalar> quantize(const FQMolecularHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return RSQHamiltonian<ExpansionScalar> {T + V, g};
     }
 
 

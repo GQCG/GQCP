@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -118,7 +119,7 @@ BOOST_AUTO_TEST_CASE(Molecular) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
 
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
     const auto g = hamiltonian.twoElectron().parameters();
 
 
@@ -334,5 +335,5 @@ BOOST_AUTO_TEST_CASE(dissociatedMoleculeParameters) {
     const GQCP::Molecule molecule {nuclei, +1};
 
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, nuclei));
+    BOOST_CHECK_NO_THROW(spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule)));
 }

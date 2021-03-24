@@ -48,6 +48,16 @@ void bindGSQOneElectronOperator(py::module& module) {
 
     bindSimpleSQOneElectronOperatorInterface(py_ScalarGSQOneElectronOperator_cd);
     bindScalarSQOneElectronOperatorParameterInterface(py_ScalarGSQOneElectronOperator_cd);
+
+
+    py::class_<VectorGSQOneElectronOperator<double>> py_VectorGSQOneElectronOperator_d {module, "VectorGSQOneElectronOperator_d", "A (real) general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators."};
+
+    bindSimpleSQOneElectronOperatorInterface(py_VectorGSQOneElectronOperator_d);
+
+
+    py::class_<VectorGSQOneElectronOperator<complex>> py_VectorGSQOneElectronOperator_cd {module, "VectorGSQOneElectronOperator_cd", "A (complex) general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators."};
+
+    bindSimpleSQOneElectronOperatorInterface(py_VectorGSQOneElectronOperator_cd);
 }
 
 

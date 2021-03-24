@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/GHF/GHF.hpp"
 #include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
@@ -43,7 +44,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap();
 
-    const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
@@ -69,7 +70,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
     GQCP::VectorX<double> ref_orbital_energies {6};
     ref_orbital_energies << -1.03323449, -0.89036198, 0.18717436, 0.76901002, 0.82078082, 0.93703294;
 
-    const auto total_energy = qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto total_energy = qc_structure.groundStateEnergy() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-08);
 
     const auto orbital_energies = ghf_parameters.orbitalEnergies();
@@ -85,7 +86,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
 
     // Set up a complex spinor basis that can quantize the electronic spin operator.
     const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
-    const auto S_op = complex_g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator.
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);
@@ -113,7 +114,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap();
 
-    const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
@@ -140,7 +141,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     GQCP::VectorX<double> ref_orbital_energies {6};
     ref_orbital_energies << -0.96265264, -0.96265, 0.18610318, 0.82147981, 0.82147982, 0.8866645;
 
-    const auto total_energy = qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto total_energy = qc_structure.groundStateEnergy() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-08);
 
 
@@ -157,7 +158,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
     // Set up a complex spinor basis that can quantize the electronic spin operator.
     const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
-    const auto S_op = complex_g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator.
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);
@@ -185,7 +186,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap();
 
-    const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
@@ -211,7 +212,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
     GQCP::VectorX<double> ref_orbital_energies {6};
     ref_orbital_energies << -1.03313925, -0.88946247, 0.18899685, 0.76709853, 0.81828059, 0.93860157;
 
-    const auto total_energy = qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const auto total_energy = qc_structure.groundStateEnergy() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-08);
 
     const auto orbital_energies = ghf_parameters.orbitalEnergies();
@@ -227,7 +228,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
 
     // Set up a complex spinor basis that can quantize the electronic spin operator.
     const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
-    const auto S_op = complex_g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::ElectronicSpinOperator());  // AO representation of the spin operator.
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);

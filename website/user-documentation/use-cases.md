@@ -34,7 +34,7 @@ Before we go over to the calculation of integrals, an [orbital basis](#orbital_b
 <!--Python-->
 ```python
 spinor_basis = gqcpy.RSpinOrbitalBasis(molecule, "STO-3G")
-S = spinor_basis.quantizeOverlapOperator().parameters()
+S = spinor_basis.quantize(gqcpy.OverlapOperator()).parameters()
 ```
 
 <!--C++-->
@@ -50,12 +50,12 @@ This spinor basis is used to construct a Hamiltonian operator in second quantiza
 
 <!--Python-->
 ```python
-sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)  # in an AO basis
+sq_hamiltonian = spinor_basis.quantize(gqcpy.FQMolecularHamiltonian(molecule))  # in an AO basis
 ```
 
 <!--C++-->
 ```C++
-const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
+const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in an AO basis
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
@@ -164,7 +164,7 @@ Before we go over to the calculation of integrals, an [orbital basis](#orbital_b
 <!--Python-->
 ```python
 spinor_basis = gqcpy.RSpinOrbitalBasis(molecule, "STO-3G")
-S = spinor_basis.quantizeOverlapOperator().parameters()
+S = spinor_basis.quantize(gqcpy.OverlapOperator()).parameters()
 ```
 
 <!--C++-->
@@ -180,12 +180,12 @@ This spinor basis is used to construct a Hamiltonian operator in second quantiza
 
 <!--Python-->
 ```python
-sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)  # in an AO basis
+sq_hamiltonian = spinor_basis.quantize(gqcpy.FQMolecularHamiltonian(molecule))  # in an AO basis
 ```
 
 <!--C++-->
 ```C++
-const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
+const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in an AO basis
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 

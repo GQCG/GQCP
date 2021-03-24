@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(trace) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Do a dense FCI calculation.
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(one_dm_from_two_dm) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Do a dense FCI calculation.
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(energy_expectation_value_Hamiltonian) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
 
     // Do a dense FCI calculation.
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_b
     GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     const auto S = spin_orbital_basis.overlap();
 
-    const auto hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
     const auto K = hamiltonian.numberOfOrbitals();
 
     // Do the UHF SCF calculation to retrieve the UHF MOs.
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_b
 
     // Prepare three one-electron operators in different orbital bases.
     auto spin_orbital_basis_mo = spin_orbital_basis.transformed(uhf_parameters.expansion());
-    auto hamiltonian_mo = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis_mo, molecule);
+    auto hamiltonian_mo = spin_orbital_basis_mo.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     const auto& g_AO = hamiltonian_mo.twoElectron();
     const auto g_MO = g_AO.transformed(uhf_parameters.expansion());

@@ -75,7 +75,7 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    template <typename Z = GTOShell>
+    template <typename Z = Shell>
     ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name,
                 typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
         ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework)) {
@@ -92,7 +92,7 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    template <typename Z = GTOShell>
+    template <typename Z = Shell>
     ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
                 typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
         ScalarBasis(molecule.nuclearFramework(), basisset_name) {}
@@ -107,7 +107,7 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    template <typename Z = LondonGTOShell>
+    template <typename Z = Shell>
     ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name, const HomogeneousMagneticField& B,
                 typename std::enable_if<std::is_same<Z, LondonGTOShell>::value>::type* = 0) :
         ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework).applyLondonModification(B)) {
@@ -125,7 +125,7 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    template <typename Z = LondonGTOShell>
+    template <typename Z = Shell>
     ScalarBasis(const Molecule& molecule, const std::string& basisset_name, const HomogeneousMagneticField& B,
                 typename std::enable_if<std::is_same<Z, LondonGTOShell>::value>::type* = 0) :
         ScalarBasis(molecule.nuclearFramework(), basisset_name, B) {}

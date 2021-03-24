@@ -21,7 +21,6 @@
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
 
 
 /**
@@ -29,8 +28,8 @@
  */
 BOOST_AUTO_TEST_CASE(numberOfBasisFunctions) {
 
-    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::ScalarBasis<GQCP::GTOShell> basis {water, "STO-3G"};
+    auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis {molecule, "STO-3G"};
 
     BOOST_CHECK_EQUAL(basis.numberOfBasisFunctions(), 7);
 }

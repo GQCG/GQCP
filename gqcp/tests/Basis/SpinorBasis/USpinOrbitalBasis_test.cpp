@@ -30,12 +30,12 @@
 BOOST_AUTO_TEST_CASE(constructor_throws) {
 
     // Initialize two scalar bases, one for the alpha component and one for the beta component.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
 
-    const GQCP::ScalarBasis<GQCP::GTOShell> alpha_scalar_basis {h2, "STO-3G"};
+    const GQCP::ScalarBasis<GQCP::GTOShell> alpha_scalar_basis {molecule, "STO-3G"};
     const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();  // 2
 
-    const GQCP::ScalarBasis<GQCP::GTOShell> beta_scalar_basis {h2, "6-31G"};
+    const GQCP::ScalarBasis<GQCP::GTOShell> beta_scalar_basis {molecule, "6-31G"};
     const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();  // 4
 
 
@@ -61,8 +61,8 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
 BOOST_AUTO_TEST_CASE(basic_functionality) {
 
     // Initialize an unrestricted spin-orbital basis.
-    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
     // Check if the number of spin-orbitals is correct.
     BOOST_CHECK(spinor_basis.numberOfSpinors() == 4);

@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
@@ -37,7 +38,7 @@ BOOST_AUTO_TEST_CASE(one_electron_operator_expectation_value_different_orbital_b
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     const auto S = spin_orbital_basis.overlap();
 
-    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
     const auto K = hamiltonian.numberOfOrbitals();
 
     // Do the RHF SCF calculation to retrieve the RHF MOs.

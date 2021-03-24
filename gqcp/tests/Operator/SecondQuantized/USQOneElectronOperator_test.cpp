@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Physical/units.hpp"
 #include "QCModel/HF/UHF.hpp"

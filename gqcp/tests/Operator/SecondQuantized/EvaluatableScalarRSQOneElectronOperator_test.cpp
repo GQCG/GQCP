@@ -21,7 +21,6 @@
 
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
-#include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
@@ -179,7 +178,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in the scalar/AO basis
 
     // Prepare the canonical RHF orbitals.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -191,7 +190,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
 
 
     // Calculate the RHF density.
-    const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
+    const auto rho_op = spinor_basis.quantize(GQCP::ElectronicDensityOperator());
     const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
     const auto density = rho_op.calculateDensity(D);
 
@@ -213,7 +212,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "cc-pVDZ"};
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in the scalar/AO basis
 
     // Prepare the canonical RHF orbitals.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -225,7 +224,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 
 
     // Calculate the RHF density.
-    const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
+    const auto rho_op = spinor_basis.quantize(GQCP::ElectronicDensityOperator());
     const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
     const auto density = rho_op.calculateDensity(D);
 

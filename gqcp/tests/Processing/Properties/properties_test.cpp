@@ -21,7 +21,8 @@
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Transformations/transform.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Physical/units.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 #include "Processing/Properties/properties.hpp"
@@ -41,7 +42,7 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     const GQCP::Molecule molecule {{C, O}};
 
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
 
     const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
     const size_t N = molecule.numberOfElectrons();
@@ -53,17 +54,17 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-    const double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // From CCCBDB, require a correct RHF solution to be found.
 
 
     // Calculate the RHF 1-DM and the dipole operator in RHF MO basis.
     const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
-    auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
+    auto dipole_op = spin_orbital_basis.quantize(GQCP::ElectronicDipoleOperator());
     dipole_op.transform(rhf_parameters.expansion());
 
     // Calculate the RHF total dipole moment in the MO basis and check with the reference value.
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(molecule).value() + dipole_op.calculateExpectationValue(D).asVector();
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::NuclearDipoleOperator(molecule.nuclearFramework()).value() + dipole_op.calculateExpectationValue(D).asVector();
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
@@ -79,7 +80,7 @@ BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
     const GQCP::Molecule molecule {{N_1, N_2}};
 
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
 
     const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
     const auto N = molecule.numberOfElectrons();
@@ -91,17 +92,17 @@ BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-    const double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
     BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // From CCCBDB, require a correct RHF solution to be found.
 
 
     // Calculate the RHF 1-DM and the dipole operator in RHF MO basis.
     const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
-    auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
+    auto dipole_op = spin_orbital_basis.quantize(GQCP::ElectronicDipoleOperator());
     dipole_op.transform(rhf_parameters.expansion());
 
     // Calculate the RHF total dipole moment in the MO basis and check with the reference value.
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(molecule).value() + dipole_op.calculateExpectationValue(D).asVector();
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::NuclearDipoleOperator(molecule.nuclearFramework()).value() + dipole_op.calculateExpectationValue(D).asVector();
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }
 
@@ -123,7 +124,7 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
     const GQCP::Molecule molecule {{H1, H2}, 0};
 
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
 
 
     // Do the RHF calculation to get the canonical RHF orbitals.
@@ -135,7 +136,7 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
 
     // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis.
     GQCP::transform(rhf_parameters.expansion(), spin_orbital_basis, sq_hamiltonian);
-    const auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
+    const auto dipole_op = spin_orbital_basis.quantize(GQCP::ElectronicDipoleOperator());
 
 
     // Find the RHF wave function response.

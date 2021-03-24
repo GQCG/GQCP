@@ -22,7 +22,6 @@
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/literals.hpp"
 
 
@@ -37,16 +36,16 @@ BOOST_AUTO_TEST_CASE(Szabo_integrals_h2_sto3g) {
     BOOST_CHECK_EQUAL(scalar_basis.numberOfBasisFunctions(), 2);
 
 
-    // Let Libint2 calculate some integrals
-    const auto S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
-    const auto T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
-    const auto V = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(molecule), scalar_basis);
+    // Let Libint2 calculate some integrals.
+    const auto S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::OverlapOperator(), scalar_basis);
+    const auto T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::KineticOperator(), scalar_basis);
+    const auto V = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::NuclearAttractionOperator(molecule.nuclearFramework()), scalar_basis);
     const GQCP::SquareMatrix<double> H_core = T + V;
 
-    const auto g = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Coulomb(), scalar_basis);
+    const auto g = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::CoulombRepulsionOperator(), scalar_basis);
 
 
-    // Check the one-electron integrals with the reference
+    // Check the one-electron integrals with the reference.
     GQCP::SquareMatrix<double> ref_S {2};
     // clang-format off
     ref_S << 1.0,    0.6593,
@@ -95,14 +94,14 @@ BOOST_AUTO_TEST_CASE(HORTON_integrals_h2o_sto3g) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
 
-    // Calculate some integrals
-    const auto S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
-    const auto T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
-    const auto V = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(molecule), scalar_basis);
-    const auto g = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Coulomb(), scalar_basis);
+    // Calculate some integrals.
+    const auto S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::OverlapOperator(), scalar_basis);
+    const auto T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::KineticOperator(), scalar_basis);
+    const auto V = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::NuclearAttractionOperator(molecule.nuclearFramework()), scalar_basis);
+    const auto g = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::CoulombRepulsionOperator(), scalar_basis);
 
 
-    // Read in reference data from HORTON
+    // Read in reference data from HORTON.
     const auto ref_S = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
     const auto ref_T = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
     const auto ref_V = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
@@ -128,17 +127,17 @@ BOOST_AUTO_TEST_CASE(libcint_vs_libint2_H2O_STO_3G) {
     const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
 
 
-    const auto S_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
-    const auto T_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
-    const auto V_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(molecule), scalar_basis);
-    const auto dipole_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(), scalar_basis);
-    const auto g_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Coulomb(), scalar_basis);
+    const auto S_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::OverlapOperator(), scalar_basis);
+    const auto T_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::KineticOperator(), scalar_basis);
+    const auto V_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::NuclearAttractionOperator(molecule.nuclearFramework()), scalar_basis);
+    const auto dipole_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::ElectronicDipoleOperator(), scalar_basis);
+    const auto g_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::CoulombRepulsionOperator(), scalar_basis);
 
-    const auto S_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
-    const auto T_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
-    const auto V_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::NuclearAttraction(molecule), scalar_basis);
-    const auto dipole_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::ElectronicDipole(), scalar_basis);
-    const auto g_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::Coulomb(), scalar_basis);
+    const auto S_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::OverlapOperator(), scalar_basis);
+    const auto T_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::KineticOperator(), scalar_basis);
+    const auto V_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::NuclearAttractionOperator(molecule.nuclearFramework()), scalar_basis);
+    const auto dipole_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::ElectronicDipoleOperator(), scalar_basis);
+    const auto g_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::CoulombRepulsionOperator(), scalar_basis);
 
 
     BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
@@ -163,8 +162,8 @@ BOOST_AUTO_TEST_CASE(libcint_vs_libint2_dipole_origin) {
 
     const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
 
-    const auto dipole_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
-    const auto dipole_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
+    const auto dipole_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::ElectronicDipoleOperator(origin), scalar_basis);
+    const auto dipole_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::ElectronicDipoleOperator(origin), scalar_basis);
 
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
@@ -188,9 +187,9 @@ BOOST_AUTO_TEST_CASE(overlap_integrals) {
 
 
     // Calculate the overlap integrals and check if they are equal.
-    const auto ref_S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
+    const auto ref_S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::OverlapOperator(), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::Overlap());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::OverlapOperator());
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(S.isApprox(ref_S, 1.0e-12));
@@ -208,9 +207,9 @@ BOOST_AUTO_TEST_CASE(kinetic_energy_integrals) {
 
 
     // Calculate the kinetic energy integrals and check if they are equal.
-    const auto ref_T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
+    const auto ref_T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::KineticOperator(), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::Kinetic());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::KineticOperator());
     const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(T.isApprox(ref_T, 1.0e-12));
@@ -225,7 +224,7 @@ BOOST_AUTO_TEST_CASE(nuclear_attraction_integrals) {
     // Set up an AO basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
-    const auto op = GQCP::Operator::NuclearAttraction(molecule);
+    const auto op = GQCP::NuclearAttractionOperator(molecule.nuclearFramework());
 
     // Calculate the nuclear attraction integrals and check if they are equal.
     const auto ref_V = GQCP::IntegralCalculator::calculateLibintIntegrals(op, scalar_basis);
@@ -249,9 +248,9 @@ BOOST_AUTO_TEST_CASE(electronic_dipole_integrals) {
 
     // Calculate the electronic dipole integrals (with a non-zero origin) and check if they are equal.
     const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
-    const auto ref_dipole_integrals = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
+    const auto ref_dipole_integrals = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::ElectronicDipoleOperator(origin), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::ElectronicDipole(origin));
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::ElectronicDipoleOperator(origin));
     const auto dipole_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
     for (size_t i = 0; i < 3; i++) {
@@ -310,7 +309,7 @@ BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
 
 
     // Calculate our own linear momentum integrals and check if they are correct.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::LinearMomentum());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::LinearMomentumOperator());
     const auto linear_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
 
@@ -371,7 +370,7 @@ BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
 
     // Calculate our own angular momentum integrals (with respect to a reference different from the origin) and check if they are correct.
     const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::Operator::AngularMomentum(origin));
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::AngularMomentumOperator(origin));
     const auto angular_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
 
@@ -392,7 +391,7 @@ BOOST_AUTO_TEST_CASE(Coulomb_repulsion_integrals) {
 
 
     // Calculate the Coulomb repulsion integrals and check if they are equal.
-    const auto op = GQCP::Operator::Coulomb();
+    const auto op = GQCP::CoulombRepulsionOperator();
     const auto ref_g = GQCP::IntegralCalculator::calculateLibintIntegrals(op, scalar_basis);
 
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(op);
@@ -417,7 +416,7 @@ BOOST_AUTO_TEST_CASE(London_S_gauge_invariant) {
     const GQCP::HomogeneousMagneticField B1 {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
     const GQCP::ScalarBasis<GQCP::LondonGTOShell> scalar_basis1 {molecule, "STO-3G", B1};
 
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Overlap());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::OverlapOperator());
     const auto S1 = GQCP::IntegralCalculator::calculate(engine, scalar_basis1.shellSet(), scalar_basis1.shellSet())[0];
 
 
@@ -445,7 +444,7 @@ BOOST_AUTO_TEST_CASE(London_overlap_001) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Overlap());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::OverlapOperator());
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
 
@@ -473,7 +472,7 @@ BOOST_AUTO_TEST_CASE(London_overlap_111) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Overlap());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::OverlapOperator());
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
 
@@ -501,7 +500,7 @@ BOOST_AUTO_TEST_CASE(London_canonical_kinetic_001) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Kinetic());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::KineticOperator());
     const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
 
@@ -529,7 +528,7 @@ BOOST_AUTO_TEST_CASE(London_canonical_kinetic_111) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::Kinetic());
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::KineticOperator());
     const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
 
@@ -557,7 +556,7 @@ BOOST_AUTO_TEST_CASE(London_electronic_dipole_001) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::ElectronicDipole());  // Reference point at the origin.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::ElectronicDipoleOperator());  // Reference point at the origin.
     const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
     const auto D_x = integrals[0];
     const auto D_y = integrals[1];
@@ -598,7 +597,7 @@ BOOST_AUTO_TEST_CASE(London_electronic_dipole_111) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::ElectronicDipole());  // Reference point at the origin.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::ElectronicDipoleOperator());  // Reference point at the origin.
     const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
     const auto D_x = integrals[0];
     const auto D_y = integrals[1];
@@ -641,7 +640,7 @@ BOOST_AUTO_TEST_CASE(London_angular_momentum_001) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::AngularMomentum());  // Reference point at the origin.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::AngularMomentumOperator());  // Reference point at the origin.
     const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
     const auto L_x = integrals[0];
     const auto L_y = integrals[1];
@@ -685,7 +684,7 @@ BOOST_AUTO_TEST_CASE(London_angular_momentum_111) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::AngularMomentum());  // Reference point at the origin.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::AngularMomentumOperator());  // Reference point at the origin.
     const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
     const auto L_x = integrals[0];
     const auto L_y = integrals[1];
@@ -726,7 +725,7 @@ BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_001) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::ElectronicQuadrupole());  // Reference point at the origin.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::ElectronicQuadrupoleOperator());  // Reference point at the origin.
     const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
     const auto Q_xx = integrals[0];
     const auto Q_xy = integrals[1];
@@ -785,7 +784,7 @@ BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_111) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the overlap integrals through our own engines.
-    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::Operator::ElectronicQuadrupole());  // Reference point at the origin.
+    auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(GQCP::ElectronicQuadrupoleOperator());  // Reference point at the origin.
     const auto integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
     const auto Q_xx = integrals[0];
     const auto Q_xy = integrals[1];
@@ -844,7 +843,7 @@ BOOST_AUTO_TEST_CASE(London_nuclear_001) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the nuclear attraction integrals through our own engines.
-    const auto op = GQCP::Operator::NuclearAttraction(molecule);
+    const auto op = GQCP::NuclearAttractionOperator(molecule.nuclearFramework());
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
     const auto V = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
@@ -873,7 +872,7 @@ BOOST_AUTO_TEST_CASE(London_nuclear_111) {
     const auto nbf = scalar_basis.numberOfBasisFunctions();
 
     // Calculate the nuclear attraction integrals through our own engines.
-    const auto op = GQCP::Operator::NuclearAttraction(molecule);
+    const auto op = GQCP::NuclearAttractionOperator(molecule.nuclearFramework());
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
     const auto V = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
@@ -903,7 +902,7 @@ BOOST_AUTO_TEST_CASE(London_coulomb_001) {
 
 
     // Calculate the Coulomb repulsion integrals through our own engines.
-    const auto op = GQCP::Operator::Coulomb();
+    const auto op = GQCP::CoulombRepulsionOperator();
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
     const auto g = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
@@ -932,7 +931,7 @@ BOOST_AUTO_TEST_CASE(London_coulomb_111) {
 
 
     // Calculate the Coulomb repulsion integrals through our own engines.
-    const auto op = GQCP::Operator::Coulomb();
+    const auto op = GQCP::CoulombRepulsionOperator();
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(op);
     const auto g = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 

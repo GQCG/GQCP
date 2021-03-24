@@ -111,11 +111,10 @@ void bindUSpinOrbitalBases(py::module& module) {
 
     py_USpinOrbitalBasis_d
         .def(
-            "quantizeDipoleOperator",
-            [](const USpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const Vector<double, 3>& origin) {
-                return spin_orbital_basis.quantize(Operator::ElectronicDipole(origin));
+            "quantize",
+            [](const USpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const ElectronicDipoleOperator& op) {
+                return spin_orbital_basis.quantize(op);
             },
-            py::arg("origin") = Vector<double, 3>::Zero(),
             "Return the electronic dipole operator expressed in this spinor basis.");
 
     bindUSpinOrbitalBasisInterface(py_USpinOrbitalBasis_d);

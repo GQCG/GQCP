@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 
@@ -29,12 +30,12 @@
 BOOST_AUTO_TEST_CASE(constructor) {
 
     // Check a correct constructor with an even number of electrons.
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // In an AO basis.
-    const auto K = sq_hamiltonian.numberOfOrbitals();                                 // The number of spatial orbitals.
+    auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+    const auto K = sq_hamiltonian.numberOfOrbitals();                                     // The number of spatial orbitals.
 
-    BOOST_CHECK_NO_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap(),
+    BOOST_CHECK_NO_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap(),
                                                                                GQCP::RTransformation<double>::Random(K)));
 
 

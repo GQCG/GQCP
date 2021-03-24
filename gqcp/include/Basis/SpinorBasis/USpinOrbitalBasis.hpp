@@ -19,15 +19,24 @@
 
 
 #include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
+#include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {
@@ -266,7 +275,7 @@ public:
 
 
     /*
-     *  MARK: Quantizing first-quantized operators
+     *  MARK: Quantization of first-quantized operators (GTOShell)
      */
 
     /**
@@ -278,8 +287,8 @@ public:
      * 
      *  @return The second-quantized operator corresponding to the given first-quantized operator.
      */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op) const -> USQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
+    template <typename FQOneElectronOperator, typename Z = Shell>
+    auto quantize(const FQOneElectronOperator& fq_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, USQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = USQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
@@ -301,7 +310,8 @@ public:
      * 
      *  @return The second-quantized operator corresponding to the given first-quantized operator.
      */
-    auto quantize(const ElectronicSpin_zOperator& fq_op) const -> USQOneElectronOperator<product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>, ElectronicSpin_zOperator::Vectorizer> {
+    template <typename Z = Shell>
+    auto quantize(const ElectronicSpin_zOperator& fq_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, USQOneElectronOperator<product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>, ElectronicSpin_zOperator::Vectorizer>> {
 
         using ResultScalar = product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>;
         using ResultOperator = USQOneElectronOperator<ResultScalar, ElectronicSpin_zOperator::Vectorizer>;
@@ -322,7 +332,7 @@ public:
      * 
      *  @return The second-quantized overlap operator.
      */
-    ScalarUSQOneElectronOperator<ExpansionScalar> overlap() const { return this->quantize(Operator::Overlap()); }
+    ScalarUSQOneElectronOperator<ExpansionScalar> overlap() const { return this->quantize(OverlapOperator()); }
 
 
     /**
@@ -332,7 +342,8 @@ public:
      * 
      *  @return The second-quantized Coulomb operator.
      */
-    auto quantize(const CoulombRepulsionOperator& coulomb_op) const -> ScalarUSQTwoElectronOperator<product_t<typename CoulombRepulsionOperator::Scalar, ExpansionScalar>> {
+    template <typename Z = Shell>
+    auto quantize(const CoulombRepulsionOperator& coulomb_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, ScalarUSQTwoElectronOperator<product_t<typename CoulombRepulsionOperator::Scalar, ExpansionScalar>>> {
 
         using ResultScalar = product_t<typename CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = ScalarUSQTwoElectronOperator<ResultScalar>;
@@ -366,6 +377,28 @@ public:
         g.transform(this->expansion());  // Now, g is expressed in the current spin-orbital basis.
 
         return g;
+    }
+
+
+    /*
+     *  MARK: Quantization of first-quantized operators
+     */
+
+    /**
+     *  Quantize the molecular Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular Hamiltonian.
+     * 
+     *  @return The second-quantized molecular Hamiltonian.
+     */
+    USQHamiltonian<ExpansionScalar> quantize(const FQMolecularHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return USQHamiltonian<ExpansionScalar> {T + V, g};
     }
 
 
