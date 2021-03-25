@@ -22,6 +22,7 @@
 
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace gqcpy {
@@ -66,6 +67,13 @@ py::class_<Hamiltonian> bindSQHamiltonian(py::module& module, const std::string&
                 return hamiltonian.core();
             },
             "Return a read-only reference to the total one-electron interaction operator, i.e. the core Hamiltonian.")
+            
+        .def(
+            "coreContributions",
+            [](const Hamiltonian& hamiltonian) {
+                return hamiltonian.coreContributions();
+            },
+            "Return a read-only reference to the contributions to the total one-electron interaction operator.")
 
         .def(
             "twoElectron",
