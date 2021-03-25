@@ -172,10 +172,10 @@ void bindGSpinorBases(py::module& module) {
 
         .def(
             "quantize",
-            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ParamagneticOperator& op) {
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const OrbitalZeemanOperator& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the paramagnetic operator expressed in this spinor basis.")
+            "Return the orbital Zeeman operator expressed in this spinor basis.")
 
         .def(
             "quantize",

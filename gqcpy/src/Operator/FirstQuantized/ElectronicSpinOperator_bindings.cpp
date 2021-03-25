@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -30,39 +30,21 @@ using namespace GQCP;
 
 
 /**
- *  Register `ParamagneticOperator` to the gqcpy module and expose parts of its C++ interface to Python.
+ *  Register `ElectronicSpinOperator` to the gqcpy module and expose parts of its C++ interface to Python.
  * 
  *  @param module           The Pybind11 module in which the class should be registered.
  */
-void bindParamagneticOperator(py::module& module) {
+void bindElectronicSpinOperator(py::module& module) {
 
-    py::class_<ParamagneticOperator> py_ParamagneticOperator {module, "ParamagneticOperator", "The (one-electron) paramagnetic operator."};
+    py::class_<ElectronicSpinOperator> py_ElectronicSpinOperator {module, "ElectronicSpinOperator", "The (one-electron) electronic spin operator."};
 
-    py_ParamagneticOperator
+    py_ElectronicSpinOperator
 
         /*
          *  MARK: Constructors
          */
 
-        .def(py::init<>([](const HomogeneousMagneticField& B, const Eigen::Vector3d& reference) {
-                 return ParamagneticOperator(B, reference);
-             }),
-             py::arg("B"),
-             py::arg("reference"))
-
-        .def(py::init<const HomogeneousMagneticField&>(),
-             py::arg("B"))
-
-
-        /*
-         *  MARK: Access
-         */
-
-        .def("magneticField",
-             &ParamagneticOperator::magneticField)
-
-        .def("angularMomentum",
-             &ParamagneticOperator::angularMomentum);
+        .def(py::init<>());
 }
 
 

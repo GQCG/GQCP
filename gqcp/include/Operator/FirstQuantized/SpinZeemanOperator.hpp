@@ -18,21 +18,15 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/BaseFQOperator.hpp"
-#include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
 #include "Physical/HomogeneousMagneticField.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  The paramagnetic operator, i.e. the part of the scalar kinetic energy operator that is linear in the magnetic field.
- */
-class ParamagneticOperator:
-    public BaseScalarFQOneElectronOperator<complex>,
-    public BaseReferenceDependentOperator {
+class SpinZeemanOperator:
+    public BaseScalarFQOneElectronOperator<complex> {
 private:
     // The external, homogeneous magnetic field.
     HomogeneousMagneticField B;
@@ -44,21 +38,11 @@ public:
      */
 
     /**
-     *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field and a reference point.
+     *  Construct a `SpinZeemanOperator` from its underlying homogeneous magnetic field.
      * 
      *  @param B                    The external, homogeneous magnetic field.
-     *  @param reference            The reference point about which the paramagnetic operator is calculated.
      */
-    ParamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference);
-
-    /**
-     *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field.
-     * 
-     *  @param B                    The external, homogeneous magnetic field.
-     * 
-     *  @note The reference point is chosen to be the gauge origin of the magnetic field.
-     */
-    ParamagneticOperator(const HomogeneousMagneticField& B);
+    SpinZeemanOperator(const HomogeneousMagneticField& B);
 
 
     /*
@@ -69,16 +53,6 @@ public:
      *  @return The external, homogeneous magnetic field.
      */
     const HomogeneousMagneticField& magneticField() const { return this->B; }
-
-
-    /*
-     *  MARK: First-quantized operators
-     */
-
-    /**
-     *  @return The angular momentum operator that is related to this paramagnetic operator.
-     */
-    AngularMomentumOperator angularMomentum() const { return AngularMomentumOperator(this->reference()); }
 };
 
 

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
+#include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 
 
 namespace GQCP {
@@ -27,25 +27,25 @@ namespace GQCP {
 
 
 /**
- *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field and a reference point.
+ *  Construct a `OrbitalZeemanOperator` from its underlying homogeneous magnetic field and a reference point.
  * 
  *  @param B                    The external, homogeneous magnetic field.
- *  @param reference            The reference point about which the paramagnetic operator is calculated.
+ *  @param reference            The reference point about which the orbital Zeeman operator is calculated.
  */
-ParamagneticOperator::ParamagneticOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference) :
+OrbitalZeemanOperator::OrbitalZeemanOperator(const HomogeneousMagneticField& B, const Vector<double, 3>& reference) :
     B {B},
     BaseReferenceDependentOperator(reference) {}
 
 
 /**
- *  Construct a `ParamagneticOperator` from its underlying homogeneous magnetic field.
+ *  Construct a `OrbitalZeemanOperator` from its underlying homogeneous magnetic field.
  * 
  *  @param B                    The external, homogeneous magnetic field.
  * 
  *  @note The reference point is chosen to be the gauge origin of the magnetic field.
  */
-ParamagneticOperator::ParamagneticOperator(const HomogeneousMagneticField& B) :
-    ParamagneticOperator(B, B.gaugeOrigin()) {}
+OrbitalZeemanOperator::OrbitalZeemanOperator(const HomogeneousMagneticField& B) :
+    OrbitalZeemanOperator(B, B.gaugeOrigin()) {}
 
 
 }  // namespace GQCP

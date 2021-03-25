@@ -42,6 +42,11 @@ void bindQCModelGHF(py::module& module) {
     // Define Python class related to `real QCModel::GHF` and expose their interfaces.
     py::class_<QCModel::GHF<complex>> py_QCModelGHF_cd {module, "QCModel_GHF_cd", "The generalized Hartree-Fock wave function model."};
 
+    py_QCModelGHF_cd
+        .def("calculateExpectationValueOf",
+             &QCModel::GHF<complex>::calculateExpectationValueOf,
+             "Return the expectation value of the electronic spin operator.");
+
     // Expose the `HartreeFock` interface.
     bindQCModelHartreeFockInterface(py_QCModelGHF_cd);
 }

@@ -129,14 +129,16 @@ void bindCoulombRepulsionOperator(py::module& module);
 void bindDiamagneticOperator(py::module& module);
 void bindElectronicDipoleOperator(py::module& module);
 void bindElectronicQuadrupoleOperator(py::module& module);
+void bindElectronicSpinOperator(py::module& module);
 void bindFQMolecularHamiltonian(py::module& module);
 void bindFQMolecularMagneticHamiltonian(py::module& module);
 void bindKineticOperator(py::module& module);
 void bindNuclearAttractionOperator(py::module& module);
 void bindNuclearDipoleOperator(py::module& module);
 void bindNuclearRepulsionOperator(py::module& module);
+void bindOrbitalZeemanOperator(py::module& module);
 void bindOverlapOperator(py::module& module);
-void bindParamagneticOperator(py::module& module);
+void bindSpinZeemanOperator(py::module& module);
 
 
 // Operator - SecondQuantized - ModelHamiltonian
@@ -362,14 +364,17 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindDiamagneticOperator(module);
     gqcpy::bindElectronicDipoleOperator(module);
     gqcpy::bindElectronicQuadrupoleOperator(module);
+    gqcpy::bindElectronicSpinOperator(module);
     gqcpy::bindKineticOperator(module);
     gqcpy::bindFQMolecularHamiltonian(module);
     gqcpy::bindFQMolecularMagneticHamiltonian(module);
     gqcpy::bindNuclearAttractionOperator(module);
     gqcpy::bindNuclearDipoleOperator(module);
     gqcpy::bindNuclearRepulsionOperator(module);
+    gqcpy::bindOrbitalZeemanOperator(module);
     gqcpy::bindOverlapOperator(module);
-    gqcpy::bindParamagneticOperator(module);
+    gqcpy::bindSpinZeemanOperator(module);
+
 
     // Operator - SecondQuantized - ModelHamiltonian
     gqcpy::bindAdjacencyMatrix(module);

@@ -36,8 +36,9 @@
 #include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
-#include "Operator/FirstQuantized/ParamagneticOperator.hpp"
+#include "Operator/FirstQuantized/SpinZeemanOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -549,16 +550,16 @@ public:
 
 
     /**
-     *  Quantize the paramagnetic operator in this general spinor basis.
+     *  Quantize the orbital Zeeman operator in this general spinor basis.
      * 
-     *  @param fq_one_op        The (first-quantized) paramagnetic operator.
+     *  @param op               The (first-quantized) orbital Zeeman operator.
      * 
-     *  @return The paramagnetic operator expressed in this spinor basis.
+     *  @return The orbital Zeeman operator expressed in this spinor basis.
      */
     template <typename Z = Shell>
-    auto quantize(const ParamagneticOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<ParamagneticOperator::Scalar, ExpansionScalar>, ParamagneticOperator::Vectorizer>> {
+    auto quantize(const OrbitalZeemanOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<OrbitalZeemanOperator::Scalar, ExpansionScalar>, OrbitalZeemanOperator::Vectorizer>> {
 
-        // Return the paramagnetic operator as a contraction beween the magnetic field and the angular momentum operator.
+        // Return the orbital Zeeman operator as a contraction beween the magnetic field and the angular momentum operator.
         const auto L = this->quantize(op.angularMomentum());
         const auto& B = op.magneticField().strength();
         return 0.5 * L.dot(B);
@@ -568,7 +569,7 @@ public:
     /**
      *  Quantize the diamagnetic operator in this general spinor basis.
      * 
-     *  @param fq_one_op        The (first-quantized) diamagnetic operator.
+     *  @param op               The (first-quantized) diamagnetic operator.
      * 
      *  @return The diamagnetic operator expressed in this spinor basis.
      */
@@ -604,6 +605,23 @@ public:
                                                     2 * B_y * B_z * Q_yz);
 
         return ResultOperator {D_par};
+    }
+
+
+    /**
+     *  Quantize the spin Zeeman operator in this general spinor basis.
+     * 
+     *  @param op               The (first-quantized) spin Zeeman  operator.
+     * 
+     *  @return The diamagnetic operator expressed in this spinor basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const SpinZeemanOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQOneElectronOperator<product_t<SpinZeemanOperator::Scalar, ExpansionScalar>, SpinZeemanOperator::Vectorizer>> {
+
+        // Return the spin Zeeman operator as a contraction beween the magnetic field and the spin operator.
+        const auto S = this->quantize(ElectronicSpinOperator());
+        const auto& B = op.magneticField().strength();
+        return 0.5 * S.dot(B);
     }
 
 
@@ -685,14 +703,16 @@ public:
     enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQHamiltonian<ExpansionScalar>> quantize(const FQMolecularMagneticHamiltonian& fq_hamiltonian) const {
 
         const auto T = this->quantize(fq_hamiltonian.kinetic());
-        const auto P = this->quantize(fq_hamiltonian.paramagnetic());
+        const auto OZ = this->quantize(fq_hamiltonian.orbitalZeeman());
         const auto D = this->quantize(fq_hamiltonian.diamagnetic());
+
+        const auto SZ = this->quantize(fq_hamiltonian.spinZeeman());
 
         const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
 
         const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
 
-        return GSQHamiltonian<ExpansionScalar> {{T, P, D, V}, {g}};
+        return GSQHamiltonian<ExpansionScalar> {{T, OZ, D, SZ, V}, {g}};
     }
 
 

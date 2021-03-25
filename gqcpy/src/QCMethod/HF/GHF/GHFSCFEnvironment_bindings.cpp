@@ -49,6 +49,13 @@ void bindQCMethodGHFSCFEnvironmentInterface(Class& py_class) {
     py_class
 
         /*
+         *  MARK: Constructors
+         */
+
+        .def(py::init<const size_t, const GSQHamiltonian<Scalar>&, const ScalarGSQOneElectronOperator<Scalar>&, const GTransformation<Scalar>&>())
+
+
+        /*
          *  MARK: Named constructors specific to GHF
          */
 
