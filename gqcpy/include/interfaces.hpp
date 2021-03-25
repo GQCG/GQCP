@@ -21,6 +21,7 @@
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
@@ -406,7 +407,14 @@ void bindSpinorBasisQuantizationInterface(Class& py_class) {
             [](const Type& spinor_basis, const OverlapOperator& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the overlap operator expressed in this spinor basis.");
+            "Return the overlap operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const Type& spinor_basis, const FQMolecularHamiltonian& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the molecular Hamiltonian expressed in this spinor basis.");
 }
 
 
