@@ -786,12 +786,14 @@
     <member refid="class_g_q_c_p_1_1_f_q_molecular_hamiltonian_1a7503d7530e4e4bcdb1b21eb4eddfc109" kind="function"><name>coulombRepulsion</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian" kind="class"><name>GQCP::FQMolecularMagneticHamiltonian</name>
-    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a91689af8003c21990884719b743707ed" kind="variable"><name>P</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a60d2157b7155e958f57efb2594ceeda4" kind="variable"><name>OZ</name></member>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ae7e6740db5cced2ba7a4d880155b4e6b" kind="variable"><name>D</name></member>
-    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ad0c49d2429b19ec8ed79f5fe4d4fba0d" kind="function"><name>FQMolecularMagneticHamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ac6a92f6870d14ec8ff9860bd6d42ded5" kind="variable"><name>SZ</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a7019c6d82f283a64ac5edd71c9191f9a" kind="function"><name>FQMolecularMagneticHamiltonian</name></member>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a437d23d3d0b4ae7cf9cc18d484275e86" kind="function"><name>FQMolecularMagneticHamiltonian</name></member>
-    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a681e2fc6a6fe8a4f5a55f2d81e8d8fa5" kind="function"><name>paramagnetic</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a2d0224ce7f4de6170aad1cd1a07852ec" kind="function"><name>orbitalZeeman</name></member>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a9ab6848d23b02227d9f3569ca59ade2d" kind="function"><name>diamagnetic</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ac63c81e5ef3fbaf5a35958c2cb64a6f2" kind="function"><name>spinZeeman</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" kind="class"><name>GQCP::FunctionalOneElectronPrimitiveIntegralEngine</name>
     <member refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a26e80137becded39859354c7fd5a1e09" kind="typedef"><name>Shell</name></member>
@@ -964,8 +966,9 @@
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a0bfd22005830bb1c5491de945dc31c0e" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ade836b6e136191e1f286a4d05421106a" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a0696a794a88eb2169065aac73c853d13" kind="function"><name>quantize</name></member>
-    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a6179913222256fcaea670c7aa0cd9e17" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a6711610480c8889228a49b81314c662b" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aa88730bc1e90293e44b3da9227dcd2c1" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a95e2b2a85454a35f927b024ed840671e" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ae969fb4740de64aca01d5ad3a53a1e86" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a3ecd98f5670a469e7b6b96d932669454" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aab715eecdc3a5b35ca8e0e6acff6c3cc" kind="function"><name>quantize</name></member>
@@ -1887,14 +1890,14 @@
     <member refid="class_g_q_c_p_1_1_orbital_space_1a373451b0fd61fb610e876948084130c6" kind="function"><name>numberOfOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_orbital_space_1a22c967bc1d33a75341c86b1ca52b0532" kind="function"><name>Implicit</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_overlap_operator" kind="class"><name>GQCP::OverlapOperator</name>
+  <compound refid="class_g_q_c_p_1_1_orbital_zeeman_operator" kind="class"><name>GQCP::OrbitalZeemanOperator</name>
+    <member refid="class_g_q_c_p_1_1_orbital_zeeman_operator_1a33534fccbb2b21792d8d7a7f8c2eb381" kind="variable"><name>B</name></member>
+    <member refid="class_g_q_c_p_1_1_orbital_zeeman_operator_1a6ac70a0008e6f54b82d902d20733b8fc" kind="function"><name>OrbitalZeemanOperator</name></member>
+    <member refid="class_g_q_c_p_1_1_orbital_zeeman_operator_1a12c815996b34a12c272ee45e2e503662" kind="function"><name>OrbitalZeemanOperator</name></member>
+    <member refid="class_g_q_c_p_1_1_orbital_zeeman_operator_1acf562757081e24eb810109abeea67ca2" kind="function"><name>magneticField</name></member>
+    <member refid="class_g_q_c_p_1_1_orbital_zeeman_operator_1ad6629beb5b0a4f776803647d485ede3f" kind="function"><name>angularMomentum</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_paramagnetic_operator" kind="class"><name>GQCP::ParamagneticOperator</name>
-    <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a75ac5772016ee874102d09f63d7478dd" kind="variable"><name>B</name></member>
-    <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a4a7670f48c2c88b97dd63b79b356f682" kind="function"><name>ParamagneticOperator</name></member>
-    <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1ab7736fcf34ba0d379f8e3a69bb0f1ec2" kind="function"><name>ParamagneticOperator</name></member>
-    <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a3afa1ecd39363b4b87cd2956b278f40d" kind="function"><name>magneticField</name></member>
-    <member refid="class_g_q_c_p_1_1_paramagnetic_operator_1a1b457633f1e8f4cafbb1c31003138c9d" kind="function"><name>angularMomentum</name></member>
+  <compound refid="class_g_q_c_p_1_1_overlap_operator" kind="class"><name>GQCP::OverlapOperator</name>
   </compound>
   <compound refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" kind="class"><name>GQCP::PrimitiveAngularMomentumIntegralEngine</name>
     <member refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a73fd9fb11a696882382cf8c3faad01e7" kind="typedef"><name>Shell</name></member>
@@ -2487,6 +2490,11 @@
     <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1ac6adc455d4bd91256df096af03ae6ebc" kind="function"><name>createMixedRepresentableObjectFor</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1a1c14f617030b7d4e148812a7a547dbda" kind="function"><name>initializeMixedRepresentableObjectFor</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved_orbital_space_1ae7293e9688e9b4080c67664eb2252bba" kind="function"><name>initializeMixedRepresentableObjectFor</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_spin_zeeman_operator" kind="class"><name>GQCP::SpinZeemanOperator</name>
+    <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1a17df7222f10fe71ca020bc93963932c0" kind="variable"><name>B</name></member>
+    <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1a99b98d94a66426839346bbb2fa442fbc" kind="function"><name>SpinZeemanOperator</name></member>
+    <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1a2759f4fda647e7ac999762e4499d901b" kind="function"><name>magneticField</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_s_q_hamiltonian" kind="class"><name>GQCP::SQHamiltonian</name>
     <member refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a521e12b9283f73f08f1766f03e04e372" kind="typedef"><name>ScalarSQOneElectronOperator</name></member>
@@ -3561,9 +3569,11 @@
   </compound>
   <compound refid="_nuclear_repulsion_operator_8hpp" kind="file"><name>NuclearRepulsionOperator.hpp</name>
   </compound>
+  <compound refid="_orbital_zeeman_operator_8hpp" kind="file"><name>OrbitalZeemanOperator.hpp</name>
+  </compound>
   <compound refid="_overlap_operator_8hpp" kind="file"><name>OverlapOperator.hpp</name>
   </compound>
-  <compound refid="_paramagnetic_operator_8hpp" kind="file"><name>ParamagneticOperator.hpp</name>
+  <compound refid="_spin_zeeman_operator_8hpp" kind="file"><name>SpinZeemanOperator.hpp</name>
   </compound>
   <compound refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp" kind="file"><name>EvaluatableScalarRSQOneElectronOperator.hpp</name>
   </compound>
@@ -3879,7 +3889,9 @@
   </compound>
   <compound refid="_nuclear_repulsion_operator_8cpp" kind="file"><name>NuclearRepulsionOperator.cpp</name>
   </compound>
-  <compound refid="_paramagnetic_operator_8cpp" kind="file"><name>ParamagneticOperator.cpp</name>
+  <compound refid="_orbital_zeeman_operator_8cpp" kind="file"><name>OrbitalZeemanOperator.cpp</name>
+  </compound>
+  <compound refid="_spin_zeeman_operator_8cpp" kind="file"><name>SpinZeemanOperator.cpp</name>
   </compound>
   <compound refid="_adjacency_matrix_8cpp" kind="file"><name>AdjacencyMatrix.cpp</name>
   </compound>

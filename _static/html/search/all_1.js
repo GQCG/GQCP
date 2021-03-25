@@ -24,7 +24,7 @@ var searchData=
   ['angle_27',['angle',['../class_g_q_c_p_1_1_jacobi_rotation.html#a13b00d94d0e1490eb465babb54108b38',1,'GQCP::JacobiRotation']]],
   ['angstrom_5fper_5fbohr_28',['angstrom_per_bohr',['../struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014.html#a333a193dd303f66d6e00c3b36a208304',1,'GQCP::units::constants::CODATA2014']]],
   ['angstrom_5fto_5fbohr_29',['angstrom_to_bohr',['../namespace_g_q_c_p_1_1units.html#aec3b5bc275dbd741c4db89a7e47d3479',1,'GQCP::units']]],
-  ['angularmomentum_30',['angularMomentum',['../class_g_q_c_p_1_1_g_t_o_shell.html#a419bc8549c549852e547bb6d0082b4e2',1,'GQCP::GTOShell::angularMomentum()'],['../struct_g_q_c_p_1_1_cartesian_exponents.html#af87af131d9cdc94713c92058f5024105',1,'GQCP::CartesianExponents::angularMomentum()'],['../class_g_q_c_p_1_1_paramagnetic_operator.html#a1b457633f1e8f4cafbb1c31003138c9d',1,'GQCP::ParamagneticOperator::angularMomentum()']]],
+  ['angularmomentum_30',['angularMomentum',['../class_g_q_c_p_1_1_g_t_o_shell.html#a419bc8549c549852e547bb6d0082b4e2',1,'GQCP::GTOShell::angularMomentum()'],['../struct_g_q_c_p_1_1_cartesian_exponents.html#af87af131d9cdc94713c92058f5024105',1,'GQCP::CartesianExponents::angularMomentum()'],['../class_g_q_c_p_1_1_orbital_zeeman_operator.html#ad6629beb5b0a4f776803647d485ede3f',1,'GQCP::OrbitalZeemanOperator::angularMomentum()']]],
   ['angularmomentumoperator_31',['AngularMomentumOperator',['../class_g_q_c_p_1_1_angular_momentum_operator.html',1,'GQCP']]],
   ['angularmomentumoperator_2ecpp_32',['AngularMomentumOperator.cpp',['../_angular_momentum_operator_8cpp.html',1,'']]],
   ['angularmomentumoperator_2ehpp_33',['AngularMomentumOperator.hpp',['../_angular_momentum_operator_8hpp.html',1,'']]],

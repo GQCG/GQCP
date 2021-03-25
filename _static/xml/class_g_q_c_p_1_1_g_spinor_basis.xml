@@ -24,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="63" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="64" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" prot="public" static="no">
         <type>_Shell</type>
@@ -37,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="66" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="66" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1aad76bcfb2f9b07564621f91dd4c36bd4" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_simple_spinor_basis" kindref="compound">SimpleSpinorBasis</ref>&lt; _ExpansionScalar, <ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; _ExpansionScalar, _Shell &gt; &gt;</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="69" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="69" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1ac3b826302d446a0d413ab4ff5797148e" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="72" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="72" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="73" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1ac605d1a1c6a417c9dfe63329f0e894e4" prot="public" static="no">
         <type>typename Shell::Primitive</type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="75" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="75" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="76" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_spinor_basis_1a30600aed0df6ba06f37e8d0f267da733" prot="public" static="no">
         <type>typename Shell::BasisFunction</type>
@@ -89,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="78" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="79" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -104,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="83" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="83" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="84" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="97" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="97" bodyend="108"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="98" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="98" bodyend="109"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1af07dc3114327e1708026c89dad13e8ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -198,7 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="117" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="117" bodyend="118"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="118" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="118" bodyend="119"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a831b047849c8af5734f56fde89e9b692" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -237,7 +237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="127" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="127" bodyend="128"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="128" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="128" bodyend="129"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ad87001892202e25bed0b75b80c316c3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -277,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="137" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="137" bodyend="139"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="138" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="138" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a7cdbaa05984076fa4ced02496734e0e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -305,7 +305,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="147" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="147" bodyend="148"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="148" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="148" bodyend="149"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ae74073c7ae5fd36cb4c9ae9744415bd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -347,7 +347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="159" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="159" bodyend="160"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="160" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="160" bodyend="161"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a7c5f3e3058f54379889c149ddad85bde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -389,7 +389,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="171" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="171" bodyend="172"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="172" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="172" bodyend="173"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a922a8e4c39e0ac447e015c4ccc592931" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -445,7 +445,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="184" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="184" bodyend="186"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="185" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="185" bodyend="187"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a2f38b86e3bf90218d22d7625f8fdd169" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="198" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="198" bodyend="200"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="199" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="199" bodyend="201"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a0b543fbfcf49f82f6869e8e5cf09819a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -553,7 +553,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="212" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="212" bodyend="214"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="213" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="213" bodyend="215"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a9062fb369d11c2ede60ae0dd34d9cbd8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -582,7 +582,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="263" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="263" bodyend="263"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="264" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="264" bodyend="264"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ad71c2691865d2ba1ee0d038b81ceb8a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -598,7 +598,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="273" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="273" bodyend="279"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="274" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="274" bodyend="280"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a1d0b17785f530791bcfdfa3c5e4648fd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -637,7 +637,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="294" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="294" bodyend="319"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="295" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="295" bodyend="320"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a228ae81d20b107924d3e6f672064bb45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -673,7 +673,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="330" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="330" bodyend="372"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="331" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="331" bodyend="373"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a0bfd22005830bb1c5491de945dc31c0e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -709,7 +709,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="383" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="383" bodyend="439"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="384" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="384" bodyend="440"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ade836b6e136191e1f286a4d05421106a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -748,7 +748,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="454" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="454" bodyend="494"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="455" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="455" bodyend="495"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a0696a794a88eb2169065aac73c853d13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -784,9 +784,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="505" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="505" bodyend="548"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="506" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="506" bodyend="549"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a6179913222256fcaea670c7aa0cd9e17" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a6711610480c8889228a49b81314c662b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -795,32 +795,32 @@
         </templateparamlist>
         <type>auto</type>
         <definition>auto GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
-        <argsstring>(const ParamagneticOperator &amp;op) const -&gt; enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, GSQOneElectronOperator&lt; product_t&lt; ParamagneticOperator::Scalar, ExpansionScalar &gt;, ParamagneticOperator::Vectorizer &gt;&gt;</argsstring>
+        <argsstring>(const OrbitalZeemanOperator &amp;op) const -&gt; enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, GSQOneElectronOperator&lt; product_t&lt; OrbitalZeemanOperator::Scalar, ExpansionScalar &gt;, OrbitalZeemanOperator::Vectorizer &gt;&gt;</argsstring>
         <name>quantize</name>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_paramagnetic_operator" kindref="compound">ParamagneticOperator</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_zeeman_operator" kindref="compound">OrbitalZeemanOperator</ref> &amp;</type>
           <declname>op</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Quantize the paramagnetic operator in this general spinor basis.</para>
+<para>Quantize the orbital Zeeman operator in this general spinor basis.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>fq_one_op</parametername>
+<parametername>op</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The (first-quantized) paramagnetic operator.</para>
+<para>The (first-quantized) orbital Zeeman operator.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The paramagnetic operator expressed in this spinor basis. </para>
+<simplesect kind="return"><para>The orbital Zeeman operator expressed in this spinor basis. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="559" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="559" bodyend="565"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="560" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="560" bodyend="566"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1aa88730bc1e90293e44b3da9227dcd2c1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -843,7 +843,7 @@
 <para>Quantize the diamagnetic operator in this general spinor basis.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>fq_one_op</parametername>
+<parametername>op</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The (first-quantized) diamagnetic operator.</para>
@@ -856,7 +856,43 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="576" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="576" bodyend="607"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="577" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="577" bodyend="608"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a95e2b2a85454a35f927b024ed840671e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto GQCP::GSpinorBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
+        <argsstring>(const SpinZeemanOperator &amp;op) const -&gt; enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, GSQOneElectronOperator&lt; product_t&lt; SpinZeemanOperator::Scalar, ExpansionScalar &gt;, SpinZeemanOperator::Vectorizer &gt;&gt;</argsstring>
+        <name>quantize</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_zeeman_operator" kindref="compound">SpinZeemanOperator</ref> &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the spin Zeeman operator in this general spinor basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (first-quantized) spin Zeeman operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The diamagnetic operator expressed in this spinor basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="619" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="619" bodyend="625"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ae969fb4740de64aca01d5ad3a53a1e86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -894,7 +930,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="620" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="620" bodyend="674"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="638" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="638" bodyend="692"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a3ecd98f5670a469e7b6b96d932669454" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -930,7 +966,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="685" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="685" bodyend="696"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="703" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="703" bodyend="716"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1aab715eecdc3a5b35ca8e0e6acff6c3cc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a18949b2153b626c420238dab2a4e7185" kindref="member">GSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -960,7 +996,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="710" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="710" bodyend="718"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="730" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="730" bodyend="738"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a29e97fd11c496f40147b63fcbf42a623" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt; &gt; &amp;</type>
@@ -976,7 +1012,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="728" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="728" bodyend="728"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="748" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="748" bodyend="748"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1adf4e812f8804c98d441cea5ad8985dca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g_mulliken_partitioning" kindref="compound">GMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -1008,7 +1044,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="744" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="744" bodyend="749"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="764" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="764" bodyend="769"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1a67766903b77d04018df2eb22c050e68a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g_mulliken_partitioning" kindref="compound">GMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -1040,7 +1076,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="761" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="761" bodyend="766"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="781" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="781" bodyend="786"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -1072,7 +1108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="228" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="228" bodyend="234"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="229" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="229" bodyend="235"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_spinor_basis_1ac9e094db9455de1ad4823ac71af2c394" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kindref="member">ExpansionScalar</ref>, <ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref> &gt;</type>
@@ -1104,7 +1140,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="246" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="246" bodyend="251"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="247" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="247" bodyend="252"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1192,7 +1228,7 @@
         <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="59" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="60" bodyend="767"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="60" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="61" bodyend="787"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aad76bcfb2f9b07564621f91dd4c36bd4" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>Base</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a30600aed0df6ba06f37e8d0f267da733" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>BasisFunction</name></member>
@@ -1230,8 +1266,9 @@
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a0bfd22005830bb1c5491de945dc31c0e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ade836b6e136191e1f286a4d05421106a" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a0696a794a88eb2169065aac73c853d13" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
-      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a6179913222256fcaea670c7aa0cd9e17" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a6711610480c8889228a49b81314c662b" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aa88730bc1e90293e44b3da9227dcd2c1" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a95e2b2a85454a35f927b024ed840671e" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ae969fb4740de64aca01d5ad3a53a1e86" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a3ecd98f5670a469e7b6b96d932669454" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aab715eecdc3a5b35ca8e0e6acff6c3cc" prot="public" virt="non-virtual"><scope>GQCP::GSpinorBasis</scope><name>quantize</name></member>

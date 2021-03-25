@@ -15,8 +15,9 @@
     <includedby refid="_kinetic_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/KineticOperator.hpp</includedby>
     <includedby refid="_linear_momentum_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/LinearMomentumOperator.hpp</includedby>
     <includedby refid="_nuclear_attraction_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearAttractionOperator.hpp</includedby>
+    <includedby refid="_orbital_zeeman_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/OrbitalZeemanOperator.hpp</includedby>
     <includedby refid="_overlap_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/OverlapOperator.hpp</includedby>
-    <includedby refid="_paramagnetic_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp</includedby>
+    <includedby refid="_spin_zeeman_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp</label>
@@ -124,10 +125,16 @@
         </childnode>
         <childnode refid="91" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
-        </childnode>
         <childnode refid="48" relation="include">
         </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+      </node>
+      <node id="99">
+        <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/SpinZeemanOperator.cpp</label>
+        <link refid="_spin_zeeman_operator_8cpp"/>
       </node>
       <node id="30">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp</label>
@@ -203,26 +210,10 @@
         <childnode refid="33" relation="include">
         </childnode>
       </node>
-      <node id="51">
-        <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/ParamagneticOperator.cpp</label>
-        <link refid="_paramagnetic_operator_8cpp"/>
-      </node>
       <node id="68">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
         <link refid="_electronic_density_operator_8hpp"/>
         <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="48">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ParamagneticOperator.hpp</label>
-        <link refid="_paramagnetic_operator_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -463,6 +454,18 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp</label>
         <link refid="_base_orbital_optimizer_8cpp"/>
       </node>
+      <node id="48">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/OrbitalZeemanOperator.hpp</label>
+        <link refid="_orbital_zeeman_operator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
       <node id="50">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.cpp</label>
         <link refid="_f_q_molecular_magnetic_hamiltonian_8cpp"/>
@@ -599,6 +602,10 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="51">
+        <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/OrbitalZeemanOperator.cpp</label>
+        <link refid="_orbital_zeeman_operator_8cpp"/>
+      </node>
       <node id="82">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFErrorCalculation.hpp</label>
         <link refid="_g_h_f_error_calculation_8hpp"/>
@@ -700,6 +707,18 @@
       <node id="32">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/GeminalCoefficientsInterface.cpp</label>
         <link refid="_geminal_coefficients_interface_8cpp"/>
+      </node>
+      <node id="98">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp</label>
+        <link refid="_spin_zeeman_operator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
       </node>
       <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>

@@ -20,8 +20,9 @@
     <innerfile refid="_nuclear_attraction_operator_8hpp">NuclearAttractionOperator.hpp</innerfile>
     <innerfile refid="_nuclear_dipole_operator_8hpp">NuclearDipoleOperator.hpp</innerfile>
     <innerfile refid="_nuclear_repulsion_operator_8hpp">NuclearRepulsionOperator.hpp</innerfile>
+    <innerfile refid="_orbital_zeeman_operator_8hpp">OrbitalZeemanOperator.hpp</innerfile>
     <innerfile refid="_overlap_operator_8hpp">OverlapOperator.hpp</innerfile>
-    <innerfile refid="_paramagnetic_operator_8hpp">ParamagneticOperator.hpp</innerfile>
+    <innerfile refid="_spin_zeeman_operator_8hpp">SpinZeemanOperator.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

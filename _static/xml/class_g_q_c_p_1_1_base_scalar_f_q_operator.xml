@@ -9,8 +9,9 @@
     <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" prot="public" virt="non-virtual">GQCP::ElectronicSpin_zOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_kinetic_operator" prot="public" virt="non-virtual">GQCP::KineticOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" prot="public" virt="non-virtual">GQCP::NuclearAttractionOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_orbital_zeeman_operator" prot="public" virt="non-virtual">GQCP::OrbitalZeemanOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_overlap_operator" prot="public" virt="non-virtual">GQCP::OverlapOperator</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_paramagnetic_operator" prot="public" virt="non-virtual">GQCP::ParamagneticOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_spin_zeeman_operator" prot="public" virt="non-virtual">GQCP::SpinZeemanOperator</derivedcompoundref>
     <includes refid="_base_f_q_operator_8hpp" local="no">BaseFQOperator.hpp</includes>
     <templateparamlist>
       <param>
@@ -82,6 +83,12 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="11">
+        <label>GQCP::SpinZeemanOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_zeeman_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>GQCP::BaseScalarFQOperator&lt; N, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
@@ -118,19 +125,19 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="10">
-        <label>GQCP::ParamagneticOperator&lt; complex &gt;</label>
-        <link refid="class_g_q_c_p_1_1_paramagnetic_operator"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="2">
         <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
-      <node id="9">
+      <node id="10">
         <label>GQCP::OverlapOperator&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_overlap_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>GQCP::OrbitalZeemanOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital_zeeman_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

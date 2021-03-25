@@ -207,8 +207,9 @@
     <innerclass refid="class_g_q_c_p_1_1_nuclear_attraction_operator" prot="public">GQCP::NuclearAttractionOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_dipole_operator" prot="public">GQCP::NuclearDipoleOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_nuclear_repulsion_operator" prot="public">GQCP::NuclearRepulsionOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_orbital_zeeman_operator" prot="public">GQCP::OrbitalZeemanOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_overlap_operator" prot="public">GQCP::OverlapOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_paramagnetic_operator" prot="public">GQCP::ParamagneticOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_spin_zeeman_operator" prot="public">GQCP::SpinZeemanOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" prot="public">GQCP::EvaluatableScalarRSQOneElectronOperator</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" prot="public">GQCP::GSQOneElectronOperator</innerclass>

@@ -762,11 +762,11 @@
 </div>
 </div>
 </div>
-<p>Apparently, the matrix representation of the operator <span class="math notranslate nohighlight">\(-\dfrac{1}{2} \nabla^2\)</span> is gauge-origin <em>dependent</em>! Let’s take a further look at the paramagnetic (first order in the magnetic field) and diamagnetic (second order in the magnetic field) operators.</p>
+<p>Apparently, the matrix representation of the operator <span class="math notranslate nohighlight">\(-\dfrac{1}{2} \nabla^2\)</span> is gauge-origin <em>dependent</em>! Let’s take a further look at the orbital Zeeman (first order in the magnetic field) and diamagnetic (second order in the magnetic field) operators.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">spinor_basis1</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">ParamagneticOperator</span><span class="p">(</span><span class="n">B1</span><span class="p">,</span> <span class="n">B1</span><span class="o">.</span><span class="n">gaugeOrigin</span><span class="p">()))</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
-<span class="n">P2</span> <span class="o">=</span> <span class="n">spinor_basis2</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">ParamagneticOperator</span><span class="p">(</span><span class="n">B2</span><span class="p">,</span> <span class="n">B2</span><span class="o">.</span><span class="n">gaugeOrigin</span><span class="p">()))</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">spinor_basis1</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OrbitalZeemanOperator</span><span class="p">(</span><span class="n">B1</span><span class="p">,</span> <span class="n">B1</span><span class="o">.</span><span class="n">gaugeOrigin</span><span class="p">()))</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">spinor_basis2</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OrbitalZeemanOperator</span><span class="p">(</span><span class="n">B2</span><span class="p">,</span> <span class="n">B2</span><span class="o">.</span><span class="n">gaugeOrigin</span><span class="p">()))</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -840,7 +840,7 @@
 </div>
 </div>
 <p>We can see that these operators are also gauge origin dependent!</p>
-<p>However, by including the paramagnetic <em>and</em> diamagnetic  terms, the magnetic kinetic energy becomes gauge invariant, as shown below.</p>
+<p>However, by including the orbital Zeeman <em>and</em> diamagnetic  terms, the magnetic kinetic energy becomes gauge invariant, as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K1</span> <span class="o">=</span> <span class="n">T1</span> <span class="o">+</span> <span class="n">P1</span> <span class="o">+</span> <span class="n">D1</span>
