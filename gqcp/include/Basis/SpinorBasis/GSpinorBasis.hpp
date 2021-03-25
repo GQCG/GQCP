@@ -621,7 +621,7 @@ public:
         // Return the spin Zeeman operator as a contraction beween the magnetic field and the spin operator.
         const auto S = this->quantize(ElectronicSpinOperator());
         const auto& B = op.magneticField().strength();
-        return 0.5 * S.dot(B);
+        return S.dot(B);
     }
 
 
