@@ -17,6 +17,7 @@
 
 #include "DensityMatrix/G1DM.hpp"
 #include "gqcpy/include/interfaces.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,20 +31,26 @@ using namespace GQCP;
 
 
 /**
- *  Register `G1DM_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `G1DM_d` and `G1DM_cd` to the gqcpy module and expose a part of their C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `G1DM_d` should be registered.
+ *  @param module           The Pybind11 module in which `G1DM_d` and `G2DM_cd` should be registered.
  */
 void bindG1DM(py::module& module) {
 
-    // Define the Python class for `G1DM`.
-    py::class_<G1DM<double>> py_G1DM_d {module, "G1DM_d", "A type used to represent a one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix."};
+    // Define the Python class for `G1DM_d`.
+    py::class_<G1DM<double>> py_G1DM_d {module, "G1DM_d", "A type used to represent a real-valued one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix."};
 
-    // Expose the `Simple1DM` API to the Python class;
+    // Expose the `Simple1DM` and `BasisTransformable` APIs to `G1DM_d;
     bindSimple1DMInterface(py_G1DM_d);
-
-    // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_G1DM_d);
+    
+
+    // Define the Python class for `G1DM_cd`.
+    py::class_<G1DM<complex>> py_G1DM_cd {module, "G1DM_cd", "A type used to represent a complex-valued one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix."};
+
+    // Expose the `Simple1DM` and `BasisTransformable` APIs to `G1DM_cd;
+    bindSimple1DMInterface(py_G1DM_cd);
+    bindBasisTransformableInterface(py_G1DM_cd);
 }
 
 
