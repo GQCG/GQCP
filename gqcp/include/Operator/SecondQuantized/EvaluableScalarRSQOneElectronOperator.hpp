@@ -20,7 +20,7 @@
 
 #include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
-#include "Mathematical/Functions/ScalarFunction.hpp"
+#include "Mathematical/Functions/Function.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -39,14 +39,14 @@ namespace GQCP {
  *  @tparam _Evaluatable            The type of evaluatable function that is used as a matrix element of this one-electron operator.
  */
 template <typename _Evaluatable>
-class EvaluatableScalarRSQOneElectronOperator:
-    public SQOperatorStorageBase<SquareMatrix<_Evaluatable>, ScalarVectorizer, EvaluatableScalarRSQOneElectronOperator<_Evaluatable>> {
+class EvaluableScalarRSQOneElectronOperator:
+    public SQOperatorStorageBase<SquareMatrix<_Evaluatable>, ScalarVectorizer, EvaluableScalarRSQOneElectronOperator<_Evaluatable>> {
 public:
     // The type of evaluatable function that is used as a matrix element of this one-electron operator.
     using Evaluatable = _Evaluatable;
 
-    // Allow only `Evaluatable` types that derive from `ScalarFunction`.
-    static_assert(std::is_base_of<ScalarFunction<typename Evaluatable::Valued, typename Evaluatable::Scalar, Evaluatable::Cols>, Evaluatable>::value, "EvaluatableScalarRSQOneElectronOperator: Evaluatable must inherit from ScalarFunction.");
+    // Allow only `Evaluatable` types that derive from `Function`.
+    static_assert(std::is_base_of<Function<typename Evaluatable::Valued, typename Evaluatable::Scalar, Evaluatable::Cols>, Evaluatable>::value, "EvaluableScalarRSQOneElectronOperator: Evaluatable must inherit from Function.");
 
     // The type of the scalars of the input vector.
     using Scalar = typename Evaluatable::Scalar;
@@ -58,7 +58,7 @@ public:
     static constexpr auto Cols = Evaluatable::Cols;
 
     // The type of 'this'.
-    using Self = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
+    using Self = EvaluableScalarRSQOneElectronOperator<Evaluatable>;
 
 
 public:
@@ -67,7 +67,7 @@ public:
      */
 
     // Inherit `SQOperatorStorage`'s constructors.
-    using SQOperatorStorageBase<SquareMatrix<_Evaluatable>, ScalarVectorizer, EvaluatableScalarRSQOneElectronOperator<_Evaluatable>>::SQOperatorStorageBase;
+    using SQOperatorStorageBase<SquareMatrix<_Evaluatable>, ScalarVectorizer, EvaluableScalarRSQOneElectronOperator<_Evaluatable>>::SQOperatorStorageBase;
 
 
     /*
@@ -89,7 +89,7 @@ public:
         // Evaluate the underlying scalar functions at the given point.
         for (size_t m = 0; m < this->numberOfOrbitals(); m++) {
             for (size_t n = 0; n < this->numberOfOrbitals(); n++) {
-                F_evaluated(m, n) = this->parameters()(m, n).operator()(x);  // Evaluate the ScalarFunction of the (m,n)-th element.
+                F_evaluated(m, n) = this->parameters()(m, n).operator()(x);  // Evaluate the Function of the (m,n)-th element.
             }
         }
 
@@ -107,16 +107,16 @@ public:
      * 
      *  @return The expectation value of this second-quantized (one-electron) density operator, i.e. the electron density.
      * 
-     *  @note This method is only enabled for EvaluatableScalarRSQOneElectronOperator that represent second-quantized electron density operators.
+     *  @note This method is only enabled for EvaluableScalarRSQOneElectronOperator that represent second-quantized electron density operators.
      */
-    template <typename S = Evaluatable, typename = enable_if_t<std::is_same<S, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>>::value>>
-    LinearCombination<double, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>> calculateDensity(const Orbital1DM<double>& D) const {
+    template <typename S = Evaluatable, typename = enable_if_t<std::is_same<S, FunctionProduct<EvaluableLinearCombination<double, EvaluableLinearCombination<double, CartesianGTO>>>>::value>>
+    EvaluableLinearCombination<double, FunctionProduct<EvaluableLinearCombination<double, EvaluableLinearCombination<double, CartesianGTO>>>> calculateDensity(const Orbital1DM<double>& D) const {
 
         using Primitive = CartesianGTO;
-        using BasisFunction = LinearCombination<double, Primitive>;
-        using SpatialOrbital = LinearCombination<double, BasisFunction>;
-        using SchrodingerDistribution = ScalarFunctionProduct<SpatialOrbital>;
-        using DensityType = LinearCombination<double, SchrodingerDistribution>;
+        using BasisFunction = EvaluableLinearCombination<double, Primitive>;
+        using SpatialOrbital = EvaluableLinearCombination<double, BasisFunction>;
+        using SchrodingerDistribution = FunctionProduct<SpatialOrbital>;
+        using DensityType = EvaluableLinearCombination<double, SchrodingerDistribution>;
 
         // Create the density as a linear combination of 'density matrix elements'.
         DensityType density;
@@ -142,7 +142,7 @@ public:
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename _Evaluatable>
-struct OperatorTraits<EvaluatableScalarRSQOneElectronOperator<_Evaluatable>> {
+struct OperatorTraits<EvaluableScalarRSQOneElectronOperator<_Evaluatable>> {
     // The type of evaluatable function that is used as a matrix element of the one-electron operator.
     using Evaluatable = _Evaluatable;
 
@@ -150,10 +150,10 @@ struct OperatorTraits<EvaluatableScalarRSQOneElectronOperator<_Evaluatable>> {
     using Scalar = typename Evaluatable::Scalar;
 
     // The type of the operator at the end of the inheritance chain of `SQOperatorStorageBase`.
-    using DerivedOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
+    using DerivedOperator = EvaluableScalarRSQOneElectronOperator<Evaluatable>;
 
     // The scalar version of the type of the operator at the end of the inheritance chain of `SQOperatorStorageBase`.
-    using ScalarOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
+    using ScalarOperator = EvaluableScalarRSQOneElectronOperator<Evaluatable>;
 };
 
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Functions/ScalarFunction.hpp"
+#include "Mathematical/Functions/Function.hpp"
 #include "Mathematical/Grid/Field.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Molecule/Molecule.hpp"
@@ -91,23 +91,23 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  Evaluate a scalar function on every point of this grid.
+     *  Evaluate a function on every point of this grid.
      * 
-     *  @param scalar_function          the scalar functions whose values should be evaluated
+     *  @param function          The function whose values should be evaluated.
      * 
-     *  @return a field with the calculated evaluations
+     *  @return A field with the calculated evaluations.
      */
-    template <typename Valued>
-    Field<Valued> evaluate(const ScalarFunction<Valued, double, 3>& scalar_function) const {
+    template <typename OutputType>
+    Field<OutputType> evaluate(const Function<OutputType, double, 3>& function) const {
 
-        std::vector<Valued> values;  // the evaluated values of the scalar function
+        std::vector<OutputType> values;
         values.reserve(this->numberOfPoints());
 
-        this->forEach([&values, &scalar_function](const Vector<double, 3>& r) {
-            values.push_back(scalar_function(r));
+        this->forEach([&values, &function](const Vector<double, 3>& r) {
+            values.push_back(function(r));
         });
 
-        return Field<Valued>(values);
+        return Field<OutputType>(values);
     }
 
 

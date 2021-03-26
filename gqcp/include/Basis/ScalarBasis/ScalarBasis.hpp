@@ -22,7 +22,6 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Mathematical/Functions/LinearCombination.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Utilities/type_traits.hpp"

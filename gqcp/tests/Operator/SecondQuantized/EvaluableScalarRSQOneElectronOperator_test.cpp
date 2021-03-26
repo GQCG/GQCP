@@ -54,13 +54,13 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
     const GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
 
 
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
 
 
-    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
+    GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
     // clang-format off
     rho_par << lc1, lc2,
                lc3, lc4;
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
          1.0, 0.0;
     // clang-format on
 
-    const GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
+    const GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
 
 
     // Check the coefficients of the transformed operator with a manual calculation
@@ -96,10 +96,10 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
 
 
 /**
- *  Check if we can evaluate an `EvaluatableScalarRSQOneElectronOperator` consisting of GTOs in a given point r.
+ *  Check if we can evaluate an `EvaluableScalarRSQOneElectronOperator` consisting of GTOs in a given point r.
  */
 
-BOOST_AUTO_TEST_CASE(EvaluatableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
+BOOST_AUTO_TEST_CASE(EvaluableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
 
     // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation.
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
@@ -123,13 +123,13 @@ BOOST_AUTO_TEST_CASE(EvaluatableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
     const GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
 
 
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
 
 
-    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
+    GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
     // clang-format off
     rho_par << lc1, lc2,
                lc3, lc4;
@@ -143,8 +143,8 @@ BOOST_AUTO_TEST_CASE(EvaluatableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
          1.0, 0.0;
     // clang-format on
 
-    const GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
-    const GQCP::EvaluatableScalarRSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
+    const GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
+    const GQCP::EvaluableScalarRSQOneElectronOperator<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
 
 
     // Evaluate the operator of GTOs at the given point r

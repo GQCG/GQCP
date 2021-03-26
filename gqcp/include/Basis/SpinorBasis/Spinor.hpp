@@ -18,64 +18,26 @@
 #pragma once
 
 
-#include "Mathematical/Functions/LinearCombination.hpp"
-#include "QuantumChemical/Spin.hpp"
+#include "Mathematical/Functions/EvaluableLinearCombination.hpp"
+#include "QuantumChemical/SpinResolvedBase.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  @tparam _Scalar                 the scalar representation of the expansion coefficients
- *  @tparam _BasisFunction          the type of the underlying basis functions
+ *  @tparam _Scalar                 The scalar representation of one of the expansion coefficients.
+ *  @tparam _BasisFunction          The type of the underlying basis functions.
  */
 template <typename _Scalar, typename _BasisFunction>
-class Spinor {
+class Spinor:
+    public SpinResolvedBase<EvaluableLinearCombination<_Scalar, _BasisFunction>, Spinor<_Scalar, _BasisFunction>> {
 public:
+    // The scalar representation of one of the expansion coefficients.
     using Scalar = _Scalar;
+
+    // The type of the underlying basis functions.
     using BasisFunction = _BasisFunction;
-
-
-private:
-    LinearCombination<Scalar, BasisFunction> alpha_component;  // the alpha-component of the spinor, as an expansion of underlying scalar functions
-    LinearCombination<Scalar, BasisFunction> beta_component;   // the beta-component of the spinor, as an expansion of underlying scalar functions
-
-
-public:
-    /*
-     *  CONSTRUCTORS
-     */
-
-    /**
-     *  A memberwise constructor.
-     * 
-     *  @param alpha_component              the alpha-component of the spinor, as an expansion of underlying scalar functions
-     *  @param beta_component               the beta-component of the spinor, as an expansion of underlying scalar functions
-     */
-    Spinor(const LinearCombination<Scalar, BasisFunction>& alpha_component, const LinearCombination<Scalar, BasisFunction>& beta_component) :
-        alpha_component {alpha_component},
-        beta_component {beta_component} {}
-
-
-    /*
-     *  PUBLIC METHODS
-     */
-
-    /**
-     *  @return the sigma-component of this spinor
-     */
-    const LinearCombination<Scalar, BasisFunction>& component(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha:
-            return this->alpha_component;
-            break;
-
-        case Spin::beta:
-            return this->beta_component;
-            break;
-        }
-    }
 };
 
 

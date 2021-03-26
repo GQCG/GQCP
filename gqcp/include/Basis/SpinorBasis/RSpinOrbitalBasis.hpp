@@ -33,7 +33,7 @@
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
-#include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/EvaluableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -73,7 +73,7 @@ public:
     using BasisFunction = typename Shell::BasisFunction;
 
     // The type that is used to represent a spatial orbital for this spin-orbital basis.
-    using SpatialOrbital = LinearCombination<product_t<ExpansionScalar, typename BasisFunction::CoefficientScalar>, BasisFunction>;
+    using SpatialOrbital = EvaluableLinearCombination<product_t<ExpansionScalar, typename BasisFunction::Coefficient>, BasisFunction>;
 
 
 public:
@@ -172,20 +172,20 @@ public:
     /**
      *  Quantize the (one-electron) electronic density operator.
      * 
-     *  @param fq_density_op                    the first-quantized density operator
+     *  @param fq_density_op                    The first-quantized density operator.
      * 
-     *  @return the second-quantized density operator
+     *  @return The second-quantized density operator.
      */
-    EvaluatableScalarRSQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>> quantize(const ElectronicDensityOperator& fq_density_op) const {
+    EvaluableScalarRSQOneElectronOperator<FunctionProduct<EvaluableLinearCombination<double, BasisFunction>>> quantize(const ElectronicDensityOperator& fq_density_op) const {
 
-        using Evaluatable = ScalarFunctionProduct<LinearCombination<double, BasisFunction>>;  // the evaluatable type for the density operator
-        using ResultOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
+        using Evaluatable = FunctionProduct<EvaluableLinearCombination<double, BasisFunction>>;  // The evaluatable type for the density operator.
+        using ResultOperator = EvaluableScalarRSQOneElectronOperator<Evaluatable>;
 
         // There aren't any 'integrals' to be calculated for the density operator: we can just multiply every pair of spatial orbitals.
         const auto phi = this->spatialOrbitals();
         const auto K = this->numberOfSpatialOrbitals();
 
-        SquareMatrix<Evaluatable> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
+        SquareMatrix<Evaluatable> rho_par {K};
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 rho_par(p, q) = phi[p] * phi[q];
@@ -261,7 +261,7 @@ public:
         for (const auto& spatial_orbital : spatial_orbitals) {
 
             // Add the alpha- and beta-spin-orbitals accordingly.
-            const Spinor<ExpansionScalar, BasisFunction> alpha_spin_orbital {spatial_orbital, 0};  // the '0' int literal can be converted to a zero LinearCombination
+            const Spinor<ExpansionScalar, BasisFunction> alpha_spin_orbital {spatial_orbital, 0};  // the '0' int literal can be converted to a zero EvaluableLinearCombination
             spin_orbitals.push_back(alpha_spin_orbital);
 
             const Spinor<ExpansionScalar, BasisFunction> beta_spin_orbital {0, spatial_orbital};

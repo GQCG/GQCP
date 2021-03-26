@@ -29,14 +29,15 @@ namespace GQCP {
 
 
 /*
- *  Forward declaration of ScalarFunction to be used in ScalarFunctionProduct.
+ *  MARK: Forward declarations
  */
-template <typename _Valued, typename _Scalar, int _Cols>
-class ScalarFunction;
+template <typename Valued, typename Scalar, int Cols>
+class Function;
+
 
 
 /*
- *  Implementation of ScalarFunctionProduct.
+ *  MARK: `FunctionProduct` implementation
  */
 
 /**
@@ -46,14 +47,14 @@ class ScalarFunction;
  *  @tparam T2      the right-hand side scalar function type
  */
 template <typename T1, typename T2 = T1>
-class ScalarFunctionProduct:
-    public ScalarFunction<product_t<typename T1::Valued, typename T2::Valued>, typename T1::Scalar, T1::Cols> {
+class FunctionProduct:
+    public Function<product_t<typename T1::Valued, typename T2::Valued>, typename T1::Scalar, T1::Cols> {
 
-    static_assert(std::is_base_of<ScalarFunction<typename T1::Valued, typename T1::Scalar, T1::Cols>, T1>::value, "ScalarFunctionProduct: T1 must inherit from ScalarFunction");
-    static_assert(std::is_base_of<ScalarFunction<typename T2::Valued, typename T2::Scalar, T2::Cols>, T2>::value, "ScalarFunctionProduct: T2 must inherit from ScalarFunction");
+    static_assert(std::is_base_of<Function<typename T1::Valued, typename T1::Scalar, T1::Cols>, T1>::value, "FunctionProduct: T1 must inherit from Function");
+    static_assert(std::is_base_of<Function<typename T2::Valued, typename T2::Scalar, T2::Cols>, T2>::value, "FunctionProduct: T2 must inherit from Function");
 
-    static_assert(std::is_same<typename T1::Scalar, typename T2::Scalar>::value, "ScalarFunctionProduct: T1 and T2 should have the same Scalar type");
-    static_assert(T1::Cols == T2::Cols, "ScalarFunctionProduct: T1 and T2 should have the same Cols");
+    static_assert(std::is_same<typename T1::Scalar, typename T2::Scalar>::value, "FunctionProduct: T1 and T2 should have the same Scalar type");
+    static_assert(T1::Cols == T2::Cols, "FunctionProduct: T1 and T2 should have the same Cols");
 
 
 private:
@@ -77,7 +78,7 @@ public:
      *  @param lhs      the left-hand side of the product
      *  @param rhs      the right-hand side of the product
      */
-    ScalarFunctionProduct(const T1& lhs, const T2& rhs) :
+    FunctionProduct(const T1& lhs, const T2& rhs) :
         m_lhs {lhs},
         m_rhs {rhs} {}
 
@@ -85,17 +86,17 @@ public:
     /**
      *  The default constructor.
      */
-    ScalarFunctionProduct() = default;
+    FunctionProduct() = default;
 
 
     /**
      *  The constructor for a 'zero' instance given the '0' integer literal.
      */
-    ScalarFunctionProduct(const int literal) :
-        ScalarFunctionProduct() {
+    FunctionProduct(const int literal) :
+        FunctionProduct() {
 
         if (literal != 0) {
-            throw std::invalid_argument("ScalarFunctionProduct(const int): Can't convert a non-zero integer to a 'zero' instance.");
+            throw std::invalid_argument("FunctionProduct(const int): Can't convert a non-zero integer to a 'zero' instance.");
         }
     }
 
@@ -135,18 +136,18 @@ public:
 
 
 /*
- *  Implementation of ScalarFunction
+ *  MARK: `Function` implementation
  */
 
 /**
- *  A class template representing a mathematical scalar function through overriding operator()
+ *  A type that represents a mathematical function through its `operator()`.
  *
- *  @tparam _Valued     the return type of the scalar function
+ *  @tparam _Valued         the return type of the scalar function
  *  @tparam _Scalar     the type of the scalars of the input vector
  *  @tparam _Cols       the dimension of the input vector: an integer, or Eigen::Dynamic representing an unknown number of columns at compile time
  */
 template <typename _Valued, typename _Scalar, int _Cols>
-class ScalarFunction {
+class Function {
 public:
     using Valued = _Valued;
     using Scalar = _Scalar;
@@ -158,7 +159,7 @@ public:
     /*
      *  DESTRUCTOR
      */
-    virtual ~ScalarFunction() = default;
+    virtual ~Function() = default;
 
 
     /*
@@ -175,14 +176,14 @@ public:
 
 
 /*
- *  Aliases related to ScalarFunction.
+ *  Aliases related to Function.
  */
 
 /**
- *  A SFINAE expression that checks if the type T is a scalar function, i.e. if it derives from ScalarFunction.
+ *  A SFINAE expression that checks if the type T is a scalar function, i.e. if it derives from Function.
  */
 template <typename T>
-using IsScalarFunction = enable_if_t<std::is_base_of<ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>, T>::value>;
+using IsFunction = enable_if_t<std::is_base_of<Function<typename T::Valued, typename T::Scalar, T::Cols>, T>::value>;
 
 
 /**
@@ -191,12 +192,12 @@ using IsScalarFunction = enable_if_t<std::is_base_of<ScalarFunction<typename T::
  *  @tparam SF1             the type of the first scalar function
  *  @tparam SF2             the type of the second scalar function
  * 
- *  @note This function is only enabled for actual scalar functions, i.e. functions that derive from ScalarFunction.
+ *  @note This function is only enabled for actual scalar functions, i.e. functions that derive from Function.
  */
-template <typename SF1, typename SF2, typename = IsScalarFunction<SF1>, typename = IsScalarFunction<SF2>>
-ScalarFunctionProduct<SF1, SF2> operator*(const SF1& lhs, const SF2& rhs) {
+template <typename SF1, typename SF2, typename = IsFunction<SF1>, typename = IsFunction<SF2>>
+FunctionProduct<SF1, SF2> operator*(const SF1& lhs, const SF2& rhs) {
 
-    return ScalarFunctionProduct<SF1, SF2>(lhs, rhs);
+    return FunctionProduct<SF1, SF2>(lhs, rhs);
 }
 
 

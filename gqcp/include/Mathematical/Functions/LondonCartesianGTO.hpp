@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Functions/CartesianGTO.hpp"
-#include "Mathematical/Functions/ScalarFunction.hpp"
+#include "Mathematical/Functions/Function.hpp"
 #include "Physical/HomogeneousMagneticField.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -30,12 +30,12 @@ namespace GQCP {
 /**
  *  A London-modified Cartesian GTO.
  *
- *  @note Mathematically speaking, a Cartesian GTO is a complex-valued scalar function taking an Euclidean vector (3D-vector) as argument, which is why we inherit from ScalarFunction.
+ *  @note Mathematically speaking, a Cartesian GTO is a complex-valued scalar function taking an Euclidean vector (3D-vector) as argument, which is why we inherit from `Function`.
  *  @note Calling operator() returns the value of the unnormalized London GTO.
- *  @note Contracted London GTOs can be expressed as linear combinations of GTOs: LinearCombination<LondonCartesianGTO>.
+ *  @note Contracted London GTOs can be expressed as linear combinations of GTOs: `EvaluableLinearCombination<LondonCartesianGTO>`.
  */
 class LondonCartesianGTO:
-    public ScalarFunction<complex, double, 3> {
+    public Function<complex, double, 3> {
 public:
     // The return type of the call operator, i.e. the valuedness of the scalar function.
     using Valued = complex;
