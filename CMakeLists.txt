@@ -10,14 +10,22 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(GQCP VERSION 0.0.1 LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
-# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
+# Look for the dependencies
+find_package(Git REQUIRED)
+find_package(Eigen3 3.3.4 REQUIRED)
+find_package(Int2 REQUIRED)
+find_package(cint REQUIRED)
+find_package(MKL REQUIRED)
+
+
+# Get the latest commit hash
 execute_process(
-    COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
-    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+    COMMAND git rev-parse HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_SHA1
-    ERROR_QUIET
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+
 
 # Add the versioning as a separate library. Whenever the version changes, only the version.cpp source file will be recompiled 
 # and only gqcp needs to be relinked. This way, gqcp does not need to be recompiled if the version should be modified.
@@ -41,13 +49,6 @@ option(BUILD_DOCS "Build the documentation of the C++ library using Doxygen" OFF
 option(BUILD_PYTHON_BINDINGS "Build the Python bindings for the C++ library" OFF)
 option(OPTIMIZE_FOR_NATIVE "Build with -march=native" OFF)
 
-
-# Look for the dependencies
-find_package(Git REQUIRED)
-find_package(Eigen3 3.3.4 REQUIRED)
-find_package(Int2 REQUIRED)
-find_package(cint REQUIRED)
-find_package(MKL REQUIRED)
 
 if (BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
