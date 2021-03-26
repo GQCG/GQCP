@@ -20,18 +20,26 @@
 
 #include "Mathematical/Representation/Tensor.hpp"
 
+#include <unsupported/Eigen/CXX11/TensorSymmetry>
+
 
 namespace GQCP {
 
 
 /**
  *  The antisymmetric rank-three Levi-Civita tensor.
+ * 
+ *  @tparam _Scalar         The scalar type of one of the elements of the tensor. 
  */
 template <typename _Scalar>
 class LeviCivitaTensor {
+public:
+    // The scalar type of one of the elements of the tensor.
+    using Scalar = _Scalar;
+
 private:
     // The values of the Levi-Civita tensor.
-    Tensor<_Scalar, 3> epsilon;
+    Tensor<Scalar, 3> epsilon;
 
 public:
     /*
@@ -41,7 +49,17 @@ public:
     /**
      *  The default constructor.
      */
-    LeviCivitaTensor();
+    LeviCivitaTensor() {
+
+        // Initialize a zero tensor.
+    this->epsilon = Tensor<Scalar, 3>(3, 3, 3);
+    this->epsilon.setZero();
+
+
+    // Construct the antisymmetries of the Levi-Civita tensor and set its elements.
+    Eigen::SGroup<Eigen::AntiSymmetry<0, 1>, Eigen::AntiSymmetry<1, 2>> symmetry;
+    symmetry(this->epsilon, 0, 1, 2) = 1.0;
+    }
 
 
     /*
@@ -55,7 +73,7 @@ public:
      * 
      *  @return The element epsilon(i,j,k) of the Levi-Civita tensor.
      */
-    _Scalar operator()(const size_t i, const size_t j, const size_t k) const { return this->epsilon(i, j, k); }
+    Scalar operator()(const size_t i, const size_t j, const size_t k) const { return this->epsilon(i, j, k); }
 
     /**
      *  Find the index k such that the Levi-Civita tensor epsilon(i,j,k) (or any permutations thereof) does not vanish.
@@ -65,7 +83,15 @@ public:
      * 
      *  @return The index k such that epsilon(i,j,k) does not vanish.
      */
-    size_t nonZeroIndex(const size_t i, const size_t j) const;
+    size_t nonZeroIndex(const size_t i, const size_t j) const {
+
+        if (i == j) {
+            throw std::invalid_argument("LeviCivitaTensor::nonZeroIndex(const size_t, const size_t): The given indices cannot be equal.");
+        }
+
+        return 3 - (i + j);
+        
+    }
 };
 
 
