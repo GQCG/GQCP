@@ -47,7 +47,7 @@ public:
     using Primitive = typename Shell::Primitive;
 
     // The scalar representation of a canonical kinetic energy integral.
-    using IntegralScalar = product_t<KineticOperator::Scalar, typename Primitive::Valued>;
+    using IntegralScalar = product_t<KineticOperator::Scalar, typename Primitive::OutputType>;
 
 
 public:

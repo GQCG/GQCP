@@ -44,7 +44,7 @@ public:
     using Primitive = typename Shell::Primitive;
 
     // The scalar representation of a linear momentum integral.
-    using IntegralScalar = product_t<LinearMomentumOperator::Scalar, typename Primitive::Valued>;
+    using IntegralScalar = product_t<LinearMomentumOperator::Scalar, typename Primitive::OutputType>;
 
 
 public:

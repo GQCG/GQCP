@@ -21,6 +21,7 @@
 #include "Mathematical/Functions/CartesianExponents.hpp"
 #include "Mathematical/Functions/EvaluableLinearCombination.hpp"
 #include "Mathematical/Functions/Function.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 namespace GQCP {
@@ -34,10 +35,13 @@ namespace GQCP {
  *  @note Contracted GTOs can be expressed as linear combinations of GTOs: `EvaluableLinearCombination<CartesianGTO>`.
  */
 class CartesianGTO:
-    public Function<double, double, 3> {
+    public Function<double, Vector<double, 3>> {
 public:
-    // The return type of the call operator, i.e. the valuedness of the scalar function.
-    using Valued = double;
+    // The return type of the `operator()`.
+    using OutputType = double;
+
+    // The input type of the `operator()`.
+    using InputType = Vector<double, 3>;
 
 
 private:

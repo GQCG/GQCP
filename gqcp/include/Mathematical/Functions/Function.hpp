@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -31,9 +30,8 @@ namespace GQCP {
 /*
  *  MARK: Forward declarations
  */
-template <typename Valued, typename Scalar, int Cols>
+template <typename OutputType, typename InputType>
 class Function;
-
 
 
 /*
@@ -41,42 +39,41 @@ class Function;
  */
 
 /**
- *  A class template that represents a product of scalar functions (of the same type), such that the evaluation of a product is the product of the evaluations
+ *  A template that represents a product of functions. In this way, the evaluation of a function product is the product of the respective evaluations.
  *
- *  @tparam T1      the left-hand side scalar function type
- *  @tparam T2      the right-hand side scalar function type
+ *  @tparam T1          The left-hand side function type.
+ *  @tparam T2          The right-hand side function type
  */
 template <typename T1, typename T2 = T1>
 class FunctionProduct:
-    public Function<product_t<typename T1::Valued, typename T2::Valued>, typename T1::Scalar, T1::Cols> {
+    public Function<product_t<typename T1::OutputType, typename T2::OutputType>, typename T1::InputType> {
 
-    static_assert(std::is_base_of<Function<typename T1::Valued, typename T1::Scalar, T1::Cols>, T1>::value, "FunctionProduct: T1 must inherit from Function");
-    static_assert(std::is_base_of<Function<typename T2::Valued, typename T2::Scalar, T2::Cols>, T2>::value, "FunctionProduct: T2 must inherit from Function");
-
-    static_assert(std::is_same<typename T1::Scalar, typename T2::Scalar>::value, "FunctionProduct: T1 and T2 should have the same Scalar type");
-    static_assert(T1::Cols == T2::Cols, "FunctionProduct: T1 and T2 should have the same Cols");
-
+    static_assert(std::is_same<typename T1::InputType, typename T2::InputType>::value, "FunctionProduct: T1 and T2 should have the same InputType.");
 
 private:
-    T1 m_lhs;  // left-hand side
-    T2 m_rhs;  // right-hand side
+    // The left-hand side of the product.
+    T1 m_lhs;
+
+    // The right-hand side of the product.
+    T2 m_rhs;
 
 
 public:
-    using Valued = product_t<typename T1::Valued, typename T2::Valued>;
-    using Scalar = typename T1::Scalar;  // equal to T2::Scalar
+    // The combined output type of the `operator()`.
+    using OutputType = product_t<typename T1::OutputType, typename T2::OutputType>;
 
-    static const auto Cols = T1::Cols;  // equal to T2::Cols
+    // The input type of the `operator()`.
+    using InputType = typename T1::InputType;  // Due to the `static_assert`, this is equal to `T2::InputType`.
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  @param lhs      the left-hand side of the product
-     *  @param rhs      the right-hand side of the product
+     *  @param lhs          The left-hand side of the product.
+     *  @param rhs          The right-hand side of the product.
      */
     FunctionProduct(const T1& lhs, const T2& rhs) :
         m_lhs {lhs},
@@ -90,48 +87,55 @@ public:
 
 
     /**
-     *  The constructor for a 'zero' instance given the '0' integer literal.
+     *  Construct a 'zero function product' given the '0' integer literal.
+     * 
+     *  @param zero         The '0' integer literal.
      */
-    FunctionProduct(const int literal) :
+    FunctionProduct(const int zero) :
         FunctionProduct() {
 
-        if (literal != 0) {
+        if (zero != 0) {
             throw std::invalid_argument("FunctionProduct(const int): Can't convert a non-zero integer to a 'zero' instance.");
         }
     }
 
 
     /*
-     *  OPERATORS
+     *  MARK: General information
      */
 
-
     /**
-     *  @return a textual description of self
+     *  @return A textual description of this function.
      */
     std::string description() const {
         return (boost::format("((%s) * (%s))") % this->m_lhs.description() % this->m_rhs.description()).str();
     }
 
+
+    /*
+     *  MARK: Access
+     */
+
     /**
-     *  @return the left-hand side of this product
+     *  @return The left-hand side of this product.
      */
     const T1& lhs() const { return this->m_lhs; }
 
     /**
-     *  @param x        the vector/point at which the scalar function product is to be evaluated
-     *
-     *  @return the product of the evaluated left-hand and right-hand side scalar functions
-     */
-    Valued operator()(const Vector<Scalar, Cols>& x) const override {
-        return this->m_lhs(x) * this->m_rhs(x);
-    }
-
-
-    /**
-     *  @return the right-hand side of this product
+     *  @return The right-hand side of this product.
      */
     const T2& rhs() const { return this->m_rhs; }
+
+    /**
+     *  Evaluate this function product.
+     * 
+     *  @param in           The argument for which the function is to be evaluated.
+     *
+     *  @return The function value of this function product for the given argument.
+     */
+    OutputType operator()(const InputType& in) const override {
+        return this->m_lhs(in) * this->m_rhs(in);
+    }
 };
 
 
@@ -142,62 +146,68 @@ public:
 /**
  *  A type that represents a mathematical function through its `operator()`.
  *
- *  @tparam _Valued         the return type of the scalar function
- *  @tparam _Scalar     the type of the scalars of the input vector
- *  @tparam _Cols       the dimension of the input vector: an integer, or Eigen::Dynamic representing an unknown number of columns at compile time
+ *  @tparam _OutputType         The return type of the `operator()`.
+ *  @tparam _InputType          The input type of the `operator()`.
  */
-template <typename _Valued, typename _Scalar, int _Cols>
+template <typename _OutputType, typename _InputType>
 class Function {
 public:
-    using Valued = _Valued;
-    using Scalar = _Scalar;
+    // The return type of the `operator()`.
+    using OutputType = _OutputType;
 
-    static const auto Cols = _Cols;
+    // The input type of the `operator()`.
+    using InputType = _InputType;
 
 
 public:
     /*
-     *  DESTRUCTOR
+     *  MARK: Destructor
+     */
+
+    /**
+     *  The default destructor.
      */
     virtual ~Function() = default;
 
 
     /*
-     *  OPERATORS
+     *  MARK: `Function` behavior
      */
 
     /**
-     *  @param x        the vector/point at which the scalar function is to be evaluated
+     *  Evaluate this function for the given argument.
+     * 
+     *  @param in        The argument at which the function is to be evaluated.
      *
-     *  @return the scalar function value at the given point
+     *  @return The function value for the given argument.
      */
-    virtual _Valued operator()(const Vector<_Scalar, _Cols>& x) const = 0;
+    virtual OutputType operator()(const InputType& in) const = 0;
 };
 
 
 /*
- *  Aliases related to Function.
+ *  MARK: Aliases related to `Function`.
  */
 
 /**
- *  A SFINAE expression that checks if the type T is a scalar function, i.e. if it derives from Function.
+ *  A SFINAE expression that checks if the type T derives from `Function`.
  */
 template <typename T>
-using IsFunction = enable_if_t<std::is_base_of<Function<typename T::Valued, typename T::Scalar, T::Cols>, T>::value>;
+using IsFunction = enable_if_t<std::is_base_of<Function<typename T::OutputType, typename T::InputType>, T>::value>;
 
 
 /**
- *  Multiply one scalar function by another.
+ *  Multiply one function by another.
  * 
- *  @tparam SF1             the type of the first scalar function
- *  @tparam SF2             the type of the second scalar function
+ *  @tparam F1              The type of the first function.
+ *  @tparam F2              The type of the second function.
  * 
- *  @note This function is only enabled for actual scalar functions, i.e. functions that derive from Function.
+ *  @note This function is only enabled for actual functions, i.e. functions that derive from `Function`.
  */
-template <typename SF1, typename SF2, typename = IsFunction<SF1>, typename = IsFunction<SF2>>
-FunctionProduct<SF1, SF2> operator*(const SF1& lhs, const SF2& rhs) {
+template <typename F1, typename F2, typename = IsFunction<F1>, typename = IsFunction<F2>>
+FunctionProduct<F1, F2> operator*(const F1& lhs, const F2& rhs) {
 
-    return FunctionProduct<SF1, SF2>(lhs, rhs);
+    return FunctionProduct<F1, F2>(lhs, rhs);
 }
 
 

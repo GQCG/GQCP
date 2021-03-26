@@ -24,8 +24,8 @@
 
 
 /**
- *  EvaluableLinearCombination inherits from Function, so we can use the class to test the behavior of FunctionProduct.
- *  Therefore, this test also makes sure that FunctionProduct correctly compiles with T1 and T2 having the same ::Cols and ::Scalar.
+ *  `EvaluableLinearCombination` inherits from `Function`, so we can use the class to test the behavior of FunctionProduct.
+ *  Therefore, this test also makes sure that `FunctionProduct` correctly compiles with T1 and T2 having the same InputType.
  */
 BOOST_AUTO_TEST_CASE(FunctionProduct) {
 

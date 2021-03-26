@@ -35,10 +35,13 @@ namespace GQCP {
  *  @note Contracted London GTOs can be expressed as linear combinations of GTOs: `EvaluableLinearCombination<LondonCartesianGTO>`.
  */
 class LondonCartesianGTO:
-    public Function<complex, double, 3> {
+    public Function<complex, Vector<double, 3>> {
 public:
-    // The return type of the call operator, i.e. the valuedness of the scalar function.
-    using Valued = complex;
+    // The return type of the `operator()`.
+    using OutputType = complex;
+
+    // The input type of the `operator()`.
+    using InputType = Vector<double, 3>;
 
 
 private:

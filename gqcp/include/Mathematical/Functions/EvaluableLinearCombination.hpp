@@ -40,7 +40,7 @@ namespace GQCP {
  */
 template <typename _Coefficient, typename _FunctionType>
 class EvaluableLinearCombination:
-    public Function<typename _FunctionType::Valued, typename _FunctionType::Scalar, _FunctionType::Cols>,
+    public Function<typename _FunctionType::OutputType, typename _FunctionType::InputType>,
     public VectorSpaceArithmetic<EvaluableLinearCombination<_Coefficient, _FunctionType>, _Coefficient> {
 
 public:
@@ -50,17 +50,16 @@ public:
     // The type of the function.
     using FunctionType = _FunctionType;
 
+    // The return type of the `operator()`.
+    using OutputType = typename FunctionType::OutputType;
+
+    // The input type of the `operator()`.
+    using InputType = typename FunctionType::InputType;
+
+    static_assert(std::is_base_of<Function<OutputType, InputType>, FunctionType>::value, "EvaluableLinearCombination: FunctionType must derive from `Function`.");
+
     // The type of 'this'.
     using Self = EvaluableLinearCombination<Coefficient, FunctionType>;
-
-    // The type that serves as the argument for evaluating this linear combination.
-    using InputType = Vector<typename FunctionType::Scalar, FunctionType::Cols>;
-
-    // The output type for the evaluation of this linear combination.
-    using OutputType = typename FunctionType::Valued;
-
-    static_assert(std::is_base_of<Function<typename FunctionType::Valued, typename FunctionType::Scalar, FunctionType::Cols>, FunctionType>::value, "EvaluableLinearCombination: FunctionType must derive from Function");
-
 
 protected:
     // The coefficients of the linear combination.
@@ -230,9 +229,11 @@ public:
      */
 
     /**
-     *  @param in           The argument at which the function is to be evaluated.
+     *  Evaluate this linear combination.
+     * 
+     *  @param in           The argument for which the function is to be evaluated.
      *
-     *  @return The function value of this linear combination at the given argument.
+     *  @return The function value of this linear combination for the given argument.
      */
     OutputType operator()(const InputType& in) const override {
 
@@ -304,6 +305,8 @@ public:
 
 }  // namespace GQCP
 
+
+#include <Eigen/Dense>
 
 /*
  *  Make GQCP::EvaluableLinearCombination<FunctionType> an Eigen scalar type.

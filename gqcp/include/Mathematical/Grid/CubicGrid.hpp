@@ -98,7 +98,7 @@ public:
      *  @return A field with the calculated evaluations.
      */
     template <typename OutputType>
-    Field<OutputType> evaluate(const Function<OutputType, double, 3>& function) const {
+    Field<OutputType> evaluate(const Function<OutputType, Vector<double, 3>>& function) const {
 
         std::vector<OutputType> values;
         values.reserve(this->numberOfPoints());
