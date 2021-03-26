@@ -27,10 +27,11 @@ namespace GQCP {
 /**
  *  The antisymmetric rank-three Levi-Civita tensor.
  */
+template <typename _Scalar>
 class LeviCivitaTensor {
 private:
     // The values of the Levi-Civita tensor.
-    Tensor<double, 3> epsilon;
+    Tensor<_Scalar, 3> epsilon;
 
 public:
     /*
@@ -54,7 +55,7 @@ public:
      * 
      *  @return The element epsilon(i,j,k) of the Levi-Civita tensor.
      */
-    double operator()(const size_t i, const size_t j, const size_t k) const { return this->epsilon(i, j, k); }
+    _Scalar operator()(const size_t i, const size_t j, const size_t k) const { return this->epsilon(i, j, k); }
 
     /**
      *  Find the index k such that the Levi-Civita tensor epsilon(i,j,k) (or any permutations thereof) does not vanish.

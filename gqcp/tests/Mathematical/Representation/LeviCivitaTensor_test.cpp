@@ -27,7 +27,7 @@
  */
 BOOST_AUTO_TEST_CASE(elements) {
 
-    const GQCP::LeviCivitaTensor epsilon {};
+    const GQCP::LeviCivitaTensor<double> epsilon {};
 
     BOOST_CHECK(epsilon(0, 0, 0) == 0);
     BOOST_CHECK(epsilon(0, 0, 1) == 0);
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(elements) {
  */
 BOOST_AUTO_TEST_CASE(nonZeroIndex) {
 
-    const GQCP::LeviCivitaTensor epsilon {};
+    const GQCP::LeviCivitaTensor<double> epsilon {};
 
     BOOST_CHECK(epsilon.nonZeroIndex(0, 1) == 2);
     BOOST_CHECK(epsilon.nonZeroIndex(1, 0) == 2);

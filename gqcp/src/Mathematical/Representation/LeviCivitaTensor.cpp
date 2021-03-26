@@ -30,10 +30,11 @@ namespace GQCP {
 /**
  *  The default constructor.
  */
-LeviCivitaTensor::LeviCivitaTensor() {
+template <typename _Scalar>
+LeviCivitaTensor<_Scalar>::LeviCivitaTensor() {
 
     // Initialize a zero tensor.
-    this->epsilon = Tensor<double, 3>(3, 3, 3);
+    this->epsilon = Tensor<_Scalar, 3>(3, 3, 3);
     this->epsilon.setZero();
 
 
@@ -55,7 +56,8 @@ LeviCivitaTensor::LeviCivitaTensor() {
  * 
  *  @return The index k such that epsilon(i,j,k) does not vanish.
  */
-size_t LeviCivitaTensor::nonZeroIndex(const size_t i, const size_t j) const {
+template <typename _Scalar>
+size_t LeviCivitaTensor<_Scalar>::nonZeroIndex(const size_t i, const size_t j) const {
 
     if (i == j) {
         throw std::invalid_argument("LeviCivitaTensor::nonZeroIndex(const size_t, const size_t): The given indices cannot be equal.");
