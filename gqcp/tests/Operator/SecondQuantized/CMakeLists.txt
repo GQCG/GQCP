@@ -1,7 +1,7 @@
 add_subdirectory(ModelHamiltonian)
 
 list(APPEND test_target_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/EvaluableScalarRSQOneElectronOperator_test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ScalarEvaluableRSQOneElectronOperator_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SimpleSQOneElectronOperator_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SQHamiltonian_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SimpleSQTwoElectronOperator_test.cpp

@@ -96,10 +96,10 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
 
 
 /**
- *  Check if we can evaluate an `EvaluableScalarRSQOneElectronOperator` consisting of GTOs in a given point r.
+ *  Check if we can evaluate an `ScalarEvaluableRSQOneElectronOperator` consisting of GTOs in a given point r.
  */
 
-BOOST_AUTO_TEST_CASE(EvaluableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
+BOOST_AUTO_TEST_CASE(ScalarEvaluableRSQOneElectronOperator_of_GTOs_evaluate) {
 
     // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation.
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE(EvaluableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
     // clang-format on
 
     const GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
-    const GQCP::EvaluableScalarRSQOneElectronOperator<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
+    const GQCP::ScalarEvaluableRSQOneElectronOperator<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
 
 
     // Evaluate the operator of GTOs at the given point r

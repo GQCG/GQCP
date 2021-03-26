@@ -183,7 +183,7 @@
 #include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/FirstQuantized/SpinZeemanOperator.hpp"
-#include "Operator/SecondQuantized/EvaluableScalarRSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"

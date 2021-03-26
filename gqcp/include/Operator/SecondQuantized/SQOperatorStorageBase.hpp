@@ -35,7 +35,7 @@ namespace GQCP {
 /**
  *  A type that takes care of storing the matrix elements of one- and two-electron operators and their components.
  * 
- *  @note The sole reason why this base class is implemented, is to allow SQOperators that don't have to support vector space arithmetic, like `EvaluableScalarRSQOneElectronOperator`.
+ *  @note The sole reason why this base class is implemented, is to allow SQOperators that don't have to support vector space arithmetic, like `ScalarEvaluableRSQOneElectronOperator`.
  * 
  *  @tparam _MatrixRepresentation       The type used to represent the set of parameters/matrix elements/integrals for one component of a second-quantized operator.
  *  @tparam _Vectorizer                 The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators. This allows for a distinction between scalar operators (such as the kinetic energy or Coulomb operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).

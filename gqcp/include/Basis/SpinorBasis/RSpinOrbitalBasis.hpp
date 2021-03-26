@@ -33,7 +33,7 @@
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
-#include "Operator/SecondQuantized/EvaluableScalarRSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -176,10 +176,10 @@ public:
      * 
      *  @return The second-quantized density operator.
      */
-    EvaluableScalarRSQOneElectronOperator<FunctionProduct<EvaluableLinearCombination<double, BasisFunction>>> quantize(const ElectronicDensityOperator& fq_density_op) const {
+    ScalarEvaluableRSQOneElectronOperator<FunctionProduct<EvaluableLinearCombination<double, BasisFunction>>> quantize(const ElectronicDensityOperator& fq_density_op) const {
 
         using Evaluatable = FunctionProduct<EvaluableLinearCombination<double, BasisFunction>>;  // The evaluatable type for the density operator.
-        using ResultOperator = EvaluableScalarRSQOneElectronOperator<Evaluatable>;
+        using ResultOperator = ScalarEvaluableRSQOneElectronOperator<Evaluatable>;
 
         // There aren't any 'integrals' to be calculated for the density operator: we can just multiply every pair of spatial orbitals.
         const auto phi = this->spatialOrbitals();
