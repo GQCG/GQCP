@@ -52,13 +52,13 @@ public:
     LeviCivitaTensor() {
 
         // Initialize a zero tensor.
-    this->epsilon = Tensor<Scalar, 3>(3, 3, 3);
-    this->epsilon.setZero();
+        this->epsilon = Tensor<Scalar, 3>(3, 3, 3);
+        this->epsilon.setZero();
 
 
-    // Construct the antisymmetries of the Levi-Civita tensor and set its elements.
-    Eigen::SGroup<Eigen::AntiSymmetry<0, 1>, Eigen::AntiSymmetry<1, 2>> symmetry;
-    symmetry(this->epsilon, 0, 1, 2) = 1.0;
+        // Construct the antisymmetries of the Levi-Civita tensor and set its elements.
+        Eigen::SGroup<Eigen::AntiSymmetry<0, 1>, Eigen::AntiSymmetry<1, 2>> symmetry;
+        symmetry(this->epsilon, 0, 1, 2) = 1.0;
     }
 
 
@@ -67,6 +67,8 @@ public:
      */
 
     /**
+     *  Access one of the elements of the Levi-Civita tensor.
+     *
      *  @param i            The first accessor index.
      *  @param j            The second accessor index.
      *  @param k            The third accessor index.
