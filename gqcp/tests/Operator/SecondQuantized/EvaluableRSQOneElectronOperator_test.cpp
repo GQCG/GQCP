@@ -235,13 +235,18 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 }
 
 
+/**
+ *  Check if the RHF current density operator can be calculated using a combination of a `quantize()` call and an `.evaluate()` call on the resulting type.
+ *
+ *  This test does not implement any checks, it exists to check for compile-time errors and potential run-time errors.
+ */
 BOOST_AUTO_TEST_CASE(current_density_h2_sto_3g) {
 
     // Prepare the molecular Hamiltonian (in AO basis).
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
-    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in the scalar/AO basis
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the scalar/AO basis.
 
     // Prepare the canonical RHF orbitals.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -255,6 +260,9 @@ BOOST_AUTO_TEST_CASE(current_density_h2_sto_3g) {
     // Calculate the RHF current density.
     const auto j_op = spinor_basis.quantize(GQCP::CurrentDensityOperator());
 
-    // std::cout << j_op.parameters(0)(0, 0).description() << std::endl;
-    std::cout << j_op.evaluate(GQCP::Vector<double, 3>::Identity()).parameters(0) << std::endl;
+    // Check if we can calculate the (0,1)-matrix element of the current density in two equal ways.
+    const auto value1 = j_op.parameters(0)(0, 1)(GQCP::Vector<double, 3>::Identity());           // Through an operator()-call.
+    const auto value2 = j_op.evaluate(GQCP::Vector<double, 3>::Identity()).parameters(0)(0, 1);  // Through an `evaluate()` call.
+
+    BOOST_CHECK(std::abs(value1 - value2) < 1.0e-12);
 }

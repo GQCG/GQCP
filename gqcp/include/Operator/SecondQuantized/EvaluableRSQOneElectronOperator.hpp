@@ -85,7 +85,7 @@ public:
     RSQOneElectronOperator<OutputType, Vectorizer> evaluate(const InputType& in) const {
 
         // Evaluate the operator for every component.
-        std::vector<SquareMatrix<OutputType>> F_evaluated_vector {this->numberOfComponents()};
+        std::vector<SquareMatrix<OutputType>> F_evaluated_vector {};
         const auto& all_parameters = this->allParameters();
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             SquareMatrix<OutputType> F_evaluated = SquareMatrix<OutputType>::Zero(this->numberOfOrbitals());
@@ -97,7 +97,7 @@ public:
                 }
             }
 
-            F_evaluated_vector[i] = F_evaluated;
+            F_evaluated_vector.push_back(F_evaluated);
         }
 
         return RSQOneElectronOperator<OutputType, Vectorizer> {StorageArray<SquareMatrix<OutputType>, Vectorizer> {F_evaluated_vector, this->vectorizer()}};
