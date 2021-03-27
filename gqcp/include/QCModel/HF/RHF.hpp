@@ -22,12 +22,14 @@
 #include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
+#include "Mathematical/Representation/LeviCivitaTensor.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/literals.hpp"
 #include "Utilities/type_traits.hpp"
 
 
@@ -326,7 +328,7 @@ public:
      *  @return An RHF orbital Hessian.
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, ImplicitRankFourTensorSlice<complex>> calculateOrbitalHessianForImaginaryResponse(const SQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+    static enable_if_t<std::is_same<Z, double>::value, ImplicitRankFourTensorSlice<complex>> calculateOrbitalHessianForImaginaryResponse(const RSQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
 
         using namespace GQCP::literals;
 
@@ -854,14 +856,15 @@ public:
         const auto L = L_op.allParameters();
 
         // Every column of the matrix `F_kappa_B` contains the response force along the given component: x, y, z.
+        const auto dim = this->orbital_space().numberOfExcitations(OccupationType::k_occupied, OccupationType::k_virtual);
         Matrix<complex, Dynamic, 3> F_kappa_B = Matrix<complex, Dynamic, 3>::Zero(dim, 3);
         for (size_t m = 0; m < 3; m++) {  // `m` labels a Cartesian direction.
 
             // Initialize a virtual-occupied object for every component.
-            auto F_kappa_B_m = orbital_space.initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
+            auto F_kappa_B_m = this->orbital_space().template initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
 
-            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : this->orbital_space().indices(OccupationType::k_virtual)) {
+                for (const auto& i : this->orbital_space().indices(OccupationType::k_occupied)) {
                     F_kappa_B_m(a, i) = -2.0 * L[m](i, a);
                 }
             }
@@ -881,9 +884,13 @@ public:
      */
     Matrix<complex, Dynamic, 3> calculateGaugeOriginTranslationResponseForce(const VectorRSQOneElectronOperator<complex>& p_op) const {
 
+        // Prepare some variables
+        const LeviCivitaTensor<double> epsilon {};
         const auto p = p_op.allParameters();
 
+
         // Every column of the matrix `F_kappa_G_mn` contains the response force along the given component: xy, xz, yx, yz, zx, zy.
+        const auto dim = this->orbital_space().numberOfExcitations(OccupationType::k_occupied, OccupationType::k_virtual);
         Matrix<complex, Dynamic, 6> F_kappa_G = Matrix<complex, Dynamic, 6>::Zero(dim, 6);
         size_t column_index = 0;
         for (size_t m = 0; m < 3; m++) {      // `m` labels a Cartesian direction.
@@ -893,10 +900,10 @@ public:
                 }
 
                 // Initialize a virtual-occupied object for every component.
-                auto F_kappa_G_mn = orbital_space.initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
+                auto F_kappa_G_mn = this->orbital_space().template initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
 
-                for (const auto& a : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
-                    for (const auto& i : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
+                for (const auto& a : this->orbital_space().indices(GQCP::OccupationType::k_virtual)) {
+                    for (const auto& i : this->orbital_space().indices(GQCP::OccupationType::k_occupied)) {
                         const auto f = epsilon.nonZeroIndex(m, n);
 
                         F_kappa_G_mn(a, i) = -2.0 * epsilon(m, n, f) * p[f](i, a);
