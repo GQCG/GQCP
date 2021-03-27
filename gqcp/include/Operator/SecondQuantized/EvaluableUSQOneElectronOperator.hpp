@@ -118,6 +118,9 @@ struct OperatorTraits<EvaluableUSQOneElectronOperator<_FunctionType, _Vectorizer
 
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
+
+    // The 1-DM that is naturally associated to the evaluable one-electron operator.
+    using OneDM = SpinResolved1DM<OutputType>;
 };
 
 

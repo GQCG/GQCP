@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "DensityMatrix/G1DM.hpp"
 #include "Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 
@@ -103,6 +104,9 @@ struct OperatorTraits<EvaluableGSQOneElectronOperator<_FunctionType, _Vectorizer
 
     // The type that represents the derived operator after its evaluation at a point in space.
     using EvaluatedOperator = GSQOneElectronOperator<OutputType, Vectorizer>;
+
+    // The 1-DM that is naturally associated to the evaluable one-electron operator.
+    using OneDM = G1DM<OutputType>;
 };
 
 

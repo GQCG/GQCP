@@ -17,7 +17,7 @@
 
 #pragma once
 
-
+#include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
@@ -103,6 +103,9 @@ struct OperatorTraits<EvaluableUSQOneElectronOperatorComponent<_FunctionType, _V
 
     // The type that represents the derived operator after its evaluation at a point in space.
     using EvaluatedOperator = USQOneElectronOperatorComponent<OutputType, Vectorizer>;
+
+    // The 1-DM that is naturally associated to the evaluable one-electron operator.
+    using OneDM = SpinResolved1DMComponent<OutputType>;
 };
 
 

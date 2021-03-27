@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Functions/EvaluableLinearCombination.hpp"
 #include "Mathematical/Functions/Function.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorageBase.hpp"
@@ -60,6 +61,9 @@ public:
     // The type that represents the derived operator after its evaluation at a point in space.
     using EvaluatedOperator = typename OperatorTraits<DerivedEvaluableOperator>::EvaluatedOperator;
 
+    // The 1-DM that is naturally associated to the evaluable one-electron operator.
+    using OneDM = typename OperatorTraits<DerivedEvaluableOperator>::OneDM;
+
 
 public:
     /*
@@ -101,6 +105,41 @@ public:
 
         const StorageArray<SquareMatrix<OutputType>, Vectorizer> array {F_evaluated_vector, this->vectorizer()};
         return EvaluatedOperator {array};
+    }
+
+
+    /*
+     *  MARK: Calculations
+     */
+
+    /**
+     *  Calculate the expectation value of this evaluable second-quantized one-electron operator.
+     * 
+     *  @param D            The 1-DM.
+     * 
+     *  @return The expectation value of this evaluable second-quantized one-electron operator.
+     */
+    StorageArray<EvaluableLinearCombination<OutputType, FunctionType>, Vectorizer> calculateExpectationValue(const OneDM& D) const {
+
+        // The expectation value is a linear combination of this operator's component's 'matrix elements'.
+        const auto K = this->numberOfOrbitals();
+        std::vector<EvaluableLinearCombination<OutputType, FunctionType>> expectation_values;
+        const auto& parameters = this->allParameters();
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+
+            EvaluableLinearCombination<OutputType, FunctionType> expectation_value;
+            for (size_t p = 0; p < K; p++) {
+                for (size_t q = 0; q < K; q++) {
+                    const auto coefficient = D.matrix()(p, q);
+                    const auto function = parameters[i](p, q);
+                    expectation_value.append(coefficient, function);
+                }
+            }
+
+            expectation_values.push_back(expectation_value);
+        }
+
+        return StorageArray<EvaluableLinearCombination<OutputType, FunctionType>, Vectorizer> {expectation_values, this->vectorizer()};
     }
 };
 
