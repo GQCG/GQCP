@@ -233,3 +233,28 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 
     BOOST_CHECK(std::abs(grid.integrate(density_evaluated) - molecule.numberOfElectrons()) < 1.0e-03);  // 1.0e-03 is still reasonable given the accuracy of the grid
 }
+
+
+BOOST_AUTO_TEST_CASE(current_density_h2_sto_3g) {
+
+    // Prepare the molecular Hamiltonian (in AO basis).
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // in the scalar/AO basis
+
+    // Prepare the canonical RHF orbitals.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    spinor_basis.transform(rhf_parameters.expansion());
+
+
+    // Calculate the RHF current density.
+    const auto j_op = spinor_basis.quantize(GQCP::CurrentDensityOperator());
+
+    // std::cout << j_op.parameters(0)(0, 0).description() << std::endl;
+    std::cout << j_op.evaluate(GQCP::Vector<double, 3>::Identity()).parameters(0) << std::endl;
+}

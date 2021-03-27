@@ -86,13 +86,14 @@ public:
 
         // Evaluate the operator for every component.
         std::vector<SquareMatrix<OutputType>> F_evaluated_vector {this->numberOfComponents()};
+        const auto& all_parameters = this->allParameters();
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             SquareMatrix<OutputType> F_evaluated = SquareMatrix<OutputType>::Zero(this->numberOfOrbitals());
 
             // Evaluate the underlying functions for the given argument.
             for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
                 for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
-                    F_evaluated(p, q) = this->parameters()(p, q).operator()(in);  // Evaluate the function at the (p,q)-th element.
+                    F_evaluated(p, q) = all_parameters[i](p, q).operator()(in);  // Evaluate the function at the (p,q)-th element.
                 }
             }
 

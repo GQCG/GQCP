@@ -20,6 +20,7 @@
 
 #include "Mathematical/Functions/Function.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
@@ -40,7 +41,7 @@ namespace GQCP {
  */
 template <typename _Coefficient, typename _FunctionType>
 class EvaluableLinearCombination:
-    public Function<typename _FunctionType::OutputType, typename _FunctionType::InputType>,
+    public Function<sum_t<_Coefficient, typename _FunctionType::OutputType>, typename _FunctionType::InputType>,
     public VectorSpaceArithmetic<EvaluableLinearCombination<_Coefficient, _FunctionType>, _Coefficient> {
 
 public:
@@ -51,15 +52,16 @@ public:
     using FunctionType = _FunctionType;
 
     // The return type of the `operator()`.
-    using OutputType = typename FunctionType::OutputType;
+    using OutputType = sum_t<Coefficient, typename FunctionType::OutputType>;
 
     // The input type of the `operator()`.
     using InputType = typename FunctionType::InputType;
 
-    static_assert(std::is_base_of<Function<OutputType, InputType>, FunctionType>::value, "EvaluableLinearCombination: FunctionType must derive from `Function`.");
+    // static_assert(std::is_base_of<Function<OutputType, InputType>, FunctionType>::value, "EvaluableLinearCombination: FunctionType must derive from `Function`.");
 
     // The type of 'this'.
     using Self = EvaluableLinearCombination<Coefficient, FunctionType>;
+
 
 protected:
     // The coefficients of the linear combination.
