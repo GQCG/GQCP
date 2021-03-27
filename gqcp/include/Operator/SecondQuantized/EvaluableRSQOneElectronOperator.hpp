@@ -18,14 +18,9 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
-#include "Mathematical/Functions/Function.hpp"
-#include "Mathematical/Representation/DenseVectorizer.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQOperatorStorageBase.hpp"
-#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {
@@ -34,32 +29,30 @@ namespace GQCP {
 /**
  *  A scalar restricted second-quantized one-electron operator whose parameters are evaluatable at a point in space.
  * 
- *  This type distinguishes itself from `RSQOneElectronOperator`, which is mainly to be used for scalar types that are real or complex, thus enabling conformance to `BasisTransformable` and `JacobiRotatable`. On the contrary, this type does not provide these conformances and transformation formulas are implemented ad-hoc.
- * 
- *  @tparam _FunctionType           The type of evaluatable function that is used as a matrix element of this one-electron operator.
- *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+ *  @tparam _FunctionType                   The type of evaluatable function that is used as a 'matrix element' of this one-electron operator.
+ *  @tparam _Vectorizer                     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the density) and vector operators (such as the current density operator).
  */
 template <typename _FunctionType, typename _Vectorizer>
 class EvaluableRSQOneElectronOperator:
-    public SQOperatorStorageBase<SquareMatrix<_FunctionType>, _Vectorizer, EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer>> {
+    public EvaluableSimpleSQOneElectronOperator<_FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer>> {
 public:
     // The type of evaluatable function that is used as a matrix element of this one-electron operator.
     using FunctionType = _FunctionType;
 
-    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the density) and vector operators (such as the current density operator).
     using Vectorizer = _Vectorizer;
 
-    // The return type of the `operator()`.
-    using OutputType = typename FunctionType::OutputType;
+    // // The return type of the `operator()`.
+    // using OutputType = typename FunctionType::OutputType;
 
-    // The input type of the `operator()`.
-    using InputType = typename FunctionType::InputType;
+    // // The input type of the `operator()`.
+    // using InputType = typename FunctionType::InputType;
 
-    // Allow only `FunctionType` types that derive from `Function`.
-    static_assert(std::is_base_of<Function<OutputType, InputType>, FunctionType>::value, "ScalarEvaluableRSQOneElectronOperator: FunctionType must inherit from `Function`.");
+    // // Allow only `FunctionType` types that derive from `Function`.
+    // static_assert(std::is_base_of<Function<OutputType, InputType>, FunctionType>::value, "ScalarEvaluableRSQOneElectronOperator: FunctionType must inherit from `Function`.");
 
-    // The type of 'this'.
-    using Self = EvaluableRSQOneElectronOperator<FunctionType, Vectorizer>;
+    // // The type of 'this'.
+    // using Self = EvaluableRSQOneElectronOperator<FunctionType, Vectorizer>;
 
 
 public:
@@ -67,41 +60,9 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit `SQOperatorStorage`'s constructors.
-    using SQOperatorStorageBase<SquareMatrix<FunctionType>, Vectorizer, EvaluableRSQOneElectronOperator<FunctionType, Vectorizer>>::SQOperatorStorageBase;
+    // Inherit `EvaluableSimpleSQOneElectronOperator`'s constructors.
+    using EvaluableSimpleSQOneElectronOperator<_FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer>>::EvaluableSimpleSQOneElectronOperator;
 
-
-    /*
-     *  MARK: Evaluations
-     */
-
-    /**
-     *  Evaluate this one-electron operator for the given argument.
-     * 
-     *  @param in        The argument at which the one-electron operator is to be evaluated.
-     *
-     *  @return A one-electron operator corresponding to the evaluated functions.
-     */
-    RSQOneElectronOperator<OutputType, Vectorizer> evaluate(const InputType& in) const {
-
-        // Evaluate the operator for every component.
-        std::vector<SquareMatrix<OutputType>> F_evaluated_vector {};
-        const auto& all_parameters = this->allParameters();
-        for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            SquareMatrix<OutputType> F_evaluated = SquareMatrix<OutputType>::Zero(this->numberOfOrbitals());
-
-            // Evaluate the underlying functions for the given argument.
-            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
-                for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
-                    F_evaluated(p, q) = all_parameters[i](p, q).operator()(in);  // Evaluate the function at the (p,q)-th element.
-                }
-            }
-
-            F_evaluated_vector.push_back(F_evaluated);
-        }
-
-        return RSQOneElectronOperator<OutputType, Vectorizer> {StorageArray<SquareMatrix<OutputType>, Vectorizer> {F_evaluated_vector, this->vectorizer()}};
-    }
 
     /*
      *  MARK: Calculations
@@ -178,6 +139,9 @@ struct OperatorTraits<EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer
     // The type of evaluatable function that is used as a matrix element of the one-electron operator.
     using FunctionType = _FunctionType;
 
+    // The return type of the `operator()`.
+    using OutputType = typename _FunctionType::OutputType;
+
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
 
@@ -186,6 +150,9 @@ struct OperatorTraits<EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer
 
     // The scalar version of the type of the operator at the end of the inheritance chain of `SQOperatorStorageBase`.
     using ScalarOperator = ScalarEvaluableRSQOneElectronOperator<FunctionType>;
+
+    // The type that represents the derived operator after its evaluation at a point in space.
+    using EvaluatedOperator = RSQOneElectronOperator<OutputType, Vectorizer>;
 };
 
 

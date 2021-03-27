@@ -237,8 +237,6 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 
 /**
  *  Check if the RHF current density operator can be calculated using a combination of a `quantize()` call and an `.evaluate()` call on the resulting type.
- *
- *  This test does not implement any checks, it exists to check for compile-time errors and potential run-time errors.
  */
 BOOST_AUTO_TEST_CASE(current_density_h2_sto_3g) {
 
