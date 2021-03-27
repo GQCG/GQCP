@@ -18,23 +18,22 @@
 #pragma once
 
 
-#include "DensityMatrix/Orbital1DM.hpp"
 #include "Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A restricted second-quantized one-electron operator whose parameters are evaluatable at a point in space.
+ *  A generalized second-quantized one-electron operator whose parameters are evaluatable at a point in space.
  * 
  *  @tparam _FunctionType                   The type of evaluatable function that is used as a 'matrix element' of this one-electron operator.
  *  @tparam _Vectorizer                     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the density) and vector operators (such as the current density operator).
  */
 template <typename _FunctionType, typename _Vectorizer>
-class EvaluableRSQOneElectronOperator:
-    public EvaluableSimpleSQOneElectronOperator<_FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer>> {
+class EvaluableGSQOneElectronOperator:
+    public EvaluableSimpleSQOneElectronOperator<_FunctionType, _Vectorizer, EvaluableGSQOneElectronOperator<_FunctionType, _Vectorizer>> {
 public:
     // The type of evaluatable function that is used as a matrix element of this one-electron operator.
     using FunctionType = _FunctionType;
@@ -49,44 +48,7 @@ public:
      */
 
     // Inherit `EvaluableSimpleSQOneElectronOperator`'s constructors.
-    using EvaluableSimpleSQOneElectronOperator<_FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer>>::EvaluableSimpleSQOneElectronOperator;
-
-
-    /*
-     *  MARK: Calculations
-     */
-
-    /**
-     *  Evaluate the expectation value of this second-quantized (one-electron) density operator.
-     * 
-     *  @param D            The 1-DM.
-     * 
-     *  @return The expectation value of this second-quantized (one-electron) density operator, i.e. the electron density.
-     * 
-     *  @note This method is only enabled for ScalarEvaluableRSQOneElectronOperator that represent second-quantized electron density operators.
-     */
-    template <typename S = FunctionType, typename = enable_if_t<std::is_same<S, FunctionProduct<EvaluableLinearCombination<double, EvaluableLinearCombination<double, CartesianGTO>>>>::value>>
-    EvaluableLinearCombination<double, FunctionProduct<EvaluableLinearCombination<double, EvaluableLinearCombination<double, CartesianGTO>>>> calculateDensity(const Orbital1DM<double>& D) const {
-
-        using Primitive = CartesianGTO;
-        using BasisFunction = EvaluableLinearCombination<double, Primitive>;
-        using SpatialOrbital = EvaluableLinearCombination<double, BasisFunction>;
-        using SchrodingerDistribution = FunctionProduct<SpatialOrbital>;
-        using DensityType = EvaluableLinearCombination<double, SchrodingerDistribution>;
-
-        // Create the density as a linear combination of 'density matrix elements'.
-        DensityType density;
-        const auto dimension = D.numberOfOrbitals();
-        for (size_t p = 0; p < dimension; p++) {
-            for (size_t q = 0; q < dimension; q++) {
-                const auto coefficient = D.matrix()(p, q);
-                const auto function = this->parameters()(p, q);
-                density.append(coefficient, function);
-            }
-        }
-
-        return density;
-    }
+    using EvaluableSimpleSQOneElectronOperator<_FunctionType, _Vectorizer, EvaluableGSQOneElectronOperator<_FunctionType, _Vectorizer>>::EvaluableSimpleSQOneElectronOperator;
 };
 
 
@@ -94,21 +56,21 @@ public:
  *  MARK: Convenience aliases
  */
 
-// A scalar-like EvaluableRSQOneElectronOperator, i.e. with scalar-like access.
+// A scalar-like EvaluableGSQOneElectronOperator, i.e. with scalar-like access.
 template <typename FunctionType>
-using ScalarEvaluableRSQOneElectronOperator = EvaluableRSQOneElectronOperator<FunctionType, ScalarVectorizer>;
+using ScalarEvaluableGSQOneElectronOperator = EvaluableGSQOneElectronOperator<FunctionType, ScalarVectorizer>;
 
-// A vector-like EvaluableRSQOneElectronOperator, i.e. with vector-like access.
+// A vector-like EvaluableGSQOneElectronOperator, i.e. with vector-like access.
 template <typename FunctionType>
-using VectorEvaluableRSQOneElectronOperator = EvaluableRSQOneElectronOperator<FunctionType, VectorVectorizer>;
+using VectorEvaluableGSQOneElectronOperator = EvaluableGSQOneElectronOperator<FunctionType, VectorVectorizer>;
 
-// A matrix-like EvaluableRSQOneElectronOperator, i.e. with matrix-like access.
+// A matrix-like EvaluableGSQOneElectronOperator, i.e. with matrix-like access.
 template <typename FunctionType>
-using MatrixEvaluableRSQOneElectronOperator = EvaluableRSQOneElectronOperator<FunctionType, MatrixVectorizer>;
+using MatrixEvaluableGSQOneElectronOperator = EvaluableGSQOneElectronOperator<FunctionType, MatrixVectorizer>;
 
-// A tensor-like EvaluableRSQOneElectronOperator, i.e. with tensor-like access.
+// A tensor-like EvaluableGSQOneElectronOperator, i.e. with tensor-like access.
 template <typename FunctionType, size_t N>
-using TensorEvaluableRSQOneElectronOperator = EvaluableRSQOneElectronOperator<FunctionType, TensorVectorizer<N>>;
+using TensorEvaluableGSQOneElectronOperator = EvaluableGSQOneElectronOperator<FunctionType, TensorVectorizer<N>>;
 
 
 /*
@@ -122,7 +84,7 @@ using TensorEvaluableRSQOneElectronOperator = EvaluableRSQOneElectronOperator<Fu
  *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
 template <typename _FunctionType, typename _Vectorizer>
-struct OperatorTraits<EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer>> {
+struct OperatorTraits<EvaluableGSQOneElectronOperator<_FunctionType, _Vectorizer>> {
 
     // The type of evaluatable function that is used as a matrix element of the one-electron operator.
     using FunctionType = _FunctionType;
@@ -134,13 +96,13 @@ struct OperatorTraits<EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer
     using Vectorizer = _Vectorizer;
 
     // The type of the operator at the end of the inheritance chain of `SQOperatorStorageBase`.
-    using DerivedOperator = EvaluableRSQOneElectronOperator<FunctionType, Vectorizer>;
+    using DerivedOperator = EvaluableGSQOneElectronOperator<FunctionType, Vectorizer>;
 
     // The scalar version of the type of the operator at the end of the inheritance chain of `SQOperatorStorageBase`.
-    using ScalarOperator = ScalarEvaluableRSQOneElectronOperator<FunctionType>;
+    using ScalarOperator = ScalarEvaluableGSQOneElectronOperator<FunctionType>;
 
     // The type that represents the derived operator after its evaluation at a point in space.
-    using EvaluatedOperator = RSQOneElectronOperator<OutputType, Vectorizer>;
+    using EvaluatedOperator = GSQOneElectronOperator<OutputType, Vectorizer>;
 };
 
 
