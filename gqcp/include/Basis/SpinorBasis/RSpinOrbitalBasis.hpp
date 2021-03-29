@@ -27,17 +27,19 @@
 #include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/CurrentDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
-#include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/literals.hpp"
 #include "Utilities/type_traits.hpp"
 
 
@@ -73,7 +75,22 @@ public:
     using BasisFunction = typename Shell::BasisFunction;
 
     // The type that is used to represent a spatial orbital for this spin-orbital basis.
-    using SpatialOrbital = LinearCombination<product_t<ExpansionScalar, typename BasisFunction::CoefficientScalar>, BasisFunction>;
+    using SpatialOrbital = EvaluableLinearCombination<ExpansionScalar, BasisFunction>;
+
+    // The type that represents a density distribution for this spin-orbital basis.
+    using DensityDistribution = FunctionProduct<SpatialOrbital>;
+
+    // The type of the derivative of a primitive. The derivative of a Cartesian GTO is a linear combination of Cartesian GTOs.
+    using PrimitiveDerivative = EvaluableLinearCombination<double, Primitive>;
+
+    // The type of the derivative of a basis function.
+    using BasisFunctionDerivative = EvaluableLinearCombination<double, PrimitiveDerivative>;
+
+    // The type of the derivative of a spatial orbital.
+    using SpatialOrbitalDerivative = EvaluableLinearCombination<ExpansionScalar, BasisFunctionDerivative>;
+
+    // The type that represents a current density distribution for this spin-orbital basis.
+    using CurrentDensityDistribution = EvaluableLinearCombination<complex, FunctionProduct<SpatialOrbital, SpatialOrbitalDerivative>>;
 
 
 public:
@@ -172,27 +189,64 @@ public:
     /**
      *  Quantize the (one-electron) electronic density operator.
      * 
-     *  @param fq_density_op                    the first-quantized density operator
+     *  @param fq_density_op                    The first-quantized density operator.
      * 
-     *  @return the second-quantized density operator
+     *  @return The second-quantized density operator.
      */
-    EvaluatableScalarRSQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>> quantize(const ElectronicDensityOperator& fq_density_op) const {
-
-        using Evaluatable = ScalarFunctionProduct<LinearCombination<double, BasisFunction>>;  // the evaluatable type for the density operator
-        using ResultOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
+    ScalarEvaluableRSQOneElectronOperator<DensityDistribution> quantize(const ElectronicDensityOperator& fq_density_op) const {
 
         // There aren't any 'integrals' to be calculated for the density operator: we can just multiply every pair of spatial orbitals.
         const auto phi = this->spatialOrbitals();
         const auto K = this->numberOfSpatialOrbitals();
 
-        SquareMatrix<Evaluatable> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
+        SquareMatrix<DensityDistribution> rho_par {K};
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 rho_par(p, q) = phi[p] * phi[q];
             }
         }
 
-        return ResultOperator(rho_par);
+        return ScalarEvaluableRSQOneElectronOperator<DensityDistribution> {rho_par};
+    }
+
+
+    /**
+     *  Quantize the (one-electron) current density operator.
+     * 
+     *  @param fq_current_density_op            The first-quantized current density operator.
+     * 
+     *  @return The second-quantized current density operator.
+     */
+    VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution> quantize(const CurrentDensityOperator& fq_current_density_op) const {
+
+        using namespace GQCP::literals;
+
+        // There aren't any 'integrals' to be calculated for the current density operator: we can just multiply every pair of (spatial orbital, spatial orbital derivative).
+        const auto K = this->numberOfSpatialOrbitals();
+        const auto phi = this->spatialOrbitals();
+        const auto dphi = this->spatialOrbitalGradients();
+
+        std::vector<SquareMatrix<CurrentDensityDistribution>> j_par_vector {};
+        for (size_t i = 0; i < 3; i++) {
+
+            SquareMatrix<CurrentDensityDistribution> j_i {K};
+            for (size_t p = 0; p < K; p++) {
+                for (size_t q = 0; q < K; q++) {
+
+                    // TODO: Improve this for the actual complex conjugates.
+                    const auto left = phi[p] * dphi[q](i);
+                    const auto right = phi[q] * dphi[p](i);
+
+                    // TODO: Allow the contribution from the vector potential.
+                    CurrentDensityDistribution j_pq_i {{-0.5_ii, 0.5_ii}, {left, right}};
+                    j_i(p, q) = j_pq_i;
+                }
+            }
+
+            j_par_vector.push_back(j_i);
+        }
+
+        return VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution> {j_par_vector};
     }
 
 
@@ -219,7 +273,7 @@ public:
      */
 
     /**
-     *  @return the set of spatial orbitals that is associated to this spin-orbital basis
+     *  @return The set of spatial orbitals that is associated to this spin-orbital basis.
      */
     std::vector<SpatialOrbital> spatialOrbitals() const {
 
@@ -249,7 +303,49 @@ public:
 
 
     /**
-     *  @return the set of spin-orbitals that is associated to this spin-orbital basis
+     *  @return The gradients of each of the spatial orbitals that is associated to this spin-orbital basis.
+     */
+    std::vector<Vector<SpatialOrbitalDerivative, 3>> spatialOrbitalGradients() const {
+
+        const auto K = this->numberOfSpatialOrbitals();
+        const auto spatial_orbitals = this->spatialOrbitals();
+
+        std::vector<GQCP::Vector<SpatialOrbitalDerivative, 3>> spatial_orbital_gradients {K};
+        for (size_t m = 0; m < 3; m++) {
+            for (size_t p = 0; p < K; p++) {
+                const auto& spatial_orbital = spatial_orbitals[p];
+
+                // A spatial orbital is a linear combination of basis functions (which are contracted GTOs).
+                const auto& expansion_coefficients = spatial_orbital.coefficients();
+                const auto& basis_functions = spatial_orbital.functions();
+
+                std::vector<Vector<BasisFunctionDerivative, 3>> basis_function_gradients {K};
+                for (size_t mu = 0; mu < K; mu++) {
+                    const auto& expansion_coefficient = expansion_coefficients[mu];
+                    const auto& basis_function = basis_functions[mu];
+                    const auto contraction_length = basis_function.length();
+
+                    // A basis function (a.k.a a contracted GTO) is a contraction of Cartesian GTOs.
+                    const auto& contraction_coefficients = basis_function.coefficients();
+                    const auto& primitives = basis_function.functions();
+
+                    for (size_t d = 0; d < contraction_length; d++) {
+                        const auto& contraction_coefficient = contraction_coefficients[d];
+                        const auto primitive_gradient = primitives[d].calculatePositionGradient();
+                        basis_function_gradients[mu](m).append(contraction_coefficient, primitive_gradient(m));
+                    }
+
+                    spatial_orbital_gradients[p](m).append(expansion_coefficient, basis_function_gradients[mu](m));
+                }
+            }
+        }
+
+        return spatial_orbital_gradients;
+    }
+
+
+    /**
+     *  @return The set of spin-orbitals that is associated to this spin-orbital basis.
      */
     std::vector<Spinor<ExpansionScalar, BasisFunction>> spinOrbitals() const {
 
@@ -261,7 +357,7 @@ public:
         for (const auto& spatial_orbital : spatial_orbitals) {
 
             // Add the alpha- and beta-spin-orbitals accordingly.
-            const Spinor<ExpansionScalar, BasisFunction> alpha_spin_orbital {spatial_orbital, 0};  // the '0' int literal can be converted to a zero LinearCombination
+            const Spinor<ExpansionScalar, BasisFunction> alpha_spin_orbital {spatial_orbital, 0};  // the '0' int literal can be converted to a zero EvaluableLinearCombination
             spin_orbitals.push_back(alpha_spin_orbital);
 
             const Spinor<ExpansionScalar, BasisFunction> beta_spin_orbital {0, spatial_orbital};

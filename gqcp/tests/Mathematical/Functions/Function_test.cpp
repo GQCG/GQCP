@@ -15,19 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "ScalarFunction"
+#define BOOST_TEST_MODULE "Function"
 
 #include <boost/test/unit_test.hpp>
 
 #include "Mathematical/Functions/CartesianGTO.hpp"
-#include "Mathematical/Functions/ScalarFunction.hpp"
+#include "Mathematical/Functions/Function.hpp"
 
 
 /**
- *  LinearCombination inherits from ScalarFunction, so we can use the class to test the behavior of ScalarFunctionProduct.
- *  Therefore, this test also makes sure that ScalarFunctionProduct correctly compiles with T1 and T2 having the same ::Cols and ::Scalar.
+ *  `EvaluableLinearCombination` inherits from `Function`, so we can use the class to test the behavior of FunctionProduct.
+ *  Therefore, this test also makes sure that `FunctionProduct` correctly compiles with T1 and T2 having the same InputType.
  */
-BOOST_AUTO_TEST_CASE(ScalarFunctionProduct) {
+BOOST_AUTO_TEST_CASE(FunctionProduct) {
 
     // Set up a linear combination of 3 CartesianGTOs
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
@@ -42,11 +42,11 @@ BOOST_AUTO_TEST_CASE(ScalarFunctionProduct) {
     const double coefficient3 = 0.75;
 
 
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coefficient1, gto1};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coefficient2, coefficient3}, {gto2, gto3}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc1 {coefficient1, gto1};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc2 {{coefficient2, coefficient3}, {gto2, gto3}};
 
 
-    // Evaluate the product of two LinearCombinations at a position in space.
+    // Evaluate the product of two EvaluableLinearCombinations at a position in space.
     GQCP::Vector<double, 3> r {1.0, 1.0, 1.0};
     BOOST_CHECK(std::abs((lc1 * lc2)(r) -0.0080849277955083707311) < 1.0e-12);  // reference value by WolframAlpha
 }

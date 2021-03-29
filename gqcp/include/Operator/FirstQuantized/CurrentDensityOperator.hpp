@@ -18,26 +18,28 @@
 #pragma once
 
 
-#include "Mathematical/Functions/EvaluableLinearCombination.hpp"
-#include "QuantumChemical/SpinResolvedBase.hpp"
+#include "Operator/FirstQuantized/BaseFQOperator.hpp"
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  @tparam _Scalar                 The scalar representation of one of the expansion coefficients.
- *  @tparam _BasisFunction          The type of the underlying basis functions.
+ *  The (one-electron) field-free current density operator.
  */
-template <typename _Scalar, typename _BasisFunction>
-class Spinor:
-    public SpinResolvedBase<EvaluableLinearCombination<_Scalar, _BasisFunction>, Spinor<_Scalar, _BasisFunction>> {
+class CurrentDensityOperator:
+    public BaseVectorFQOneElectronOperator<complex> {
 public:
-    // The scalar representation of one of the expansion coefficients.
-    using Scalar = _Scalar;
+    /*
+     *  MARK: Vectorizer
+     */
 
-    // The type of the underlying basis functions.
-    using BasisFunction = _BasisFunction;
+    // The number of components of the operator.
+    static constexpr size_t NumberOfComponents = 3;
+
+    // The 3D vector-vectorizer related to this operator.
+    static const VectorVectorizer vectorizer;
 };
 
 

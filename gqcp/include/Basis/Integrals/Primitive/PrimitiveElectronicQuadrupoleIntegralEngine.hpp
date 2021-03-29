@@ -49,7 +49,7 @@ public:
     using Primitive = typename Shell::Primitive;
 
     // The scalar representation of an overlap integral.
-    using IntegralScalar = product_t<ElectronicQuadrupoleOperator::Scalar, typename Primitive::Valued>;
+    using IntegralScalar = product_t<ElectronicQuadrupoleOperator::Scalar, typename Primitive::OutputType>;
 
 
 private:

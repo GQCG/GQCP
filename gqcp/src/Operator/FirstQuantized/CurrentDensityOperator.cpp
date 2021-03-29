@@ -15,30 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
-
-
-#include "Mathematical/Functions/EvaluableLinearCombination.hpp"
-#include "QuantumChemical/SpinResolvedBase.hpp"
+#include "Operator/FirstQuantized/CurrentDensityOperator.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  @tparam _Scalar                 The scalar representation of one of the expansion coefficients.
- *  @tparam _BasisFunction          The type of the underlying basis functions.
- */
-template <typename _Scalar, typename _BasisFunction>
-class Spinor:
-    public SpinResolvedBase<EvaluableLinearCombination<_Scalar, _BasisFunction>, Spinor<_Scalar, _BasisFunction>> {
-public:
-    // The scalar representation of one of the expansion coefficients.
-    using Scalar = _Scalar;
-
-    // The type of the underlying basis functions.
-    using BasisFunction = _BasisFunction;
-};
+// Instantiate the static const vectorizer.
+const VectorVectorizer CurrentDensityOperator::vectorizer {{CurrentDensityOperator::NumberOfComponents}};
 
 
 }  // namespace GQCP

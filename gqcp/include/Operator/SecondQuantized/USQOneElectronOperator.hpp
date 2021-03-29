@@ -144,7 +144,7 @@ public:
 
 
     /**
-     *  Construct an `USQOneElectronOperator` from an `RSQOneElectronOperator.
+     *  Construct an `USQOneElectronOperator` from an `RSQOneElectronOperator`.
      * 
      *  @param f_restricted             The restricted one-electron operator that should be converted.
      */

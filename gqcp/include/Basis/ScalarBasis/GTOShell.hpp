@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Functions/CartesianGTO.hpp"
-#include "Mathematical/Functions/LinearCombination.hpp"
+#include "Mathematical/Functions/EvaluableLinearCombination.hpp"
 #include "Molecule/Nucleus.hpp"
 
 
@@ -35,7 +35,7 @@ public:
     using Primitive = CartesianGTO;
 
     // The type of basis function that this shell can produce.
-    using BasisFunction = LinearCombination<double, Primitive>;
+    using BasisFunction = EvaluableLinearCombination<double, Primitive>;
 
 
 private:
