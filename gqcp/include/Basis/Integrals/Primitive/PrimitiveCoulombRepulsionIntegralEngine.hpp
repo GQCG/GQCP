@@ -48,7 +48,7 @@ public:
     using Primitive = typename Shell::Primitive;
 
     // The scalar representation of a nuclear attraction integral.
-    using IntegralScalar = product_t<CoulombRepulsionOperator::Scalar, typename Primitive::Valued>;
+    using IntegralScalar = product_t<CoulombRepulsionOperator::Scalar, typename Primitive::OutputType>;
 
 
 public:

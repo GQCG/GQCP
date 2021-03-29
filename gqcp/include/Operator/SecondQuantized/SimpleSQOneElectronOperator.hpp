@@ -30,7 +30,7 @@ namespace GQCP {
 /**
  *  A second-quantized one-electron operator whose parameters are described by a single matrix.
  * 
- *  This class is used as a base class for `RSQOneElectronOperator` and `GSQOneElectronOperator`, since they both admit parameter representations using a single matrix, as opposed to `USQOneElectronOperator`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
+ *  This class is used as a base class for `RSQOneElectronOperator`, `GSQOneElectronOperator`, and `USQOneElectronOperatorComponent`, since they both admit parameter representations using a single matrix, as opposed to the full `USQOneElectronOperator`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
  * 
  *  @tparam _Scalar                 The scalar type used for a single parameter/matrix element: real or complex.
  *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).

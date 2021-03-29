@@ -54,13 +54,13 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
     const GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
 
 
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
 
 
-    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
+    GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
     // clang-format off
     rho_par << lc1, lc2,
                lc3, lc4;
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
          1.0, 0.0;
     // clang-format on
 
-    const GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
+    const GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
 
 
     // Check the coefficients of the transformed operator with a manual calculation
@@ -96,10 +96,10 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
 
 
 /**
- *  Check if we can evaluate an `EvaluatableScalarRSQOneElectronOperator` consisting of GTOs in a given point r.
+ *  Check if we can evaluate an `ScalarEvaluableRSQOneElectronOperator` consisting of GTOs in a given point r.
  */
 
-BOOST_AUTO_TEST_CASE(EvaluatableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
+BOOST_AUTO_TEST_CASE(ScalarEvaluableRSQOneElectronOperator_of_GTOs_evaluate) {
 
     // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation.
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
@@ -123,13 +123,13 @@ BOOST_AUTO_TEST_CASE(EvaluatableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
     const GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
 
 
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
-    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
+    const GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
 
 
-    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
+    GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
     // clang-format off
     rho_par << lc1, lc2,
                lc3, lc4;
@@ -143,8 +143,8 @@ BOOST_AUTO_TEST_CASE(EvaluatableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
          1.0, 0.0;
     // clang-format on
 
-    const GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
-    const GQCP::EvaluatableScalarRSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
+    const GQCP::Matrix<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
+    const GQCP::ScalarEvaluableRSQOneElectronOperator<GQCP::EvaluableLinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
 
 
     // Evaluate the operator of GTOs at the given point r
@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
     // Calculate the RHF density.
     const auto rho_op = spinor_basis.quantize(GQCP::ElectronicDensityOperator());
     const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
-    const auto density = rho_op.calculateDensity(D);
+    const auto density = rho_op.calculateExpectationValue(D)();    // Access the 'scalar' component through an empty call.
 
     const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);
     const auto density_evaluated = grid.evaluate(density);
@@ -226,10 +226,41 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
     // Calculate the RHF density.
     const auto rho_op = spinor_basis.quantize(GQCP::ElectronicDensityOperator());
     const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
-    const auto density = rho_op.calculateDensity(D);
+    const auto density = rho_op.calculateExpectationValue(D)();    // Access the 'scalar' component through an empty call.
 
     const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);
     const auto density_evaluated = grid.evaluate(density);
 
     BOOST_CHECK(std::abs(grid.integrate(density_evaluated) - molecule.numberOfElectrons()) < 1.0e-03);  // 1.0e-03 is still reasonable given the accuracy of the grid
+}
+
+
+/**
+ *  Check if the RHF current density operator can be calculated using a combination of a `quantize()` call and an `.evaluate()` call on the resulting type.
+ */
+BOOST_AUTO_TEST_CASE(current_density_h2_sto_3g) {
+
+    // Prepare the molecular Hamiltonian (in AO basis).
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the scalar/AO basis.
+
+    // Prepare the canonical RHF orbitals.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    spinor_basis.transform(rhf_parameters.expansion());
+
+
+    // Calculate the RHF current density.
+    const auto j_op = spinor_basis.quantize(GQCP::CurrentDensityOperator());
+
+    // Check if we can calculate the (0,1)-matrix element of the current density in two equal ways.
+    const auto value1 = j_op.parameters(0)(0, 1)(GQCP::Vector<double, 3>::Identity());           // Through an operator()-call.
+    const auto value2 = j_op.evaluate(GQCP::Vector<double, 3>::Identity()).parameters(0)(0, 1);  // Through an `evaluate()` call.
+
+    BOOST_CHECK(std::abs(value1 - value2) < 1.0e-12);
 }

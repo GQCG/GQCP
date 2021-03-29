@@ -35,7 +35,7 @@ public:
     using Primitive = LondonCartesianGTO;
 
     // The type of basis function that this shell can produce.
-    using BasisFunction = LinearCombination<double, Primitive>;
+    using BasisFunction = EvaluableLinearCombination<double, Primitive>;
 
 
 private:

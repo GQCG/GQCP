@@ -3,6 +3,7 @@ target_sources(gqcp
         AngularMomentumOperator.cpp
         BaseNuclearOperator.cpp
         BaseReferenceDependentOperator.cpp
+        CurrentDensityOperator.cpp
         DiamagneticOperator.cpp
         ElectronicDipoleOperator.cpp
         ElectronicQuadrupoleOperator.cpp

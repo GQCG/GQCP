@@ -19,8 +19,9 @@
 
 
 #include "Mathematical/Functions/CartesianExponents.hpp"
-#include "Mathematical/Functions/LinearCombination.hpp"
-#include "Mathematical/Functions/ScalarFunction.hpp"
+#include "Mathematical/Functions/EvaluableLinearCombination.hpp"
+#include "Mathematical/Functions/Function.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 namespace GQCP {
@@ -29,15 +30,18 @@ namespace GQCP {
 /**
  *  A Cartesian Gaussian-type orbital (GTO), often referred to as a Cartesian 'primitive'.
  *
- *  @note Mathematically speaking, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument, which is why we inherit from ScalarFunction.
+ *  @note Mathematically speaking, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument, which is why we inherit from `Function`.
  *  @note Calling operator() returns the value of the unnormalized Cartesian Gaussian.
- *  @note Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>.
+ *  @note Contracted GTOs can be expressed as linear combinations of GTOs: `EvaluableLinearCombination<CartesianGTO>`.
  */
 class CartesianGTO:
-    public ScalarFunction<double, double, 3> {
+    public Function<double, Vector<double, 3>> {
 public:
-    // The return type of the call operator, i.e. the valuedness of the scalar function.
-    using Valued = double;
+    // The return type of the `operator()`.
+    using OutputType = double;
+
+    // The input type of the `operator()`.
+    using InputType = Vector<double, 3>;
 
 
 private:
@@ -112,12 +116,12 @@ public:
      *
      *  @return the derivative of this Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
      */
-    LinearCombination<double, CartesianGTO> calculatePositionDerivative(const CartesianDirection direction) const;
+    EvaluableLinearCombination<double, CartesianGTO> calculatePositionDerivative(const CartesianDirection direction) const;
 
     /**
      *  @return the gradient of this Cartesian GTO with respect to the position coordinate
      */
-    Vector<LinearCombination<double, CartesianGTO>, 3> calculatePositionGradient() const;
+    Vector<EvaluableLinearCombination<double, CartesianGTO>, 3> calculatePositionGradient() const;
 
     /**
      *  @return the center of this Cartesian GTO

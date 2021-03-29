@@ -140,7 +140,7 @@ double CartesianGTO::calculateNormalizationFactor(const double gaussian_exponent
  *
  *  @return the derivative of this Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
  */
-LinearCombination<double, CartesianGTO> CartesianGTO::calculatePositionDerivative(const CartesianDirection direction) const {
+EvaluableLinearCombination<double, CartesianGTO> CartesianGTO::calculatePositionDerivative(const CartesianDirection direction) const {
 
     // The formula is a sum of two parts: the derivative of the exponential and the derivative of the linear term (if applicable)
 
@@ -150,7 +150,7 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculatePositionDerivativ
     CartesianGTO exponential_derivative_gto {this->gaussian_exponent, exponential_derivative_exponents, this->m_center};
     double exponential_derivative_coefficient = -2 * this->gaussian_exponent;
 
-    LinearCombination<double, CartesianGTO> lc {exponential_derivative_coefficient, exponential_derivative_gto};  // lc: linear combination
+    EvaluableLinearCombination<double, CartesianGTO> lc {exponential_derivative_coefficient, exponential_derivative_gto};  // lc: linear combination
 
 
     // If the exponent in x, y or z is non-zero, there is an extra contribution of the linear term
@@ -162,7 +162,7 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculatePositionDerivativ
         CartesianGTO linear_derivative_gto(this->gaussian_exponent, linear_derivative_exponents, this->m_center);
         double linear_derivative_coefficient = this->cartesian_exponents.value(direction);
 
-        lc += LinearCombination<double, CartesianGTO>(linear_derivative_coefficient, linear_derivative_gto);
+        lc += EvaluableLinearCombination<double, CartesianGTO>(linear_derivative_coefficient, linear_derivative_gto);
     }
 
     return lc;
@@ -172,10 +172,10 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculatePositionDerivativ
 /**
  *  @return the gradient of this Cartesian GTO with respect to the position coordinate
  */
-Vector<LinearCombination<double, CartesianGTO>, 3> CartesianGTO::calculatePositionGradient() const {
+Vector<EvaluableLinearCombination<double, CartesianGTO>, 3> CartesianGTO::calculatePositionGradient() const {
 
     // Calculate the gradient for each of the Cartesian components.
-    Vector<LinearCombination<double, CartesianGTO>, 3> gradient;
+    Vector<EvaluableLinearCombination<double, CartesianGTO>, 3> gradient;
     for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
         gradient(direction) = this->calculatePositionDerivative(direction);
     }
