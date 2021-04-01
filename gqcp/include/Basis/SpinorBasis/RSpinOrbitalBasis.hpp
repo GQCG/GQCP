@@ -94,8 +94,6 @@ public:
     // The type that represents a current density distribution for this spin-orbital basis.
     using CurrentDensityDistribution = EvaluableLinearCombination<complex, FunctionProduct<SpatialOrbital, SpatialOrbitalDerivative>>;
 
-    // TODO: Make DensityOperatorMatrixElement and CurrentDensityMatrixElement separate classes and bind them to Python.
-
 
 public:
     /*
