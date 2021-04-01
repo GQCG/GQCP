@@ -104,6 +104,7 @@ void bindRSpinOrbitalBases(py::module& module) {
 
     // Define the Python class for `RSpinOrbitalBasis_d`.
     py::class_<RSpinOrbitalBasis<double, GTOShell>> py_RSpinOrbitalBasis_d {module, "RSpinOrbitalBasis_d", "A class that represents a real, restricted spinor basis with underlying GTO shells."};
+    bindRSpinOrbitalBasisInterface(py_RSpinOrbitalBasis_d);
 
     py_RSpinOrbitalBasis_d
         .def(
@@ -113,13 +114,32 @@ void bindRSpinOrbitalBases(py::module& module) {
             },
             "Return the electronic dipole operator expressed in this spinor basis.");
 
-    bindRSpinOrbitalBasisInterface(py_RSpinOrbitalBasis_d);
-
 
     // Define the Python class for `RSpinOrbitalBasis_cd`.
     py::class_<RSpinOrbitalBasis<complex, GTOShell>> py_RSpinOrbitalBasis_cd {module, "RSpinOrbitalBasis_cd", "A class that represents a complex, restricted spinor basis with underlying GTO shells."};
-
     bindRSpinOrbitalBasisInterface(py_RSpinOrbitalBasis_cd);
+
+    py_RSpinOrbitalBasis_cd
+        .def(
+            "quantize",
+            [](const RSpinOrbitalBasis<complex, GTOShell>& spin_orbital_basis, const AngularMomentumOperator& op) {
+                return spin_orbital_basis.quantize(op);
+            },
+            "Return the angular momentum operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const RSpinOrbitalBasis<complex, GTOShell>& spin_orbital_basis, const LinearMomentumOperator& op) {
+                return spin_orbital_basis.quantize(op);
+            },
+            "Return the linear momentum operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const RSpinOrbitalBasis<complex, GTOShell>& spin_orbital_basis, const CurrentDensityOperator& op) {
+                return spin_orbital_basis.quantize(op);
+            },
+            "Return the current density operator expressed in this spinor basis.");
 }
 
 

@@ -234,7 +234,7 @@ void bindQCModelvAP1roG(py::module& module);
 
 // QCModel - HF
 void bindQCModelGHF(py::module& module);
-void bindQCModelsRHF(py::module& module);
+void bindQCModelRHF(py::module& module);
 void bindQCModelsUHF(py::module& module);
 
 
@@ -469,7 +469,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // QCModel - HF
     gqcpy::bindQCModelGHF(module);
-    gqcpy::bindQCModelsRHF(module);
+    gqcpy::bindQCModelRHF(module);
     gqcpy::bindQCModelsUHF(module);
 
 

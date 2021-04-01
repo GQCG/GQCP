@@ -855,7 +855,8 @@ public:
      *
      *  @return The RHF response force for the perturbation due to a magnetic field. Every column of the returned matrix contains the response force along the corresponding component: x, y, z.
      */
-    Matrix<complex, Dynamic, 3> calculateMagneticFieldResponseForce(const VectorRSQOneElectronOperator<complex>& L_op) const {
+    template <typename Z>
+    enable_if_t<std::is_same<Z, double>::value, Matrix<complex, Dynamic, 3>> calculateMagneticFieldResponseForce(const VectorRSQOneElectronOperator<complex>& L_op) const {
 
         // Prepare some variables.
         const auto orbital_space = this->orbitalSpace();
@@ -888,7 +889,8 @@ public:
      *
      *  @return The RHF response force for the perturbation due to a gauge origin translation of the magnetic field. Every column of the returned matrix contains the response force along the corresponding component: xy, xz, yx, yz, zx, zy.
      */
-    Matrix<complex, Dynamic, 6> calculateGaugeOriginTranslationResponseForce(const VectorRSQOneElectronOperator<complex>& p_op) const {
+    template <typename Z>
+    enable_if_t<std::is_same<Z, double>::value, Matrix<complex, Dynamic, 6>> calculateGaugeOriginTranslationResponseForce(const VectorRSQOneElectronOperator<complex>& p_op) const {
 
         // Prepare some variables.
         const LeviCivitaTensor<double> epsilon {};
