@@ -43,7 +43,7 @@ void bindQCModelRHFInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
-    using Scalar = typename Type::ExpansionScalar;
+    using Scalar = typename Type::Scalar;
 
     py_class
 
@@ -79,10 +79,17 @@ void bindQCModelRHF(py::module& module) {
     bindQCModelRHFInterface(py_QCModel_RHF_d);
 
     py_QCModel_RHF_d
+        .def(
+            "orbitalSpace",
+            [](const QCModel::RHF<double>& rhf_parameters) {
+                return rhf_parameters.orbitalSpace();
+            },
+            "Return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these RHF model parameters.")
+
         .def_static(
             "calculateOrbitalHessianForImaginaryResponse",
             [](const RSQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
-                return QCModel::RHF<double>::calculateOrbitalHessianForImaginaryResponse(sq_hamiltonian, orbital_space);
+                return QCModel::RHF<double>::calculateOrbitalHessianForImaginaryResponse(sq_hamiltonian, orbital_space).asMatrix();
             },
             py::arg("sq_hamiltonian"),
             py::arg("orbital_space"),
@@ -99,7 +106,7 @@ void bindQCModelRHF(py::module& module) {
         .def(
             "calculateGaugeOriginTranslationResponseForce",
             [](const QCModel::RHF<double>& rhf_parameters, const VectorRSQOneElectronOperator<complex>& p_op) {
-                return rhf_parameters.calculateMagneticFieldResponseForce(p_op);
+                return rhf_parameters.calculateGaugeOriginTranslationResponseForce(p_op);
             },
             py::arg("p_op"),
             "Calculate the RHF response force for the perturbation due to a gauge origin translation of the magnetic field.");
