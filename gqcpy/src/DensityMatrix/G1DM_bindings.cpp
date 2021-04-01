@@ -16,8 +16,8 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/G1DM.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
-#include "Utilities/aliases.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -43,7 +43,7 @@ void bindG1DM(py::module& module) {
     // Expose the `Simple1DM` and `BasisTransformable` APIs to `G1DM_d;
     bindSimple1DMInterface(py_G1DM_d);
     bindBasisTransformableInterface(py_G1DM_d);
-    
+
 
     // Define the Python class for `G1DM_cd`.
     py::class_<G1DM<complex>> py_G1DM_cd {module, "G1DM_cd", "A type used to represent a complex-valued one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix."};

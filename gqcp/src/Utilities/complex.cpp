@@ -15,46 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
-
-
-#include "Operator/FirstQuantized/BaseFQOperator.hpp"
-#include "Physical/HomogeneousMagneticField.hpp"
 #include "Utilities/complex.hpp"
 
 
 namespace GQCP {
 
 
-class SpinZeemanOperator:
-    public BaseScalarFQOneElectronOperator<complex> {
-private:
-    // The external, homogeneous magnetic field.
-    HomogeneousMagneticField B;
+/**
+ *  Calculate the conjugate of a complex number.
+ * 
+ *  @param c            The complex number.
+ * 
+ *  @return The conjugate of the given complex number.
+ */
+complex conj(const complex& c) { return std::conj(c); }
 
 
-public:
-    /*
-     *  MARK: Constructors
-     */
-
-    /**
-     *  Construct a `SpinZeemanOperator` from its underlying homogeneous magnetic field.
-     * 
-     *  @param B                    The external, homogeneous magnetic field.
-     */
-    SpinZeemanOperator(const HomogeneousMagneticField& B);
-
-
-    /*
-     *  MARK: Access
-     */
-
-    /**
-     *  @return The external, homogeneous magnetic field.
-     */
-    const HomogeneousMagneticField& magneticField() const { return this->B; }
-};
+/**
+ *  An overload for `GQCP::conj` for real numbers. This is an identity function.
+ */
+double conj(const double d) { return d; }
 
 
 }  // namespace GQCP

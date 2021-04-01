@@ -18,7 +18,6 @@
 #include "Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp"
 
 #include "Mathematical/Functions/BoysFunction.hpp"
-#include "Utilities/literals.hpp"
 
 
 namespace GQCP {

@@ -21,7 +21,7 @@
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Mathematical/Functions/Function.hpp"
 #include "Physical/HomogeneousMagneticField.hpp"
-#include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 
 
 namespace GQCP {

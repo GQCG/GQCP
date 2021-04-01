@@ -33,36 +33,41 @@ namespace GQCP {
 /**
  *  A set of function values corresponding to points in space.
  * 
- *  @tparam T           the type of the evaluated function values
+ *  @tparam T_          The type of the evaluated function values.
  */
-template <typename T>
+template <typename T_>
 class Field {
+public:
+    // The type of the evaluated function values.
+    using T = T_;
+
 private:
-    std::vector<T> m_values;  // the evaluated function values, in the order of the grid's loop
+    // The evaluated function values, in the order of the grid's loop.
+    std::vector<T> m_values;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
      *  The memberwise constructor.
      * 
-     *  @param values           the evaluated function values, in the order of the grid's loop
+     *  @param values           The evaluated function values, in the order of the grid's loop.
      */
     Field(const std::vector<T>& values) :
         m_values {values} {}
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  MARK: Named constructors.
      */
 
     /**
      *  Parse a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/) for scalar field values. The grid-associated information is discarded.
      *
-     *  @param filename                 the name of the cubefile
+     *  @param filename                 The name of the cubefile.
      * 
      *  @note This named constructor is only enabled for Field<double>.
      */
@@ -134,11 +139,11 @@ public:
 
 
     /**
-     *  Parse an .igrid- or .rgrid-file and create the Field that is contained in it. The values for the grid are discarded.
+     *  Parse an `.igrid`- or `.rgrid`-file and create the field that is contained in it. The values for the grid are discarded.
      * 
-     *  @param filename             the name of the .igrid-file
+     *  @param filename             The name of the `.igrid`-file.
      * 
-     *  @note An integration grid (.igrid) file is a headerless file and contains the following data:
+     *  @note An integration grid (`.igrid`) file is a headerless file and contains the following data:
      *      - Each row relates to one grid point.
      *      - Column specification:
      *          - Column 1: The index from 1 to the number of grid points
@@ -146,7 +151,7 @@ public:
      *          - Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field
      *          - Column 5, 6 or 8: The integration weight associated to the grid point
      * 
-     *  @note A regular grid (.rgrid) file is a headerless file and contains the following data:
+     *  @note A regular grid (`.rgrid`) file is a headerless file and contains the following data:
      *      - Each row relates to one grid point, where the fastest changing values are z > y > x.
      *      - Column specification:
      *          - Column 1: The index from 1 to the number of grid points
@@ -213,17 +218,15 @@ public:
 
 
     /*
-     *  OPERATORS
-     * 
-     *  Canonical implementations of mathematical operators. (https://en.cppreference.com/w/cpp/language/operators)
+     *  MARK: Canonical mathematical operators (https://en.cppreference.com/w/cpp/language/operators)
      */
 
     /**
      *  Add a field to this one by a point-wise addition.
      * 
-     *  @param rhs          the right-hand side of the addition
+     *  @param rhs          The right-hand side of the addition.
      * 
-     *  @return a reference to the modified this
+     *  @return A reference to the modified `this`.
      * 
      *  @note The fields are supposed to be defined on the same grid.
      */
@@ -239,10 +242,10 @@ public:
     /**
      *  Add two fields by a point-wise addition.
      * 
-     *  @param lhs          the left-hand side of the addition
-     *  @param rhs          the right-hand side of the addition
+     *  @param lhs          The left-hand side of the addition.
+     *  @param rhs          The right-hand side of the addition.
      * 
-     *  @return the sum of the two fields
+     *  @return The sum of the two fields.
      * 
      *  @note The fields are supposed to be defined on the same grid.
      */
@@ -256,7 +259,7 @@ public:
     /**
      *  Negate the values of this field.
      * 
-     *  @return a negated version of this field
+     *  @return A negated version of this field.
      */
     Field<T> operator-() const {
 
@@ -273,9 +276,9 @@ public:
     /**
      *  Subtract another field from this field by point-wise subtraction.
      * 
-     *  @param rhs              the right-hand side of the subtraction
+     *  @param rhs              The right-hand side of the subtraction.
      * 
-     *  @return a reference to the modified this
+     *  @return A reference to the modified `this`.
      * 
      *  @note The fields are supposed to be defined on the same grid.
      */
@@ -290,10 +293,10 @@ public:
     /**
      *  Subtract one field from another by point-wise subtraction.
      * 
-     *  @param lhs          the left-hand side of the subtraction
-     *  @param rhs          the right-hand side of the subtraction
+     *  @param lhs          The left-hand side of the subtraction.
+     *  @param rhs          The right-hand side of the subtraction.
      * 
-     *  @return the difference of the two fields
+     *  @return The difference of the two fields.
      * 
      *  @note The fields are supposed to be defined on the same grid.
      */
@@ -305,14 +308,23 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: General information
      */
 
+    /**
+     *  @return The size of this field, i.e. the number of field values.
+     */
+    size_t size() const { return this->m_values.size(); }
+
+
+    /*
+     *  MARK: Mappings
+     */
 
     /**
      *  Apply a given function on each of this field's values, in-place.
      * 
-     *  @param function             the function to be used on each of the values
+     *  @param function             The function to be used on each of the values.
      */
     void map(const std::function<T(const T&)>& function) {
 
@@ -324,9 +336,9 @@ public:
     /**
      *  Apply a given function on each of this field's values.
      * 
-     *  @param function             the function to be used on each of the values
+     *  @param function             The function to be used on each of the values.
      * 
-     *  @return a field with the mapped values
+     *  @return A field with the mapped values.
      */
     Field<T> mapped(const std::function<T(const T&)>& function) const {
 
@@ -337,31 +349,30 @@ public:
     }
 
 
-    /**
-     *  @return the size of this field, i.e. the number of field values
+    /*
+     *  MARK: Access
      */
-    size_t size() const { return this->m_values.size(); }
 
     /**
      *  Access one of the field's values.
      * 
-     *  @param index                the index of the function value
+     *  @param index                The index of the function value.
      * 
-     *  @return a read-only field value, corresponding to the given index
+     *  @return A read-only field value, corresponding to the given index.
      */
     const T& value(const size_t index) const { return this->m_values[index]; }
 
     /**
      *  Access one of the field's values.
      * 
-     *  @param index                the index of the function value
+     *  @param index                The index of the function value.
      * 
-     *  @return a writable field value, corresponding to the given index
+     *  @return A writable field value, corresponding to the given index.
      */
     T& value(const size_t index) { return this->m_values[index]; }
 
     /**
-     *  @return the evaluated function values, in the order of the grid's loop
+     *  @return The evaluated function values, in the order of the grid's loop.
      */
     const std::vector<T>& values() const { return this->m_values; }
 };
@@ -372,10 +383,10 @@ public:
  */
 
 template <typename Scalar>
-using MatrixField = Field<Matrix<Scalar, 3, 3>>;
+using VectorField = Field<Vector<Scalar, 3>>;
 
 template <typename Scalar>
-using VectorField = Field<Vector<Scalar, 3>>;
+using MatrixField = Field<Matrix<Scalar, 3, 3>>;
 
 
 }  // namespace GQCP

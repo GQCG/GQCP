@@ -15,10 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
-#include "Utilities/complex.hpp"
-#include "gqcpy/include/interfaces.hpp"
+#include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 
+#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -30,21 +29,22 @@ namespace py = pybind11;
 using namespace GQCP;
 
 
-/*
- *  Add Python bindings for UHF SCF solvers.
+/**
+ *  Register `LinearMomentumOperator` to the gqcpy module and expose parts of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which the class should be registered.
  */
-void bindUHFSCFSolvers(py::module& module) {
+void bindLinearMomentumOperator(py::module& module) {
 
-    // Provide bindings for real-valued UHF SCF solvers.
-    py::class_<UHFSCFSolver<double>> py_UHFSCFSolver_d {module, "UHFSCFSolver_d", "A factory that can create real-valued UHF SCF solvers."};
+    py::class_<LinearMomentumOperator> py_LinearMomentumOperator {module, "LinearMomentumOperator", "The (one-electron) electronic spin operator."};
 
-    bindHartreeFockSCFSolverInterface(py_UHFSCFSolver_d);
+    py_LinearMomentumOperator
 
+        /*
+         *  MARK: Constructors
+         */
 
-    // Provide bindings for complex-valued UHF SCF solvers.
-    py::class_<UHFSCFSolver<complex>> py_UHFSCFSolver_cd {module, "UHFSCFSolver_cd", "A factory that can create complex-valued UHF SCF solvers."};
-
-    bindHartreeFockSCFSolverInterface(py_UHFSCFSolver_cd);
+        .def(py::init<>());
 }
 
 

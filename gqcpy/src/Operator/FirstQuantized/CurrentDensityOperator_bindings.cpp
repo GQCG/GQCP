@@ -15,40 +15,36 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
+#include "Operator/FirstQuantized/CurrentDensityOperator.hpp"
+
+#include <pybind11/pybind11.h>
 
 
-#include "Utilities/type_traits.hpp"
-
-#include <complex>
+namespace gqcpy {
 
 
-/**
- *  A header that contains special literals inside the GQCP namespace.
- */
-
-namespace GQCP {
-namespace literals {
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
- *  A literal for the imaginary unit.
+ *  Register `CurrentDensityOperator` to the gqcpy module and expose parts of its C++ interface to Python.
  * 
- *  @note This feature is only added in C++14, which is why we provide it ourselves.
+ *  @param module           The Pybind11 module in which the class should be registered.
  */
-constexpr std::complex<double> operator"" _ii(unsigned long long d) {
-    return std::complex<double> {0.0, static_cast<double>(d)};
-}
+void bindCurrentDensityOperator(py::module& module) {
 
-/**
- *  A literal for the imaginary unit.
- * 
- *  @note This feature is only added in C++14, which is why we provide it ourselves.
- */
-constexpr std::complex<double> operator"" _ii(long double d) {
-    return std::complex<double> {0.0, static_cast<double>(d)};
+    py::class_<CurrentDensityOperator> py_CurrentDensityOperator {module, "CurrentDensityOperator", "The (one-electron) overlap operator."};
+
+    py_CurrentDensityOperator
+
+        /*
+         *  MARK: Constructors
+         */
+
+        .def(py::init<>());
 }
 
 
-}  // namespace literals
-}  // namespace GQCP
+}  // namespace gqcpy

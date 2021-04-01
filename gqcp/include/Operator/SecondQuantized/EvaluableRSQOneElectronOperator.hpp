@@ -50,43 +50,6 @@ public:
 
     // Inherit `EvaluableSimpleSQOneElectronOperator`'s constructors.
     using EvaluableSimpleSQOneElectronOperator<_FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator<_FunctionType, _Vectorizer>>::EvaluableSimpleSQOneElectronOperator;
-
-
-    // /*
-    //  *  MARK: Calculations
-    //  */
-
-    // /**
-    //  *  Evaluate the expectation value of this second-quantized (one-electron) density operator.
-    //  *
-    //  *  @param D            The 1-DM.
-    //  *
-    //  *  @return The expectation value of this second-quantized (one-electron) density operator, i.e. the electron density.
-    //  *
-    //  *  @note This method is only enabled for ScalarEvaluableRSQOneElectronOperator that represent second-quantized electron density operators.
-    //  */
-    // template <typename S = FunctionType, typename = enable_if_t<std::is_same<S, FunctionProduct<EvaluableLinearCombination<double, EvaluableLinearCombination<double, CartesianGTO>>>>::value>>
-    // EvaluableLinearCombination<double, FunctionProduct<EvaluableLinearCombination<double, EvaluableLinearCombination<double, CartesianGTO>>>> calculateDensity(const Orbital1DM<double>& D) const {
-
-    //     using Primitive = CartesianGTO;
-    //     using BasisFunction = EvaluableLinearCombination<double, Primitive>;
-    //     using SpatialOrbital = EvaluableLinearCombination<double, BasisFunction>;
-    //     using SchrodingerDistribution = FunctionProduct<SpatialOrbital>;
-    //     using DensityType = EvaluableLinearCombination<double, SchrodingerDistribution>;
-
-    //     // Create the density as a linear combination of 'density matrix elements'.
-    //     DensityType density;
-    //     const auto dimension = D.numberOfOrbitals();
-    //     for (size_t p = 0; p < dimension; p++) {
-    //         for (size_t q = 0; q < dimension; q++) {
-    //             const auto coefficient = D.matrix()(p, q);
-    //             const auto function = this->parameters()(p, q);
-    //             density.append(coefficient, function);
-    //         }
-    //     }
-
-    //     return density;
-    // }
 };
 
 

@@ -21,25 +21,27 @@
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/CurrentDensityMatrixElement.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/CurrentDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Utilities/aliases.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 #include "Utilities/type_traits.hpp"
 
 
@@ -187,6 +189,60 @@ public:
      */
 
     /**
+     *  Quantize the angular momentum operator in this restricted spin-orbital basis.
+     * 
+     *  @param fq_one_op                            The first-quantized angular momentum operator.
+     * 
+     *  @return The second-quantized angular momentum operator, i.e. expressed in/projected onto this spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const AngularMomentumOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQOneElectronOperator<product_t<AngularMomentumOperator::Scalar, ExpansionScalar>, typename AngularMomentumOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<AngularMomentumOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, AngularMomentumOperator::Vectorizer>;
+
+        auto primitive_engine = GQCP::IntegralEngine::InHouse<GTOShell>(fq_one_op);
+        const auto one_op_par = IntegralCalculator::calculate(primitive_engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());  // In AO/scalar basis.
+
+        std::array<SquareMatrix<ResultScalar>, 3> one_op_par_square;
+        for (size_t i = 0; i < 3; i++) {
+            one_op_par_square[i] = SquareMatrix<ResultScalar>(one_op_par[i]);
+        }
+
+        ResultOperator op {one_op_par_square};  // 'op' for 'operator'.
+        op.transform(this->expansion());        // Now in the spin-orbital basis.
+        return op;
+    }
+
+
+    /**
+     *  Quantize the linear momentum operator in this restricted spin-orbital basis.
+     * 
+     *  @param fq_one_op                            The first-quantized linear momentum operator.
+     * 
+     *  @return The second-quantized linear momentum operator, i.e. expressed in/projected onto this spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const LinearMomentumOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQOneElectronOperator<product_t<LinearMomentumOperator::Scalar, ExpansionScalar>, typename LinearMomentumOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<LinearMomentumOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, LinearMomentumOperator::Vectorizer>;
+
+        auto primitive_engine = GQCP::IntegralEngine::InHouse<GTOShell>(fq_one_op);
+        const auto one_op_par = IntegralCalculator::calculate(primitive_engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());  // In AO/scalar basis.
+
+        std::array<SquareMatrix<ResultScalar>, 3> one_op_par_square;
+        for (size_t i = 0; i < 3; i++) {
+            one_op_par_square[i] = SquareMatrix<ResultScalar>(one_op_par[i]);
+        }
+
+        ResultOperator op {one_op_par_square};  // 'op' for 'operator'.
+        op.transform(this->expansion());        // Now in the spatial/spin-orbital basis.
+        return op;
+    }
+
+
+    /**
      *  Quantize the (one-electron) electronic density operator.
      * 
      *  @param fq_density_op                    The first-quantized density operator.
@@ -217,7 +273,7 @@ public:
      * 
      *  @return The second-quantized current density operator.
      */
-    VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution> quantize(const CurrentDensityOperator& fq_current_density_op) const {
+    VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> quantize(const CurrentDensityOperator& fq_current_density_op) const {
 
         using namespace GQCP::literals;
 
@@ -226,27 +282,20 @@ public:
         const auto phi = this->spatialOrbitals();
         const auto dphi = this->spatialOrbitalGradients();
 
-        std::vector<SquareMatrix<CurrentDensityDistribution>> j_par_vector {};
+        std::vector<SquareMatrix<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>>> j_par_vector {};
         for (size_t i = 0; i < 3; i++) {
 
-            SquareMatrix<CurrentDensityDistribution> j_i {K};
+            SquareMatrix<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> j_i {K};
             for (size_t p = 0; p < K; p++) {
                 for (size_t q = 0; q < K; q++) {
-
-                    // TODO: Improve this for the actual complex conjugates.
-                    const auto left = phi[p] * dphi[q](i);
-                    const auto right = phi[q] * dphi[p](i);
-
-                    // TODO: Allow the contribution from the vector potential.
-                    CurrentDensityDistribution j_pq_i {{-0.5_ii, 0.5_ii}, {left, right}};
-                    j_i(p, q) = j_pq_i;
+                    j_i(p, q) = CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO> {phi[p], phi[q], dphi[p](i), dphi[q](i)};
                 }
             }
 
             j_par_vector.push_back(j_i);
         }
 
-        return VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution> {j_par_vector};
+        return VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> {j_par_vector};
     }
 
 

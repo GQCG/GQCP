@@ -16,7 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/Integrals/FunctionalPrimitiveIntegralEngine.hpp"
-#include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/functional.h>

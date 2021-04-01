@@ -18,8 +18,6 @@
 
 #include "Mathematical/Functions/LondonCartesianGTO.hpp"
 
-#include "Utilities/literals.hpp"
-
 
 namespace GQCP {
 

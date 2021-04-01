@@ -24,7 +24,7 @@
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Mathematical/Functions/LondonCartesianGTO.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 #include "Utilities/type_traits.hpp"
 
 

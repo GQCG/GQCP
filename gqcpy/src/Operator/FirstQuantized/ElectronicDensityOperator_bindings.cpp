@@ -15,33 +15,36 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
+#include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
+
+#include <pybind11/pybind11.h>
 
 
-#include "Mathematical/Representation/DenseVectorizer.hpp"
-#include "Operator/FirstQuantized/BaseFQOperator.hpp"
-#include "Utilities/complex.hpp"
+namespace gqcpy {
 
 
-namespace GQCP {
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
- *  The (one-electron) vector operator for an electron's linear momentum.
+ *  Register `ElectronicDensityOperator` to the gqcpy module and expose parts of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which the class should be registered.
  */
-class LinearMomentumOperator:
-    public BaseVectorFQOneElectronOperator<complex> {
-public:
-    /*
-     *  MARK: Vectorizer
-     */
+void bindElectronicDensityOperator(py::module& module) {
 
-    // The number of components of the operator.
-    static constexpr size_t NumberOfComponents = 3;
+    py::class_<ElectronicDensityOperator> py_ElectronicDensityOperator {module, "ElectronicDensityOperator", "The (one-electron) overlap operator."};
 
-    // The 3D vector-vectorizer related to this operator.
-    static const VectorVectorizer vectorizer;
-};
+    py_ElectronicDensityOperator
+
+        /*
+         *  MARK: Constructors
+         */
+
+        .def(py::init<>());
+}
 
 
-}  // namespace GQCP
+}  // namespace gqcpy

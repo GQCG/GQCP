@@ -15,9 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
-#include "Utilities/complex.hpp"
-#include "gqcpy/include/interfaces.hpp"
+#include "Basis/SpinorBasis/CurrentDensityMatrixElement.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,21 +28,22 @@ namespace py = pybind11;
 using namespace GQCP;
 
 
-/*
- *  Add Python bindings for UHF SCF solvers.
+/**
+ *  Register `CurrentDensityMatrixElement` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `CurrentDensityMatrixElement` should be registered.
  */
-void bindUHFSCFSolvers(py::module& module) {
+void bindCurrentDensityMatrixElement(py::module& module) {
+    py::class_<CurrentDensityMatrixElement<double, CartesianGTO>>(module, "CurrentDensityMatrixElement", "One of the elements of the second-quantized field-free charge current density operator.")
 
-    // Provide bindings for real-valued UHF SCF solvers.
-    py::class_<UHFSCFSolver<double>> py_UHFSCFSolver_d {module, "UHFSCFSolver_d", "A factory that can create real-valued UHF SCF solvers."};
+        /*
+         *  MARK: `Function` behavior
+         */
 
-    bindHartreeFockSCFSolverInterface(py_UHFSCFSolver_d);
-
-
-    // Provide bindings for complex-valued UHF SCF solvers.
-    py::class_<UHFSCFSolver<complex>> py_UHFSCFSolver_cd {module, "UHFSCFSolver_cd", "A factory that can create complex-valued UHF SCF solvers."};
-
-    bindHartreeFockSCFSolverInterface(py_UHFSCFSolver_cd);
+        .def(
+            "__call__",
+            &CurrentDensityMatrixElement<double, CartesianGTO>::operator(),
+            "Evaluate this current density matrix element for the given argument.");
 }
 
 

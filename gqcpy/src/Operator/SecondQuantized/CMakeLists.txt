@@ -1,4 +1,5 @@
 list(APPEND python_bindings_sources
+    ${CMAKE_CURRENT_SOURCE_DIR}/EvaluableRSQOneElectronOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/GSQOneElectronOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/GSQTwoElectronOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/MixedUSQTwoElectronOperatorComponent_bindings.cpp

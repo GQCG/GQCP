@@ -18,7 +18,7 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
