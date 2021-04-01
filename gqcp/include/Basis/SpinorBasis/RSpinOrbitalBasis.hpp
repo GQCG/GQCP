@@ -40,8 +40,7 @@
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Utilities/aliases.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 #include "Utilities/type_traits.hpp"
 
 
@@ -93,6 +92,8 @@ public:
 
     // The type that represents a current density distribution for this spin-orbital basis.
     using CurrentDensityDistribution = EvaluableLinearCombination<complex, FunctionProduct<SpatialOrbital, SpatialOrbitalDerivative>>;
+
+    // TODO: Make DensityOperatorMatrixElement and CurrentDensityMatrixElement separate classes and bind them to Python.
 
 
 public:

@@ -17,7 +17,7 @@
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/aliases.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/operators.h>
@@ -67,7 +67,7 @@ py::class_<Hamiltonian> bindSQHamiltonian(py::module& module, const std::string&
                 return hamiltonian.core();
             },
             "Return a read-only reference to the total one-electron interaction operator, i.e. the core Hamiltonian.")
-            
+
         .def(
             "coreContributions",
             [](const Hamiltonian& hamiltonian) {

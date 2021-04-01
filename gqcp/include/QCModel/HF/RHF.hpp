@@ -32,8 +32,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp"
 #include "QuantumChemical/Spin.hpp"
-#include "Utilities/aliases.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 #include "Utilities/type_traits.hpp"
 
 
@@ -855,7 +854,7 @@ public:
      *
      *  @return The RHF response force for the perturbation due to a magnetic field. Every column of the returned matrix contains the response force along the corresponding component: x, y, z.
      */
-    template <typename Z>
+    template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, Matrix<complex, Dynamic, 3>> calculateMagneticFieldResponseForce(const VectorRSQOneElectronOperator<complex>& L_op) const {
 
         // Prepare some variables.
@@ -889,7 +888,7 @@ public:
      *
      *  @return The RHF response force for the perturbation due to a gauge origin translation of the magnetic field. Every column of the returned matrix contains the response force along the corresponding component: xy, xz, yx, yz, zx, zy.
      */
-    template <typename Z>
+    template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, Matrix<complex, Dynamic, 6>> calculateGaugeOriginTranslationResponseForce(const VectorRSQOneElectronOperator<complex>& p_op) const {
 
         // Prepare some variables.

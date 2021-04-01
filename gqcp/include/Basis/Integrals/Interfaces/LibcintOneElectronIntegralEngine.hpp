@@ -21,7 +21,7 @@
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/type_traits.hpp"
 

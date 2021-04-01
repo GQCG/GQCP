@@ -22,7 +22,7 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 
 
 namespace GQCP {

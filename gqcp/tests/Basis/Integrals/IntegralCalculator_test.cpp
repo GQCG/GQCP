@@ -22,7 +22,6 @@
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Utilities/literals.hpp"
 
 
 /**

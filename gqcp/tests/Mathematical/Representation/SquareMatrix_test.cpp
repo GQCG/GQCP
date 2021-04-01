@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "Utilities/literals.hpp"
+#include "Utilities/complex.hpp"
 
 
 /**

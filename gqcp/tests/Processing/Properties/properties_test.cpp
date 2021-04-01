@@ -151,3 +151,138 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
 
     BOOST_CHECK(std::abs(alpha_zz - ref_alpha_zz) < 1.0e-05);
 }
+
+
+#include "Mathematical/Grid/CubicGrid.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
+
+#include <iomanip>
+
+
+BOOST_AUTO_TEST_CASE(benzene_inducibility) {
+
+    std::cout << std::setprecision(15);
+
+    // Set up the molecular Hamiltonian in the AO spin-orbital basis.
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    std::cout << molecule.description() << std::endl;
+    // const auto molecule = GQCP::Molecule::ReadXYZ("data/benzene.xyz");
+
+    // Set up a cubic grid.
+    const GQCP::Vector<double, 3> origin {-2.0, -2.0, -2.0};
+    const std::array<size_t, 3> steps {5, 5, 5};
+    const std::array<double, 3> step_sizes {0.8, 0.8, 0.8};
+    const GQCP::CubicGrid grid {origin, steps, step_sizes};
+
+
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
+    std::cout << "Number of orbitals: " << spin_orbital_basis.numberOfSpatialOrbitals() << std::endl;
+    std::cout << "Number of electrons: " << molecule.numberOfElectrons() << std::endl;
+
+    // Do the RHF calculation to get the canonical RHF orbitals.
+    auto environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spin_orbital_basis.overlap().parameters());
+    auto solver = GQCP::RHFSCFSolver<double>::DIIS(1.0e-06);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
+    const auto qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, solver, environment);
+    const auto rhf_parameters = qc_structure.groundStateParameters();
+
+    const auto& C = rhf_parameters.expansion();
+    std::cout << "RHF orbitals coefficient matrix:" << std::endl
+              << C.matrix() << std::endl
+              << std::endl;
+    // std::cout << "RHF SCF done" << std::endl;
+    std::cout << "Total RHF energy: " << GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value() + qc_structure.groundStateEnergy() << std::endl;
+
+
+    // Set up the linear response equations (in the RHF MO basis).
+    const GQCP::RTransformation<GQCP::complex> C_complex {C.matrix().cast<GQCP::complex>()};
+    const GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> complex_spin_orbital_basis {spin_orbital_basis.scalarBasis(), C_complex};
+
+    spin_orbital_basis.transform(C);
+    hamiltonian.transform(C);
+    const auto orbital_space = rhf_parameters.orbitalSpace();
+
+    const auto k_kappa = rhf_parameters.calculateOrbitalHessianForImaginaryResponse(hamiltonian, orbital_space).asMatrix();
+    std::cout << "k_kappa (Response force constant matrix A in Ax=-b): " << std::endl
+              << k_kappa << std::endl
+              << std::endl;
+    // std::cout << "k_kappa done" << std::endl;
+
+    const auto L = complex_spin_orbital_basis.quantize(GQCP::AngularMomentumOperator());
+    std::cout << "Integrals over the angular momentum operator (x,y,z):" << std::endl;
+    for (const auto& l : L.allParameters()) {
+        std::cout << l << std::endl
+                  << std::endl;
+    }
+    const auto F_kappa_B = rhf_parameters.calculateMagneticFieldResponseForce(L);
+    std::cout << "F_kappa_B (Response force vector b in Ax=-b) for magnetic field perturbation:" << std::endl
+              << F_kappa_B << std::endl
+              << std::endl;
+    // std::cout << "F_kappa_B done" << std::endl;
+
+    const auto p = complex_spin_orbital_basis.quantize(GQCP::LinearMomentumOperator());
+    std::cout << "Integrals over the linear momentum operator (x,y,z):" << std::endl;
+    for (const auto& P : p.allParameters()) {
+        std::cout << P << std::endl
+                  << std::endl;
+    }
+    const auto F_kappa_G = rhf_parameters.calculateGaugeOriginTranslationResponseForce(p);
+    std::cout << "F_kappa_G (Response force vector b in Ax=-b) for gauge origin translation perturbation:" << std::endl
+              << F_kappa_G << std::endl
+              << std::endl;
+    // std::cout << "F_kappa_G done" << std::endl;
+
+
+    // Solve the linear response equations.
+    auto environment_B = GQCP::LinearEquationEnvironment<GQCP::complex>(k_kappa, -F_kappa_B);
+    auto solver_B = GQCP::LinearEquationSolver<GQCP::complex>::HouseholderQR();
+    solver_B.perform(environment_B);
+
+    const auto x_B = environment_B.x;
+    std::cout << "x_B (Linear response x in Ax=-b) for magnetic field perturbation:" << std::endl
+              << x_B << std::endl
+              << std::endl;
+    // std::cout << "x_B done" << std::endl;
+
+    auto environment_G = GQCP::LinearEquationEnvironment<GQCP::complex>(k_kappa, -F_kappa_G);
+    auto solver_G = GQCP::LinearEquationSolver<GQCP::complex>::HouseholderQR();
+    solver_G.perform(environment_G);
+
+    const auto x_G = environment_G.x;
+    std::cout << "x_G (Linear response x in Ax=-b) for gauge origin translation perturbation:" << std::endl
+              << x_G << std::endl
+              << std::endl;
+    // std::cout << "x_G done" << std::endl;
+
+
+    // Evaluate the ipsocentric CSGT magnetic inducibility.
+    std::cout << "j_op evaluations" << std::endl;
+    const auto j_op = complex_spin_orbital_basis.quantize(GQCP::CurrentDensityOperator());
+    grid.forEach([&j_op](const GQCP::Vector<double, 3>& r) {
+        std::cout << "r:" << std::endl
+                  << r << std::endl;
+        std::cout << j_op.evaluate(r) << std::endl;
+    });
+
+    // std::cout << "j_op done" << std::endl;
+    const auto J_field = GQCP::QCModel::RHF<GQCP::complex>::calculateIpsocentricMagneticInducibility(grid, orbital_space, x_B, x_G, j_op);
+    // std::cout << "J_field done" << std::endl;
+
+    std::cout << std::endl
+              << std::endl;
+    const auto J_field_values = J_field.values();
+
+
+    std::ofstream file {"h2_STO-3G.data"};
+    const auto points = grid.points();
+    for (size_t index = 0; index < points.size(); index++) {
+        file << "Grid point:" << std::endl
+             << points[index] << std::endl
+             << std::endl;
+
+        file << "Inducibility value (xx,xy,xz,yx,yy,yz,zx,zy,zz):" << std::endl
+             << J_field_values[index].real() << std::endl
+             << std::endl;
+    }
+}

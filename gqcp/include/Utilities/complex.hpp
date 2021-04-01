@@ -17,17 +17,34 @@
 
 #pragma once
 
-
-#include "Utilities/type_traits.hpp"
-
 #include <complex>
 
 
-/**
- *  A header that contains special literals inside the GQCP namespace.
- */
-
 namespace GQCP {
+
+
+/**
+ *  An alias for a complex<double>.
+ */
+using complex = std::complex<double>;
+
+
+/**
+ *  Calculate the conjugate of a complex number.
+ * 
+ *  @param c            The complex number.
+ * 
+ *  @return The conjugate of the given complex number.
+ */
+complex conj(const complex& c);
+
+
+/**
+ *  An overload for `GQCP::conj` for real numbers. This is an identity function.
+ */
+double conj(const double d);
+
+
 namespace literals {
 
 
@@ -51,4 +68,6 @@ constexpr std::complex<double> operator"" _ii(long double d) {
 
 
 }  // namespace literals
+
+
 }  // namespace GQCP
