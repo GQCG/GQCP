@@ -1,8 +1,10 @@
 ![Getting started](../img/getting-started.png)
 
+# Installing GQCP(y)
+
 Before discussing GQCP's capabilities, let's make sure you're all set up to use GQCP. We offer installations through [conda](#installation-through-conda), [Docker](#installation-through-docker) (preferred) and [Singularity](#installation-through-singularity).
 
-# Installation through conda
+## Installation through conda
 
 The quickest way to install GQCP is through conda. The following commands create a conda environment called `gqcp` and installs GQCP and its dependencies in it.
 
@@ -21,7 +23,7 @@ export LIBINT_DATA_PATH=${CONDA_PREFIX}/share/libint/2.6.0/basis
 
 You will have to either export this environment variable every time you activate the `gqcp` environment or (better) put this export in your .bashrc or (preferred) [add this environment variable to your virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables).
 
-# Installation through Docker
+## Installation through Docker
 
 First [install Docker](https://docs.docker.com/get-docker/). Then pull our `GQCP` image to the infrastructure in question
 
@@ -53,7 +55,7 @@ Or copy and paste one of these URLs:
 
 and copying that link in your browser.
 
-# Installation through Singularity
+## Installation through Singularity
 
 For HPC systems, [singularity](https://sylabs.io/docs/) offers a more secure fork of Docker. Singularity converts Docker images to Singularity images on the fly. For the [UGent HPC](https://www.ugent.be/hpc/en) this translates into first making sure [that you are able to download and use Singularity images](https://vlaams-supercomputing-centrum-vscdocumentation.readthedocs-hosted.com/en/latest/software/singularity.html)
 

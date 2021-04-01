@@ -1,9 +1,11 @@
 
+# Using GQCP(y)
+
 After you have installed GQCP, you can either interface directly with GQCP [through C++](#using-gqcp-through-cpp) or use its [Python bindings](#using-gqcp-through-python-bindings-gqcpy).
 
-# Using GQCP through CPP
+## Using GQCP through CPP
 
-## Hello GQCP: source file
+### Hello GQCP: source file
 
 Given the following XYZ file
 
@@ -29,7 +31,7 @@ int main(int argc, char * argv [] ) {
 }
 ```
 
-## Hello GQCP: build stage
+### Hello GQCP: build stage
 
 We have packaged `GQCP` into its own CMake modules, such that it can be easily found 
 
@@ -64,7 +66,7 @@ make -j${NCPUS}
 
 with `${NCPUS}` the number of CPUs that can be reserved for compilation. After compilation, you can find the `driver.x` executable in the `build` folder.
 
-# Using GQCP through Python bindings: GQCPy
+## Using GQCP through Python bindings: GQCPy
 
 In contrast to using `GQCP` through C++, using the provided Python bindings is as easy as
 
