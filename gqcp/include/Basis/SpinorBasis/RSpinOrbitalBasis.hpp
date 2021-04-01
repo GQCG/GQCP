@@ -26,12 +26,14 @@
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/CurrentDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp"
@@ -185,6 +187,60 @@ public:
     /*
      *  MARK: Quantization of first-quantized operators
      */
+
+    /**
+     *  Quantize the angular momentum operator in this restricted spin-orbital basis.
+     * 
+     *  @param fq_one_op                            The first-quantized angular momentum operator.
+     * 
+     *  @return The second-quantized angular momentum operator, i.e. expressed in/projected onto this spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const AngularMomentumOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQOneElectronOperator<product_t<AngularMomentumOperator::Scalar, ExpansionScalar>, typename AngularMomentumOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<AngularMomentumOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, AngularMomentumOperator::Vectorizer>;
+
+        auto primitive_engine = GQCP::IntegralEngine::InHouse<GTOShell>(fq_one_op);
+        const auto one_op_par = IntegralCalculator::calculate(primitive_engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());  // In AO/scalar basis.
+
+        std::array<SquareMatrix<ResultScalar>, 3> one_op_par_square;
+        for (size_t i = 0; i < 3; i++) {
+            one_op_par_square[i] = SquareMatrix<ResultScalar>(one_op_par[i]);
+        }
+
+        ResultOperator op {one_op_par_square};  // 'op' for 'operator'.
+        op.transform(this->expansion());        // Now in the spin-orbital basis.
+        return op;
+    }
+
+
+    /**
+     *  Quantize the linear momentum operator in this restricted spin-orbital basis.
+     * 
+     *  @param fq_one_op                            The first-quantized linear momentum operator.
+     * 
+     *  @return The second-quantized linear momentum operator, i.e. expressed in/projected onto this spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const LinearMomentumOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, RSQOneElectronOperator<product_t<LinearMomentumOperator::Scalar, ExpansionScalar>, typename LinearMomentumOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<LinearMomentumOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, LinearMomentumOperator::Vectorizer>;
+
+        auto primitive_engine = GQCP::IntegralEngine::InHouse<GTOShell>(fq_one_op);
+        const auto one_op_par = IntegralCalculator::calculate(primitive_engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());  // In AO/scalar basis.
+
+        std::array<SquareMatrix<ResultScalar>, 3> one_op_par_square;
+        for (size_t i = 0; i < 3; i++) {
+            one_op_par_square[i] = SquareMatrix<ResultScalar>(one_op_par[i]);
+        }
+
+        ResultOperator op {one_op_par_square};  // 'op' for 'operator'.
+        op.transform(this->expansion());        // Now in the spatial/spin-orbital basis.
+        return op;
+    }
+
 
     /**
      *  Quantize the (one-electron) electronic density operator.

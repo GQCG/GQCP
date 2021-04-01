@@ -857,18 +857,20 @@ public:
      */
     Matrix<complex, Dynamic, 3> calculateMagneticFieldResponseForce(const VectorRSQOneElectronOperator<complex>& L_op) const {
 
-        const auto L = L_op.allParameters();
+        // Prepare some variables.
+        const auto orbital_space = this->orbitalSpace();
+        const auto& L = L_op.allParameters();
 
         // Every column of the matrix `F_kappa_B` contains the response force along the given component: x, y, z.
-        const auto dim = this->orbital_space().numberOfExcitations(OccupationType::k_occupied, OccupationType::k_virtual);
+        const auto dim = orbital_space.numberOfExcitations(OccupationType::k_occupied, OccupationType::k_virtual);
         Matrix<complex, Dynamic, 3> F_kappa_B = Matrix<complex, Dynamic, 3>::Zero(dim, 3);
         for (size_t m = 0; m < 3; m++) {  // `m` labels a Cartesian direction.
 
             // Initialize a virtual-occupied object for every component.
-            auto F_kappa_B_m = this->orbital_space().template initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
+            auto F_kappa_B_m = orbital_space.template initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
 
-            for (const auto& a : this->orbital_space().indices(OccupationType::k_virtual)) {
-                for (const auto& i : this->orbital_space().indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
                     F_kappa_B_m(a, i) = -2.0 * L[m](i, a);
                 }
             }
@@ -886,15 +888,16 @@ public:
      *
      *  @return The RHF response force for the perturbation due to a gauge origin translation of the magnetic field. Every column of the returned matrix contains the response force along the corresponding component: xy, xz, yx, yz, zx, zy.
      */
-    Matrix<complex, Dynamic, 3> calculateGaugeOriginTranslationResponseForce(const VectorRSQOneElectronOperator<complex>& p_op) const {
+    Matrix<complex, Dynamic, 6> calculateGaugeOriginTranslationResponseForce(const VectorRSQOneElectronOperator<complex>& p_op) const {
 
-        // Prepare some variables
+        // Prepare some variables.
         const LeviCivitaTensor<double> epsilon {};
-        const auto p = p_op.allParameters();
+        const auto& p = p_op.allParameters();
+        const auto orbital_space = this->orbitalSpace();
 
 
         // Every column of the matrix `F_kappa_G_mn` contains the response force along the given component: xy, xz, yx, yz, zx, zy.
-        const auto dim = this->orbital_space().numberOfExcitations(OccupationType::k_occupied, OccupationType::k_virtual);
+        const auto dim = orbital_space.numberOfExcitations(OccupationType::k_occupied, OccupationType::k_virtual);
         Matrix<complex, Dynamic, 6> F_kappa_G = Matrix<complex, Dynamic, 6>::Zero(dim, 6);
         size_t column_index = 0;
         for (size_t m = 0; m < 3; m++) {      // `m` labels a Cartesian direction.
@@ -904,13 +907,13 @@ public:
                 }
 
                 // Initialize a virtual-occupied object for every component.
-                auto F_kappa_G_mn = this->orbital_space().template initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
+                auto F_kappa_G_mn = orbital_space.template initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied);
 
-                for (const auto& a : this->orbital_space().indices(GQCP::OccupationType::k_virtual)) {
-                    for (const auto& i : this->orbital_space().indices(GQCP::OccupationType::k_occupied)) {
+                for (const auto& a : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
+                    for (const auto& i : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
                         const auto f = epsilon.nonZeroIndex(m, n);
 
-                        F_kappa_G_mn(a, i) = -2.0 * epsilon(m, n, f) * p[f](i, a);
+                        F_kappa_G_mn(a, i) = 2.0 * epsilon(m, n, f) * p[f](i, a);
                     }
                 }
                 F_kappa_G.col(column_index) = F_kappa_G_mn.asVector();
@@ -926,7 +929,7 @@ public:
      *  MARK: Response properties
      */
 
-    using CurrentDensityDistribution = RSpinOrbitalBasis<double, GTOShell>::CurrentDensityDistribution;
+    using CurrentDensityDistribution = RSpinOrbitalBasis<complex, GTOShell>::CurrentDensityDistribution;
 
     /**
      *  Calculate the magnetic inducibility on the given grid using the ipsocentric CSGT method.
@@ -939,7 +942,7 @@ public:
      *
      *  @return The magnetic inducibility evaluated on the given grid.
      */
-    static Field<Matrix<complex, 3, 3>> calculateIpsocentricMagneticInducibility(const CubicGrid& grid, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 3>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution>& j_op) {
+    static Field<Matrix<complex, 3, 3>> calculateIpsocentricMagneticInducibility(const CubicGrid& grid, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 6>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution>& j_op) {
 
         using namespace GQCP::literals;
 
@@ -950,10 +953,11 @@ public:
         J_field_values.reserve(grid.numberOfPoints());
 
         grid.forEach([&orbital_space, &x_B, &x_G, &J_field_values, &j](const Vector<double, 3>& r) {
+            Matrix<complex, 3, 3> J = Matrix<complex, 3, 3>::Zero();
+
             // Loop over both components of the magnetic inducibility.
             for (size_t u = 0; u < 3; u++) {      // `u` loops over the component of the induced current.
                 for (size_t m = 0; m < 3; m++) {  // `m` loops over the component of the applied external magnetic field.
-                    Matrix<complex, 3, 3> J = Matrix<complex, 3, 3>::Zero();
 
                     // Initialize a more useful matrix representation of the linear response coefficients related to the magnetic field perturbation.
                     auto x_m_matrix = MatrixX<complex>::FromColumnMajorVector(x_B.col(m), orbital_space.numberOfOrbitals(OccupationType::k_virtual), orbital_space.numberOfOrbitals(OccupationType::k_occupied));
@@ -989,9 +993,9 @@ public:
                             assert(J(u, m).imag() < 1.0e-12);  // The magnetic inducibility should be a real-valued quantity.
                         }
                     }
-                    J_field_values.push_back(J);
                 }
             }
+            J_field_values.push_back(J);
         });
 
         return Field<Matrix<complex, 3, 3>> {J_field_values};
