@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_db2ccceb1cb34e4987a43fd657d60903" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Utilities</compoundname>
+    <innerfile refid="complex_8cpp">complex.cpp</innerfile>
     <innerfile refid="miscellaneous_8cpp">miscellaneous.cpp</innerfile>
     <briefdescription>
     </briefdescription>

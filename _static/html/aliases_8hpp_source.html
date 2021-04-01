@@ -91,38 +91,23 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="type__traits_8hpp.html">Utilities/type_traits.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;complex&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_g_q_c_p.html">GQCP</a> {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">   39</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> = std::complex&lt;double&gt;;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_g_q_c_p.html">GQCP</a> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">   35</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a> = decltype(std::declval&lt;T&gt;() * std::declval&lt;U&gt;());</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p.html#ad8362e85425df3608c553719ea712652">   38</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_g_q_c_p.html#ad8362e85425df3608c553719ea712652">sum_t</a> = decltype(std::declval&lt;T&gt;() + std::declval&lt;U&gt;());</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p.html#a34f7bafce2f585c406de61d1eb4616b5">   46</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_g_q_c_p.html#a34f7bafce2f585c406de61d1eb4616b5">IsReal</a> = <a class="code" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t&lt;std::is_same&lt;T, double&gt;::value</a>&gt;;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p.html#a3ce6a14846d6795ad08dda8abbf505bc">   49</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_g_q_c_p.html#a3ce6a14846d6795ad08dda8abbf505bc">IsComplex</a> = <a class="code" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t&lt;std::is_same&lt;T, complex&gt;::value</a>&gt;;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">   52</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a> = decltype(std::declval&lt;T&gt;() * std::declval&lt;U&gt;());</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p.html#ad8362e85425df3608c553719ea712652">   55</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespace_g_q_c_p.html#ad8362e85425df3608c553719ea712652">sum_t</a> = decltype(std::declval&lt;T&gt;() + std::declval&lt;U&gt;());</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_a006e5cafd5827d2685c9e0bb7e01cfa2"><div class="ttname"><a href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">GQCP::enable_if_t</a></div><div class="ttdeci">typename std::enable_if&lt; B, T &gt;::type enable_if_t</div><div class="ttdef"><b>Definition:</b> type_traits.hpp:37</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_a09e1543a47643a7a62401aa600bb2e28"><div class="ttname"><a href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">GQCP::product_t</a></div><div class="ttdeci">decltype(std::declval&lt; T &gt;() *std::declval&lt; U &gt;()) product_t</div><div class="ttdef"><b>Definition:</b> aliases.hpp:52</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_a1ffc21109e62d09d3485c62e03677dfd"><div class="ttname"><a href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">GQCP::complex</a></div><div class="ttdeci">std::complex&lt; double &gt; complex</div><div class="ttdef"><b>Definition:</b> aliases.hpp:39</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_a34f7bafce2f585c406de61d1eb4616b5"><div class="ttname"><a href="namespace_g_q_c_p.html#a34f7bafce2f585c406de61d1eb4616b5">GQCP::IsReal</a></div><div class="ttdeci">enable_if_t&lt; std::is_same&lt; T, double &gt;::value &gt; IsReal</div><div class="ttdef"><b>Definition:</b> aliases.hpp:46</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_a3ce6a14846d6795ad08dda8abbf505bc"><div class="ttname"><a href="namespace_g_q_c_p.html#a3ce6a14846d6795ad08dda8abbf505bc">GQCP::IsComplex</a></div><div class="ttdeci">enable_if_t&lt; std::is_same&lt; T, complex &gt;::value &gt; IsComplex</div><div class="ttdef"><b>Definition:</b> aliases.hpp:49</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_ad8362e85425df3608c553719ea712652"><div class="ttname"><a href="namespace_g_q_c_p.html#ad8362e85425df3608c553719ea712652">GQCP::sum_t</a></div><div class="ttdeci">decltype(std::declval&lt; T &gt;()+std::declval&lt; U &gt;()) sum_t</div><div class="ttdef"><b>Definition:</b> aliases.hpp:55</div></div>
+<div class="ttc" id="anamespace_g_q_c_p_html_a09e1543a47643a7a62401aa600bb2e28"><div class="ttname"><a href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">GQCP::product_t</a></div><div class="ttdeci">decltype(std::declval&lt; T &gt;() *std::declval&lt; U &gt;()) product_t</div><div class="ttdef"><b>Definition:</b> aliases.hpp:35</div></div>
+<div class="ttc" id="anamespace_g_q_c_p_html_ad8362e85425df3608c553719ea712652"><div class="ttname"><a href="namespace_g_q_c_p.html#ad8362e85425df3608c553719ea712652">GQCP::sum_t</a></div><div class="ttdeci">decltype(std::declval&lt; T &gt;()+std::declval&lt; U &gt;()) sum_t</div><div class="ttdef"><b>Definition:</b> aliases.hpp:38</div></div>
 <div class="ttc" id="atype__traits_8hpp_html"><div class="ttname"><a href="type__traits_8hpp.html">type_traits.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

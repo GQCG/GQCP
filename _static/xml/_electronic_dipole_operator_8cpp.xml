@@ -4,7 +4,7 @@
     <compoundname>ElectronicDipoleOperator.cpp</compoundname>
     <includes refid="_electronic_dipole_operator_8hpp" local="yes">Operator/FirstQuantized/ElectronicDipoleOperator.hpp</includes>
     <incdepgraph>
-      <node id="19">
+      <node id="17">
         <label>boost/algorithm/string.hpp</label>
       </node>
       <node id="3">
@@ -22,7 +22,7 @@
       <node id="7">
         <label>numeric</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>fstream</label>
       </node>
       <node id="8">
@@ -45,11 +45,13 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -68,7 +70,7 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="20">
         <label>vector</label>
       </node>
       <node id="13">
@@ -77,10 +79,6 @@
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -94,10 +92,10 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="16">
         <label>cstdlib</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>iostream</label>
       </node>
       <node id="6">
@@ -105,9 +103,6 @@
       </node>
       <node id="15">
         <label>type_traits</label>
-      </node>
-      <node id="16">
-        <label>complex</label>
       </node>
       <node id="10">
         <label>Mathematical/Functions/CartesianDirection.hpp</label>

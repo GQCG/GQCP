@@ -8,22 +8,22 @@
     <includes local="no">boost/math/special_functions/factorials.hpp</includes>
     <includes local="no">iostream</includes>
     <incdepgraph>
-      <node id="21">
+      <node id="20">
         <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="25">
+      <node id="24">
         <label>boost/math/special_functions/factorials.hpp</label>
       </node>
-      <node id="20">
+      <node id="19">
         <label>Utilities/Eigen.hpp</label>
         <link refid="_eigen_8hpp"/>
-        <childnode refid="18" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="24">
+      <node id="23">
         <label>boost/math/constants/constants.hpp</label>
       </node>
-      <node id="17">
+      <node id="16">
         <label>boost/lexical_cast.hpp</label>
       </node>
       <node id="2">
@@ -35,13 +35,13 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="13">
         <label>boost/format.hpp</label>
       </node>
-      <node id="22">
+      <node id="21">
         <label>fstream</label>
       </node>
       <node id="1">
@@ -49,13 +49,13 @@
         <link refid="_cartesian_g_t_o_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -65,10 +65,10 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="15">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
@@ -77,38 +77,40 @@
         <link refid="_evaluable_linear_combination_8hpp"/>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="17">
         <label>Eigen/Dense</label>
       </node>
-      <node id="19">
+      <node id="18">
         <label>Mathematical/Representation/Matrix.hpp</label>
         <link refid="_matrix_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
         <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -127,18 +129,14 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="5">
         <label>array</label>
       </node>
-      <node id="13">
+      <node id="12">
         <label>cstdlib</label>
       </node>
-      <node id="23">
+      <node id="22">
         <label>iostream</label>
       </node>
       <node id="3">
@@ -154,19 +152,14 @@
       <node id="11">
         <label>type_traits</label>
       </node>
-      <node id="12">
-        <label>complex</label>
-      </node>
       <node id="4">
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="15">
+      <node id="14">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
     </incdepgraph>

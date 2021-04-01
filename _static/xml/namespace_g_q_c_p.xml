@@ -48,6 +48,7 @@
     <innerclass refid="class_g_q_c_p_1_1_london_g_t_o_shell" prot="public">GQCP::LondonGTOShell</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_scalar_basis" prot="public">GQCP::ScalarBasis</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_shell_set" prot="public">GQCP::ShellSet</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_current_density_matrix_element" prot="public">GQCP::CurrentDensityMatrixElement</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_spinor_basis" prot="public">GQCP::GSpinorBasis</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::SpinorBasisTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</innerclass>
@@ -621,7 +622,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="408" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="408" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="457" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="457" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ac56b6631b5b2d8034ad931616abfa7a7" prot="public" static="no">
         <templateparamlist>
@@ -663,24 +664,6 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="196" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="196" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespace_g_q_c_p_1a0c826b411620de5c7fc49249b4518785" prot="public" static="no">
-        <templateparamlist>
-          <param>
-            <type>typename Scalar</type>
-          </param>
-        </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; Scalar, 3, 3 &gt; &gt;</type>
-        <definition>using GQCP::MatrixField = typedef Field&lt;Matrix&lt;Scalar, 3, 3&gt; &gt;</definition>
-        <argsstring></argsstring>
-        <name>MatrixField</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="375" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="375" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1af28a3d8a83e9f482716fe9745cae7825" prot="public" static="no">
         <templateparamlist>
           <param>
@@ -697,7 +680,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="378" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="378" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="386" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a0c826b411620de5c7fc49249b4518785" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; Scalar, 3, 3 &gt; &gt;</type>
+        <definition>using GQCP::MatrixField = typedef Field&lt;Matrix&lt;Scalar, 3, 3&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MatrixField</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" line="389" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp" bodystart="389" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a91a4a76c7877bfb4db770b73fdd0fc0b" prot="public" static="no">
         <templateparamlist>
@@ -815,7 +816,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="475" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="475" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="476" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="476" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" prot="public" static="no">
         <templateparamlist>
@@ -833,7 +834,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="478" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="478" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="479" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="479" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" prot="public" static="no">
         <templateparamlist>
@@ -851,7 +852,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="481" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="481" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="482" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="482" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" prot="public" static="no">
         <templateparamlist>
@@ -869,7 +870,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="484" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="484" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="485" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="485" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1afdcf4d963710902cad07f1c683df75bf" prot="public" static="no">
         <templateparamlist>
@@ -887,7 +888,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="487" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="487" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" line="488" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Matrix.hpp" bodystart="488" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1aa357726abcdd4c8e9733034568f0437c" prot="public" static="no">
         <templateparamlist>
@@ -1136,7 +1137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="99" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="99" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="62" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a5f07594b8253c17135822016460301b8" prot="public" static="no">
         <templateparamlist>
@@ -1154,7 +1155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="103" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="103" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="66" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1aca7dc511f9a9dce8daf0c54d84a56ca4" prot="public" static="no">
         <templateparamlist>
@@ -1172,7 +1173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="107" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="107" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="70" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1adc79b2e08c4cf51ea53fcf0806eed269" prot="public" static="no">
         <templateparamlist>
@@ -1195,7 +1196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="111" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="111" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="74" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ad27bd1dcd36805ae8c6b99fa3bdeace8" prot="public" static="no">
         <templateparamlist>
@@ -2126,57 +2127,6 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/spinor_tags.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/spinor_tags.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" prot="public" static="no">
-        <type>std::complex&lt; double &gt;</type>
-        <definition>using GQCP::complex = typedef std::complex&lt;double&gt;</definition>
-        <argsstring></argsstring>
-        <name>complex</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>An alias for a complex&lt;double&gt;. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" bodystart="39" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="namespace_g_q_c_p_1a34f7bafce2f585c406de61d1eb4616b5" prot="public" static="no">
-        <templateparamlist>
-          <param>
-            <type>typename T</type>
-          </param>
-        </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; T, double &gt;::value &gt;</type>
-        <definition>using GQCP::IsReal = typedef enable_if_t&lt;std::is_same&lt;T, double&gt;::value&gt;</definition>
-        <argsstring></argsstring>
-        <name>IsReal</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>A SFINAE expression that checks if the given type T is real, a.k.a. &apos;double&apos;. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" line="46" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" bodystart="46" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="namespace_g_q_c_p_1a3ce6a14846d6795ad08dda8abbf505bc" prot="public" static="no">
-        <templateparamlist>
-          <param>
-            <type>typename T</type>
-          </param>
-        </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; T, <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref> &gt;::value &gt;</type>
-        <definition>using GQCP::IsComplex = typedef enable_if_t&lt;std::is_same&lt;T, complex&gt;::value&gt;</definition>
-        <argsstring></argsstring>
-        <name>IsComplex</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" line="49" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" bodystart="49" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" prot="public" static="no">
         <templateparamlist>
           <param>
@@ -2196,7 +2146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" line="52" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ad8362e85425df3608c553719ea712652" prot="public" static="no">
         <templateparamlist>
@@ -2217,7 +2167,57 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/aliases.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" prot="public" static="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>using GQCP::complex = typedef std::complex&lt;double&gt;</definition>
+        <argsstring></argsstring>
+        <name>complex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>An alias for a complex&lt;double&gt;. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a34f7bafce2f585c406de61d1eb4616b5" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; T, double &gt;::value &gt;</type>
+        <definition>using GQCP::IsReal = typedef enable_if_t&lt;std::is_same&lt;T, double&gt;::value&gt;</definition>
+        <argsstring></argsstring>
+        <name>IsReal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" line="51" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a3ce6a14846d6795ad08dda8abbf505bc" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; T, <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref> &gt;::value &gt;</type>
+        <definition>using GQCP::IsComplex = typedef enable_if_t&lt;std::is_same&lt;T, complex&gt;::value&gt;</definition>
+        <argsstring></argsstring>
+        <name>IsComplex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" line="54" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" prot="public" static="no">
         <templateparamlist>
@@ -2951,6 +2951,54 @@ Calculate the electric polarizability from the linear wave function response</pa
         <inbodydescription>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp" line="35" column="8" declfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp" declline="35" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_g_q_c_p_1aad915236270363d34c81fd1b896fa934" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
+        <definition>complex GQCP::conj</definition>
+        <argsstring>(const complex &amp;c)</argsstring>
+        <name>conj</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref> &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the conjugate of a complex number.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The complex number.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The conjugate of the given complex number. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/src/Utilities/complex.cpp" line="31" column="9" bodyfile="/__w/GQCP/GQCP/gqcp/src/Utilities/complex.cpp" bodystart="31" bodyend="31" declfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" declline="41" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_g_q_c_p_1a04ecb953978dae48e6eb3767442db10e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GQCP::conj</definition>
+        <argsstring>(const double d)</argsstring>
+        <name>conj</name>
+        <param>
+          <type>const double</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>An overload for <computeroutput><ref refid="namespace_g_q_c_p_1aad915236270363d34c81fd1b896fa934" kindref="member">GQCP::conj</ref></computeroutput> for real numbers. This is an identity function. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/src/Utilities/complex.cpp" line="37" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/src/Utilities/complex.cpp" bodystart="37" bodyend="37" declfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" declline="47" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespace_g_q_c_p_1a65ade244e690520635c0c1a7fc66c2d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -3695,7 +3743,6 @@ Calculate the electric polarizability from the linear wave function response</pa
 </parameteritem>
 </parameterlist>
 A header that contains general aliases inside the <ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref> namespace.</para>
-<para>A header that contains special literals inside the <ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref> namespace.</para>
 <para>Extensions of the &lt;memory&gt; header that haven&apos;t been included in C++11 A C++11 implementation for std::make_unique. Taken from <ulink url="https://stackoverflow.com/a/17902439">https://stackoverflow.com/a/17902439</ulink>.</para>
 <para>Extensions of the &lt;type_traits&gt; header that haven&apos;t been included in C++11 An implementation of enable_if_t. </para>
     </detaileddescription>

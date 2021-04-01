@@ -1,0 +1,172 @@
+\hypertarget{class_g_q_c_p_1_1_current_density_matrix_element}{}\doxysection{GQCP\+::Current\+Density\+Matrix\+Element$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_current_density_matrix_element}\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+
+
+{\ttfamily \#include $<$Current\+Density\+Matrix\+Element.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Current\+Density\+Matrix\+Element$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{class_g_q_c_p_1_1_current_density_matrix_element__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Current\+Density\+Matrix\+Element$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{class_g_q_c_p_1_1_current_density_matrix_element__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}{Primitive}} = \+\_\+\+Primitive
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_acd6026943b90b421bb45b7621976b4ba}{Basis\+Function}} = \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}{Primitive}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}{Spatial\+Orbital}} = \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_acd6026943b90b421bb45b7621976b4ba}{Basis\+Function}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a35c618dd24d37f9bbd401f2fc5f1dfdc}{Primitive\+Derivative}} = \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}{Primitive}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ae929f7d5925e72e0aa82b70adea766f9}{Basis\+Function\+Derivative}} = \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a35c618dd24d37f9bbd401f2fc5f1dfdc}{Primitive\+Derivative}} $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}{Spatial\+Orbital\+Derivative}} = \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ae929f7d5925e72e0aa82b70adea766f9}{Basis\+Function\+Derivative}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ae02714d21eb34617549b273ba72a7a2c}{Current\+Density\+Matrix\+Element}} ()=default
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ab86b64a818b8a85ae9a3d631c293c3a9}{Current\+Density\+Matrix\+Element}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}{Spatial\+Orbital}} \&phi\+\_\+p, const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}{Spatial\+Orbital}} \&phi\+\_\+q, const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}{Spatial\+Orbital\+Derivative}} \&dphi\+\_\+p, const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}{Spatial\+Orbital\+Derivative}} \&dphi\+\_\+q)
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a2e99c444a0bd657a932d78794acc52a6}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Primitive$>$\newline
+class GQCP\+::\+Current\+Density\+Matrix\+Element$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$}
+
+One of the elements of (one of the vector components of) the second-\/quantized field-\/free charge current density operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Scalar} & The scalar type of the expansion coefficients of the spatial orbitals that underlie this current density matrix element. \\
+\hline
+{\em \+\_\+\+Primitive} & The type of primitive that underlies this current density matrix element. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_acd6026943b90b421bb45b7621976b4ba}\label{class_g_q_c_p_1_1_current_density_matrix_element_acd6026943b90b421bb45b7621976b4ba}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!BasisFunction@{BasisFunction}}
+\index{BasisFunction@{BasisFunction}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{BasisFunction}{BasisFunction}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_acd6026943b90b421bb45b7621976b4ba}{Basis\+Function}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}{Primitive}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_ae929f7d5925e72e0aa82b70adea766f9}\label{class_g_q_c_p_1_1_current_density_matrix_element_ae929f7d5925e72e0aa82b70adea766f9}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!BasisFunctionDerivative@{BasisFunctionDerivative}}
+\index{BasisFunctionDerivative@{BasisFunctionDerivative}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{BasisFunctionDerivative}{BasisFunctionDerivative}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ae929f7d5925e72e0aa82b70adea766f9}{Basis\+Function\+Derivative}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a35c618dd24d37f9bbd401f2fc5f1dfdc}{Primitive\+Derivative}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}\label{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!Primitive@{Primitive}}
+\index{Primitive@{Primitive}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}{Primitive}} =  \+\_\+\+Primitive}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_a35c618dd24d37f9bbd401f2fc5f1dfdc}\label{class_g_q_c_p_1_1_current_density_matrix_element_a35c618dd24d37f9bbd401f2fc5f1dfdc}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!PrimitiveDerivative@{PrimitiveDerivative}}
+\index{PrimitiveDerivative@{PrimitiveDerivative}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{PrimitiveDerivative}{PrimitiveDerivative}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a35c618dd24d37f9bbd401f2fc5f1dfdc}{Primitive\+Derivative}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a0e4728e352e3d4cccd3a98ae57b0b3b3}{Primitive}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}\label{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}{Scalar}} =  \+\_\+\+Scalar}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}\label{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!SpatialOrbital@{SpatialOrbital}}
+\index{SpatialOrbital@{SpatialOrbital}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{SpatialOrbital}{SpatialOrbital}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}{Spatial\+Orbital}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_acd6026943b90b421bb45b7621976b4ba}{Basis\+Function}}$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}\label{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!SpatialOrbitalDerivative@{SpatialOrbitalDerivative}}
+\index{SpatialOrbitalDerivative@{SpatialOrbitalDerivative}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{SpatialOrbitalDerivative}{SpatialOrbitalDerivative}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}{Spatial\+Orbital\+Derivative}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a5018f84b1f6a0de2ee218edcd06a6616}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ae929f7d5925e72e0aa82b70adea766f9}{Basis\+Function\+Derivative}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_ae02714d21eb34617549b273ba72a7a2c}\label{class_g_q_c_p_1_1_current_density_matrix_element_ae02714d21eb34617549b273ba72a7a2c}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!CurrentDensityMatrixElement@{CurrentDensityMatrixElement}}
+\index{CurrentDensityMatrixElement@{CurrentDensityMatrixElement}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{CurrentDensityMatrixElement()}{CurrentDensityMatrixElement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{Current\+Density\+Matrix\+Element}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_ab86b64a818b8a85ae9a3d631c293c3a9}\label{class_g_q_c_p_1_1_current_density_matrix_element_ab86b64a818b8a85ae9a3d631c293c3a9}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!CurrentDensityMatrixElement@{CurrentDensityMatrixElement}}
+\index{CurrentDensityMatrixElement@{CurrentDensityMatrixElement}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{CurrentDensityMatrixElement()}{CurrentDensityMatrixElement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{Current\+Density\+Matrix\+Element}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}{Spatial\+Orbital}} \&}]{phi\+\_\+p,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_a024be910b3d76785d2414e2bf947871c}{Spatial\+Orbital}} \&}]{phi\+\_\+q,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}{Spatial\+Orbital\+Derivative}} \&}]{dphi\+\_\+p,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element_ac152019eefe0e63d43191698bfd2b9a3}{Spatial\+Orbital\+Derivative}} \&}]{dphi\+\_\+q }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em phi\+\_\+p} & The first spatial orbital. \\
+\hline
+{\em phi\+\_\+q} & The second spatial orbital. \\
+\hline
+{\em dphi\+\_\+p} & One of the components of the first spatial orbital gradient. \\
+\hline
+{\em dphi\+\_\+q} & One of the components of the second spatial orbital gradient. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_current_density_matrix_element_a2e99c444a0bd657a932d78794acc52a6}\label{class_g_q_c_p_1_1_current_density_matrix_element_a2e99c444a0bd657a932d78794acc52a6}} 
+\index{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$@{GQCP::CurrentDensityMatrixElement$<$ \_Scalar, \_Primitive $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Primitive $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{GQCP\+::\+Current\+Density\+Matrix\+Element}}$<$ \+\_\+\+Scalar, \+\_\+\+Primitive $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{r }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Evaluate this current density matrix element for the given argument.
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The point at which the current density matrix element should be evaluated.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function value for the given argument. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Basis/\+Spinor\+Basis/\mbox{\hyperlink{_current_density_matrix_element_8hpp}{Current\+Density\+Matrix\+Element.\+hpp}}\end{DoxyCompactItemize}

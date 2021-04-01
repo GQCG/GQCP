@@ -22,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" line="39" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" bodystart="39" bodyend="41"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" line="65" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" bodystart="65" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="namespace_g_q_c_p_1_1literals_1a81f9eff46f8f79e2d3225d5a27bbec42" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr std::complex&lt; double &gt;</type>
@@ -43,13 +43,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" line="48" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" bodystart="48" bodyend="50"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" line="74" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" bodystart="74" bodyend="76"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/literals.hpp" line="31" column="1"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" line="57" column="1"/>
   </compounddef>
 </doxygen>

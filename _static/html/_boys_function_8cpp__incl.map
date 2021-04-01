@@ -1,13 +1,11 @@
 <map id="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/BoysFunction.cpp" name="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/BoysFunction.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="467,5,670,61"/>
-<area shape="rect" id="node2" href="$_boys_function_8hpp.html" title=" " alt="" coords="270,117,446,158"/>
-<area shape="rect" id="node10" title=" " alt="" coords="471,109,667,165"/>
-<area shape="rect" id="node11" title=" " alt="" coords="691,124,753,151"/>
-<area shape="rect" id="node3" href="$aliases_8hpp.html" title=" " alt="" coords="216,213,367,240"/>
-<area shape="rect" id="node9" title=" " alt="" coords="391,213,461,240"/>
+<area shape="rect" id="node1" title=" " alt="" coords="346,5,549,61"/>
+<area shape="rect" id="node2" href="$_boys_function_8hpp.html" title=" " alt="" coords="149,117,325,158"/>
+<area shape="rect" id="node8" title=" " alt="" coords="349,109,545,165"/>
+<area shape="rect" id="node9" title=" " alt="" coords="569,124,632,151"/>
+<area shape="rect" id="node3" href="$complex_8hpp.html" title=" " alt="" coords="87,213,248,240"/>
+<area shape="rect" id="node7" title=" " alt="" coords="272,213,343,240"/>
 <area shape="rect" id="node4" href="$type__traits_8hpp.html" title=" " alt="" coords="5,288,180,315"/>
 <area shape="rect" id="node6" title=" " alt="" coords="204,288,283,315"/>
-<area shape="rect" id="node7" title=" " alt="" coords="307,288,372,315"/>
-<area shape="rect" id="node8" title=" " alt="" coords="396,288,459,315"/>
 <area shape="rect" id="node5" title=" " alt="" coords="47,363,139,389"/>
 </map>

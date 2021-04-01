@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_f5c41286cd86757b29ad27f984e6b6af" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis</compoundname>
+    <innerfile refid="_current_density_matrix_element_8hpp">CurrentDensityMatrixElement.hpp</innerfile>
     <innerfile refid="_g_spinor_basis_8hpp">GSpinorBasis.hpp</innerfile>
     <innerfile refid="_occupation_type_8hpp">OccupationType.hpp</innerfile>
     <innerfile refid="_orbital_space_8hpp">OrbitalSpace.hpp</innerfile>

@@ -9,7 +9,7 @@
     <includedby refid="_minimization_2_newton_step_update_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp</includedby>
     <includedby refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</includedby>
     <incdepgraph>
-      <node id="14">
+      <node id="12">
         <label>boost/algorithm/string.hpp</label>
       </node>
       <node id="6">
@@ -18,7 +18,7 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="13">
         <label>fstream</label>
       </node>
       <node id="7">
@@ -41,11 +41,13 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -54,7 +56,7 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="15">
         <label>vector</label>
       </node>
       <node id="1">
@@ -72,15 +74,11 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
       </node>
-      <node id="12">
+      <node id="11">
         <label>cstdlib</label>
       </node>
-      <node id="16">
+      <node id="14">
         <label>iostream</label>
       </node>
       <node id="3">
@@ -88,9 +86,6 @@
       </node>
       <node id="10">
         <label>type_traits</label>
-      </node>
-      <node id="11">
-        <label>complex</label>
       </node>
       <node id="5">
         <label>Mathematical/Functions/CartesianDirection.hpp</label>

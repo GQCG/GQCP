@@ -89,8 +89,6 @@ Collaboration diagram for GQCP::QCModel::RHF&lt; _Scalar &gt;:</div>
 Public Types</h2></td></tr>
 <tr class="memitem:adc2d191ddd486bdfb5a6494e39bce7f6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#adc2d191ddd486bdfb5a6494e39bce7f6">Scalar</a> = _Scalar</td></tr>
 <tr class="separator:adc2d191ddd486bdfb5a6494e39bce7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a745d57c09770619664a66dd328467759"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a745d57c09770619664a66dd328467759">CurrentDensityDistribution</a> = <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html">RSpinOrbitalBasis</a>&lt; double, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a> &gt;::<a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a745d57c09770619664a66dd328467759">CurrentDensityDistribution</a></td></tr>
-<tr class="separator:a745d57c09770619664a66dd328467759"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -144,10 +142,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a99ec917c56a86b39b21e64a5296dfec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8427492486742da6035bfd6525c3ce22"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a8427492486742da6035bfd6525c3ce22">numberOfSpatialOrbitals</a> () const</td></tr>
 <tr class="separator:a8427492486742da6035bfd6525c3ce22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a696581fe46dc53e31571699305826ac1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a696581fe46dc53e31571699305826ac1">calculateMagneticFieldResponseForce</a> (const <a class="el" href="namespace_g_q_c_p.html#a937c6a66a78202fc6957b3d807c57e64">VectorRSQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> &gt; &amp;L_op) const</td></tr>
-<tr class="separator:a696581fe46dc53e31571699305826ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ad03a4c89610ecf72a2df4faf5105c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a3ad03a4c89610ecf72a2df4faf5105c5">calculateGaugeOriginTranslationResponseForce</a> (const <a class="el" href="namespace_g_q_c_p.html#a937c6a66a78202fc6957b3d807c57e64">VectorRSQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> &gt; &amp;p_op) const</td></tr>
-<tr class="separator:a3ad03a4c89610ecf72a2df4faf5105c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4428d799512389194d1cffe13e2f38a8"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Scalar&gt; </td></tr>
+<tr class="memitem:a4428d799512389194d1cffe13e2f38a8"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, double &gt;::value, <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3 &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a4428d799512389194d1cffe13e2f38a8">calculateMagneticFieldResponseForce</a> (const <a class="el" href="namespace_g_q_c_p.html#a937c6a66a78202fc6957b3d807c57e64">VectorRSQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> &gt; &amp;L_op) const</td></tr>
+<tr class="separator:a4428d799512389194d1cffe13e2f38a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758ea83ccc7a8f3d6aab46b7f96aaa5b"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Scalar&gt; </td></tr>
+<tr class="memitem:a758ea83ccc7a8f3d6aab46b7f96aaa5b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, double &gt;::value, <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 6 &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a758ea83ccc7a8f3d6aab46b7f96aaa5b">calculateGaugeOriginTranslationResponseForce</a> (const <a class="el" href="namespace_g_q_c_p.html#a937c6a66a78202fc6957b3d807c57e64">VectorRSQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> &gt; &amp;p_op) const</td></tr>
+<tr class="separator:a758ea83ccc7a8f3d6aab46b7f96aaa5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -176,8 +176,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a81c4ee2f8b91cc790a292c4b14846aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ff28a68b31046759b783da1725872e7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_orbital_space.html">OrbitalSpace</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a5ff28a68b31046759b783da1725872e7">orbitalSpace</a> (const size_t K, const size_t N_P)</td></tr>
 <tr class="separator:a5ff28a68b31046759b783da1725872e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a886e234eeb1dde0348d9f5ba17137a4a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_field.html">Field</a>&lt; <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, 3, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a886e234eeb1dde0348d9f5ba17137a4a">calculateIpsocentricMagneticInducibility</a> (const <a class="el" href="class_g_q_c_p_1_1_cubic_grid.html">CubicGrid</a> &amp;grid, const <a class="el" href="class_g_q_c_p_1_1_orbital_space.html">OrbitalSpace</a> &amp;orbital_space, const <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3 &gt; &amp;x_B, const <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3 &gt; &amp;x_G, const <a class="el" href="namespace_g_q_c_p.html#a5f07594b8253c17135822016460301b8">VectorEvaluableRSQOneElectronOperator</a>&lt; <a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a745d57c09770619664a66dd328467759">CurrentDensityDistribution</a> &gt; &amp;j_op)</td></tr>
-<tr class="separator:a886e234eeb1dde0348d9f5ba17137a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45f6920a8c410891cb91c35d20ceb0b7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_field.html">Field</a>&lt; <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, 3, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a45f6920a8c410891cb91c35d20ceb0b7">calculateIpsocentricMagneticInducibility</a> (const <a class="el" href="class_g_q_c_p_1_1_cubic_grid.html">CubicGrid</a> &amp;grid, const <a class="el" href="class_g_q_c_p_1_1_orbital_space.html">OrbitalSpace</a> &amp;orbital_space, const <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3 &gt; &amp;x_B, const <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 6 &gt; &amp;x_G, const <a class="el" href="namespace_g_q_c_p.html#a5f07594b8253c17135822016460301b8">VectorEvaluableRSQOneElectronOperator</a>&lt; <a class="el" href="class_g_q_c_p_1_1_current_density_matrix_element.html">CurrentDensityMatrixElement</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a> &gt;&gt; &amp;j_op)</td></tr>
+<tr class="separator:a45f6920a8c410891cb91c35d20ceb0b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename _Scalar&gt;<br />
@@ -191,22 +191,6 @@ class GQCP::QCModel::RHF&lt; _Scalar &gt;</h3>
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a745d57c09770619664a66dd328467759"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a745d57c09770619664a66dd328467759">&#9670;&nbsp;</a></span>CurrentDensityDistribution</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename _Scalar &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html">GQCP::QCModel::RHF</a>&lt; _Scalar &gt;::<a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a745d57c09770619664a66dd328467759">CurrentDensityDistribution</a> =  <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html">RSpinOrbitalBasis</a>&lt;double, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a>&gt;::<a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a745d57c09770619664a66dd328467759">CurrentDensityDistribution</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="adc2d191ddd486bdfb5a6494e39bce7f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc2d191ddd486bdfb5a6494e39bce7f6">&#9670;&nbsp;</a></span>Scalar</h2>
 
@@ -412,19 +396,21 @@ template&lt;typename _Scalar &gt; </div>
 
 </div>
 </div>
-<a id="a3ad03a4c89610ecf72a2df4faf5105c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ad03a4c89610ecf72a2df4faf5105c5">&#9670;&nbsp;</a></span>calculateGaugeOriginTranslationResponseForce()</h2>
+<a id="a758ea83ccc7a8f3d6aab46b7f96aaa5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a758ea83ccc7a8f3d6aab46b7f96aaa5b">&#9670;&nbsp;</a></span>calculateGaugeOriginTranslationResponseForce()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename _Scalar &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Scalar&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt;<a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3&gt; <a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html">GQCP::QCModel::RHF</a>&lt; _Scalar &gt;::calculateGaugeOriginTranslationResponseForce </td>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, double&gt;::value, <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt;<a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 6&gt; &gt; <a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html">GQCP::QCModel::RHF</a>&lt; _Scalar &gt;::calculateGaugeOriginTranslationResponseForce </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a937c6a66a78202fc6957b3d807c57e64">VectorRSQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>p_op</em></td><td>)</td>
@@ -448,8 +434,8 @@ template&lt;typename _Scalar &gt; </div>
 
 </div>
 </div>
-<a id="a886e234eeb1dde0348d9f5ba17137a4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a886e234eeb1dde0348d9f5ba17137a4a">&#9670;&nbsp;</a></span>calculateIpsocentricMagneticInducibility()</h2>
+<a id="a45f6920a8c410891cb91c35d20ceb0b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45f6920a8c410891cb91c35d20ceb0b7">&#9670;&nbsp;</a></span>calculateIpsocentricMagneticInducibility()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,13 +466,13 @@ template&lt;typename _Scalar &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 6 &gt; &amp;&#160;</td>
           <td class="paramname"><em>x_G</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a5f07594b8253c17135822016460301b8">VectorEvaluableRSQOneElectronOperator</a>&lt; <a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html#a745d57c09770619664a66dd328467759">CurrentDensityDistribution</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a5f07594b8253c17135822016460301b8">VectorEvaluableRSQOneElectronOperator</a>&lt; <a class="el" href="class_g_q_c_p_1_1_current_density_matrix_element.html">CurrentDensityMatrixElement</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>j_op</em>&#160;</td>
         </tr>
         <tr>
@@ -516,19 +502,21 @@ template&lt;typename _Scalar &gt; </div>
 
 </div>
 </div>
-<a id="a696581fe46dc53e31571699305826ac1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a696581fe46dc53e31571699305826ac1">&#9670;&nbsp;</a></span>calculateMagneticFieldResponseForce()</h2>
+<a id="a4428d799512389194d1cffe13e2f38a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4428d799512389194d1cffe13e2f38a8">&#9670;&nbsp;</a></span>calculateMagneticFieldResponseForce()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename _Scalar &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Scalar&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt;<a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3&gt; <a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html">GQCP::QCModel::RHF</a>&lt; _Scalar &gt;::calculateMagneticFieldResponseForce </td>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, double&gt;::value, <a class="el" href="class_g_q_c_p_1_1_matrix.html">Matrix</a>&lt;<a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a>, <a class="el" href="namespace_g_q_c_p.html#aae02f7d1e3557edc7114d417804dd298">Dynamic</a>, 3&gt; &gt; <a class="el" href="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f.html">GQCP::QCModel::RHF</a>&lt; _Scalar &gt;::calculateMagneticFieldResponseForce </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a937c6a66a78202fc6957b3d807c57e64">VectorRSQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a1ffc21109e62d09d3485c62e03677dfd">complex</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>L_op</em></td><td>)</td>

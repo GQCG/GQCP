@@ -15,69 +15,69 @@
     <includedby refid="_q_c_model_2_h_f_2_r_h_f_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</includedby>
     <includedby refid="_cubic_grid_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp</includedby>
     <incdepgraph>
-      <node id="15">
+      <node id="13">
         <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="27">
+      <node id="26">
         <label>iomanip</label>
       </node>
-      <node id="20">
+      <node id="19">
         <label>functional</label>
       </node>
-      <node id="13">
+      <node id="11">
         <label>Utilities/Eigen.hpp</label>
         <link refid="_eigen_8hpp"/>
-        <childnode refid="14" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="21">
+      <node id="20">
         <label>iterator</label>
       </node>
-      <node id="23">
+      <node id="22">
         <label>Molecule/Molecule.hpp</label>
         <link refid="_molecule_8hpp"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="17">
         <label>Utilities/miscellaneous.hpp</label>
         <link refid="miscellaneous_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
         <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="7">
         <label>boost/format.hpp</label>
       </node>
-      <node id="29">
+      <node id="28">
         <label>numeric</label>
       </node>
-      <node id="24">
+      <node id="23">
         <label>Molecule/NuclearFramework.hpp</label>
         <link refid="_nuclear_framework_8hpp"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="22">
+      <node id="21">
         <label>string</label>
       </node>
       <node id="1">
@@ -85,60 +85,60 @@
         <link refid="_cubic_grid_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="24">
         <label>Molecule/Nucleus.hpp</label>
         <link refid="_nucleus_8hpp"/>
-        <childnode refid="11" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>fstream</label>
-      </node>
-      <node id="10">
-        <label>Mathematical/Grid/Field.hpp</label>
-        <link refid="_field_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="26">
+      <node id="14">
+        <label>fstream</label>
+      </node>
+      <node id="8">
+        <label>Mathematical/Grid/Field.hpp</label>
+        <link refid="_field_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
         <label>Molecule/elements.hpp</label>
         <link refid="elements_8hpp"/>
-        <childnode refid="22" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -148,28 +148,30 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="12">
         <label>Eigen/Dense</label>
       </node>
-      <node id="11">
+      <node id="9">
         <label>Mathematical/Representation/Matrix.hpp</label>
         <link refid="_matrix_8hpp"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
         <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -178,7 +180,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="16">
         <label>vector</label>
       </node>
       <node id="3">
@@ -188,30 +190,23 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
       </node>
-      <node id="28">
+      <node id="27">
         <label>array</label>
       </node>
-      <node id="7">
+      <node id="6">
         <label>cstdlib</label>
       </node>
-      <node id="17">
+      <node id="15">
         <label>iostream</label>
       </node>
       <node id="5">
         <label>type_traits</label>
       </node>
-      <node id="6">
-        <label>complex</label>
-      </node>
-      <node id="19">
+      <node id="18">
         <label>algorithm</label>
       </node>
-      <node id="12">
+      <node id="10">
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
@@ -543,8 +538,8 @@
 <codeline lineno="122" refid="class_g_q_c_p_1_1_cubic_grid_1a744c8c47067699932684fd052843d592" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="class_g_q_c_p_1_1_cubic_grid_1a744c8c47067699932684fd052843d592" kindref="member">integrate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>field)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
 <codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Using<sp/>field.value(0)<sp/>as<sp/>the<sp/>initial<sp/>value<sp/>makes<sp/>sure<sp/>that<sp/>the<sp/>initialization<sp/>is<sp/>already<sp/>correct:<sp/>e.g.<sp/>when<sp/>a<sp/>Vector<sp/>is<sp/>initialized,<sp/>it<sp/>doesn&apos;t<sp/>automatically<sp/>have<sp/>the<sp/>required<sp/>size<sp/>due<sp/>to<sp/>the<sp/>default<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>std::accumulate(field.<ref refid="class_g_q_c_p_1_1_field_1ac7abb5968dfe23dd27173b6c12db5be8" kindref="member">values</ref>().begin(),<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1ac7abb5968dfe23dd27173b6c12db5be8" kindref="member">values</ref>().end(),<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a3234482b7438aa74a8d34f70e4a88998" kindref="member">value</ref>(0));</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>-=<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a3234482b7438aa74a8d34f70e4a88998" kindref="member">value</ref>(0);<sp/><sp/></highlight><highlight class="comment">//<sp/>subtract<sp/>the<sp/>initial<sp/>value<sp/>of<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>std::accumulate(field.<ref refid="class_g_q_c_p_1_1_field_1adb01c471dae3664d7df87aa094d9c9f0" kindref="member">values</ref>().begin(),<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1adb01c471dae3664d7df87aa094d9c9f0" kindref="member">values</ref>().end(),<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" kindref="member">value</ref>(0));</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>-=<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" kindref="member">value</ref>(0);<sp/><sp/></highlight><highlight class="comment">//<sp/>subtract<sp/>the<sp/>initial<sp/>value<sp/>of<sp/>result</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>cubic<sp/>grids,<sp/>the<sp/>weight<sp/>of<sp/>each<sp/>point<sp/>is<sp/>the<sp/>voxel<sp/>volume,<sp/>so<sp/>we&apos;ll<sp/>have<sp/>to<sp/>multiply<sp/>the<sp/>final<sp/>result<sp/>by<sp/>this.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_cubic_grid_1a9ec68e917323ae9619289d4b105884e6" kindref="member">voxelVolume</ref>();</highlight></codeline>

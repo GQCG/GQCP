@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="32" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" bodystart="32" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="33" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/SpinZeemanOperator.cpp" bodystart="33" bodyend="34"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/SpinZeemanOperator.cpp" bodystart="33" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_zeeman_operator_1a2759f4fda647e7ac999762e4499d901b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="55" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" bodystart="55" bodyend="55"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="56" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" bodystart="56" bodyend="56"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -112,7 +112,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="28" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" bodystart="29" bodyend="56"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="29" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" bodystart="30" bodyend="57"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1a17df7222f10fe71ca020bc93963932c0" prot="private" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>B</name></member>
       <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1a2759f4fda647e7ac999762e4499d901b" prot="public" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>magneticField</name></member>

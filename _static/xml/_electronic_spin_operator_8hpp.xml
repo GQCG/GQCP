@@ -3,7 +3,7 @@
   <compounddef id="_electronic_spin_operator_8hpp" kind="file" language="C++">
     <compoundname>ElectronicSpinOperator.hpp</compoundname>
     <includes refid="_base_f_q_operator_8hpp" local="yes">Operator/FirstQuantized/BaseFQOperator.hpp</includes>
-    <includes refid="aliases_8hpp" local="yes">Utilities/aliases.hpp</includes>
+    <includes refid="complex_8hpp" local="yes">Utilities/complex.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_g_spinor_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp</includedby>
     <includedby refid="_q_c_model_2_h_f_2_g_h_f_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp</includedby>
@@ -42,29 +42,19 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>vector</label>
+      <node id="4">
+        <label>array</label>
+      </node>
+      <node id="5">
+        <label>cstddef</label>
       </node>
       <node id="7">
-        <label>Utilities/aliases.hpp</label>
-        <link refid="aliases_8hpp"/>
+        <label>Utilities/complex.hpp</label>
+        <link refid="complex_8hpp"/>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>array</label>
-      </node>
-      <node id="11">
-        <label>cstdlib</label>
-      </node>
-      <node id="5">
-        <label>cstddef</label>
       </node>
       <node id="9">
         <label>type_traits</label>
@@ -393,7 +383,7 @@
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_base_f_q_operator_8hpp" kindref="compound">Operator/FirstQuantized/BaseFQOperator.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aliases_8hpp" kindref="compound">Utilities/aliases.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="complex_8hpp" kindref="compound">Utilities/complex.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>

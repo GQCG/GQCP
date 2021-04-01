@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp" bodystart="37" bodyend="41"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp" bodystart="36" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_london_hermite_coulomb_integral_1a0efa0509352fd0ae8a148a9e9af80d3c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
@@ -183,7 +183,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="72" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp" bodystart="56" bodyend="102"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp" line="72" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp" bodystart="55" bodyend="101"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

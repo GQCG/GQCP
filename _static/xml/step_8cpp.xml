@@ -5,10 +5,10 @@
     <includes refid="_optimization_2_non_linear_equation_2_step_8hpp" local="yes">Mathematical/Optimization/NonLinearEquation/step.hpp</includes>
     <includes refid="_square_matrix_8hpp" local="yes">Mathematical/Representation/SquareMatrix.hpp</includes>
     <incdepgraph>
-      <node id="13">
+      <node id="11">
         <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="19">
+      <node id="18">
         <label>functional</label>
       </node>
       <node id="5">
@@ -23,49 +23,49 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="19">
         <label>iterator</label>
       </node>
-      <node id="16">
+      <node id="15">
         <label>Mathematical/Representation/SquareMatrix.hpp</label>
         <link refid="_square_matrix_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
       </node>
-      <node id="17">
+      <node id="16">
         <label>Utilities/miscellaneous.hpp</label>
         <link refid="miscellaneous_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
         <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>numeric</label>
-      </node>
-      <node id="21">
-        <label>string</label>
       </node>
       <node id="22">
+        <label>numeric</label>
+      </node>
+      <node id="20">
+        <label>string</label>
+      </node>
+      <node id="21">
         <label>boost/numeric/conversion/converter.hpp</label>
       </node>
-      <node id="14">
+      <node id="12">
         <label>fstream</label>
       </node>
       <node id="6">
@@ -82,11 +82,13 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -100,10 +102,10 @@
         <link refid="step_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="12">
+      <node id="14">
         <label>vector</label>
       </node>
       <node id="7">
@@ -113,24 +115,17 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
       </node>
-      <node id="11">
+      <node id="10">
         <label>cstdlib</label>
       </node>
-      <node id="15">
+      <node id="13">
         <label>iostream</label>
       </node>
       <node id="9">
         <label>type_traits</label>
       </node>
-      <node id="10">
-        <label>complex</label>
-      </node>
-      <node id="18">
+      <node id="17">
         <label>algorithm</label>
       </node>
       <node id="4">
