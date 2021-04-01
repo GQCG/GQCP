@@ -7,12 +7,13 @@
 
 - part: "Tutorial"
   chapters:    
-    - file: user-documentation/molecules
-    - file: user-documentation/orbital-bases
-    - file: user-documentation/quantum-chemical-methods
-    - file: user-documentation/quantum-chemical-models
-    - file: user-documentation/use-cases
-    
+    - file: tutorial/introduction
+    - file: tutorial/molecules
+    - file: tutorial/orbital-bases
+    - file: tutorial/quantum-chemical-methods
+    - file: tutorial/quantum-chemical-models
+    - file: tutorial/use-cases
+
 - part: "Examples"
   chapters:    
     - file: examples/getting-started
