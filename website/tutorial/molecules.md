@@ -3,7 +3,7 @@
 
 ## Constructing molecules
 
-In this section, we'll go over various ways to create molecules in gqcpy.
+In this section, we'll go over various ways to create molecules in GQCP and GQCPy.
 
 
 ### XYZ-files
