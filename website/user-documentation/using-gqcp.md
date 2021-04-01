@@ -17,7 +17,7 @@ H          0.86681        0.60144        0.00000
 H         -0.86681        0.60144        0.00000
 ```
 
-a prototypical `Hello GQCP` driver is given by
+a prototypical `Hello GQCP` driver `driver.cpp` is given by
 
 ```C++
 #include <iostream>
