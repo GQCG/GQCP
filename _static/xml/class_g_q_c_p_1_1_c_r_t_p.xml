@@ -5,8 +5,8 @@
     <derivedcompoundref refid="class_g_q_c_p_1_1_simple_spinor_basis" prot="public" virt="non-virtual">GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, _DerivedSpinOrbitalBasis &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_simple_spinor_basis" prot="public" virt="non-virtual">GQCP::SimpleSpinorBasis&lt; _ExpansionScalar, GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; EvaluableLinearCombination&lt; _Coefficient, _FunctionType &gt;, _Coefficient &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; SpinResolved1DM&lt; _Scalar &gt;, _Scalar &gt;</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; LinearCombination&lt; _CoefficientScalar, _Function &gt;, _CoefficientScalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;, _Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; MixedSpinResolved2DMComponent&lt; _Scalar &gt;, _Scalar &gt;</derivedcompoundref>
@@ -102,7 +102,7 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="31" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="11">
+      <node id="13">
         <label>GQCP::VectorSpaceArithmetic&lt; SpinResolved1DM&lt; _Scalar &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
@@ -162,10 +162,10 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="26" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="12">
+      <node id="14">
         <label>GQCP::SpinResolved1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m"/>
-        <childnode refid="11" relation="public-inheritance">
+        <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
       <node id="4">
@@ -178,6 +178,12 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <label>GQCP::RSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator"/>
         <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>GQCP::VectorSpaceArithmetic&lt; EvaluableLinearCombination&lt; _Coefficient, _FunctionType &gt;, _Coefficient &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
       <node id="8">
@@ -202,12 +208,6 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <label>GQCP::USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component"/>
         <childnode refid="29" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>GQCP::LinearCombination&lt; _CoefficientScalar, _Function &gt;</label>
-        <link refid="class_g_q_c_p_1_1_linear_combination"/>
-        <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
       <node id="21">
@@ -264,12 +264,6 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="13">
-        <label>GQCP::VectorSpaceArithmetic&lt; LinearCombination&lt; _CoefficientScalar, _Function &gt;, _CoefficientScalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="10">
         <label>GQCP::Orbital2DM&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
@@ -303,6 +297,12 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
       <node id="1">
         <label>GQCP::CRTP&lt; _Derived &gt;</label>
         <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="12">
+        <label>GQCP::EvaluableLinearCombination&lt; _Coefficient, _FunctionType &gt;</label>
+        <link refid="class_g_q_c_p_1_1_evaluable_linear_combination"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="22">
         <label>GQCP::T1Amplitudes&lt; _Scalar &gt;</label>

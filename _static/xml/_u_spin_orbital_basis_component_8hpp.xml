@@ -107,18 +107,6 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="39">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-      </node>
       <node id="35">
         <label>Mathematical/Functions/CartesianGTO.hpp</label>
         <link refid="_cartesian_g_t_o_8hpp"/>
@@ -127,6 +115,8 @@
         <childnode refid="38" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="24">
@@ -290,8 +280,6 @@
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
         <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="52" relation="include">
@@ -327,19 +315,28 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
+      <node id="39">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
       <node id="42">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
-      <node id="10">
-        <label>Eigen/Dense</label>
-      </node>
       <node id="38">
-        <label>Mathematical/Functions/LinearCombination.hpp</label>
-        <link refid="_linear_combination_8hpp"/>
+        <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
+        <link refid="_evaluable_linear_combination_8hpp"/>
         <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
@@ -347,6 +344,11 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Eigen/Dense</label>
       </node>
       <node id="5">
         <label>Basis/Transformations/BasisTransformable.hpp</label>

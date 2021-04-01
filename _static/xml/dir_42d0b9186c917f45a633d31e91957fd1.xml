@@ -7,6 +7,7 @@
     <innerfile refid="_base_nuclear_operator_8hpp">BaseNuclearOperator.hpp</innerfile>
     <innerfile refid="_base_reference_dependent_operator_8hpp">BaseReferenceDependentOperator.hpp</innerfile>
     <innerfile refid="_coulomb_repulsion_operator_8hpp">CoulombRepulsionOperator.hpp</innerfile>
+    <innerfile refid="_current_density_operator_8hpp">CurrentDensityOperator.hpp</innerfile>
     <innerfile refid="_diamagnetic_operator_8hpp">DiamagneticOperator.hpp</innerfile>
     <innerfile refid="_electronic_density_operator_8hpp">ElectronicDensityOperator.hpp</innerfile>
     <innerfile refid="_electronic_dipole_operator_8hpp">ElectronicDipoleOperator.hpp</innerfile>

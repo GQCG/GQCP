@@ -6,6 +6,7 @@
     <innerfile refid="_dense_vectorizer_8hpp">DenseVectorizer.hpp</innerfile>
     <innerfile refid="_implicit_matrix_slice_8hpp">ImplicitMatrixSlice.hpp</innerfile>
     <innerfile refid="_implicit_rank_four_tensor_slice_8hpp">ImplicitRankFourTensorSlice.hpp</innerfile>
+    <innerfile refid="_levi_civita_tensor_8hpp">LeviCivitaTensor.hpp</innerfile>
     <innerfile refid="_matrix_8hpp">Matrix.hpp</innerfile>
     <innerfile refid="_matrix_representation_evaluation_container_8hpp">MatrixRepresentationEvaluationContainer.hpp</innerfile>
     <innerfile refid="_square_matrix_8hpp">SquareMatrix.hpp</innerfile>

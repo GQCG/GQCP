@@ -1,0 +1,179 @@
+\hypertarget{class_g_q_c_p_1_1_function_product}{}\doxysection{GQCP\+::Function\+Product$<$ T1, T2 $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_function_product}\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+
+
+{\ttfamily \#include $<$Function.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Function\+Product$<$ T1, T2 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_g_q_c_p_1_1_function_product__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Function\+Product$<$ T1, T2 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_g_q_c_p_1_1_function_product__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}{Output\+Type}} = \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$ typename T1\+::\+Output\+Type, typename T2\+::\+Output\+Type $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}{Input\+Type}} = typename T1\+::\+Input\+Type
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a8e7d14795688ff37d72ec5ddba158431}{Function\+Product}} (const T1 \&\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a73e9bbd8365fb2201d6f8877bb452f05}{lhs}}, const T2 \&\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a33861d4eea3910b55da81ced970e792c}{rhs}})
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a54e1ea00ff54f37010c910c5048f98b2}{Function\+Product}} ()=default
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a8ee16cb45ce868fd8b0e95c9cc92b868}{Function\+Product}} (const int zero)
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af6aaf1c4137444d38a32c9715d7ef71a}{description}} () const
+\item 
+const T1 \& \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a73e9bbd8365fb2201d6f8877bb452f05}{lhs}} () const
+\item 
+const T2 \& \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a33861d4eea3910b55da81ced970e792c}{rhs}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}{Output\+Type}} \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_aaf24131ec06e6547a7da905b42e3079d}{operator()}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}{Input\+Type}} \&in) const override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T1, typename T2 = T1$>$\newline
+class GQCP\+::\+Function\+Product$<$ T1, T2 $>$}
+
+A template that represents a product of functions. In this way, the evaluation of a function product is the product of the respective evaluations.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & The left-\/hand side function type. \\
+\hline
+{\em T2} & The right-\/hand side function type \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}\label{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!InputType@{InputType}}
+\index{InputType@{InputType}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{InputType}{InputType}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}{Input\+Type}} =  typename T1\+::\+Input\+Type}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}\label{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!OutputType@{OutputType}}
+\index{OutputType@{OutputType}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{OutputType}{OutputType}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}{Output\+Type}} =  \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename T1\+::\+Output\+Type, typename T2\+::\+Output\+Type$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_a8e7d14795688ff37d72ec5ddba158431}\label{class_g_q_c_p_1_1_function_product_a8e7d14795688ff37d72ec5ddba158431}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!FunctionProduct@{FunctionProduct}}
+\index{FunctionProduct@{FunctionProduct}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{FunctionProduct()}{FunctionProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{Function\+Product}} (\begin{DoxyParamCaption}\item[{const T1 \&}]{lhs,  }\item[{const T2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The left-\/hand side of the product. \\
+\hline
+{\em rhs} & The right-\/hand side of the product. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_a54e1ea00ff54f37010c910c5048f98b2}\label{class_g_q_c_p_1_1_function_product_a54e1ea00ff54f37010c910c5048f98b2}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!FunctionProduct@{FunctionProduct}}
+\index{FunctionProduct@{FunctionProduct}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{FunctionProduct()}{FunctionProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{Function\+Product}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+The default constructor. \mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_a8ee16cb45ce868fd8b0e95c9cc92b868}\label{class_g_q_c_p_1_1_function_product_a8ee16cb45ce868fd8b0e95c9cc92b868}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!FunctionProduct@{FunctionProduct}}
+\index{FunctionProduct@{FunctionProduct}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{FunctionProduct()}{FunctionProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{Function\+Product}} (\begin{DoxyParamCaption}\item[{const int}]{zero }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a \textquotesingle{}zero function product\textquotesingle{} given the \textquotesingle{}0\textquotesingle{} integer literal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zero} & The \textquotesingle{}0\textquotesingle{} integer literal. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_af6aaf1c4137444d38a32c9715d7ef71a}\label{class_g_q_c_p_1_1_function_product_af6aaf1c4137444d38a32c9715d7ef71a}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!description@{description}}
+\index{description@{description}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A textual description of this function. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_a73e9bbd8365fb2201d6f8877bb452f05}\label{class_g_q_c_p_1_1_function_product_a73e9bbd8365fb2201d6f8877bb452f05}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!lhs@{lhs}}
+\index{lhs@{lhs}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{lhs()}{lhs()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+const T1\& \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::lhs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The left-\/hand side of this product. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_aaf24131ec06e6547a7da905b42e3079d}\label{class_g_q_c_p_1_1_function_product_aaf24131ec06e6547a7da905b42e3079d}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}{Output\+Type}} \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}{Input\+Type}} \&}]{in }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Evaluate this function product.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The argument for which the function is to be evaluated.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function value of this function product for the given argument. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_function_a921ee4632b3b07753bb1a9b16df38198}{GQCP\+::\+Function$<$ product\+\_\+t$<$ T1\+::\+Output\+Type, T2\+::\+Output\+Type $>$, T1\+::\+Input\+Type $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_function_product_a33861d4eea3910b55da81ced970e792c}\label{class_g_q_c_p_1_1_function_product_a33861d4eea3910b55da81ced970e792c}} 
+\index{GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}!rhs@{rhs}}
+\index{rhs@{rhs}!GQCP::FunctionProduct$<$ T1, T2 $>$@{GQCP::FunctionProduct$<$ T1, T2 $>$}}
+\doxysubsubsection{\texorpdfstring{rhs()}{rhs()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2  = T1$>$ \\
+const T2\& \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product}}$<$ T1, T2 $>$\+::rhs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The right-\/hand side of this product. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Mathematical/\+Functions/\mbox{\hyperlink{_function_8hpp}{Function.\+hpp}}\end{DoxyCompactItemize}

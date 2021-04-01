@@ -3,7 +3,11 @@
   <compounddef id="dir_652cc385387507453a4ee659969ac393" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized</compoundname>
     <innerdir refid="dir_41ae741239889692afc314a7f1922409">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian</innerdir>
-    <innerfile refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp">EvaluatableScalarRSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_evaluable_g_s_q_one_electron_operator_8hpp">EvaluableGSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_evaluable_r_s_q_one_electron_operator_8hpp">EvaluableRSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_evaluable_simple_s_q_one_electron_operator_8hpp">EvaluableSimpleSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_evaluable_u_s_q_one_electron_operator_8hpp">EvaluableUSQOneElectronOperator.hpp</innerfile>
+    <innerfile refid="_evaluable_u_s_q_one_electron_operator_component_8hpp">EvaluableUSQOneElectronOperatorComponent.hpp</innerfile>
     <innerfile refid="_g_s_q_one_electron_operator_8hpp">GSQOneElectronOperator.hpp</innerfile>
     <innerfile refid="_g_s_q_two_electron_operator_8hpp">GSQTwoElectronOperator.hpp</innerfile>
     <innerfile refid="_mixed_u_s_q_two_electron_operator_component_8hpp">MixedUSQTwoElectronOperatorComponent.hpp</innerfile>

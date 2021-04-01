@@ -19,7 +19,7 @@ Collaboration diagram for GQCP\+::GTOShell\+:
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}} = \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}}
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{Basis\+Function}} = \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}} $>$
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a7230936745aec40ea7430c3fc1788c5e}{Basis\+Function}} = \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}} $>$
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -54,7 +54,7 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a0e0e16ddc671dcbe8a9f
 \item 
 std\+::vector$<$ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a8c0d37e6c7b8c7319fe798dead778e9a}{generate\+Cartesian\+Exponents}} () const
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a0db42a0151f6bb8e795bcda50e382f04}{basis\+Functions}} () const
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a7230936745aec40ea7430c3fc1788c5e}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a0db42a0151f6bb8e795bcda50e382f04}{basis\+Functions}} () const
 \end{DoxyCompactItemize}
 
 
@@ -62,11 +62,11 @@ std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c
 A class that represents a shell of GTOs\+: it specifies in a condensed way which GTOs are on an nucleus. 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}\label{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_a7230936745aec40ea7430c3fc1788c5e}\label{class_g_q_c_p_1_1_g_t_o_shell_a7230936745aec40ea7430c3fc1788c5e}} 
 \index{GQCP::GTOShell@{GQCP::GTOShell}!BasisFunction@{BasisFunction}}
 \index{BasisFunction@{BasisFunction}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{BasisFunction}{BasisFunction}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{GQCP\+::\+GTOShell\+::\+Basis\+Function}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_linear_combination}{Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}}$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a7230936745aec40ea7430c3fc1788c5e}{GQCP\+::\+GTOShell\+::\+Basis\+Function}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Primitive}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}\label{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}} 
 \index{GQCP::GTOShell@{GQCP::GTOShell}!Primitive@{Primitive}}
@@ -127,7 +127,7 @@ If the normalization factors of the primitives are embedded in this shell\textqu
 \index{GQCP::GTOShell@{GQCP::GTOShell}!basisFunctions@{basisFunctions}}
 \index{basisFunctions@{basisFunctions}!GQCP::GTOShell@{GQCP::GTOShell}}
 \doxysubsubsection{\texorpdfstring{basisFunctions()}{basisFunctions()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a1ac10edf713233c0b91fffe522d2c016}{GTOShell\+::\+Basis\+Function}} $>$ GQCP\+::\+GTOShell\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_a7230936745aec40ea7430c3fc1788c5e}{GTOShell\+::\+Basis\+Function}} $>$ GQCP\+::\+GTOShell\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Construct all basis functions contained in this shell.
 

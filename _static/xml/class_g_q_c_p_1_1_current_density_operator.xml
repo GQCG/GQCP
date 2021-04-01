@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_current_density_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::CurrentDensityOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_base_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseFQOperator&lt; complex &gt;</basecompoundref>
+    <includes refid="_current_density_operator_8hpp" local="no">CurrentDensityOperator.hpp</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_current_density_operator_1a2805d6ca1a08d214a9abd4dec9911d93" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t GQCP::CurrentDensityOperator::NumberOfComponents</definition>
+        <argsstring></argsstring>
+        <name>NumberOfComponents</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/CurrentDensityOperator.hpp" line="39" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/CurrentDensityOperator.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_current_density_operator_1ad848439e8836e06f1dab0b85b89ee5bd" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref></type>
+        <definition>const VectorVectorizer GQCP::CurrentDensityOperator::vectorizer</definition>
+        <argsstring></argsstring>
+        <name>vectorizer</name>
+        <initializer>{{<ref refid="class_g_q_c_p_1_1_current_density_operator_1a2805d6ca1a08d214a9abd4dec9911d93" kindref="member">CurrentDensityOperator::NumberOfComponents</ref>}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/CurrentDensityOperator.hpp" line="42" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/CurrentDensityOperator.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The (one-electron) field-free current density operator. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::CurrentDensityOperator</label>
+        <link refid="class_g_q_c_p_1_1_current_density_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BaseVectorFQOneElectronOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::CurrentDensityOperator</label>
+        <link refid="class_g_q_c_p_1_1_current_density_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+vectorizer</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
+      <node id="2">
+        <label>BaseVectorFQOneElectronOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/CurrentDensityOperator.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/CurrentDensityOperator.hpp" bodystart="32" bodyend="43"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_current_density_operator_1a2805d6ca1a08d214a9abd4dec9911d93" prot="public" virt="non-virtual"><scope>GQCP::CurrentDensityOperator</scope><name>NumberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1ae56208bbc85e6d9d401fa4540f20a573" prot="public" virt="non-virtual"><scope>GQCP::CurrentDensityOperator</scope><name>NumberOfElectrons</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" prot="public" virt="non-virtual"><scope>GQCP::CurrentDensityOperator</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_current_density_operator_1ad848439e8836e06f1dab0b85b89ee5bd" prot="public" virt="non-virtual"><scope>GQCP::CurrentDensityOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a3bf379636691d7d74ea96afc8f5049cf" prot="public" virt="non-virtual"><scope>GQCP::CurrentDensityOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_base_f_q_operator_1a1f47a08d6dbad212da9370b4d55fd522" prot="public" virt="virtual"><scope>GQCP::CurrentDensityOperator</scope><name>~BaseFQOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

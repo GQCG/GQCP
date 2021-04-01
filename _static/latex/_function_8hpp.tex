@@ -1,0 +1,43 @@
+\hypertarget{_function_8hpp}{}\doxysection{/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Mathematical/\+Functions/\+Function.hpp File Reference}
+\label{_function_8hpp}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp}}
+{\ttfamily \#include \char`\"{}Utilities/aliases.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utilities/type\+\_\+traits.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$boost/format.\+hpp$>$}\newline
+Include dependency graph for Function.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_function_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_function_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{GQCP\+::\+Function\+Product$<$ T1, T2 $>$}}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1_function}{GQCP\+::\+Function$<$ \+\_\+\+Output\+Type, \+\_\+\+Input\+Type $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_g_q_c_p_a87cc0b2adf737c5194d7a791bd4cb513}{GQCP\+::\+Is\+Function}} = enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+base\+\_\+of$<$ Function$<$ typename T\+::\+Output\+Type, typename T\+::\+Input\+Type $>$, T $>$\+::value $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename F1 , typename F2 , typename  = Is\+Function$<$\+F1$>$, typename  = Is\+Function$<$\+F2$>$$>$ }\\Function\+Product$<$ F1, F2 $>$ \mbox{\hyperlink{namespace_g_q_c_p_a17e2cb3ed1f3e8391830d49b0727ba91}{GQCP\+::operator$\ast$}} (const F1 \&lhs, const F2 \&rhs)
+\end{DoxyCompactItemize}

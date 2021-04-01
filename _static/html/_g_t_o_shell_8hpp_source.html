@@ -90,7 +90,7 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_cartesian_g_t_o_8hpp.html">Mathematical/Functions/CartesianGTO.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_linear_combination_8hpp.html">Mathematical/Functions/LinearCombination.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_evaluable_linear_combination_8hpp.html">Mathematical/Functions/EvaluableLinearCombination.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_nucleus_8hpp.html">Molecule/Nucleus.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
@@ -103,7 +103,7 @@ $(function() {
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g_t_o_shell.html#acea61a547f79a88268b0cda0ced7befd">   35</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">Primitive</a> = <a class="code" href="class_g_q_c_p_1_1_cartesian_g_t_o.html">CartesianGTO</a>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// The type of basis function that this shell can produce.</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g_t_o_shell.html#a1ac10edf713233c0b91fffe522d2c016">   38</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_linear_combination.html">BasisFunction</a> = <a class="code" href="class_g_q_c_p_1_1_linear_combination.html">LinearCombination&lt;double, Primitive&gt;</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g_t_o_shell.html#a7230936745aec40ea7430c3fc1788c5e">   38</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_evaluable_linear_combination.html">BasisFunction</a> = <a class="code" href="class_g_q_c_p_1_1_evaluable_linear_combination.html">EvaluableLinearCombination&lt;double, Primitive&gt;</a>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">private</span>:</div>
@@ -190,9 +190,10 @@ $(function() {
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 <div class="ttc" id="a_cartesian_g_t_o_8hpp_html"><div class="ttname"><a href="_cartesian_g_t_o_8hpp.html">CartesianGTO.hpp</a></div></div>
-<div class="ttc" id="a_linear_combination_8hpp_html"><div class="ttname"><a href="_linear_combination_8hpp.html">LinearCombination.hpp</a></div></div>
+<div class="ttc" id="a_evaluable_linear_combination_8hpp_html"><div class="ttname"><a href="_evaluable_linear_combination_8hpp.html">EvaluableLinearCombination.hpp</a></div></div>
 <div class="ttc" id="a_nucleus_8hpp_html"><div class="ttname"><a href="_nucleus_8hpp.html">Nucleus.hpp</a></div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_cartesian_g_t_o_html"><div class="ttname"><a href="class_g_q_c_p_1_1_cartesian_g_t_o.html">GQCP::CartesianGTO</a></div><div class="ttdef"><b>Definition:</b> CartesianGTO.hpp:37</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_cartesian_g_t_o_html"><div class="ttname"><a href="class_g_q_c_p_1_1_cartesian_g_t_o.html">GQCP::CartesianGTO</a></div><div class="ttdef"><b>Definition:</b> CartesianGTO.hpp:38</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_evaluable_linear_combination_html"><div class="ttname"><a href="class_g_q_c_p_1_1_evaluable_linear_combination.html">GQCP::EvaluableLinearCombination</a></div><div class="ttdef"><b>Definition:</b> EvaluableLinearCombination.hpp:45</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_g_t_o_shell_html"><div class="ttname"><a href="class_g_q_c_p_1_1_g_t_o_shell.html">GQCP::GTOShell</a></div><div class="ttdef"><b>Definition:</b> GTOShell.hpp:32</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_g_t_o_shell_html_a0864f2be6548735b5159279cec91040e"><div class="ttname"><a href="class_g_q_c_p_1_1_g_t_o_shell.html#a0864f2be6548735b5159279cec91040e">GQCP::GTOShell::contractionCoefficients</a></div><div class="ttdeci">const std::vector&lt; double &gt; &amp; contractionCoefficients() const</div><div class="ttdef"><b>Definition:</b> GTOShell.hpp:156</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_g_t_o_shell_html_a0aecb2b5033d5a0b9e98675653c12247"><div class="ttname"><a href="class_g_q_c_p_1_1_g_t_o_shell.html#a0aecb2b5033d5a0b9e98675653c12247">GQCP::GTOShell::embedNormalizationFactor</a></div><div class="ttdeci">void embedNormalizationFactor()</div><div class="ttdef"><b>Definition:</b> GTOShell.cpp:104</div></div>
@@ -210,7 +211,6 @@ $(function() {
 <div class="ttc" id="aclass_g_q_c_p_1_1_g_t_o_shell_html_ac945f289cce4138b4873d430dfd618cf"><div class="ttname"><a href="class_g_q_c_p_1_1_g_t_o_shell.html#ac945f289cce4138b4873d430dfd618cf">GQCP::GTOShell::contractionSize</a></div><div class="ttdeci">size_t contractionSize() const</div><div class="ttdef"><b>Definition:</b> GTOShell.hpp:161</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_g_t_o_shell_html_ad5f78828a70e65cdd0ef90d2d25b4c9b"><div class="ttname"><a href="class_g_q_c_p_1_1_g_t_o_shell.html#ad5f78828a70e65cdd0ef90d2d25b4c9b">GQCP::GTOShell::operator==</a></div><div class="ttdeci">bool operator==(const GTOShell &amp;rhs) const</div><div class="ttdef"><b>Definition:</b> GTOShell.cpp:68</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_g_t_o_shell_html_af257cc213dd0b96d9a6066a89965bb80"><div class="ttname"><a href="class_g_q_c_p_1_1_g_t_o_shell.html#af257cc213dd0b96d9a6066a89965bb80">GQCP::GTOShell::gaussianExponents</a></div><div class="ttdeci">const std::vector&lt; double &gt; &amp; gaussianExponents() const</div><div class="ttdef"><b>Definition:</b> GTOShell.hpp:95</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_linear_combination_html"><div class="ttname"><a href="class_g_q_c_p_1_1_linear_combination.html">GQCP::LinearCombination</a></div><div class="ttdef"><b>Definition:</b> LinearCombination.hpp:42</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_nucleus_html"><div class="ttname"><a href="class_g_q_c_p_1_1_nucleus.html">GQCP::Nucleus</a></div><div class="ttdef"><b>Definition:</b> Nucleus.hpp:36</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->

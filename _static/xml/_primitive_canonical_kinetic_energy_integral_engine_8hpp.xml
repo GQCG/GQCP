@@ -61,18 +61,6 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="24">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-      </node>
       <node id="20">
         <label>Mathematical/Functions/CartesianGTO.hpp</label>
         <link refid="_cartesian_g_t_o_8hpp"/>
@@ -81,6 +69,8 @@
         <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="25">
@@ -129,19 +119,28 @@
         <childnode refid="31" relation="include">
         </childnode>
       </node>
+      <node id="24">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
       <node id="27">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
-      <node id="9">
-        <label>Eigen/Dense</label>
-      </node>
       <node id="23">
-        <label>Mathematical/Functions/LinearCombination.hpp</label>
-        <link refid="_linear_combination_8hpp"/>
+        <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
+        <link refid="_evaluable_linear_combination_8hpp"/>
         <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
@@ -149,6 +148,11 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eigen/Dense</label>
       </node>
       <node id="37">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
@@ -327,6 +331,32 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="54">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
+        <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
       <node id="43">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
@@ -341,6 +371,34 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
+        <link refid="_u_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
+        <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
+        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -358,12 +416,20 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="67" relation="include">
         </childnode>
       </node>
       <node id="38">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
         <link refid="_jacobi_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="51">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
+        <link refid="_r_h_f_density_matrix_damper_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
       </node>
       <node id="42">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp</label>
@@ -381,6 +447,36 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="45">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
       <node id="32">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp</label>
         <link refid="transform_8hpp"/>
@@ -389,9 +485,25 @@
         <childnode refid="33" relation="include">
         </childnode>
       </node>
+      <node id="49">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
       <node id="24">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/vAP1roG.cpp</label>
         <link refid="v_a_p1ro_g_8cpp"/>
+      </node>
+      <node id="53">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
+        <link refid="_r_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
       </node>
       <node id="15">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp</label>
@@ -416,6 +528,22 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
+        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="37">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp</label>
@@ -427,6 +555,32 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
         </childnode>
       </node>
       <node id="16">
@@ -448,6 +602,28 @@
       <node id="33">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp</label>
         <link refid="_base_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="56">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
+        <link refid="_u_h_f_s_c_f_environment_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
       </node>
       <node id="19">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</label>
@@ -496,6 +672,10 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
+      </node>
+      <node id="48">
+        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
+        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
       </node>
       <node id="7">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp</label>
@@ -573,6 +753,12 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
       </node>
+      <node id="65">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
+        <link refid="_r_m_p2_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="20">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/vAP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp"/>
@@ -591,6 +777,20 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
+        <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
+        <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -635,7 +835,15 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="52">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
         <link refid="_integral_engine_8cpp"/>
       </node>
@@ -673,6 +881,14 @@
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
         </childnode>
       </node>
       <node id="18">
@@ -735,7 +951,7 @@
 <codeline lineno="47" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a27e3bba613936ceabf2e22b3cd5be5b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a27e3bba613936ceabf2e22b3cd5be5b2" kindref="member">Primitive</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell::Primitive;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>representation<sp/>of<sp/>a<sp/>canonical<sp/>kinetic<sp/>energy<sp/>integral.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref><sp/>=<sp/><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t&lt;KineticOperator::Scalar, typename Primitive::Valued&gt;</ref>;</highlight></codeline>
+<codeline lineno="50" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" kindref="member">IntegralScalar</ref><sp/>=<sp/><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t&lt;KineticOperator::Scalar, typename Primitive::OutputType&gt;</ref>;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -744,7 +960,7 @@
 <codeline lineno="56"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="67" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
+<codeline lineno="67" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a0d03155a1d0031097ac1034f218dafff" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(left.<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>().<ref refid="struct_g_q_c_p_1_1_cartesian_exponents_1a311290fc4ae2e2fce7d21d2dbb8c3194" kindref="member">value</ref>(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref>));</highlight></codeline>
@@ -770,7 +986,7 @@
 <codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>3D<sp/>canonical<sp/>kinetic<sp/>energy<sp/>integral<sp/>is<sp/>a<sp/>sum<sp/>of<sp/>three<sp/>contributions<sp/>(dx^2,<sp/>dy^2,<sp/>dz^2).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kindref="compound">PrimitiveOverlapIntegralEngine&lt;GTOShell&gt;</ref><sp/>primitive_overlap_engine;</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>=<sp/>1.0;</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(a,<sp/>K_x,<sp/>i,<sp/>b,<sp/>L_x,<sp/>j)<sp/>*<sp/>primitive_overlap_engine.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(a,<sp/>K_y,<sp/>k,<sp/>b,<sp/>L_y,<sp/>l)<sp/>*<sp/>primitive_overlap_engine.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(a,<sp/>K_z,<sp/>m,<sp/>b,<sp/>L_z,<sp/>n)<sp/>+</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>primitive_overlap_engine.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(a,<sp/>K_x,<sp/>i,<sp/>b,<sp/>L_x,<sp/>j)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(a,<sp/>K_y,<sp/>k,<sp/>b,<sp/>L_y,<sp/>l)<sp/>*<sp/>primitive_overlap_engine.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(a,<sp/>K_z,<sp/>m,<sp/>b,<sp/>L_z,<sp/>n)<sp/>+</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>primitive_overlap_engine.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(a,<sp/>K_x,<sp/>i,<sp/>b,<sp/>L_x,<sp/>j)<sp/>*<sp/>primitive_overlap_engine.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(a,<sp/>K_y,<sp/>k,<sp/>b,<sp/>L_y,<sp/>l)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(a,<sp/>K_z,<sp/>m,<sp/>b,<sp/>L_z,<sp/>n);</highlight></codeline>
@@ -778,7 +994,7 @@
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="113" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
+<codeline lineno="113" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>canonical<sp/>kinetic<sp/>1D<sp/>integral<sp/>is<sp/>a<sp/>sum<sp/>of<sp/>three<sp/>1D<sp/>overlap<sp/>integrals.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kindref="compound">PrimitiveOverlapIntegralEngine&lt;GTOShell&gt;</ref><sp/>primitive_overlap_engine;</highlight></codeline>
@@ -794,7 +1010,7 @@
 <codeline lineno="126"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="137" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
+<codeline lineno="137" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a93fffea77bad5544e8a3cd62ea3185c1" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
 <codeline lineno="138"><highlight class="normal"></highlight></codeline>
 <codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(left.<ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a5eb481aeee373774272b161714e9d453" kindref="member">cartesianGTO</ref>().<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>().<ref refid="struct_g_q_c_p_1_1_cartesian_exponents_1a311290fc4ae2e2fce7d21d2dbb8c3194" kindref="member">value</ref>(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref>));</highlight></codeline>
@@ -836,7 +1052,7 @@
 <codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>3D<sp/>canonical<sp/>kinetic<sp/>energy<sp/>integral<sp/>is<sp/>a<sp/>sum<sp/>of<sp/>three<sp/>contributions<sp/>(dx^2,<sp/>dy^2,<sp/>dz^2).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kindref="compound">PrimitiveOverlapIntegralEngine&lt;LondonGTOShell&gt;</ref><sp/>S;</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"></highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>=<sp/>1.0;</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(k_K_x,<sp/>a,<sp/>K_x,<sp/>i,<sp/>k_L_x,<sp/>b,<sp/>L_x,<sp/>j)<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(k1_y,<sp/>a,<sp/>K_y,<sp/>k,<sp/>b,<sp/>L_y,<sp/>l)<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(k1_z,<sp/>a,<sp/>K_z,<sp/>m,<sp/>b,<sp/>L_z,<sp/>n)<sp/>+</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(k1_x,<sp/>a,<sp/>K_x,<sp/>i,<sp/>b,<sp/>L_x,<sp/>j)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(k_K_y,<sp/>a,<sp/>K_y,<sp/>k,<sp/>k_L_y,<sp/>b,<sp/>L_y,<sp/>l)<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(k1_z,<sp/>a,<sp/>K_z,<sp/>m,<sp/>b,<sp/>L_z,<sp/>n)<sp/>+</highlight></codeline>
 <codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(k1_x,<sp/>a,<sp/>K_x,<sp/>i,<sp/>b,<sp/>L_x,<sp/>j)<sp/>*<sp/>S.<ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(k1_y,<sp/>a,<sp/>K_y,<sp/>k,<sp/>b,<sp/>L_y,<sp/>l)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a48722dfecddd6e7c1e1a065961e7c38d" kindref="member">calculate1D</ref>(k_K_z,<sp/>a,<sp/>K_z,<sp/>m,<sp/>k_L_z,<sp/>b,<sp/>L_z,<sp/>n);</highlight></codeline>
@@ -844,7 +1060,7 @@
 <codeline lineno="184"><highlight class="normal"></highlight></codeline>
 <codeline lineno="185"><highlight class="normal"></highlight></codeline>
 <codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="201" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1ad32217ce87c05fd3998f2df897d2cb6a" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>k_K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>k_L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
+<codeline lineno="201" refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1acc5fde53c9f8c8c95e442f7425438ad5" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine_1a3a82bbced506061d16b5cc5ba4b4366e" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>k_K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>k_L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
 <codeline lineno="202"><highlight class="normal"></highlight></codeline>
 <codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p_1_1literals" kindref="compound">GQCP::literals</ref>;</highlight></codeline>
 <codeline lineno="204"><highlight class="normal"></highlight></codeline>

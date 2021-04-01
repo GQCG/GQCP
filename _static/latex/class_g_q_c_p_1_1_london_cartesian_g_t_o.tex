@@ -27,7 +27,9 @@ Collaboration diagram for GQCP\+::London\+Cartesian\+GTO\+:
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}{Valued}} = \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_aeba3dd3cb5e4662d8df8740e34f5e1b8}{Output\+Type}} = \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a91e0172dac58732ce4b7354898b7c2d4}{Input\+Type}} = \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -44,27 +46,32 @@ const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \& \m
 \item 
 \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a228010922e242c6b61b6cbf1987d2aed}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
 A London-\/modified Cartesian GTO.
 
 \begin{DoxyNote}{Note}
-Mathematically speaking, a Cartesian GTO is a complex-\/valued scalar function taking an Euclidean vector (3D-\/vector) as argument, which is why we inherit from \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{Scalar\+Function}}. 
+Mathematically speaking, a Cartesian GTO is a complex-\/valued scalar function taking an Euclidean vector (3D-\/vector) as argument, which is why we inherit from {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}}. 
 
 Calling operator() returns the value of the unnormalized London GTO. 
 
-Contracted London GTOs can be expressed as linear combinations of GTOs\+: Linear\+Combination$<$\+London\+Cartesian\+GTO$>$. 
+Contracted London GTOs can be expressed as linear combinations of GTOs\+: {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}}$>$}. 
 \end{DoxyNote}
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}} 
-\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!Valued@{Valued}}
-\index{Valued@{Valued}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
-\doxysubsubsection{\texorpdfstring{Valued}{Valued}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a7b6ff26a321f59d4edb6f27997d5744a}{GQCP\+::\+London\+Cartesian\+GTO\+::\+Valued}} =  \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a91e0172dac58732ce4b7354898b7c2d4}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a91e0172dac58732ce4b7354898b7c2d4}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!InputType@{InputType}}
+\index{InputType@{InputType}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{InputType}{InputType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a91e0172dac58732ce4b7354898b7c2d4}{GQCP\+::\+London\+Cartesian\+GTO\+::\+Input\+Type}} =  \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double, 3$>$}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_aeba3dd3cb5e4662d8df8740e34f5e1b8}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_aeba3dd3cb5e4662d8df8740e34f5e1b8}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!OutputType@{OutputType}}
+\index{OutputType@{OutputType}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{OutputType}{OutputType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_aeba3dd3cb5e4662d8df8740e34f5e1b8}{GQCP\+::\+London\+Cartesian\+GTO\+::\+Output\+Type}} =  \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}}
 
 
 

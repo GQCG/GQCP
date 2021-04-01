@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</compoundname>
+    <includes refid="_evaluable_r_s_q_one_electron_operator_8hpp" local="no">EvaluableRSQOneElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _FunctionType</type>
+      </param>
+      <param>
+        <type>typename _Vectorizer</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1ab5d8821567adfff1ce2bed833d91f5aa" prot="public" static="no">
+        <type>_FunctionType</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::FunctionType =  _FunctionType</definition>
+        <argsstring></argsstring>
+        <name>FunctionType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="128" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a38e72da8d9986afb7f4221961904ce2d" prot="public" static="no">
+        <type>typename _FunctionType::OutputType</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::OutputType =  typename _FunctionType::OutputType</definition>
+        <argsstring></argsstring>
+        <name>OutputType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="131" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1adde33ca22951de3efeebd6fd81cc0876" prot="public" static="no">
+        <type>_Vectorizer</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::Vectorizer =  _Vectorizer</definition>
+        <argsstring></argsstring>
+        <name>Vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="134" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1ac31dff9b5d14664202e1486c042a6078" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">EvaluableRSQOneElectronOperator</ref>&lt; <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1ab5d8821567adfff1ce2bed833d91f5aa" kindref="member">FunctionType</ref>, <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1adde33ca22951de3efeebd6fd81cc0876" kindref="member">Vectorizer</ref> &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::DerivedOperator =  EvaluableRSQOneElectronOperator&lt;FunctionType, Vectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>DerivedOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="137" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a85c0c009aec170b46597fc5a706f4d9c" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1aa905a7b11e34c0d61b45484aa8b30755" kindref="member">ScalarEvaluableRSQOneElectronOperator</ref>&lt; <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1ab5d8821567adfff1ce2bed833d91f5aa" kindref="member">FunctionType</ref> &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::ScalarOperator =  ScalarEvaluableRSQOneElectronOperator&lt;FunctionType&gt;</definition>
+        <argsstring></argsstring>
+        <name>ScalarOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="140" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a8a7a39f1104451f8b3b1e387ca1feb93" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">RSQOneElectronOperator</ref>&lt; <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a38e72da8d9986afb7f4221961904ce2d" kindref="member">OutputType</ref>, <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1adde33ca22951de3efeebd6fd81cc0876" kindref="member">Vectorizer</ref> &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::EvaluatedOperator =  RSQOneElectronOperator&lt;OutputType, Vectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>EvaluatedOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="143" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1afd2b5b54be8e053e1b9f062a10a90199" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; <ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a38e72da8d9986afb7f4221961904ce2d" kindref="member">OutputType</ref> &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::OneDM =  Orbital1DM&lt;OutputType&gt;</definition>
+        <argsstring></argsstring>
+        <name>OneDM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="146" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_FunctionType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of evaluatable function that is used as a matrix element of this one-electron operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="125" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="125" bodyend="147"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1ac31dff9b5d14664202e1486c042a6078" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</scope><name>DerivedOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a8a7a39f1104451f8b3b1e387ca1feb93" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</scope><name>EvaluatedOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1ab5d8821567adfff1ce2bed833d91f5aa" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</scope><name>FunctionType</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1afd2b5b54be8e053e1b9f062a10a90199" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</scope><name>OneDM</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a38e72da8d9986afb7f4221961904ce2d" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</scope><name>OutputType</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1a85c0c009aec170b46597fc5a706f4d9c" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</scope><name>ScalarOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_1adde33ca22951de3efeebd6fd81cc0876" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</scope><name>Vectorizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

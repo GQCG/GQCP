@@ -36,9 +36,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" line="49" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" prot="public" static="no">
-        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">ElectronicQuadrupoleOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
-        <definition>using GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;ElectronicQuadrupoleOperator::Scalar, typename Primitive::Valued&gt;</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a356f1ce13a43363056b2ad7cbbcb585b" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">ElectronicQuadrupoleOperator::Scalar</ref>, typename Primitive::OutputType &gt;</type>
+        <definition>using GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;ElectronicQuadrupoleOperator::Scalar, typename Primitive::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
         <briefdescription>
@@ -113,7 +113,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a2281cddace63361938fa51b185da23df" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a356f1ce13a43363056b2ad7cbbcb585b" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
@@ -161,7 +161,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a2281cddace63361938fa51b185da23df" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a356f1ce13a43363056b2ad7cbbcb585b" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicQuadrupoleIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
         <argsstring>(const complex k1, const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
         <name>calculate1D</name>
@@ -311,7 +311,7 @@
       <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1aefa1f19bf5f9b670fe3d0a44f34d2436" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>calculate1D</name></member>
       <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a0723270c5eff6d385d215230e421e03f" prot="protected" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>component</name></member>
       <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1aa9571368c5d98c9e0b123c1c7ed6eb7e" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>Components</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a15b334c3c3414e85f73242eed39fffc7" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a356f1ce13a43363056b2ad7cbbcb585b" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_base_matrix_primitive_integral_engine_1a52f963b442f8a09e9968b7eb0449d94b" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1a3b5c0d98f0ad15210e4650a0f87a7020" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine_1ab84680f8e73482f5ded7e7628ea38ffa" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicQuadrupoleIntegralEngine</scope><name>PrimitiveElectronicQuadrupoleIntegralEngine</name></member>

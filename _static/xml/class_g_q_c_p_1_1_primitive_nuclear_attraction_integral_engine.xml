@@ -36,9 +36,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" prot="public" static="no">
-        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">NuclearAttractionOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
-        <definition>using GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;NuclearAttractionOperator::Scalar, typename Primitive::Valued&gt;</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a0dae55679e2d691cc4c2408d027a2d21" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">NuclearAttractionOperator::Scalar</ref>, typename Primitive::OutputType &gt;</type>
+        <definition>using GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;NuclearAttractionOperator::Scalar, typename Primitive::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
         <briefdescription>
@@ -100,7 +100,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4250779f16a3c00b6e5b5699ad465b5a" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a0dae55679e2d691cc4c2408d027a2d21" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
@@ -148,7 +148,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4250779f16a3c00b6e5b5699ad465b5a" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a0dae55679e2d691cc4c2408d027a2d21" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
@@ -234,7 +234,7 @@
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a2c42221c90f7aa1442eecc6245a40bcb" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1aa4c83d27329d45494fd4ad07abfadcff" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>Components</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a20097cc8dec0886c09d628f002db3472" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a0dae55679e2d691cc4c2408d027a2d21" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1af42947f87325cb0c278b2c1e7b6085eb" prot="private" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>nuclear_attraction_operator</name></member>
       <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_1a4afc2d193bab6338b10e1065c88790c4" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveNuclearAttractionIntegralEngine</scope><name>Primitive</name></member>

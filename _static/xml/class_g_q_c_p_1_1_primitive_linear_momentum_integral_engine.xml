@@ -36,9 +36,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a6be5ad4b6a3c8818364b45f6bf8458c8" prot="public" static="no">
-        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">LinearMomentumOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
-        <definition>using GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;LinearMomentumOperator::Scalar, typename Primitive::Valued&gt;</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1af0ab246cd6df860185c2f20364f3a3a7" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">LinearMomentumOperator::Scalar</ref>, typename Primitive::OutputType &gt;</type>
+        <definition>using GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;LinearMomentumOperator::Scalar, typename Primitive::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
         <briefdescription>
@@ -58,7 +58,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a73ab81041347119b3a14c0120fb1cc0d" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a6be5ad4b6a3c8818364b45f6bf8458c8" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1af0ab246cd6df860185c2f20364f3a3a7" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
@@ -106,7 +106,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a73ab81041347119b3a14c0120fb1cc0d" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a6be5ad4b6a3c8818364b45f6bf8458c8" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1af0ab246cd6df860185c2f20364f3a3a7" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
         <argsstring>(const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
         <name>calculate1D</name>
@@ -202,7 +202,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a73ab81041347119b3a14c0120fb1cc0d" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a6be5ad4b6a3c8818364b45f6bf8458c8" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1af0ab246cd6df860185c2f20364f3a3a7" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
@@ -250,7 +250,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a73ab81041347119b3a14c0120fb1cc0d" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a6be5ad4b6a3c8818364b45f6bf8458c8" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1af0ab246cd6df860185c2f20364f3a3a7" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveLinearMomentumIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
         <argsstring>(const complex k_K, const double a, const double K, const int i, const complex k_L, const double b, const double L, const int j)</argsstring>
         <name>calculate1D</name>
@@ -443,7 +443,7 @@
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a6d51b9141009f9cd0b00ac1dcdc3b0e1" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>calculate1D</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1ae7e8b1f36eaa6edbf7883183a133e9af" prot="protected" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>component</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a032301395e9f07b12ca835518ea2b934" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>Components</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a6be5ad4b6a3c8818364b45f6bf8458c8" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1af0ab246cd6df860185c2f20364f3a3a7" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a766119a77e95306dfb88dbdd1095a684" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1aaf2321a6463e808e6630ff878a969431" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine_1a73ab81041347119b3a14c0120fb1cc0d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveLinearMomentumIntegralEngine</scope><name>Shell</name></member>

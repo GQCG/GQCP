@@ -478,7 +478,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Construct an <computeroutput><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">USQOneElectronOperator</ref></computeroutput> from an `RSQOneElectronOperator.</para>
+<para>Construct an <computeroutput><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">USQOneElectronOperator</ref></computeroutput> from an <computeroutput><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">RSQOneElectronOperator</ref></computeroutput>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>f_restricted</parametername>

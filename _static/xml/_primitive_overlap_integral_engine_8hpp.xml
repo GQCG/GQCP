@@ -68,18 +68,6 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="23">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
       <node id="19">
         <label>Mathematical/Functions/CartesianGTO.hpp</label>
         <link refid="_cartesian_g_t_o_8hpp"/>
@@ -88,6 +76,8 @@
         <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="24">
@@ -130,19 +120,28 @@
         <childnode refid="30" relation="include">
         </childnode>
       </node>
+      <node id="23">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
       <node id="26">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
-      <node id="8">
-        <label>Eigen/Dense</label>
-      </node>
       <node id="22">
-        <label>Mathematical/Functions/LinearCombination.hpp</label>
-        <link refid="_linear_combination_8hpp"/>
+        <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
+        <link refid="_evaluable_linear_combination_8hpp"/>
         <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
@@ -150,6 +149,11 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Eigen/Dense</label>
       </node>
       <node id="36">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
@@ -306,6 +310,32 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="54">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
+        <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
       <node id="43">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
@@ -320,6 +350,34 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
+        <link refid="_u_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
+        <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
+        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -337,12 +395,20 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="67" relation="include">
         </childnode>
       </node>
       <node id="38">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
         <link refid="_jacobi_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="51">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
+        <link refid="_r_h_f_density_matrix_damper_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
       </node>
       <node id="42">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp</label>
@@ -360,6 +426,36 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="45">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
       <node id="32">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp</label>
         <link refid="transform_8hpp"/>
@@ -368,9 +464,25 @@
         <childnode refid="33" relation="include">
         </childnode>
       </node>
+      <node id="49">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
       <node id="24">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/vAP1roG.cpp</label>
         <link refid="v_a_p1ro_g_8cpp"/>
+      </node>
+      <node id="53">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
+        <link refid="_r_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
       </node>
       <node id="15">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp</label>
@@ -380,7 +492,7 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="71">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</label>
         <link refid="_primitive_electronic_quadrupole_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -388,16 +500,16 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="70">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</label>
         <link refid="_primitive_electronic_dipole_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="68" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -415,6 +527,22 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
+        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="37">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp</label>
@@ -426,6 +554,32 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
         </childnode>
       </node>
       <node id="16">
@@ -451,20 +605,42 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="68" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="72" relation="include">
         </childnode>
       </node>
       <node id="33">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp</label>
         <link refid="_base_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="56">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
+        <link refid="_u_h_f_s_c_f_environment_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
       </node>
       <node id="19">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</label>
@@ -476,17 +652,17 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="72">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp</label>
         <link refid="_primitive_linear_momentum_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="68" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="69">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp</label>
         <link refid="_primitive_canonical_kinetic_energy_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -523,6 +699,10 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
+      </node>
+      <node id="48">
+        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
+        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
       </node>
       <node id="7">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp</label>
@@ -600,6 +780,12 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
       </node>
+      <node id="65">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
+        <link refid="_r_m_p2_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="20">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/vAP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp"/>
@@ -620,6 +806,20 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
+      <node id="46">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
+        <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
+        <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
       <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/properties.hpp</label>
         <link refid="properties_8hpp"/>
@@ -638,7 +838,7 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="46">
+      <node id="68">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</label>
         <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -670,7 +870,15 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="52">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
         <link refid="_integral_engine_8cpp"/>
       </node>
@@ -708,6 +916,14 @@
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
         </childnode>
       </node>
       <node id="18">
@@ -773,7 +989,7 @@
 <codeline lineno="50" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a5c8908dbe85b8dc45f432053fe816aa0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a5c8908dbe85b8dc45f432053fe816aa0" kindref="member">Primitive</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Shell::Primitive;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>representation<sp/>of<sp/>an<sp/>overlap<sp/>integral.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref><sp/>=<sp/><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t&lt;OverlapOperator::Scalar, typename Primitive::Valued&gt;</ref>;</highlight></codeline>
+<codeline lineno="53" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref><sp/>=<sp/><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t&lt;OverlapOperator::Scalar, typename Primitive::OutputType&gt;</ref>;</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -782,10 +998,10 @@
 <codeline lineno="59"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="70" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
+<codeline lineno="70" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>3D<sp/>integral<sp/>is<sp/>separable<sp/>in<sp/>three<sp/>1D<sp/>integrals.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>{1.0};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>{1.0};</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>direction<sp/>:<sp/>{<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">GQCP::CartesianDirection::x</ref>,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1" kindref="member">GQCP::CartesianDirection::y</ref>,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">GQCP::CartesianDirection::z</ref>})<sp/>{</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>left.<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>().<ref refid="struct_g_q_c_p_1_1_cartesian_exponents_1a311290fc4ae2e2fce7d21d2dbb8c3194" kindref="member">value</ref>(direction);</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>right.<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" kindref="member">cartesianExponents</ref>().<ref refid="struct_g_q_c_p_1_1_cartesian_exponents_1a311290fc4ae2e2fce7d21d2dbb8c3194" kindref="member">value</ref>(direction);</highlight></codeline>
@@ -798,7 +1014,7 @@
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="98" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
+<codeline lineno="98" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Negative<sp/>Cartesian<sp/>exponents<sp/>should<sp/>be<sp/>ignored:<sp/>the<sp/>correct<sp/>value<sp/>for<sp/>the<sp/>corresponding<sp/>integral<sp/>is<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((i<sp/>&lt;<sp/>0)<sp/>||<sp/>(j<sp/>&lt;<sp/>0))<sp/>{</highlight></codeline>
@@ -818,12 +1034,12 @@
 <codeline lineno="115"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"></highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="126" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
+<codeline lineno="126" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" kindref="member">calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>&amp;<sp/>right)<sp/>{</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref><sp/>k1<sp/>=<sp/>right.<ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a41950c00f15c081511681d8ac24eaa47" kindref="member">kVector</ref>()<sp/>-<sp/>left.<ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a41950c00f15c081511681d8ac24eaa47" kindref="member">kVector</ref>();<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>k-vector<sp/>of<sp/>the<sp/>London<sp/>overlap<sp/>distribution.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>3D<sp/>integral<sp/>is<sp/>separable<sp/>in<sp/>three<sp/>1D<sp/>integrals.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>{1.0};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref><sp/>primitive_integral<sp/>{1.0};</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>direction<sp/>:<sp/>{<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">GQCP::CartesianDirection::x</ref>,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1" kindref="member">GQCP::CartesianDirection::y</ref>,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">GQCP::CartesianDirection::z</ref>})<sp/>{</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a<sp/>=<sp/>left.<ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a5eb481aeee373774272b161714e9d453" kindref="member">cartesianGTO</ref>().<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" kindref="member">gaussianExponent</ref>();</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K<sp/>=<sp/>left.<ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a5eb481aeee373774272b161714e9d453" kindref="member">cartesianGTO</ref>().<ref refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" kindref="member">center</ref>()(direction);</highlight></codeline>
@@ -842,7 +1058,7 @@
 <codeline lineno="147"><highlight class="normal"></highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Shell&gt;</highlight></codeline>
-<codeline lineno="163" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>k1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
+<codeline lineno="163" refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" kindref="member">calculate1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>k1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)<sp/>{</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"></highlight></codeline>
 <codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Negative<sp/>Cartesian<sp/>exponents<sp/>should<sp/>be<sp/>ignored:<sp/>the<sp/>correct<sp/>value<sp/>for<sp/>the<sp/>corresponding<sp/>integral<sp/>is<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((i<sp/>&lt;<sp/>0)<sp/>||<sp/>(j<sp/>&lt;<sp/>0))<sp/>{</highlight></codeline>
@@ -857,7 +1073,7 @@
 <codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" kindref="compound">McMurchieDavidsonCoefficient</ref><sp/>E<sp/>{K,<sp/>a,<sp/>L,<sp/>b};</highlight></codeline>
 <codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>P<sp/>=<sp/>E.<ref refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a6e45664e3ffca2c50c94ae6e46d2ef44" kindref="member">centerOfMass</ref>();</highlight></codeline>
 <codeline lineno="177"><highlight class="normal"></highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1aa917af9486471e317439a55374a5ae3b" kindref="member">IntegralScalar</ref><sp/>integral<sp/>{0.0};</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref><sp/>integral<sp/>{0.0};</highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>t<sp/>=<sp/>0;<sp/>t<sp/>&lt;=<sp/>i<sp/>+<sp/>j;<sp/>t++)<sp/>{</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>integral<sp/>+=<sp/>E(i,<sp/>j,<sp/>t)<sp/>*</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::pow(-1.0_ii<sp/>*<sp/>k1,<sp/>t)<sp/>*</highlight></codeline>

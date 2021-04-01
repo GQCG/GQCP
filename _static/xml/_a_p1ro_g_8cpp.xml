@@ -4,7 +4,7 @@
     <compoundname>AP1roG.cpp</compoundname>
     <includes refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp" local="yes">QCModel/Geminals/AP1roG.hpp</includes>
     <incdepgraph>
-      <node id="177">
+      <node id="179">
         <label>Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
         <link refid="_u_spin_orbital_basis_component_8hpp"/>
         <childnode refid="67" relation="include">
@@ -83,7 +83,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="190">
+      <node id="192">
         <label>ONVBasis/SeniorityZeroONVBasis.hpp</label>
       </node>
       <node id="171">
@@ -265,7 +265,7 @@
         <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="188">
+      <node id="190">
         <label>boost/range/adaptors.hpp</label>
       </node>
       <node id="43">
@@ -292,20 +292,8 @@
         <childnode refid="95" relation="include">
         </childnode>
       </node>
-      <node id="187">
+      <node id="189">
         <label>boost/dynamic_bitset.hpp</label>
-      </node>
-      <node id="99">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="100" relation="include">
-        </childnode>
       </node>
       <node id="96">
         <label>Mathematical/Functions/CartesianGTO.hpp</label>
@@ -315,6 +303,8 @@
         <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="74">
@@ -366,7 +356,7 @@
         </childnode>
         <childnode refid="171" relation="include">
         </childnode>
-        <childnode refid="176" relation="include">
+        <childnode refid="178" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
@@ -374,27 +364,27 @@
         </childnode>
         <childnode refid="125" relation="include">
         </childnode>
-        <childnode refid="179" relation="include">
+        <childnode refid="181" relation="include">
         </childnode>
         <childnode refid="127" relation="include">
         </childnode>
+        <childnode refid="182" relation="include">
+        </childnode>
         <childnode refid="180" relation="include">
         </childnode>
-        <childnode refid="178" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="174" relation="include">
-        </childnode>
-        <childnode refid="181" relation="include">
+        <childnode refid="183" relation="include">
         </childnode>
         <childnode refid="129" relation="include">
         </childnode>
         <childnode refid="130" relation="include">
         </childnode>
-        <childnode refid="182" relation="include">
+        <childnode refid="184" relation="include">
         </childnode>
         <childnode refid="132" relation="include">
         </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="185" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
@@ -430,7 +420,7 @@
         <label>Basis/SpinorBasis/OccupationType.hpp</label>
         <link refid="_occupation_type_8hpp"/>
       </node>
-      <node id="178">
+      <node id="180">
         <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
         <link refid="_electronic_spin__z_operator_8hpp"/>
         <childnode refid="126" relation="include">
@@ -465,10 +455,20 @@
         <label>QuantumChemical/spinor_tags.hpp</label>
         <link refid="spinor__tags_8hpp"/>
       </node>
+      <node id="176">
+        <label>Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp</label>
+        <link refid="_evaluable_r_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+      </node>
       <node id="28">
         <label>stdexcept</label>
       </node>
-      <node id="173">
+      <node id="174">
         <label>Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
         <link refid="_electronic_density_operator_8hpp"/>
         <childnode refid="126" relation="include">
@@ -821,8 +821,6 @@
         </childnode>
         <childnode refid="111" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
-        </childnode>
         <childnode refid="112" relation="include">
         </childnode>
         <childnode refid="113" relation="include">
@@ -954,6 +952,16 @@
         <childnode refid="153" relation="include">
         </childnode>
       </node>
+      <node id="99">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+      </node>
       <node id="51">
         <label>DensityMatrix/G1DM.hpp</label>
         <link refid="_g1_d_m_8hpp"/>
@@ -1012,6 +1020,24 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
+      <node id="98">
+        <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
+        <link refid="_evaluable_linear_combination_8hpp"/>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
       <node id="7">
         <label>Eigen/Dense</label>
       </node>
@@ -1038,9 +1064,11 @@
         </childnode>
         <childnode refid="173" relation="include">
         </childnode>
+        <childnode refid="174" relation="include">
+        </childnode>
         <childnode refid="127" relation="include">
         </childnode>
-        <childnode refid="174" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
         <childnode refid="129" relation="include">
         </childnode>
@@ -1048,7 +1076,7 @@
         </childnode>
         <childnode refid="132" relation="include">
         </childnode>
-        <childnode refid="175" relation="include">
+        <childnode refid="176" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
@@ -1057,6 +1085,8 @@
         <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
@@ -1067,21 +1097,7 @@
         <childnode refid="35" relation="include">
         </childnode>
       </node>
-      <node id="98">
-        <label>Mathematical/Functions/LinearCombination.hpp</label>
-        <link refid="_linear_combination_8hpp"/>
-        <childnode refid="99" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="100" relation="include">
-        </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="180">
+      <node id="182">
         <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
         <link refid="_electronic_spin_operator_8hpp"/>
         <childnode refid="126" relation="include">
@@ -1218,7 +1234,7 @@
         <childnode refid="153" relation="include">
         </childnode>
       </node>
-      <node id="182">
+      <node id="184">
         <label>Operator/FirstQuantized/OrbitalZeemanOperator.hpp</label>
         <link refid="_orbital_zeeman_operator_8hpp"/>
         <childnode refid="156" relation="include">
@@ -1230,27 +1246,7 @@
         <childnode refid="108" relation="include">
         </childnode>
       </node>
-      <node id="175">
-        <label>Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp</label>
-        <link refid="_evaluatable_scalar_r_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="99" relation="include">
-        </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="179">
+      <node id="181">
         <label>Operator/FirstQuantized/DiamagneticOperator.hpp</label>
         <link refid="_diamagnetic_operator_8hpp"/>
         <childnode refid="126" relation="include">
@@ -1393,6 +1389,14 @@
         <childnode refid="31" relation="include">
         </childnode>
       </node>
+      <node id="173">
+        <label>Operator/FirstQuantized/CurrentDensityOperator.hpp</label>
+        <link refid="_current_density_operator_8hpp"/>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
       <node id="127">
         <label>Operator/FirstQuantized/ElectronicDipoleOperator.hpp</label>
         <link refid="_electronic_dipole_operator_8hpp"/>
@@ -1410,7 +1414,7 @@
         </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="176" relation="include">
+        <childnode refid="178" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
@@ -1424,19 +1428,19 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="184" relation="include">
-        </childnode>
-        <childnode refid="185" relation="include">
-        </childnode>
         <childnode refid="186" relation="include">
+        </childnode>
+        <childnode refid="187" relation="include">
+        </childnode>
+        <childnode refid="188" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="187" relation="include">
+        <childnode refid="189" relation="include">
         </childnode>
-        <childnode refid="188" relation="include">
+        <childnode refid="190" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -1519,13 +1523,13 @@
         <childnode refid="30" relation="include">
         </childnode>
       </node>
-      <node id="186">
+      <node id="188">
         <label>ONVBasis/SpinResolvedSelectedONVBasis.hpp</label>
       </node>
-      <node id="189">
+      <node id="191">
         <label>QCModel/Geminals/GeminalCoefficientsInterface.hpp</label>
         <link refid="_geminal_coefficients_interface_8hpp"/>
-        <childnode refid="190" relation="include">
+        <childnode refid="192" relation="include">
         </childnode>
         <childnode refid="94" relation="include">
         </childnode>
@@ -1536,7 +1540,7 @@
         <childnode refid="118" relation="include">
         </childnode>
       </node>
-      <node id="184">
+      <node id="186">
         <label>ONVBasis/SpinResolvedONV.hpp</label>
       </node>
       <node id="60">
@@ -1578,7 +1582,7 @@
       <node id="141">
         <label>libint2.hpp</label>
       </node>
-      <node id="176">
+      <node id="178">
         <label>Basis/SpinorBasis/USpinOrbitalBasis.hpp</label>
         <link refid="_u_spin_orbital_basis_8hpp"/>
         <childnode refid="85" relation="include">
@@ -1587,7 +1591,7 @@
         </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="177" relation="include">
+        <childnode refid="179" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -1599,9 +1603,9 @@
         </childnode>
         <childnode refid="127" relation="include">
         </childnode>
-        <childnode refid="178" relation="include">
+        <childnode refid="180" relation="include">
         </childnode>
-        <childnode refid="174" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
         <childnode refid="129" relation="include">
         </childnode>
@@ -1630,12 +1634,24 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="183">
+      <node id="185">
         <label>Operator/FirstQuantized/SpinZeemanOperator.hpp</label>
         <link refid="_spin_zeeman_operator_8hpp"/>
         <childnode refid="126" relation="include">
         </childnode>
         <childnode refid="108" relation="include">
+        </childnode>
+      </node>
+      <node id="177">
+        <label>Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp</label>
+        <link refid="_evaluable_simple_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
         </childnode>
       </node>
       <node id="139">
@@ -1732,16 +1748,16 @@
         <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="181">
+      <node id="183">
         <label>Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp</label>
         <link refid="_f_q_molecular_magnetic_hamiltonian_8hpp"/>
-        <childnode refid="179" relation="include">
+        <childnode refid="181" relation="include">
         </childnode>
-        <childnode refid="174" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="182" relation="include">
+        <childnode refid="184" relation="include">
         </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="185" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -1783,7 +1799,7 @@
       <node id="22">
         <label>algorithm</label>
       </node>
-      <node id="185">
+      <node id="187">
         <label>ONVBasis/SpinResolvedONVBasis.hpp</label>
       </node>
       <node id="111">
@@ -1817,7 +1833,7 @@
         </childnode>
         <childnode refid="94" relation="include">
         </childnode>
-        <childnode refid="189" relation="include">
+        <childnode refid="191" relation="include">
         </childnode>
       </node>
       <node id="90">
@@ -1916,7 +1932,7 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="174">
+      <node id="175">
         <label>Operator/FirstQuantized/FQMolecularHamiltonian.hpp</label>
         <link refid="_f_q_molecular_hamiltonian_8hpp"/>
         <childnode refid="112" relation="include">
@@ -2033,7 +2049,7 @@
         <link refid="_spinor_8hpp"/>
         <childnode refid="98" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
     </incdepgraph>

@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_cubic_grid_8hpp" kind="file" language="C++">
     <compoundname>CubicGrid.hpp</compoundname>
-    <includes refid="_scalar_function_8hpp" local="yes">Mathematical/Functions/ScalarFunction.hpp</includes>
+    <includes refid="_function_8hpp" local="yes">Mathematical/Functions/Function.hpp</includes>
     <includes refid="_field_8hpp" local="yes">Mathematical/Grid/Field.hpp</includes>
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
     <includes refid="_molecule_8hpp" local="yes">Molecule/Molecule.hpp</includes>
@@ -12,9 +12,10 @@
     <includes local="no">type_traits</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_weighted_grid_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</includedby>
+    <includedby refid="_q_c_model_2_h_f_2_r_h_f_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</includedby>
     <includedby refid="_cubic_grid_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp</includedby>
     <incdepgraph>
-      <node id="13">
+      <node id="15">
         <label>boost/algorithm/string.hpp</label>
       </node>
       <node id="27">
@@ -23,10 +24,10 @@
       <node id="20">
         <label>functional</label>
       </node>
-      <node id="5">
+      <node id="13">
         <label>Utilities/Eigen.hpp</label>
         <link refid="_eigen_8hpp"/>
-        <childnode refid="6" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="21">
@@ -37,21 +38,9 @@
         <link refid="_molecule_8hpp"/>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="18">
@@ -59,9 +48,9 @@
         <link refid="miscellaneous_8hpp"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -69,10 +58,10 @@
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="9">
         <label>boost/format.hpp</label>
       </node>
       <node id="29">
@@ -81,11 +70,11 @@
       <node id="24">
         <label>Molecule/NuclearFramework.hpp</label>
         <link refid="_nuclear_framework_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="22">
@@ -96,9 +85,9 @@
         <link refid="_cubic_grid_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
@@ -108,42 +97,42 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="25">
         <label>Molecule/Nucleus.hpp</label>
         <link refid="_nucleus_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="16">
         <label>fstream</label>
       </node>
-      <node id="17">
+      <node id="10">
         <label>Mathematical/Grid/Field.hpp</label>
         <link refid="_field_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="26">
@@ -152,75 +141,111 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="3">
-        <label>Mathematical/Representation/Matrix.hpp</label>
-        <link refid="_matrix_8hpp"/>
+      <node id="2">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="11">
+        <label>Mathematical/Representation/Matrix.hpp</label>
+        <link refid="_matrix_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
         <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+      <node id="3">
+        <label>Utilities/aliases.hpp</label>
+        <link refid="aliases_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>vector</label>
-      </node>
-      <node id="7">
-        <label>Utilities/aliases.hpp</label>
-        <link refid="aliases_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
       </node>
       <node id="28">
         <label>array</label>
       </node>
-      <node id="11">
+      <node id="7">
         <label>cstdlib</label>
       </node>
-      <node id="15">
+      <node id="17">
         <label>iostream</label>
       </node>
-      <node id="9">
+      <node id="5">
         <label>type_traits</label>
       </node>
-      <node id="10">
+      <node id="6">
         <label>complex</label>
       </node>
       <node id="19">
         <label>algorithm</label>
       </node>
-      <node id="4">
+      <node id="12">
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="5">
+      <node id="14">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
         <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp</label>
         <link refid="_cubic_grid_8cpp"/>
+      </node>
+      <node id="23">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
+        <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
       </node>
       <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</label>
@@ -228,6 +253,34 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
+        <link refid="_u_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
+        <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
+        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -239,14 +292,172 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
+        <link refid="_r_h_f_density_matrix_damper_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
+        <link refid="_r_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
+        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
+      <node id="16">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
+        <link refid="_u_h_f_s_c_f_environment_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
+        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
+      </node>
+      <node id="25">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
+        <link refid="_r_m_p2_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
+        <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
+        <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
       <node id="4">
         <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/WeightedGrid.cpp</label>
         <link refid="_weighted_grid_8cpp"/>
+      </node>
+      <node id="12">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_cubic_grid" prot="public">GQCP::CubicGrid</innerclass>
@@ -276,7 +487,7 @@
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_scalar_function_8hpp" kindref="compound">Mathematical/Functions/ScalarFunction.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_function_8hpp" kindref="compound">Mathematical/Functions/Function.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_field_8hpp" kindref="compound">Mathematical/Grid/Field.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_matrix_8hpp" kindref="compound">Mathematical/Representation/Matrix.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_molecule_8hpp" kindref="compound">Molecule/Molecule.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
@@ -314,17 +525,17 @@
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>PUBLIC<sp/>METHODS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Valued&gt;</highlight></codeline>
-<codeline lineno="101" refid="class_g_q_c_p_1_1_cubic_grid_1a44df571249948a19a2b7b22751b469fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Valued&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_cubic_grid_1a44df571249948a19a2b7b22751b469fc" kindref="member">evaluate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction&lt;Valued, double, 3&gt;</ref>&amp;<sp/>scalar_function)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>OutputType&gt;</highlight></codeline>
+<codeline lineno="101" refid="class_g_q_c_p_1_1_cubic_grid_1a68dbbba88670c75f82d6ac3bfbbe9fd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;OutputType&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_cubic_grid_1a68dbbba88670c75f82d6ac3bfbbe9fd8" kindref="member">evaluate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_function" kindref="compound">Function</ref>&lt;OutputType,<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&gt;&amp;<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Valued&gt;<sp/>values;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>evaluated<sp/>values<sp/>of<sp/>the<sp/>scalar<sp/>function</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;OutputType&gt;<sp/>values;</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>values.reserve(this-&gt;<ref refid="class_g_q_c_p_1_1_cubic_grid_1a068787c38bbf15233da1646dfef0783d" kindref="member">numberOfPoints</ref>());</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_cubic_grid_1ace375c620c4f97646710110da215a589" kindref="member">forEach</ref>([&amp;values,<sp/>&amp;scalar_function](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r)<sp/>{</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>values.push_back(scalar_function(r));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_cubic_grid_1ace375c620c4f97646710110da215a589" kindref="member">forEach</ref>([&amp;values,<sp/>&amp;</highlight><highlight class="keyword">function</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r)<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>values.push_back(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(r));</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Valued&gt;</ref>(values);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;OutputType&gt;</ref>(values);</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
 <codeline lineno="113"><highlight class="normal"></highlight></codeline>

@@ -462,6 +462,9 @@
           <edgelabel>+F3</edgelabel>
         </childnode>
       </node>
+      <node id="8">
+        <label>Eigen::Tensor&lt; Scalar, _Rank &gt;</label>
+      </node>
       <node id="6">
         <label>GQCP::SquareRankFourTensor&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_square_rank_four_tensor"/>
@@ -471,9 +474,6 @@
       <node id="9">
         <label>GQCP::ImplicitMatrixSlice&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_implicit_matrix_slice"/>
-      </node>
-      <node id="8">
-        <label>Eigen::Tensor&lt; Scalar , _Rank &gt;</label>
       </node>
       <node id="5">
         <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>

@@ -14,7 +14,7 @@
     <includedby refid="_g_spinor_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp</includedby>
     <includedby refid="_london_g_t_o_shell_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/LondonGTOShell.cpp</includedby>
     <incdepgraph>
-      <node id="18">
+      <node id="22">
         <label>boost/algorithm/string.hpp</label>
       </node>
       <node id="29">
@@ -26,29 +26,17 @@
       <node id="31">
         <label>Physical/HomogeneousMagneticField.hpp</label>
         <link refid="_homogeneous_magnetic_field_8hpp"/>
-        <childnode refid="10" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="21">
         <label>Utilities/Eigen.hpp</label>
         <link refid="_eigen_8hpp"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="24">
+      <node id="18">
         <label>boost/lexical_cast.hpp</label>
-      </node>
-      <node id="9">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
       </node>
       <node id="3">
         <label>Mathematical/Functions/CartesianGTO.hpp</label>
@@ -59,8 +47,10 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
       </node>
-      <node id="21">
+      <node id="15">
         <label>boost/format.hpp</label>
       </node>
       <node id="27">
@@ -69,20 +59,20 @@
       <node id="25">
         <label>Molecule/Nucleus.hpp</label>
         <link refid="_nucleus_8hpp"/>
-        <childnode refid="10" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="19">
+      <node id="23">
         <label>fstream</label>
       </node>
       <node id="26">
@@ -91,62 +81,76 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="9">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
-      <node id="12">
-        <label>Eigen/Dense</label>
-      </node>
       <node id="8">
-        <label>Mathematical/Functions/LinearCombination.hpp</label>
-        <link refid="_linear_combination_8hpp"/>
+        <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
+        <link refid="_evaluable_linear_combination_8hpp"/>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
       </node>
-      <node id="10">
+      <node id="19">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="20">
         <label>Mathematical/Representation/Matrix.hpp</label>
         <link refid="_matrix_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="11">
         <label>Utilities/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="15" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
       <node id="7">
         <label>vector</label>
       </node>
-      <node id="13">
+      <node id="10">
         <label>Utilities/aliases.hpp</label>
         <link refid="aliases_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
         <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -160,16 +164,16 @@
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="6">
         <label>array</label>
       </node>
-      <node id="17">
+      <node id="14">
         <label>cstdlib</label>
       </node>
-      <node id="20">
+      <node id="24">
         <label>iostream</label>
       </node>
       <node id="1">
@@ -192,10 +196,10 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="12">
         <label>type_traits</label>
       </node>
-      <node id="16">
+      <node id="13">
         <label>complex</label>
       </node>
       <node id="5">
@@ -212,22 +216,48 @@
         <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="22">
+      <node id="16">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="23" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="54">
+      <node id="76">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
         <link refid="_u_spin_orbital_basis_component_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
+        <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
         </childnode>
       </node>
       <node id="44">
@@ -246,18 +276,46 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="56">
+      <node id="62">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
+        <link refid="_u_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
+        <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="78">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp</label>
         <link refid="_libcint_interfacer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
+        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -275,21 +333,29 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="68" relation="include">
         </childnode>
       </node>
       <node id="39">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
         <link refid="_jacobi_orbital_optimizer_8cpp"/>
       </node>
-      <node id="53">
+      <node id="52">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
+        <link refid="_r_h_f_density_matrix_damper_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="75">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp</label>
         <link refid="_simple_spin_orbital_basis_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="76" relation="include">
         </childnode>
       </node>
       <node id="43">
@@ -308,6 +374,36 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
+      <node id="46">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
       <node id="33">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp</label>
         <link refid="transform_8hpp"/>
@@ -316,7 +412,15 @@
         <childnode refid="34" relation="include">
         </childnode>
       </node>
-      <node id="52">
+      <node id="50">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp</label>
         <link refid="_scalar_basis_8hpp"/>
         <childnode refid="2" relation="include">
@@ -325,12 +429,20 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
       </node>
       <node id="25">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/vAP1roG.cpp</label>
         <link refid="v_a_p1ro_g_8cpp"/>
+      </node>
+      <node id="54">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
+        <link refid="_r_h_f_error_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
       </node>
       <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp</label>
@@ -340,15 +452,15 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="66">
+      <node id="88">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/LondonGTOShell.cpp</label>
         <link refid="_london_g_t_o_shell_8cpp"/>
       </node>
-      <node id="63">
+      <node id="85">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibintInterfacer.cpp</label>
         <link refid="_libint_interfacer_8cpp"/>
       </node>
-      <node id="47">
+      <node id="69">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp</label>
         <link refid="_primitive_electronic_quadrupole_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -356,16 +468,16 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="72">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</label>
         <link refid="_primitive_electronic_dipole_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -383,6 +495,22 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
+        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="38">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.cpp</label>
@@ -394,6 +522,32 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</label>
+        <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
         </childnode>
       </node>
       <node id="17">
@@ -412,27 +566,49 @@
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
-      <node id="48">
+      <node id="70">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp</label>
         <link refid="_primitive_overlap_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="73" relation="include">
         </childnode>
       </node>
       <node id="34">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.cpp</label>
         <link refid="_base_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="57">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
+        <link refid="_u_h_f_s_c_f_environment_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
       </node>
       <node id="20">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</label>
@@ -444,14 +620,14 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="73">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp</label>
         <link refid="_primitive_linear_momentum_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -480,12 +656,12 @@
         <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="61">
+      <node id="83">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp</label>
         <link refid="_libint_one_electron_integral_buffer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
       </node>
       <node id="36">
@@ -499,6 +675,10 @@
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
+      </node>
+      <node id="49">
+        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
+        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
       </node>
       <node id="8">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp</label>
@@ -518,7 +698,7 @@
         <childnode refid="30" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="79">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp</label>
         <link refid="_libcint_one_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -558,7 +738,7 @@
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="59">
+      <node id="81">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Interfaces/LibcintInterfacer.cpp</label>
         <link refid="_libcint_interfacer_8cpp"/>
       </node>
@@ -569,17 +749,17 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="74" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
+        <childnode refid="88" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -608,6 +788,12 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
       </node>
+      <node id="66">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
+        <link refid="_r_m_p2_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="21">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/vAP1roG.hpp</label>
         <link refid="_q_c_model_2_geminals_2v_a_p1ro_g_8hpp"/>
@@ -628,28 +814,42 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="60">
+      <node id="82">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintInterfacer.hpp</label>
         <link refid="_libint_interfacer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="61" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
       </node>
-      <node id="58">
+      <node id="80">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp</label>
         <link refid="_libcint_two_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
+        <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
+        <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -670,7 +870,7 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="49">
+      <node id="71">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</label>
         <link refid="_primitive_angular_momentum_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -686,20 +886,20 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="77">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp</label>
         <link refid="_shell_set_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="74" relation="include">
         </childnode>
       </node>
       <node id="13">
@@ -718,17 +918,17 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="65">
+      <node id="87">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp</label>
         <link refid="_g_t_o_basis_set_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="74" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
       </node>
-      <node id="62">
+      <node id="84">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp</label>
         <link refid="_libint_one_electron_integral_engine_8hpp"/>
         <childnode refid="2" relation="include">
@@ -736,7 +936,15 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="53">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/IntegralEngine.cpp</label>
         <link refid="_integral_engine_8cpp"/>
       </node>
@@ -776,7 +984,15 @@
         <childnode refid="45" relation="include">
         </childnode>
       </node>
-      <node id="64">
+      <node id="59">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp</label>
         <link refid="_g_t_o_basis_set_8cpp"/>
       </node>
@@ -830,7 +1046,7 @@
 <codeline lineno="35" refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a67f63a29854b9027664ef9177d84491b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">Primitive</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref>;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>basis<sp/>function<sp/>that<sp/>this<sp/>shell<sp/>can<sp/>produce.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a04efc63dad5c088da5d9b6107e28695a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">BasisFunction</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination&lt;double, Primitive&gt;</ref>;</highlight></codeline>
+<codeline lineno="38" refid="class_g_q_c_p_1_1_london_g_t_o_shell_1ae24a9a4ae5d151856a08818556f40517" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">BasisFunction</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">EvaluableLinearCombination&lt;double, Primitive&gt;</ref>;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>

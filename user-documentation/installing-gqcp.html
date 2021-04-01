@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Installing GQCP(y)</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.c441f2ba0852f4cabcb80105e3a46ae6.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/doxygen.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/search/search.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/html/menu.js"></script>
+    <script src="../_static/html/jquery.js"></script>
+    <script src="../_static/html/dynsections.js"></script>
+    <script src="../_static/html/menudata.js"></script>
+    <script src="../_static/html/search/classes_b.js"></script>
+    <script src="../_static/html/search/variables_3.js"></script>
+    <script src="../_static/html/search/files_4.js"></script>
+    <script src="../_static/html/search/files_f.js"></script>
+    <script src="../_static/html/search/classes_12.js"></script>
+    <script src="../_static/html/search/all_c.js"></script>
+    <script src="../_static/html/search/typedefs_4.js"></script>
+    <script src="../_static/html/search/classes_15.js"></script>
+    <script src="../_static/html/search/variables_2.js"></script>
+    <script src="../_static/html/search/files_e.js"></script>
+    <script src="../_static/html/search/classes_6.js"></script>
+    <script src="../_static/html/search/all_7.js"></script>
+    <script src="../_static/html/search/typedefs_9.js"></script>
+    <script src="../_static/html/search/files_b.js"></script>
+    <script src="../_static/html/search/classes_14.js"></script>
+    <script src="../_static/html/search/all_6.js"></script>
+    <script src="../_static/html/search/enumvalues_6.js"></script>
+    <script src="../_static/html/search/typedefs_1.js"></script>
+    <script src="../_static/html/search/files_6.js"></script>
+    <script src="../_static/html/search/files_3.js"></script>
+    <script src="../_static/html/search/files_10.js"></script>
+    <script src="../_static/html/search/variables_7.js"></script>
+    <script src="../_static/html/search/classes_10.js"></script>
+    <script src="../_static/html/search/classes_9.js"></script>
+    <script src="../_static/html/search/functions_17.js"></script>
+    <script src="../_static/html/search/enums_1.js"></script>
+    <script src="../_static/html/search/files_0.js"></script>
+    <script src="../_static/html/search/enums_0.js"></script>
+    <script src="../_static/html/search/all_a.js"></script>
+    <script src="../_static/html/search/files_11.js"></script>
+    <script src="../_static/html/search/files_7.js"></script>
+    <script src="../_static/html/search/typedefs_14.js"></script>
+    <script src="../_static/html/search/enums_3.js"></script>
+    <script src="../_static/html/search/typedefs_5.js"></script>
+    <script src="../_static/html/search/functions_5.js"></script>
+    <script src="../_static/html/search/files_15.js"></script>
+    <script src="../_static/html/search/files_d.js"></script>
+    <script src="../_static/html/search/classes_3.js"></script>
+    <script src="../_static/html/search/all_18.js"></script>
+    <script src="../_static/html/search/typedefs_13.js"></script>
+    <script src="../_static/html/search/files_9.js"></script>
+    <script src="../_static/html/search/variables_12.js"></script>
+    <script src="../_static/html/search/all_4.js"></script>
+    <script src="../_static/html/search/functions_10.js"></script>
+    <script src="../_static/html/search/files_16.js"></script>
+    <script src="../_static/html/search/enumvalues_7.js"></script>
+    <script src="../_static/html/search/classes_f.js"></script>
+    <script src="../_static/html/search/namespaces_0.js"></script>
+    <script src="../_static/html/search/variables_10.js"></script>
+    <script src="../_static/html/search/enums_2.js"></script>
+    <script src="../_static/html/search/enumvalues_9.js"></script>
+    <script src="../_static/html/search/classes_8.js"></script>
+    <script src="../_static/html/search/typedefs_10.js"></script>
+    <script src="../_static/html/search/variables_5.js"></script>
+    <script src="../_static/html/search/variables_13.js"></script>
+    <script src="../_static/html/search/all_1.js"></script>
+    <script src="../_static/html/search/variables_0.js"></script>
+    <script src="../_static/html/search/all_10.js"></script>
+    <script src="../_static/html/search/files_5.js"></script>
+    <script src="../_static/html/search/files_8.js"></script>
+    <script src="../_static/html/search/all_b.js"></script>
+    <script src="../_static/html/search/classes_17.js"></script>
+    <script src="../_static/html/search/files_c.js"></script>
+    <script src="../_static/html/search/all_11.js"></script>
+    <script src="../_static/html/search/functions_b.js"></script>
+    <script src="../_static/html/search/typedefs_e.js"></script>
+    <script src="../_static/html/search/classes_4.js"></script>
+    <script src="../_static/html/search/files_1.js"></script>
+    <script src="../_static/html/search/variables_8.js"></script>
+    <script src="../_static/html/search/variables_9.js"></script>
+    <script src="../_static/html/search/all_3.js"></script>
+    <script src="../_static/html/search/enumvalues_3.js"></script>
+    <script src="../_static/html/search/typedefs_d.js"></script>
+    <script src="../_static/html/search/enumvalues_5.js"></script>
+    <script src="../_static/html/search/typedefs_12.js"></script>
+    <script src="../_static/html/search/classes_11.js"></script>
+    <script src="../_static/html/search/variables_f.js"></script>
+    <script src="../_static/html/search/classes_2.js"></script>
+    <script src="../_static/html/search/related_1.js"></script>
+    <script src="../_static/html/search/classes_7.js"></script>
+    <script src="../_static/html/search/variables_6.js"></script>
+    <script src="../_static/html/search/variables_14.js"></script>
+    <script src="../_static/html/search/variables_c.js"></script>
+    <script src="../_static/html/search/functions_9.js"></script>
+    <script src="../_static/html/search/functions_12.js"></script>
+    <script src="../_static/html/search/functions_4.js"></script>
+    <script src="../_static/html/search/functions_11.js"></script>
+    <script src="../_static/html/search/all_1a.js"></script>
+    <script src="../_static/html/search/variables_1.js"></script>
+    <script src="../_static/html/search/enumvalues_2.js"></script>
+    <script src="../_static/html/search/variables_11.js"></script>
+    <script src="../_static/html/search/functions_15.js"></script>
+    <script src="../_static/html/search/classes_e.js"></script>
+    <script src="../_static/html/search/variables_4.js"></script>
+    <script src="../_static/html/search/functions_f.js"></script>
+    <script src="../_static/html/search/functions_c.js"></script>
+    <script src="../_static/html/search/all_14.js"></script>
+    <script src="../_static/html/search/variables_d.js"></script>
+    <script src="../_static/html/search/functions_e.js"></script>
+    <script src="../_static/html/search/typedefs_2.js"></script>
+    <script src="../_static/html/search/enumvalues_0.js"></script>
+    <script src="../_static/html/search/files_12.js"></script>
+    <script src="../_static/html/search/typedefs_0.js"></script>
+    <script src="../_static/html/search/all_f.js"></script>
+    <script src="../_static/html/search/typedefs_b.js"></script>
+    <script src="../_static/html/search/functions_14.js"></script>
+    <script src="../_static/html/search/classes_d.js"></script>
+    <script src="../_static/html/search/functions_6.js"></script>
+    <script src="../_static/html/search/files_a.js"></script>
+    <script src="../_static/html/search/files_2.js"></script>
+    <script src="../_static/html/search/all_2.js"></script>
+    <script src="../_static/html/search/classes_16.js"></script>
+    <script src="../_static/html/search/functions_7.js"></script>
+    <script src="../_static/html/search/enumvalues_1.js"></script>
+    <script src="../_static/html/search/all_19.js"></script>
+    <script src="../_static/html/search/typedefs_7.js"></script>
+    <script src="../_static/html/search/typedefs_3.js"></script>
+    <script src="../_static/html/search/functions_0.js"></script>
+    <script src="../_static/html/search/searchdata.js"></script>
+    <script src="../_static/html/search/files_14.js"></script>
+    <script src="../_static/html/search/functions_16.js"></script>
+    <script src="../_static/html/search/classes_a.js"></script>
+    <script src="../_static/html/search/all_e.js"></script>
+    <script src="../_static/html/search/all_1b.js"></script>
+    <script src="../_static/html/search/all_13.js"></script>
+    <script src="../_static/html/search/classes_c.js"></script>
+    <script src="../_static/html/search/enumvalues_8.js"></script>
+    <script src="../_static/html/search/all_d.js"></script>
+    <script src="../_static/html/search/all_8.js"></script>
+    <script src="../_static/html/search/all_16.js"></script>
+    <script src="../_static/html/search/variables_a.js"></script>
+    <script src="../_static/html/search/enumvalues_4.js"></script>
+    <script src="../_static/html/search/all_0.js"></script>
+    <script src="../_static/html/search/files_13.js"></script>
+    <script src="../_static/html/search/functions_d.js"></script>
+    <script src="../_static/html/search/functions_18.js"></script>
+    <script src="../_static/html/search/related_0.js"></script>
+    <script src="../_static/html/search/search.js"></script>
+    <script src="../_static/html/search/functions_3.js"></script>
+    <script src="../_static/html/search/all_12.js"></script>
+    <script src="../_static/html/search/variables_b.js"></script>
+    <script src="../_static/html/search/typedefs_f.js"></script>
+    <script src="../_static/html/search/all_9.js"></script>
+    <script src="../_static/html/search/classes_5.js"></script>
+    <script src="../_static/html/search/typedefs_11.js"></script>
+    <script src="../_static/html/search/functions_a.js"></script>
+    <script src="../_static/html/search/typedefs_8.js"></script>
+    <script src="../_static/html/search/functions_13.js"></script>
+    <script src="../_static/html/search/functions_8.js"></script>
+    <script src="../_static/html/search/namespaces_1.js"></script>
+    <script src="../_static/html/search/functions_2.js"></script>
+    <script src="../_static/html/search/variables_e.js"></script>
+    <script src="../_static/html/search/functions_1.js"></script>
+    <script src="../_static/html/search/typedefs_c.js"></script>
+    <script src="../_static/html/search/all_5.js"></script>
+    <script src="../_static/html/search/all_17.js"></script>
+    <script src="../_static/html/search/all_15.js"></script>
+    <script src="../_static/html/search/classes_13.js"></script>
+    <script src="../_static/html/search/classes_0.js"></script>
+    <script src="../_static/html/search/typedefs_a.js"></script>
+    <script src="../_static/html/search/typedefs_6.js"></script>
+    <script src="../_static/html/search/classes_1.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using GQCP(y)" href="using-gqcp.html" />
+    <link rel="prev" title="The Ghent Quantum Chemistry Package" href="../landing-page.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpg" class="logo" alt="logo">
+  
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../landing-page.html">
+   The Ghent Quantum Chemistry Package
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Installing GQCP(y)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="using-gqcp.html">
+   Using GQCP(y)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/introduction.html">
+   Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/molecules.html">
+   Molecules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/orbital-bases.html">
+   Orbital bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/quantum-chemical-methods.html">
+   Quantum chemical methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/quantum-chemical-models.html">
+   Quantum chemical models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/use-cases.html">
+   Common use cases
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Spinor-bases.html">
+   Spinor bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/UHF-calculations.html">
+   UHF SCF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Custom-algorithms-showcase-CUHF.html">
+   Custom algorithms showcase - CUHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/R-U-GHF-overlaps.html">
+   Overlaps between R/U/GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/RHF-dipole-moments.html">
+   Calculating the RHF dipole moment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/HF-Stability.html">
+   Checking the Hartree-Fock Stability conditions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/ONVPath.html">
+   ONV path manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html">
+   DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#preparing-the-hamiltonian-in-the-canonical-rhf-basis">
+   Preparing the Hamiltonian in the canonical RHF basis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#dense-doci-calculations">
+   Dense DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/DOCI.html#davidson-doci-calculations">
+   ‘Davidson’ DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/FCI.html">
+   Molecular FCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Hubbard.html">
+   Hubbard calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/AP1roG-calculations.html">
+   AP1roG calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/CCSD.html">
+   CCSD calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../examples/Mulliken-population.html">
+   Calculating the Mulliken population
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Developer documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/style-guide.html">
+   GQCP Style Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/introduction.html">
+   Introduction for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/ONV-path-manipulation.html">
+   Manipulating ONVs and their addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/devops.html">
+   GQCP devops
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/troubleshooting.html">
+   Troubleshooting guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/citations.html">
+   Academic references
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/api.html">
+   API
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Blog posts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blog/2020-11-30-RSDD.html">
+   GQCP appears in RSDD2020
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/user-documentation/installing-gqcp.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation-through-conda">
+   Installation through conda
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation-through-docker">
+   Installation through Docker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation-through-singularity">
+   Installation through Singularity
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><img alt="Getting started" src="../_images/getting-started.png" /></p>
+<div class="section" id="installing-gqcp-y">
+<h1>Installing GQCP(y)<a class="headerlink" href="#installing-gqcp-y" title="Permalink to this headline">¶</a></h1>
+<p>Before discussing GQCP’s capabilities, let’s make sure you’re all set up to use GQCP. We offer installations through <a class="reference external" href="#installation-through-conda">conda</a>, <a class="reference external" href="#installation-through-docker">Docker</a> (preferred) and <a class="reference external" href="#installation-through-singularity">Singularity</a>.</p>
+<div class="section" id="installation-through-conda">
+<h2>Installation through conda<a class="headerlink" href="#installation-through-conda" title="Permalink to this headline">¶</a></h2>
+<p>The quickest way to install GQCP is through conda. The following commands create a conda environment called <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> and installs GQCP and its dependencies in it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name gqcp
+<span class="nb">source</span> activate gqcp
+conda install -c gqcg -c intel -c conda-forge gqcp
+</pre></div>
+</div>
+<p>Since we (still) depend on Libint’s basissets, after installation, you’ll have to set the <code class="docutils literal notranslate"><span class="pre">LIBINT_DATA_PATH</span></code> environment variable to the folder that contains the libint bases. In a default installation (of Libint’s version v2.6.0), the data path is given by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LIBINT_DATA_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/share/libint/2.6.0/basis
+</pre></div>
+</div>
+<p>You will have to either export this environment variable every time you activate the <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> environment or (better) put this export in your .bashrc or (preferred) <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables">add this environment variable to your virtual environment</a>.</p>
+</div>
+<div class="section" id="installation-through-docker">
+<h2>Installation through Docker<a class="headerlink" href="#installation-through-docker" title="Permalink to this headline">¶</a></h2>
+<p>First <a class="reference external" href="https://docs.docker.com/get-docker/">install Docker</a>. Then pull our <code class="docutils literal notranslate"><span class="pre">GQCP</span></code> image to the infrastructure in question</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull gqcg/gqcp
+</pre></div>
+</div>
+<p>If you bind the correct ports to the container based on that image</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">8888</span>:8888 -it gqcg/gqcp
+</pre></div>
+</div>
+<p>you can set up a Jupyter notebook in the Docker container</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook --ip<span class="o">=</span><span class="m">0</span>.0.0.0 --no-browser --allow-root
+</pre></div>
+</div>
+<p>and access that Jupyter notebook in your local browser by looking in the terminal output for the link that begins with <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>To access the notebook, open this file <span class="k">in</span> a browser:
+        file:///root/.local/share/jupyter/runtime/nbserver-24-open.html
+Or copy and paste one of these URLs:
+        http://a696331630e9:8888/xxxxxx
+     or http://127.0.0.1:8888/?xxxxxx
+</pre></div>
+</div>
+<p>and copying that link in your browser.</p>
+</div>
+<div class="section" id="installation-through-singularity">
+<h2>Installation through Singularity<a class="headerlink" href="#installation-through-singularity" title="Permalink to this headline">¶</a></h2>
+<p>For HPC systems, <a class="reference external" href="https://sylabs.io/docs/">singularity</a> offers a more secure fork of Docker. Singularity converts Docker images to Singularity images on the fly. For the <a class="reference external" href="https://www.ugent.be/hpc/en">UGent HPC</a> this translates into first making sure <a class="reference external" href="https://vlaams-supercomputing-centrum-vscdocumentation.readthedocs-hosted.com/en/latest/software/singularity.html">that you are able to download and use Singularity images</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir <span class="nv">$VSC_SCRATCH</span>/containers
+mkdir <span class="nv">$VSC_SCRATCH</span>/containers/cache
+mkdir <span class="nv">$VSC_SCRATCH</span>/containers/tmp
+</pre></div>
+</div>
+<p>then you can pull and convert the Docker image in the scratch space</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/cache <span class="nv">SINGULARITY_TMPDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/tmp <span class="nv">SINGULARITY_PULLFOLDER</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers singularity pull docker://gqcg/gqcp
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">SINGULARITY_*</span></code> variables used above can also be set user wide in your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>.</p>
+</div></blockquote>
+<p>After converting the Docker image to a Singularity file you can shell into the resulting <code class="docutils literal notranslate"><span class="pre">*.sif</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity shell <span class="nv">$VSC_SCRATCH</span>/containers/gqcp_latest.sif
+</pre></div>
+</div>
+<p>You can launch a Jupyter notebook with the following command in the Singularity container</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook --ip<span class="o">=</span><span class="m">0</span>.0.0.0 --no-browser --allow-root
+</pre></div>
+</div>
+<p>Note the node number of the cluster on which you are running the container, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://node2473.golett.os:8888/?token=a3bf3b8bbb14618586ff6716bfa8f51886ff14d0f5e2c458
+ or http://127.0.0.1:8888/?token=a3bf3b8bbb14618586ff6716bfa8f51886ff14d0f5e2c458
+</pre></div>
+</div>
+<p>and set up an SSH tunnel in a separate terminal, such that you can access that notebook from your local browser</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh -J vsc<span class="o">{</span>xxxxx<span class="o">}</span>@login.hpc.ugent.be -L <span class="m">8888</span>:localhost:8888 vsc<span class="o">{</span>xxxxx<span class="o">}</span>@node<span class="o">{</span>nnnn<span class="o">}</span>.<span class="o">{</span>cluster<span class="o">}</span>.os
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">{xxxxx}</span></code> is your vsc number, <code class="docutils literal notranslate"><span class="pre">{nnnn}</span></code> is the node number mentioned above and <code class="docutils literal notranslate"><span class="pre">{cluster}</span></code> is the cluster on which your Jupyter notebook is running. After this tunnel has been set up, you can access your notebook through your local browser by using the <code class="docutils literal notranslate"><span class="pre">127.0.0.1:8888</span></code> link mentioned above:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://127.0.0.1:8888/?token<span class="o">=</span>a3bf3b8bbb14618586ff6716bfa8f51886ff14d0f5e2c458
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "GQCG/GQCP",
+            ref: "develop",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./user-documentation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../landing-page.html" title="previous page">The Ghent Quantum Chemistry Package</a>
+    <a class='right-next' id="next-link" href="using-gqcp.html" title="next page">Using GQCP(y)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Ghent Quantum Chemistry Group<br/>
+        
+            &copy; Copyright 2017-2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

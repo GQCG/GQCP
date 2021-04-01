@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_scalar_basis_1aca51beca0624a8c632902a9cd06617ed" prot="public" static="no">
         <type>typename Shell::Primitive</type>
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_scalar_basis_1af7f13ae4384545ad6fd8c9e622cb2180" prot="public" static="no">
         <type>typename Shell::BasisFunction</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="51" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="55" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="54" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -90,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="66" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="66" bodyend="67"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="65" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1adfc218e2641da59116cecd9c573b8403" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -142,7 +142,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="79" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="79" bodyend="84"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="78" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1a039b66e5dc34f865d172d669cad0f20a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -194,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="96" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="96" bodyend="98"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="95" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="95" bodyend="97"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1afe320a0e48627402e35e9d7c58c61bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -258,7 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="111" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="111" bodyend="116"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="110" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="110" bodyend="115"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1aab3d105699f8e3929c1d4e090243a117" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -322,7 +322,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="129" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="129" bodyend="131"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="128" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="128" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1acb55672e9094fa4a56cb7fd190dbd8ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref> &gt; &amp;</type>
@@ -338,7 +338,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="141" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="141" bodyend="141"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="140" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="140" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1a3a5d51d79c5b93f05c7ada89a746451c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis_1af7f13ae4384545ad6fd8c9e622cb2180" kindref="member">BasisFunction</ref> &gt;</type>
@@ -354,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="151" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="151" bodyend="151"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="150" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="150" bodyend="150"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1a7e604db3de1539af1ff231992743e4f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -370,7 +370,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="156" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="156" bodyend="156"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="155" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="155" bodyend="155"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1aa662b73933aa6ab2a05137065cc6a4df" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; size_t &gt;</type>
@@ -400,7 +400,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="165" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="165" bodyend="189"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="164" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="164" bodyend="188"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1aa80ce5e3db54a12bcf510d455d16bc0b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; size_t &gt;</type>
@@ -430,7 +430,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="199" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="199" bodyend="214"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="198" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="198" bodyend="213"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -454,7 +454,7 @@
         <link refid="class_g_q_c_p_1_1_scalar_basis"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="42" bodyend="215"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="41" bodyend="214"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1af7f13ae4384545ad6fd8c9e622cb2180" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>BasisFunction</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1aa662b73933aa6ab2a05137065cc6a4df" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>basisFunctionIndices</name></member>

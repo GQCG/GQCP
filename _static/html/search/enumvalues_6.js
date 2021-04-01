@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['readcost_3284',['ReadCost',['../struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_linear_combination_3_01_coefficient_scalar_00_01_function_01_4_01_4.html#ae4ba4578ff8eb73722aefdc81f829130add2e4fabcdf7cd3594271e1e9735a0e4',1,'Eigen::NumTraits&lt; GQCP::LinearCombination&lt; CoefficientScalar, Function &gt; &gt;']]],
-  ['requireinitialization_3285',['RequireInitialization',['../struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_linear_combination_3_01_coefficient_scalar_00_01_function_01_4_01_4.html#ae4ba4578ff8eb73722aefdc81f829130a00826ff8410a8a3eafa80f9f99d1af84',1,'Eigen::NumTraits&lt; GQCP::LinearCombination&lt; CoefficientScalar, Function &gt; &gt;']]],
-  ['rowmajor_3286',['RowMajor',['../namespace_g_q_c_p.html#aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f',1,'GQCP']]]
+  ['readcost_3382',['ReadCost',['../struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4.html#a60334943fdad0b964be53b95945abbd0a866b8bec3062d299b0268bc30a6addf7',1,'Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;']]],
+  ['requireinitialization_3383',['RequireInitialization',['../struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4.html#a60334943fdad0b964be53b95945abbd0acae0eb795440bb6a9f26486f8b935558',1,'Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;']]],
+  ['rowmajor_3384',['RowMajor',['../namespace_g_q_c_p.html#aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f',1,'GQCP']]]
 ];

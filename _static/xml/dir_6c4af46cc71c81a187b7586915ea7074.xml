@@ -7,9 +7,9 @@
     <innerfile refid="_cartesian_exponents_8hpp">CartesianExponents.hpp</innerfile>
     <innerfile refid="_cartesian_g_t_o_8hpp">CartesianGTO.hpp</innerfile>
     <innerfile refid="_dyadic_cartesian_direction_8hpp">DyadicCartesianDirection.hpp</innerfile>
-    <innerfile refid="_linear_combination_8hpp">LinearCombination.hpp</innerfile>
+    <innerfile refid="_evaluable_linear_combination_8hpp">EvaluableLinearCombination.hpp</innerfile>
+    <innerfile refid="_function_8hpp">Function.hpp</innerfile>
     <innerfile refid="_london_cartesian_g_t_o_8hpp">LondonCartesianGTO.hpp</innerfile>
-    <innerfile refid="_scalar_function_8hpp">ScalarFunction.hpp</innerfile>
     <innerfile refid="_vector_space_arithmetic_8hpp">VectorSpaceArithmetic.hpp</innerfile>
     <briefdescription>
     </briefdescription>

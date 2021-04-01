@@ -148,18 +148,6 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="26">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
       <node id="23">
         <label>Mathematical/Functions/CartesianGTO.hpp</label>
         <link refid="_cartesian_g_t_o_8hpp"/>
@@ -168,6 +156,8 @@
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="21">
@@ -391,6 +381,16 @@
         <childnode refid="81" relation="include">
         </childnode>
       </node>
+      <node id="26">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
       <node id="77">
         <label>Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp</label>
         <link refid="_primitive_electronic_dipole_integral_engine_8hpp"/>
@@ -421,15 +421,14 @@
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
-      <node id="9">
-        <label>Eigen/Dense</label>
-      </node>
       <node id="25">
-        <label>Mathematical/Functions/LinearCombination.hpp</label>
-        <link refid="_linear_combination_8hpp"/>
+        <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
+        <link refid="_evaluable_linear_combination_8hpp"/>
         <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
@@ -437,6 +436,11 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eigen/Dense</label>
       </node>
       <node id="54">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>

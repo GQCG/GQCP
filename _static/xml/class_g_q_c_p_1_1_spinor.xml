@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_spinor" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Spinor</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; EvaluableLinearCombination&lt; _Scalar, _BasisFunction &gt;, Spinor&lt; _Scalar, _BasisFunction &gt; &gt;</basecompoundref>
     <includes refid="_spinor_8hpp" local="no">Spinor.hpp</includes>
     <templateparamlist>
       <param>
@@ -23,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="35" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="37" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_spinor_1aea7615506c75779caae76136863bc152" prot="public" static="no">
         <type>_BasisFunction</type>
@@ -36,97 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="36" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="36" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_spinor_1a23cdca69b044a2ec4f615d7f53592bb2" prot="private" static="no" mutable="no">
-        <type><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; <ref refid="class_g_q_c_p_1_1_spinor_1a4abf29637266f6dc20d395924218b3e8" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_spinor_1aea7615506c75779caae76136863bc152" kindref="member">BasisFunction</ref> &gt;</type>
-        <definition>LinearCombination&lt;Scalar, BasisFunction&gt; GQCP::Spinor&lt; _Scalar, _BasisFunction &gt;::alpha_component</definition>
-        <argsstring></argsstring>
-        <name>alpha_component</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="40" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="40" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_spinor_1a904d4132e559c30247b6f53bde9c7df9" prot="private" static="no" mutable="no">
-        <type><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; <ref refid="class_g_q_c_p_1_1_spinor_1a4abf29637266f6dc20d395924218b3e8" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_spinor_1aea7615506c75779caae76136863bc152" kindref="member">BasisFunction</ref> &gt;</type>
-        <definition>LinearCombination&lt;Scalar, BasisFunction&gt; GQCP::Spinor&lt; _Scalar, _BasisFunction &gt;::beta_component</definition>
-        <argsstring></argsstring>
-        <name>beta_component</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="41" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="41" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_spinor_1a9aa32560219b9daf7c21b0d0538c3d27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>GQCP::Spinor&lt; _Scalar, _BasisFunction &gt;::Spinor</definition>
-        <argsstring>(const LinearCombination&lt; Scalar, BasisFunction &gt; &amp;alpha_component, const LinearCombination&lt; Scalar, BasisFunction &gt; &amp;beta_component)</argsstring>
-        <name>Spinor</name>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; <ref refid="class_g_q_c_p_1_1_spinor_1a4abf29637266f6dc20d395924218b3e8" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_spinor_1aea7615506c75779caae76136863bc152" kindref="member">BasisFunction</ref> &gt; &amp;</type>
-          <declname>alpha_component</declname>
-        </param>
-        <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; <ref refid="class_g_q_c_p_1_1_spinor_1a4abf29637266f6dc20d395924218b3e8" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_spinor_1aea7615506c75779caae76136863bc152" kindref="member">BasisFunction</ref> &gt; &amp;</type>
-          <declname>beta_component</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>A memberwise constructor.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>alpha_component</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the alpha-component of the spinor, as an expansion of underlying scalar functions </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>beta_component</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the beta-component of the spinor, as an expansion of underlying scalar functions </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="55" bodyend="57"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_spinor_1a61d03f1a1c782bc5c293400feab5ae60" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; <ref refid="class_g_q_c_p_1_1_spinor_1a4abf29637266f6dc20d395924218b3e8" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_spinor_1aea7615506c75779caae76136863bc152" kindref="member">BasisFunction</ref> &gt; &amp;</type>
-        <definition>const LinearCombination&lt;Scalar, BasisFunction&gt;&amp; GQCP::Spinor&lt; _Scalar, _BasisFunction &gt;::component</definition>
-        <argsstring>(const Spin sigma) const</argsstring>
-        <name>component</name>
-        <param>
-          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
-          <declname>sigma</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>the sigma-component of this spinor </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="67" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="67" bodyend="78"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -137,7 +48,7 @@
 <parametername>_Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar representation of the expansion coefficients </para>
+<para>The scalar representation of one of the expansion coefficients. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -145,26 +56,54 @@
 <parametername>_BasisFunction</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of the underlying basis functions </para>
+<para>The type of the underlying basis functions. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>
     </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::Spinor&lt; _Scalar, _BasisFunction &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spinor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; EvaluableLinearCombination&lt; _Scalar, _BasisFunction &gt;, Spinor&lt; _Scalar, _BasisFunction &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+    </inheritancegraph>
     <collaborationgraph>
       <node id="1">
         <label>GQCP::Spinor&lt; _Scalar, _BasisFunction &gt;</label>
         <link refid="class_g_q_c_p_1_1_spinor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; EvaluableLinearCombination&lt; _Scalar, _BasisFunction &gt;, Spinor&lt; _Scalar, _BasisFunction &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="33" bodyend="79"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp" bodystart="34" bodyend="41"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_spinor_1a23cdca69b044a2ec4f615d7f53592bb2" prot="private" virt="non-virtual"><scope>GQCP::Spinor</scope><name>alpha_component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>alpha</name></member>
       <member refid="class_g_q_c_p_1_1_spinor_1aea7615506c75779caae76136863bc152" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>BasisFunction</name></member>
-      <member refid="class_g_q_c_p_1_1_spinor_1a904d4132e559c30247b6f53bde9c7df9" prot="private" virt="non-virtual"><scope>GQCP::Spinor</scope><name>beta_component</name></member>
-      <member refid="class_g_q_c_p_1_1_spinor_1a61d03f1a1c782bc5c293400feab5ae60" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>FromEqual</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>Of</name></member>
       <member refid="class_g_q_c_p_1_1_spinor_1a4abf29637266f6dc20d395924218b3e8" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>Scalar</name></member>
-      <member refid="class_g_q_c_p_1_1_spinor_1a9aa32560219b9daf7c21b0d0538c3d27" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>Spinor</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac2ecb42d733bb8ddf78fdb011855dcdc" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" virt="non-virtual"><scope>GQCP::Spinor</scope><name>SpinResolvedBase</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

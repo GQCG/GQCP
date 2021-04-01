@@ -19,7 +19,7 @@ Collaboration diagram for GQCP\+::Cubic\+Grid\+:
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a314da2efa765caa2fd1d9ab63a7fd99b}{Cubic\+Grid}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a2af48865ce71ab8e1ef8b4b0f98dc36b}{origin}}, const std\+::array$<$ size\+\_\+t, 3 $>$ \&numbers\+\_\+of\+\_\+steps, const std\+::array$<$ double, 3 $>$ \&step\+\_\+sizes)
 \item 
-{\footnotesize template$<$typename Valued $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}$<$ Valued $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a44df571249948a19a2b7b22751b469fc}{evaluate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{Scalar\+Function}}$<$ Valued, double, 3 $>$ \&scalar\+\_\+function) const
+{\footnotesize template$<$typename Output\+Type $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}$<$ Output\+Type $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a68dbbba88670c75f82d6ac3bfbbe9fd8}{evaluate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}$<$ Output\+Type, \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$$>$ \&function) const
 \item 
 {\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a744c8c47067699932684fd052843d592}{integrate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}$<$ T $>$ \&field) const
 \item 
@@ -99,22 +99,22 @@ Create a cubic ground that is centered around the given point. Equal numbers of 
 {\em step\+\_\+size} & the size of the steps that should be taken in the x-\/, y-\/ and z-\/directions \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_cubic_grid_a44df571249948a19a2b7b22751b469fc}\label{class_g_q_c_p_1_1_cubic_grid_a44df571249948a19a2b7b22751b469fc}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_cubic_grid_a68dbbba88670c75f82d6ac3bfbbe9fd8}\label{class_g_q_c_p_1_1_cubic_grid_a68dbbba88670c75f82d6ac3bfbbe9fd8}} 
 \index{GQCP::CubicGrid@{GQCP::CubicGrid}!evaluate@{evaluate}}
 \index{evaluate@{evaluate}!GQCP::CubicGrid@{GQCP::CubicGrid}}
 \doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
-{\footnotesize\ttfamily template$<$typename Valued $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}$<$Valued$>$ GQCP\+::\+Cubic\+Grid\+::evaluate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_function}{Scalar\+Function}}$<$ Valued, double, 3 $>$ \&}]{scalar\+\_\+function }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Output\+Type $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}$<$Output\+Type$>$ GQCP\+::\+Cubic\+Grid\+::evaluate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}$<$ Output\+Type, \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$$>$ \&}]{function }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Evaluate a scalar function on every point of this grid.
+Evaluate a function on every point of this grid.
 
 
 \begin{DoxyParams}{Parameters}
-{\em scalar\+\_\+function} & the scalar functions whose values should be evaluated\\
+{\em function} & The function whose values should be evaluated.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a field with the calculated evaluations 
+A field with the calculated evaluations. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_cubic_grid_ace375c620c4f97646710110da215a589}\label{class_g_q_c_p_1_1_cubic_grid_ace375c620c4f97646710110da215a589}} 
 \index{GQCP::CubicGrid@{GQCP::CubicGrid}!forEach@{forEach}}

@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::EvaluableRSQOneElectronOperator</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator" prot="public" virt="non-virtual">GQCP::EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</basecompoundref>
+    <includes refid="_evaluable_r_s_q_one_electron_operator_8hpp" local="no">EvaluableRSQOneElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _FunctionType</type>
+      </param>
+      <param>
+        <type>typename _Vectorizer</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator_1ad1b8edbb23e29e87e3e1d8f17075eced" prot="public" static="no">
+        <type>_FunctionType</type>
+        <definition>using GQCP::EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::FunctionType =  _FunctionType</definition>
+        <argsstring></argsstring>
+        <name>FunctionType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator_1aadcfc99a4b8189b30e5d8be97c4f704b" prot="public" static="no">
+        <type>_Vectorizer</type>
+        <definition>using GQCP::EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::Vectorizer =  _Vectorizer</definition>
+        <argsstring></argsstring>
+        <name>Vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A restricted second-quantized one-electron operator whose parameters are evaluatable at a point in space.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_FunctionType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of evaluatable function that is used as a &apos;matrix element&apos; of this one-electron operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the density) and vector operators (such as the current density operator). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+      </node>
+      <node id="2">
+        <label>GQCP::EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#array</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::StorageArray&lt; MatrixRepresentation, Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_storage_array"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="37" bodyend="90"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a887b0138971425ecf72ae15c9226b3c9" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>allParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ae0f9fa3ea86967e23c84a2f6ed581d00" prot="protected" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>array</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator_1a52b369696d0063d7d3efc8e2986fdaa0" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>calculateExpectationValue</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator_1a0ca4a01da2976bc2314dfcb649e0bde3" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>DerivedEvaluableOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a42bb02c35ea4bdbb9e81cbb6235feff3" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>DerivedOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator_1a5bf45b863d658295e8a2efd3e5733bca" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>evaluate</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator_1a99299b0cb87f83eaff65b14bac7b6502" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>EvaluatedOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a71e0867635cebf315b90df29d9fcb6f3" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>FinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator_1ad1b8edbb23e29e87e3e1d8f17075eced" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>FunctionType</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator_1a8835bb08f853bf9dd54b78b1406bf596" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>InputType</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8dc18f11c1edfa5a584e4bcef5a39e27" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>MatrixRepresentation</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aec5499c60c1ccf1c3a2bbb4ede557181" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>numberOfComponents</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3db8d8010d4b40797ca252c8dc4ca1a1" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator_1a233d78d5b64fd52ebb22812751f6f706" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>OneDM</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3406af47b43cdf59b508d2c65ed78dd5" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator_1a4eeb509426c2d691cceffeba522cd299" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>OutputType</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa0e555ece4f4d592420ded0008dd0088" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a86c6833024d9dd8539b74901f0438f23" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>ScalarFinalOperator</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a2490ec535882d6001c7cf6f6fa538c20" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa46cbd4ee56231f35b4ed67b0a293e54" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1ac0aaa4116c253ed87d1d55cc3d1714e5" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acca6d82a69a99fc3ee97cfafc7ba3245" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a69ee654058f7d2476fbaa07dff233f9b" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a31d5da079f8ab325d4afec400f9fecbb" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>SQOperatorStorageBase</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aaebf3b63a4e7041ea0754b4d5e8868aa" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator_1aadcfc99a4b8189b30e5d8be97c4f704b" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aae57f5b84d06fde585c7597e2b6e225b" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a5438632d87c01fcf056ba50906806d94" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Zero</name></member>
+      <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a8da76d3901f36713b1f908624c514b49" prot="public" virt="non-virtual"><scope>GQCP::EvaluableRSQOneElectronOperator</scope><name>Zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

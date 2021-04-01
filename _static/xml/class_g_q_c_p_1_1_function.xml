@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_function" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>GQCP::Function</compoundname>
+    <includes refid="_function_8hpp" local="no">Function.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _OutputType</type>
+      </param>
+      <param>
+        <type>typename _InputType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_function_1a2cbcbd73dd55c98bc28e7fadc549b171" prot="public" static="no">
+        <type>_OutputType</type>
+        <definition>using GQCP::Function&lt; _OutputType, _InputType &gt;::OutputType =  _OutputType</definition>
+        <argsstring></argsstring>
+        <name>OutputType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="156" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_function_1aaf1d2fa66a3fa43919c1ef676ff2990f" prot="public" static="no">
+        <type>_InputType</type>
+        <definition>using GQCP::Function&lt; _OutputType, _InputType &gt;::InputType =  _InputType</definition>
+        <argsstring></argsstring>
+        <name>InputType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="159" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_function_1a1ee5b9fc5712bcf4f125a7cc3f4a4822" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual GQCP::Function&lt; _OutputType, _InputType &gt;::~Function</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default destructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="170" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_function_1a921ee4632b3b07753bb1a9b16df38198" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_function_1a2cbcbd73dd55c98bc28e7fadc549b171" kindref="member">OutputType</ref></type>
+        <definition>virtual OutputType GQCP::Function&lt; _OutputType, _InputType &gt;::operator()</definition>
+        <argsstring>(const InputType &amp;in) const =0</argsstring>
+        <name>operator()</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_function_product_1aaf24131ec06e6547a7da905b42e3079d">operator()</reimplementedby>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_function_1aaf1d2fa66a3fa43919c1ef676ff2990f" kindref="member">InputType</ref> &amp;</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Evaluate this function for the given argument.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The argument at which the function is to be evaluated.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The function value for the given argument. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="184" column="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that represents a mathematical function through its <computeroutput>operator()</computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_OutputType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The return type of the <computeroutput>operator()</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_InputType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input type of the <computeroutput>operator()</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::Function&lt; _OutputType, _InputType &gt;</label>
+        <link refid="class_g_q_c_p_1_1_function"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="153" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="153" bodyend="185"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_function_1aaf1d2fa66a3fa43919c1ef676ff2990f" prot="public" virt="non-virtual"><scope>GQCP::Function</scope><name>InputType</name></member>
+      <member refid="class_g_q_c_p_1_1_function_1a921ee4632b3b07753bb1a9b16df38198" prot="public" virt="pure-virtual"><scope>GQCP::Function</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_function_1a2cbcbd73dd55c98bc28e7fadc549b171" prot="public" virt="non-virtual"><scope>GQCP::Function</scope><name>OutputType</name></member>
+      <member refid="class_g_q_c_p_1_1_function_1a1ee5b9fc5712bcf4f125a7cc3f4a4822" prot="public" virt="virtual"><scope>GQCP::Function</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

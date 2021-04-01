@@ -532,7 +532,7 @@ $(function() {
 <div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;        <span class="comment">// Return the spin Zeeman operator as a contraction beween the magnetic field and the spin operator.</span></div>
 <div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> S = this-&gt;<a class="code" href="class_g_q_c_p_1_1_g_spinor_basis.html#a1d0b17785f530791bcfdfa3c5e4648fd">quantize</a>(<a class="code" href="class_g_q_c_p_1_1_electronic_spin_operator.html">ElectronicSpinOperator</a>());</div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; B = op.magneticField().strength();</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;        <span class="keywordflow">return</span> 0.5 * S.dot(B);</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;        <span class="keywordflow">return</span> S.dot(B);</div>
 <div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    }</div>
 <div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160; </div>
 <div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160; </div>
@@ -775,7 +775,7 @@ $(function() {
 <div class="ttc" id="aclass_g_q_c_p_1_1_nuclear_framework_html"><div class="ttname"><a href="class_g_q_c_p_1_1_nuclear_framework.html">GQCP::NuclearFramework</a></div><div class="ttdef"><b>Definition:</b> NuclearFramework.hpp:35</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_orbital_zeeman_operator_html"><div class="ttname"><a href="class_g_q_c_p_1_1_orbital_zeeman_operator.html">GQCP::OrbitalZeemanOperator</a></div><div class="ttdef"><b>Definition:</b> OrbitalZeemanOperator.hpp:35</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_overlap_operator_html"><div class="ttname"><a href="class_g_q_c_p_1_1_overlap_operator.html">GQCP::OverlapOperator</a></div><div class="ttdef"><b>Definition:</b> OverlapOperator.hpp:31</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_r_spin_orbital_basis_html"><div class="ttname"><a href="class_g_q_c_p_1_1_r_spin_orbital_basis.html">GQCP::RSpinOrbitalBasis</a></div><div class="ttdef"><b>Definition:</b> RSpinOrbitalBasis.hpp:55</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_r_spin_orbital_basis_html"><div class="ttname"><a href="class_g_q_c_p_1_1_r_spin_orbital_basis.html">GQCP::RSpinOrbitalBasis</a></div><div class="ttdef"><b>Definition:</b> RSpinOrbitalBasis.hpp:57</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_s_q_hamiltonian_html"><div class="ttname"><a href="class_g_q_c_p_1_1_s_q_hamiltonian.html">GQCP::SQHamiltonian</a></div><div class="ttdef"><b>Definition:</b> SQHamiltonian.hpp:54</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_scalar_basis_html"><div class="ttname"><a href="class_g_q_c_p_1_1_scalar_basis.html">GQCP::ScalarBasis&lt; Shell &gt;</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_simple_spin_orbital_basis_html_a65c66682f4aa90cc4c7bf2cd3dfb3e43"><div class="ttname"><a href="class_g_q_c_p_1_1_simple_spin_orbital_basis.html#a65c66682f4aa90cc4c7bf2cd3dfb3e43">GQCP::SimpleSpinOrbitalBasis::scalarBasis</a></div><div class="ttdeci">const ScalarBasis&lt; Shell &gt; &amp; scalarBasis() const</div><div class="ttdef"><b>Definition:</b> SimpleSpinOrbitalBasis.hpp:118</div></div>

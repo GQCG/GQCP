@@ -4,7 +4,7 @@
     <compoundname>LibcintInterfacer.cpp</compoundname>
     <includes refid="_libcint_interfacer_8hpp" local="yes">Basis/Integrals/Interfaces/LibcintInterfacer.hpp</includes>
     <incdepgraph>
-      <node id="19">
+      <node id="23">
         <label>boost/algorithm/string.hpp</label>
       </node>
       <node id="30">
@@ -16,7 +16,7 @@
       <node id="34">
         <label>Physical/HomogeneousMagneticField.hpp</label>
         <link refid="_homogeneous_magnetic_field_8hpp"/>
-        <childnode refid="11" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
       <node id="40">
@@ -25,13 +25,13 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="12">
+      <node id="22">
         <label>Utilities/Eigen.hpp</label>
         <link refid="_eigen_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="19">
         <label>boost/lexical_cast.hpp</label>
       </node>
       <node id="35">
@@ -39,21 +39,9 @@
         <link refid="_molecule_8hpp"/>
         <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>Mathematical/Functions/ScalarFunction.hpp</label>
-        <link refid="_scalar_function_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -64,6 +52,8 @@
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -90,7 +80,7 @@
         <childnode refid="50" relation="include">
         </childnode>
       </node>
-      <node id="22">
+      <node id="16">
         <label>boost/format.hpp</label>
       </node>
       <node id="43">
@@ -118,17 +108,17 @@
       <node id="26">
         <label>Molecule/Nucleus.hpp</label>
         <link refid="_nucleus_8hpp"/>
-        <childnode refid="11" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
       <node id="47">
@@ -139,7 +129,7 @@
         <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="24">
         <label>fstream</label>
       </node>
       <node id="27">
@@ -157,29 +147,43 @@
       <node id="45">
         <label>Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</label>
         <link refid="_base_reference_dependent_operator_8hpp"/>
-        <childnode refid="11" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="24">
+      <node id="10">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
-      <node id="13">
-        <label>Eigen/Dense</label>
-      </node>
       <node id="9">
-        <label>Mathematical/Functions/LinearCombination.hpp</label>
-        <link refid="_linear_combination_8hpp"/>
+        <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
+        <link refid="_evaluable_linear_combination_8hpp"/>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Eigen/Dense</label>
       </node>
       <node id="49">
         <label>Operator/FirstQuantized/OverlapOperator.hpp</label>
@@ -187,22 +191,22 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="21">
         <label>Mathematical/Representation/Matrix.hpp</label>
         <link refid="_matrix_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
       <node id="41">
@@ -215,23 +219,23 @@
         <childnode refid="43" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="12">
         <label>Utilities/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="16" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
       <node id="8">
         <label>vector</label>
       </node>
-      <node id="14">
+      <node id="11">
         <label>Utilities/aliases.hpp</label>
         <link refid="aliases_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
         <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -245,7 +249,7 @@
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -259,10 +263,10 @@
         <childnode refid="45" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="15">
         <label>cstdlib</label>
       </node>
-      <node id="21">
+      <node id="25">
         <label>iostream</label>
       </node>
       <node id="42">
@@ -297,7 +301,7 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="13">
         <label>type_traits</label>
       </node>
       <node id="39">
@@ -306,7 +310,7 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="14">
         <label>complex</label>
       </node>
       <node id="37">
@@ -323,7 +327,7 @@
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
@@ -349,12 +353,12 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="17">
         <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
         <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="24" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
     </incdepgraph>

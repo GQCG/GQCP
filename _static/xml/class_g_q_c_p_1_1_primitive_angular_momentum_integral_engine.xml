@@ -36,9 +36,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a8b18be46fe5ac76e999bc88f742e2ded" prot="public" static="no">
-        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">AngularMomentumOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
-        <definition>using GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;AngularMomentumOperator::Scalar, typename Primitive::Valued&gt;</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a0de81da4d51fed5721b67017880f55e3" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">AngularMomentumOperator::Scalar</ref>, typename Primitive::OutputType &gt;</type>
+        <definition>using GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;AngularMomentumOperator::Scalar, typename Primitive::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
         <briefdescription>
@@ -113,7 +113,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a73fd9fb11a696882382cf8c3faad01e7" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a8b18be46fe5ac76e999bc88f742e2ded" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a0de81da4d51fed5721b67017880f55e3" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
@@ -161,7 +161,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a73fd9fb11a696882382cf8c3faad01e7" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a8b18be46fe5ac76e999bc88f742e2ded" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a0de81da4d51fed5721b67017880f55e3" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
@@ -250,7 +250,7 @@
       <member refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1ab07e13d6285124b97a2f3c507736416a" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1ae7e8b1f36eaa6edbf7883183a133e9af" prot="protected" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>component</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a032301395e9f07b12ca835518ea2b934" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>Components</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a8b18be46fe5ac76e999bc88f742e2ded" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1a0de81da4d51fed5721b67017880f55e3" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a766119a77e95306dfb88dbdd1095a684" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1ad72efb4b7c06697ca1defe8fdb62f9b7" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine_1afb6dce386fe9047e116dae8f173d9819" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveAngularMomentumIntegralEngine</scope><name>PrimitiveAngularMomentumIntegralEngine</name></member>

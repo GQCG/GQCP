@@ -89,67 +89,33 @@ $(function() {
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_linear_combination_8hpp.html">Mathematical/Functions/LinearCombination.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_spin_8hpp.html">QuantumChemical/Spin.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_evaluable_linear_combination_8hpp.html">Mathematical/Functions/EvaluableLinearCombination.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_spin_resolved_base_8hpp.html">QuantumChemical/SpinResolvedBase.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_g_q_c_p.html">GQCP</a> {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar, <span class="keyword">typename</span> _BasisFunction&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_spinor.html">Spinor</a> {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html#a4abf29637266f6dc20d395924218b3e8">   35</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_spinor.html#a4abf29637266f6dc20d395924218b3e8">Scalar</a> = _Scalar;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html#aea7615506c75779caae76136863bc152">   36</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_spinor.html#aea7615506c75779caae76136863bc152">BasisFunction</a> = _BasisFunction;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_spinor.html">Spinor</a>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">public</span> <a class="code" href="class_g_q_c_p_1_1_spin_resolved_base.html">SpinResolvedBase</a>&lt;EvaluableLinearCombination&lt;_Scalar, _BasisFunction&gt;, Spinor&lt;_Scalar, _BasisFunction&gt;&gt; {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// The scalar representation of one of the expansion coefficients.</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html#a4abf29637266f6dc20d395924218b3e8">   37</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_spinor.html#a4abf29637266f6dc20d395924218b3e8">Scalar</a> = _Scalar;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_g_q_c_p_1_1_linear_combination.html">LinearCombination&lt;Scalar, BasisFunction&gt;</a> alpha_component;  <span class="comment">// the alpha-component of the spinor, as an expansion of underlying scalar functions</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_g_q_c_p_1_1_linear_combination.html">LinearCombination&lt;Scalar, BasisFunction&gt;</a> beta_component;   <span class="comment">// the beta-component of the spinor, as an expansion of underlying scalar functions</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// The type of the underlying basis functions.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html#aea7615506c75779caae76136863bc152">   40</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_spinor.html#aea7615506c75779caae76136863bc152">BasisFunction</a> = _BasisFunction;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">     *  CONSTRUCTORS</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html#a9aa32560219b9daf7c21b0d0538c3d27">   55</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_spinor.html#a9aa32560219b9daf7c21b0d0538c3d27">Spinor</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_combination.html">LinearCombination&lt;Scalar, BasisFunction&gt;</a>&amp; alpha_component, <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_combination.html">LinearCombination&lt;Scalar, BasisFunction&gt;</a>&amp; beta_component) :</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        alpha_component {alpha_component},</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        beta_component {beta_component} {}</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">     *  PUBLIC METHODS</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_spinor.html#a61d03f1a1c782bc5c293400feab5ae60">   67</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_linear_combination.html">LinearCombination&lt;Scalar, BasisFunction&gt;</a>&amp; <a class="code" href="class_g_q_c_p_1_1_spinor.html#a61d03f1a1c782bc5c293400feab5ae60">component</a>(<span class="keyword">const</span> <a class="code" href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4f">Spin</a> sigma)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">switch</span> (sigma) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6">Spin::alpha</a>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> this-&gt;alpha_component;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5">Spin::beta</a>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">return</span> this-&gt;beta_component;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
-<div class="ttc" id="a_linear_combination_8hpp_html"><div class="ttname"><a href="_linear_combination_8hpp.html">LinearCombination.hpp</a></div></div>
-<div class="ttc" id="a_spin_8hpp_html"><div class="ttname"><a href="_spin_8hpp.html">Spin.hpp</a></div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_linear_combination_html"><div class="ttname"><a href="class_g_q_c_p_1_1_linear_combination.html">GQCP::LinearCombination&lt; Scalar, BasisFunction &gt;</a></div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html">GQCP::Spinor</a></div><div class="ttdef"><b>Definition:</b> Spinor.hpp:33</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html_a4abf29637266f6dc20d395924218b3e8"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html#a4abf29637266f6dc20d395924218b3e8">GQCP::Spinor::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> Spinor.hpp:35</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html_a61d03f1a1c782bc5c293400feab5ae60"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html#a61d03f1a1c782bc5c293400feab5ae60">GQCP::Spinor::component</a></div><div class="ttdeci">const LinearCombination&lt; Scalar, BasisFunction &gt; &amp; component(const Spin sigma) const</div><div class="ttdef"><b>Definition:</b> Spinor.hpp:67</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html_a9aa32560219b9daf7c21b0d0538c3d27"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html#a9aa32560219b9daf7c21b0d0538c3d27">GQCP::Spinor::Spinor</a></div><div class="ttdeci">Spinor(const LinearCombination&lt; Scalar, BasisFunction &gt; &amp;alpha_component, const LinearCombination&lt; Scalar, BasisFunction &gt; &amp;beta_component)</div><div class="ttdef"><b>Definition:</b> Spinor.hpp:55</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html_aea7615506c75779caae76136863bc152"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html#aea7615506c75779caae76136863bc152">GQCP::Spinor::BasisFunction</a></div><div class="ttdeci">_BasisFunction BasisFunction</div><div class="ttdef"><b>Definition:</b> Spinor.hpp:36</div></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="ttc" id="a_evaluable_linear_combination_8hpp_html"><div class="ttname"><a href="_evaluable_linear_combination_8hpp.html">EvaluableLinearCombination.hpp</a></div></div>
+<div class="ttc" id="a_spin_resolved_base_8hpp_html"><div class="ttname"><a href="_spin_resolved_base_8hpp.html">SpinResolvedBase.hpp</a></div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_spin_resolved_base_html"><div class="ttname"><a href="class_g_q_c_p_1_1_spin_resolved_base.html">GQCP::SpinResolvedBase</a></div><div class="ttdef"><b>Definition:</b> SpinResolvedBase.hpp:37</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html">GQCP::Spinor</a></div><div class="ttdef"><b>Definition:</b> Spinor.hpp:34</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html_a4abf29637266f6dc20d395924218b3e8"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html#a4abf29637266f6dc20d395924218b3e8">GQCP::Spinor::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> Spinor.hpp:37</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_spinor_html_aea7615506c75779caae76136863bc152"><div class="ttname"><a href="class_g_q_c_p_1_1_spinor.html#aea7615506c75779caae76136863bc152">GQCP::Spinor::BasisFunction</a></div><div class="ttdeci">_BasisFunction BasisFunction</div><div class="ttdef"><b>Definition:</b> Spinor.hpp:40</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_ac6f590924cfbbf11847a4ce174fe6e4f"><div class="ttname"><a href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4f">GQCP::Spin</a></div><div class="ttdeci">Spin</div><div class="ttdef"><b>Definition:</b> Spin.hpp:27</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5"><div class="ttname"><a href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5">GQCP::beta</a></div><div class="ttdeci">@ beta</div><div class="ttdef"><b>Definition:</b> Spin.hpp:29</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_html_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6"><div class="ttname"><a href="namespace_g_q_c_p.html#ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6">GQCP::alpha</a></div><div class="ttdeci">@ alpha</div><div class="ttdef"><b>Definition:</b> Spin.hpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

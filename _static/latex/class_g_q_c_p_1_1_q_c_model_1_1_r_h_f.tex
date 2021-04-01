@@ -18,6 +18,8 @@ Collaboration diagram for GQCP\+::QCModel\+::RHF$<$ \+\_\+\+Scalar $>$\+:
 \begin{DoxyCompactItemize}
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}{Current\+Density\+Distribution}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}{Current\+Density\+Distribution}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -26,29 +28,43 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a1383beff6bf900d017b7a0ad846a0c9e}{RHF}} ()
 \item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_abec1fd09374203c10e70222ec6379c4e}{excitation\+Energies}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a16af427d913aa7e76c5f1a13af920965}{spin\+Orbital\+Energies\+Blocked}} () const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ab0c4f2db950d3905ac6e6ef13f500887}{spin\+Orbital\+Energies\+Interleaved}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8a73cf9847c13f3f7828d03a31708f30}{virtual\+Orbital\+Energies}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_afcaea7ce4793b3efc87dd3493d13a119}{occupied\+Orbital\+Energies}} () const
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9229a77cbba926f5c3c0b74546d5ca9d}{orbital\+Energies}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a11ef4ff3a43c40c298e60ecdc1ac7fc9}{orbital\+Energy}} (const size\+\_\+t i) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a418ec8ebbaab202459ee12d9d7c0bea0}{calculate\+Singlet\+AStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ae4c016a5288650a086abaf05cce892d9}{calculate\+Singlet\+BStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9de4a6819d2bccf82d1f6e4cc920a664}{calculate\+Triplet\+AStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5dfac41e48a607dfff717f9f2c0854e0}{calculate\+Triplet\+BStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
+\item 
+RHFStability\+Matrices$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a606d28fc55294723abb8b0cc9999f079}{calculate\+Stability\+Matrices}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
+\item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a89649bd02764ba547142edeb4021fdc8}{calculate\+Orthonormal\+Basis1\+DM}} () const
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5267a344a0fea282ccfa8e2c85c43a9e}{calculate\+Orthonormal\+Basis2\+DM}} () const
 \item 
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aa9e3d319ae0b4efefd0630cfab01dae8}{excitation\+Energies}} () const
-\item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a0ab5458cac7f9a10dacfa483de63a4b4}{calculate\+Scalar\+Basis1\+DM}} () const
-\item 
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9566e792c5f2aad1ee24942db75277ed}{calculate\+Singlet\+AStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
-\item 
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a93604fd8521127d8cad743dfdb1418e4}{calculate\+Singlet\+BStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
-\item 
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a6f1aa940dc74c3b4d0b916ebea37f232}{calculate\+Triplet\+AStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
-\item 
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9668fbeb685c66f4d0e0baf3cb7d7caf}{calculate\+Triplet\+BStability\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
-\item 
-RHFStability\+Matrices$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a606d28fc55294723abb8b0cc9999f079}{calculate\+Stability\+Matrices}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&rsq\+\_\+hamiltonian) const
-\item 
-const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a217635937b947b7a9b0c4454e1e539be}{expansion}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a38587786222db0bef4a25002a438461b}{homo\+Index}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a589da15230f06ea419e431056730597d}{lumo\+Index}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbital\+Space}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a217635937b947b7a9b0c4454e1e539be}{expansion}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{number\+Of\+Electron\+Pairs}} () const
 \item 
@@ -58,19 +74,9 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a99ec917c56a8
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{number\+Of\+Spatial\+Orbitals}} () const
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_afcaea7ce4793b3efc87dd3493d13a119}{occupied\+Orbital\+Energies}} () const
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a696581fe46dc53e31571699305826ac1}{calculate\+Magnetic\+Field\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$ \&L\+\_\+op) const
 \item 
-const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9229a77cbba926f5c3c0b74546d5ca9d}{orbital\+Energies}} () const
-\item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a11ef4ff3a43c40c298e60ecdc1ac7fc9}{orbital\+Energy}} (const size\+\_\+t i) const
-\item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbital\+Space}} () const
-\item 
-\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a16af427d913aa7e76c5f1a13af920965}{spin\+Orbital\+Energies\+Blocked}} () const
-\item 
-\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ab0c4f2db950d3905ac6e6ef13f500887}{spin\+Orbital\+Energies\+Interleaved}} () const
-\item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8a73cf9847c13f3f7828d03a31708f30}{virtual\+Orbital\+Energies}} () const
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a3ad03a4c89610ecf72a2df4faf5105c5}{calculate\+Gauge\+Origin\+Translation\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$ \&p\+\_\+op) const
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -82,6 +88,8 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mb
 static \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5180203a16f4c24b55ceb9418dcd783a}{calculate\+Orbital\+Hessian\+Element}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t N\+\_\+P, const size\+\_\+t a, const size\+\_\+t i, const size\+\_\+t b, const size\+\_\+t j)
 \item 
 static \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8449e4ff511bccc0ccba03003dfb751e}{calculate\+Orbital\+Hessian\+Tensor}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t N\+\_\+P)
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a63b635fabd835f92d6eef548d2211dd8}{calculate\+Orbital\+Hessian\+For\+Imaginary\+Response}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \&orbital\+\_\+space)
 \item 
 static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5be5ab69528f74147bd132ab4ccc8dcd}{calculate\+Orthonormal\+Basis1\+DM}} (const size\+\_\+t K, const size\+\_\+t N)
 \item 
@@ -96,6 +104,8 @@ static size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adf6f1
 static size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a81c4ee2f8b91cc790a292c4b14846aae}{lumo\+Index}} (const size\+\_\+t K, const size\+\_\+t N)
 \item 
 static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5ff28a68b31046759b783da1725872e7}{orbital\+Space}} (const size\+\_\+t K, const size\+\_\+t N\+\_\+P)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, 3, 3 $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a886e234eeb1dde0348d9f5ba17137a4a}{calculate\+Ipsocentric\+Magnetic\+Inducibility}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{Cubic\+Grid}} \&grid, const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \&orbital\+\_\+space, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&x\+\_\+B, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&x\+\_\+G, const \mbox{\hyperlink{namespace_g_q_c_p_a5f07594b8253c17135822016460301b8}{Vector\+Evaluable\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}{Current\+Density\+Distribution}} $>$ \&j\+\_\+op)
 \end{DoxyCompactItemize}
 
 
@@ -107,12 +117,19 @@ The restricted Hartree-\/\+Fock wave function model.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Scalar} & The type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis. \\
+{\em \+\_\+\+Scalar} & The type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis\+: real or complex. \\
 \hline
 \end{DoxyTemplParams}
 
 
 \doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}} 
+\index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!CurrentDensityDistribution@{CurrentDensityDistribution}}
+\index{CurrentDensityDistribution@{CurrentDensityDistribution}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{CurrentDensityDistribution}{CurrentDensityDistribution}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}{Current\+Density\+Distribution}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpin\+Orbital\+Basis}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}{Current\+Density\+Distribution}}}
+
 \mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
@@ -189,6 +206,65 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$\mbo
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} error matrix. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a3ad03a4c89610ecf72a2df4faf5105c5}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a3ad03a4c89610ecf72a2df4faf5105c5}} 
+\index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateGaugeOriginTranslationResponseForce@{calculateGaugeOriginTranslationResponseForce}}
+\index{calculateGaugeOriginTranslationResponseForce@{calculateGaugeOriginTranslationResponseForce}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateGaugeOriginTranslationResponseForce()}{calculateGaugeOriginTranslationResponseForce()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Gauge\+Origin\+Translation\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$ \&}]{p\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} response force for the perturbation due to a gauge origin translation of the magnetic field.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+op} & The linear momentum operator expressed in the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} orbital basis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} response force for the perturbation due to a gauge origin translation of the magnetic field. Every column of the returned matrix contains the response force along the corresponding component\+: xy, xz, yx, yz, zx, zy. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a886e234eeb1dde0348d9f5ba17137a4a}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a886e234eeb1dde0348d9f5ba17137a4a}} 
+\index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateIpsocentricMagneticInducibility@{calculateIpsocentricMagneticInducibility}}
+\index{calculateIpsocentricMagneticInducibility@{calculateIpsocentricMagneticInducibility}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateIpsocentricMagneticInducibility()}{calculateIpsocentricMagneticInducibility()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, 3, 3$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Ipsocentric\+Magnetic\+Inducibility (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{Cubic\+Grid}} \&}]{grid,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \&}]{orbital\+\_\+space,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&}]{x\+\_\+B,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&}]{x\+\_\+G,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a5f07594b8253c17135822016460301b8}{Vector\+Evaluable\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a745d57c09770619664a66dd328467759}{Current\+Density\+Distribution}} $>$ \&}]{j\+\_\+op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the magnetic inducibility on the given grid using the ipsocentric CSGT method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em grid} & The grid. \\
+\hline
+{\em orbital\+\_\+space} & The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} occupied-\/virtual separation. \\
+\hline
+{\em x\+\_\+B} & The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} linear response with respect to the magnetic field perturbation. \\
+\hline
+{\em x\+\_\+G} & The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} linear response with respect to the gauge origin translation perturbation. \\
+\hline
+{\em j\+\_\+op} & The second-\/quantized representation of the field-\/free current density operator in the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} orbital basis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The magnetic inducibility evaluated on the given grid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a696581fe46dc53e31571699305826ac1}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a696581fe46dc53e31571699305826ac1}} 
+\index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateMagneticFieldResponseForce@{calculateMagneticFieldResponseForce}}
+\index{calculateMagneticFieldResponseForce@{calculateMagneticFieldResponseForce}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateMagneticFieldResponseForce()}{calculateMagneticFieldResponseForce()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Magnetic\+Field\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$ \&}]{L\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} response force for the perturbation due to a magnetic field.
+
+
+\begin{DoxyParams}{Parameters}
+{\em L\+\_\+op} & The angular momentum operator expressed in the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} orbital basis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} response force for the perturbation due to a magnetic field. Every column of the returned matrix contains the response force along the corresponding component\+: x, y, z. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5180203a16f4c24b55ceb9418dcd783a}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5180203a16f4c24b55ceb9418dcd783a}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateOrbitalHessianElement@{calculateOrbitalHessianElement}}
 \index{calculateOrbitalHessianElement@{calculateOrbitalHessianElement}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
@@ -213,6 +289,26 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 An element of the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} orbital Hessian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a63b635fabd835f92d6eef548d2211dd8}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a63b635fabd835f92d6eef548d2211dd8}} 
+\index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateOrbitalHessianForImaginaryResponse@{calculateOrbitalHessianForImaginaryResponse}}
+\index{calculateOrbitalHessianForImaginaryResponse@{calculateOrbitalHessianForImaginaryResponse}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateOrbitalHessianForImaginaryResponse()}{calculateOrbitalHessianForImaginaryResponse()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{Implicit\+Rank\+Four\+Tensor\+Slice}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Orbital\+Hessian\+For\+Imaginary\+Response (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \&}]{orbital\+\_\+space }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Calculate the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} orbital Hessian (H\+\_\+\+RI -\/i H\+\_\+\+II), which can be used as a response force constant when solving the CP(\+R)HF equations for a purely imaginary response.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & the Hamiltonian expressed in the canonical \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} orbital basis, resulting from a real optimization \\
+\hline
+{\em orbital\+\_\+space} & the orbital space that encapsulates the occupied-\/virtual separation\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} orbital Hessian. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8449e4ff511bccc0ccba03003dfb751e}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8449e4ff511bccc0ccba03003dfb751e}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateOrbitalHessianTensor@{calculateOrbitalHessianTensor}}
@@ -335,12 +431,12 @@ Calculate the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} Fock
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} Fock operator expressed in the scalar basis. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9566e792c5f2aad1ee24942db75277ed}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9566e792c5f2aad1ee24942db75277ed}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a418ec8ebbaab202459ee12d9d7c0bea0}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a418ec8ebbaab202459ee12d9d7c0bea0}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateSingletAStabilityMatrix@{calculateSingletAStabilityMatrix}}
 \index{calculateSingletAStabilityMatrix@{calculateSingletAStabilityMatrix}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{calculateSingletAStabilityMatrix()}{calculateSingletAStabilityMatrix()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Singlet\+AStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Singlet\+AStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct the {\ttfamily singlet A} stability matrix from the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} stability conditions.
 
@@ -355,12 +451,12 @@ The formula for the {\ttfamily singlet A} matrix is as follows\+: A\+\_\+\+IAJB 
 \begin{DoxyReturn}{Returns}
 The singlet-\/A stability matrix. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a93604fd8521127d8cad743dfdb1418e4}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a93604fd8521127d8cad743dfdb1418e4}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ae4c016a5288650a086abaf05cce892d9}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ae4c016a5288650a086abaf05cce892d9}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateSingletBStabilityMatrix@{calculateSingletBStabilityMatrix}}
 \index{calculateSingletBStabilityMatrix@{calculateSingletBStabilityMatrix}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{calculateSingletBStabilityMatrix()}{calculateSingletBStabilityMatrix()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Singlet\+BStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Singlet\+BStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct the {\ttfamily singlet B} stability matrix from the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} stability conditions.
 
@@ -392,12 +488,12 @@ Calculate the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} stab
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} stability matrices. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a6f1aa940dc74c3b4d0b916ebea37f232}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a6f1aa940dc74c3b4d0b916ebea37f232}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9de4a6819d2bccf82d1f6e4cc920a664}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9de4a6819d2bccf82d1f6e4cc920a664}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateTripletAStabilityMatrix@{calculateTripletAStabilityMatrix}}
 \index{calculateTripletAStabilityMatrix@{calculateTripletAStabilityMatrix}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{calculateTripletAStabilityMatrix()}{calculateTripletAStabilityMatrix()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Triplet\+AStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Triplet\+AStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct the {\ttfamily triplet A} stability matrix from the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} stability conditions.
 
@@ -412,12 +508,12 @@ The formula for the {\ttfamily triplet A} matrix is as follows\+: A\+\_\+\+IAJB 
 \begin{DoxyReturn}{Returns}
 the triplet-\/A stability matrix. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9668fbeb685c66f4d0e0baf3cb7d7caf}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9668fbeb685c66f4d0e0baf3cb7d7caf}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5dfac41e48a607dfff717f9f2c0854e0}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5dfac41e48a607dfff717f9f2c0854e0}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateTripletBStabilityMatrix@{calculateTripletBStabilityMatrix}}
 \index{calculateTripletBStabilityMatrix@{calculateTripletBStabilityMatrix}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{calculateTripletBStabilityMatrix()}{calculateTripletBStabilityMatrix()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Triplet\+BStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Triplet\+BStability\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{rsq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct the {\ttfamily triplet B} stability matrix from the \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} stability conditions.
 
@@ -432,12 +528,12 @@ The formula for the {\ttfamily triplet B} matrix is as follows\+: B\+\_\+\+IAJB 
 \begin{DoxyReturn}{Returns}
 The triplet-\/B stability matrix. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aa9e3d319ae0b4efefd0630cfab01dae8}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aa9e3d319ae0b4efefd0630cfab01dae8}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_abec1fd09374203c10e70222ec6379c4e}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_abec1fd09374203c10e70222ec6379c4e}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!excitationEnergies@{excitationEnergies}}
 \index{excitationEnergies@{excitationEnergies}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{excitationEnergies()}{excitationEnergies()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::excitation\+Energies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::excitation\+Energies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 A matrix containing all the possible excitation energies of the wavefunction model.

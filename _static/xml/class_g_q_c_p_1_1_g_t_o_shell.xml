@@ -17,9 +17,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="35" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_t_o_shell_1a1ac10edf713233c0b91fffe522d2c016" prot="public" static="no">
-        <type><ref refid="class_g_q_c_p_1_1_linear_combination" kindref="compound">LinearCombination</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" kindref="member">Primitive</ref> &gt;</type>
-        <definition>using GQCP::GTOShell::BasisFunction =  LinearCombination&lt;double, Primitive&gt;</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_g_t_o_shell_1a7230936745aec40ea7430c3fc1788c5e" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">EvaluableLinearCombination</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_g_t_o_shell_1acea61a547f79a88268b0cda0ced7befd" kindref="member">Primitive</ref> &gt;</type>
+        <definition>using GQCP::GTOShell::BasisFunction =  EvaluableLinearCombination&lt;double, Primitive&gt;</definition>
         <argsstring></argsstring>
         <name>BasisFunction</name>
         <briefdescription>
@@ -478,7 +478,7 @@
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOShell.hpp" line="176" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp" bodystart="186" bodyend="203"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_shell_1a0db42a0151f6bb8e795bcda50e382f04" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell_1a1ac10edf713233c0b91fffe522d2c016" kindref="member">BasisFunction</ref> &gt;</type>
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell_1a7230936745aec40ea7430c3fc1788c5e" kindref="member">BasisFunction</ref> &gt;</type>
         <definition>std::vector&lt; GTOShell::BasisFunction &gt; GQCP::GTOShell::basisFunctions</definition>
         <argsstring>() const</argsstring>
         <name>basisFunctions</name>
@@ -513,7 +513,7 @@
       <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a419bc8549c549852e547bb6d0082b4e2" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>angularMomentum</name></member>
       <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a9135f18359bdcb2395a69b2233643ae3" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>are_embedded_normalization_factors_of_primitives</name></member>
       <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a21b058e3e2a3c7a16a67424a99441dea" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>areEmbeddedNormalizationFactorsOfPrimitives</name></member>
-      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a1ac10edf713233c0b91fffe522d2c016" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>BasisFunction</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a7230936745aec40ea7430c3fc1788c5e" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>BasisFunction</name></member>
       <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a0db42a0151f6bb8e795bcda50e382f04" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>basisFunctions</name></member>
       <member refid="class_g_q_c_p_1_1_g_t_o_shell_1ac23e1f9e908ef4925dc1d75ca3c0d608" prot="private" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>contraction_coefficients</name></member>
       <member refid="class_g_q_c_p_1_1_g_t_o_shell_1a0864f2be6548735b5159279cec91040e" prot="public" virt="non-virtual"><scope>GQCP::GTOShell</scope><name>contractionCoefficients</name></member>

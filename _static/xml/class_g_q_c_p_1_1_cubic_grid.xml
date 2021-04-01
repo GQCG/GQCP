@@ -96,34 +96,34 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp" bodystart="37" bodyend="40"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a44df571249948a19a2b7b22751b469fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cubic_grid_1a68dbbba88670c75f82d6ac3bfbbe9fd8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename Valued</type>
+            <type>typename OutputType</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; Valued &gt;</type>
-        <definition>Field&lt;Valued&gt; GQCP::CubicGrid::evaluate</definition>
-        <argsstring>(const ScalarFunction&lt; Valued, double, 3 &gt; &amp;scalar_function) const</argsstring>
+        <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; OutputType &gt;</type>
+        <definition>Field&lt;OutputType&gt; GQCP::CubicGrid::evaluate</definition>
+        <argsstring>(const Function&lt; OutputType, Vector&lt; double, 3 &gt;&gt; &amp;function) const</argsstring>
         <name>evaluate</name>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction</ref>&lt; Valued, double, 3 &gt; &amp;</type>
-          <declname>scalar_function</declname>
+          <type>const <ref refid="class_g_q_c_p_1_1_function" kindref="compound">Function</ref>&lt; OutputType, <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt;&gt; &amp;</type>
+          <declname>function</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Evaluate a scalar function on every point of this grid.</para>
+<para>Evaluate a function on every point of this grid.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>scalar_function</parametername>
+<parametername>function</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar functions whose values should be evaluated</para>
+<para>The function whose values should be evaluated.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>a field with the calculated evaluations </para>
+<simplesect kind="return"><para>A field with the calculated evaluations. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -636,7 +636,7 @@
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_cubic_grid_1a8b6866c5b1234aad9335218be9a81f41" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>Centered</name></member>
       <member refid="class_g_q_c_p_1_1_cubic_grid_1a314da2efa765caa2fd1d9ab63a7fd99b" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>CubicGrid</name></member>
-      <member refid="class_g_q_c_p_1_1_cubic_grid_1a44df571249948a19a2b7b22751b469fc" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>evaluate</name></member>
+      <member refid="class_g_q_c_p_1_1_cubic_grid_1a68dbbba88670c75f82d6ac3bfbbe9fd8" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>evaluate</name></member>
       <member refid="class_g_q_c_p_1_1_cubic_grid_1ace375c620c4f97646710110da215a589" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>forEach</name></member>
       <member refid="class_g_q_c_p_1_1_cubic_grid_1a8fcb7cf1dbd542f59e314a075c003cb0" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>forEach</name></member>
       <member refid="class_g_q_c_p_1_1_cubic_grid_1a744c8c47067699932684fd052843d592" prot="public" virt="non-virtual"><scope>GQCP::CubicGrid</scope><name>integrate</name></member>

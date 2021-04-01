@@ -143,10 +143,10 @@
     <innerclass refid="class_g_q_c_p_1_1_boys_function" prot="public">GQCP::BoysFunction</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_cartesian_exponents" prot="public">GQCP::CartesianExponents</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_cartesian_g_t_o" prot="public">GQCP::CartesianGTO</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_linear_combination" prot="public">GQCP::LinearCombination</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_evaluable_linear_combination" prot="public">GQCP::EvaluableLinearCombination</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_function" prot="public">GQCP::Function</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_function_product" prot="public">GQCP::FunctionProduct</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" prot="public">GQCP::LondonCartesianGTO</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_scalar_function" prot="public">GQCP::ScalarFunction</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_scalar_function_product" prot="public">GQCP::ScalarFunctionProduct</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public">GQCP::VectorSpaceArithmetic</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_cubic_grid" prot="public">GQCP::CubicGrid</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_field" prot="public">GQCP::Field</innerclass>
@@ -177,6 +177,7 @@
     <innerclass refid="class_g_q_c_p_1_1_dense_vectorizer" prot="public">GQCP::DenseVectorizer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_implicit_matrix_slice" prot="public">GQCP::ImplicitMatrixSlice</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" prot="public">GQCP::ImplicitRankFourTensorSlice</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_levi_civita_tensor" prot="public">GQCP::LeviCivitaTensor</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix" prot="public">GQCP::Matrix</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container" prot="public">GQCP::MatrixRepresentationEvaluationContainer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4" prot="public">GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; double &gt; &gt;</innerclass>
@@ -194,6 +195,7 @@
     <innerclass refid="class_g_q_c_p_1_1_base_nuclear_operator" prot="public">GQCP::BaseNuclearOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_base_reference_dependent_operator" prot="public">GQCP::BaseReferenceDependentOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" prot="public">GQCP::CoulombRepulsionOperator</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_current_density_operator" prot="public">GQCP::CurrentDensityOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_diamagnetic_operator" prot="public">GQCP::DiamagneticOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_density_operator" prot="public">GQCP::ElectronicDensityOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_electronic_dipole_operator" prot="public">GQCP::ElectronicDipoleOperator</innerclass>
@@ -210,8 +212,16 @@
     <innerclass refid="class_g_q_c_p_1_1_orbital_zeeman_operator" prot="public">GQCP::OrbitalZeemanOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_overlap_operator" prot="public">GQCP::OverlapOperator</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_spin_zeeman_operator" prot="public">GQCP::SpinZeemanOperator</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_evaluatable_scalar_r_s_q_one_electron_operator" prot="public">GQCP::EvaluatableScalarRSQOneElectronOperator</innerclass>
-    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluatable_scalar_r_s_q_one_electron_operator_3_01___evaluatable_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluatableScalarRSQOneElectronOperator&lt; _Evaluatable &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator" prot="public">GQCP::EvaluableGSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_g_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluableGSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" prot="public">GQCP::EvaluableRSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator" prot="public">GQCP::EvaluableSimpleSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5" prot="public">GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator" prot="public">GQCP::EvaluableUSQOneElectronOperator</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" prot="public">GQCP::EvaluableUSQOneElectronOperatorComponent</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3" prot="public">GQCP::OperatorTraits&lt; EvaluableUSQOneElectronOperatorComponent&lt; _FunctionType, _Vectorizer &gt; &gt;</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" prot="public">GQCP::GSQOneElectronOperator</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::OperatorTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
@@ -611,7 +621,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="312" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="312" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="408" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="408" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ac56b6631b5b2d8034ad931616abfa7a7" prot="public" static="no">
         <templateparamlist>
@@ -634,24 +644,24 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="458" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="458" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespace_g_q_c_p_1a706c3a9a009dc8c9706ed57ac3ade708" prot="public" static="no">
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a87cc0b2adf737c5194d7a791bd4cb513" prot="public" static="no">
         <templateparamlist>
           <param>
             <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_base_of&lt; <ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction</ref>&lt; typename T::Valued, typename T::Scalar, T::Cols &gt;, T &gt;::value &gt;</type>
-        <definition>using GQCP::IsScalarFunction = typedef enable_if_t&lt;std::is_base_of&lt;ScalarFunction&lt;typename T::Valued, typename T::Scalar, T::Cols&gt;, T&gt;::value&gt;</definition>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_base_of&lt; <ref refid="class_g_q_c_p_1_1_function" kindref="compound">Function</ref>&lt; typename T::OutputType, typename T::InputType &gt;, T &gt;::value &gt;</type>
+        <definition>using GQCP::IsFunction = typedef enable_if_t&lt;std::is_base_of&lt;Function&lt;typename T::OutputType, typename T::InputType&gt;, T&gt;::value&gt;</definition>
         <argsstring></argsstring>
-        <name>IsScalarFunction</name>
+        <name>IsFunction</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>A SFINAE expression that checks if the type T is a scalar function, i.e. if it derives from <ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction</ref>. </para>
+<para>A SFINAE expression that checks if the type T derives from <computeroutput><ref refid="class_g_q_c_p_1_1_function" kindref="compound">Function</ref></computeroutput>. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/ScalarFunction.hpp" line="185" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/ScalarFunction.hpp" bodystart="185" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="196" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a0c826b411620de5c7fc49249b4518785" prot="public" static="no">
         <templateparamlist>
@@ -1032,6 +1042,314 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" line="129" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a05691e5de0f555787c09ea625549380b" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator" kindref="compound">EvaluableGSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref> &gt;</type>
+        <definition>using GQCP::ScalarEvaluableGSQOneElectronOperator = typedef EvaluableGSQOneElectronOperator&lt;FunctionType, ScalarVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>ScalarEvaluableGSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" line="62" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1aa970571ffacdb428342717384e486f33" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator" kindref="compound">EvaluableGSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;</type>
+        <definition>using GQCP::VectorEvaluableGSQOneElectronOperator = typedef EvaluableGSQOneElectronOperator&lt;FunctionType, VectorVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>VectorEvaluableGSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" line="66" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a01588717917c7d9b71e6a1adafc831b7" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator" kindref="compound">EvaluableGSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a46e9824d60535862f66d9cbd766602d0" kindref="member">MatrixVectorizer</ref> &gt;</type>
+        <definition>using GQCP::MatrixEvaluableGSQOneElectronOperator = typedef EvaluableGSQOneElectronOperator&lt;FunctionType, MatrixVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>MatrixEvaluableGSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" line="70" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1ac2cf5ee295d1470ba5990ef849dd675f" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator" kindref="compound">EvaluableGSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1afeec6a04a9b337813c4e16db0d6b5ecd" kindref="member">TensorVectorizer</ref>&lt; N &gt; &gt;</type>
+        <definition>using GQCP::TensorEvaluableGSQOneElectronOperator = typedef EvaluableGSQOneElectronOperator&lt;FunctionType, TensorVectorizer&lt;N&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>TensorEvaluableGSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" line="74" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1aa905a7b11e34c0d61b45484aa8b30755" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">EvaluableRSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref> &gt;</type>
+        <definition>using GQCP::ScalarEvaluableRSQOneElectronOperator = typedef EvaluableRSQOneElectronOperator&lt;FunctionType, ScalarVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>ScalarEvaluableRSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="99" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a5f07594b8253c17135822016460301b8" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">EvaluableRSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;</type>
+        <definition>using GQCP::VectorEvaluableRSQOneElectronOperator = typedef EvaluableRSQOneElectronOperator&lt;FunctionType, VectorVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>VectorEvaluableRSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="103" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1aca7dc511f9a9dce8daf0c54d84a56ca4" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">EvaluableRSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a46e9824d60535862f66d9cbd766602d0" kindref="member">MatrixVectorizer</ref> &gt;</type>
+        <definition>using GQCP::MatrixEvaluableRSQOneElectronOperator = typedef EvaluableRSQOneElectronOperator&lt;FunctionType, MatrixVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>MatrixEvaluableRSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="107" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1adc79b2e08c4cf51ea53fcf0806eed269" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">EvaluableRSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1afeec6a04a9b337813c4e16db0d6b5ecd" kindref="member">TensorVectorizer</ref>&lt; N &gt; &gt;</type>
+        <definition>using GQCP::TensorEvaluableRSQOneElectronOperator = typedef EvaluableRSQOneElectronOperator&lt;FunctionType, TensorVectorizer&lt;N&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>TensorEvaluableRSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" line="111" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1ad27bd1dcd36805ae8c6b99fa3bdeace8" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator" kindref="compound">EvaluableUSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref> &gt;</type>
+        <definition>using GQCP::ScalarEvaluableUSQOneElectronOperator = typedef EvaluableUSQOneElectronOperator&lt;FunctionType, ScalarVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>ScalarEvaluableUSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" line="88" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1ada6e4af00356b3c6497b06bd580bf185" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator" kindref="compound">EvaluableUSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;</type>
+        <definition>using GQCP::VectorEvaluableUSQOneElectronOperator = typedef EvaluableUSQOneElectronOperator&lt;FunctionType, VectorVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>VectorEvaluableUSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" line="92" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1aa52545975e9ebb20000b426067a638c3" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator" kindref="compound">EvaluableUSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a46e9824d60535862f66d9cbd766602d0" kindref="member">MatrixVectorizer</ref> &gt;</type>
+        <definition>using GQCP::MatrixEvaluableUSQOneElectronOperator = typedef EvaluableUSQOneElectronOperator&lt;FunctionType, MatrixVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>MatrixEvaluableUSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" line="96" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1af3d646381f22b35fbb4b431dfd961182" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator" kindref="compound">EvaluableUSQOneElectronOperator</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1afeec6a04a9b337813c4e16db0d6b5ecd" kindref="member">TensorVectorizer</ref>&lt; N &gt; &gt;</type>
+        <definition>using GQCP::TensorEvaluableUSQOneElectronOperator = typedef EvaluableUSQOneElectronOperator&lt;FunctionType, TensorVectorizer&lt;N&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>TensorEvaluableUSQOneElectronOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" line="100" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1abf628c70e828cdd06793728d741f9432" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" kindref="member">ScalarVectorizer</ref> &gt;</type>
+        <definition>using GQCP::ScalarEvaluableUSQOneElectronOperatorComponent = typedef EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, ScalarVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>ScalarEvaluableUSQOneElectronOperatorComponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" line="61" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1aa78830db72286e4090e0b00bf466d40d" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;</type>
+        <definition>using GQCP::VectorEvaluableUSQOneElectronOperatorComponent = typedef EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, VectorVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>VectorEvaluableUSQOneElectronOperatorComponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" line="65" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1a597a0e3639772f66cdd343bc4b3c3a46" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1a46e9824d60535862f66d9cbd766602d0" kindref="member">MatrixVectorizer</ref> &gt;</type>
+        <definition>using GQCP::MatrixEvaluableUSQOneElectronOperatorComponent = typedef EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, MatrixVectorizer&gt;</definition>
+        <argsstring></argsstring>
+        <name>MatrixEvaluableUSQOneElectronOperatorComponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" line="69" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_g_q_c_p_1ace61aa51098f188f334909d9ce8b81f2" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename FunctionType</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent</ref>&lt; FunctionType, <ref refid="namespace_g_q_c_p_1afeec6a04a9b337813c4e16db0d6b5ecd" kindref="member">TensorVectorizer</ref>&lt; N &gt; &gt;</type>
+        <definition>using GQCP::TensorEvaluableUSQOneElectronOperatorComponent = typedef EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, TensorVectorizer&lt;N&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>TensorEvaluableUSQOneElectronOperatorComponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" line="73" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1ae61b369ffb274e21947436ff6efb78fa" prot="public" static="no">
         <templateparamlist>
@@ -2253,63 +2571,63 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp" line="100" column="6" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp" bodystart="100" bodyend="105"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_g_q_c_p_1aedfbb625c3100ad0071e828fbe82b56b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1a17e2cb3ed1f3e8391830d49b0727ba91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename SF1</type>
+            <type>typename F1</type>
           </param>
           <param>
-            <type>typename SF2</type>
-          </param>
-          <param>
-            <type>typename</type>
-            <defval>IsScalarFunction&lt;SF1&gt;</defval>
+            <type>typename F2</type>
           </param>
           <param>
             <type>typename</type>
-            <defval>IsScalarFunction&lt;SF2&gt;</defval>
+            <defval>IsFunction&lt;F1&gt;</defval>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>IsFunction&lt;F2&gt;</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_scalar_function_product" kindref="compound">ScalarFunctionProduct</ref>&lt; SF1, SF2 &gt;</type>
-        <definition>ScalarFunctionProduct&lt;SF1, SF2&gt; GQCP::operator*</definition>
-        <argsstring>(const SF1 &amp;lhs, const SF2 &amp;rhs)</argsstring>
+        <type><ref refid="class_g_q_c_p_1_1_function_product" kindref="compound">FunctionProduct</ref>&lt; F1, F2 &gt;</type>
+        <definition>FunctionProduct&lt;F1, F2&gt; GQCP::operator*</definition>
+        <argsstring>(const F1 &amp;lhs, const F2 &amp;rhs)</argsstring>
         <name>operator*</name>
         <param>
-          <type>const SF1 &amp;</type>
+          <type>const F1 &amp;</type>
           <declname>lhs</declname>
         </param>
         <param>
-          <type>const SF2 &amp;</type>
+          <type>const F2 &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Multiply one scalar function by another.</para>
+<para>Multiply one function by another.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
-<parametername>SF1</parametername>
+<parametername>F1</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of the first scalar function </para>
+<para>The type of the first function. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>SF2</parametername>
+<parametername>F2</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of the second scalar function</para>
+<para>The type of the second function.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="note"><para>This function is only enabled for actual scalar functions, i.e. functions that derive from <ref refid="class_g_q_c_p_1_1_scalar_function" kindref="compound">ScalarFunction</ref>. </para>
+<simplesect kind="note"><para>This function is only enabled for actual functions, i.e. functions that derive from <computeroutput><ref refid="class_g_q_c_p_1_1_function" kindref="compound">Function</ref></computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/ScalarFunction.hpp" line="197" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/ScalarFunction.hpp" bodystart="197" bodyend="200"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="208" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="208" bodyend="211"/>
       </memberdef>
       <memberdef kind="function" id="namespace_g_q_c_p_1a031eaf23d32296c8ccd6b437f7484685" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>

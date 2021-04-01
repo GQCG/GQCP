@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="struct_eigen_1_1_scalar_binary_op_traits_3_01_coefficient_00_01_g_q_c_p_1_1_evaluable_linear_combf529400b11b6eb385709cf8e9d0cb16" kind="struct" language="C++" prot="public">
+    <compoundname>Eigen::ScalarBinaryOpTraits&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Eigen::internal::scalar_product_op&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt; &gt;</compoundname>
+    <includes refid="_evaluable_linear_combination_8hpp" local="no">EvaluableLinearCombination.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Coefficient</type>
+      </param>
+      <param>
+        <type>typename FunctionType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_eigen_1_1_scalar_binary_op_traits_3_01_coefficient_00_01_g_q_c_p_1_1_evaluable_linear_combf529400b11b6eb385709cf8e9d0cb16_1a8d4b874ebd276d16e69ebc13a40919c0" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
+        <definition>using Eigen::ScalarBinaryOpTraits&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Eigen::internal::scalar_product_op&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt; &gt;::ReturnType =  GQCP::EvaluableLinearCombination&lt;Coefficient, FunctionType&gt;</definition>
+        <argsstring></argsstring>
+        <name>ReturnType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="353" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Eigen::ScalarBinaryOpTraits&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Eigen::internal::scalar_product_op&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt; &gt;</label>
+        <link refid="struct_eigen_1_1_scalar_binary_op_traits_3_01_coefficient_00_01_g_q_c_p_1_1_evaluable_linear_combf529400b11b6eb385709cf8e9d0cb16"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="350" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="351" bodyend="354"/>
+    <listofallmembers>
+      <member refid="struct_eigen_1_1_scalar_binary_op_traits_3_01_coefficient_00_01_g_q_c_p_1_1_evaluable_linear_combf529400b11b6eb385709cf8e9d0cb16_1a8d4b874ebd276d16e69ebc13a40919c0" prot="public" virt="non-virtual"><scope>Eigen::ScalarBinaryOpTraits&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Eigen::internal::scalar_product_op&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt; &gt;</scope><name>ReturnType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

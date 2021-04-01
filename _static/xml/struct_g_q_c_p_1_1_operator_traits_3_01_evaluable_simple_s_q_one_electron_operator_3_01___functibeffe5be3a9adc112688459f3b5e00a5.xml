@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;</compoundname>
+    <includes refid="_evaluable_simple_s_q_one_electron_operator_8hpp" local="no">EvaluableSimpleSQOneElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _FunctionType</type>
+      </param>
+      <param>
+        <type>typename _Vectorizer</type>
+      </param>
+      <param>
+        <type>typename _DerivedEvaluableOperator</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1a5655f119ab6b7c18b811d8d4f4200c10" prot="public" static="no">
+        <type>_FunctionType</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;::FunctionType =  _FunctionType</definition>
+        <argsstring></argsstring>
+        <name>FunctionType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" line="161" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1a1d6f3e9919fc161d38cde1b6727ca817" prot="public" static="no">
+        <type>_Vectorizer</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;::Vectorizer =  _Vectorizer</definition>
+        <argsstring></argsstring>
+        <name>Vectorizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" line="164" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1a9d94f947f3cbf4278dea5744f0411644" prot="public" static="no">
+        <type>_DerivedEvaluableOperator</type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;::DerivedEvaluableOperator =  _DerivedEvaluableOperator</definition>
+        <argsstring></argsstring>
+        <name>DerivedEvaluableOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" line="167" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1af542ffcf34c453c1662858cb9c1b381b" prot="public" static="no">
+        <type><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1a9d94f947f3cbf4278dea5744f0411644" kindref="member">DerivedEvaluableOperator</ref></type>
+        <definition>using GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;::DerivedOperator =  DerivedEvaluableOperator</definition>
+        <argsstring></argsstring>
+        <name>DerivedOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" line="170" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_FunctionType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of evaluatable function that is used as a matrix element of this one-electron operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_Vectorizer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" line="158" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp" bodystart="158" bodyend="171"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1a9d94f947f3cbf4278dea5744f0411644" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;</scope><name>DerivedEvaluableOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1af542ffcf34c453c1662858cb9c1b381b" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;</scope><name>DerivedOperator</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1a5655f119ab6b7c18b811d8d4f4200c10" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;</scope><name>FunctionType</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_simple_s_q_one_electron_operator_3_01___functibeffe5be3a9adc112688459f3b5e00a5_1a1d6f3e9919fc161d38cde1b6727ca817" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; EvaluableSimpleSQOneElectronOperator&lt; _FunctionType, _Vectorizer, _DerivedEvaluableOperator &gt; &gt;</scope><name>Vectorizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

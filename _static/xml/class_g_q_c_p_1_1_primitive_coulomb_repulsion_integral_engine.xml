@@ -36,9 +36,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a61e1e4dc409d270193758ec9de994749" prot="public" static="no">
-        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">CoulombRepulsionOperator::Scalar</ref>, typename Primitive::Valued &gt;</type>
-        <definition>using GQCP::PrimitiveCoulombRepulsionIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;CoulombRepulsionOperator::Scalar, typename Primitive::Valued&gt;</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a5a35cd2ef7dcea3f22e6cbb8f01372f6" prot="public" static="no">
+        <type><ref refid="namespace_g_q_c_p_1a09e1543a47643a7a62401aa600bb2e28" kindref="member">product_t</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" kindref="member">CoulombRepulsionOperator::Scalar</ref>, typename Primitive::OutputType &gt;</type>
+        <definition>using GQCP::PrimitiveCoulombRepulsionIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;CoulombRepulsionOperator::Scalar, typename Primitive::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
         <briefdescription>
@@ -58,7 +58,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1aaf312e943f59393bc8e718089469ad08" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a61e1e4dc409d270193758ec9de994749" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a5a35cd2ef7dcea3f22e6cbb8f01372f6" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveCoulombRepulsionIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const CartesianGTO &amp;left1, const CartesianGTO &amp;left2, const CartesianGTO &amp;right1, const CartesianGTO &amp;right2)</argsstring>
         <name>calculate</name>
@@ -130,7 +130,7 @@
             <defval><ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1aaf312e943f59393bc8e718089469ad08" kindref="member">Shell</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a61e1e4dc409d270193758ec9de994749" kindref="member">IntegralScalar</ref> &gt;</type>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a5a35cd2ef7dcea3f22e6cbb8f01372f6" kindref="member">IntegralScalar</ref> &gt;</type>
         <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveCoulombRepulsionIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const LondonCartesianGTO &amp;left1, const LondonCartesianGTO &amp;left2, const LondonCartesianGTO &amp;right1, const LondonCartesianGTO &amp;right2)</argsstring>
         <name>calculate</name>
@@ -240,7 +240,7 @@
       <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1aee851c7f218c60993a514c94eca34d9e" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a48dc12062bc5931b6b268f072ffdccf4" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>Components</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a61e1e4dc409d270193758ec9de994749" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>IntegralScalar</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a5a35cd2ef7dcea3f22e6cbb8f01372f6" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>prepareStateForComponent</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1a95c96536cbe920c8306919ea8fa86927" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine_1aaf312e943f59393bc8e718089469ad08" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveCoulombRepulsionIntegralEngine</scope><name>Shell</name></member>
