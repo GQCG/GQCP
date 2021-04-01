@@ -49,6 +49,7 @@ void bindShellSet(py::module& module);
 
 
 // Basis - SpinorBasis
+void bindCurrentDensityMatrixElement(py::module& module);
 void bindGSpinorBases(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
@@ -288,6 +289,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Basis - SpinorBasis
+    gqcpy::bindCurrentDensityMatrixElement(module);
     gqcpy::bindGSpinorBases(module);
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);

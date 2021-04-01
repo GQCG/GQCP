@@ -140,6 +140,7 @@ void bindField(py::module& module) {
 
     // Register `py_Field_d` to the Python module.
     py::class_<Field<double>> py_Field_d {module, "Field_d", "A set of real-valued function values corresponding to points in space."};
+    bindFieldInterface(py_Field_d);
 
     py_Field_d
         .def_static(
@@ -153,10 +154,12 @@ void bindField(py::module& module) {
 
     // Register `py_Field_cd` to the Python module.
     py::class_<Field<complex>> py_Field_cd {module, "Field_cd", "A set of complex-valued function values corresponding to points in space."};
+    bindFieldInterface(py_Field_cd);
 
 
     // Register `py_VectorField_d` to the Python module.
     py::class_<Field<Vector<double, 3>>> py_VectorField_d {module, "VectorField_d", "A set of real-valued 3D-vector function values corresponding to points in space."};
+    bindFieldInterface(py_VectorField_d);
 
     py_VectorField_d
         .def_static(
@@ -170,14 +173,17 @@ void bindField(py::module& module) {
 
     // Register `py_VectorField_cd` to the Python module.
     py::class_<Field<Vector<complex, 3>>> py_VectorField_cd {module, "VectorField_cd", "A set of complex-valued 3D-vector function values corresponding to points in space."};
+    bindFieldInterface(py_VectorField_cd);
 
 
     // Register `py_MatrixField_d` to the Python module.
     py::class_<Field<Matrix<double, 3, 3>>> py_MatrixField_d {module, "MatrixField_d", "A set of real-valued 3D-matrix function values corresponding to points in space."};
+    bindFieldInterface(py_MatrixField_d);
 
 
     // Register `py_MatrixField_d` to the Python module.
     py::class_<Field<Matrix<complex, 3, 3>>> py_MatrixField_cd {module, "MatrixField_cd", "A set of complex-valued 3D-matrix function values corresponding to points in space."};
+    bindFieldInterface(py_MatrixField_cd);
 }
 
 

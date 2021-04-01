@@ -80,7 +80,7 @@ void bindEvaluableRSQOneElectronOperator(py::module& module) {
 
 
     // Define a Python class `RSQCurrentDensityOperator` for the representation of the second-quantized current density operator.
-    py::class_<VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution>> py_RSQCurrentDensityOperator {module, "RSQCurrentDensityOperator", "The second-quantized current density operator."};
+    py::class_<VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<complex, CartesianGTO>>> py_RSQCurrentDensityOperator {module, "RSQCurrentDensityOperator", "The second-quantized current density operator."};
 }
 
 
