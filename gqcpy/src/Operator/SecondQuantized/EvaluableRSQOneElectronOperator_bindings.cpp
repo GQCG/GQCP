@@ -17,7 +17,7 @@
 
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp"
-#include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>

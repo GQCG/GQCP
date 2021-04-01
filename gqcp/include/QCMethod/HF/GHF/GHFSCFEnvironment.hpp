@@ -24,6 +24,7 @@
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 
 #include <Eigen/Dense>
 

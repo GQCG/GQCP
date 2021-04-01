@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "Utilities/type_traits.hpp"
+
 #include <complex>
 
 
@@ -43,6 +45,13 @@ complex conj(const complex& c);
  *  An overload for `GQCP::conj` for real numbers. This is an identity function.
  */
 double conj(const double d);
+
+
+template <typename T>
+using IsReal = enable_if_t<std::is_same<T, double>::value>;
+
+template <typename T>
+using IsComplex = enable_if_t<std::is_same<T, complex>::value>;
 
 
 namespace literals {

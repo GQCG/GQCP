@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Utilities/aliases.hpp"
 #include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 

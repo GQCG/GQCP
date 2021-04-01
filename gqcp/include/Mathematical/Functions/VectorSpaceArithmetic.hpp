@@ -19,7 +19,6 @@
 
 
 #include "Utilities/CRTP.hpp"
-#include "Utilities/aliases.hpp"  // so that upon including "VectorSpaceArithmetic.hpp", the 'complex' type is available
 
 
 namespace GQCP {

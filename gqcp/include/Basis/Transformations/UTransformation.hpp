@@ -23,6 +23,7 @@
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
+#include "Utilities/complex.hpp"
 
 
 namespace GQCP {

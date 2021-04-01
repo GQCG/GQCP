@@ -24,7 +24,7 @@
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/HF/StabilityMatrices/GHFStabilityMatrices.hpp"
-#include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 
 
 namespace GQCP {

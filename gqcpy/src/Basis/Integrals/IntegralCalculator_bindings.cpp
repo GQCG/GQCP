@@ -22,7 +22,6 @@
 #include "Basis/Integrals/TwoElectronIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Utilities/aliases.hpp"
 #include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>

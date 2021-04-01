@@ -22,7 +22,7 @@
 #include "Mathematical/Functions/EvaluableLinearCombination.hpp"
 #include "Mathematical/Functions/Function.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
-#include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 
 
 namespace GQCP {

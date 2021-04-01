@@ -20,6 +20,7 @@
 
 #include "Operator/FirstQuantized/BaseFQOperator.hpp"
 #include "Physical/HomogeneousMagneticField.hpp"
+#include "Utilities/complex.hpp"
 
 
 namespace GQCP {

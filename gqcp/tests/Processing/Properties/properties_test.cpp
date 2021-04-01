@@ -29,6 +29,7 @@
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "Utilities/complex.hpp"
 
 
 /**
@@ -259,11 +260,11 @@ BOOST_AUTO_TEST_CASE(benzene_inducibility) {
     // Evaluate the ipsocentric CSGT magnetic inducibility.
     std::cout << "j_op evaluations" << std::endl;
     const auto j_op = complex_spin_orbital_basis.quantize(GQCP::CurrentDensityOperator());
-    grid.forEach([&j_op](const GQCP::Vector<double, 3>& r) {
-        std::cout << "r:" << std::endl
-                  << r << std::endl;
-        std::cout << j_op.evaluate(r) << std::endl;
-    });
+    // grid.forEach([&j_op](const GQCP::Vector<double, 3>& r) {
+    //     std::cout << "r:" << std::endl
+    //               << r << std::endl;
+    //     std::cout << j_op.evaluate(r).parameters() << std::endl;
+    // });
 
     // std::cout << "j_op done" << std::endl;
     const auto J_field = GQCP::QCModel::RHF<GQCP::complex>::calculateIpsocentricMagneticInducibility(grid, orbital_space, x_B, x_G, j_op);
