@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  One of the elements of (on of the components of) the second-quantized field-free charge current density operator.
+ *  One of the elements of (one of the vector components of) the second-quantized field-free charge current density operator.
  *
  *  @param _Scalar              The scalar type of the expansion coefficients of the spatial orbitals that underlie this current density matrix element.
  *  @param _Primitive           The type of primitive that underlies this current density matrix element.
@@ -38,7 +38,7 @@ template <typename _Scalar, typename _Primitive>
 class CurrentDensityMatrixElement:
     public Function<complex, Vector<double, 3>> {
 public:
-    // The scalar type of the expansion coefficients of a spatial orbital.
+    // The scalar type of the expansion coefficients of the spatial orbitals that underlie this current density matrix element.
     using Scalar = _Scalar;
 
     // The type of primitive that underlies this current density matrix element.
