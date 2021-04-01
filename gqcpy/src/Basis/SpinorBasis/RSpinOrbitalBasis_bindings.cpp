@@ -112,7 +112,14 @@ void bindRSpinOrbitalBases(py::module& module) {
             [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const ElectronicDipoleOperator& op) {
                 return spin_orbital_basis.quantize(op);
             },
-            "Return the electronic dipole operator expressed in this spinor basis.");
+            "Return the electronic dipole operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const ElectronicDensityOperator& op) {
+                return spin_orbital_basis.quantize(op);
+            },
+            "Return the electronic density operator expressed in this spinor basis.");
 
 
     // Define the Python class for `RSpinOrbitalBasis_cd`.

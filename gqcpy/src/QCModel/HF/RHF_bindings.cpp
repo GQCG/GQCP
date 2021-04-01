@@ -59,11 +59,11 @@ void bindQCModelRHFInterface(Class& py_class) {
         .def(
             "spinOrbitalEnergiesInterleaved",
             &QCModel::RHF<Scalar>::spinOrbitalEnergiesInterleaved,
-            "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.")
+            "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.");
 
 
     // Expose the `HartreeFock` interface.
-    bindQCModelHartreeFockInterface(py_class)
+    bindQCModelHartreeFockInterface(py_class);
 }
 
 
@@ -81,20 +81,26 @@ void bindQCModelRHF(py::module& module) {
     py_QCModel_RHF_d
         .def_static(
             "calculateOrbitalHessianForImaginaryResponse",
-            &QCModel::RHF<double>::calculateOrbitalHessianForImaginaryResponse,
-            py::arg("hamiltonian"),
+            [](const RSQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+                return QCModel::RHF<double>::calculateOrbitalHessianForImaginaryResponse(sq_hamiltonian, orbital_space);
+            },
+            py::arg("sq_hamiltonian"),
             py::arg("orbital_space"),
             "Calculate the RHF orbital Hessian (H_RI -i H_II), which can be used as a response force constant when solving the CP(R)HF equations for a purely imaginary response.")
 
         .def(
             "calculateMagneticFieldResponseForce",
-            &QCModel::RHF<double>::calculateMagneticFieldResponseForce,
+            [](const QCModel::RHF<double>& rhf_parameters, const VectorRSQOneElectronOperator<complex>& L_op) {
+                return rhf_parameters.calculateMagneticFieldResponseForce(L_op);
+            },
             py::arg("L_op"),
             "Calculate the RHF response force for the perturbation due to a magnetic field.")
-        
+
         .def(
             "calculateGaugeOriginTranslationResponseForce",
-            &QCModel::RHF<double>::calculateGaugeOriginTranslationResponseForce,
+            [](const QCModel::RHF<double>& rhf_parameters, const VectorRSQOneElectronOperator<complex>& p_op) {
+                return rhf_parameters.calculateMagneticFieldResponseForce(p_op);
+            },
             py::arg("p_op"),
             "Calculate the RHF response force for the perturbation due to a gauge origin translation of the magnetic field.");
 
@@ -102,6 +108,17 @@ void bindQCModelRHF(py::module& module) {
     // Define the Python class for `QCModel_RHF_cd`.
     py::class_<QCModel::RHF<complex>> py_QCModel_RHF_cd {module, "QCModel_RHF_cd", "The (complex-valued) restricted Hartree-Fock wave function model."};
     bindQCModelRHFInterface(py_QCModel_RHF_cd);
+
+    py_QCModel_RHF_cd
+        .def_static(
+            "calculateIpsocentricMagneticInducibility",
+            &QCModel::RHF<complex>::calculateIpsocentricMagneticInducibility,
+            py::arg("grid"),
+            py::arg("orbital_space"),
+            py::arg("x_B"),
+            py::arg("x_g"),
+            py::arg("j_op"),
+            "Calculate the magnetic inducibility on the given grid using the ipsocentric CSGT method.");
 }
 
 
