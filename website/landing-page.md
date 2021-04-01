@@ -9,7 +9,8 @@ In order to support our research and development, GQCP saw its first light in 20
 
 
 ## GQCWhy?
-<img src="img/blocks.png" alt="blocks" width="300px"/>
+
+![blocks](img/blocks.png)
 
 Conceptually, GQCP is like Lego.
 Much like our favorite toys, GQCP provides building blocks to experiment with.

@@ -1,34 +1,34 @@
 - file: landing-page
 
-- part: "User documentation"
+- part: "Getting started"
   chapters:
-    - file: user-documentation/getting-started
-    - file: user-documentation/external-packages
-    - file: user-documentation/introduction
+    - file: user-documentation/installing-gqcp
+    - file: user-documentation/using-gqcp
+
+- part: "Tutorial"
+  chapters:    
     - file: user-documentation/molecules
     - file: user-documentation/orbital-bases
     - file: user-documentation/quantum-chemical-methods
     - file: user-documentation/quantum-chemical-models
     - file: user-documentation/use-cases
-
+    
 - part: "Examples"
-  chapters:
-    - file: examples/AP1roG-calculations
-    - file: examples/CCSD
-    - file: examples/Custom-algorithms-showcase-CUHF
-    - file: examples/DOCI
-    - file: examples/FCI
-    - file: examples/HF-Stability
-    - file: examples/Hubbard
-    - file: examples/Mulliken-population
-    - file: examples/ONVPath
+  chapters:    
+    - file: examples/getting-started
     - file: examples/R-U-GHF-overlaps
-    - file: examples/README
     - file: examples/RHF-dipole-moments
     - file: examples/Spinor-bases
-    - file: examples/Try-out-Binder
-    - file: examples/Try-out-Colab
     - file: examples/UHF-calculations
+    - file: examples/Custom-algorithms-showcase-CUHF
+    - file: examples/HF-Stability
+    - file: examples/ONVPath
+    - file: examples/DOCI
+    - file: examples/FCI
+    - file: examples/Hubbard
+    - file: examples/AP1roG-calculations
+    - file: examples/CCSD
+    - file: examples/Mulliken-population
 
 - part: "Developer documentation"
   chapters:
