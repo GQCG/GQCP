@@ -64,6 +64,7 @@
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
+#include "Basis/SpinorBasis/CurrentDensityMatrixElement.hpp"
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/OccupationType.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"

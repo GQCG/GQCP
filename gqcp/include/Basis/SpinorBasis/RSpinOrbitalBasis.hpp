@@ -21,6 +21,7 @@
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/CurrentDensityMatrixElement.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
@@ -274,7 +275,7 @@ public:
      * 
      *  @return The second-quantized current density operator.
      */
-    VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution> quantize(const CurrentDensityOperator& fq_current_density_op) const {
+    VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> quantize(const CurrentDensityOperator& fq_current_density_op) const {
 
         using namespace GQCP::literals;
 
@@ -283,27 +284,20 @@ public:
         const auto phi = this->spatialOrbitals();
         const auto dphi = this->spatialOrbitalGradients();
 
-        std::vector<SquareMatrix<CurrentDensityDistribution>> j_par_vector {};
+        std::vector<SquareMatrix<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>>> j_par_vector {};
         for (size_t i = 0; i < 3; i++) {
 
-            SquareMatrix<CurrentDensityDistribution> j_i {K};
+            SquareMatrix<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> j_i {K};
             for (size_t p = 0; p < K; p++) {
                 for (size_t q = 0; q < K; q++) {
-
-                    // TODO: Improve this for the actual complex conjugates.
-                    const auto left = phi[p] * dphi[q](i);
-                    const auto right = phi[q] * dphi[p](i);
-
-                    // TODO: Allow the contribution from the vector potential.
-                    CurrentDensityDistribution j_pq_i {{-0.5_ii, 0.5_ii}, {left, right}};
-                    j_i(p, q) = j_pq_i;
+                    j_i(p, q) = CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO> {phi[p], phi[q], dphi[p](i), dphi[q](i)};
                 }
             }
 
             j_par_vector.push_back(j_i);
         }
 
-        return VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution> {j_par_vector};
+        return VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> {j_par_vector};
     }
 
 

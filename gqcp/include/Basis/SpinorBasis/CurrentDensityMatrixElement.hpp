@@ -29,16 +29,16 @@ namespace GQCP {
 
 
 /**
- *  One of the elements of the second-quantized field-free charge current density operator.
+ *  One of the elements of (on of the components of) the second-quantized field-free charge current density operator.
  *
  *  @param _Scalar              The scalar type of the expansion coefficients of the spatial orbitals that underlie this current density matrix element.
  *  @param _Primitive           The type of primitive that underlies this current density matrix element.
  */
 template <typename _Scalar, typename _Primitive>
 class CurrentDensityMatrixElement:
-    public Function<Vector<complex, 3>, Vector<double, 3>> {
+    public Function<complex, Vector<double, 3>> {
 public:
-    // The scalar type of the expansion coefficients of the spatial orbitals that underlie this current density matrix element.
+    // The scalar type of the expansion coefficients of a spatial orbital.
     using Scalar = _Scalar;
 
     // The type of primitive that underlies this current density matrix element.
@@ -50,16 +50,54 @@ public:
     // The type of spatial orbital that underlies this current density matrix element.
     using SpatialOrbital = EvaluableLinearCombination<Scalar, BasisFunction>;
 
+    // The type of the derivative of a primitive. The derivative of a Cartesian GTO is a linear combination of Cartesian GTOs.
+    using PrimitiveDerivative = EvaluableLinearCombination<double, Primitive>;
+
+    // The type of the derivative of a basis function.
+    using BasisFunctionDerivative = EvaluableLinearCombination<double, PrimitiveDerivative>;
+
+    // The type of the derivative of a spatial orbital.
+    using SpatialOrbitalDerivative = EvaluableLinearCombination<Scalar, BasisFunctionDerivative>;
+
 
 private:
+    // The first spatial orbital.
     SpatialOrbital phi_p;
+
+    // The second spatial orbital.
     SpatialOrbital phi_q;
 
-    SpatialOrbitalGradient dphi_p;
-    SpatialOrbitalGradient dphi_q;
+    // One of the components of the first spatial orbital gradient.
+    SpatialOrbitalDerivative dphi_p;
+
+    // One of the components of the second spatial orbital gradient.
+    SpatialOrbitalDerivative dphi_q;
 
 
 public:
+    /*
+     *  MARK: Constructors
+     */
+
+    /*
+     *  The default constructor.
+     */
+    CurrentDensityMatrixElement() = default;
+
+
+    /**
+     *  @param phi_p            The first spatial orbital.
+     *  @param phi_q            The second spatial orbital.
+     *  @param dphi_p           One of the components of the first spatial orbital gradient.
+     *  @param dphi_q           One of the components of the second spatial orbital gradient.
+     */
+    CurrentDensityMatrixElement(const SpatialOrbital& phi_p, const SpatialOrbital& phi_q, const SpatialOrbitalDerivative& dphi_p, const SpatialOrbitalDerivative& dphi_q) :
+        phi_p {phi_p},
+        phi_q {phi_q},
+        dphi_p {dphi_p},
+        dphi_q {dphi_q} {}
+
+
     /*
      *  MARK: `Function` behavior
      */
@@ -71,9 +109,12 @@ public:
      *
      *  @return The function value for the given argument.
      */
-    Vector<complex, 3> operator()(const Vector<double, 3>& r) const override {
+    complex operator()(const Vector<double, 3>& r) const override {
 
-        return 0.5_ii * (phi_p(r) * dphi_q(r) - dphi_p(r) * phi_q(r));
+        using namespace GQCP::literals;
+
+        return 0.5_ii * (conj(phi_p(r)) * dphi_q(r) -
+                         conj(dphi_p(r)) * phi_q(r));
     }
 };
 

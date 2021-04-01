@@ -19,8 +19,8 @@
 
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/CurrentDensityMatrixElement.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
@@ -930,8 +930,6 @@ public:
      *  MARK: Response properties
      */
 
-    using CurrentDensityDistribution = RSpinOrbitalBasis<complex, GTOShell>::CurrentDensityDistribution;
-
     /**
      *  Calculate the magnetic inducibility on the given grid using the ipsocentric CSGT method.
      *
@@ -943,7 +941,7 @@ public:
      *
      *  @return The magnetic inducibility evaluated on the given grid.
      */
-    static Field<Matrix<complex, 3, 3>> calculateIpsocentricMagneticInducibility(const CubicGrid& grid, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 6>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityDistribution>& j_op) {
+    static Field<Matrix<complex, 3, 3>> calculateIpsocentricMagneticInducibility(const CubicGrid& grid, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 6>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<complex, CartesianGTO>>& j_op) {
 
         using namespace GQCP::literals;
 
