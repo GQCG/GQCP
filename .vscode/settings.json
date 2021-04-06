@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "/usr/local/miniconda3/bin/python",
+    "cmake.configureSettings": {
+        "CMAKE_PREFIX_PATH": "/usr/local/miniconda3",
+        "BUILD_TESTS": "TRUE",
+        "BUILD_PYTHON_BINDINGS": "TRUE",
+        "CMAKE_INSTALL_PREFIX": "/usr/local/miniconda3",
+    },
+    "editor.formatOnSave": true
+}

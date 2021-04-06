@@ -1,0 +1,17 @@
+[
+    {
+        "name": "GNU",
+        "compilers": {
+            "C": "/usr/bin/gcc",
+            "CXX": "/usr/bin/g++"
+        }
+
+    },
+    {
+        "name": "Clang",
+        "compilers": {
+            "C": "/usr/bin/clang",
+            "CXX": "/usr/bin/clang++"
+        }
+    }
+]
