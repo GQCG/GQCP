@@ -3,6 +3,7 @@
   <compounddef id="_nuclear_repulsion_operator_8hpp" kind="file" language="C++">
     <compoundname>NuclearRepulsionOperator.hpp</compoundname>
     <includes refid="_base_nuclear_operator_8hpp" local="yes">Operator/FirstQuantized/BaseNuclearOperator.hpp</includes>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_nuclear_repulsion_operator_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/NuclearRepulsionOperator.cpp</includedby>
     <incdepgraph>
       <node id="13">
@@ -130,8 +131,14 @@
         <link refid="_nuclear_repulsion_operator_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/NuclearRepulsionOperator.cpp</label>
         <link refid="_nuclear_repulsion_operator_8cpp"/>
       </node>

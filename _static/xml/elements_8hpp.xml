@@ -207,6 +207,8 @@
       <node id="115">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
         <link refid="_nuclear_repulsion_operator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
         <childnode refid="116" relation="include">
         </childnode>
       </node>

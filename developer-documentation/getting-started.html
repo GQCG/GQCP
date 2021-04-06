@@ -547,11 +547,6 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conda-installation">
-     Conda installation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#docker-installation">
      Docker installation
     </a>
@@ -578,41 +573,9 @@
      CMake options - quick reference
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setting-up-visual-studio-code-optional">
-   Setting up Visual Studio Code (optional)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-common-extensions">
-     Installing common extensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clone-the-repository-install-the-necessary-dependencies">
-     Clone the repository &amp; install the necessary dependencies
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-up-your-c-compiler">
-     Setting up your C++ compiler
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-up-your-gqcp-workspace">
-     Set up your GQCP workspace
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-cmake-through-vs-code">
      Using CMake through VS Code
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-up-auto-formatting-for-c-source-files">
-     Setting up auto-formatting for C++ source files
     </a>
    </li>
   </ul>
@@ -649,20 +612,7 @@
 <li><p><a class="reference external" href="https://github.com/evaleev/libint">libint 2.4.2</a></p></li>
 <li><p><a class="reference external" href="https://github.com/GQCG/libcint/tree/develop">libcint (gqcg fork)</a></p></li>
 </ul>
-<p>You may install these manually, but please note that we offer a Conda and a Docker environment which contains these dependencies from the start.</p>
-<div class="section" id="conda-installation">
-<h3>Conda installation<a class="headerlink" href="#conda-installation" title="Permalink to this headline">¶</a></h3>
-<p>In the root directory of this repository, create the <code class="docutils literal notranslate"><span class="pre">gqcp_dev</span></code> conda environment from the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>-file that we provide.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
-conda activate gqcp_dev
-</pre></div>
-</div>
-<p>Since we (still) depend on Libint’s basissets, after installation, you’ll have to set the <code class="docutils literal notranslate"><span class="pre">LIBINT_DATA_PATH</span></code> environment variable to the folder that contains the libint bases. In a default installation (of Libint’s version v2.4.2), the data path is given by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LIBINT_DATA_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/share/libint/2.4.2/basis
-</pre></div>
-</div>
-<p>You will have to either export this environment variable every time you activate the <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> environment or (better) put this export in your .bashrc or (preferred) <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables">add this environment variable to your virtual environment</a>.</p>
-</div>
+<p>You may install these manually, but please note that we offer a a Docker environment which contains these dependencies from the start.</p>
 <div class="section" id="docker-installation">
 <h3>Docker installation<a class="headerlink" href="#docker-installation" title="Permalink to this headline">¶</a></h3>
 <p>First, <a class="reference external" href="https://docs.docker.com/get-docker/">install Docker</a>. VSCode <a class="reference external" href="https://code.visualstudio.com/docs/remote/containers-tutorial">has excellent support for containers</a>. Using the <a class="reference external" href="https://code.visualstudio.com/docs/remote/containers">Visual Studio Code Remote - Containers</a> you can mount the directory in which you have cloned the GQCP repo in the Docker container. There are two ways to get the Docker container up and running:</p>
@@ -777,89 +727,10 @@ make -j <span class="m">4</span> <span class="o">&amp;&amp;</span> make <span cl
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">4</span></code> will make sure that 4 targets will be built at once. In order to increase compilation speed, you may increase this number, related to the number of cores you have available on your machine.</p>
 </div>
-</div>
-<div class="section" id="setting-up-visual-studio-code-optional">
-<h2>Setting up Visual Studio Code (optional)<a class="headerlink" href="#setting-up-visual-studio-code-optional" title="Permalink to this headline">¶</a></h2>
-<p>At GQCG, our code editor of choice is <a class="reference external" href="https://code.visualstudio.com">Visual Studio Code</a>. VS Code allows for easy collaboration, uses built-in git commands and offers a lot of useful extensions. In order to use VS Code to collaborate on GQCP, some setup is required. This will be covered in this small step-by-step guide.</p>
-<div class="section" id="installing-common-extensions">
-<h3>Installing common extensions<a class="headerlink" href="#installing-common-extensions" title="Permalink to this headline">¶</a></h3>
-<p>To comfortably work on GQCP using VS Code, we recommend you to install the following extensions:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++</a>;</p></li>
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=twxs.cmake">CMake language support</a> and <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=gocarlos.cmake-tools">CMake Tools</a>.</p></li>
-</ul>
-</div>
-<div class="section" id="clone-the-repository-install-the-necessary-dependencies">
-<h3>Clone the repository &amp; install the necessary dependencies<a class="headerlink" href="#clone-the-repository-install-the-necessary-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>Make sure that you’ve <a class="reference external" href="#cloning-the-repository">cloned GQCP</a> and <a class="reference external" href="#installing-dependencies">installed GQCP’s dependencies</a>. We recommend using the <code class="docutils literal notranslate"><span class="pre">gqcp_dev</span></code> conda environment, so the necessary dependencies and their paths will all be set correctly.</p>
-</div>
-<div class="section" id="setting-up-your-c-compiler">
-<h3>Setting up your C++ compiler<a class="headerlink" href="#setting-up-your-c-compiler" title="Permalink to this headline">¶</a></h3>
-<p>We often use <a class="reference external" href="https://clang.llvm.org">Clang</a> 7.x.y as our C++ compiler. On macOS, this can easily be installed using <a class="reference external" href="https://www.macports.org">MacPorts</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>port install clang-7.0
-</pre></div>
-</div>
-<p>After the installation, you should create a new toolkit by editing the <code class="docutils literal notranslate"><span class="pre">cmake-tools-kits.json</span></code>-file. (To open this file, open up the VS Code Command Palette and look for <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">user-local</span> <span class="pre">CMake</span> <span class="pre">kits</span></code>).</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Clang 7.1.0&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compilers&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/local/bin/clang-mp-7.0&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;CXX&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/local/bin/clang++-mp-7.0&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<blockquote>
-<div><p><strong>Note:</strong> The paths to your compilers may be different. You can look for them using the command <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">clang++</span></code> or <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">clang++-mp-7.0</span></code> for clang 7.x.y.</p>
-</div></blockquote>
-<p>After this is done, you can select Clang 7.1.0 as your default compiler in VS Code.</p>
-</div>
-<div class="section" id="set-up-your-gqcp-workspace">
-<h3>Set up your GQCP workspace<a class="headerlink" href="#set-up-your-gqcp-workspace" title="Permalink to this headline">¶</a></h3>
-<p>After opening the GQCP folder in VS Code, select <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Save</span> <span class="pre">Workspace</span> <span class="pre">As...</span></code>, and save your workspace. This will create a folder <code class="docutils literal notranslate"><span class="pre">.vscode</span></code> with a file <code class="docutils literal notranslate"><span class="pre">&lt;workspace-name&gt;.code-workspace</span></code> in it. Within this file, make sure that CMake Tools is forwarded the correct options, i.e. make sure that the <code class="docutils literal notranslate"><span class="pre">&quot;settings&quot;</span></code> key at least contains the following options.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;cmake.configureSettings&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&quot;CMAKE_PREFIX_PATH&quot;</span><span class="p">:</span> <span class="s2">&quot;${CONDA_PREFIX}/envs/gqcp_dev&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;CMAKE_CXX_COMPILER&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/local/bin/clang++-mp-7.0&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;BUILD_TESTS&quot;</span><span class="p">:</span> <span class="s2">&quot;TRUE&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;BUILD_PYTHON_BINDINGS&quot;</span><span class="p">:</span> <span class="s2">&quot;TRUE&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;CMAKE_INSTALL_PREFIX&quot;</span><span class="p">:</span> <span class="s2">&quot;${CONDA_PREFIX}/envs/gqcp_dev&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;PYTHON_EXECUTABLE&quot;</span><span class="p">:</span> <span class="s2">&quot;${CONDA_PREFIX}/envs/gqcp_dev/bin/python&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>In order to use the C++ IntelliSense correctly, you’ll also have to set the corresponding include paths. Find <code class="docutils literal notranslate"><span class="pre">C/C++:</span> <span class="pre">Edit</span> <span class="pre">Configurations</span> <span class="pre">(JSON)</span></code> through VS Code’s Command Palette and open the configurations for your recently created workspace folder. In the <code class="docutils literal notranslate"><span class="pre">c_cpp_properties.json</span></code>-file that is opened, please make sure to update your configuration’s <code class="docutils literal notranslate"><span class="pre">&quot;includePath&quot;</span></code>.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;configurations&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nt">&quot;includePath&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="s2">&quot;${CMAKE_PREFIX}/envs/gqcp_dev/include&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;${CMAKE_PREFIX}/envs/gqcp_dev/include/eigen3&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;${workspaceFolder}/gqcp/include&quot;</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
 <div class="section" id="using-cmake-through-vs-code">
 <h3>Using CMake through VS Code<a class="headerlink" href="#using-cmake-through-vs-code" title="Permalink to this headline">¶</a></h3>
-<p>By now, you’re done configuring VS Code and can start developing! If you’d like to compile the code locally to see if your tests still pass and the project can be compiled, you can use <code class="docutils literal notranslate"><span class="pre">CMake</span> <span class="pre">Tools</span></code> extension in your side bar and the clicking on the <code class="docutils literal notranslate"><span class="pre">...</span></code> in the upper right corner.</p>
+<p>If you’d like to compile the code locally to see if your tests still pass and the project can be compiled, you can use <code class="docutils literal notranslate"><span class="pre">CMake</span> <span class="pre">Tools</span></code> extension in your side bar and the clicking on the <code class="docutils literal notranslate"><span class="pre">...</span></code> in the upper right corner.</p>
 <p>In order to let CMake parse your project, use <code class="docutils literal notranslate"><span class="pre">Clean</span> <span class="pre">Reconfigure</span> <span class="pre">All</span> <span class="pre">Projects</span></code>. In the CMake: Project Outline, you can find a list of all targets, which can be built separately. If you would like to (re)build all targets, use <code class="docutils literal notranslate"><span class="pre">Clean</span> <span class="pre">Rebuild</span> <span class="pre">All</span> <span class="pre">Projects</span></code>.</p>
-</div>
-<div class="section" id="setting-up-auto-formatting-for-c-source-files">
-<h3>Setting up auto-formatting for C++ source files<a class="headerlink" href="#setting-up-auto-formatting-for-c-source-files" title="Permalink to this headline">¶</a></h3>
-<p>Since we have provided a clang formatting file <code class="docutils literal notranslate"><span class="pre">./clang-format</span></code>, VS Code’s C++ extension should be set up to parse your C++ source files and format them accordingly. To enable this, make sure that you provide the following setting (either in your workspace or user settings, which one you prefer), in order to let VS Code auto-format your C++ source files on save.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span> <span class="kc">true</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>For more information on our style guide, please read our <span class="xref myst">GQCP style guide page</span>.</p>
 </div>
 </div>
 </div>
