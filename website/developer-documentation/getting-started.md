@@ -12,7 +12,6 @@ git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --re
 cd GQCP
 ```
 
-
 ## Installing dependencies
 
 Please make sure the following dependencies are available on your system:
@@ -22,23 +21,7 @@ Please make sure the following dependencies are available on your system:
 - [libint 2.4.2](https://github.com/evaleev/libint)
 - [libcint (gqcg fork)](https://github.com/GQCG/libcint/tree/develop)
 
-You may install these manually, but please note that we offer a Conda and a Docker environment which contains these dependencies from the start. 
-
-### Conda installation
-
-In the root directory of this repository, create the `gqcp_dev` conda environment from the `environment.yml`-file that we provide.
-```bash
-conda env create -f environment.yml
-conda activate gqcp_dev
-```
-
-Since we (still) depend on Libint's basissets, after installation, you'll have to set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of Libint's version v2.4.2), the data path is given by:
-
-```bash
-export LIBINT_DATA_PATH=${CONDA_PREFIX}/share/libint/2.4.2/basis
-```
-
-You will have to either export this environment variable every time you activate the `gqcp` environment or (better) put this export in your .bashrc or (preferred) [add this environment variable to your virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables).
+You may install these manually, but please note that we offer a a Docker environment which contains these dependencies from the start. 
 
 ### Docker installation
 
@@ -161,6 +144,7 @@ As promised, here is an overview of all the CMake options that GQCP supports.
 * `-DOPTIMIZE_FOR_NATIVE=TRUE` optimizes builds for the machine on which the software is built. This should not be enable for Docker builds as not all optimizations are available on all run infrastructures.
 
 ### CMake options - quick reference
+
 As you can see, there are a lot of options that can (and should) be passed to CMake. For quick reference, here's a command that should work most of the time. In your out-of-source build directory, initialize CMake, make all targets, run all tests and install the library:
 
 ```bash
@@ -175,7 +159,6 @@ make -j 4 && make test && make install
 ```
 
 `make -j 4` will make sure that 4 targets will be built at once. In order to increase compilation speed, you may increase this number, related to the number of cores you have available on your machine.
-
 
 
 ## Setting up Visual Studio Code (optional)
