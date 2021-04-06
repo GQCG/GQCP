@@ -1,9 +1,6 @@
 # GQCP devops
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 [DevOps](https://en.wikipedia.org/wiki/DevOps) aims to shorten the development life cycle by providing support for continuous [integration](https://en.wikipedia.org/wiki/Continuous_integration), [delivery](https://en.wikipedia.org/wiki/Continuous_delivery) and [deployment](https://en.wikipedia.org/wiki/Continuous_deployment). 
-
 
 ## Integration: Github
 
@@ -30,7 +27,3 @@ For easy distribution, built packages can be uploaded to [Anaconda Cloud](https:
 [Docker](https://en.wikipedia.org/wiki/Docker_(software)) provides a platform as a service and is ideally suited to provide development environments. Docker only requires a `Dockerfile`, which contains all steps needed to provision the container.
 
 For easy distribution, images can be uploaded to [Docker Hub](https://hub.docker.com/).
-
-## GQCP Devops Setup
-
-<img alt="GQCP devops" src={useBaseUrl('img/devops.png')} />
