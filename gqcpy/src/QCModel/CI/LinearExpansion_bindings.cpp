@@ -397,6 +397,15 @@ void bindLinearExpansion<SpinUnresolvedONVBasis>(py::module& module, const std::
 
         // PUBLIC METHODS
 
+        .def(
+            "calculateNDMElement",
+            [](const LinearExpansion<SpinUnresolvedONVBasis>& linear_expansion, const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) {
+                return linear_expansion.calculateNDMElement(bra_indices, ket_indices);
+            },
+            py::arg("bra_indices"),
+            py::arg("ket_indices"),
+            "Return an element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^dagger_0 a^dagger_1 a_2 a_1`.")
+
         .def("coefficients",
              &LinearExpansion<SpinUnresolvedONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.");
