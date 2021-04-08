@@ -1586,7 +1586,7 @@ public:
         const auto& Gamma_ii_alpha_beta = d.alphaBeta().parameters(orbital_index, orbital_index, orbital_index, orbital_index);
 
         // Zero-initiate the one-orbital density matrix.
-        MatrixX<Scalar> rho = MatrixX<Scalar>::Zero(4, 4);
+        MatrixX<double> rho = MatrixX<double>::Zero(4, 4);
 
         // Fill in the diagonal elements of the one-orbital density matrix.
         rho(0, 0) += 1 - gamma_i_alpha - gamma_i_beta + Gamma_ii_alpha_beta;
@@ -1627,7 +1627,7 @@ public:
         const auto& gamma_i_alpha = D.alpha().parameters(orbital_index, orbital_index);
 
         // Zero-initiate the one-orbital density matrix. Due to the absence of singly occupied orbitals, it reduces to a two-by-two matrix.
-        MatrixX<Scalar> rho = MatrixX<Scalar>::Zero(2, 2);
+        MatrixX<double> rho = MatrixX<double>::Zero(2, 2);
 
         // Fill in the diagonal elements of the one-orbital density matrix.
         rho(0, 0) += 1 - gamma_i_alpha;
