@@ -1564,6 +1564,90 @@ public:
     }
 
 
+    /**
+     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix.
+     * 
+     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
+     *
+     * @return The single orbital entropy of the orbital at the specified index.
+     * 
+     * @note This version of this method is used when the linear expansion is based on a spin resolved ONV basis.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) {
+
+        // In order to calculate the single orbital entropy, we need the spin resolved one- and two-particle density matrices.
+        const auto D = this->calculateSpinResolved1DM();
+        const auto d = this->calculateSpinResolved2DM();
+
+        // Extract the necessary elements from these density matrices.
+        const auto& gamma_i_alpha = D.alpha().parameters(orbital_index, orbital_index);
+        const auto& gamma_i_beta = D.alpha().parameters(orbital_index, orbital_index);
+        const auto& Gamma_ii_alpha_beta = d.alphaBeta().parameters(orbital_index, orbital_index, orbital_index, orbital_index);
+
+        // Zero-initiate the one-orbital density matrix.
+        MatrixX<Scalar> rho = MatrixX<Scalar>::Zero(4, 4);
+
+        // Fill in the diagonal elements of the one-orbital density matrix.
+        rho(0, 0) += 1 - gamma_i_alpha - gamma_i_beta + Gamma_ii_alpha_beta;
+        rho(1, 1) += gamma_i_alpha - Gamma_ii_alpha_beta;
+        rho(2, 2) += gamma_i_beta - Gamma_ii_alpha_beta;
+        rho(3, 3) += Gamma_ii_alpha_beta;
+
+        // To calculate the one-orbital entropy, we need the eigenvalues of the one-orbital RDM. But, since the one-orbital RDM is already diagonal, we can calculate the one-orbital entropy from those diagonal elements.
+        double S = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if (abs(rho(i, i)) > 1e-12) {  // The diagonal element must be non-zero in order to contribute to the entropy.
+                S -= rho(i, i) * log(rho(i, i));
+            }
+        }
+
+        // Return the single orbital entropy.
+        return S;
+    }
+
+
+    /**
+     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix.
+     * 
+     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
+     *
+     * @return The single orbital entropy of the orbital at the specified index.
+     * 
+     * @note This version of this method is used when the linear expansion is based on a seniority zero ONV basis.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) {
+
+        // In order to calculate the single orbital entropy, we need the spin resolved one-particle density matrix.
+        const auto D = this->calculateSpinResolved1DM();
+
+        // Extract the necessary elements from these density matrices.
+        const auto& gamma_i_alpha = D.alpha().parameters(orbital_index, orbital_index);
+
+        // Zero-initiate the one-orbital density matrix. Due to the absence of singly occupied orbitals, it reduces to a two-by-two matrix.
+        MatrixX<Scalar> rho = MatrixX<Scalar>::Zero(2, 2);
+
+        // Fill in the diagonal elements of the one-orbital density matrix.
+        rho(0, 0) += 1 - gamma_i_alpha;
+        rho(1, 1) += gamma_i_alpha;
+
+
+        // To calculate the one-orbital entropy, we need the eigenvalues of the one-orbital RDM. But, since the one-orbital RDM is already diagonal, we can calculate the one-orbital entropy from those diagonal elements.
+        double S = 0;
+
+        for (int i = 0; i < 2; i++) {
+            if (abs(rho(i, i)) > 1e-12) {  // The diagonal element must be non-zero in order to contribute to the entropy.
+                S -= rho(i, i) * log(rho(i, i));
+            }
+        }
+
+        // Return the single orbital entropy.
+        return S;
+    }
+
+
     /*
      *  MARK: Iterating
      */
