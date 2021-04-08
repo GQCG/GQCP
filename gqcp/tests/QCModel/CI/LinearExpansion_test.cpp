@@ -276,7 +276,6 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_1DM) {
 
     const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
 
-
     // Check some 1-DM values.
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - 1.0) < 1.0e-12);     // d(0,0) : a^\dagger_0 a_0
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - 2.0) < 1.0e-12);     // d(0,1) : a^\dagger_0 a_1
@@ -486,25 +485,26 @@ BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
 }
 
 
-// /**
-//  *  Check some 1-DM values calculated for the SpinUnresolvedONVBasis by comparing them to the general function calculateNDMElement.
-//  */
-// BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_NDM) {
+/**
+ *  Check some 1-DM values calculated for the SpinUnresolvedONVBasis by comparing them to the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_NDM) {
 
-//     // Set up an example linear expansion in a spin-unresolved ONV basis.
-//     const size_t M = 5;
-//     const size_t N = 2;
-//     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
-//     const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
 
-//     // Check some 1-DM values with calculateNDMElement().
-//     const auto D_specialized = linear_expansion.calculate1DM();
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - D_specialized(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - D_specialized(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - D_specialized(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({4}, {4}) - D_specialized(4, 4)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
-// }
+
+    // Check some 1-DM values with calculateNDMElement().
+    const auto D_specialized = linear_expansion.calculate1DM();
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - D_specialized.matrix()(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - D_specialized.matrix()(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - D_specialized.matrix()(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({4}, {4}) - D_specialized.matrix()(4, 4)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
+}
 
 
 /**
