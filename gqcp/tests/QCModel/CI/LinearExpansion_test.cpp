@@ -87,7 +87,14 @@ BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
     // Check that the Shannon entropy of an expansion with only negative coefficients is non-zero.
     GQCP::VectorX<double> coefficients {onv_basis.dimension()};
-    coefficients << -1, -2, -3, -4, -5, -6, -7, -8;
+
+    // Fill the coefficient vector with strictly negative values.
+    int x = -1;
+
+    for (int i = 0; i < coefficients.size(); i++) {
+        coefficients[i] = x;
+        x -= 1;
+    }
 
     const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> negative_linear_expansion {onv_basis, coefficients};
     BOOST_CHECK(std::abs(negative_linear_expansion.calculateShannonEntropy()) > 1.0e-12);  // Should be non-zero.
