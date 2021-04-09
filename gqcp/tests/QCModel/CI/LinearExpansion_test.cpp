@@ -76,13 +76,21 @@ BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
     // Check the Shannon entropy of a Hartree-Fock expansion
     const auto hartree_fock_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
-    BOOST_CHECK(hartree_fock_expansion.calculateShannonEntropy() < 1.0e-12);  // should be 0
+    BOOST_CHECK(hartree_fock_expansion.calculateShannonEntropy() < 1.0e-12);  // Should be 0.
 
 
     // Check the maximal entropy, corresponding to a wave function with all equal coefficients different from zero.
     const auto constant_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
-    const double reference_entropy = std::log2(onv_basis.dimension());  // manual derivation
+    const double reference_entropy = std::log2(onv_basis.dimension());  // Manual derivation.
     BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
+
+
+    // Check that the Shannon entropy of an expansion with only negative coefficients is non-zero.
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << -1, -2, -3, -4, -5, -6, -7, -8;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> negative_linear_expansion {onv_basis, coefficients};
+    BOOST_CHECK(std::abs(negative_linear_expansion.calculateShannonEntropy()) > 1.0e-12);  // should be non-zero.
 }
 
 
