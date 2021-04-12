@@ -1574,7 +1574,7 @@ public:
      * @note This version of this method is used when the linear expansion is based on a spin resolved ONV basis.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) const {
 
         // In order to calculate the single orbital entropy, we need the spin resolved one- and two-particle density matrices.
         const auto D = this->calculateSpinResolved1DM();
@@ -1618,7 +1618,7 @@ public:
      * @note This version of this method is used when the linear expansion is based on a seniority zero ONV basis.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) const {
 
         // In order to calculate the single orbital entropy, we need the spin resolved one-particle density matrix.
         const auto D = this->calculateSpinResolved1DM();

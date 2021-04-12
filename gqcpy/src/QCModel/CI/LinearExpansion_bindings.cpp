@@ -233,7 +233,20 @@ void bindLinearExpansions(py::module& module) {
                 return linear_expansion.forEach(callback);
             },
             py::arg("callback"),
-            "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.");
+            "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.")
+
+
+        /*
+         * MARK: Entropy
+         */
+
+        .def(
+            "calculateSingleOrbitalEntropy",
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion, const size_t& orbital_index) {
+                return linear_expansion.calculateSingleOrbitalEntropy(orbital_index);
+            },
+            py::arg("orbital_index"),
+            "Return the single orbital entropy of the orbital at the specified index, according to the formula of Boguslawski (https://doi.org/10.1002/qua.24832).");
 
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinResolved);
