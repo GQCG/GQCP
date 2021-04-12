@@ -48,7 +48,7 @@ void bindMixedSpinResolved2DMComponent(py::module& module) {
         .def(
             "tensor",
             [](const MixedSpinResolved2DMComponent<double>& d) {
-                return d.tensor().Eigen();
+                return asNumpyArray(d.tensor().Eigen());
             });
 }
 

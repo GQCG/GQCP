@@ -786,7 +786,7 @@ void bindSimple2DMInterface(Class& py_class) {
         .def(
             "tensor",
             [](const Type& d) {
-                return d.tensor().Eigen();
+                return asNumpyArray(d.tensor().Eigen());
             },
             "Return a read-only reference to the matrix representation of this 2-DM.")
 
