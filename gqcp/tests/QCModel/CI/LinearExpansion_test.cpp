@@ -23,6 +23,9 @@
 #include "Basis/Transformations/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
@@ -98,6 +101,40 @@ BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
     const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> negative_linear_expansion {onv_basis, coefficients};
     BOOST_CHECK(std::abs(negative_linear_expansion.calculateShannonEntropy()) > 1.0e-12);  // Should be non-zero.
+}
+
+
+/**
+ *  Check if the calculation of the single orbital entropy matches the python implementation (@lelemmen) of Boguslawski's formula (https://doi.org/10.1002/qua.24832).
+ */
+BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
+
+    // Set up a Hubbard Hamiltonian.
+    // First, set up an adjacency matrix.
+    const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(3);
+
+    // Next, we use the adjacency matrix to create the Hopping Matrix.
+    const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
+    std::cout << hopping.matrix() << std::endl;
+
+    // Finally, create the Hubbard Hamiltonian.
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
+
+    // Next, densely solve the Hubbard CI problem to find the linear expansion.
+    const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 1};
+
+    auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+    // Calculate the single orbital entropy of Hubbard site `0`.
+    const auto S = linear_expansion.calculateSingleOrbitalEntropy(0);
+
+    // Check the result against the python implementation from @lelemmen. (https://github.com/GQCG-res/constrained-entanglement/blob/develop/notebooks/Hubbard-Redistribution.ipynb)
+    const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
+
+    BOOST_CHECK(std::abs(S - ref) < 1.0e-12);
 }
 
 

@@ -1581,9 +1581,9 @@ public:
         const auto d = this->calculateSpinResolved2DM();
 
         // Extract the necessary elements from these density matrices.
-        const auto& gamma_i_alpha = D.alpha().parameters(orbital_index, orbital_index);
-        const auto& gamma_i_beta = D.alpha().parameters(orbital_index, orbital_index);
-        const auto& Gamma_ii_alpha_beta = d.alphaBeta().parameters(orbital_index, orbital_index, orbital_index, orbital_index);
+        const auto& gamma_i_alpha = D.alpha().matrix()(orbital_index, orbital_index);
+        const auto& gamma_i_beta = D.beta().matrix()(orbital_index, orbital_index);
+        const auto& Gamma_ii_alpha_beta = d.alphaBeta().tensor()(orbital_index, orbital_index, orbital_index, orbital_index);
 
         // Zero-initiate the one-orbital density matrix.
         MatrixX<double> rho = MatrixX<double>::Zero(4, 4);
@@ -1624,7 +1624,7 @@ public:
         const auto D = this->calculateSpinResolved1DM();
 
         // Extract the necessary elements from these density matrices.
-        const auto& gamma_i_alpha = D.alpha().parameters(orbital_index, orbital_index);
+        const auto& gamma_i_alpha = D.alpha().matrix()(orbital_index, orbital_index);
 
         // Zero-initiate the one-orbital density matrix. Due to the absence of singly occupied orbitals, it reduces to a two-by-two matrix.
         MatrixX<double> rho = MatrixX<double>::Zero(2, 2);
