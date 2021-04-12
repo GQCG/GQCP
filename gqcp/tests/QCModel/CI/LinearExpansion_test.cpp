@@ -115,7 +115,6 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
 
     // Next, we use the adjacency matrix to create the Hopping Matrix.
     const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
-    std::cout << hopping.matrix() << std::endl;
 
     // Finally, create the Hubbard Hamiltonian.
     const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
