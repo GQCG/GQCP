@@ -23,6 +23,7 @@
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
@@ -273,6 +274,20 @@ public:
      *  @return A dense matrix represention of the Hamiltonian.
      */
     SquareMatrix<double> evaluateOperatorDense(const GSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Dense restricted operator evaluations
+     */
+
+    /**
+     *  Calculate the dense matrix representation of a Hubbard Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    //SquareMatrix<double> evaluateOperatorDense(const HubbardHamiltonian<double>& hamiltonian) const;
 
 
     /*
