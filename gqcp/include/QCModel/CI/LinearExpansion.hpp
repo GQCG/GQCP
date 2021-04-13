@@ -1576,6 +1576,11 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) const {
 
+        // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
+        if (orbital_index > this->onv_basis.numberOfOrbitals()) {
+            throw std::invalid_argument("The given orbital index is larger than the amount of orbitals in the system.");
+        }
+
         // In order to calculate the single orbital entropy, we need the spin resolved one- and two-particle density matrices.
         const auto D = this->calculateSpinResolved1DM();
         const auto d = this->calculateSpinResolved2DM();
@@ -1619,6 +1624,11 @@ public:
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) const {
+
+        // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
+        if (orbital_index > this->onv_basis.numberOfOrbitals()) {
+            throw std::invalid_argument("The given orbital index is larger than the amount of orbitals in the system.");
+        }
 
         // In order to calculate the single orbital entropy, we need the spin resolved one-particle density matrix.
         const auto D = this->calculateSpinResolved1DM();
