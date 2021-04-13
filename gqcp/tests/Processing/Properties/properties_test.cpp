@@ -21,6 +21,8 @@
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Transformations/transform.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 #include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Physical/units.hpp"
@@ -29,7 +31,6 @@
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
-
 
 /**
  *  Check the calculation of the CO dipole moment from a CCCBDB reference value.
@@ -150,4 +151,229 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
     const auto alpha_zz = alpha(2, 2);
 
     BOOST_CHECK(std::abs(alpha_zz - ref_alpha_zz) < 1.0e-05);
+}
+
+
+/**
+ *  Check the calculation of the ipsocentric current density and the intermediates for its calculation. The test system is H2, 1 au apart in an STO-3G basis set.
+ *
+ *  The reference implementation is a GAMESS-SYSMO combination. Calculations were performed by Remco Havenith.
+ */
+BOOST_AUTO_TEST_CASE(ipsocentric_H2) {
+
+    using namespace GQCP::literals;
+
+    // Set up the molecular Hamiltonian in AO basis.
+    const GQCP::Molecule molecule {{GQCP::Nucleus(1, 0.0, 0.0, 0.0), GQCP::Nucleus(1, 0.0, 0.0, 1.0)}};
+    const auto N = molecule.numberOfElectrons();
+    const auto N_P = molecule.numberOfElectronPairs();
+
+    const std::string basis_set {"STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, basis_set};
+
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+
+    // Solve the RHF SCF equations.
+    const auto S = spin_orbital_basis.quantize(GQCP::OverlapOperator());
+    auto scf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, hamiltonian, S);
+    auto scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
+
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, scf_solver, scf_environment).groundStateParameters();
+
+
+    // Adjust the RHF model parameters to match the solution found by GAMESS. Even though GQCP finds the same orbitals, up to a phase factor, we have to adjust them to be able to check further calculations.
+    const auto C = rhf_parameters.expansion();
+
+    auto C_adjusted_matrix = -C.matrix();
+    GQCP::RTransformation<double> C_adjusted {C_adjusted_matrix};
+
+    GQCP::MatrixX<double> C_adjusted_ref {2, 2};
+    // clang-format off
+    C_adjusted_ref << 0.5275,  1.5678,
+                      0.5275, -1.5678;
+    // clang-format on
+    BOOST_REQUIRE(C_adjusted_ref.isApprox(C_adjusted.matrix(), 1.0e-03));
+
+    const GQCP::QCModel::RHF<double> rhf_parameters_adjusted {N_P, rhf_parameters.orbitalEnergies(), C_adjusted};
+
+
+    // Since we're going to work with complex operators, we have to let a complex spin-orbital basis do the quantization.
+    GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> complex_spin_orbital_basis {molecule, basis_set};
+    GQCP::RTransformation<GQCP::complex> C_adjusted_complex {C_adjusted.matrix().cast<GQCP::complex>()};
+    complex_spin_orbital_basis.transform(C_adjusted_complex);
+
+    spin_orbital_basis.transform(C_adjusted);
+    hamiltonian.transform(C_adjusted);
+
+
+    // Calculate the orbital Hessian.
+    const auto orbital_space = rhf_parameters.orbitalSpace();
+    auto A = rhf_parameters_adjusted.calculateOrbitalHessianForImaginaryResponse(hamiltonian, orbital_space);
+
+    GQCP::MatrixX<double> A_ref {1, 1};
+    // clang-format off
+    A_ref << 2.17196;
+    // clang-format on
+
+    BOOST_CHECK(A_ref.isApprox((A.asMatrix() * (0.5_ii)).real(), 1.0e-04));
+}
+
+
+/**
+ *  Check the calculation of the ipsocentric current density and the intermediates for its calculation. The test system is H2O in an STO-3G basis set.
+ *
+ *  The reference implementation is a GAMESS-SYSMO combination. Calculations were performed by Remco Havenith.
+ */
+BOOST_AUTO_TEST_CASE(ipsocentric_H2O) {
+
+    using namespace GQCP::literals;
+
+    // Set up the molecular Hamiltonian in AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
+    const auto N = molecule.numberOfElectrons();
+    const auto N_P = molecule.numberOfElectronPairs();
+
+    const std::string basis_set {"STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, basis_set};
+
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+
+    // Solve the RHF SCF equations.
+    const auto S = spin_orbital_basis.quantize(GQCP::OverlapOperator());
+    auto scf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, hamiltonian, S);
+    auto scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
+
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, scf_solver, scf_environment).groundStateParameters();
+
+
+    // Adjust the RHF model parameters to match the solution found by GAMESS. Even though GQCP finds the same orbitals, up to a phase factor, we have to adjust them to be able to check further calculations.
+    const auto C = rhf_parameters.expansion();
+
+    auto C_adjusted_matrix = C.matrix();
+    C_adjusted_matrix.col(1) *= -1;
+    C_adjusted_matrix.col(3) *= -1;
+    C_adjusted_matrix.col(4) *= -1;
+    C_adjusted_matrix.col(5) *= -1;
+    C_adjusted_matrix.col(6) *= -1;
+    GQCP::RTransformation<double> C_adjusted {C_adjusted_matrix};
+
+    GQCP::MatrixX<double> C_adjusted_ref {7, 7};
+    // clang-format off
+    C_adjusted_ref << -0.9944,  0.2392,  0.0000,  0.0937, 0.0000, -0.1116,  0.0000,
+                      -0.0241, -0.8857,  0.0000, -0.4796, 0.0000,  0.6696, -0.0000,
+                      -0.0000, -0.0000, -0.6073, -0.0000, 0.0000,  0.0000,  0.9192,
+                      -0.0032, -0.0859, -0.0000,  0.7474, 0.0000,  0.7385, -0.0000,
+                       0.0000,  0.0000,  0.0000,  0.0000, 1.0000,  0.0000,  0.0000,
+                       0.0046, -0.1440, -0.4530,  0.3295, 0.0000, -0.7098, -0.7325,
+                       0.0046, -0.1440,  0.4530,  0.3295, 0.0000, -0.7098,  0.7325;
+    // clang-format on
+    BOOST_REQUIRE(C_adjusted_ref.isApprox(C_adjusted.matrix(), 1.0e-03));
+
+    const GQCP::QCModel::RHF<double> rhf_parameters_adjusted {N_P, rhf_parameters.orbitalEnergies(), C_adjusted};
+
+
+    // Since we're going to work with complex operators, we have to let a complex spin-orbital basis do the quantization.
+    GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> complex_spin_orbital_basis {molecule, basis_set};
+    GQCP::RTransformation<GQCP::complex> C_adjusted_complex {C_adjusted.matrix().cast<GQCP::complex>()};
+    complex_spin_orbital_basis.transform(C_adjusted_complex);
+
+    spin_orbital_basis.transform(C_adjusted);
+    hamiltonian.transform(C_adjusted);
+
+
+    // Calculate the orbital Hessian.
+    const auto orbital_space = rhf_parameters.orbitalSpace();
+    auto A = rhf_parameters_adjusted.calculateOrbitalHessianForImaginaryResponse(hamiltonian, orbital_space);
+
+    GQCP::MatrixX<double> A_ref {10, 10};
+    // clang-format off
+    A_ref << 39.96940,  0.00000,  0.03448,  0.00000,  0.00000, -0.00925,  0.03956,  0.00000,  0.00000,  0.00000,
+              0.00000, 40.06171,  0.00000,  0.05605, -0.02686,  0.00000,  0.00000,  0.02998,  0.00000,  0.00000,
+              0.03448,  0.00000,  2.37666,  0.00000,  0.00000, -0.11291, -0.02343,  0.00000,  0.00000,  0.00000,
+              0.00000,  0.05605,  0.00000,  2.51331, -0.03566,  0.00000,  0.00000, -0.00228,  0.00000,  0.00000,
+              0.00000, -0.02686,  0.00000, -0.03566,  1.10153,  0.00000,  0.00000, -0.07674,  0.00000,  0.00000,
+             -0.00925,  0.00000, -0.11291,  0.00000,  0.00000,  1.42443,  0.01478,  0.00000,  0.00000,  0.00000,
+              0.03956,  0.00000, -0.02343,  0.00000,  0.00000,  0.01478,  0.93180,  0.00000,  0.00000,  0.00000,
+              0.00000,  0.02998,  0.00000, -0.00228, -0.07674,  0.00000,  0.00000,  1.03049,  0.00000,  0.00000,
+              0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.64372,  0.00000,
+              0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.00000,  0.78206;
+    // clang-format on
+
+    BOOST_CHECK(A_ref.isApprox((A.asMatrix() * (0.5_ii)).real(), 1.0e-04));
+
+
+    // Solve the CPHF equations for the angular momentum operator.
+    const auto L = complex_spin_orbital_basis.quantize(GQCP::AngularMomentumOperator());
+    const auto F_B = rhf_parameters_adjusted.calculateMagneticFieldResponseForce(L);
+
+    GQCP::MatrixX<double> F_B_ref {3, 10};
+    // clang-format off
+    F_B_ref << 0.00000, 0.00000, 0.00000,  0.00000, 0.00000,  0.00000, 0.00000, 0.00000,  0.42752, -0.00000,
+               0.00000, 0.00000, 0.00000,  0.00000, 0.00000,  0.00000, 0.00000, 0.00000, -0.00000, -0.52599,
+               0.00000, 0.12303, 0.00000, -0.06987, 0.26617, -0.00000, 0.00000, 0.47815,  0.00000,  0.00000;
+    // clang-format on
+
+    BOOST_CHECK(F_B_ref.transpose().isApprox((F_B * (0.5_ii)).real(), 1.0e-04));
+
+
+    auto environment_B = GQCP::LinearEquationEnvironment<GQCP::complex>(A.asMatrix(), -F_B);
+    auto solver_B = GQCP::LinearEquationSolver<GQCP::complex>::HouseholderQR();
+    solver_B.perform(environment_B);
+    const auto x = environment_B.x;
+
+    GQCP::MatrixX<double> x_ref {3, 10};
+    // clang-format off
+    x_ref << 0.00000, 0.00000, 0.00000,  0.00000, 0.00000,  0.00000, 0.00000, 0.00000,  0.66414, -0.00000,
+             0.00000, 0.00000, 0.00000,  0.00000, 0.00000,  0.00000, 0.00000, 0.00000, -0.00000, -0.67257,
+             0.00000, 0.00293, 0.00000, -0.02353, 0.27468, -0.00000, 0.00000, 0.48432,  0.00000,  0.00000;
+    // clang-format on
+
+    BOOST_CHECK(x_ref.transpose().isApprox(-x.real(), 1.0e-04));
+
+
+    // Solve the CPHF equations for the linear momentum operator.
+    const auto p = complex_spin_orbital_basis.quantize(GQCP::LinearMomentumOperator());
+    const auto F_G = rhf_parameters_adjusted.calculateGaugeOriginTranslationResponseForce(p);
+
+    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x,y,z) one.
+    GQCP::MatrixX<GQCP::complex> F_G_reduced {10, 3};
+    F_G_reduced.col(0) = 2 * F_G.col(3);  // x <--> yz
+    F_G_reduced.col(1) = 2 * F_G.col(4);  // y <--> zx
+    F_G_reduced.col(2) = 2 * F_G.col(0);  // z <--> xy
+
+    GQCP::MatrixX<double> F_G_ref {3, 10};
+    // clang-format off
+    F_G_ref << -0.00000, -1.73412, 0.00000, 0.12306, 0.84094, 0.00000, -0.00000, -0.67978,  0.00000, 0.00000,
+               -1.39805,  0.00000, 0.06859, 0.00000, 0.00000, 0.61259, -0.64447,  0.00000,  0.00000, 0.00000,
+                0.00000,  0.00000, 0.00000, 0.00000, 0.00000, 0.00000,  0.00000,  0.00000, -0.18459, 0.00000;
+    // clang-format on
+
+    BOOST_CHECK(F_G_ref.transpose().isApprox((F_G_reduced * (0.5_ii)).real(), 1.0e-04));
+
+
+    auto environment_G = GQCP::LinearEquationEnvironment<GQCP::complex>(A.asMatrix(), -F_G);
+    auto solver_G = GQCP::LinearEquationSolver<GQCP::complex>::HouseholderQR();
+    solver_G.perform(environment_G);
+
+    const auto y = environment_G.x;
+    // std::cout << y << std::endl;
+
+    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x,y,z) one.
+    GQCP::MatrixX<GQCP::complex> y_reduced {10, 3};
+    y_reduced.col(0) = 2 * y.col(3);  // x <--> yz
+    y_reduced.col(1) = 2 * y.col(4);  // y <--> zx
+    y_reduced.col(2) = 2 * y.col(0);  // z <--> xy
+
+    GQCP::MatrixX<double> y_ref {3, 10};
+    // clang-format off
+    y_ref << -0.00000, -0.04243, 0.00000, 0.05961, 0.72221, 0.00000, -0.00000, -0.60452,  0.00000, 0.00000,
+             -0.03422,  0.00000, 0.04342, 0.00000, 0.00000, 0.44050, -0.69608,  0.00000,  0.00000, 0.00000,
+              0.00000,  0.00000, 0.00000, 0.00000, 0.00000, 0.00000,  0.00000,  0.00000, -0.28675, 0.00000;
+    // clang-format on
+
+    BOOST_CHECK(y_ref.transpose().isApprox(-y_reduced.real(), 1.0e-04));
 }
