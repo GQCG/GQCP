@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     // Check the result against the python implementation from @lelemmen. (https://github.com/GQCG-res/constrained-entanglement/blob/develop/notebooks/Hubbard-Redistribution.ipynb)
     const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
 
-    BOOST_CHECK(std::abs(S - ref) < 1.0e-08);
+    BOOST_CHECK(std::abs(S - ref) < 1.0e-06);
 
     // Check whether the method throws an exception if a non-existing orbital index is given.
     BOOST_CHECK_THROW(linear_expansion.calculateSingleOrbitalEntropy(4);, std::invalid_argument);  // Orbital index is larger than the amount of orbitals.
