@@ -1565,20 +1565,20 @@ public:
 
 
     /**
-     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix.
+     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
      * 
      *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
      *
      * @return The single orbital entropy of the orbital at the specified index.
      * 
-     * @note This version of this method is used when the linear expansion is based on a spin resolved ONV basis.
+     * @note This version of this method is used when the linear expansion is based on a spin-resolved ONV basis.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
 
         // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
         if (orbital_index > this->onv_basis.numberOfOrbitals()) {
-            throw std::invalid_argument("The given orbital index is larger than the amount of orbitals in the system.");
+            throw std::invalid_argument("LinearExpansion::calculateSingleOrbitalEntropy(const size_t): The given orbital index is larger than the amount of orbitals in the system.");
         }
 
         // In order to calculate the single orbital entropy, we need the spin resolved one- and two-particle density matrices.
@@ -1614,20 +1614,20 @@ public:
 
 
     /**
-     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix.
+     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
      * 
      *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
      *
      * @return The single orbital entropy of the orbital at the specified index.
      * 
-     * @note This version of this method is used when the linear expansion is based on a seniority zero ONV basis.
+     * @note This version of this method is used when the linear expansion is based on a seniority-zero ONV basis.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t& orbital_index) const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
 
         // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
         if (orbital_index > this->onv_basis.numberOfOrbitals()) {
-            throw std::invalid_argument("The given orbital index is larger than the amount of orbitals in the system.");
+            throw std::invalid_argument("LinearExpansion::calculateSingleOrbitalEntropy(const size_t): The given orbital index is larger than the amount of orbitals in the system.");
         }
 
         // In order to calculate the single orbital entropy, we need the spin resolved one-particle density matrix.
