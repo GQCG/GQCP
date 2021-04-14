@@ -658,75 +658,76 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, double> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
 
-        // The ket indices should be reversed because the annihilators on the ket should be applied from right to left
+        // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
         std::vector<size_t> ket_indices_reversed = ket_indices;
         std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
 
 
         double value = 0.0;
-        int sign = 1;
+        int sign_bra = 1;
+        int sign_ket = 1;
         const size_t dim = this->onv_basis.dimension();
 
 
         SpinUnresolvedONV bra = this->onv_basis.constructONVFromAddress(0);
         size_t I = 0;
-        while (I < dim) {  // loop over all bra addresses
+        while (I < dim) {  // Loop over all bra addresses.
 
-            // Annihilate the bra on the bra indices
-            if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, the bra doesn't change
+            // Annihilate the bra on the bra indices.
+            if (!bra.annihilateAll(bra_indices, sign_bra)) {  // If we can't annihilate, the bra doesn't change.
 
-                // Go to the beginning of the outer while loop with the next bra
-                if (I < dim - 1) {  // prevent the last permutation from occurring
+                // Go to the beginning of the outer while loop with the next bra.
+                if (I < dim - 1) {  // Prevent the last permutation from occurring.
                     this->onv_basis.transformONVToNextPermutation(bra);
                     I++;
-                    sign = 1;
+                    sign_bra = 1;
                     continue;
                 } else {
-                    break;  // we have to jump out if we have looped over the whole bra dimension
+                    break;  // We have to jump out if we have looped over the whole bra dimension.
                 }
             }
 
 
             SpinUnresolvedONV ket = this->onv_basis.constructONVFromAddress(0);
             size_t J = 0;
-            while (J < dim) {  // loop over all ket indices
+            while (J < dim) {  // Loop over all ket indices.
 
-                // Annihilate the ket on the ket indices
-                if (!ket.annihilateAll(ket_indices_reversed, sign)) {  // if we can't annihilate, the ket doesn't change
-                    // Go to the beginning of this (the inner) while loop with the next bra
-                    if (J < dim - 1) {  // prevent the last permutation from occurring
+                // Annihilate the ket on the ket indices.
+                if (!ket.annihilateAll(ket_indices_reversed, sign_ket)) {  // If we can't annihilate, the ket doesn't change.
+                    // Go to the beginning of this (the inner) while loop with the next bra.
+                    if (J < dim - 1) {  // Prevent the last permutation from occurring.
                         this->onv_basis.transformONVToNextPermutation(ket);
                         J++;
-                        sign = 1;
+                        sign_ket = 1;
                         continue;
                     } else {
-                        break;  // we have to jump out if we have looped over the whole ket dimension
+                        break;  // We have to jump out if we have looped over the whole ket dimension.
                     }
                 }
 
                 if (bra == ket) {
-                    value += sign * this->coefficient(I) * this->coefficient(J);
+                    value += sign_bra * sign_ket * this->coefficient(I) * this->coefficient(J);
                 }
 
-                // Reset the previous ket annihilations and move to the next ket
-                if (J == dim - 1) {  // prevent the last permutation from occurring
-                    break;           // out of the J-loop
+                // Reset the previous ket annihilations and move to the next ket.
+                if (J == dim - 1) {  // Prevent the last permutation from occurring.
+                    break;           // Out of the J-loop.
                 }
                 ket.createAll(ket_indices_reversed);
                 this->onv_basis.transformONVToNextPermutation(ket);
-                sign = 1;
+                sign_ket = 1;
                 J++;
-            }  // while J loop
+            }  // While J loop.
 
-            // Reset the previous bra annihilations and move to the next bra
-            if (I == dim - 1) {  // prevent the last permutation from occurring
-                break;           // out of the I-loop
+            // Reset the previous bra annihilations and move to the next bra.
+            if (I == dim - 1) {  // Prevent the last permutation from occurring.
+                break;           // Out of the I-loop.
             }
             bra.createAll(bra_indices);
             this->onv_basis.transformONVToNextPermutation(bra);
-            sign = 1;
+            sign_bra = 1;
             I++;
-        }  // while I loop
+        }  // While I loop.
 
         return value;
     }
@@ -1560,6 +1561,100 @@ public:
             });
 
         return -1 / std::log(2) * (c2 * c2.log()).sum();  // Apply the log prefactor to change to log2.
+    }
+
+
+    /**
+     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
+     * 
+     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
+     *
+     * @return The single orbital entropy of the orbital at the specified index.
+     * 
+     * @note This version of this method is used when the linear expansion is based on a spin-resolved ONV basis.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
+
+        // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
+        if (orbital_index > this->onv_basis.numberOfOrbitals()) {
+            throw std::invalid_argument("LinearExpansion::calculateSingleOrbitalEntropy(const size_t): The given orbital index is larger than the amount of orbitals in the system.");
+        }
+
+        // In order to calculate the single orbital entropy, we need the spin resolved one- and two-particle density matrices.
+        const auto D = this->calculateSpinResolved1DM();
+        const auto d = this->calculateSpinResolved2DM();
+
+        // Extract the necessary elements from these density matrices.
+        const auto& gamma_i_alpha = D.alpha().matrix()(orbital_index, orbital_index);
+        const auto& gamma_i_beta = D.beta().matrix()(orbital_index, orbital_index);
+        const auto& Gamma_ii_alpha_beta = d.alphaBeta().tensor()(orbital_index, orbital_index, orbital_index, orbital_index);
+
+        // Zero-initiate the one-orbital density matrix.
+        MatrixX<double> rho = MatrixX<double>::Zero(4, 4);
+
+        // Fill in the diagonal elements of the one-orbital density matrix.
+        rho(0, 0) += 1 - gamma_i_alpha - gamma_i_beta + Gamma_ii_alpha_beta;
+        rho(1, 1) += gamma_i_alpha - Gamma_ii_alpha_beta;
+        rho(2, 2) += gamma_i_beta - Gamma_ii_alpha_beta;
+        rho(3, 3) += Gamma_ii_alpha_beta;
+
+        // To calculate the one-orbital entropy, we need the eigenvalues of the one-orbital RDM. But, since the one-orbital RDM is already diagonal, we can calculate the one-orbital entropy from those diagonal elements.
+        double S = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if (abs(rho(i, i)) > 1e-12) {  // The diagonal element must be non-zero in order to contribute to the entropy.
+                S -= rho(i, i) * log(rho(i, i));
+            }
+        }
+
+        // Return the single orbital entropy.
+        return S;
+    }
+
+
+    /**
+     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
+     * 
+     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
+     *
+     * @return The single orbital entropy of the orbital at the specified index.
+     * 
+     * @note This version of this method is used when the linear expansion is based on a seniority-zero ONV basis.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
+
+        // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
+        if (orbital_index > this->onv_basis.numberOfSpatialOrbitals()) {
+            throw std::invalid_argument("LinearExpansion::calculateSingleOrbitalEntropy(const size_t): The given orbital index is larger than the amount of orbitals in the system.");
+        }
+
+        // In order to calculate the single orbital entropy, we need the spin resolved one-particle density matrix.
+        const auto D = this->calculateSpinResolved1DM();
+
+        // Extract the necessary elements from these density matrices.
+        const auto& gamma_i_alpha = D.alpha().matrix()(orbital_index, orbital_index);
+
+        // Zero-initiate the one-orbital density matrix. Due to the absence of singly occupied orbitals, it reduces to a two-by-two matrix.
+        MatrixX<double> rho = MatrixX<double>::Zero(2, 2);
+
+        // Fill in the diagonal elements of the one-orbital density matrix.
+        rho(0, 0) += 1 - gamma_i_alpha;
+        rho(1, 1) += gamma_i_alpha;
+
+
+        // To calculate the one-orbital entropy, we need the eigenvalues of the one-orbital RDM. But, since the one-orbital RDM is already diagonal, we can calculate the one-orbital entropy from those diagonal elements.
+        double S = 0;
+
+        for (int i = 0; i < 2; i++) {
+            if (abs(rho(i, i)) > 1e-12) {  // The diagonal element must be non-zero in order to contribute to the entropy.
+                S -= rho(i, i) * log(rho(i, i));
+            }
+        }
+
+        // Return the single orbital entropy.
+        return S;
     }
 
 

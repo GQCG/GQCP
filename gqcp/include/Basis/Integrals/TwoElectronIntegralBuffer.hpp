@@ -74,7 +74,7 @@ public:
     /**
      *  @return If all the values of the calculated integrals are zero.
      */
-    bool areIntegralsAllZero() const { return false; }
+    bool areIntegralsAllZero() const override { return false; }
 
     /**
      *  @param i            The index of the component of the operator.

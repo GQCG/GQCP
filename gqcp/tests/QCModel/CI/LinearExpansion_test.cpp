@@ -23,6 +23,9 @@
 #include "Basis/Transformations/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
@@ -71,18 +74,94 @@ BOOST_AUTO_TEST_CASE(reader_test) {
 BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
     // Set up a test spin-resolved ONV basis.
-    const GQCP::SpinUnresolvedONVBasis onv_basis {8, 3};  // 8 spinors, 3 electrons
+    const GQCP::SpinUnresolvedONVBasis onv_basis {8, 3};  // 8 spinors, 3 electrons.
 
 
     // Check the Shannon entropy of a Hartree-Fock expansion
     const auto hartree_fock_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
-    BOOST_CHECK(hartree_fock_expansion.calculateShannonEntropy() < 1.0e-12);  // should be 0
+    BOOST_CHECK(hartree_fock_expansion.calculateShannonEntropy() < 1.0e-12);  // Should be 0.
 
 
     // Check the maximal entropy, corresponding to a wave function with all equal coefficients different from zero.
     const auto constant_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
-    const double reference_entropy = std::log2(onv_basis.dimension());  // manual derivation
+    const double reference_entropy = std::log2(onv_basis.dimension());  // Manual derivation.
     BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
+
+
+    // Check that the Shannon entropy of an expansion with only negative coefficients is non-zero.
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+
+    // Fill the coefficient vector with strictly negative values.
+    int x = -1;
+
+    for (int i = 0; i < coefficients.size(); i++) {
+        coefficients[i] = x;
+        x -= 1;
+    }
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> negative_linear_expansion {onv_basis, coefficients};
+    BOOST_CHECK(std::abs(negative_linear_expansion.calculateShannonEntropy()) > 1.0e-12);  // Should be non-zero.
+}
+
+
+/**
+ *  Check if the single orbital entropy throws an exception when a non-existing orbital_index is given.
+ */
+BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
+
+    // Set up a Hubbard Hamiltonian.
+    // First, set up an adjacency matrix.
+    const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(3);
+
+    // Next, we use the adjacency matrix to create the Hopping Matrix.
+    const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
+
+    // Finally, create the Hubbard Hamiltonian.
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
+
+    // Next, densely solve the Hubbard CI problem to find the linear expansion.
+    const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 1};
+
+    auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+    // Check whether the method throws an exception if a non-existing orbital index is given.
+    BOOST_CHECK_THROW(linear_expansion.calculateSingleOrbitalEntropy(4);, std::invalid_argument);  // Orbital index is larger than the amount of orbitals.
+}
+
+
+/**
+ *  Check if the calculation of the single orbital entropy matches the python implementation (@lelemmen) of Boguslawski's formula (https://doi.org/10.1002/qua.24832).
+ */
+BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
+
+    // Set up a Hubbard Hamiltonian.
+    // First, set up an adjacency matrix.
+    const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(3);
+
+    // Next, we use the adjacency matrix to create the Hopping Matrix.
+    const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
+
+    // Finally, create the Hubbard Hamiltonian.
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
+
+    // Next, densely solve the Hubbard CI problem to find the linear expansion.
+    const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 1};
+
+    auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+    // Calculate the single orbital entropy of Hubbard site `0`.
+    const auto S = linear_expansion.calculateSingleOrbitalEntropy(0);
+
+    // Check the result against the python implementation from @lelemmen. (https://github.com/GQCG-res/constrained-entanglement/blob/develop/notebooks/Hubbard-Redistribution.ipynb)
+    const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
+
+    BOOST_CHECK(std::abs(S - ref) < 1.0e-06);
 }
 
 
@@ -486,25 +565,26 @@ BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
 }
 
 
-// /**
-//  *  Check some 1-DM values calculated for the SpinUnresolvedONVBasis by comparing them to the general function calculateNDMElement.
-//  */
-// BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_NDM) {
+/**
+ *  Check some 1-DM values calculated for the SpinUnresolvedONVBasis by comparing them to the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_NDM) {
 
-//     // Set up an example linear expansion in a spin-unresolved ONV basis.
-//     const size_t M = 5;
-//     const size_t N = 2;
-//     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
-//     const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
 
-//     // Check some 1-DM values with calculateNDMElement().
-//     const auto D_specialized = linear_expansion.calculate1DM();
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - D_specialized(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - D_specialized(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - D_specialized(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
-//     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({4}, {4}) - D_specialized(4, 4)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
-// }
+
+    // Check some 1-DM values with calculateNDMElement().
+    const auto D_specialized = linear_expansion.calculate1DM();
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - D_specialized.matrix()(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - D_specialized.matrix()(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - D_specialized.matrix()(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({4}, {4}) - D_specialized.matrix()(4, 4)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
+}
 
 
 /**
