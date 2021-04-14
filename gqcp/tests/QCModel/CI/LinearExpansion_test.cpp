@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     const auto S = linear_expansion.calculateSingleOrbitalEntropy(0);
 
     // Check the result against the python implementation from @lelemmen. (https://github.com/GQCG-res/constrained-entanglement/blob/develop/notebooks/Hubbard-Redistribution.ipynb)
-    const auto ref = 1.33689;  // From @lelemmen's python implementation.
+    const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
 
     BOOST_CHECK(std::abs(S - ref) < 1.0e-06);
 }
