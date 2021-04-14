@@ -183,6 +183,21 @@ void bindLinearExpansions(py::module& module) {
     // Define the python class related to a linear expansion of a Seniority Zero ONV basis and expose the necessary interfaces.
     py::class_<LinearExpansion<SeniorityZeroONVBasis>> py_LinearExpansion_SeniorityZero {module, "LinearExpansion_SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis."};
 
+    // Expose the bindings exclusive to this type of linear expansion
+    py_LinearExpansion_SeniorityZero
+
+        /*
+         * MARK: Entropy
+         */
+
+        .def(
+            "calculateSingleOrbitalEntropy",
+            [](const LinearExpansion<SeniorityZeroONVBasis>& linear_expansion, const size_t orbital_index) {
+                return linear_expansion.calculateSingleOrbitalEntropy(orbital_index);
+            },
+            py::arg("orbital_index"),
+            "Return the single orbital entropy of the orbital at the specified index, according to the formula of Boguslawski (https://doi.org/10.1002/qua.24832).");
+
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SeniorityZero);
 
@@ -242,7 +257,7 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "calculateSingleOrbitalEntropy",
-            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion, const size_t& orbital_index) {
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion, const size_t orbital_index) {
                 return linear_expansion.calculateSingleOrbitalEntropy(orbital_index);
             },
             py::arg("orbital_index"),
