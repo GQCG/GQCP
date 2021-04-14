@@ -105,8 +105,35 @@ BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
 
 /**
- *  Check if the calculation of the single orbital entropy matches the python implementation (@lelemmen) of Boguslawski's formula (https://doi.org/10.1002/qua.24832).
  *  Check if the single orbital entropy throws an exception when a non-existing orbital_index is given.
+ */
+BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
+
+    // Set up a Hubbard Hamiltonian.
+    // First, set up an adjacency matrix.
+    const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(3);
+
+    // Next, we use the adjacency matrix to create the Hopping Matrix.
+    const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
+
+    // Finally, create the Hubbard Hamiltonian.
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
+
+    // Next, densely solve the Hubbard CI problem to find the linear expansion.
+    const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 1};
+
+    auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+    // Check whether the method throws an exception if a non-existing orbital index is given.
+    BOOST_CHECK_THROW(linear_expansion.calculateSingleOrbitalEntropy(4);, std::invalid_argument);  // Orbital index is larger than the amount of orbitals.
+}
+
+
+/**
+ *  Check if the calculation of the single orbital entropy matches the python implementation (@lelemmen) of Boguslawski's formula (https://doi.org/10.1002/qua.24832).
  */
 BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
 
@@ -135,9 +162,6 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
 
     BOOST_CHECK(std::abs(S - ref) < 1.0e-06);
-
-    // Check whether the method throws an exception if a non-existing orbital index is given.
-    BOOST_CHECK_THROW(linear_expansion.calculateSingleOrbitalEntropy(4);, std::invalid_argument);  // Orbital index is larger than the amount of orbitals.
 }
 
 
