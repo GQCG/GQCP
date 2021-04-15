@@ -343,7 +343,7 @@ public:
             for (size_t mu = 0; mu < basis_functions.size(); mu++) {
                 const auto coefficient = this->expansion().matrix().col(p)(mu);
                 const auto& function = basis_functions[mu];
-                spatial_orbital.append({coefficient}, {function});
+                spatial_orbital.append(coefficient, function);
             }
 
             spatial_orbitals.push_back(spatial_orbital);
@@ -376,7 +376,7 @@ public:
                     const auto& basis_function = basis_functions[mu];
                     const auto contraction_length = basis_function.length();
 
-                    // A basis function (a.k.a a contracted GTO) is a contraction of Cartesian GTOs.
+                    // A basis function (a.k.a. contracted GTO) is a contraction (i.e. a linear combination) of Cartesian GTOs.
                     const auto& contraction_coefficients = basis_function.coefficients();
                     const auto& primitives = basis_function.functions();
 
