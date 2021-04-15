@@ -1009,13 +1009,11 @@ public:
 
         using namespace GQCP::literals;
 
-        const auto& j = j_op.allParameters();
-
         // Evaluate the value of the magnetic inducibility for every point of the grid.
         std::vector<Matrix<complex, 3, 3>> J_field_values;
         J_field_values.reserve(grid.numberOfPoints());
 
-        grid.forEach([&orbital_space, &x_B, &x_G, &J_field_values, &j](const Vector<double, 3>& r) {
+        grid.forEach([&orbital_space, &x_B, &x_G, &J_field_values, &j_op](const Vector<double, 3>& r) {
             const auto J = RHF<complex>::calculateIpsocentricMagneticInducibility(r, orbital_space, x_B, x_G, j_op);
             J_field_values.push_back(J);
         });
