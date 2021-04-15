@@ -253,19 +253,6 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_H2) {
     // clang-format on
 
     BOOST_CHECK(y_ref.transpose().isApprox(-y_reduced.real(), 1.0e-04));
-
-
-    // Calculate the ipsocentric magnetic inducibility on a grid and check the results.
-    const auto j_op = complex_spin_orbital_basis.quantize(GQCP::CurrentDensityOperator());
-
-    const GQCP::Vector<double, 3> origin {-2.0, -2.0, -2.0};
-    const std::array<size_t, 3> steps {6, 6, 6};
-    const std::array<double, 3> step_sizes {0.8, 0.8, 0.8};
-
-    const GQCP::CubicGrid grid {origin, steps, step_sizes};
-    const auto grid_points = grid.points();
-
-    const auto J_field = GQCP::QCModel::RHF<GQCP::complex>::calculateIpsocentricMagneticInducibility(grid, orbital_space, x, y, j_op);
 }
 
 
@@ -406,6 +393,25 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_H2O) {
     // clang-format on
 
     BOOST_CHECK(y_ref.transpose().isApprox(-y_reduced.real(), 1.0e-04));
+
+
+    // Calculate the ipsocentric magnetic inducibility on a grid and check the results.
+    const auto j_op = complex_spin_orbital_basis.quantize(GQCP::CurrentDensityOperator());
+
+    const GQCP::Vector<double, 3> origin {-2.0, -2.0, -2.0};
+    const std::array<size_t, 3> steps {6, 6, 6};
+    const std::array<double, 3> step_sizes {0.8, 0.8, 0.8};
+    const GQCP::CubicGrid grid {origin, steps, step_sizes};
+
+    const auto J_field = GQCP::QCModel::RHF<GQCP::complex>::calculateIpsocentricMagneticInducibility(grid, orbital_space, x, y, j_op);
+    const auto& J_values = J_field.values();
+
+    const auto J_z_field = GQCP::Field<GQCP::Vector<double, 3>>::ReadGridFile<3>("data/h2o_sysmo_currents.rgrid");
+    const auto& J_z_values = J_z_field.values();
+
+    for (size_t i = 0; i < grid.numberOfPoints(); i++) {
+        BOOST_CHECK(J_values[i].col(2).real().isApprox(-J_z_values[i], 1.0e-05));
+    }
 }
 
 
@@ -558,6 +564,27 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_CH4) {
     // clang-format on
 
     BOOST_CHECK(y_ref.transpose().isApprox(-y_reduced.real(), 1.0e-04));
+
+
+    // Calculate the ipsocentric magnetic inducibility on a grid and check the results.
+    const auto j_op = complex_spin_orbital_basis.quantize(GQCP::CurrentDensityOperator());
+
+    const GQCP::Vector<double, 3> origin {-2.0, -2.0, -2.0};
+    const std::array<size_t, 3> steps {6, 6, 6};
+    const std::array<double, 3> step_sizes {0.8, 0.8, 0.8};
+
+    const GQCP::CubicGrid grid {origin, steps, step_sizes};
+
+    const auto J_field = GQCP::QCModel::RHF<GQCP::complex>::calculateIpsocentricMagneticInducibility(grid, orbital_space, x, y, j_op);
+    const auto& J_values = J_field.values();
+
+
+    const auto J_z_field = GQCP::Field<GQCP::Vector<double, 3>>::ReadGridFile<3>("data/ch4_sysmo_currents.rgrid");
+    const auto& J_z_values = J_z_field.values();
+
+    for (size_t i = 0; i < grid.numberOfPoints(); i++) {
+        BOOST_CHECK(J_values[i].col(2).real().isApprox(-J_z_values[i], 1.0e-06));
+    }
 }
 
 
