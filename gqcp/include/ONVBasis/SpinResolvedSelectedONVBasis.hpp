@@ -81,6 +81,22 @@ public:
 
 
     /*
+     *  MARK: Named constructors
+     */
+
+    /**
+     *  Create a `SpinResolvedSelectedONVBasis` for a CI singles calculation, using the HF determinant as a reference.
+     * 
+     *  @param K            The number of spin-orbitals (equal for alpha and beta).
+     *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+     * 
+     *  @returen A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
+     */
+    static SpinResolvedSelectedONVBasis CIS(const size_t K, const size_t N_alpha, const size_t N_beta);
+
+
+    /*
      *  MARK: General information
      */
 

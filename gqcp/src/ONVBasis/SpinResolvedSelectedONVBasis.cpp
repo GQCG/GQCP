@@ -107,6 +107,117 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 
 
 /*
+ *  MARK: Named constructors
+ */
+
+/**
+ *  Create a `SpinResolvedSelectedONVBasis` for a CI singles calculation, using the HF determinant as a reference.
+ * 
+ *  @param K            The number of spin-orbitals (equal for alpha and beta).
+ *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+ *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+ * 
+ *  @returen A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
+ */
+SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, const size_t N_alpha, const size_t N_beta) {
+
+    const auto V_alpha = K - N_alpha;          // The number of alpha virtual orbitals.
+    const auto dim_alpha = N_alpha * V_alpha;  // The number of alpha excitations.
+
+    const auto V_beta = K - N_beta;         // The number of beta virtual orbitals.
+    const auto dim_beta = N_beta * V_beta;  // The number of beta excitations.
+
+
+    SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
+
+    std::vector<SpinResolvedONV> onvs;
+    onvs.reserve(dim_alpha * dim_beta);
+
+    auto reference = SpinResolvedONV::UHF(K, N_alpha, N_beta);
+    auto alpha_reference = reference.onv(Spin::alpha);
+    auto beta_reference = reference.onv(Spin::beta);
+
+    const auto alpha_orbital_space = alpha_reference.orbitalSpace();
+    const auto beta_orbital_space = beta_reference.orbitalSpace();
+
+    onvs.push_back(reference);
+    // Generate the alpha-alpha-excitations.
+    std::cout << "AA" << std::endl;
+    for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
+        std::cout << "i: " << i_alpha << std::endl;
+        for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
+            std::cout << "a: " << a_alpha << std::endl;
+            auto alpha_part = alpha_reference;
+            auto beta_part = beta_reference;
+
+            alpha_part.annihilate(i_alpha);
+            alpha_part.create(a_alpha);
+
+            onvs.emplace_back(alpha_part, beta_part);
+        }
+    }
+
+    // Generate the beta-beta-excitations.
+    std::cout << "BB" << std::endl;
+    for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
+        std::cout << "i: " << i_beta << std::endl;
+        for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
+            std::cout << "a: " << a_beta << std::endl;
+            auto alpha_part = alpha_reference;
+            auto beta_part = beta_reference;
+
+            beta_part.annihilate(i_beta);
+            beta_part.create(a_beta);
+
+            onvs.emplace_back(alpha_part, beta_part);
+        }
+    }
+
+
+    // Generate the alpha-beta excitations.
+    std::cout << "AB" << std::endl;
+    for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
+        std::cout << "i: " << i_alpha << std::endl;
+        for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
+            std::cout << "a: " << a_beta << std::endl;
+            auto alpha_part = alpha_reference;
+            auto beta_part = beta_reference;
+
+            onvs.emplace_back(alpha_part, beta_part);
+        }
+    }
+
+
+    // Generate the alpha-beta excitations.
+    std::cout << "BA" << std::endl;
+    for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
+        std::cout << "i: " << i_beta << std::endl;
+        for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
+            std::cout << "a: " << a_alpha << std::endl;
+            auto alpha_part = alpha_reference;
+            auto beta_part = beta_reference;
+
+            alpha_part.create(a_alpha);
+            beta_part.annihilate(i_beta);
+
+            onvs.emplace_back(alpha_part, beta_part);
+        }
+    }
+
+
+    onv_basis.expandWith(onvs);
+    std::cout << "number of ONVS: " << onv_basis.dimension() << std::endl;
+
+    for (size_t i = 0; i < onv_basis.dimension(); i++) {
+        std::cout << onv_basis.onvWithIndex(i).asString() << std::endl;
+    }
+
+
+    return onv_basis;
+}
+
+
+/*
  *  MARK: Modifying
  */
 
