@@ -969,7 +969,12 @@ public:
                         complex right_value = -1.0_ii * x_m(a, i);
 
                         // 2. The linear response coefficient related to the gauge origin translation perturbation.
-                        for (size_t n = 0; n != m; n++) {
+                        for (size_t n = 0; n < 3; n++) {
+
+                            // 'm' cannot be equal to 'n': there is no such linear response.
+                            if (n == m) {
+                                continue;
+                            }
 
                             // Determine the compound index 'mn' of the dyadic Cartesian direction in the 6-column matrix representation.
                             const auto row_major_index = 3 * m + n;
