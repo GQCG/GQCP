@@ -119,7 +119,21 @@ void bindQCModelRHF(py::module& module) {
     py_QCModel_RHF_cd
         .def_static(
             "calculateIpsocentricMagneticInducibility",
-            &QCModel::RHF<complex>::calculateIpsocentricMagneticInducibility,
+            [](const Vector<double, 3>& r, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 6>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<complex, CartesianGTO>>& j_op) {
+                return QCModel::RHF<complex>::calculateIpsocentricMagneticInducibility(r, orbital_space, x_B, x_G, j_op);
+            },
+            py::arg("r"),
+            py::arg("orbital_space"),
+            py::arg("x_B"),
+            py::arg("x_g"),
+            py::arg("j_op"),
+            "Evaluate the magnetic inducibility at the given point using the ipsocentric CSGT method.")
+
+        .def_static(
+            "calculateIpsocentricMagneticInducibility",
+            [](const CubicGrid& grid, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 6>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<complex, CartesianGTO>>& j_op) {
+                return QCModel::RHF<complex>::calculateIpsocentricMagneticInducibility(grid, orbital_space, x_B, x_G, j_op);
+            },
             py::arg("grid"),
             py::arg("orbital_space"),
             py::arg("x_B"),
