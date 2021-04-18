@@ -6,4 +6,5 @@ target_sources(gqcp
         SpinResolvedSelectedONVBasis.cpp
         SpinUnresolvedONV.cpp
         SpinUnresolvedONVBasis.cpp
+        SpinUnresolvedSelectedONVBasis.cpp
 )
