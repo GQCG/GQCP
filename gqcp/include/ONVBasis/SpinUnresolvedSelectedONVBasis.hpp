@@ -22,6 +22,7 @@
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/complex.hpp"
 
 
@@ -170,15 +171,15 @@ public:
         for (; !container.isFinished(); container.increment()) {
             auto onv_I = this->onvWithIndex(container.index);
 
-            // Calculate the diagonal elements.
+            // Calculate the diagonal elements (I = J).
             for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
                 if (onv_I.isOccupied(p)) {
-                    container.addRowwise(container.index, f(p, p));  // F(I,I)
+                    container.addRowwise(container.index, f(p, p));  // This emplaces F(I,I).
                 }
             }
 
 
-            // Calculate the off-diagonal elements, by going over all other ket ONVs J. (I != J)
+            // Calculate the off-diagonal elements (I != J), by going over all other ket ONVs J.
             for (size_t J = container.index + 1; J < dim; J++) {
                 auto onv_J = this->onvWithIndex(J);
 
@@ -193,11 +194,110 @@ public:
                     const auto value = sign * f(p, q);
                     const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
 
-                    container.addRowwise(J, value);                // F(I,J)
-                    container.addColumnwise(J, conjugated_value);  // F(J,I)
+                    container.addRowwise(J, value);                // This emplaces F(I,J).
+                    container.addColumnwise(J, conjugated_value);  // This emplaces F(J,I).
                 }
             }
         }
+    }
+
+
+    /**
+     *  Calculate the matrix representation of a generalized Hamiltonian in this ONV basis and emplace it in the given container.
+     * 
+     *  @tparam Matrix                      The type of matrix used to store the evaluations.
+     *  @tparam Scalar                      The scalar representation of a Hamiltonian element: real or complex.
+     *
+     *  @param hamiltonian                  A generalized Hamiltonian expressed in an orthonormal spinor basis.
+     *  @param container                    A specialized container for emplacing evaluations/matrix elements.
+     */
+    template <typename Matrix, typename Scalar>
+    void evaluate(const GSQHamiltonian<Scalar>& hamiltonian, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
+
+        // Prepare some variables.
+        const size_t dim = this->dimension();
+        const size_t M = this->numberOfOrbitals();
+
+        const auto& h = hamiltonian.core().parameters();
+        const auto& g = hamiltonian.twoElectron().parameters();
+
+
+        // Loop over all bra indices I.
+        for (; !container.isFinished(); container.increment()) {
+            auto onv_I = this->onvWithIndex(container.index);
+            auto& occupied_indices_I = onv_I.occupiedIndices();
+            // auto unoccupied_indices_I = onv_I.unoccpiedIndices();
+
+            // Calculate the diagonal elements (I = J).
+            for (const auto p : occupied_indices_I) {
+                container.addRowwise(container.index, f(p, p));  // This emplaces F(I,I).
+
+                for (const auto q : occupied_indices_I) {
+                    if (p != q) {
+                        container.addRowwise(container.index, 0.5 * (g(p, p, q, q) - g(p, q, q, p)));
+                    }
+                }
+            }
+
+
+            // Calculate the off-diagonal elements (I != J), by going over all other ket ONVs J.
+            for (size_t J = container.index + 1; J < dim; J++) {
+                auto onv_J = this->onvWithIndex(J);
+
+                // If I and J are only 1 excitation away, they can couple through the Hamiltonian through both the one- and two-electron parts.
+                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+
+                    // The one-electron part.
+                    auto w = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but not in J.
+                    auto x = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but not in I.
+                    // We're sure that there is only 1 element in the vectors above.
+
+                    // Calculate the total sign and emplace the correct value in the container.
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(w) * onv_J.operatorPhaseFactor(x));
+
+                    const auto value = sign * f(w, x);
+                    const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
+
+                    container.addRowwise(J, value);                // This emplaces F(I,J).
+                    container.addColumnwise(J, conjugated_value);  // This emplaces F(J,I).
+
+
+                    // The two-electron part.
+                    for (size_t p = 0; p < M; p++) {
+                        if (onv_I.isOccupied(p) && onv_J.isOccupied(p)) {  // `p` must be occupied in I and J.
+                            if ((p != w) && (p != x)) {                    // We can't annihilate twice on the indices `w` or `x`.
+
+                                const auto value = 0.5 * sign * (g(w, x, p, p) - g(w, p, p, x) + g(p, p, w, x) - g(p, x, w, p));
+                                const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
+
+                                container.addRowwise(J, value);                // This emplaces G(I,J).
+                                container.addColumnwise(J, conjugated_value);  // This emplaces G(J,I).
+                            }
+                        }
+                    }
+                }
+
+                // If I and J are 2 excitations away, they can couple through the Hamiltonian through the two-electron part.
+                else if (onv_I.countNumberOfDifferences(onv_J) == 4) {
+
+                    auto occupied_in_I = onv_I.findDifferentOccupations(onv_J);  // The orbitals that are occupied in J, but not in J.
+                    const auto w = occupied_in_I[0];
+                    const auto x = occupied_in_I[1];
+
+                    auto occupied_in_J = onv_J.findDifferentOccupations(onv_I);  // The orbitals that are occupied in I, but not in J.
+                    const auto y = occupied_in_J[0];
+                    const auto z = occupied_in_J[1];
+
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(w) * onv_I.operatorPhaseFactor(x) * onv_J.operatorPhaseFactor(y) * onv_J.operatorPhaseFactor(z));
+
+                    const auto value = 0.5 * sign * (g(x, z, w, y) - g(w, z, x, y) + g(w, y, x, z) - g(x, y, w, z));
+                    const auto conjugated_value = GQCP::conj(value);
+
+                    container.addRowwise(J, value);                // This emplaces G(I,J).
+                    container.addColumnwise(J, conjugated_value);  // This emplaces G(J,I).
+                }
+            }  // Loop over ket addresses J > I.
+        }      // Loop over bra addresses I.
     }
 };
 
