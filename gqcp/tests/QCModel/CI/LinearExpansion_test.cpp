@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     std::cout << linear_expansion.coefficients().matrix() << std::endl;
 
     // Calculate the single orbital entropy of Hubbard site `0`.
-    const auto S = linear_expansion.calculateSingleOrbitalEntropy(0);
+    const auto S = linear_expansion.calculateSingleOrbitalEntropy(2);
 
     // Check the result against the python implementation from @lelemmen. (https://github.com/GQCG-res/constrained-entanglement/blob/develop/notebooks/Hubbard-Redistribution.ipynb)
     const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
