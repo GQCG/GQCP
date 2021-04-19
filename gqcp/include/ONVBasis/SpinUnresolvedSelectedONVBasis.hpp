@@ -146,6 +146,30 @@ public:
     }
 
 
+    /**
+     *  Calculate the dense matrix representation of a generalized Hamiltonian in this ONV basis.
+     * 
+     *  @tparam Scalar          The scalar representation of a one-electron parameter: real or complex.
+     * 
+     *  @param hamiltonian      A generalized Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    template <typename Scalar>
+    SquareMatrix<Scalar> evaluateOperatorDense(const GSQHamiltonian<Scalar>& hamiltonian) const {
+
+        if (hamiltonian.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SpinUnresolvedSelectedONVBasis::evaluateOperatorDense(const GSQHamiltonian<double>&): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible.");
+        }
+
+        // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
+        MatrixRepresentationEvaluationContainer<SquareMatrix<Scalar>> container {this->dimension()};
+        this->evaluate<SquareMatrix<Scalar>>(hamiltonian, container);
+
+        return container.evaluation();
+    }
+
+
     /*
      *  MARK: Operator evaluations - general implementations - containers
      */
@@ -230,7 +254,7 @@ public:
 
             // Calculate the diagonal elements (I = J).
             for (const auto p : occupied_indices_I) {
-                container.addRowwise(container.index, f(p, p));  // This emplaces F(I,I).
+                container.addRowwise(container.index, h(p, p));  // This emplaces F(I,I).
 
                 for (const auto q : occupied_indices_I) {
                     if (p != q) {
@@ -255,7 +279,7 @@ public:
                     // Calculate the total sign and emplace the correct value in the container.
                     const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(w) * onv_J.operatorPhaseFactor(x));
 
-                    const auto value = sign * f(w, x);
+                    const auto value = sign * h(w, x);
                     const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
 
                     container.addRowwise(J, value);                // This emplaces F(I,J).
