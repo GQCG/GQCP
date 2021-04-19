@@ -23,6 +23,8 @@
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
+#include "DensityMatrix/G1DM.hpp"
+#include "DensityMatrix/G2DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
@@ -31,12 +33,12 @@
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/dynamic_bitset.hpp>
-#include <boost/range/adaptors.hpp>
 
 
 namespace GQCP {
@@ -1631,6 +1633,152 @@ public:
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
     enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+
+
+    /**
+     *  Calculate the generalized (G) one-electron density matrix for a spin-unresolved selected wave function expansion.
+     * 
+     *  @return The generalized (G) 1-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedSelectedONVBasis>::value, G1DM<Scalar>> calculate1DM() const {
+
+        // Prepare some variables.
+        const auto M = this->onv_basis.numberOfOrbitals();
+        const auto dim = this->onv_basis.dimension();
+
+        SquareMatrix<Scalar> D = SquareMatrix<Scalar>::Zero(M);
+
+        for (size_t I = 0; I < dim; I++) {  // Loop over all bra addresses I.
+            const auto& onv_I = this->onv_basis.onvWithIndex(I);
+            const auto& c_I = this->coefficient(I);
+
+            // Calculate the diagonal elements of the 1-DM.
+            const auto& occupied_indices_I = onv_I.occupiedIndices();
+            for (const auto& p : occupied_indices_I) {
+                D(p, p) += GQCP::conj(c_I) * c_I;
+            }
+
+            for (size_t J = I + 1; J < dim; J++) {  // Loop over all other (J != I) ket addresses.
+
+                const auto& onv_J = this->onv_basis.onvWithIndex(J);
+                const auto& c_J = this->coefficient(J);
+
+                // We only have a contribution if I and J are exactly 1 excitation away.
+                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+                    const auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but unoccupied in J.
+                    const auto q = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but unoccupied in I.
+
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_J.operatorPhaseFactor(q));
+                    const auto value = sign * GQCP::conj(c_I) * c_J;
+
+                    D(p, q) += value;
+                    D(q, p) += GQCP::conj(value);
+                }
+
+            }  // Loop over ket addresses J > I.
+        }      // Loop over bra addresses I.
+
+        return G1DM<Scalar> {D};
+    }
+
+
+    /**
+     *  Calculate the generalized (G) two-electron density matrix (1-DM) for a spin-unresolved selected wave function expansion.
+     * 
+     *  @return The generalized (G) 2-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedSelectedONVBasis>::value, G2DM<Scalar>> calculate2DM() const {
+
+        // Prepare some variables.
+        const auto M = this->onv_basis.numberOfOrbitals();
+        const auto dim = this->onv_basis.dimension();
+
+        SquareRankFourTensor<Scalar> d = SquareRankFourTensor<Scalar>::Zero(M);
+
+
+        for (size_t I = 0; I < dim; I++) {  // Loop over all bra addresses I.
+            const auto& onv_I = this->onv_basis.onvWithIndex(I);
+            const auto& c_I = this->coefficient(I);
+
+            const auto& occupied_indices_I = onv_I.occupiedIndices();
+            for (const auto& p : occupied_indices_I) {
+                for (const auto& q : occupied_indices_I) {
+                    if (p != q) {  // We can't annihilate on the same orbital twice.
+                        const auto value = GQCP::conj(c_I) * c_I;
+                        d(p, p, q, q) += value;
+                        d(p, q, q, p) -= value;
+                    }
+                }
+            }
+
+
+            for (size_t J = I + 1; J < dim; J++) {  // Loop over all different (J != I) ket indices J.
+                const auto& onv_J = this->onv_basis.onvWithIndex(J);
+                const auto& c_J = this->coefficient(J);
+
+                // Calculate the contribution if I and J are 1 excitation away.
+                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+
+                    // Determine the orbital indices that match the excitation.
+                    const auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but unoccupied in J.
+                    const auto q = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but unoccupied in I.
+
+                    // Add the contribution from this excitation to all appropriate density matrix elements.
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_J.operatorPhaseFactor(q));
+
+                    for (size_t r = 0; r < M; r++) {
+                        if (onv_I.isOccupied(r) && onv_J.isOccupied(r)) {  // `r` must be occupied in the bra and in the ket.
+                            if ((p != r) && (q != r)) {                    // We can't annihilate on the same orbital twice.
+                                const auto value = sign * GQCP::conj(c_I) * c_J;
+
+                                d(p, q, r, r) += value;
+                                d(p, r, r, q) -= value;
+                                d(r, r, p, q) += value;
+                                d(r, q, p, r) -= value;
+
+                                d(q, p, r, r) += GQCP::conj(value);
+                                d(r, p, q, r) -= GQCP::conj(value);
+                                d(r, r, q, p) += GQCP::conj(value);
+                                d(q, r, r, p) -= GQCP::conj(value);
+                            }
+                        }
+                    }
+                }
+
+                // Calculate the contribution if I and J are 2 excitations away.
+                else if (onv_I.countNumberOfDifferences(onv_J) == 4) {
+
+                    // Determine the orbital indices that match the excitation.
+                    auto occupied_in_I = onv_I.findDifferentOccupations(onv_J);  // The orbitals that are occupied in J, but not in J.
+                    const auto p = occupied_in_I[0];
+                    const auto r = occupied_in_I[1];
+
+                    auto occupied_in_J = onv_J.findDifferentOccupations(onv_I);  // The orbitals that are occupied in I, but not in J.
+                    const auto q = occupied_in_J[0];
+                    const auto s = occupied_in_J[1];
+
+
+                    // Add the contribution from this excitation to all appropriate density matrix elements.
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_I.operatorPhaseFactor(r) * onv_J.operatorPhaseFactor(q) * onv_J.operatorPhaseFactor(s));
+                    const auto value = sign * GQCP::conj(c_I) * c_J;
+
+                    d(p, q, r, s) += value;
+                    d(p, s, r, q) -= value;
+                    d(r, s, p, q) += value;
+                    d(r, q, p, s) -= value;
+
+                    d(q, p, s, r) += GQCP::conj(value);
+                    d(s, p, q, r) -= GQCP::conj(value);
+                    d(s, r, q, p) += GQCP::conj(value);
+                    d(q, r, s, p) -= GQCP::conj(value);
+                }
+            }  // Loop over all ket addresses J > I
+        }      // Loop over all bra addresses I.
+
+        return G2DM<Scalar> {d};
+    }
 
 
     /**

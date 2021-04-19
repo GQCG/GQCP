@@ -695,3 +695,115 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_unresolved_vs_selected_complex) {
 
     BOOST_CHECK(D_unresolved.isApprox(D_unresolved_selected, 1.0e-12));
 }
+
+
+/**
+ *  Check the 1-DM and 2-DM values calculated for the SpinUnresolvedONVBasis by comparing them to an equivalent spin-resolved calculation.
+ */
+BOOST_AUTO_TEST_CASE(SelectedSpinResolved_vs_SelectedSpinUnresolved_1DM_2DM) {
+
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+    const GQCP::SpinUnresolvedONVBasis onv_basis_unresolved {M, N};
+    const GQCP::SpinUnresolvedSelectedONVBasis onv_basis_unresolved_selected {onv_basis_unresolved};
+
+    const auto linear_expansion_unresolved = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedSelectedONVBasis>::Random(onv_basis_unresolved_selected);
+    const auto D_unresolved = linear_expansion_unresolved.calculate1DM();
+    const auto d_unresolved = linear_expansion_unresolved.calculate2DM();
+
+
+    // Create an equivalent, spin-resolved linear expansion.
+    const GQCP::SpinResolvedONVBasis onv_basis_resolved {M, N, 0};  // Only alpha electrons to mimic a spin-unresolved case.
+    const GQCP::SpinResolvedSelectedONVBasis onv_basis_resolved_selected {onv_basis_resolved};
+    const GQCP::LinearExpansion<double, GQCP::SpinResolvedSelectedONVBasis> linear_expansion_resolved {onv_basis_resolved_selected, linear_expansion_unresolved.coefficients()};
+
+    const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions.
+    const auto d_resolved = linear_expansion_resolved.calculate2DM();  // This is the orbital 1-DM, but there are no beta contributions.
+
+    BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
+    BOOST_CHECK(d_unresolved.tensor().isApprox(d_resolved.tensor(), 1.0e-12));
+}
+
+
+/**
+ *  Check if, for a real wave function, the contraction of the density matrices for a spin-unresolved selected CI calculation yields the ground-state energy.
+ */
+BOOST_AUTO_TEST_CASE(SpinUnresolvedSelected_1DM_2DM_expectation_value_real) {
+
+    // Create the molecular Hamiltonian in the Löwdin basis, and use a random complex unitary rotation.
+    const auto molecule = GQCP::Molecule::HChain(4, 1.0);
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto M = spinor_basis.numberOfSpinors();
+    spinor_basis.lowdinOrthonormalize();
+    const auto U = GQCP::GTransformation<double>::RandomUnitary(M);
+    spinor_basis.transform(U);
+
+    const auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+
+    // Set up the full spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const GQCP::SpinUnresolvedSelectedONVBasis selected_onv_basis {onv_basis};
+
+
+    // Solve the CI problem by creating a dense solver and corresponding environment and putting them together in the QCMethod.
+    auto environment = GQCP::CIEnvironment::Dense(hamiltonian, selected_onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto qc_structure = GQCP::QCMethod::CI<double, GQCP::SpinUnresolvedSelectedONVBasis>(selected_onv_basis).optimize(solver, environment);
+
+    const auto energy = qc_structure.groundStateEnergy();
+
+
+    // Calculate the electronic energy using a contraction of the 1- and 2-DMs, and check if it is equal to the ground state eigenvalue.
+    const auto& linear_expansion = qc_structure.groundStateParameters();
+    const auto D = linear_expansion.calculate1DM();
+    const auto d = linear_expansion.calculate2DM();
+
+    const auto energy_by_contraction = hamiltonian.core().calculateExpectationValue(D)() + hamiltonian.twoElectron().calculateExpectationValue(d)();  // Access the 'scalar' component through an empty call.
+    BOOST_CHECK(std::abs(energy - energy_by_contraction) < 1.0e-12);
+}
+
+
+/**
+ *  Check if, for a complex wave function, the contraction of the density matrices for a spin-unresolved selected CI calculation yields the ground-state energy.
+ */
+BOOST_AUTO_TEST_CASE(SpinUnresolvedSelected_1DM_2DM_expectation_value_complex) {
+
+    // Create the molecular Hamiltonian in the Löwdin basis, and use a random complex unitary rotation.
+    const auto molecule = GQCP::Molecule::HChain(4, 1.0);
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto M = spinor_basis.numberOfSpinors();
+
+    spinor_basis.lowdinOrthonormalize();
+    const auto U = GQCP::GTransformation<GQCP::complex>::RandomUnitary(M);
+    spinor_basis.transform(U);
+
+    const auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+
+    // Set up the full spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const GQCP::SpinUnresolvedSelectedONVBasis selected_onv_basis {onv_basis};
+
+
+    // Solve the complex CI problem by creating a dense solver and corresponding environment and putting them together in the QCMethod.
+    auto environment = GQCP::CIEnvironment::Dense(hamiltonian, selected_onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense<GQCP::complex>();
+    const auto qc_structure = GQCP::QCMethod::CI<GQCP::complex, GQCP::SpinUnresolvedSelectedONVBasis>(selected_onv_basis).optimize(solver, environment);
+
+    const auto energy = qc_structure.groundStateEnergy();
+
+
+    // Calculate the electronic energy using a contraction of the 1- and 2-DMs, and check if it is equal to the ground state eigenvalue.
+    const auto& linear_expansion = qc_structure.groundStateParameters();
+    const auto D = linear_expansion.calculate1DM();
+    const auto d = linear_expansion.calculate2DM();
+
+    const auto energy_by_contraction = hamiltonian.core().calculateExpectationValue(D)() + hamiltonian.twoElectron().calculateExpectationValue(d)();  // Access the 'scalar' component through an empty call.
+    BOOST_CHECK(std::abs(energy - energy_by_contraction) < 1.0e-12);
+}
