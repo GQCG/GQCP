@@ -99,11 +99,19 @@ public:
             throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const Derived1DM<Scalar>&): The given 1-DM's dimension is not compatible with the one-electron operator.");
         }
 
+        Tensor<Scalar, 2> D_tensor = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(D.matrix().data(), this->numberOfOrbitals(), this->numberOfOrbitals());
+
         // Calculate the expectation value for every component of the operator.
         const auto& parameters = this->allParameters();
         std::vector<Scalar> expectation_values(this->numberOfComponents());  // Zero-initialize the vector with a number of elements.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            expectation_values[i] = (parameters[i].transpose() * D.matrix()).trace();
+
+            // Perform the contraction "f(p, q) D(p, q)"
+            Tensor<Scalar, 2> f_tensor = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(parameters[i].data(), this->numberOfOrbitals(), this->numberOfOrbitals());
+            Eigen::Tensor<Scalar, 0> contraction = f_tensor.template einsum<2>("pq, pq->", D_tensor);
+
+            // As the contraction is a scalar (a tensor of rank 0), we should access using `operator(0)`.
+            expectation_values[i] = contraction(0);
         }
 
         return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};
