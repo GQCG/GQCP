@@ -72,6 +72,9 @@ void bindCIEnvironments(py::module& module) {
     bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
     bindCIEnvironment<USQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
     bindCIEnvironment<HubbardHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving Hubbard problems.");
+
+    bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
+    bindCIEnvironment<USQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
 }
 
 
