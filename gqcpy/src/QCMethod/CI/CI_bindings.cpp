@@ -20,6 +20,7 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 
@@ -81,8 +82,10 @@ void bindQCMethodCI(py::module& module, const std::string& suffix, const std::st
 void bindQCMethodCIs(py::module& module) {
 
     bindQCMethodCI<SpinResolvedONVBasis>(module, "SpinResolved", "Configuration interaction in a spin-resolved ONV basis.");
+    bindQCMethodCI<SpinUnresolvedONVBasis>(module, "SpinResolved", "Configuration interaction in a spin-resolved ONV basis.");
     bindQCMethodCI<SeniorityZeroONVBasis>(module, "SeniorityZero", "Configuration interaction in a seniority zero ONV basis.");
     bindQCMethodCI<SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "Configuration interaction in a spin-resolved selected ONV basis.");
+    bindQCMethodCI<SpinUnresolvedSelectedONVBasis>(module, "SpinUnresolvedSelected", "Configuration interaction in a spin-unresolved selected ONV basis.");
 }
 
 

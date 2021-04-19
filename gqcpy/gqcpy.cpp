@@ -123,6 +123,7 @@ void bindSpinResolvedONVBasis(py::module& module);
 void bindSpinResolvedSelectedONVBasis(py::module& module);
 void bindSpinUnresolvedONV(py::module& module);
 void bindSpinUnresolvedONVBasis(py::module& module);
+void bindSpinUnresolvedSelectedONVBasis(py::module& module);
 
 
 // Operator - FirstQuantized
@@ -364,6 +365,7 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSpinResolvedSelectedONVBasis(module);
     gqcpy::bindSpinUnresolvedONV(module);
     gqcpy::bindSpinUnresolvedONVBasis(module);
+    gqcpy::bindSpinUnresolvedSelectedONVBasis(module);
 
 
     // Operator - FirstQuantized

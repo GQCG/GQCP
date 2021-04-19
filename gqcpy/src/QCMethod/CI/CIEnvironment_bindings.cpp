@@ -19,6 +19,7 @@
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
+#include "Utilities/complex.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -75,6 +76,9 @@ void bindCIEnvironments(py::module& module) {
 
     bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
     bindCIEnvironment<USQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
+
+    bindCIEnvironment<GSQHamiltonian<double>, SpinUnresolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-unresolved selected eigenvalue problems.");
+    bindCIEnvironment<GSQHamiltonian<complex>, SpinUnresolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-unresolved selected eigenvalue problems.");
 }
 
 

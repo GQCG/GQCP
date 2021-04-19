@@ -18,6 +18,7 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "QCMethod/CI/CI.hpp"
 
 #include <pybind11/pybind11.h>
@@ -65,6 +66,7 @@ void bindCIFactory(py::module& module) {
     bindCIFactoryMethod<SeniorityZeroONVBasis>(module);
     bindCIFactoryMethod<SpinResolvedONVBasis>(module);
     bindCIFactoryMethod<SpinResolvedSelectedONVBasis>(module);
+    bindCIFactoryMethod<SpinUnresolvedSelectedONVBasis>(module);
 }
 
 
