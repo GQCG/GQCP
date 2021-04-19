@@ -14,7 +14,7 @@ N_P = 2  # number of electron pairs
 
 onv_basis = gqcpy.SpinResolvedONVBasis(K, N_P, N_P)
 solver = gqcpy.EigenproblemSolver.Dense_d()
-environment = gqcpy.CIEnvironment.Dense_d(hubbard_hamiltonian, onv_basis)
+environment = gqcpy.CIEnvironment.Dense(hubbard_hamiltonian, onv_basis)
 
 energy = gqcpy.CI(onv_basis).optimize(solver, environment).groundStateEnergy()
 
