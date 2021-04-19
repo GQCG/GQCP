@@ -658,21 +658,21 @@ public:
      * 
      *  @note This method is only enabled for linear expansions related to spin-unresolved ONV bases.
      */
-    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
-    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinUnresolvedONVBasis>::value, double> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, Scalar> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
 
         // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
         std::vector<size_t> ket_indices_reversed = ket_indices;
         std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
 
 
-        double value = 0.0;
+        Scalar value = 0.0;
         int sign_bra = 1;
         int sign_ket = 1;
-        const size_t dim = this->onv_basis.dimension();
+        const auto dim = this->onv_basis.dimension();
 
 
-        SpinUnresolvedONV bra = this->onv_basis.constructONVFromAddress(0);
+        auto bra = this->onv_basis.constructONVFromAddress(0);
         size_t I = 0;
         while (I < dim) {  // Loop over all bra addresses.
 
@@ -691,7 +691,7 @@ public:
             }
 
 
-            SpinUnresolvedONV ket = this->onv_basis.constructONVFromAddress(0);
+            auto ket = this->onv_basis.constructONVFromAddress(0);
             size_t J = 0;
             while (J < dim) {  // Loop over all ket indices.
 
@@ -709,7 +709,7 @@ public:
                 }
 
                 if (bra == ket) {
-                    value += sign_bra * sign_ket * this->coefficient(I) * this->coefficient(J);
+                    value += static_cast<double>(sign_bra * sign_ket) * GQCP::conj(this->coefficient(I)) * this->coefficient(J);
                 }
 
                 // Reset the previous ket annihilations and move to the next ket.
@@ -720,7 +720,7 @@ public:
                 this->onv_basis.transformONVToNextPermutation(ket);
                 sign_ket = 1;
                 J++;
-            }  // While J loop.
+            }  // Loop over all ket indices J.
 
             // Reset the previous bra annihilations and move to the next bra.
             if (I == dim - 1) {  // Prevent the last permutation from occurring.
@@ -730,7 +730,94 @@ public:
             this->onv_basis.transformONVToNextPermutation(bra);
             sign_bra = 1;
             I++;
-        }  // While I loop.
+        }  // Loop over all bra indices I.
+
+        return value;
+    }
+
+
+    /**
+     *  Calculate an element of the N-electron density matrix.
+     * 
+     *  @param bra_indices      The indices of the orbitals that should be annihilated on the left (on the bra).
+     *  @param ket_indices      The indices of the orbitals that should be annihilated on the right (on the ket).
+     *
+     *  @return An element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^\dagger_0 a^\dagger_1 a_2 a_1`.
+     * 
+     *  @note This method is only enabled for linear expansions related to spin-unresolved selected ONV bases.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedSelectedONVBasis>::value, Scalar> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+
+        // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
+        std::vector<size_t> ket_indices_reversed = ket_indices;
+        std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
+
+
+        Scalar value = 0.0;
+        int sign_bra = 1;
+        int sign_ket = 1;
+        const auto dim = this->onv_basis.dimension();
+
+
+        size_t I = 0;
+        auto bra = this->onv_basis.onvWithIndex(I);
+        while (I < dim) {  // Loop over all bra addresses.
+
+            // Annihilate the bra on the bra indices.
+            if (!bra.annihilateAll(bra_indices, sign_bra)) {  // If we can't annihilate, the bra doesn't change.
+
+                // Go to the beginning of the outer while loop with the next bra.
+                if (I < dim - 1) {  // Prevent the last permutation from occurring.
+                    I++;
+                    bra = this->onv_basis.onvWithIndex(I);
+                    sign_bra = 1;
+                    continue;
+                } else {
+                    break;  // We have to jump out if we have looped over the whole bra dimension.
+                }
+            }
+
+
+            size_t J = 0;
+            auto ket = this->onv_basis.onvWithIndex(J);
+            while (J < dim) {  // Loop over all ket indices.
+
+                // Annihilate the ket on the ket indices.
+                if (!ket.annihilateAll(ket_indices_reversed, sign_ket)) {  // If we can't annihilate, the ket doesn't change.
+                    // Go to the beginning of this (the inner) while loop with the next bra.
+                    if (J < dim - 1) {  // Prevent the last permutation from occurring.
+                        J++;
+                        ket = this->onv_basis.onvWithIndex(J);
+                        sign_ket = 1;
+                        continue;
+                    } else {
+                        break;  // We have to jump out if we have looped over the whole ket dimension.
+                    }
+                }
+
+                if (bra == ket) {
+                    value += static_cast<double>(sign_bra * sign_ket) * GQCP::conj(this->coefficient(I)) * this->coefficient(J);
+                }
+
+                // Reset the previous ket annihilations and move to the next ket.
+                if (J == dim - 1) {  // Prevent the last permutation from occurring.
+                    break;           // Out of the J-loop.
+                }
+                ket.createAll(ket_indices_reversed);
+                J++;
+                ket = this->onv_basis.onvWithIndex(J);
+                sign_ket = 1;
+            }  // Loop over all ket indices J.
+
+            // Reset the previous bra annihilations and move to the next bra.
+            if (I == dim - 1) {  // Prevent the last permutation from occurring.
+                break;           // Out of the I-loop.
+            }
+            I++;
+            bra = this->onv_basis.onvWithIndex(I);
+            sign_bra = 1;
+        }  // Loop over all bra indices I.
 
         return value;
     }

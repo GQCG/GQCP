@@ -609,6 +609,7 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_ref_SpinResolved) {
     BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
 }
 
+
 /**
  *  Check some 1-DM values calculated for the SpinUnresolvedONVBasis by comparing them to an equivalent spin-resolved calculation.
  */
@@ -629,4 +630,68 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_ref_SpinResolved_doubleCheck) {
 
     const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions anyways.
     BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
+}
+
+
+/**
+ *  Check the real-valued `calculateNDMElement` implementation for the full spin-unresolved ONV basis and an equivalent selected spin-unresolved ONV basis.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_unresolved_vs_selected_real) {
+
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+
+
+    // Create an equivalent spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedSelectedONVBasis onv_basis_selected {onv_basis};
+    const GQCP::LinearExpansion<double, GQCP::SpinUnresolvedSelectedONVBasis> linear_expansion_selected {onv_basis_selected, linear_expansion.coefficients()};
+
+
+    // Check some 1-DM values with calculateNDMElement().
+    GQCP::MatrixX<double> D_unresolved = GQCP::MatrixX<double>::Zero(M, M);
+    GQCP::MatrixX<double> D_unresolved_selected = GQCP::MatrixX<double>::Zero(M, M);
+    for (size_t p = 0; p < M; p++) {
+        for (size_t q = 0; q < M; q++) {
+            D_unresolved(p, q) = linear_expansion.calculateNDMElement({p}, {q});
+            D_unresolved_selected(p, q) = linear_expansion_selected.calculateNDMElement({p}, {q});
+        }
+    }
+
+    BOOST_CHECK(D_unresolved.isApprox(D_unresolved_selected, 1.0e-12));
+}
+
+
+/**
+ *  Check the `calculateNDMElement` implementation for the full spin-unresolved ONV basis and an equivalent selected spin-unresolved ONV basis.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_unresolved_vs_selected_complex) {
+
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const auto linear_expansion = GQCP::LinearExpansion<GQCP::complex, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+
+
+    // Create an equivalent spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedSelectedONVBasis onv_basis_selected {onv_basis};
+    const GQCP::LinearExpansion<GQCP::complex, GQCP::SpinUnresolvedSelectedONVBasis> linear_expansion_selected {onv_basis_selected, linear_expansion.coefficients()};
+
+
+    // Check some 1-DM values with calculateNDMElement().
+    GQCP::MatrixX<GQCP::complex> D_unresolved = GQCP::MatrixX<GQCP::complex>::Zero(M, M);
+    GQCP::MatrixX<GQCP::complex> D_unresolved_selected = GQCP::MatrixX<GQCP::complex>::Zero(M, M);
+    for (size_t p = 0; p < M; p++) {
+        for (size_t q = 0; q < M; q++) {
+            D_unresolved(p, q) = linear_expansion.calculateNDMElement({p}, {q});
+            D_unresolved_selected(p, q) = linear_expansion_selected.calculateNDMElement({p}, {q});
+        }
+    }
+
+    BOOST_CHECK(D_unresolved.isApprox(D_unresolved_selected, 1.0e-12));
 }
