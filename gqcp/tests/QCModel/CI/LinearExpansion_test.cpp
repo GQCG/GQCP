@@ -154,6 +154,7 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     auto solver = GQCP::EigenproblemSolver::Dense();
 
     auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    std::cout << linear_expansion.coefficients().matrix() << std::endl;
 
     // Calculate the single orbital entropy of Hubbard site `0`.
     const auto S = linear_expansion.calculateSingleOrbitalEntropy(0);
