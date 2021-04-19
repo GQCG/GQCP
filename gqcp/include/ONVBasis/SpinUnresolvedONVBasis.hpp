@@ -482,11 +482,10 @@ public:
                     // Calculate the address of the path if we would close it right now.
                     const auto address = onv_path.addressAfterCreation();
                     const auto value = static_cast<double>(onv_path.sign()) * f(onv_path.orbitalIndex(), q);
-                    const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
 
                     // Add the one-electron integral as matrix elements of a Hermitian matrix.
-                    container.addRowwise(address, value);                // F(I,J)
-                    container.addColumnwise(address, conjugated_value);  // F(J,I)
+                    container.addColumnwise(address, value);           // F(I,J)
+                    container.addRowwise(address, GQCP::conj(value));  // F(J,I)
 
                     // Move the orbital index such that other unoccupied orbitals can be found within the loop.
                     onv_path.leftTranslateVerticalArc();

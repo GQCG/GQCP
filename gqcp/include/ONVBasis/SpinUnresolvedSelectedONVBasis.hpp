@@ -216,10 +216,9 @@ public:
                     // Calculate the total sign and emplace the correct value in the container.
                     const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_J.operatorPhaseFactor(q));
                     const auto value = sign * f(p, q);
-                    const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
 
-                    container.addRowwise(J, value);                // This emplaces F(I,J).
-                    container.addColumnwise(J, conjugated_value);  // This emplaces F(J,I).
+                    container.addColumnwise(J, value);           // This emplaces F(I,J).
+                    container.addRowwise(J, GQCP::conj(value));  // This emplaces F(J,I).
                 }
             }
         }
@@ -250,7 +249,6 @@ public:
         for (; !container.isFinished(); container.increment()) {
             auto onv_I = this->onvWithIndex(container.index);
             auto& occupied_indices_I = onv_I.occupiedIndices();
-            // auto unoccupied_indices_I = onv_I.unoccpiedIndices();
 
             // Calculate the diagonal elements (I = J).
             for (const auto p : occupied_indices_I) {
@@ -278,12 +276,10 @@ public:
 
                     // Calculate the total sign and emplace the correct value in the container.
                     const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(w) * onv_J.operatorPhaseFactor(x));
-
                     const auto value = sign * h(w, x);
-                    const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
 
-                    container.addRowwise(J, value);                // This emplaces F(I,J).
-                    container.addColumnwise(J, conjugated_value);  // This emplaces F(J,I).
+                    container.addColumnwise(J, value);           // This emplaces F(I,J).
+                    container.addRowwise(J, GQCP::conj(value));  // This emplaces F(J,I).
 
 
                     // The two-electron part.
@@ -292,10 +288,9 @@ public:
                             if ((p != w) && (p != x)) {                    // We can't annihilate twice on the indices `w` or `x`.
 
                                 const auto value = 0.5 * sign * (g(w, x, p, p) - g(w, p, p, x) + g(p, p, w, x) - g(p, x, w, p));
-                                const auto conjugated_value = GQCP::conj(value);  // For real numbers, this does nothing.
 
-                                container.addRowwise(J, value);                // This emplaces G(I,J).
-                                container.addColumnwise(J, conjugated_value);  // This emplaces G(J,I).
+                                container.addColumnwise(J, value);           // This emplaces G(I,J).
+                                container.addRowwise(J, GQCP::conj(value));  // This emplaces G(J,I).
                             }
                         }
                     }
@@ -313,12 +308,10 @@ public:
                     const auto z = occupied_in_J[1];
 
                     const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(w) * onv_I.operatorPhaseFactor(x) * onv_J.operatorPhaseFactor(y) * onv_J.operatorPhaseFactor(z));
-
                     const auto value = 0.5 * sign * (g(x, z, w, y) - g(w, z, x, y) + g(w, y, x, z) - g(x, y, w, z));
-                    const auto conjugated_value = GQCP::conj(value);
 
-                    container.addRowwise(J, value);                // This emplaces G(I,J).
-                    container.addColumnwise(J, conjugated_value);  // This emplaces G(J,I).
+                    container.addColumnwise(J, value);           // This emplaces G(I,J).
+                    container.addRowwise(J, GQCP::conj(value));  // This emplaces G(J,I).
                 }
             }  // Loop over ket addresses J > I.
         }      // Loop over bra addresses I.
