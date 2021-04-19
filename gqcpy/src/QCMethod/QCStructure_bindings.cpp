@@ -101,6 +101,7 @@ void bindQCStructures(py::module& module) {
     bindQCStructure<LinearExpansion<double, SpinResolvedONVBasis>>(module, "LinearExpansion_SpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
     bindQCStructure<LinearExpansion<double, SpinResolvedSelectedONVBasis>>(module, "LinearExpansion_SpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
     bindQCStructure<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>>(module, "LinearExpansion_SpinUnresolvedSelected", "A quantum chemical structure for linear expansions in a spin-unresolved selected ONV basis.");
+    bindQCStructure<LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>, complex>(module, "LinearExpansion_SpinUnresolvedSelected_cd", "A quantum chemical structure for linear expansions in a spin-unresolved selected ONV basis.");
 
     bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
     bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");

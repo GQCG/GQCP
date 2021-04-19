@@ -90,7 +90,7 @@ void bindCIEnvironments(py::module& module) {
         "Return an environment suitable for solving spin-unresolved selected eigenvalue problems.");
 
     submodule.def(
-        "Dense",
+        "Dense_cd",
         [](const GSQHamiltonian<complex>& hamiltonian, const SpinUnresolvedSelectedONVBasis& onv_basis) {
             return CIEnvironment::Dense(hamiltonian, onv_basis);
         },

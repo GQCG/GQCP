@@ -65,12 +65,23 @@ void bindCIFactoryMethod(py::module& module) {
  */
 void bindCIFactory(py::module& module) {
 
+    // Bind real-valued CI methods.
     bindCIFactoryMethod<double, SeniorityZeroONVBasis>(module);
     bindCIFactoryMethod<double, SpinResolvedONVBasis>(module);
     bindCIFactoryMethod<double, SpinResolvedSelectedONVBasis>(module);
 
     bindCIFactoryMethod<double, SpinUnresolvedSelectedONVBasis>(module);
-    bindCIFactoryMethod<complex, SpinUnresolvedSelectedONVBasis>(module);
+
+
+    // Bind complex-valued CI methods.
+    module.def(
+        "CI_cd",
+        [](const SpinUnresolvedSelectedONVBasis& onv_basis, const size_t number_of_states = 1) {
+            return QCMethod::CI<complex, SpinUnresolvedSelectedONVBasis>(onv_basis, number_of_states);
+        },
+        "Return an appropriate CI method.",
+        py::arg("onv_basis"),
+        py::arg("number_of_states") = 1);
 }
 
 

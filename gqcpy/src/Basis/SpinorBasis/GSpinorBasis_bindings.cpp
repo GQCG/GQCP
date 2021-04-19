@@ -165,6 +165,13 @@ void bindGSpinorBases(py::module& module) {
 
         .def(
             "quantize",
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ElectronicSpinOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the electronic spin operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
             [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ElectronicQuadrupoleOperator& op) {
                 return spinor_basis.quantize(op);
             },
