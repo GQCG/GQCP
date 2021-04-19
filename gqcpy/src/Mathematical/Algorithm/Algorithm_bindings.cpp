@@ -18,6 +18,7 @@
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Utilities/complex.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -60,7 +61,9 @@ void bindAlgorithm(py::module& module, const std::string& suffix, const std::str
 
 void bindAlgorithms(py::module& module) {
 
-    bindAlgorithm<EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that only performs one collection of steps using an EigenproblemEnvironment.");
+    bindAlgorithm<EigenproblemEnvironment<double>>(module, "EigenproblemEnvironment_d", "An algorithm that only performs one collection of steps using a real-valued EigenproblemEnvironment.");
+    bindAlgorithm<EigenproblemEnvironment<complex>>(module, "EigenproblemEnvironment_cd", "An algorithm that only performs one collection of steps using a complex-valued EigenproblemEnvironment.");
+
     bindAlgorithm<LinearEquationEnvironment<double>>(module, "LinearEquationEnvironment", "An algorithm that only performs one collection of steps using a LinearEquationEnvironment.");
 }
 

@@ -25,7 +25,7 @@ static void matvec(benchmark::State& state) {
     const auto hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);  // This Hamiltonian is not necessarily expressed in an orthonormal basis, but this doesn't matter here.
     const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
-    const auto x = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::Random(onv_basis).coefficients();
+    const auto x = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::Random(onv_basis).coefficients();
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {

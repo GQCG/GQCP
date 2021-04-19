@@ -66,8 +66,8 @@ BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -146,8 +146,8 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -185,10 +185,10 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // The dimension of this ONV basis is 100.
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply an initial guess.
+    const auto x0 = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply an initial guess.
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference
@@ -227,10 +227,10 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply an initial guess.
+    const auto x0 = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply an initial guess.
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -269,15 +269,15 @@ BOOST_AUTO_TEST_CASE(FCI_H6_dense_vs_Davidson) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto dense_environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto dense_solver = GQCP::EigenproblemSolver::Dense();
-    const auto dense_electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
+    auto dense_solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto dense_electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply initial guess.
+    const auto x0 = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // Supply initial guess.
     auto davidson_environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();
-    const auto davidson_electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
+    const auto davidson_electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
 
 
     // Check if the dense and Davidson energies are equal.
@@ -309,8 +309,8 @@ BOOST_AUTO_TEST_CASE(unrestricted_FCI_dense) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
@@ -342,8 +342,8 @@ BOOST_AUTO_TEST_CASE(generalized_FCI_dense) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinUnresolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinUnresolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
@@ -373,8 +373,8 @@ BOOST_AUTO_TEST_CASE(naturals) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto linear_expansion_before = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto linear_expansion_before = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
     // Calculate the 1-DM and diagonalize it to obtain the FCI naturals.
@@ -386,7 +386,7 @@ BOOST_AUTO_TEST_CASE(naturals) {
     // Rotate the Hamiltonian to the basis of the FCI naturals, and re-do the FCI calculation. Subsequently check if the 1-DM, calculated from the FCI calculation in the natural orbital basis, is equal to the previously calculated 1-DM's eigenvalues on the diagonal.
     sq_hamiltonian.rotate(U);
     environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    const auto linear_expansion_after = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    const auto linear_expansion_after = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
     const auto D_after = linear_expansion_after.calculate1DM();
 

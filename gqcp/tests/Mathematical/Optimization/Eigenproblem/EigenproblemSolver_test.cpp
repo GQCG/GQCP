@@ -49,15 +49,15 @@ BOOST_AUTO_TEST_CASE(dense) {
     const GQCP::MatrixX<double> ref_lowest_eigenvectors = self_adjoint_eigensolver.eigenvectors().topLeftCorner(dim, number_of_requested_eigenpairs);
 
     // Create eigenpairs for the reference eigenpairs.
-    std::vector<GQCP::Eigenpair<double>> ref_eigenpairs {number_of_requested_eigenpairs};
+    std::vector<GQCP::Eigenpair<double, double>> ref_eigenpairs {number_of_requested_eigenpairs};
     for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {
-        ref_eigenpairs[i] = GQCP::Eigenpair<double>(ref_lowest_eigenvalues(i), ref_lowest_eigenvectors.col(i));
+        ref_eigenpairs[i] = GQCP::Eigenpair<double, double>(ref_lowest_eigenvalues(i), ref_lowest_eigenvectors.col(i));
     }
 
 
     // Use our dense diagonalization algorithm to find the number of requested eigenpairs.
-    auto dense_environment = GQCP::EigenproblemEnvironment::Dense(B);
-    auto dense_diagonalizer = GQCP::EigenproblemSolver::Dense();
+    auto dense_environment = GQCP::EigenproblemEnvironment<double>::Dense(B);
+    auto dense_diagonalizer = GQCP::EigenproblemSolver::Dense<double>();
     dense_diagonalizer.perform(dense_environment);
 
     const auto eigenpairs = dense_environment.eigenpairs(number_of_requested_eigenpairs);
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(Davidson_ESQC_example_solver) {
     // Solve using the Davidson diagonalization, supplying an initial guess.
     GQCP::VectorX<double> x_0 {5};
     x_0 << 1, 0, 0, 0, 0;
-    auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
+    auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();  // The default is finding only the eigenpair with the lowest eigenvalue.
     davidson_solver.perform(davidson_environment);
 
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_50) {
     // Solve using our Davidson diagonalization algorithm, supplying an initial guess.
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Unit(N, 0);
 
-    auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
+    auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();  // The default is finding only the eigenpair with the lowest eigenvalue.
     davidson_solver.perform(davidson_environment);
 
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_50_collapse) {
     // Solve using our Davidson diagonalization algorithm, supplying an initial guess
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Unit(N, 0);
 
-    auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
+    auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(1, 10);  // number_of_requested_eigenpairs=1, maximum_subspace_dimension=10
     davidson_solver.perform(davidson_environment);
 
@@ -221,7 +221,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_50_number_of_requested_eigenpairs) {
     // Solve using our Davidson diagonalization algorithm, supplying a number of initial guesses.
     const GQCP::MatrixX<double> X_0 = GQCP::MatrixX<double>::Identity(N, N).topLeftCorner(N, number_of_requested_eigenpairs);
 
-    auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, X_0);
+    auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, X_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(3);  // The number of requested eigenpairs is 3.
     davidson_solver.perform(davidson_environment);
 
@@ -263,7 +263,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_1000) {
 
     // Solve using our Davidson diagonalization algorithm, supplying an initial guess.
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Unit(N, 0);
-    auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
+    auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();  // The default is finding only the eigenpair with the lowest eigenvalue.
     davidson_solver.perform(davidson_environment);
 
@@ -305,7 +305,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_1000_collapse) {
     // Solve using our Davidson diagonalization algorithm, supplying an initial guess
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Unit(N, 0);
 
-    auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
+    auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(1, 10);  // number_of_requested_eigenpairs=1, maximum_subspace_dimension=10
     davidson_solver.perform(davidson_environment);
 
@@ -348,7 +348,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_1000_number_of_requested_eigenpairs) {
     // Solve using our Davidson diagonalization algorithm, supplying a number of initial guesses.
     const GQCP::MatrixX<double> X_0 = GQCP::MatrixX<double>::Identity(N, N).topLeftCorner(N, number_of_requested_eigenpairs);
 
-    auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, X_0);
+    auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, X_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(3, 10);  // number_of_requested_eigenpairs=3, maximum_subspace_dimension=10
     davidson_solver.perform(davidson_environment);
 

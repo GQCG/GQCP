@@ -370,7 +370,7 @@ BOOST_AUTO_TEST_CASE(generalized_dense_vs_matvec) {
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, molecule.numberOfElectrons()};
 
     // Determine the Hamiltonian matrix and let it act on a random linear expansion.
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
     const auto H_dense = onv_basis.evaluateOperatorDense(hamiltonian);
     const GQCP::VectorX<double> direct_mvp = H_dense * linear_expansion.coefficients();  // mvp: matrix-vector-product
 

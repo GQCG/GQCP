@@ -97,10 +97,10 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
 
 void bindQCStructures(py::module& module) {
 
-    bindQCStructure<LinearExpansion<SeniorityZeroONVBasis>>(module, "LinearExpansion_SeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
-    bindQCStructure<LinearExpansion<SpinResolvedONVBasis>>(module, "LinearExpansion_SpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
-    bindQCStructure<LinearExpansion<SpinResolvedSelectedONVBasis>>(module, "LinearExpansion_SpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
-    bindQCStructure<LinearExpansion<SpinUnresolvedSelectedONVBasis>>(module, "LinearExpansion_SpinUnresolvedSelected", "A quantum chemical structure for linear expansions in a spin-unresolved selected ONV basis.");
+    bindQCStructure<LinearExpansion<double, SeniorityZeroONVBasis>>(module, "LinearExpansion_SeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
+    bindQCStructure<LinearExpansion<double, SpinResolvedONVBasis>>(module, "LinearExpansion_SpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
+    bindQCStructure<LinearExpansion<double, SpinResolvedSelectedONVBasis>>(module, "LinearExpansion_SpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
+    bindQCStructure<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>>(module, "LinearExpansion_SpinUnresolvedSelected", "A quantum chemical structure for linear expansions in a spin-unresolved selected ONV basis.");
 
     bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
     bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");

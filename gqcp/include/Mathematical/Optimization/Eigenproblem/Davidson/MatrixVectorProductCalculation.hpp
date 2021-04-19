@@ -31,7 +31,7 @@ namespace GQCP {
  *  An iteration step that calculates the matrix-vector products for all (new) guess vectors.
  */
 class MatrixVectorProductCalculation:
-    public Step<EigenproblemEnvironment> {
+    public Step<EigenproblemEnvironment<double>> {
 
 public:
     /*
@@ -51,7 +51,7 @@ public:
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
-    void execute(EigenproblemEnvironment& environment) override {
+    void execute(EigenproblemEnvironment<double>& environment) override {
 
         const auto& V = environment.V;  // the subspace of guess vectors
 

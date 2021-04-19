@@ -26,7 +26,7 @@ static void matvec(benchmark::State& state) {
     const auto hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
-    const auto x = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
+    const auto x = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {

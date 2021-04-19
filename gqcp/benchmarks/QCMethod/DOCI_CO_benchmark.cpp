@@ -25,14 +25,14 @@ static void test_case(benchmark::State& state) {
 
 
     // Specify an initial guess for the Davidson solver.
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
 
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+        const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
         benchmark::DoNotOptimize(electronic_energy);  // Make sure that the variable is not optimized away by compiler.
     }

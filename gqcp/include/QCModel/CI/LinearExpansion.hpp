@@ -32,12 +32,11 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/dynamic_bitset.hpp>
 #include <boost/range/adaptors.hpp>
-
-#include <type_traits>
 
 
 namespace GQCP {
@@ -46,21 +45,25 @@ namespace GQCP {
 /**
  *  A class that represents a linear expansion inside an ONV basis.
  * 
+ *  @tparam _Scalar             The scalar type of the expansion coefficients: real or complex.
  *  @tparam _ONVBasis           The type of ONV basis.
  */
-template <typename _ONVBasis>
+template <typename _Scalar, typename _ONVBasis>
 class LinearExpansion {
 public:
+    // The scalar type of the expansion coefficients: real or complex.
+    using Scalar = _Scalar;
+
     // The type of the ONV basis.
     using ONVBasis = _ONVBasis;
 
 
 private:
-    // The ONV basis with respect to which the coefficients are defined
+    // The ONV basis with respect to which the coefficients are defined.
     ONVBasis onv_basis;
 
     // The expansion coefficients.
-    VectorX<double> m_coefficients;
+    VectorX<Scalar> m_coefficients;
 
 
 public:
@@ -71,10 +74,10 @@ public:
     /**
      *  Construct a linear expansion inside the given ONV basis, with corresponding expansion coefficients.
      *
-     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
      *  @param coefficients         The expansion coefficients.
      */
-    LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coefficients) :
+    LinearExpansion(const ONVBasis& onv_basis, const VectorX<Scalar>& coefficients) :
         onv_basis {onv_basis},
         m_coefficients {coefficients} {}
 
@@ -92,16 +95,16 @@ public:
     /**
      *  Create a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).
      * 
-     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
      * 
      *  @return A constant LinearExpansion.
      */
-    static LinearExpansion<ONVBasis> Constant(const ONVBasis& onv_basis) {
+    static LinearExpansion<Scalar, ONVBasis> Constant(const ONVBasis& onv_basis) {
 
-        VectorX<double> coefficients = VectorX<double>::Ones(onv_basis.dimension());
+        VectorX<Scalar> coefficients = VectorX<Scalar>::Ones(onv_basis.dimension());
         coefficients.normalize();
 
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -112,11 +115,11 @@ public:
      * 
      *  @return a LinearExpansion
      */
-    static LinearExpansion<ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
+    static LinearExpansion<Scalar, ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
 
-        VectorX<double> coefficients = VectorX<double>::Unit(onv_basis.dimension(), 0);  // The first ONV in the ONV basis is expected to be the HF determinant.
+        VectorX<Scalar> coefficients = VectorX<Scalar>::Unit(onv_basis.dimension(), 0);  // The first ONV in the ONV basis is the HF determinant.
 
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -128,11 +131,11 @@ public:
      * 
      *  @return A normalized LinearExpansion.
      */
-    static LinearExpansion<ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<double>& coefficients) {
+    static LinearExpansion<Scalar, ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<Scalar>& coefficients) {
 
         // Normalize the coefficients if they aren't.
-        return LinearExpansion<ONVBasis>(onv_basis,
-                                         std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis,
+                                                 std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
     }
 
 
@@ -143,12 +146,12 @@ public:
      * 
      *  @return A random LinearExpansion.
      */
-    static LinearExpansion<ONVBasis> Random(const ONVBasis& onv_basis) {
+    static LinearExpansion<Scalar, ONVBasis> Random(const ONVBasis& onv_basis) {
 
-        VectorX<double> coefficients = VectorX<double>::Random(onv_basis.dimension());
+        VectorX<Scalar> coefficients = VectorX<Scalar>::Random(onv_basis.dimension());
         coefficients.normalize();
 
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -159,8 +162,8 @@ public:
      * 
      *  @return The corresponding spin-resolved selected linear expansion from a given GAMESS-US file
      */
-    template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, LinearExpansion<Z>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, LinearExpansion<double, SpinResolvedSelectedONVBasis>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
 
         // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file.
         std::ifstream input_file_stream {GAMESSUS_filename};
@@ -262,7 +265,7 @@ public:
 
         }  // while getline
 
-        return LinearExpansion<SpinResolvedSelectedONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<double, SpinResolvedSelectedONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -275,8 +278,8 @@ public:
      * 
      *  @return A linear expansion inside a spin-resolved ONV basis.
      */
-    template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, LinearExpansion<double, SpinResolvedONVBasis>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
         auto S_r = r_spinor_basis.overlap();                  // the overlap matrix of the restricted MOs/spin-orbitals
@@ -315,7 +318,7 @@ public:
             coefficients(address) = coefficient;
         });
 
-        return LinearExpansion<Z>(onv_basis, coefficients);
+        return LinearExpansion<double, SpinResolvedONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -328,8 +331,8 @@ public:
      * 
      *  @return A linear expansion inside a spin-unresolved ONV basis.
      */
-    template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinUnresolvedONVBasis>::value, LinearExpansion<double, SpinUnresolvedONVBasis>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
         auto S_on = spinor_basis_on.overlap();
@@ -360,7 +363,7 @@ public:
             coefficients(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on.parameters());
         });
 
-        return LinearExpansion<Z>(onv_basis, coefficients);
+        return LinearExpansion<double, SpinUnresolvedONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -375,12 +378,12 @@ public:
      * 
      *  @return The i-th expansion coefficient.
      */
-    double coefficient(const size_t i) const { return this->m_coefficients(i); }
+    Scalar coefficient(const size_t i) const { return this->m_coefficients(i); }
 
     /**
      *  @return The expansion coefficients of this linear expansion wave function model.
      */
-    const VectorX<double>& coefficients() const { return this->m_coefficients; }
+    const VectorX<Scalar>& coefficients() const { return this->m_coefficients; }
 
     /**
      *  @return The ONV basis that is related to this linear expansion wave function model.
@@ -400,8 +403,8 @@ public:
      *  @note This method is only available for the full spin-resolved ONV basis.
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformation<double>& T) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value> basisTransform(const RTransformation<double>& T) {
 
         const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
         if (K != T.numberOfOrbitals()) {
@@ -581,8 +584,8 @@ public:
      * 
      *  @return The generalized one-electron density matrix.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, G1DM<double>> calculate1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinUnresolvedONVBasis>::value, G1DM<double>> calculate1DM() const {
 
         // Prepare some variables.
         const auto M = this->onv_basis.numberOfOrbitals();
@@ -655,8 +658,8 @@ public:
      * 
      *  @note This method is only enabled for linear expansions related to spin-unresolved ONV bases.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, double> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinUnresolvedONVBasis>::value, double> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
 
         // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
         std::vector<size_t> ket_indices_reversed = ket_indices;
@@ -742,8 +745,8 @@ public:
      * 
      *  @return The spin-resolved 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices.
         size_t K = this->onv_basis.alpha().numberOfOrbitals();
@@ -862,8 +865,8 @@ public:
      * 
      *  @return The spin-resolved 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
@@ -1075,8 +1078,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 1-DM
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -1084,8 +1087,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /*
@@ -1097,8 +1100,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -1131,16 +1134,16 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
     /**
      *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
      * 
      *  @return The spin-resolved 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
 
 
     /**
@@ -1148,8 +1151,8 @@ public:
      * 
      *  @return The spin-resolved 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -1218,8 +1221,8 @@ public:
      * 
      *  @return The spin-resolved 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
@@ -1298,8 +1301,8 @@ public:
      * 
      *  @return The spin-resolved 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
@@ -1530,8 +1533,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -1539,8 +1542,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /**
@@ -1550,7 +1553,8 @@ public:
     /**
      *  @return The Shannon entropy (information content) of the wave function.
      */
-    double calculateShannonEntropy() const {
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, double> calculateShannonEntropy() const {
 
         // Sum over the ONV basis dimension, and only include the term if |c_k|^2 != 0. This avoids any NaN errors.
         // We might as well replace all coefficients that are 0 by 1, since log(1) = 0, which would have no influence on the final entropy value.
@@ -1565,16 +1569,16 @@ public:
 
 
     /**
-     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
+     *  Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
      * 
      *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
      *
-     * @return The single orbital entropy of the orbital at the specified index.
+     *  @return The single orbital entropy of the orbital at the specified index.
      * 
-     * @note This version of this method is used when the linear expansion is based on a spin-resolved ONV basis.
+     *  @note This version of this method is used when the linear expansion is based on a spin-resolved ONV basis.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
 
         // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
         if (orbital_index > this->onv_basis.numberOfOrbitals()) {
@@ -1622,8 +1626,8 @@ public:
      * 
      * @note This version of this method is used when the linear expansion is based on a seniority-zero ONV basis.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, Scalar>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
 
         // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
         if (orbital_index > this->onv_basis.numberOfSpatialOrbitals()) {
@@ -1668,7 +1672,7 @@ public:
      *  @param callback                 The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, void> forEach(const std::function<void(const double, const SpinResolvedONV)>& callback) const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, void> forEach(const std::function<void(const Scalar, const SpinResolvedONV)>& callback) const {
 
         // Iterate over all ONVs in this ONV basis, and look up the corresponding coefficient.
         const auto& onv_basis = this->onv_basis;
@@ -1688,12 +1692,12 @@ public:
      */
 
     /** 
-     *  @param other            wave function for the comparison
-     *  @param tolerance        tolerance for the comparison of coefficients
+     *  @param other            The other linear expansion for the comparison.
+     *  @param tolerance        The olerance for the comparison of coefficients.
      * 
-     *  @return if two wave functions are equal within a given tolerance
+     *  @return If the two linear expansions are equal within a given tolerance.
      */
-    bool isApprox(const LinearExpansion<ONVBasis>& other, double tolerance = 1e-10) const {
+    bool isApprox(const LinearExpansion<Scalar, ONVBasis>& other, double tolerance = 1.0e-12) const {
 
         if (this->onv_basis.dimension() != other.onv_basis.dimension()) {
             return false;

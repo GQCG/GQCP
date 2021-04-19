@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(restricted_one_electron_operator_dense_vs_matvec) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
 
     // Determine the Hamiltonian matrix and let it act on a random linear expansion.
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis);
     const auto H_dense = onv_basis.evaluateOperatorDense(hamiltonian.core());
     const GQCP::VectorX<double> direct_mvp = H_dense * linear_expansion.coefficients();  // mvp: matrix-vector-product
 
@@ -236,7 +236,7 @@ BOOST_AUTO_TEST_CASE(restricted_Hamiltonian_dense_vs_matvec) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
 
     // Determine the Hamiltonian matrix and let it act on a random linear expansion.
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis);
     const auto H_dense = onv_basis.evaluateOperatorDense(hamiltonian);
     const GQCP::VectorX<double> direct_mvp = H_dense * linear_expansion.coefficients();  // mvp: matrix-vector-product
 
@@ -320,7 +320,7 @@ BOOST_AUTO_TEST_CASE(unrestricted_dense_vs_matvec) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
 
     // Determine the Hamiltonian matrix and let it act on a random linear expansion.
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis);
     const auto H_dense = onv_basis.evaluateOperatorDense(hamiltonian);
     const GQCP::VectorX<double> direct_mvp = H_dense * linear_expansion.coefficients();  // mvp: matrix-vector-product
 

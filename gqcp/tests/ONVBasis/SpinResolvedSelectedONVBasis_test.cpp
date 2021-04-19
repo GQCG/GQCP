@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(restricted_dense_vs_matvec) {
     const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
 
     // Determine the Hamiltonian matrix and let it act on a random linear expansion.
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::Random(selected_onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedSelectedONVBasis>::Random(selected_onv_basis);
     const auto H_dense = selected_onv_basis.evaluateOperatorDense(hamiltonian);
     const GQCP::VectorX<double> direct_mvp = H_dense * linear_expansion.coefficients();  // mvp: matrix-vector-product
 

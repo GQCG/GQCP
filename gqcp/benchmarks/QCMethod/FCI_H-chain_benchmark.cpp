@@ -56,12 +56,12 @@ static void fci_dense_molecule(benchmark::State& state) {
     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
     auto environment = GQCP::CIEnvironment::Dense(hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+        const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
         benchmark::DoNotOptimize(electronic_energy);  // Make sure that the variable is not optimized away by the compiler.
     }
@@ -103,14 +103,14 @@ static void fci_davidson_molecule(benchmark::State& state) {
     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
 
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+        const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
         benchmark::DoNotOptimize(electronic_energy);  // Make sure that the variable is not optimized away by the compiler.
     }

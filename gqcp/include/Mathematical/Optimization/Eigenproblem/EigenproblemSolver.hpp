@@ -27,15 +27,18 @@ namespace EigenproblemSolver {
 
 
 /**
- *  @return an algorithm that can diagonalize a dense matrix
+ *  @return An algorithm that can diagonalize a dense matrix.
+ * 
+ *  @tparam Scalar          The scalar type of matrix elements: real or complex.
  */
-Algorithm<EigenproblemEnvironment> Dense() {
+template <typename Scalar>
+Algorithm<EigenproblemEnvironment<Scalar>> Dense() {
 
-    // Our dense eigenproblem solver is just a wrapper around Eigen's routines.
-    StepCollection<EigenproblemEnvironment> steps {};
-    steps.add(DenseDiagonalization());
+    // Use Eigen's routines to diagonalize a matrix.
+    StepCollection<EigenproblemEnvironment<Scalar>> steps {};
+    steps.add(DenseDiagonalization<Scalar>());
 
-    return Algorithm<EigenproblemEnvironment>(steps);
+    return Algorithm<EigenproblemEnvironment<Scalar>>(steps);
 }
 
 // We should note that we cannot add the analogous Davidson solver here, because that would cause a cyclic dependence since one of the Davidson steps requires a dense diagonalization.

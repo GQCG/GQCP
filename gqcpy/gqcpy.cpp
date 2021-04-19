@@ -189,7 +189,7 @@ void bindCCSDSolver(py::module& module);
 // QCMethod - CI
 void bindCIEnvironments(py::module& module);
 void bindCIFactory(py::module& module);
-void bindQCMethodCIs(py::module& module);
+void bindQCMethodCI(py::module& module);
 
 
 // QCMethod - Geminals
@@ -431,7 +431,7 @@ PYBIND11_MODULE(gqcpy, module) {
     // QCMethod - CI
     gqcpy::bindCIEnvironments(module);
     gqcpy::bindCIFactory(module);
-    gqcpy::bindQCMethodCIs(module);
+    gqcpy::bindQCMethodCI(module);
 
 
     // QCMethod - Geminals

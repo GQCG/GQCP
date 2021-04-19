@@ -45,9 +45,9 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_resolved_1) {
     const GQCP::SpinResolvedONVBasis onv_basis_alpha {K, N / 2 - 1, N / 2};  // An ONV basis with one less alpha electron.
     const GQCP::SpinResolvedONVBasis onv_basis_beta {K, N / 2, N / 2 - 1};   // An ONV basis with one less beta electron.
 
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis, coeffs_J);
-    const auto linear_expansion_alpha = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis_alpha, coeffs_I);
-    const auto linear_expansion_beta = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis_beta, coeffs_I);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>(onv_basis, coeffs_J);
+    const auto linear_expansion_alpha = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>(onv_basis_alpha, coeffs_I);
+    const auto linear_expansion_beta = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>(onv_basis_beta, coeffs_I);
 
 
     // Calculate the Dyson amplitudes for both situations (alpha-reference) and (beta-reference), and check with the manual calculations.
@@ -84,9 +84,9 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_resolved_2) {
     const GQCP::SpinResolvedONVBasis onv_basis_alpha {K, N / 2 - 1, N / 2};  // An ONV basis with one less alpha electron.
     const GQCP::SpinResolvedONVBasis onv_basis_beta {K, N / 2, N / 2 - 1};   // An ONV basis with one less beta electron.
 
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis, coeffs_J);
-    const auto linear_expansion_alpha = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis_alpha, coeffs_I);
-    const auto linear_expansion_beta = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis_beta, coeffs_I);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>(onv_basis, coeffs_J);
+    const auto linear_expansion_alpha = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>(onv_basis_alpha, coeffs_I);
+    const auto linear_expansion_beta = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>(onv_basis_beta, coeffs_I);
 
 
     // Calculate the Dyson amplitudes for both situations (alpha-reference) and (beta-reference), and check with the manual calculations.
@@ -119,8 +119,8 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes_spin_unresolved) {
     const GQCP::SpinUnresolvedONVBasis onv_basis_J {K, N};      // The reference ONV basis.
     const GQCP::SpinUnresolvedONVBasis onv_basis_I {K, N - 1};  // An ONV basis with one less electron.
 
-    const auto linear_expansion_J = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>(onv_basis_J, coeffs_J);
-    const auto linear_expansion_I = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>(onv_basis_I, coeffs_I);
+    const auto linear_expansion_J = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>(onv_basis_J, coeffs_J);
+    const auto linear_expansion_I = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>(onv_basis_I, coeffs_I);
 
     // Calculate the Dyson orbital and check with manual calculations.
     const auto dyson_orbital = GQCP::DysonOrbital<double>::TransitionAmplitudes(linear_expansion_J, linear_expansion_I);

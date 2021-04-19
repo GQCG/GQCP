@@ -50,8 +50,8 @@ BOOST_AUTO_TEST_CASE(DOCI_BeH_cation_dense) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -80,8 +80,8 @@ BOOST_AUTO_TEST_CASE(DOCI_LiH_dense) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -110,8 +110,8 @@ BOOST_AUTO_TEST_CASE(DOCI_Li2_dense) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -144,10 +144,10 @@ BOOST_AUTO_TEST_CASE(DOCI_h2o_sto3g_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -175,10 +175,10 @@ BOOST_AUTO_TEST_CASE(DOCI_BeH_cation_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -206,10 +206,10 @@ BOOST_AUTO_TEST_CASE(DOCI_N2_STO_3G_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -237,10 +237,10 @@ BOOST_AUTO_TEST_CASE(DOCI_LiH_6_31G_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -268,10 +268,10 @@ BOOST_AUTO_TEST_CASE(DOCI_Li2_3_21G_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -299,10 +299,10 @@ BOOST_AUTO_TEST_CASE(DOCI_H2O_6_31G_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+    const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.

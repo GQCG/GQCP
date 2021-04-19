@@ -30,7 +30,7 @@ namespace GQCP {
  *
  *  @return the wave function expansion corresponding to the geminal coefficients
  */
-LinearExpansion<SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const {
+LinearExpansion<double, SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const {
 
     const auto dim = onv_basis.dimension();
     VectorX<double> coefficients = VectorX<double>::Zero(dim);  // the expansion coefficient vector
@@ -46,7 +46,7 @@ LinearExpansion<SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExp
         }
     }
 
-    return LinearExpansion<SeniorityZeroONVBasis>(onv_basis, coefficients);
+    return LinearExpansion<double, SeniorityZeroONVBasis>(onv_basis, coefficients);
 }
 
 

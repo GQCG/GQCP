@@ -48,7 +48,7 @@ public:
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    LinearExpansion<SeniorityZeroONVBasis> toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const;
+    LinearExpansion<double, SeniorityZeroONVBasis> toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const;
 };
 
 
