@@ -162,6 +162,12 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
 
     BOOST_CHECK(std::abs(S - ref) < 1.0e-06);
+    std::cout << "calculated S: ";
+    std::cout << S << std::endl;
+    std::cout << "reference: ";
+    std::cout << ref << std::endl;
+    std::cout << "absolute value (S - ref): ";
+    std::cout << std::abs(S - ref) << std::endl;
 }
 
 
