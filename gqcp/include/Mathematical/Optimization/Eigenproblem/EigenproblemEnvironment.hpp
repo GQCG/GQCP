@@ -106,7 +106,7 @@ public:
         matrix_vector_product_function {matrix_vector_product_function},
         diagonal {diagonal},
         V {V},
-        VA {MatrixX<Scalar>::Zero(V.rows(), 0)} {}  // the initial environment should have no columns in VA
+        VA {MatrixX<Scalar>::Zero(V.rows(), 0)} {}  // The initial environment should have no columns in VA.
 
 
     /*

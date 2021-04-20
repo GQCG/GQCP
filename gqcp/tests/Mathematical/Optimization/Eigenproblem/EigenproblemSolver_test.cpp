@@ -302,7 +302,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_1000_collapse) {
     const GQCP::VectorX<double> ref_lowest_eigenvector = eigensolver.eigenvectors().col(0);
 
 
-    // Solve using our Davidson diagonalization algorithm, supplying an initial guess
+    // Solve using our Davidson diagonalization algorithm, supplying an initial guess.
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Unit(N, 0);
 
     auto davidson_environment = GQCP::EigenproblemEnvironment<double>::Iterative(A, x_0);

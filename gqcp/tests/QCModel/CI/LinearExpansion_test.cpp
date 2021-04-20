@@ -303,18 +303,18 @@ BOOST_AUTO_TEST_CASE(expansions) {
 
     // Check if ::Constant yields a normalized linear expansion.
     const auto constant_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
-    BOOST_CHECK(std::abs(constant_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // check if the coefficient vector is normalized
+    BOOST_CHECK(std::abs(constant_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // Check if the coefficient vector is normalized.
 
 
     // Check if ::HartreeFock yields a normalized linear expansion.
     const auto hartree_fock_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
-    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // check if the coefficient vector is normalized
-    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients()(0) - 1.0) < 1.0e-12);      // the Hartree-Fock determinant should be the first one
+    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // Check if the coefficient vector is normalized.
+    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients()(0) - 1.0) < 1.0e-12);      // The Hartree-Fock determinant should be the first one.
 
 
     // Check if ::Random yields a normalized linear expansion.
     const auto random_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
-    BOOST_CHECK(std::abs(random_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // check if the coefficient vector is normalized
+    BOOST_CHECK(std::abs(random_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // Check if the coefficient vector is normalized.
 }
 
 

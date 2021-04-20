@@ -78,7 +78,7 @@ public:
      * 
      *  @tparam Solver              the type of the solver
      * 
-     *  @param solver               the solver that will try to optimize the parameters
+     *  @param solver               The solver that will try to optimize the parameters.
      */
     template <typename Solver>
     QCStructure<LinearExpansion<Scalar, ONVBasis>, Scalar> optimize(Solver& solver, EigenproblemEnvironment<Scalar>& environment) const {

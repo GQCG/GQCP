@@ -106,7 +106,7 @@ public:
         std::vector<Scalar> expectation_values(this->numberOfComponents());  // Zero-initialize the vector with a number of elements.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
 
-            // Perform the contraction "f(p, q) D(p, q)"
+            // Perform the contraction "f(p, q) D(p, q)".
             Tensor<Scalar, 2> f_tensor = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(parameters[i].data(), this->numberOfOrbitals(), this->numberOfOrbitals());
             Eigen::Tensor<Scalar, 0> contraction = f_tensor.template einsum<2>("pq, pq->", D_tensor);
 

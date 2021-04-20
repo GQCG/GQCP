@@ -37,7 +37,7 @@ public:
     using EigenvalueScalar = _EigenvalueScalar;
 
 
-    // The scalar type for the representation of one of the coefficients of an eigenvector: real or complex;
+    // The scalar type for the representation of one of the coefficients of an eigenvector: real or complex.
     using EigenvectorScalar = _EigenvectorScalar;
 
 

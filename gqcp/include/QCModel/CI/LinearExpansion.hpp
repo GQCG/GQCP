@@ -162,7 +162,7 @@ public:
      * 
      *  @param GAMESSUS_filename      The name of the GAMESS-US file that contains the spin-resolved selected wave function expansion.
      * 
-     *  @return The corresponding spin-resolved selected linear expansion from a given GAMESS-US file
+     *  @return The corresponding spin-resolved selected linear expansion from a given GAMESS-US file.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
     static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, LinearExpansion<double, SpinResolvedSelectedONVBasis>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
@@ -265,7 +265,7 @@ public:
             coefficients(index_count) = std::stod(splitted_line[2]);
             onv_basis.expandWith(SpinResolvedONV::FromString(reversed_alpha, reversed_beta));
 
-        }  // while getline
+        }  // The `while getline` loop.
 
         return LinearExpansion<double, SpinResolvedSelectedONVBasis>(onv_basis, coefficients);
     }
@@ -284,7 +284,7 @@ public:
     static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, LinearExpansion<double, SpinResolvedONVBasis>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S_r = r_spinor_basis.overlap();                  // the overlap matrix of the restricted MOs/spin-orbitals
+        auto S_r = r_spinor_basis.overlap();                  // The overlap matrix of the restricted MOs/spin-orbitals.
         S_r.transform(r_spinor_basis.expansion().inverse());  // now in AO basis
 
         auto S_u = u_spinor_basis.overlap();                  // The overlap matrix of the unrestricted spin-orbitals.
@@ -1928,7 +1928,7 @@ public:
 
     /** 
      *  @param other            The other linear expansion for the comparison.
-     *  @param tolerance        The olerance for the comparison of coefficients.
+     *  @param tolerance        The tolerance for the comparison of coefficients.
      * 
      *  @return If the two linear expansions are equal within a given tolerance.
      */

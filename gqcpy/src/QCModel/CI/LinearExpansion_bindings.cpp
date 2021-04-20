@@ -172,7 +172,7 @@ void bindLinearExpansions(py::module& module) {
     // Define the python class related to a linear expansion of a Seniority Zero ONV basis and expose the necessary interfaces.
     py::class_<LinearExpansion<double, SeniorityZeroONVBasis>> py_LinearExpansion_SeniorityZero {module, "LinearExpansion_SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis."};
 
-    // Expose the bindings exclusive to this type of linear expansion
+    // Expose the bindings exclusive to this type of linear expansion.
     py_LinearExpansion_SeniorityZero
 
         /*
@@ -202,7 +202,7 @@ void bindLinearExpansions(py::module& module) {
     // Define the python class related to a linear expansion of a Spin Resolved ONV basis and expose the necessary interfaces.
     py::class_<LinearExpansion<double, SpinResolvedONVBasis>> py_LinearExpansion_SpinResolved {module, "LinearExpansion_SpinResolved", "The linear expansion (configuration interaction) wave function model in a spin-resolved ONV basis."};
 
-    // Expose the bindings exclusive to this type of linear expansion
+    // Expose the bindings exclusive to this type of linear expansion.
     py_LinearExpansion_SpinResolved
 
         /*

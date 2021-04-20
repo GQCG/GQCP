@@ -148,11 +148,11 @@ public:
 
 
 public:
-    size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
-    size_t end;        // total dimension
+    size_t index = 0;  // Current position of the iterator in the dimension of the ONV basis.
+    size_t end;        // The total dimension.
 
-    Eigen::SparseMatrix<Scalar> matrix;                  // matrix containing the evaluations
-    std::vector<Eigen::Triplet<Scalar>> triplet_vector;  // vector which temporarily contains the added values
+    Eigen::SparseMatrix<Scalar> matrix;                  // Matrix containing the evaluations.
+    std::vector<Eigen::Triplet<Scalar>> triplet_vector;  // Vector which temporarily contains the added values.
 
 
 public:
@@ -161,7 +161,7 @@ public:
      */
 
     /**
-     * @param dimension         the dimensions of the matrix (equal to that of the fock space)
+     * @param dimension         The dimensions of the matrix (equal to that of the fock space).
      */
     MatrixRepresentationEvaluationContainer(const size_t dimension) :
         matrix {Eigen::SparseMatrix<Scalar>(dimension, dimension)},
@@ -177,23 +177,23 @@ public:
      *  This function adds the values to a triplet vector
      *  to add the values to the sparse matrix, one should call "addToMatrix()"
      * 
-     *  @param column    column index of the matrix
-     *  @param value     the value which is added to a given position in the matrix
+     *  @param column    Column index of the matrix.
+     *  @param value     The value which is added to a given position in the matrix.
      */
     void addColumnwise(const size_t column, const Scalar value) { this->triplet_vector.emplace_back(this->index, column, value); }
 
     /**
-     *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
+     *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row.
      *  This function adds the values to a triplet vector
      *  to add the values to the sparse matrix, one should call "addToMatrix()"
      * 
-     *  @param row       row index of the matrix
-     *  @param value     the value which is added to a given position in the matrix
+     *  @param row       Row index of the matrix.
+     *  @param value     The value which is added to a given position in the matrix.
      */
     void addRowwise(const size_t row, const Scalar value) { this->triplet_vector.emplace_back(row, this->index, value); }
 
     /**
-     *  Fill the sparse matrix with the elements stored in the triplet vector
+     *  Fill the sparse matrix with the elements stored in the triplet vector.
      *  the more elements that are already present in the matrix, the more expensive this operation becomes
      *  Therefore, it is ill-advised to call the method more than once,
      *  after filling, the triplet vector is cleared
@@ -206,12 +206,12 @@ public:
     /**
      *  @return the evaluation that is stored
      * 
-     *  @note the matrix will not be initialized if `addToMatrix()` has not been called
+     *  @note The matrix will not be initialized if `addToMatrix()` has not been called.
      */
     const Eigen::SparseMatrix<Scalar>& evaluation() const { return this->matrix; }
 
     /**
-     *  Move to the next index in the iteration
+     *  Move to the next index in the iteration.
      */
     void increment() { this->index++; }
 
@@ -240,14 +240,14 @@ public:
     }
 
     /**
-     *  @return the triplet vector
+     *  @return The triplet vector.
      */
     const std::vector<Eigen::Triplet<Scalar>>& triplets() const { return triplet_vector; }
 };
 
 
 /**
- *  Vector template specialization is required because of matvec evaluations are stored in a vector additions
+ *  Vector template specialization is required because of matvec evaluations are stored in a vector additions.
  * 
  *  @tparam _Scalar         The scalar type of one of the matrix elements: real or complex.
  */
@@ -258,13 +258,13 @@ public:
     using Scalar = _Scalar;
 
 public:
-    size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
-    size_t end;        // total dimension
+    size_t index = 0;  // Current position of the iterator in the dimension of the ONV basis.
+    size_t end;        // The total dimension.
 
-    VectorX<Scalar> matvec;                     // matvec containing the evaluations
-    const VectorX<Scalar>& coefficient_vector;  // vector with which is multiplied
-    double sequential_double = 0;               // double which temporarily contains the sum of added values, it corresponds to the value in the matvec of the current index and allows a for a single write access each iteration instead of multiple
-    double nonsequential_double = 0;            // double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration
+    VectorX<Scalar> matvec;                     // Matvec containing the evaluations.
+    const VectorX<Scalar>& coefficient_vector;  // Vector with which is multiplied.
+    double sequential_double = 0;               // Double which temporarily contains the sum of added values, it corresponds to the value in the matvec of the current index and allows a for a single write access each iteration instead of multiple.
+    double nonsequential_double = 0;            // Double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration.
 
 
 public:
@@ -273,7 +273,7 @@ public:
      */
 
     /**
-     * @param dimension         the dimensions of the matrix (equal to that of the fock space)
+     * @param dimension         The dimensions of the matrix (equal to that of the fock space).
      */
     MatrixRepresentationEvaluationContainer(const VectorX<Scalar>& coefficient_vector, const VectorX<Scalar>& diagonal) :
         end {static_cast<size_t>(coefficient_vector.rows())},
@@ -293,26 +293,26 @@ public:
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
      * 
-     *  @param column    column index of the matrix
-     *  @param value     the value which is added to a given position in the matrix
+     *  @param column    Column index of the matrix.
+     *  @param value     The value which is added to a given position in the matrix.
      */
     void addColumnwise(const size_t column, const Scalar value) { sequential_double += value * coefficient_vector(column); }
 
     /**
-     *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
+     *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row.
      * 
-     *  @param row       row index of the matrix
-     *  @param value     the value which is added to a given position in the matrix
+     *  @param row       Row index of the matrix.
+     *  @param value     The value which is added to a given position in the matrix.
      */
     void addRowwise(const size_t row, const Scalar value) { this->matvec(row) += value * this->nonsequential_double; }
 
     /**
-     *  @return the evaluation that is stored
+     *  @return The evaluation that is stored.
      */
     const VectorX<Scalar>& evaluation() const { return this->matvec; }
 
     /**
-     *  Move to the next index in the iteration, this is accompanied by an addition to the matvec and reset of the sequential double
+     *  Move to the next index in the iteration, this is accompanied by an addition to the matvec and reset of the sequential double.
      */
     void increment() {
         this->matvec(this->index) += this->sequential_double;
