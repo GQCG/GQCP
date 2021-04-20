@@ -485,11 +485,12 @@
     <member refid="class_g_q_c_p_1_1_c_c_s_d_solver_1abfe84a6387736ab7739d9d4fc4806c2f" kind="function"><name>Plain</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i" kind="class"><name>GQCP::QCMethod::CI</name>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" kind="typedef"><name>ONVBasis</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a7373158d70c070c3921d443646f74c95" kind="variable"><name>number_of_states</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1acb6a0f1360ee62263187cd6b659b09d5" kind="variable"><name>onv_basis</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ab42eea3ca80147a47e984486a3c14ebe" kind="function"><name>CI</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a50115359cec7203bb365c1da94b64934" kind="function"><name>optimize</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" kind="typedef"><name>ONVBasis</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1aa1af0cc2267b79b4c9575ccabcb76ce6" kind="variable"><name>number_of_states</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a853705c680df886299d150ed80e13c72" kind="variable"><name>onv_basis</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad729fb21bb5cc18d2960297c38dbbc2a" kind="function"><name>CI</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ae43caa91ffb9d61b93262ead734c7fa5" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014" kind="struct"><name>GQCP::units::constants::CODATA2014</name>
     <member refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a333a193dd303f66d6e00c3b36a208304" kind="variable"><name>angstrom_per_bohr</name></member>
@@ -533,7 +534,7 @@
     <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a62e7f197aabd8b5498ea1c571aa6717d" kind="variable"><name>correction_threshold</name></member>
     <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a48c74231f2206b48ee07077792b2939d" kind="function"><name>CorrectionVectorCalculation</name></member>
     <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a0f61c24b2308938c66b306e4fa410f9e" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a120b466e0f888fbdddddc15a311830fd" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_correction_vector_calculation_1a9138ba28606cd23c29460423351a6bfa" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kind="class"><name>GQCP::CoulombRepulsionOperator</name>
   </compound>
@@ -587,9 +588,9 @@
     <member refid="class_g_q_c_p_1_1_current_density_operator_1ad848439e8836e06f1dab0b85b89ee5bd" kind="variable"><name>vectorizer</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_dense_diagonalization" kind="class"><name>GQCP::DenseDiagonalization</name>
-    <member refid="class_g_q_c_p_1_1_dense_diagonalization_1a50f7d8ec673b00f690373124a8528d1e" kind="variable"><name>number_of_requested_eigenpairs</name></member>
-    <member refid="class_g_q_c_p_1_1_dense_diagonalization_1abb3d222b533cd59f944f411d2134b591" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_dense_diagonalization_1a22c3d402fc47e074ed0b50b6345bee8e" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_dense_diagonalization_1a5ec8d20ee3ab819701fa8c37ef1269cc" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_dense_diagonalization_1aa6b861d4f2bbc5fadf5f9890260f620a" kind="function"><name>description</name></member>
+    <member refid="class_g_q_c_p_1_1_dense_diagonalization_1ab0d0402e1cac158ea3177c7a1bc6740e" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_dense_vectorizer" kind="class"><name>GQCP::DenseVectorizer</name>
     <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a57e446e8ac36d052d7942256e0042498" kind="variable"><name>m_ordering</name></member>
@@ -695,40 +696,42 @@
     <member refid="class_g_q_c_p_1_1_dyson_orbital_1ae74740687f622d0b540a726029c1eb55" kind="function"><name>DysonOrbital</name></member>
     <member refid="class_g_q_c_p_1_1_dyson_orbital_1a35dce26692bb4d12ead43e446bc513b4" kind="function"><name>DysonOrbital</name></member>
     <member refid="class_g_q_c_p_1_1_dyson_orbital_1a6d3711598ea059f5ba90f7f5d6db0309" kind="function"><name>amplitudes</name></member>
-    <member refid="class_g_q_c_p_1_1_dyson_orbital_1a66695dfeffe0965391dbc9aa540d2735" kind="function"><name>TransitionAmplitudes</name></member>
-    <member refid="class_g_q_c_p_1_1_dyson_orbital_1a3439c96ed4059e5c9f0466ba14190125" kind="function"><name>TransitionAmplitudes</name></member>
+    <member refid="class_g_q_c_p_1_1_dyson_orbital_1abb243e760c5c8fc2d39aeeb6539a9ff4" kind="function"><name>TransitionAmplitudes</name></member>
+    <member refid="class_g_q_c_p_1_1_dyson_orbital_1a03117ebe441cbe3775f643e6723d8101" kind="function"><name>TransitionAmplitudes</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_eigenpair" kind="class"><name>GQCP::Eigenpair</name>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1a0e5fc05a28bbb597ac2b5b70831013bc" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1a6dfb5809d87e2835aa014ef5b4508080" kind="variable"><name>m_eigenvalue</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1a2df646bba5b75bf639ccdf60d7835a58" kind="variable"><name>m_eigenvector</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1ac0dea89cde77e8e0cd851309c0e53d1a" kind="function"><name>Eigenpair</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1acba6a4294634269ba2651cc0bd6fc4a6" kind="function"><name>Eigenpair</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1aa4891460e22f96831c9b475dfd65f7ab" kind="function"><name>eigenvalue</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1a0fc7eff360fbe84e9ecaba106cf82a22" kind="function"><name>eigenvector</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenpair_1a0eca8718b476d91f31af8cea5f6436c5" kind="function"><name>isEqualTo</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1a7b220ee5a33a55cdd294d9beb4fb0e01" kind="typedef"><name>EigenvalueScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1a4ecde4ec631cfbb101c274ce7144b84c" kind="typedef"><name>EigenvectorScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1a70c117c8cb533a70fecf02b5cf97159c" kind="variable"><name>m_eigenvalue</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1a1d4ffb78edc224d2e7540cc2c1d3a0af" kind="variable"><name>m_eigenvector</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1a794ccff066925e66440955f073662817" kind="function"><name>Eigenpair</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1a05edc2884c967e8602498cf32519b743" kind="function"><name>Eigenpair</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1ad048e1d83e56c45b824dcac4bd80cd73" kind="function"><name>eigenvalue</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1a7aca8aadc64511b3022862be4a4af821" kind="function"><name>eigenvector</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenpair_1afa739b129f094e4d8e57f4909bc409f6" kind="function"><name>isEqualTo</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_eigenproblem_environment" kind="class"><name>GQCP::EigenproblemEnvironment</name>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ae4dda051e342f95f315adcf6b18e7994" kind="variable"><name>matrix_vector_product_function</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a6e9de708b823833fafb9dc28166d6330" kind="variable"><name>A</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a3233157c546a171ffcedbe69daf5a879" kind="variable"><name>diagonal</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ab8f5d80a487653a0236476e28a6ac180" kind="variable"><name>dimension</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a526ffc032bf183aa27f0f0b2019a6fb9" kind="variable"><name>eigenvalues</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1aa5d3e7c5fe4d25f768dff3c8f43c6998" kind="variable"><name>eigenvectors</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a63caf0f05cf5a7d544e365a0de417bfd" kind="variable"><name>S</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a07ab07c4480b21d8a1737279aff740ee" kind="variable"><name>Lambda</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1abfccded2245679c282d7b1fdc74e2738" kind="variable"><name>Z</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ab740d3b3b985b35723cca53b245ebf57" kind="variable"><name>V</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a069bdb041859ac96cb5ec59d373c4d6d" kind="variable"><name>VA</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a264178ee8ece1d4c254559cb3c390eb9" kind="variable"><name>X</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a080de2c68709a283effcceb0015761c1" kind="variable"><name>R</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1af13bee65769bcb800cd79fd81612f117" kind="variable"><name>Delta</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a96dc32cc61ac22b8ac47c00a4bbd74d6" kind="function"><name>EigenproblemEnvironment</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a0a8554d33e44f8fa685d18b7c8f576fa" kind="function"><name>EigenproblemEnvironment</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1aaed7d0d86cb7215a5b66726c5f5d8c32" kind="function"><name>eigenpairs</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a9a00e480db0ed01175c3053cbd15dea4" kind="function"><name>Dense</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a76476649d006a70c33fcc635a7df9afd" kind="function"><name>Iterative</name></member>
-    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a7514933b744fcabbf9ff38cebf5b1ba2" kind="function"><name>Iterative</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1aa5d1ac8e9e8a5124ff821328c190cd9e" kind="variable"><name>matrix_vector_product_function</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a849aa0ad0c9466c531ae2801fc12d8de" kind="variable"><name>A</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a25b534ad54e086e91c69bde714a0c4c4" kind="variable"><name>diagonal</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a5409c53cfd95076713c08a6fb341afb1" kind="variable"><name>dimension</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a32a61251a3de42f08c34013bd764a9bc" kind="variable"><name>eigenvalues</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ae6067f5f512100449b51ff98a2c22a4f" kind="variable"><name>eigenvectors</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1abf4e241d51681616cb4b6ed28a6d4026" kind="variable"><name>S</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ab9d9ff337078f8cdd90cc166f89d7cbe" kind="variable"><name>Lambda</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a7f53eede93b4b59a2bdfb50dfb7bd810" kind="variable"><name>Z</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a33c85239d26787d391d5036f136bc153" kind="variable"><name>V</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ad1322f5ba8ad32def492dc275f85cb76" kind="variable"><name>VA</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a238f88df14aff1b0ce73f34e4aa8ba0f" kind="variable"><name>X</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1af75cf9113b87fd65208c7b6d38910be6" kind="variable"><name>R</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a38990312c6e1d4f8e39eea7d714f409e" kind="variable"><name>Delta</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ad144d41a45edab52a494694a7e59066f" kind="function"><name>EigenproblemEnvironment</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a7ecaa971dceb4e76e0efa1058593eb2a" kind="function"><name>EigenproblemEnvironment</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" kind="function"><name>eigenpairs</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1acf84deadaff12d58fc9cf21d46b45787" kind="function"><name>Dense</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a727e721f3027d6da3b35790584f4cf1a" kind="function"><name>Iterative</name></member>
+    <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a826d9df6c704d8128195ff08dc447973" kind="function"><name>Iterative</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_electronic_density_operator" kind="class"><name>GQCP::ElectronicDensityOperator</name>
   </compound>
@@ -797,7 +800,8 @@
     <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a927503a9401aac67bbe0da355accc8bc" kind="function"><name>functions</name></member>
     <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a5c09be16f8ced29d9243f6da9877fffe" kind="function"><name>operator()</name></member>
     <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1aca009eb05e42ec82f9621d11a3a931bf" kind="function"><name>operator==</name></member>
-    <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a7bec539c2d81ef7eebb6572f1676a6ae" kind="function"><name>append</name></member>
+    <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1ad3141b0c9149295e77aa768e134a415f" kind="function"><name>append</name></member>
+    <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a5fa37456db5398996bdfe66db554cf02" kind="function"><name>appendWithThreshold</name></member>
     <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a5c7bcb1c402887a0feab4e464c891a93" kind="function"><name>append</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kind="class"><name>GQCP::EvaluableRSQOneElectronOperator</name>
@@ -917,7 +921,7 @@
   <compound refid="class_g_q_c_p_1_1_geminal_coefficients_interface" kind="class"><name>GQCP::GeminalCoefficientsInterface</name>
     <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" kind="function"><name>~GeminalCoefficientsInterface</name></member>
     <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f" kind="function"><name>overlap</name></member>
-    <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" kind="function"><name>toLinearExpansion</name></member>
+    <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a32797287bde862bf2559f3ac73bc56ec" kind="function"><name>toLinearExpansion</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_general_spinor_tag" kind="class"><name>GQCP::GeneralSpinorTag</name>
   </compound>
@@ -1125,7 +1129,7 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_guess_vector_update" kind="class"><name>GQCP::GuessVectorUpdate</name>
     <member refid="class_g_q_c_p_1_1_guess_vector_update_1a587095aac1b169167816445427e96607" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_guess_vector_update_1a7a851040ae4141bf75a5c04e3b8c4789" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_guess_vector_update_1afecd16ce6a29e4262ce1d6c95f7c0453" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_hermite_coulomb_integral" kind="class"><name>GQCP::HermiteCoulombIntegral</name>
     <member refid="class_g_q_c_p_1_1_hermite_coulomb_integral_1a88c5e1315d219e3b09d6dd4d57abff0e" kind="variable"><name>p</name></member>
@@ -1502,39 +1506,45 @@
     <member refid="class_g_q_c_p_1_1_libint_two_electron_integral_engine_1a2e36ffbf6a9acd7743f04b4ec7f81749" kind="function"><name>calculate</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_linear_expansion" kind="class"><name>GQCP::LinearExpansion</name>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1aeb2bd1a8561e0df24b4389729ff5565b" kind="typedef"><name>ONVBasis</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1af2892b4c9cef845c3594617237330da3" kind="variable"><name>onv_basis</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a15b722a5cc3336f3a034137108070782" kind="variable"><name>m_coefficients</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a52e82dd9a6012ff3c32f3188f490e11b" kind="function"><name>LinearExpansion</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a8aeb108a3332e5613d0b59ff035a12f3" kind="function"><name>LinearExpansion</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1ab91c392f4115f75dac383674522681dc" kind="function"><name>coefficient</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a15d454c6ec927c95f0aaa65f93d027cd" kind="function"><name>coefficients</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1afcdf2d7ccdf24c12011320d98de2f2f7" kind="function"><name>onvBasis</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1ae0f959f274efeec4108268f63fd81f73" kind="function"><name>basisTransform</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1aa86b6f1fe33fcdd2ae7309fd2f083b4e" kind="function"><name>calculate1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1ac551b8171a320a270b2adfa67cdba863" kind="function"><name>calculateNDMElement</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a03116cc358fad0dcddd365c8327f7983" kind="function"><name>calculateSpinResolved1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1abefcfaaf40b569a3ce1856974d4a739c" kind="function"><name>calculateSpinResolved2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a09d7046bb17f2f5b9341c03b229b7f9d" kind="function"><name>calculate1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1acdf053e84e9f1f58e8c81d99218871d4" kind="function"><name>calculate2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1ae5a3c06f9e78433e9a1852f358a9c8c5" kind="function"><name>calculate1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a91748f9fe8f0e9414dd904552e4c2184" kind="function"><name>calculate2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a063db549f477c06c1647c2fd32da1676" kind="function"><name>calculateSpinResolved1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a131c1561b2bf514202c7cc92a1c8fcd9" kind="function"><name>calculateSpinResolved2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a534fd8d25045fc6a57b4a72b947b7a8b" kind="function"><name>calculateSpinResolved1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a7a0e1d0f84814472df8d34965d040d01" kind="function"><name>calculateSpinResolved2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1af98af92bf5e21b851e09b7540a1f611f" kind="function"><name>calculate1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a10b0da70f8207fbb802a0f8f19cf64ca" kind="function"><name>calculate2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a165ab1f366f554859e1d13eaf32488cf" kind="function"><name>calculateShannonEntropy</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a8658812e07c00b29e4fe91521a1557cc" kind="function"><name>forEach</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a31abc84daa8f3799c88be8c13896e888" kind="function"><name>isApprox</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1ad7ba5f7d7f01a05389125133c01390c2" kind="function"><name>Constant</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a31eed6b90d90392547583e356e6771d2" kind="function"><name>HartreeFock</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a915311fde7ac205d74f41472a6d5f273" kind="function"><name>Normalized</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1adee6d93d12a03bc5407b7fdc378ba8c0" kind="function"><name>Random</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a4bdb98135b0f9c49679f1849fe5e25f3" kind="function"><name>FromGAMESSUS</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1a2919b1b75dea60dabdb343b36545e581" kind="function"><name>FromONVProjection</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1aa6f8e2d7f7c0e3f448482651ca19f350" kind="function"><name>FromONVProjection</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kind="typedef"><name>ONVBasis</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a6b3dfe51faf4e58e0dd6d038842c0942" kind="variable"><name>onv_basis</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1aca2691547f747fd79d5e27379ba6903a" kind="variable"><name>m_coefficients</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1af7649247c802d4da39eb4516d85b8ffb" kind="function"><name>LinearExpansion</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a6902d1a87c3ea5c120819b7ff5c4a594" kind="function"><name>LinearExpansion</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" kind="function"><name>coefficient</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a8cfae67734c46f6ed1bed2235444c158" kind="function"><name>coefficients</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1af99f45f0ff40fd21d773aa4c591fd4f5" kind="function"><name>onvBasis</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a5b75a7df26c9dae8da6262395690088f" kind="function"><name>basisTransform</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a520a6768167ffe6816d16ba020203924" kind="function"><name>calculate1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a68260d54ae9ed4e953c544c9fe6d9f35" kind="function"><name>calculateNDMElement</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a681b9ee10933b17c0b3802630c69886f" kind="function"><name>calculateNDMElement</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a26173a1862769598b24351d3458f45b6" kind="function"><name>calculateSpinResolved1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a9cedef33ec080b51617740a3684ef777" kind="function"><name>calculateSpinResolved2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a9c97256da0f7d643c385ffdc42758731" kind="function"><name>calculate1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a0bb9e25c8522c72b53de3cc218b86312" kind="function"><name>calculate2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a1253d917657e0280beda087214b49f6a" kind="function"><name>calculate1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a62221808d5ac5ebce97705e6e5c18420" kind="function"><name>calculate2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a355dea63151bc35974fcb4a733a3a020" kind="function"><name>calculateSpinResolved1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a73df44f6170ab3ac8989714d26406bfe" kind="function"><name>calculateSpinResolved2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a67589ca63e3416c18a743755da18c737" kind="function"><name>calculateSpinResolved1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1ab703ef7bbf3af427842525656ea90018" kind="function"><name>calculateSpinResolved2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a68715529f7cd2e9632658808447a2396" kind="function"><name>calculate1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1ae3548e45e0d00792771c32ee090029ba" kind="function"><name>calculate2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a4f2112174b9ecd83b68ea3eb77394a7c" kind="function"><name>calculate1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1aba66ead5fd15d70424318070d3076adb" kind="function"><name>calculate2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1ac5d36496b690457a45bd56b8289a29ab" kind="function"><name>calculateShannonEntropy</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" kind="function"><name>calculateSingleOrbitalEntropy</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" kind="function"><name>calculateSingleOrbitalEntropy</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1adef9943597c3292868341ed108c18ac7" kind="function"><name>forEach</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1aee095ee9919d57753f68396b99da4370" kind="function"><name>isApprox</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a57e038e1975f19c5e6933d36c7c8b504" kind="function"><name>Constant</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a73053c804e2222efb302aff74ad45801" kind="function"><name>HartreeFock</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a4cf29388d529c35b62a093b52f5d7a24" kind="function"><name>Normalized</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a4243e84f3b71c655cbbe3784f4665904" kind="function"><name>Random</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1ab81ea18db61745ee5f364d7a0bd4478d" kind="function"><name>FromGAMESSUS</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a431d89c7f251e498024392ad02e12c30" kind="function"><name>FromONVProjection</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a2cb9dfcdab0b36f17e1e0e448397c975" kind="function"><name>FromONVProjection</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_linear_momentum_operator" kind="class"><name>GQCP::LinearMomentumOperator</name>
     <member refid="class_g_q_c_p_1_1_linear_momentum_operator_1a86600b6da5a5818dce9a16204678917e" kind="variable"><name>NumberOfComponents</name></member>
@@ -1607,45 +1617,48 @@
     <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a1f58343098e10f15d7521e19e52e3001" kind="variable"><name>end</name></member>
     <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aa62b8fa69579d4f38fada5f3ef224455" kind="variable"><name>matrix</name></member>
     <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a6b9ef0370563f0eea68afd8d1db51ddc" kind="function"><name>MatrixRepresentationEvaluationContainer</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a3c0df8025bcd4fff073f5dc906b71ed6" kind="function"><name>addDiagonally</name></member>
     <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a01e94b367635ae325c4ae22c55ff8262" kind="function"><name>addColumnwise</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ab16ce58d35ab786810dbde8115dffad2" kind="function"><name>addRowwise</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ac231c9271823d5a3334eff6d8a7f4133" kind="function"><name>addRowwise</name></member>
     <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a2ec4dee0f5cbae2b7730d647c6729eea" kind="function"><name>evaluation</name></member>
     <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ac70cfe74faa0933d129260dd8654edb5" kind="function"><name>increment</name></member>
     <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a6740eba1f8a2206adff9187763fb7bb9" kind="function"><name>isFinished</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4" kind="class"><name>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; double &gt; &gt;</name>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1ab15783ea544a92fcf8ece4026cb20575" kind="variable"><name>index</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1a243273b8cf2cd5368190e0b988ce696f" kind="variable"><name>end</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1aae2d547457612a04cfc466839c5bfc67" kind="variable"><name>matrix</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1aa8ea4ed84517fe732c8b857b9d6bc365" kind="variable"><name>triplet_vector</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1a4cdccc71eb1f4d7a570451d8530f94e0" kind="function"><name>MatrixRepresentationEvaluationContainer</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1aba1eb7f7fa8d5d6e5e814cbd3ebc7251" kind="function"><name>addColumnwise</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1a07fc37bc6a2da6a7fea030e27c91928c" kind="function"><name>addRowwise</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1aad46a17a33908704f48219214374aa20" kind="function"><name>addToMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1ae84ef28f40d65771185a5e5568ce226c" kind="function"><name>evaluation</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1a952659564582b974796c1fc66bf5a14a" kind="function"><name>increment</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1a8534d496c28943b3792a35cb5f439fde" kind="function"><name>isFinished</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1af06f05377c199e19257aa5fb5cce45d0" kind="function"><name>reserve</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01double_01_4_01_4_1a8320fc9992c24b89e97dcefc4386499d" kind="function"><name>triplets</name></member>
+  <compound refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4" kind="class"><name>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</name>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1aa2bbbb047aefc960dcfaef62073baf45" kind="variable"><name>index</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a0bceb6fdcd7e0f55d00bc86641c5134b" kind="variable"><name>end</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1afa6c0e9862ec918a7f85a9059b09f0f9" kind="variable"><name>matrix</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ae9ebff5467f2d4aebc02a9045fb995a4" kind="variable"><name>triplet_vector</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a749f8b27d989dc3de141ac9f844e3683" kind="function"><name>MatrixRepresentationEvaluationContainer</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a6ec6850d45f905b4c165c37a95cfe66d" kind="function"><name>addColumnwise</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af2fa0c6b929e4973ee92bcea1d471d4a" kind="function"><name>addRowwise</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ac13568aa199accd63da79e615aec83f0" kind="function"><name>addToMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a3ac69a92687fd2a5641baface452f613" kind="function"><name>evaluation</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a65e10aa30f5e6b00d807c4bfd52bafb4" kind="function"><name>increment</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a43e5db65f4c5c173eabfd012f5d6bbeb" kind="function"><name>isFinished</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ab46ff2529e84e8be0b7d020fe1396906" kind="function"><name>reserve</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a7f6e7eab5fea93a00a34cdb70dcfeae3" kind="function"><name>triplets</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4" kind="class"><name>GQCP::MatrixRepresentationEvaluationContainer&lt; VectorX&lt; double &gt; &gt;</name>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1a04cbe57b9c24400112d9c7f8b7fc523f" kind="variable"><name>index</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1a5b0748483f5e946255e799aad091f63f" kind="variable"><name>end</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1a5894a96c251b56d525b514e5be25ecf2" kind="variable"><name>matvec</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1a38a191a4167e3a5288a799f1132ab22a" kind="variable"><name>coefficient_vector</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1a29a1f861c7ce7760b52de4eeda0d3b7f" kind="variable"><name>sequential_double</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1ae1e2a7d224bccac734cf3d09fd4298d4" kind="variable"><name>nonsequential_double</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1abcfb71cab89dccbd47a1bfccbdf687db" kind="function"><name>MatrixRepresentationEvaluationContainer</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1ac68f61732057bb294ff1d649c992dc63" kind="function"><name>MatrixRepresentationEvaluationContainer</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1af7e5c1c19f7f17f604bfc533d90c2406" kind="function"><name>addColumnwise</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1af83773de24395d781276fbe9cce0c26d" kind="function"><name>addRowwise</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1a7771ae712db69a4284ec195e9e790a73" kind="function"><name>evaluation</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1aa76e7688ef3d54f2baa22c24454d2810" kind="function"><name>increment</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01double_01_4_01_4_1a244d7f40edae178802ecfb1da248492c" kind="function"><name>isFinished</name></member>
+  <compound refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4" kind="class"><name>GQCP::MatrixRepresentationEvaluationContainer&lt; VectorX&lt; _Scalar &gt; &gt;</name>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a58ded81d72b782fc4a2e985bf162ee62" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1affaf625806ea857f2dcca5491b2633ea" kind="variable"><name>index</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a4748b796adc8622e6ffbe906ec4b460d" kind="variable"><name>end</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a1cfaf5ee4e1543ff37fb6c31189b61c2" kind="variable"><name>matvec</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a2ce0fefc3ee0de32f7b9a4c351eece45" kind="variable"><name>coefficient_vector</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1aa85ab4fe18b6d278522cfdf6dcfdcffb" kind="variable"><name>sequential_double</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a46a615c9c9392cd666afab81c6483405" kind="variable"><name>nonsequential_double</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a1cbaa6c280b05ac52c4ee37b66656829" kind="function"><name>MatrixRepresentationEvaluationContainer</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a6fd944eac99f9bf09f7bafd63bafedf0" kind="function"><name>MatrixRepresentationEvaluationContainer</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a1f88c106ae3b051de9c1bd25e4f9caa6" kind="function"><name>addColumnwise</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1aeaca9cc8c580b370adea28b10d94d1a3" kind="function"><name>addRowwise</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a62e78d398c69140de6bbff111b26173b" kind="function"><name>evaluation</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1ad3c265f959d0df2b4d1f67ab192f06ad" kind="function"><name>increment</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a650d3ab0744ffc133424eda57aee306a" kind="function"><name>isFinished</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_matrix_vector_product_calculation" kind="class"><name>GQCP::MatrixVectorProductCalculation</name>
     <member refid="class_g_q_c_p_1_1_matrix_vector_product_calculation_1ae5787266b1ab6ab5678066534935c547" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_matrix_vector_product_calculation_1ae12bd52993b438c89bb00e731c22f905" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_matrix_vector_product_calculation_1aa6cc1aad0d4b14a29f1d5cab75452a24" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" kind="class"><name>GQCP::McMurchieDavidsonCoefficient</name>
     <member refid="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_1a4c404911ec521a7db38561d6436f9b1d" kind="variable"><name>K</name></member>
@@ -2129,7 +2142,7 @@
     <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1ab631f2ebe300eb2bf78638e5c1073e45" kind="variable"><name>number_of_requested_eigenpairs</name></member>
     <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1acc5ae34403a28caab1c086b982cc22f8" kind="function"><name>ResidualVectorCalculation</name></member>
     <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1afb3cb399b0a1fae12b5580e2a4c62624" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1a737360db727b663e2f6c84ff82ebab1b" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_residual_vector_calculation_1a13c984e572665b8d3eebe56a1059f10f" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_residual_vector_convergence" kind="class"><name>GQCP::ResidualVectorConvergence</name>
     <member refid="class_g_q_c_p_1_1_residual_vector_convergence_1a7e5cb82e0596a4e6a326d726ed6c8bc4" kind="typedef"><name>Environment</name></member>
@@ -2188,6 +2201,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" kind="function"><name>homoIndex</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" kind="function"><name>lumoIndex</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5ff28a68b31046759b783da1725872e7" kind="function"><name>orbitalSpace</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" kind="function"><name>calculateIpsocentricMagneticInducibility</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a45f6920a8c410891cb91c35d20ceb0b7" kind="function"><name>calculateIpsocentricMagneticInducibility</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_r_h_f_density_matrix_calculation" kind="class"><name>GQCP::RHFDensityMatrixCalculation</name>
@@ -2755,20 +2769,20 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_subspace_matrix_calculation" kind="class"><name>GQCP::SubspaceMatrixCalculation</name>
     <member refid="class_g_q_c_p_1_1_subspace_matrix_calculation_1ad685b367cc75f6745a32c9b6c966ef81" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_subspace_matrix_calculation_1a654f1375ead21ecacb9e0b2492bf7321" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_subspace_matrix_calculation_1a605404dd2c4518c1e7e9449e39269fc5" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization" kind="class"><name>GQCP::SubspaceMatrixDiagonalization</name>
     <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a81c8760f341d1de651f510541854a8df" kind="variable"><name>number_of_requested_eigenpairs</name></member>
     <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1abd0329999c90d0f1828c02be9817a20e" kind="function"><name>SubspaceMatrixDiagonalization</name></member>
     <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a4874cd13941a8fdf1984df8241ee89c0" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a289097a48ae666a44136878246d964c9" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a3b4ccc43b4cf2deb911aa16f92881115" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_subspace_update" kind="class"><name>GQCP::SubspaceUpdate</name>
     <member refid="class_g_q_c_p_1_1_subspace_update_1a55be15122002ee2c8a60a698511e1ec6" kind="variable"><name>maximum_subspace_dimension</name></member>
     <member refid="class_g_q_c_p_1_1_subspace_update_1adee02e55137028238eea07ca2524c9b1" kind="variable"><name>threshold</name></member>
     <member refid="class_g_q_c_p_1_1_subspace_update_1ae143e2928335bd1fa0c895fcad26f2f7" kind="function"><name>SubspaceUpdate</name></member>
     <member refid="class_g_q_c_p_1_1_subspace_update_1a1af3f62a92fa892cb28acd7b2bbc0bb7" kind="function"><name>description</name></member>
-    <member refid="class_g_q_c_p_1_1_subspace_update_1acf11b3134f5b1a2d059bfa2f3bcc5bf7" kind="function"><name>execute</name></member>
+    <member refid="class_g_q_c_p_1_1_subspace_update_1a36388c3c50344acbc36220c61d82a81a" kind="function"><name>execute</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_t1_amplitudes" kind="class"><name>GQCP::T1Amplitudes</name>
     <member refid="class_g_q_c_p_1_1_t1_amplitudes_1ac1d6afaaf4e56a6c17f7c6d9383c9aef" kind="typedef"><name>Scalar</name></member>
@@ -2844,7 +2858,7 @@
     <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a23fff96f2439354b2c519516e397cb62" kind="variable"><name>N</name></member>
     <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a395dd41c0777f21c65f358ddf6233186" kind="variable"><name>buffer</name></member>
     <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1aaf9a5167cdfa5e8f156d1c22278f6a7f" kind="function"><name>TwoElectronIntegralBuffer</name></member>
-    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a9b6526452a74be456a9e14589349c976" kind="function"><name>areIntegralsAllZero</name></member>
+    <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1ac70d3f2791d4c3a581c91dcc0805d04d" kind="function"><name>areIntegralsAllZero</name></member>
     <member refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1abf330db30b7b03925a41f7421047e34b" kind="function"><name>value</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_two_electron_integral_engine" kind="class"><name>GQCP::TwoElectronIntegralEngine</name>
@@ -3300,12 +3314,12 @@
     <member refid="namespace_g_q_c_p_1a3dfb13d2aedba8c0f28a158ebd8b02ac" kind="function"><name>operator&lt;&lt;</name></member>
   </compound>
   <compound refid="namespace_g_q_c_p_1_1_c_i_environment" kind="namespace"><name>GQCP::CIEnvironment</name>
-    <member refid="namespace_g_q_c_p_1_1_c_i_environment_1a4374650422c83e8e5379f74334455225" kind="function"><name>Dense</name></member>
-    <member refid="namespace_g_q_c_p_1_1_c_i_environment_1ad65c2cc9f1c4f0b52e17435504f2df53" kind="function"><name>Iterative</name></member>
+    <member refid="namespace_g_q_c_p_1_1_c_i_environment_1a304b7b0ff99dbd03933bd214abf8f77c" kind="function"><name>Dense</name></member>
+    <member refid="namespace_g_q_c_p_1_1_c_i_environment_1a4c3d06afcdcd7d37ab4185bf369ea7e2" kind="function"><name>Iterative</name></member>
   </compound>
   <compound refid="namespace_g_q_c_p_1_1_eigenproblem_solver" kind="namespace"><name>GQCP::EigenproblemSolver</name>
-    <member refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1a9a2501282b66266fa06c568c92bbfee2" kind="function"><name>Dense</name></member>
-    <member refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1a3b583fefca6c8e3bef88ae692f3b9b41" kind="function"><name>Davidson</name></member>
+    <member refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1addc726674f4d48350853085d77218a48" kind="function"><name>Dense</name></member>
+    <member refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1a5c1cb39442d8cffd03566c1de6e0cdd8" kind="function"><name>Davidson</name></member>
   </compound>
   <compound refid="namespace_g_q_c_p_1_1elements" kind="namespace"><name>GQCP::elements</name>
     <member refid="namespace_g_q_c_p_1_1elements_1a00b3e1bbcc41a8e15b2591ac050f8006" kind="variable"><name>elements_list</name></member>
@@ -3988,6 +4002,8 @@
   <compound refid="_spin_unresolved_o_n_v_8cpp" kind="file"><name>SpinUnresolvedONV.cpp</name>
   </compound>
   <compound refid="_spin_unresolved_o_n_v_basis_8cpp" kind="file"><name>SpinUnresolvedONVBasis.cpp</name>
+  </compound>
+  <compound refid="_spin_unresolved_selected_o_n_v_basis_8cpp" kind="file"><name>SpinUnresolvedSelectedONVBasis.cpp</name>
   </compound>
   <compound refid="_angular_momentum_operator_8cpp" kind="file"><name>AngularMomentumOperator.cpp</name>
   </compound>

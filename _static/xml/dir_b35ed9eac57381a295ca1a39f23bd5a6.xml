@@ -8,6 +8,7 @@
     <innerfile refid="_spin_resolved_selected_o_n_v_basis_8cpp">SpinResolvedSelectedONVBasis.cpp</innerfile>
     <innerfile refid="_spin_unresolved_o_n_v_8cpp">SpinUnresolvedONV.cpp</innerfile>
     <innerfile refid="_spin_unresolved_o_n_v_basis_8cpp">SpinUnresolvedONVBasis.cpp</innerfile>
+    <innerfile refid="_spin_unresolved_selected_o_n_v_basis_8cpp">SpinUnresolvedSelectedONVBasis.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

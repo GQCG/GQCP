@@ -216,6 +216,8 @@
         </childnode>
         <childnode refid="112" relation="include">
         </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
       <node id="138">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SpinResolvedBasisTransformable.hpp</label>
@@ -633,6 +635,8 @@
         <childnode refid="112" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="102" relation="include">
         </childnode>

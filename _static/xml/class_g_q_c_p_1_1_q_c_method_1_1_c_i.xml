@@ -5,13 +5,29 @@
     <includes refid="_c_i_8hpp" local="no">CI.hpp</includes>
     <templateparamlist>
       <param>
+        <type>typename _Scalar</type>
+      </param>
+      <param>
         <type>typename _ONVBasis</type>
       </param>
     </templateparamlist>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" prot="public" static="no">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::QCMethod::CI&lt; _Scalar, _ONVBasis &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" prot="public" static="no">
         <type>_ONVBasis</type>
-        <definition>using GQCP::QCMethod::CI&lt; _ONVBasis &gt;::ONVBasis =  _ONVBasis</definition>
+        <definition>using GQCP::QCMethod::CI&lt; _Scalar, _ONVBasis &gt;::ONVBasis =  _ONVBasis</definition>
         <argsstring></argsstring>
         <name>ONVBasis</name>
         <briefdescription>
@@ -20,13 +36,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="47" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a7373158d70c070c3921d443646f74c95" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1aa1af0cc2267b79b4c9575ccabcb76ce6" prot="private" static="no" mutable="no">
         <type>size_t</type>
-        <definition>size_t GQCP::QCMethod::CI&lt; _ONVBasis &gt;::number_of_states</definition>
+        <definition>size_t GQCP::QCMethod::CI&lt; _Scalar, _ONVBasis &gt;::number_of_states</definition>
         <argsstring></argsstring>
         <name>number_of_states</name>
         <briefdescription>
@@ -35,11 +51,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="47" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="47" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="52" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1acb6a0f1360ee62263187cd6b659b09d5" prot="private" static="no" mutable="no">
-        <type><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" kindref="member">ONVBasis</ref></type>
-        <definition>ONVBasis GQCP::QCMethod::CI&lt; _ONVBasis &gt;::onv_basis</definition>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a853705c680df886299d150ed80e13c72" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" kindref="member">ONVBasis</ref></type>
+        <definition>ONVBasis GQCP::QCMethod::CI&lt; _Scalar, _ONVBasis &gt;::onv_basis</definition>
         <argsstring></argsstring>
         <name>onv_basis</name>
         <briefdescription>
@@ -48,17 +64,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="48" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="55" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ab42eea3ca80147a47e984486a3c14ebe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad729fb21bb5cc18d2960297c38dbbc2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>GQCP::QCMethod::CI&lt; _ONVBasis &gt;::CI</definition>
+        <definition>GQCP::QCMethod::CI&lt; _Scalar, _ONVBasis &gt;::CI</definition>
         <argsstring>(const ONVBasis &amp;onv_basis, const size_t number_of_states=1)</argsstring>
         <name>CI</name>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" kindref="member">ONVBasis</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" kindref="member">ONVBasis</ref> &amp;</type>
           <declname>onv_basis</declname>
         </param>
         <param>
@@ -74,7 +90,7 @@
 <parametername>onv_basis</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the ONV basis with respect to which the configuration interaction is expressed </para>
+<para>The ONV basis with respect to which the configuration interaction is expressed. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -82,7 +98,7 @@
 <parametername>number_of_states</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the number of states that searched for (including the ground state) </para>
+<para>The number of states that searched for (including the ground state). </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -90,24 +106,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="60" bodyend="62"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="67" bodyend="69"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a50115359cec7203bb365c1da94b64934" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ae43caa91ffb9d61b93262ead734c7fa5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Solver</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" kindref="member">ONVBasis</ref> &gt; &gt;</type>
-        <definition>QCStructure&lt;LinearExpansion&lt;ONVBasis&gt; &gt; GQCP::QCMethod::CI&lt; _ONVBasis &gt;::optimize</definition>
-        <argsstring>(Solver &amp;solver, EigenproblemEnvironment &amp;environment) const</argsstring>
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" kindref="member">ONVBasis</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" kindref="member">Scalar</ref> &gt;</type>
+        <definition>QCStructure&lt;LinearExpansion&lt;Scalar, ONVBasis&gt;, Scalar&gt; GQCP::QCMethod::CI&lt; _Scalar, _ONVBasis &gt;::optimize</definition>
+        <argsstring>(Solver &amp;solver, EigenproblemEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
         <param>
           <type>Solver &amp;</type>
           <declname>solver</declname>
         </param>
         <param>
-          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>environment</declname>
         </param>
         <briefdescription>
@@ -128,7 +144,7 @@
 <parametername>solver</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the solver that will try to optimize the parameters </para>
+<para>The solver that will try to optimize the parameters. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -136,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="77" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="77" bodyend="104"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="84" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="84" bodyend="108"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -145,10 +161,18 @@
 <para>The configuration interaction quantum chemical method.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the expansion coefficients: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
 <parametername>_ONVBasis</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the type of ONV basis </para>
+<para>The type of ONV basis. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -156,17 +180,18 @@
     </detaileddescription>
     <collaborationgraph>
       <node id="1">
-        <label>GQCP::QCMethod::CI&lt; _ONVBasis &gt;</label>
+        <label>GQCP::QCMethod::CI&lt; _Scalar, _ONVBasis &gt;</label>
         <link refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="40" bodyend="105"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp" bodystart="41" bodyend="109"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ab42eea3ca80147a47e984486a3c14ebe" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>CI</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a7373158d70c070c3921d443646f74c95" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>number_of_states</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1acb6a0f1360ee62263187cd6b659b09d5" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>onv_basis</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>ONVBasis</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a50115359cec7203bb365c1da94b64934" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad729fb21bb5cc18d2960297c38dbbc2a" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>CI</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1aa1af0cc2267b79b4c9575ccabcb76ce6" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>number_of_states</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a853705c680df886299d150ed80e13c72" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>onv_basis</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>ONVBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ae43caa91ffb9d61b93262ead734c7fa5" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CI</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

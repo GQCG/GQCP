@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_subspace_matrix_diagonalization" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SubspaceMatrixDiagonalization</compoundname>
-    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment&lt; double &gt; &gt;</basecompoundref>
     <includes refid="_subspace_matrix_diagonalization_8hpp" local="no">SubspaceMatrixDiagonalization.hpp</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a81c8760f341d1de651f510541854a8df" prot="private" static="no" mutable="no">
@@ -65,14 +65,14 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" line="60" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp" bodystart="60" bodyend="62"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a289097a48ae666a44136878246d964c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a3b4ccc43b4cf2deb911aa16f92881115" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
         <definition>void GQCP::SubspaceMatrixDiagonalization::execute</definition>
-        <argsstring>(EigenproblemEnvironment &amp;environment) override</argsstring>
+        <argsstring>(EigenproblemEnvironment&lt; double &gt; &amp;environment) override</argsstring>
         <name>execute</name>
         <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
         <param>
-          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; double &gt; &amp;</type>
           <declname>environment</declname>
         </param>
         <briefdescription>
@@ -108,7 +108,7 @@
         </childnode>
       </node>
       <node id="2">
-        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <label>GQCP::Step&lt; EigenproblemEnvironment&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </inheritancegraph>
@@ -120,7 +120,7 @@
         </childnode>
       </node>
       <node id="2">
-        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
+        <label>GQCP::Step&lt; EigenproblemEnvironment&lt; double &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </collaborationgraph>
@@ -128,7 +128,7 @@
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a4874cd13941a8fdf1984df8241ee89c0" prot="public" virt="virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>Environment</name></member>
-      <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a289097a48ae666a44136878246d964c9" prot="public" virt="virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a3b4ccc43b4cf2deb911aa16f92881115" prot="public" virt="virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>execute</name></member>
       <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a81c8760f341d1de651f510541854a8df" prot="private" virt="non-virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>number_of_requested_eigenpairs</name></member>
       <member refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1abd0329999c90d0f1828c02be9817a20e" prot="public" virt="non-virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>SubspaceMatrixDiagonalization</name></member>
       <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::SubspaceMatrixDiagonalization</scope><name>~Step</name></member>

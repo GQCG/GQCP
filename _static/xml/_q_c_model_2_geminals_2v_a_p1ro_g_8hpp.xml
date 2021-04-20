@@ -266,9 +266,6 @@
         <childnode refid="35" relation="include">
         </childnode>
       </node>
-      <node id="191">
-        <label>boost/range/adaptors.hpp</label>
-      </node>
       <node id="49">
         <label>Basis/Transformations/SpinResolvedBasisTransformable.hpp</label>
         <link refid="_spin_resolved_basis_transformable_8hpp"/>
@@ -293,7 +290,7 @@
         <childnode refid="96" relation="include">
         </childnode>
       </node>
-      <node id="190">
+      <node id="191">
         <label>boost/dynamic_bitset.hpp</label>
       </node>
       <node id="97">
@@ -1235,6 +1232,9 @@
         <childnode refid="153" relation="include">
         </childnode>
       </node>
+      <node id="190">
+        <label>ONVBasis/SpinUnresolvedSelectedONVBasis.hpp</label>
+      </node>
       <node id="185">
         <label>Operator/FirstQuantized/OrbitalZeemanOperator.hpp</label>
         <link refid="_orbital_zeeman_operator_8hpp"/>
@@ -1421,6 +1421,10 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
@@ -1437,15 +1441,15 @@
         </childnode>
         <childnode refid="189" relation="include">
         </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
         <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="190" relation="include">
-        </childnode>
         <childnode refid="191" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
       </node>
       <node id="44">

@@ -26,9 +26,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_contai
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6b9ef0370563f0eea68afd8d1db51ddc}{Matrix\+Representation\+Evaluation\+Container}} (const size\+\_\+t dimension)
 \item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a3c0df8025bcd4fff073f5dc906b71ed6}{add\+Diagonally}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}} value)
+\item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a01e94b367635ae325c4ae22c55ff8262}{add\+Columnwise}} (const size\+\_\+t column, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}} value)
 \item 
-void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ab16ce58d35ab786810dbde8115dffad2}{add\+Rowwise}} (const size\+\_\+t row, const double value)
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac231c9271823d5a3334eff6d8a7f4133}{add\+Rowwise}} (const size\+\_\+t row, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}} value)
 \item 
 const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a2ec4dee0f5cbae2b7730d647c6729eea}{evaluation}} () const
 \item 
@@ -51,11 +53,11 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_
 \subsubsection*{template$<$typename \+\_\+\+Matrix$>$\newline
 class GQCP\+::\+Matrix\+Representation\+Evaluation\+Container$<$ \+\_\+\+Matrix $>$}
 
-A class that can efficiently construct the (square) matrix representation of a mathematical operator.
+A class that can efficiently construct the matrix representation of a second-\/quantized operator.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Matrix} & the type that is used as a matrix representation, i.\+e. a container that stores the matrix representation \\
+{\em \+\_\+\+Matrix} & The type that is used as a matrix representation, i.\+e. a container that stores the matrix representation. \\
 \hline
 \end{DoxyTemplParams}
 
@@ -85,9 +87,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_contai
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
 \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{Matrix\+Representation\+Evaluation\+Container}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Initialize an empty container, ready to start an evaluation.
+
 
 \begin{DoxyParams}{Parameters}
-{\em dimension} & the dimension of the matrix representation (the number of elements in one row/column) \\
+{\em dimension} & The dimension of the matrix representation, i.\+e. the number of elements in one row/column. \\
 \hline
 \end{DoxyParams}
 
@@ -100,29 +104,43 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_contai
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
 void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::add\+Columnwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{column,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
+Add a value to the matrix representation, where the current iterator index corresponds to the row.
 
 
 \begin{DoxyParams}{Parameters}
-{\em column} & column index of the matrix \\
+{\em column} & The column index of the matrix representation at which the given value should be added. \\
 \hline
-{\em value} & the value which is added to a given position in the matrix \\
+{\em value} & The value. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ab16ce58d35ab786810dbde8115dffad2}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ab16ce58d35ab786810dbde8115dffad2}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a3c0df8025bcd4fff073f5dc906b71ed6}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a3c0df8025bcd4fff073f5dc906b71ed6}} 
+\index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!addDiagonally@{addDiagonally}}
+\index{addDiagonally@{addDiagonally}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{addDiagonally()}{addDiagonally()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::add\+Diagonally (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a value to the diagonal of the matrix representation. The current iterator index corresponds to the position on the diagonal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac231c9271823d5a3334eff6d8a7f4133}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac231c9271823d5a3334eff6d8a7f4133}} 
 \index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!addRowwise@{addRowwise}}
 \index{addRowwise@{addRowwise}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
 \doxysubsubsection{\texorpdfstring{addRowwise()}{addRowwise()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
-void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::add\+Rowwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::add\+Rowwise (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{row,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
+Add a value to the matrix representation, where the current iterator index corresponds to the column.
 
 
 \begin{DoxyParams}{Parameters}
-{\em row} & row index of the matrix \\
+{\em row} & The row index of the matrix representation at which the given value should be added. \\
 \hline
-{\em value} & the value which is added to a given position in the matrix \\
+{\em value} & The value. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a2ec4dee0f5cbae2b7730d647c6729eea}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a2ec4dee0f5cbae2b7730d647c6729eea}} 
@@ -133,7 +151,7 @@ Add a value to the matrix evaluation in which the current iterator index corresp
 const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}}\& \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::evaluation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-the evaluation that is stored 
+The matrix representation. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac70cfe74faa0933d129260dd8654edb5}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac70cfe74faa0933d129260dd8654edb5}} 
 \index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!increment@{increment}}
@@ -142,17 +160,17 @@ the evaluation that is stored
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
 void \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Move to the next index in the iteration \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}} 
+Move to the next index in the iteration. \mbox{\Hypertarget{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}\label{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}} 
 \index{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}!isFinished@{isFinished}}
 \index{isFinished@{isFinished}!GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$@{GQCP::MatrixRepresentationEvaluationContainer$<$ \_Matrix $>$}}
 \doxysubsubsection{\texorpdfstring{isFinished()}{isFinished()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix $>$ \\
 bool \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{GQCP\+::\+Matrix\+Representation\+Evaluation\+Container}}$<$ \+\_\+\+Matrix $>$\+::is\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Tests if the iteration is finished, if true the index is reset to 0
+Check if the iteration is finished. If so, the iterator is prepared to start a new evaluation.
 
 \begin{DoxyReturn}{Returns}
-true if the iteration is finished 
+If the iteration is finished. 
 \end{DoxyReturn}
 
 

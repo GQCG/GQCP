@@ -1,81 +1,92 @@
-\hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{}\doxysection{GQCP\+::QCMethod\+::CI$<$ \+\_\+\+ONVBasis $>$ Class Template Reference}
-\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i}\index{GQCP::QCMethod::CI$<$ \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_ONVBasis $>$}}
+\hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{}\doxysection{GQCP\+::QCMethod\+::CI$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i}\index{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}}
 
 
 {\ttfamily \#include $<$CI.\+hpp$>$}
 
 
 
-Collaboration diagram for GQCP\+::QCMethod\+::CI$<$ \+\_\+\+ONVBasis $>$\+:
+Collaboration diagram for GQCP\+::QCMethod\+::CI$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{class_g_q_c_p_1_1_q_c_method_1_1_c_i__coll__graph}
+\includegraphics[width=214pt]{class_g_q_c_p_1_1_q_c_method_1_1_c_i__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}{ONVBasis}} = \+\_\+\+ONVBasis
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}{ONVBasis}} = \+\_\+\+ONVBasis
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ab42eea3ca80147a47e984486a3c14ebe}{CI}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}{ONVBasis}} \&onv\+\_\+basis, const size\+\_\+t number\+\_\+of\+\_\+states=1)
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad729fb21bb5cc18d2960297c38dbbc2a}{CI}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}{ONVBasis}} \&onv\+\_\+basis, const size\+\_\+t number\+\_\+of\+\_\+states=1)
 \item 
-{\footnotesize template$<$typename Solver $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}{ONVBasis}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a50115359cec7203bb365c1da94b64934}{optimize}} (Solver \&solver, \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&environment) const
+{\footnotesize template$<$typename Solver $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}{ONVBasis}} $>$, \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ae43caa91ffb9d61b93262ead734c7fa5}{optimize}} (Solver \&solver, \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}} $>$ \&environment) const
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$typename \+\_\+\+ONVBasis$>$\newline
-class GQCP\+::\+QCMethod\+::\+CI$<$ \+\_\+\+ONVBasis $>$}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+ONVBasis$>$\newline
+class GQCP\+::\+QCMethod\+::\+CI$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$}
 
 The configuration interaction quantum chemical method.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+ONVBasis} & the type of ONV basis \\
+{\em \+\_\+\+Scalar} & The scalar type of the expansion coefficients\+: real or complex. \\
+\hline
+{\em \+\_\+\+ONVBasis} & The type of ONV basis. \\
 \hline
 \end{DoxyTemplParams}
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}} 
-\index{GQCP::QCMethod::CI$<$ \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_ONVBasis $>$}!ONVBasis@{ONVBasis}}
-\index{ONVBasis@{ONVBasis}!GQCP::QCMethod::CI$<$ \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_ONVBasis $>$}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}} 
+\index{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}!ONVBasis@{ONVBasis}}
+\index{ONVBasis@{ONVBasis}!GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}}
 \doxysubsubsection{\texorpdfstring{ONVBasis}{ONVBasis}}
-{\footnotesize\ttfamily template$<$typename \+\_\+\+ONVBasis $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{GQCP\+::\+QCMethod\+::\+CI}}$<$ \+\_\+\+ONVBasis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}{ONVBasis}} =  \+\_\+\+ONVBasis}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+ONVBasis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{GQCP\+::\+QCMethod\+::\+CI}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}{ONVBasis}} =  \+\_\+\+ONVBasis}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}} 
+\index{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+ONVBasis $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{GQCP\+::\+QCMethod\+::\+CI}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}} =  \+\_\+\+Scalar}
 
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ab42eea3ca80147a47e984486a3c14ebe}\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ab42eea3ca80147a47e984486a3c14ebe}} 
-\index{GQCP::QCMethod::CI$<$ \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_ONVBasis $>$}!CI@{CI}}
-\index{CI@{CI}!GQCP::QCMethod::CI$<$ \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_ONVBasis $>$}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad729fb21bb5cc18d2960297c38dbbc2a}\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad729fb21bb5cc18d2960297c38dbbc2a}} 
+\index{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}!CI@{CI}}
+\index{CI@{CI}!GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}}
 \doxysubsubsection{\texorpdfstring{CI()}{CI()}}
-{\footnotesize\ttfamily template$<$typename \+\_\+\+ONVBasis $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{GQCP\+::\+QCMethod\+::\+CI}}$<$ \+\_\+\+ONVBasis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{CI}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}{ONVBasis}} \&}]{onv\+\_\+basis,  }\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+states = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+ONVBasis $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{GQCP\+::\+QCMethod\+::\+CI}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{CI}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}{ONVBasis}} \&}]{onv\+\_\+basis,  }\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+states = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
-{\em onv\+\_\+basis} & the ONV basis with respect to which the configuration interaction is expressed \\
+{\em onv\+\_\+basis} & The ONV basis with respect to which the configuration interaction is expressed. \\
 \hline
-{\em number\+\_\+of\+\_\+states} & the number of states that searched for (including the ground state) \\
+{\em number\+\_\+of\+\_\+states} & The number of states that searched for (including the ground state). \\
 \hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a50115359cec7203bb365c1da94b64934}\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a50115359cec7203bb365c1da94b64934}} 
-\index{GQCP::QCMethod::CI$<$ \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_ONVBasis $>$}!optimize@{optimize}}
-\index{optimize@{optimize}!GQCP::QCMethod::CI$<$ \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_ONVBasis $>$}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ae43caa91ffb9d61b93262ead734c7fa5}\label{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ae43caa91ffb9d61b93262ead734c7fa5}} 
+\index{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}!optimize@{optimize}}
+\index{optimize@{optimize}!GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$@{GQCP::QCMethod::CI$<$ \_Scalar, \_ONVBasis $>$}}
 \doxysubsubsection{\texorpdfstring{optimize()}{optimize()}}
-{\footnotesize\ttfamily template$<$typename \+\_\+\+ONVBasis $>$ \\
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+ONVBasis $>$ \\
 template$<$typename Solver $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad1b8066be10637f9fbbc55858692683a}{ONVBasis}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{GQCP\+::\+QCMethod\+::\+CI}}$<$ \+\_\+\+ONVBasis $>$\+::optimize (\begin{DoxyParamCaption}\item[{Solver \&}]{solver,  }\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} \&}]{environment }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_ad383621a484f12272b556d222dd85309}{ONVBasis}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{GQCP\+::\+QCMethod\+::\+CI}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::optimize (\begin{DoxyParamCaption}\item[{Solver \&}]{solver,  }\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a514afe3bb76b52cb7f3ff4622887b4f2}{Scalar}} $>$ \&}]{environment }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Optimize the electronic structure model.
 
@@ -86,7 +97,7 @@ Optimize the electronic structure model.
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em solver} & the solver that will try to optimize the parameters \\
+{\em solver} & The solver that will try to optimize the parameters. \\
 \hline
 \end{DoxyParams}
 

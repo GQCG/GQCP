@@ -2,27 +2,32 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_dense_diagonalization" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DenseDiagonalization</compoundname>
-    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
     <includes refid="_dense_diagonalization_8hpp" local="no">DenseDiagonalization.hpp</includes>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_dense_diagonalization_1a50f7d8ec673b00f690373124a8528d1e" prot="private" static="no" mutable="no">
-        <type>size_t</type>
-        <definition>size_t GQCP::DenseDiagonalization::number_of_requested_eigenpairs</definition>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_dense_diagonalization_1a5ec8d20ee3ab819701fa8c37ef1269cc" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::DenseDiagonalization&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
-        <name>number_of_requested_eigenpairs</name>
+        <name>Scalar</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="37" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="37" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_diagonalization_1abb3d222b533cd59f944f411d2134b591" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_diagonalization_1aa6b861d4f2bbc5fadf5f9890260f620a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
-        <definition>std::string GQCP::DenseDiagonalization::description</definition>
+        <definition>std::string GQCP::DenseDiagonalization&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
         <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
@@ -35,16 +40,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="48" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="48" bodyend="50"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="51" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="51" bodyend="53"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_diagonalization_1a22c3d402fc47e074ed0b50b6345bee8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_diagonalization_1ab0d0402e1cac158ea3177c7a1bc6740e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
-        <definition>void GQCP::DenseDiagonalization::execute</definition>
-        <argsstring>(Environment &amp;environment) override</argsstring>
+        <definition>void GQCP::DenseDiagonalization&lt; _Scalar &gt;::execute</definition>
+        <argsstring>(EigenproblemEnvironment&lt; Scalar &gt; &amp;environment) override</argsstring>
         <name>execute</name>
         <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
         <param>
-          <type><ref refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" kindref="member">Environment</ref> &amp;</type>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_dense_diagonalization_1a5ec8d20ee3ab819701fa8c37ef1269cc" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>environment</declname>
         </param>
         <briefdescription>
@@ -64,44 +69,54 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="58" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="58" bodyend="66"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="61" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="61" bodyend="70"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A step that performs a dense diagonalization. </para>
+<para>A step that performs a dense diagonalization.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the matrix elements: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
-        <label>GQCP::DenseDiagonalization</label>
+        <label>GQCP::DenseDiagonalization&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_dense_diagonalization"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
-        <label>GQCP::DenseDiagonalization</label>
+        <label>GQCP::DenseDiagonalization&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_dense_diagonalization"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="34" bodyend="67"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp" bodystart="37" bodyend="71"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_dense_diagonalization_1abb3d222b533cd59f944f411d2134b591" prot="public" virt="virtual"><scope>GQCP::DenseDiagonalization</scope><name>description</name></member>
+      <member refid="class_g_q_c_p_1_1_dense_diagonalization_1aa6b861d4f2bbc5fadf5f9890260f620a" prot="public" virt="virtual"><scope>GQCP::DenseDiagonalization</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::DenseDiagonalization</scope><name>Environment</name></member>
-      <member refid="class_g_q_c_p_1_1_dense_diagonalization_1a22c3d402fc47e074ed0b50b6345bee8e" prot="public" virt="virtual"><scope>GQCP::DenseDiagonalization</scope><name>execute</name></member>
-      <member refid="class_g_q_c_p_1_1_dense_diagonalization_1a50f7d8ec673b00f690373124a8528d1e" prot="private" virt="non-virtual"><scope>GQCP::DenseDiagonalization</scope><name>number_of_requested_eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_dense_diagonalization_1ab0d0402e1cac158ea3177c7a1bc6740e" prot="public" virt="virtual"><scope>GQCP::DenseDiagonalization</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_dense_diagonalization_1a5ec8d20ee3ab819701fa8c37ef1269cc" prot="public" virt="non-virtual"><scope>GQCP::DenseDiagonalization</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::DenseDiagonalization</scope><name>~Step</name></member>
     </listofallmembers>
   </compounddef>

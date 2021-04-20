@@ -99,8 +99,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4a009b427c91b6297bcb778e891da5a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3be4021a57bdf21adab08a5a4521eb0f"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_geminal_coefficients_interface.html#a3be4021a57bdf21adab08a5a4521eb0f">overlap</a> (const SpinUnresolvedONV &amp;onv) const =0</td></tr>
 <tr class="separator:a3be4021a57bdf21adab08a5a4521eb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ddef28dd52fb940f2826752d904cd88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion</a>&lt; SeniorityZeroONVBasis &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_geminal_coefficients_interface.html#a5ddef28dd52fb940f2826752d904cd88">toLinearExpansion</a> (const SeniorityZeroONVBasis &amp;onv_basis) const</td></tr>
-<tr class="separator:a5ddef28dd52fb940f2826752d904cd88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32797287bde862bf2559f3ac73bc56ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion</a>&lt; double, SeniorityZeroONVBasis &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_geminal_coefficients_interface.html#a32797287bde862bf2559f3ac73bc56ec">toLinearExpansion</a> (const SeniorityZeroONVBasis &amp;onv_basis) const</td></tr>
+<tr class="separator:a32797287bde862bf2559f3ac73bc56ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4a009b427c91b6297bcb778e891da5a7"></a>
@@ -164,14 +164,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5ddef28dd52fb940f2826752d904cd88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ddef28dd52fb940f2826752d904cd88">&#9670;&nbsp;</a></span>toLinearExpansion()</h2>
+<a id="a32797287bde862bf2559f3ac73bc56ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32797287bde862bf2559f3ac73bc56ec">&#9670;&nbsp;</a></span>toLinearExpansion()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion</a>&lt; SeniorityZeroONVBasis &gt; GQCP::GeminalCoefficientsInterface::toLinearExpansion </td>
+          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion</a>&lt; double, SeniorityZeroONVBasis &gt; GQCP::GeminalCoefficientsInterface::toLinearExpansion </td>
           <td>(</td>
           <td class="paramtype">const SeniorityZeroONVBasis &amp;&#160;</td>
           <td class="paramname"><em>onv_basis</em></td><td>)</td>
@@ -185,7 +185,14 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the wave function expansion corresponding to the geminal coefficients </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the wave function expansion corresponding to the geminal coefficients</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">onv_basis</td><td>the seniority-zero spin-resolved ONV basis the wave function should live in</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The wave function expansion corresponding to the geminal coefficients. </dd></dl>
 
 </div>
 </div>

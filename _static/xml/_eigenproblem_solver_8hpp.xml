@@ -268,20 +268,21 @@
 <codeline lineno="26" refid="namespace_g_q_c_p_1_1_eigenproblem_solver" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">EigenproblemSolver<sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1a9a2501282b66266fa06c568c92bbfee2" refkind="member"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm&lt;EigenproblemEnvironment&gt;</ref><sp/><ref refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1a9a2501282b66266fa06c568c92bbfee2" kindref="member">Dense</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Our<sp/>dense<sp/>eigenproblem<sp/>solver<sp/>is<sp/>just<sp/>a<sp/>wrapper<sp/>around<sp/>Eigen&apos;s<sp/>routines.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_step_collection" kindref="compound">StepCollection&lt;EigenproblemEnvironment&gt;</ref><sp/>steps<sp/>{};</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>steps.<ref refid="class_g_q_c_p_1_1_step_collection_1a564aa7135354b9c6af9b0b0114d534d7" kindref="member">add</ref>(<ref refid="class_g_q_c_p_1_1_dense_diagonalization" kindref="compound">DenseDiagonalization</ref>());</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm&lt;EigenproblemEnvironment&gt;</ref>(steps);</highlight></codeline>
-<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="35" refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1addc726674f4d48350853085d77218a48" refkind="member"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm&lt;EigenproblemEnvironment&lt;Scalar&gt;</ref>&gt;<sp/><ref refid="namespace_g_q_c_p_1_1_eigenproblem_solver_1addc726674f4d48350853085d77218a48" kindref="member">Dense</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>Eigen&apos;s<sp/>routines<sp/>to<sp/>diagonalize<sp/>a<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_step_collection" kindref="compound">StepCollection&lt;EigenproblemEnvironment&lt;Scalar&gt;</ref>&gt;<sp/>steps<sp/>{};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>steps.<ref refid="class_g_q_c_p_1_1_step_collection_1a564aa7135354b9c6af9b0b0114d534d7" kindref="member">add</ref>(<ref refid="class_g_q_c_p_1_1_dense_diagonalization" kindref="compound">DenseDiagonalization&lt;Scalar&gt;</ref>());</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>We<sp/>should<sp/>note<sp/>that<sp/>we<sp/>cannot<sp/>add<sp/>the<sp/>analogous<sp/>Davidson<sp/>solver<sp/>here,<sp/>because<sp/>that<sp/>would<sp/>cause<sp/>a<sp/>cyclic<sp/>dependence<sp/>since<sp/>one<sp/>of<sp/>the<sp/>Davidson<sp/>steps<sp/>requires<sp/>a<sp/>dense<sp/>diagonalization.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm&lt;EigenproblemEnvironment&lt;Scalar&gt;</ref>&gt;(steps);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>EigenproblemSolver</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>We<sp/>should<sp/>note<sp/>that<sp/>we<sp/>cannot<sp/>add<sp/>the<sp/>analogous<sp/>Davidson<sp/>solver<sp/>here,<sp/>because<sp/>that<sp/>would<sp/>cause<sp/>a<sp/>cyclic<sp/>dependence<sp/>since<sp/>one<sp/>of<sp/>the<sp/>Davidson<sp/>steps<sp/>requires<sp/>a<sp/>dense<sp/>diagonalization.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>EigenproblemSolver</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"/>
   </compounddef>

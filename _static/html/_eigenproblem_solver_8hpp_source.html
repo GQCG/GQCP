@@ -97,27 +97,28 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p_1_1_eigenproblem_solver.html">   26</a></span>&#160;<span class="keyword">namespace </span>EigenproblemSolver {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p_1_1_eigenproblem_solver.html#a9a2501282b66266fa06c568c92bbfee2">   32</a></span>&#160;<a class="code" href="class_g_q_c_p_1_1_algorithm.html">Algorithm&lt;EigenproblemEnvironment&gt;</a> <a class="code" href="namespace_g_q_c_p_1_1_eigenproblem_solver.html#a9a2501282b66266fa06c568c92bbfee2">Dense</a>() {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// Our dense eigenproblem solver is just a wrapper around Eigen&#39;s routines.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_g_q_c_p_1_1_step_collection.html">StepCollection&lt;EigenproblemEnvironment&gt;</a> steps {};</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    steps.<a class="code" href="class_g_q_c_p_1_1_step_collection.html#a564aa7135354b9c6af9b0b0114d534d7">add</a>(<a class="code" href="class_g_q_c_p_1_1_dense_diagonalization.html">DenseDiagonalization</a>());</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_algorithm.html">Algorithm&lt;EigenproblemEnvironment&gt;</a>(steps);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespace_g_q_c_p_1_1_eigenproblem_solver.html#addc726674f4d48350853085d77218a48">   35</a></span>&#160;<a class="code" href="class_g_q_c_p_1_1_algorithm.html">Algorithm&lt;EigenproblemEnvironment&lt;Scalar&gt;</a>&gt; <a class="code" href="namespace_g_q_c_p_1_1_eigenproblem_solver.html#addc726674f4d48350853085d77218a48">Dense</a>() {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Use Eigen&#39;s routines to diagonalize a matrix.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_g_q_c_p_1_1_step_collection.html">StepCollection&lt;EigenproblemEnvironment&lt;Scalar&gt;</a>&gt; steps {};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    steps.<a class="code" href="class_g_q_c_p_1_1_step_collection.html#a564aa7135354b9c6af9b0b0114d534d7">add</a>(<a class="code" href="class_g_q_c_p_1_1_dense_diagonalization.html">DenseDiagonalization&lt;Scalar&gt;</a>());</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// We should note that we cannot add the analogous Davidson solver here, because that would cause a cyclic dependence since one of the Davidson steps requires a dense diagonalization.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_algorithm.html">Algorithm&lt;EigenproblemEnvironment&lt;Scalar&gt;</a>&gt;(steps);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}  <span class="comment">// namespace EigenproblemSolver</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// We should note that we cannot add the analogous Davidson solver here, because that would cause a cyclic dependence since one of the Davidson steps requires a dense diagonalization.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}  <span class="comment">// namespace EigenproblemSolver</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 <div class="ttc" id="a_algorithm_8hpp_html"><div class="ttname"><a href="_algorithm_8hpp.html">Algorithm.hpp</a></div></div>
 <div class="ttc" id="a_dense_diagonalization_8hpp_html"><div class="ttname"><a href="_dense_diagonalization_8hpp.html">DenseDiagonalization.hpp</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_algorithm_html"><div class="ttname"><a href="class_g_q_c_p_1_1_algorithm.html">GQCP::Algorithm</a></div><div class="ttdef"><b>Definition:</b> Algorithm.hpp:33</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_dense_diagonalization_html"><div class="ttname"><a href="class_g_q_c_p_1_1_dense_diagonalization.html">GQCP::DenseDiagonalization</a></div><div class="ttdef"><b>Definition:</b> DenseDiagonalization.hpp:34</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_dense_diagonalization_html"><div class="ttname"><a href="class_g_q_c_p_1_1_dense_diagonalization.html">GQCP::DenseDiagonalization</a></div><div class="ttdef"><b>Definition:</b> DenseDiagonalization.hpp:37</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_step_collection_html"><div class="ttname"><a href="class_g_q_c_p_1_1_step_collection.html">GQCP::StepCollection</a></div><div class="ttdef"><b>Definition:</b> StepCollection.hpp:41</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_step_collection_html_a564aa7135354b9c6af9b0b0114d534d7"><div class="ttname"><a href="class_g_q_c_p_1_1_step_collection.html#a564aa7135354b9c6af9b0b0114d534d7">GQCP::StepCollection::add</a></div><div class="ttdeci">enable_if_t&lt; std::is_same&lt; Environment, typename Z::Environment &gt;::value, StepCollection&lt; Environment &gt; &amp; &gt; add(const Z &amp;step)</div><div class="ttdef"><b>Definition:</b> StepCollection.hpp:92</div></div>
-<div class="ttc" id="anamespace_g_q_c_p_1_1_eigenproblem_solver_html_a9a2501282b66266fa06c568c92bbfee2"><div class="ttname"><a href="namespace_g_q_c_p_1_1_eigenproblem_solver.html#a9a2501282b66266fa06c568c92bbfee2">GQCP::EigenproblemSolver::Dense</a></div><div class="ttdeci">Algorithm&lt; EigenproblemEnvironment &gt; Dense()</div><div class="ttdef"><b>Definition:</b> EigenproblemSolver.hpp:32</div></div>
+<div class="ttc" id="anamespace_g_q_c_p_1_1_eigenproblem_solver_html_addc726674f4d48350853085d77218a48"><div class="ttname"><a href="namespace_g_q_c_p_1_1_eigenproblem_solver.html#addc726674f4d48350853085d77218a48">GQCP::EigenproblemSolver::Dense</a></div><div class="ttdeci">Algorithm&lt; EigenproblemEnvironment&lt; Scalar &gt; &gt; Dense()</div><div class="ttdef"><b>Definition:</b> EigenproblemSolver.hpp:35</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -3,18 +3,18 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_algorithm}{Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_eigenproblem_solver_a9a2501282b66266fa06c568c92bbfee2}{Dense}} ()
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_algorithm}{Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$ Scalar $>$ $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_eigenproblem_solver_addc726674f4d48350853085d77218a48}{Dense}} ()
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}} $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_eigenproblem_solver_a3b583fefca6c8e3bef88ae692f3b9b41}{Davidson}} (const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1, const size\+\_\+t maximum\+\_\+subspace\+\_\+dimension=15, const double convergence\+\_\+threshold=1.\+0e-\/08, double correction\+\_\+threshold=1.\+0e-\/12, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128, const double inclusion\+\_\+threshold=1.\+0e-\/03)
+\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$ double $>$ $>$ \mbox{\hyperlink{namespace_g_q_c_p_1_1_eigenproblem_solver_a5c1cb39442d8cffd03566c1de6e0cdd8}{Davidson}} (const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1, const size\+\_\+t maximum\+\_\+subspace\+\_\+dimension=15, const double convergence\+\_\+threshold=1.\+0e-\/08, double correction\+\_\+threshold=1.\+0e-\/12, const size\+\_\+t maximum\+\_\+number\+\_\+of\+\_\+iterations=128, const double inclusion\+\_\+threshold=1.\+0e-\/03)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespace_g_q_c_p_1_1_eigenproblem_solver_a3b583fefca6c8e3bef88ae692f3b9b41}\label{namespace_g_q_c_p_1_1_eigenproblem_solver_a3b583fefca6c8e3bef88ae692f3b9b41}} 
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_eigenproblem_solver_a5c1cb39442d8cffd03566c1de6e0cdd8}\label{namespace_g_q_c_p_1_1_eigenproblem_solver_a5c1cb39442d8cffd03566c1de6e0cdd8}} 
 \index{GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}!Davidson@{Davidson}}
 \index{Davidson@{Davidson}!GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}}
 \doxysubsubsection{\texorpdfstring{Davidson()}{Davidson()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$>$ GQCP\+::\+Eigenproblem\+Solver\+::\+Davidson (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1},  }\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 15},  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{double}]{correction\+\_\+threshold = {\ttfamily 1.0e-\/12},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128},  }\item[{const double}]{inclusion\+\_\+threshold = {\ttfamily 1.0e-\/03} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{Iterative\+Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$double$>$ $>$ GQCP\+::\+Eigenproblem\+Solver\+::\+Davidson (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1},  }\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 15},  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{double}]{correction\+\_\+threshold = {\ttfamily 1.0e-\/12},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128},  }\item[{const double}]{inclusion\+\_\+threshold = {\ttfamily 1.0e-\/03} }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -34,12 +34,18 @@
 \begin{DoxyReturn}{Returns}
 an iterative algorithm that can find the lowest n eigenvectors of a matrix using Davidson\textquotesingle{}s algorithm 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespace_g_q_c_p_1_1_eigenproblem_solver_a9a2501282b66266fa06c568c92bbfee2}\label{namespace_g_q_c_p_1_1_eigenproblem_solver_a9a2501282b66266fa06c568c92bbfee2}} 
+\mbox{\Hypertarget{namespace_g_q_c_p_1_1_eigenproblem_solver_addc726674f4d48350853085d77218a48}\label{namespace_g_q_c_p_1_1_eigenproblem_solver_addc726674f4d48350853085d77218a48}} 
 \index{GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}!Dense@{Dense}}
 \index{Dense@{Dense}!GQCP::EigenproblemSolver@{GQCP::EigenproblemSolver}}
 \doxysubsubsection{\texorpdfstring{Dense()}{Dense()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_algorithm}{Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$>$ GQCP\+::\+Eigenproblem\+Solver\+::\+Dense (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_algorithm}{Algorithm}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$Scalar$>$ $>$ GQCP\+::\+Eigenproblem\+Solver\+::\+Dense (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
-an algorithm that can diagonalize a dense matrix 
+An algorithm that can diagonalize a dense matrix.
 \end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & The scalar type of matrix elements\+: real or complex. \\
+\hline
+\end{DoxyTemplParams}

@@ -478,11 +478,51 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="262" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="262" bodyend="264"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_evaluable_linear_combination_1a7bec539c2d81ef7eebb6572f1676a6ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_evaluable_linear_combination_1ad3141b0c9149295e77aa768e134a415f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void GQCP::EvaluableLinearCombination&lt; _Coefficient, _FunctionType &gt;::append</definition>
-        <argsstring>(const Coefficient &amp;coefficient, const FunctionType &amp;function, const double threshold=1.0e-16)</argsstring>
+        <argsstring>(const Coefficient &amp;coefficient, const FunctionType &amp;function)</argsstring>
         <name>append</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_evaluable_linear_combination_1ae0ad3778c716fd7a7cf5803ded7d3096" kindref="member">Coefficient</ref> &amp;</type>
+          <declname>coefficient</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a08f379ee95b9b80e42a3570634d08d03" kindref="member">FunctionType</ref> &amp;</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Append the given coefficient and function to this linear combination.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coefficients</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The coefficient that should be appended to this linear combination. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>functions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function that should be appended to this linear combination. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="277" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="277" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_evaluable_linear_combination_1a5fa37456db5398996bdfe66db554cf02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::EvaluableLinearCombination&lt; _Coefficient, _FunctionType &gt;::appendWithThreshold</definition>
+        <argsstring>(const Coefficient &amp;coefficient, const FunctionType &amp;function, const double threshold=1.0e-16)</argsstring>
+        <name>appendWithThreshold</name>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_evaluable_linear_combination_1ae0ad3778c716fd7a7cf5803ded7d3096" kindref="member">Coefficient</ref> &amp;</type>
           <declname>coefficient</declname>
@@ -499,7 +539,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Append the given coefficient and function to this linear combination.</para>
+<para>Append the given coefficient and function to this linear combination, but only if the coefficients are larger than the given threshold.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>coefficients</parametername>
@@ -529,7 +569,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="278" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="278" bodyend="287"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="291" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="291" bodyend="299"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_evaluable_linear_combination_1a5c7bcb1c402887a0feab4e464c891a93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -569,7 +609,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="296" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="296" bodyend="304"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="308" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="308" bodyend="316"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -645,10 +685,11 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="45" bodyend="305"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="43" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="45" bodyend="317"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a7bec539c2d81ef7eebb6572f1676a6ae" prot="public" virt="non-virtual"><scope>GQCP::EvaluableLinearCombination</scope><name>append</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1ad3141b0c9149295e77aa768e134a415f" prot="public" virt="non-virtual"><scope>GQCP::EvaluableLinearCombination</scope><name>append</name></member>
       <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a5c7bcb1c402887a0feab4e464c891a93" prot="public" virt="non-virtual"><scope>GQCP::EvaluableLinearCombination</scope><name>append</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a5fa37456db5398996bdfe66db554cf02" prot="public" virt="non-virtual"><scope>GQCP::EvaluableLinearCombination</scope><name>appendWithThreshold</name></member>
       <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1ae0ad3778c716fd7a7cf5803ded7d3096" prot="public" virt="non-virtual"><scope>GQCP::EvaluableLinearCombination</scope><name>Coefficient</name></member>
       <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a673cc04769b8cfe9834557f02ac81fdf" prot="public" virt="non-virtual"><scope>GQCP::EvaluableLinearCombination</scope><name>coefficient</name></member>
       <member refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a6754b7bcd43a7b84f6597e811aa20d7e" prot="public" virt="non-virtual"><scope>GQCP::EvaluableLinearCombination</scope><name>coefficients</name></member>

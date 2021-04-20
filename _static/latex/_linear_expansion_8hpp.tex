@@ -5,6 +5,8 @@
 {\ttfamily \#include \char`\"{}Basis/\+Spinor\+Basis/\+RSpin\+Orbital\+Basis.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Basis/\+Spinor\+Basis/\+USpin\+Orbital\+Basis.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Basis/\+Transformations/\+RTransformation.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Density\+Matrix/\+G1\+DM.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Density\+Matrix/\+G2\+DM.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Density\+Matrix/\+Orbital1\+DM.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Density\+Matrix/\+Orbital2\+DM.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Density\+Matrix/\+Spin\+Resolved1\+DM.\+hpp\char`\"{}}\newline
@@ -13,11 +15,11 @@
 {\ttfamily \#include \char`\"{}ONVBasis/\+Spin\+Resolved\+ONV.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ONVBasis/\+Spin\+Resolved\+ONVBasis.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ONVBasis/\+Spin\+Resolved\+Selected\+ONVBasis.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ONVBasis/\+Spin\+Unresolved\+Selected\+ONVBasis.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Utilities/aliases.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utilities/type\+\_\+traits.\+hpp\char`\"{}}\newline
 {\ttfamily \#include $<$boost/algorithm/string.\+hpp$>$}\newline
 {\ttfamily \#include $<$boost/dynamic\+\_\+bitset.\+hpp$>$}\newline
-{\ttfamily \#include $<$boost/range/adaptors.\+hpp$>$}\newline
-{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 Include dependency graph for Linear\+Expansion.\+hpp\+:
 \nopagebreak
 \begin{figure}[H]
@@ -37,7 +39,7 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{GQCP\+::\+Linear\+Expansion$<$ \+\_\+\+ONVBasis $>$}}
+class \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{GQCP\+::\+Linear\+Expansion$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}

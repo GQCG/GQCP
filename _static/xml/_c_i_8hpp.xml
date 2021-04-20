@@ -278,9 +278,6 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="199">
-        <label>boost/range/adaptors.hpp</label>
-      </node>
       <node id="59">
         <label>Basis/Transformations/SpinResolvedBasisTransformable.hpp</label>
         <link refid="_spin_resolved_basis_transformable_8hpp"/>
@@ -305,7 +302,7 @@
         <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="198">
+      <node id="199">
         <label>boost/dynamic_bitset.hpp</label>
       </node>
       <node id="38">
@@ -1281,6 +1278,9 @@
         <childnode refid="116" relation="include">
         </childnode>
       </node>
+      <node id="198">
+        <label>ONVBasis/SpinUnresolvedSelectedONVBasis.hpp</label>
+      </node>
       <node id="193">
         <label>Operator/FirstQuantized/OrbitalZeemanOperator.hpp</label>
         <link refid="_orbital_zeeman_operator_8hpp"/>
@@ -1458,6 +1458,10 @@
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
+        <childnode refid="172" relation="include">
+        </childnode>
+        <childnode refid="173" relation="include">
+        </childnode>
         <childnode refid="143" relation="include">
         </childnode>
         <childnode refid="151" relation="include">
@@ -1474,15 +1478,15 @@
         </childnode>
         <childnode refid="197" relation="include">
         </childnode>
+        <childnode refid="198" relation="include">
+        </childnode>
         <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="198" relation="include">
-        </childnode>
         <childnode refid="199" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="170">
@@ -2184,66 +2188,69 @@
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QCMethod<sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ONVBasis&gt;</highlight></codeline>
-<codeline lineno="40" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i" kindref="compound">CI</ref><sp/>{</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Scalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ONVBasis&gt;</highlight></codeline>
+<codeline lineno="41" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i" kindref="compound">CI</ref><sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="43" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" kindref="member">ONVBasis</ref><sp/>=<sp/>_ONVBasis;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>the<sp/>expansion<sp/>coefficients:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_states;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>number<sp/>of<sp/>states<sp/>that<sp/>searched<sp/>for<sp/>(incuding<sp/>the<sp/>ground<sp/>state)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" kindref="member">ONVBasis</ref><sp/>onv_basis;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>ONV<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" kindref="member">ONVBasis</ref><sp/>=<sp/>_ONVBasis;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="53"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
-<codeline lineno="54"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ab42eea3ca80147a47e984486a3c14ebe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ab42eea3ca80147a47e984486a3c14ebe" kindref="member">CI</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad1b8066be10637f9fbbc55858692683a" kindref="member">ONVBasis</ref>&amp;<sp/>onv_basis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_states<sp/>=<sp/>1)<sp/>:</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>onv_basis<sp/>{onv_basis},</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>number_of_states<sp/>{number_of_states}<sp/>{}</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS</highlight></codeline>
-<codeline lineno="67"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Solver&gt;</highlight></codeline>
-<codeline lineno="77" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a50115359cec7203bb365c1da94b64934" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure&lt;LinearExpansion&lt;ONVBasis&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a50115359cec7203bb365c1da94b64934" kindref="member">optimize</ref>(Solver&amp;<sp/>solver,<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&amp;<sp/>environment)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>CI<sp/>method&apos;s<sp/>responsibility<sp/>is<sp/>to<sp/>try<sp/>to<sp/>optimize<sp/>the<sp/>parameters<sp/>of<sp/>its<sp/>method,<sp/>given<sp/>a<sp/>solver<sp/>and<sp/>associated<sp/>environment.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solver.perform(environment);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>the<sp/>requested<sp/>number<sp/>of<sp/>eigenpairs<sp/>from<sp/>the<sp/>environment<sp/>and<sp/>place<sp/>them<sp/>into<sp/>the<sp/>LinearExpansion<sp/>wave<sp/>function<sp/>model.<sp/>Consequently,<sp/>check<sp/>if<sp/>the<sp/>LinearExpansion<sp/>fulfills<sp/>the<sp/>objective.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>eigenpairs<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1aaed7d0d86cb7215a5b66726c5f5d8c32" kindref="member">eigenpairs</ref>(this-&gt;number_of_states);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>number<sp/>of<sp/>states<sp/>that<sp/>are<sp/>searched<sp/>for<sp/>(including<sp/>the<sp/>ground<sp/>state).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_states;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>ONV<sp/>basis<sp/>with<sp/>respect<sp/>to<sp/>which<sp/>the<sp/>configuration<sp/>interaction<sp/>is<sp/>expressed.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" kindref="member">ONVBasis</ref><sp/>onv_basis;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Constructors</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad729fb21bb5cc18d2960297c38dbbc2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad729fb21bb5cc18d2960297c38dbbc2a" kindref="member">CI</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ad383621a484f12272b556d222dd85309" kindref="member">ONVBasis</ref>&amp;<sp/>onv_basis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_states<sp/>=<sp/>1)<sp/>:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>onv_basis<sp/>{onv_basis},</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>number_of_states<sp/>{number_of_states}<sp/>{}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Optimization</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Solver&gt;</highlight></codeline>
+<codeline lineno="84" refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ae43caa91ffb9d61b93262ead734c7fa5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure&lt;LinearExpansion&lt;Scalar, ONVBasis&gt;</ref>,<sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" kindref="member">Scalar</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1ae43caa91ffb9d61b93262ead734c7fa5" kindref="member">optimize</ref>(Solver&amp;<sp/>solver,<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment&lt;Scalar&gt;</ref>&amp;<sp/>environment)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;LinearExpansion&lt;ONVBasis&gt;&gt;<sp/>linear_expansions<sp/>{};</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>linear_expansions.reserve(number_of_states);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>CI<sp/>method&apos;s<sp/>responsibility<sp/>is<sp/>to<sp/>try<sp/>to<sp/>optimize<sp/>the<sp/>parameters<sp/>of<sp/>its<sp/>method,<sp/>given<sp/>a<sp/>solver<sp/>and<sp/>associated<sp/>environment.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solver.perform(environment);</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>energies<sp/>{};</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>energies.reserve(this-&gt;number_of_states);</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>eigenpair<sp/>:<sp/>eigenpairs)<sp/>{</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>linear_expansions.emplace_back(onv_basis,<sp/>eigenpair.eigenvector());</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>We<sp/>can&apos;t<sp/>check<sp/>for<sp/>a<sp/>&apos;NormedHamiltonianEigenvectorObjective&apos;<sp/>to<sp/>be<sp/>fulfilled,<sp/>because<sp/>there<sp/>is<sp/>no<sp/>uniform<sp/>way<sp/>to<sp/>let<sp/>an<sp/>SQHamiltonian<sp/>act<sp/>on<sp/>a<sp/>LinearExpansion.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>energies.push_back(eigenpair.eigenvalue());</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Wrap<sp/>all<sp/>the<sp/>requested<sp/>number<sp/>of<sp/>states<sp/>into<sp/>a<sp/>QCStructure.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>we<sp/>have<sp/>already<sp/>created<sp/>a<sp/>list<sp/>of<sp/>LinearExpansions,<sp/>we<sp/>only<sp/>have<sp/>to<sp/>create<sp/>a<sp/>list<sp/>of<sp/>the<sp/>corresponding<sp/>energies.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure&lt;LinearExpansion&lt;ONVBasis&gt;</ref>&gt;(energies,<sp/>linear_expansions);</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="105"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QCMethod</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>the<sp/>requested<sp/>number<sp/>of<sp/>eigenpairs<sp/>from<sp/>the<sp/>environment<sp/>and<sp/>place<sp/>them<sp/>into<sp/>the<sp/>LinearExpansion<sp/>wave<sp/>function<sp/>model.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>eigenpairs<sp/>=<sp/>environment.<ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" kindref="member">eigenpairs</ref>(this-&gt;number_of_states);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;LinearExpansion&lt;Scalar,<sp/>ONVBasis&gt;&gt;<sp/>linear_expansions<sp/>{};</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>linear_expansions.reserve(number_of_states);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Scalar&gt;<sp/>energies<sp/>{};</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>energies.reserve(this-&gt;number_of_states);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>eigenpair<sp/>:<sp/>eigenpairs)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>linear_expansions.emplace_back(onv_basis,<sp/>eigenpair.eigenvector());</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>energies.push_back(eigenpair.eigenvalue());</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Wrap<sp/>all<sp/>the<sp/>requested<sp/>number<sp/>of<sp/>states<sp/>into<sp/>a<sp/>QCStructure.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>we<sp/>have<sp/>already<sp/>created<sp/>a<sp/>list<sp/>of<sp/>LinearExpansions,<sp/>we<sp/>only<sp/>have<sp/>to<sp/>create<sp/>a<sp/>list<sp/>of<sp/>the<sp/>corresponding<sp/>energies.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure&lt;LinearExpansion&lt;Scalar, ONVBasis&gt;</ref>,<sp/><ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_i_1a514afe3bb76b52cb7f3ff4622887b4f2" kindref="member">Scalar</ref>&gt;(energies,<sp/>linear_expansions);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QCMethod</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp"/>
   </compounddef>

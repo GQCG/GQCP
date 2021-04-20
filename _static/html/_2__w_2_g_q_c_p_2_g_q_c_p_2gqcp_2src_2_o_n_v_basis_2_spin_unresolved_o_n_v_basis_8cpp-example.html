@@ -417,20 +417,6 @@ $(function() {
 <div class="line"><span class="comment"> *  MARK: Dense generalized operator evaluations</span></div>
 <div class="line"><span class="comment"> */</span></div>
 <div class="line"> </div>
-<div class="line">SquareMatrix&lt;double&gt; SpinUnresolvedONVBasis::evaluateOperatorDense(<span class="keyword">const</span> ScalarGSQOneElectronOperator&lt;double&gt;&amp; f)<span class="keyword"> const </span>{</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (f.numberOfOrbitals() != this-&gt;numberOfOrbitals()) {</div>
-<div class="line">        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator&lt;double&gt;&amp;): The number of orbitals of this ONV basis and the given one-electron operator are incompatible.&quot;</span>);</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// Initialize a container for the dense matrix representation, and fill it with the general evaluation function.</span></div>
-<div class="line">    MatrixRepresentationEvaluationContainer&lt;SquareMatrix&lt;double&gt;&gt; container {this-&gt;dimension()};</div>
-<div class="line">    this-&gt;evaluate&lt;SquareMatrix&lt;double&gt;&gt;(f, container);</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> container.evaluation();</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"> </div>
 <div class="line">SquareMatrix&lt;double&gt; SpinUnresolvedONVBasis::evaluateOperatorDense(<span class="keyword">const</span> ScalarGSQTwoElectronOperator&lt;double&gt;&amp; g)<span class="keyword"> const </span>{</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// In order to avoid duplicate code, we choose to delegate this method to the evaluation of a `GSQHamiltonian` that contains no core contributions. This does not affect performance significantly, because the bottleneck will always be the iteration over the whole ONV basis.</span></div>

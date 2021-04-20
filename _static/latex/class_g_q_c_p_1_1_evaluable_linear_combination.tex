@@ -70,7 +70,9 @@ const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combi
 \item 
 bool \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aca009eb05e42ec82f9621d11a3a931bf}{operator==}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a4ca4e4e246d918d6a2b67e8cbc9381c1}{Self}} \&other) const
 \item 
-void \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a7bec539c2d81ef7eebb6572f1676a6ae}{append}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a673cc04769b8cfe9834557f02ac81fdf}{coefficient}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{Function\+Type}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a7828486f63995ac4a08056071b7d5bba}{function}}, const double threshold=1.\+0e-\/16)
+void \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ad3141b0c9149295e77aa768e134a415f}{append}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a673cc04769b8cfe9834557f02ac81fdf}{coefficient}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{Function\+Type}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a7828486f63995ac4a08056071b7d5bba}{function}})
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a5fa37456db5398996bdfe66db554cf02}{append\+With\+Threshold}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a673cc04769b8cfe9834557f02ac81fdf}{coefficient}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{Function\+Type}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a7828486f63995ac4a08056071b7d5bba}{function}}, const double threshold=1.\+0e-\/16)
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a5c7bcb1c402887a0feab4e464c891a93}{append}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}} $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a6754b7bcd43a7b84f6597e811aa20d7e}{coefficients}}, const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{Function\+Type}} $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a927503a9401aac67bbe0da355accc8bc}{functions}})
 \end{DoxyCompactItemize}
@@ -208,12 +210,12 @@ Construct a \textquotesingle{}zero vector\textquotesingle{} given the \textquote
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_evaluable_linear_combination_a7bec539c2d81ef7eebb6572f1676a6ae}\label{class_g_q_c_p_1_1_evaluable_linear_combination_a7bec539c2d81ef7eebb6572f1676a6ae}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_evaluable_linear_combination_ad3141b0c9149295e77aa768e134a415f}\label{class_g_q_c_p_1_1_evaluable_linear_combination_ad3141b0c9149295e77aa768e134a415f}} 
 \index{GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$@{GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$}!append@{append}}
 \index{append@{append}!GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$@{GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$}}
 \doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Coefficient , typename \+\_\+\+Function\+Type $>$ \\
-void \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP\+::\+Evaluable\+Linear\+Combination}}$<$ \+\_\+\+Coefficient, \+\_\+\+Function\+Type $>$\+::append (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}} \&}]{coefficient,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{Function\+Type}} \&}]{function,  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/16} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP\+::\+Evaluable\+Linear\+Combination}}$<$ \+\_\+\+Coefficient, \+\_\+\+Function\+Type $>$\+::append (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}} \&}]{coefficient,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{Function\+Type}} \&}]{function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Append the given coefficient and function to this linear combination.
 
@@ -222,8 +224,6 @@ Append the given coefficient and function to this linear combination.
 {\em coefficients} & The coefficient that should be appended to this linear combination. \\
 \hline
 {\em functions} & The function that should be appended to this linear combination. \\
-\hline
-{\em threshold} & The threshold for the (absolute value of the) coefficient in order to be included in this linear combination. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_evaluable_linear_combination_a5c7bcb1c402887a0feab4e464c891a93}\label{class_g_q_c_p_1_1_evaluable_linear_combination_a5c7bcb1c402887a0feab4e464c891a93}} 
@@ -240,6 +240,24 @@ Append the given coefficients and functions to this linear combination.
 {\em coefficients} & The coefficients that should be appended to this linear combination. \\
 \hline
 {\em functions} & The functions that should be appended to this linear combination. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_evaluable_linear_combination_a5fa37456db5398996bdfe66db554cf02}\label{class_g_q_c_p_1_1_evaluable_linear_combination_a5fa37456db5398996bdfe66db554cf02}} 
+\index{GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$@{GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$}!appendWithThreshold@{appendWithThreshold}}
+\index{appendWithThreshold@{appendWithThreshold}!GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$@{GQCP::EvaluableLinearCombination$<$ \_Coefficient, \_FunctionType $>$}}
+\doxysubsubsection{\texorpdfstring{appendWithThreshold()}{appendWithThreshold()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Coefficient , typename \+\_\+\+Function\+Type $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP\+::\+Evaluable\+Linear\+Combination}}$<$ \+\_\+\+Coefficient, \+\_\+\+Function\+Type $>$\+::append\+With\+Threshold (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}} \&}]{coefficient,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{Function\+Type}} \&}]{function,  }\item[{const double}]{threshold = {\ttfamily 1.0e-\/16} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Append the given coefficient and function to this linear combination, but only if the coefficients are larger than the given threshold.
+
+
+\begin{DoxyParams}{Parameters}
+{\em coefficients} & The coefficient that should be appended to this linear combination. \\
+\hline
+{\em functions} & The function that should be appended to this linear combination. \\
+\hline
+{\em threshold} & The threshold for the (absolute value of the) coefficient in order to be included in this linear combination. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_evaluable_linear_combination_a673cc04769b8cfe9834557f02ac81fdf}\label{class_g_q_c_p_1_1_evaluable_linear_combination_a673cc04769b8cfe9834557f02ac81fdf}} 

@@ -3,7 +3,7 @@
   <compounddef id="namespace_g_q_c_p_1_1_c_i_environment" kind="namespace" language="C++">
     <compoundname>GQCP::CIEnvironment</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1a4374650422c83e8e5379f74334455225" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1a304b7b0ff99dbd03933bd214abf8f77c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Hamiltonian</type>
@@ -12,9 +12,9 @@
             <type>typename ONVBasis</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref></type>
-        <definition>EigenproblemEnvironment GQCP::CIEnvironment::Dense</definition>
-        <argsstring>(const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis)</argsstring>
+        <type>auto</type>
+        <definition>auto GQCP::CIEnvironment::Dense</definition>
+        <argsstring>(const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis) -&gt; EigenproblemEnvironment&lt; typename Hamiltonian::Scalar &gt;</argsstring>
         <name>Dense</name>
         <param>
           <type>const Hamiltonian &amp;</type>
@@ -68,9 +68,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="40" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" bodystart="40" bodyend="45"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="40" column="6" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" bodystart="40" bodyend="47"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1ad65c2cc9f1c4f0b52e17435504f2df53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1a4c3d06afcdcd7d37ab4185bf369ea7e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Hamiltonian</type>
@@ -79,8 +79,8 @@
             <type>typename ONVBasis</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref></type>
-        <definition>EigenproblemEnvironment GQCP::CIEnvironment::Iterative</definition>
+        <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; double &gt;</type>
+        <definition>EigenproblemEnvironment&lt;double&gt; GQCP::CIEnvironment::Iterative</definition>
         <argsstring>(const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis, const MatrixX&lt; double &gt; &amp;V)</argsstring>
         <name>Iterative</name>
         <param>
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="61" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" bodystart="61" bodyend="68"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="63" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" bodystart="63" bodyend="70"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

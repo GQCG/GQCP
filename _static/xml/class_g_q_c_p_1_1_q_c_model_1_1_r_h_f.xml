@@ -1267,6 +1267,84 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="802" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="802" bodyend="805"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>, 3, 3 &gt;</type>
+        <definition>static Matrix&lt;complex, 3, 3&gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateIpsocentricMagneticInducibility</definition>
+        <argsstring>(const Vector&lt; double, 3 &gt; &amp;r, const OrbitalSpace &amp;orbital_space, const Matrix&lt; complex, Dynamic, 3 &gt; &amp;x_B, const Matrix&lt; complex, Dynamic, 6 &gt; &amp;x_G, const VectorEvaluableRSQOneElectronOperator&lt; CurrentDensityMatrixElement&lt; complex, CartesianGTO &gt;&gt; &amp;j_op)</argsstring>
+        <name>calculateIpsocentricMagneticInducibility</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
+          <declname>orbital_space</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>, <ref refid="namespace_g_q_c_p_1aae02f7d1e3557edc7114d417804dd298" kindref="member">Dynamic</ref>, 3 &gt; &amp;</type>
+          <declname>x_B</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>, <ref refid="namespace_g_q_c_p_1aae02f7d1e3557edc7114d417804dd298" kindref="member">Dynamic</ref>, 6 &gt; &amp;</type>
+          <declname>x_G</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a5f07594b8253c17135822016460301b8" kindref="member">VectorEvaluableRSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_current_density_matrix_element" kindref="compound">CurrentDensityMatrixElement</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>, <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &gt;&gt; &amp;</type>
+          <declname>j_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the magnetic inducibility on the given point using the ipsocentric CSGT method.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orbital_space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> occupied-virtual separation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> linear response with respect to the magnetic field perturbation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x_G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> linear response with respect to the gauge origin translation perturbation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second-quantized representation of the field-free current density operator in the <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">RHF</ref> orbital basis.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The magnetic inducibility evaluated at the given point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="944" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="944" bodyend="999"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a45f6920a8c410891cb91c35d20ceb0b7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref>&lt; <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>, 3, 3 &gt; &gt;</type>
         <definition>static Field&lt;Matrix&lt;complex, 3, 3&gt; &gt; GQCP::QCModel::RHF&lt; _Scalar &gt;::calculateIpsocentricMagneticInducibility</definition>
@@ -1343,7 +1421,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="944" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="944" bodyend="1001"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="1013" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="1013" bodyend="1027"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1367,12 +1445,13 @@
         <link refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="49" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="49" bodyend="1002"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" line="49" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp" bodystart="49" bodyend="1028"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad76d8e49344b8b5fa7d9b3bf4b5e9330" prot="private" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>C</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a7e32e7b47f3099d4954a8b6fbfd5d684" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateElectronicEnergy</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a80e2103050ccbf2b204f094fd2824510" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateError</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a758ea83ccc7a8f3d6aab46b7f96aaa5b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateGaugeOriginTranslationResponseForce</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateIpsocentricMagneticInducibility</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a45f6920a8c410891cb91c35d20ceb0b7" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateIpsocentricMagneticInducibility</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a4428d799512389194d1cffe13e2f38a8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateMagneticFieldResponseForce</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5180203a16f4c24b55ceb9418dcd783a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::RHF</scope><name>calculateOrbitalHessianElement</name></member>

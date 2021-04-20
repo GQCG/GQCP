@@ -410,7 +410,7 @@
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a3f53d62293e6e7a62633473723b16b9c" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>numberOfGeminalCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a4362beaed6824f8bff5181620dc00d83" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a57b4983a492bc6503a33c711b2174197" prot="public" virt="virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>overlap</name></member>
-      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>toLinearExpansion</name></member>
+      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a32797287bde862bf2559f3ac73bc56ec" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>toLinearExpansion</name></member>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a9d5c97a1bb063865aa65cb8e24f69dd5" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>~APIGGeminalCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" prot="public" virt="virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>~GeminalCoefficientsInterface</name></member>
     </listofallmembers>

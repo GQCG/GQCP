@@ -50,9 +50,9 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" line="41" column="20"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; SeniorityZeroONVBasis &gt;</type>
-        <definition>LinearExpansion&lt; SeniorityZeroONVBasis &gt; GQCP::GeminalCoefficientsInterface::toLinearExpansion</definition>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_geminal_coefficients_interface_1a32797287bde862bf2559f3ac73bc56ec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; double, SeniorityZeroONVBasis &gt;</type>
+        <definition>LinearExpansion&lt; double, SeniorityZeroONVBasis &gt; GQCP::GeminalCoefficientsInterface::toLinearExpansion</definition>
         <argsstring>(const SeniorityZeroONVBasis &amp;onv_basis) const</argsstring>
         <name>toLinearExpansion</name>
         <param>
@@ -71,7 +71,18 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the wave function expansion corresponding to the geminal coefficients </para>
+<simplesect kind="return"><para>the wave function expansion corresponding to the geminal coefficients</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the seniority-zero spin-resolved ONV basis the wave function should live in</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The wave function expansion corresponding to the geminal coefficients. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -111,7 +122,7 @@
     <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" line="28" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp" bodystart="28" bodyend="52"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f" prot="public" virt="pure-virtual"><scope>GQCP::GeminalCoefficientsInterface</scope><name>overlap</name></member>
-      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" prot="public" virt="non-virtual"><scope>GQCP::GeminalCoefficientsInterface</scope><name>toLinearExpansion</name></member>
+      <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a32797287bde862bf2559f3ac73bc56ec" prot="public" virt="non-virtual"><scope>GQCP::GeminalCoefficientsInterface</scope><name>toLinearExpansion</name></member>
       <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" prot="public" virt="virtual"><scope>GQCP::GeminalCoefficientsInterface</scope><name>~GeminalCoefficientsInterface</name></member>
     </listofallmembers>
   </compounddef>

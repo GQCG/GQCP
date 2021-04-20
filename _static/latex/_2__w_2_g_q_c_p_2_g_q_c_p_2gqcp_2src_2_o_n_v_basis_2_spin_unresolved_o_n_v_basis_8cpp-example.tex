@@ -356,20 +356,6 @@ The next allowed unsigned representation of a spin-\/unresolved ONV in this ONV 
 \DoxyCodeLine{\textcolor{comment}{ *  MARK: Dense generalized operator evaluations}}
 \DoxyCodeLine{\textcolor{comment}{ */}}
 \DoxyCodeLine{}
-\DoxyCodeLine{SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(\textcolor{keyword}{const} ScalarGSQOneElectronOperator<double>\& f)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (f.numberOfOrbitals() != this-\/>numberOfOrbitals()) \{}
-\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>\&): The number of orbitals of this ONV basis and the given one-\/electron operator are incompatible."{}});}
-\DoxyCodeLine{    \}}
-\DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Initialize a container for the dense matrix representation, and fill it with the general evaluation function.}}
-\DoxyCodeLine{    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container \{this-\/>dimension()\};}
-\DoxyCodeLine{    this-\/>evaluate<SquareMatrix<double>>(f, container);}
-\DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{return} container.evaluation();}
-\DoxyCodeLine{\}}
-\DoxyCodeLine{}
-\DoxyCodeLine{}
 \DoxyCodeLine{SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(\textcolor{keyword}{const} ScalarGSQTwoElectronOperator<double>\& g)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// In order to avoid duplicate code, we choose to delegate this method to the evaluation of a `GSQHamiltonian` that contains no core contributions. This does not affect performance significantly, because the bottleneck will always be the iteration over the whole ONV basis.}}

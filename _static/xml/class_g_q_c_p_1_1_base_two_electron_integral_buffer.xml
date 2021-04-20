@@ -182,9 +182,9 @@
         <definition>virtual bool GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::areIntegralsAllZero</definition>
         <argsstring>() const =0</argsstring>
         <name>areIntegralsAllZero</name>
-        <reimplementedby refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1a9b6526452a74be456a9e14589349c976">areIntegralsAllZero</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1a57c6600cc78f886464837fc72738e4fe">areIntegralsAllZero</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_libint_two_electron_integral_buffer_1a92a7898936c99e58c5c42af5e9c76f67">areIntegralsAllZero</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_two_electron_integral_buffer_1ac70d3f2791d4c3a581c91dcc0805d04d">areIntegralsAllZero</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

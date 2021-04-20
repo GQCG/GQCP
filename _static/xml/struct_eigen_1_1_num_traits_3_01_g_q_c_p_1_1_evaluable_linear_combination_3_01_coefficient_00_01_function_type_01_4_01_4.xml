@@ -78,7 +78,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="328" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="328" bodyend="336"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="340" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="340" bodyend="348"/>
       </memberdef>
       <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1add70e2489b29fb9fa93e3d5853e97692" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="324" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="324" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="336" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="336" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1af5fc8eeeae8398d9e5446789f6d2dbb7" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
@@ -104,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="325" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="325" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="337" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="337" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1af091ce7b1a93d1ad1ebff07dd997bb70" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="326" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="326" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="338" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="338" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -146,7 +146,7 @@
         <label>NumTraits&lt; double &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="321" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="322" bodyend="337"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="333" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="334" bodyend="349"/>
     <listofallmembers>
       <member refid="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1a60334943fdad0b964be53b95945abbd0ad0c796900cb4e0f04032a96777eb8d35" prot="public" virt="non-virtual"><scope>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;</scope><name>AddCost</name></member>
       <member refid="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1a60334943fdad0b964be53b95945abbd0a6a2729769ce2fff77eb111857f90aca1" prot="public" virt="non-virtual"><scope>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;</scope><name>IsComplex</name></member>

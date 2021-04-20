@@ -1,11 +1,12 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,112,108"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="170,5,349,32"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="168,56,351,83"/>
-<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="160,107,359,133"/>
-<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="172,158,347,199"/>
-<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="407,59,560,101"/>
-<area shape="rect" id="node7" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="407,125,560,166"/>
-<area shape="rect" id="node8" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="407,190,560,231"/>
-<area shape="rect" id="node9" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="407,255,560,297"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,112,133"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="171,5,349,32"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="169,56,351,83"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="161,107,359,133"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="160,158,360,199"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="173,223,347,265"/>
+<area shape="rect" id="node7" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="408,125,561,166"/>
+<area shape="rect" id="node8" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="408,190,561,231"/>
+<area shape="rect" id="node9" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="408,255,561,297"/>
+<area shape="rect" id="node10" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="408,321,561,362"/>
 </map>

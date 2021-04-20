@@ -74,16 +74,16 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4374650422c83e8e5379f74334455225"><td class="memTemplParams" colspan="2">template&lt;typename Hamiltonian , typename ONVBasis &gt; </td></tr>
-<tr class="memitem:a4374650422c83e8e5379f74334455225"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_g_q_c_p_1_1_c_i_environment.html#a4374650422c83e8e5379f74334455225">Dense</a> (const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis)</td></tr>
-<tr class="separator:a4374650422c83e8e5379f74334455225"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad65c2cc9f1c4f0b52e17435504f2df53"><td class="memTemplParams" colspan="2">template&lt;typename Hamiltonian , typename ONVBasis &gt; </td></tr>
-<tr class="memitem:ad65c2cc9f1c4f0b52e17435504f2df53"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_g_q_c_p_1_1_c_i_environment.html#ad65c2cc9f1c4f0b52e17435504f2df53">Iterative</a> (const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis, const <a class="el" href="namespace_g_q_c_p.html#a1682f7552bb345204c32a5cc7c464dc6">MatrixX</a>&lt; double &gt; &amp;V)</td></tr>
-<tr class="separator:ad65c2cc9f1c4f0b52e17435504f2df53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a304b7b0ff99dbd03933bd214abf8f77c"><td class="memTemplParams" colspan="2">template&lt;typename Hamiltonian , typename ONVBasis &gt; </td></tr>
+<tr class="memitem:a304b7b0ff99dbd03933bd214abf8f77c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_g_q_c_p_1_1_c_i_environment.html#a304b7b0ff99dbd03933bd214abf8f77c">Dense</a> (const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis) -&gt; <a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a>&lt; typename Hamiltonian::Scalar &gt;</td></tr>
+<tr class="separator:a304b7b0ff99dbd03933bd214abf8f77c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c3d06afcdcd7d37ab4185bf369ea7e2"><td class="memTemplParams" colspan="2">template&lt;typename Hamiltonian , typename ONVBasis &gt; </td></tr>
+<tr class="memitem:a4c3d06afcdcd7d37ab4185bf369ea7e2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a>&lt; double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_g_q_c_p_1_1_c_i_environment.html#a4c3d06afcdcd7d37ab4185bf369ea7e2">Iterative</a> (const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis, const <a class="el" href="namespace_g_q_c_p.html#a1682f7552bb345204c32a5cc7c464dc6">MatrixX</a>&lt; double &gt; &amp;V)</td></tr>
+<tr class="separator:a4c3d06afcdcd7d37ab4185bf369ea7e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4374650422c83e8e5379f74334455225"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4374650422c83e8e5379f74334455225">&#9670;&nbsp;</a></span>Dense()</h2>
+<a id="a304b7b0ff99dbd03933bd214abf8f77c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a304b7b0ff99dbd03933bd214abf8f77c">&#9670;&nbsp;</a></span>Dense()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -91,7 +91,7 @@ Functions</h2></td></tr>
 template&lt;typename Hamiltonian , typename ONVBasis &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a> GQCP::CIEnvironment::Dense </td>
+          <td class="memname">auto GQCP::CIEnvironment::Dense </td>
           <td>(</td>
           <td class="paramtype">const Hamiltonian &amp;&#160;</td>
           <td class="paramname"><em>hamiltonian</em>, </td>
@@ -105,7 +105,7 @@ template&lt;typename Hamiltonian , typename ONVBasis &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> -&gt; <a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a>&lt;typename Hamiltonian::Scalar&gt; </td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -128,8 +128,8 @@ template&lt;typename Hamiltonian , typename ONVBasis &gt; </div>
 
 </div>
 </div>
-<a id="ad65c2cc9f1c4f0b52e17435504f2df53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad65c2cc9f1c4f0b52e17435504f2df53">&#9670;&nbsp;</a></span>Iterative()</h2>
+<a id="a4c3d06afcdcd7d37ab4185bf369ea7e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c3d06afcdcd7d37ab4185bf369ea7e2">&#9670;&nbsp;</a></span>Iterative()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,7 +137,7 @@ template&lt;typename Hamiltonian , typename ONVBasis &gt; </div>
 template&lt;typename Hamiltonian , typename ONVBasis &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a> GQCP::CIEnvironment::Iterative </td>
+          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a>&lt;double&gt; GQCP::CIEnvironment::Iterative </td>
           <td>(</td>
           <td class="paramtype">const Hamiltonian &amp;&#160;</td>
           <td class="paramname"><em>hamiltonian</em>, </td>

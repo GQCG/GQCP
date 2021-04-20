@@ -262,9 +262,6 @@
         <childnode refid="143" relation="include">
         </childnode>
       </node>
-      <node id="190">
-        <label>boost/range/adaptors.hpp</label>
-      </node>
       <node id="48">
         <label>Basis/Transformations/SpinResolvedBasisTransformable.hpp</label>
         <link refid="_spin_resolved_basis_transformable_8hpp"/>
@@ -289,7 +286,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="189">
+      <node id="190">
         <label>boost/dynamic_bitset.hpp</label>
       </node>
       <node id="5">
@@ -1231,6 +1228,9 @@
         <childnode refid="107" relation="include">
         </childnode>
       </node>
+      <node id="189">
+        <label>ONVBasis/SpinUnresolvedSelectedONVBasis.hpp</label>
+      </node>
       <node id="184">
         <label>Operator/FirstQuantized/OrbitalZeemanOperator.hpp</label>
         <link refid="_orbital_zeeman_operator_8hpp"/>
@@ -1405,6 +1405,10 @@
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
+        <childnode refid="163" relation="include">
+        </childnode>
+        <childnode refid="164" relation="include">
+        </childnode>
         <childnode refid="134" relation="include">
         </childnode>
         <childnode refid="142" relation="include">
@@ -1421,15 +1425,15 @@
         </childnode>
         <childnode refid="188" relation="include">
         </childnode>
+        <childnode refid="189" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="189" relation="include">
-        </childnode>
         <childnode refid="190" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="161">
@@ -2245,7 +2249,7 @@
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>PUBLIC<sp/>METHODS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion&lt;SeniorityZeroONVBasis&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" kindref="member">toLinearExpansion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SeniorityZeroONVBasis&amp;<sp/>onv_basis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion&lt;double, SeniorityZeroONVBasis&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a32797287bde862bf2559f3ac73bc56ec" kindref="member">toLinearExpansion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SeniorityZeroONVBasis&amp;<sp/>onv_basis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>

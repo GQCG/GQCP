@@ -1,0 +1,336 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</compoundname>
+    <includes refid="_matrix_representation_evaluation_container_8hpp" local="no">MatrixRepresentationEvaluationContainer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="147" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1aa2bbbb047aefc960dcfaef62073baf45" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="151" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a0bceb6fdcd7e0f55d00bc86641c5134b" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="152" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1afa6c0e9862ec918a7f85a9059b09f0f9" prot="public" static="no" mutable="no">
+        <type>Eigen::SparseMatrix&lt; <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref> &gt;</type>
+        <definition>Eigen::SparseMatrix&lt;Scalar&gt; GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::matrix</definition>
+        <argsstring></argsstring>
+        <name>matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="154" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ae9ebff5467f2d4aebc02a9045fb995a4" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; Eigen::Triplet&lt; <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;Eigen::Triplet&lt;Scalar&gt; &gt; GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::triplet_vector</definition>
+        <argsstring></argsstring>
+        <name>triplet_vector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="155" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a749f8b27d989dc3de141ac9f844e3683" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::MatrixRepresentationEvaluationContainer</definition>
+        <argsstring>(const size_t dimension)</argsstring>
+        <name>MatrixRepresentationEvaluationContainer</name>
+        <param>
+          <type>const size_t</type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimensions of the matrix (equal to that of the fock space). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="166" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="166" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a6ec6850d45f905b4c165c37a95cfe66d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::addColumnwise</definition>
+        <argsstring>(const size_t column, const Scalar value)</argsstring>
+        <name>addColumnwise</name>
+        <param>
+          <type>const size_t</type>
+          <declname>column</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column This function adds the values to a triplet vector to add the values to the sparse matrix, one should call &quot;addToMatrix()&quot;</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>column</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Column index of the matrix. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value which is added to a given position in the matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="183" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="183" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af2fa0c6b929e4973ee92bcea1d471d4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::addRowwise</definition>
+        <argsstring>(const size_t row, const Scalar value)</argsstring>
+        <name>addRowwise</name>
+        <param>
+          <type>const size_t</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row. This function adds the values to a triplet vector to add the values to the sparse matrix, one should call &quot;addToMatrix()&quot;</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Row index of the matrix. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value which is added to a given position in the matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="193" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="193" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ac13568aa199accd63da79e615aec83f0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::addToMatrix</definition>
+        <argsstring>()</argsstring>
+        <name>addToMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Fill the sparse matrix with the elements stored in the triplet vector. the more elements that are already present in the matrix, the more expensive this operation becomes Therefore, it is ill-advised to call the method more than once, after filling, the triplet vector is cleared </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="201" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="201" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a3ac69a92687fd2a5641baface452f613" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Eigen::SparseMatrix&lt; <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const Eigen::SparseMatrix&lt;Scalar&gt;&amp; GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::evaluation</definition>
+        <argsstring>() const</argsstring>
+        <name>evaluation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the evaluation that is stored</para>
+</simplesect>
+<simplesect kind="note"><para>The matrix will not be initialized if <computeroutput><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ac13568aa199accd63da79e615aec83f0" kindref="member">addToMatrix()</ref></computeroutput> has not been called. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="211" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="211" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a65e10aa30f5e6b00d807c4bfd52bafb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::increment</definition>
+        <argsstring>()</argsstring>
+        <name>increment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Move to the next index in the iteration. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="216" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="216" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a43e5db65f4c5c173eabfd012f5d6bbeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::isFinished</definition>
+        <argsstring>()</argsstring>
+        <name>isFinished</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Tests if the iteration is finished, if true the index is reset to 0</para>
+<para><simplesect kind="return"><para>true if the iteration is finished </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="223" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="223" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ab46ff2529e84e8be0b7d020fe1396906" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::reserve</definition>
+        <argsstring>(const size_t n)</argsstring>
+        <name>reserve</name>
+        <param>
+          <type>const size_t</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reserves an amount of memory for the triplet vector</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the amount triplets that should be reserved </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="237" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="237" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a7f6e7eab5fea93a00a34cdb70dcfeae3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; Eigen::Triplet&lt; <ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref> &gt; &gt; &amp;</type>
+        <definition>const std::vector&lt;Eigen::Triplet&lt;Scalar&gt; &gt;&amp; GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;::triplets</definition>
+        <argsstring>() const</argsstring>
+        <name>triplets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The triplet vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="245" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="245" bodyend="245"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Sparse template specialization is required because insertions into an existing sparse matrix are expensive Elements should only be added to the matrix once all of them are evaluated in a vector of triplets</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of one of the matrix elements: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" line="144" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp" bodystart="144" bodyend="246"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a6ec6850d45f905b4c165c37a95cfe66d" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>addColumnwise</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af2fa0c6b929e4973ee92bcea1d471d4a" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>addRowwise</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ac13568aa199accd63da79e615aec83f0" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>addToMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a0bceb6fdcd7e0f55d00bc86641c5134b" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>end</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a3ac69a92687fd2a5641baface452f613" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>evaluation</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a65e10aa30f5e6b00d807c4bfd52bafb4" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>increment</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1aa2bbbb047aefc960dcfaef62073baf45" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>index</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a43e5db65f4c5c173eabfd012f5d6bbeb" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>isFinished</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1afa6c0e9862ec918a7f85a9059b09f0f9" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a749f8b27d989dc3de141ac9f844e3683" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>MatrixRepresentationEvaluationContainer</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ab46ff2529e84e8be0b7d020fe1396906" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>reserve</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1ae9ebff5467f2d4aebc02a9045fb995a4" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>triplet_vector</name></member>
+      <member refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a7f6e7eab5fea93a00a34cdb70dcfeae3" prot="public" virt="non-virtual"><scope>GQCP::MatrixRepresentationEvaluationContainer&lt; Eigen::SparseMatrix&lt; _Scalar &gt; &gt;</scope><name>triplets</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -257,9 +257,6 @@
         <childnode refid="144" relation="include">
         </childnode>
       </node>
-      <node id="191">
-        <label>boost/range/adaptors.hpp</label>
-      </node>
       <node id="49">
         <label>Basis/Transformations/SpinResolvedBasisTransformable.hpp</label>
         <link refid="_spin_resolved_basis_transformable_8hpp"/>
@@ -284,7 +281,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="190">
+      <node id="191">
         <label>boost/dynamic_bitset.hpp</label>
       </node>
       <node id="6">
@@ -1226,6 +1223,9 @@
         <childnode refid="108" relation="include">
         </childnode>
       </node>
+      <node id="190">
+        <label>ONVBasis/SpinUnresolvedSelectedONVBasis.hpp</label>
+      </node>
       <node id="185">
         <label>Operator/FirstQuantized/OrbitalZeemanOperator.hpp</label>
         <link refid="_orbital_zeeman_operator_8hpp"/>
@@ -1400,6 +1400,10 @@
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
+        <childnode refid="164" relation="include">
+        </childnode>
+        <childnode refid="165" relation="include">
+        </childnode>
         <childnode refid="135" relation="include">
         </childnode>
         <childnode refid="143" relation="include">
@@ -1416,15 +1420,15 @@
         </childnode>
         <childnode refid="189" relation="include">
         </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
         <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="190" relation="include">
-        </childnode>
         <childnode refid="191" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
         </childnode>
       </node>
       <node id="162">
@@ -2076,10 +2080,10 @@
 <codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/>PUBLIC<sp/>METHODS</highlight></codeline>
 <codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal">LinearExpansion&lt;SeniorityZeroONVBasis&gt;<sp/><ref refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a5ddef28dd52fb940f2826752d904cd88" kindref="member">GeminalCoefficientsInterface::toLinearExpansion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SeniorityZeroONVBasis&amp;<sp/>onv_basis)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">LinearExpansion&lt;double,<sp/>SeniorityZeroONVBasis&gt;<sp/><ref refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a32797287bde862bf2559f3ac73bc56ec" kindref="member">GeminalCoefficientsInterface::toLinearExpansion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SeniorityZeroONVBasis&amp;<sp/>onv_basis)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim<sp/>=<sp/>onv_basis.dimension();</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorX&lt;double&gt;<sp/>coefficients<sp/>=<sp/>VectorX&lt;double&gt;::Zero(dim);<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>expansion<sp/>coefficient<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorX&lt;double&gt;<sp/>coefficients<sp/>=<sp/>VectorX&lt;double&gt;::Zero(dim);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>expansion<sp/>coefficient<sp/>vector.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>onv_basis_proxy<sp/>=<sp/>onv_basis.proxy();</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>onv<sp/>=<sp/>onv_basis_proxy.constructONVFromAddress(0);<sp/><sp/></highlight><highlight class="comment">//<sp/>start<sp/>with<sp/>address<sp/>0</highlight><highlight class="normal"></highlight></codeline>
@@ -2092,7 +2096,7 @@
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LinearExpansion&lt;SeniorityZeroONVBasis&gt;(onv_basis,<sp/>coefficients);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LinearExpansion&lt;double,<sp/>SeniorityZeroONVBasis&gt;(onv_basis,<sp/>coefficients);</highlight></codeline>
 <codeline lineno="50"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>

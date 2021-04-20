@@ -102,77 +102,81 @@ $(function() {
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>QCMethod {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> _ONVBasis&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html">CI</a> {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar, <span class="keyword">typename</span> _ONVBasis&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html">CI</a> {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad1b8066be10637f9fbbc55858692683a">   43</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad1b8066be10637f9fbbc55858692683a">ONVBasis</a> = _ONVBasis;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// The scalar type of the expansion coefficients: real or complex.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a514afe3bb76b52cb7f3ff4622887b4f2">   44</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a514afe3bb76b52cb7f3ff4622887b4f2">Scalar</a> = _Scalar;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">size_t</span> number_of_states;  <span class="comment">// the number of states that searched for (incuding the ground state)</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad1b8066be10637f9fbbc55858692683a">ONVBasis</a> onv_basis;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// The type of the ONV basis.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad383621a484f12272b556d222dd85309">   47</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad383621a484f12272b556d222dd85309">ONVBasis</a> = _ONVBasis;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">     *  CONSTRUCTORS</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ab42eea3ca80147a47e984486a3c14ebe">   60</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ab42eea3ca80147a47e984486a3c14ebe">CI</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad1b8066be10637f9fbbc55858692683a">ONVBasis</a>&amp; onv_basis, <span class="keyword">const</span> <span class="keywordtype">size_t</span> number_of_states = 1) :</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        onv_basis {onv_basis},</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        number_of_states {number_of_states} {}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">     *  PUBLIC METHODS</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Solver&gt;</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a50115359cec7203bb365c1da94b64934">   77</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_q_c_structure.html">QCStructure&lt;LinearExpansion&lt;ONVBasis&gt;</a>&gt; <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a50115359cec7203bb365c1da94b64934">optimize</a>(Solver&amp; solver, <a class="code" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment</a>&amp; environment)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="comment">// The CI method&#39;s responsibility is to try to optimize the parameters of its method, given a solver and associated environment.</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        solver.perform(environment);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="comment">// Extract the requested number of eigenpairs from the environment and place them into the LinearExpansion wave function model. Consequently, check if the LinearExpansion fulfills the objective.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> eigenpairs = environment.<a class="code" href="class_g_q_c_p_1_1_eigenproblem_environment.html#aaed7d0d86cb7215a5b66726c5f5d8c32">eigenpairs</a>(this-&gt;number_of_states);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// The number of states that are searched for (including the ground state).</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">size_t</span> number_of_states;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// The ONV basis with respect to which the configuration interaction is expressed.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad383621a484f12272b556d222dd85309">ONVBasis</a> onv_basis;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     *  MARK: Constructors</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad729fb21bb5cc18d2960297c38dbbc2a">   67</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad729fb21bb5cc18d2960297c38dbbc2a">CI</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad383621a484f12272b556d222dd85309">ONVBasis</a>&amp; onv_basis, <span class="keyword">const</span> <span class="keywordtype">size_t</span> number_of_states = 1) :</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        onv_basis {onv_basis},</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        number_of_states {number_of_states} {}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">     *  MARK: Optimization</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Solver&gt;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ae43caa91ffb9d61b93262ead734c7fa5">   84</a></span>&#160;    <a class="code" href="class_g_q_c_p_1_1_q_c_structure.html">QCStructure&lt;LinearExpansion&lt;Scalar, ONVBasis&gt;</a>, <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a514afe3bb76b52cb7f3ff4622887b4f2">Scalar</a>&gt; <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ae43caa91ffb9d61b93262ead734c7fa5">optimize</a>(Solver&amp; solver, <a class="code" href="class_g_q_c_p_1_1_eigenproblem_environment.html">EigenproblemEnvironment&lt;Scalar&gt;</a>&amp; environment)<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        std::vector&lt;LinearExpansion&lt;ONVBasis&gt;&gt; linear_expansions {};</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        linear_expansions.reserve(number_of_states);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment">// The CI method&#39;s responsibility is to try to optimize the parameters of its method, given a solver and associated environment.</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        solver.perform(environment);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        std::vector&lt;double&gt; energies {};</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        energies.reserve(this-&gt;number_of_states);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; eigenpair : eigenpairs) {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            linear_expansions.emplace_back(onv_basis, eigenpair.eigenvector());</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="comment">// TODO: We can&#39;t check for a &#39;NormedHamiltonianEigenvectorObjective&#39; to be fulfilled, because there is no uniform way to let an SQHamiltonian act on a LinearExpansion.</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            energies.push_back(eigenpair.eigenvalue());</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="comment">// Wrap all the requested number of states into a QCStructure.</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="comment">// Since we have already created a list of LinearExpansions, we only have to create a list of the corresponding energies.</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_q_c_structure.html">QCStructure&lt;LinearExpansion&lt;ONVBasis&gt;</a>&gt;(energies, linear_expansions);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}  <span class="comment">// namespace QCMethod</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// Extract the requested number of eigenpairs from the environment and place them into the LinearExpansion wave function model.</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> eigenpairs = environment.<a class="code" href="class_g_q_c_p_1_1_eigenproblem_environment.html#a95dc6b2615ff0a61db2bdc4372cdfcff">eigenpairs</a>(this-&gt;number_of_states);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        std::vector&lt;LinearExpansion&lt;Scalar, ONVBasis&gt;&gt; linear_expansions {};</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        linear_expansions.reserve(number_of_states);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        std::vector&lt;Scalar&gt; energies {};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        energies.reserve(this-&gt;number_of_states);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; eigenpair : eigenpairs) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            linear_expansions.emplace_back(onv_basis, eigenpair.eigenvector());</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            energies.push_back(eigenpair.eigenvalue());</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="comment">// Wrap all the requested number of states into a QCStructure.</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="comment">// Since we have already created a list of LinearExpansions, we only have to create a list of the corresponding energies.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_q_c_structure.html">QCStructure&lt;LinearExpansion&lt;Scalar, ONVBasis&gt;</a>, <a class="code" href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a514afe3bb76b52cb7f3ff4622887b4f2">Scalar</a>&gt;(energies, linear_expansions);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}  <span class="comment">// namespace QCMethod</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 <div class="ttc" id="a_algorithm_8hpp_html"><div class="ttname"><a href="_algorithm_8hpp.html">Algorithm.hpp</a></div></div>
 <div class="ttc" id="a_eigenproblem_environment_8hpp_html"><div class="ttname"><a href="_eigenproblem_environment_8hpp.html">EigenproblemEnvironment.hpp</a></div></div>
 <div class="ttc" id="a_iterative_algorithm_8hpp_html"><div class="ttname"><a href="_iterative_algorithm_8hpp.html">IterativeAlgorithm.hpp</a></div></div>
 <div class="ttc" id="a_linear_expansion_8hpp_html"><div class="ttname"><a href="_linear_expansion_8hpp.html">LinearExpansion.hpp</a></div></div>
 <div class="ttc" id="a_q_c_structure_8hpp_html"><div class="ttname"><a href="_q_c_structure_8hpp.html">QCStructure.hpp</a></div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_eigenproblem_environment_html"><div class="ttname"><a href="class_g_q_c_p_1_1_eigenproblem_environment.html">GQCP::EigenproblemEnvironment</a></div><div class="ttdef"><b>Definition:</b> EigenproblemEnvironment.hpp:32</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_eigenproblem_environment_html_aaed7d0d86cb7215a5b66726c5f5d8c32"><div class="ttname"><a href="class_g_q_c_p_1_1_eigenproblem_environment.html#aaed7d0d86cb7215a5b66726c5f5d8c32">GQCP::EigenproblemEnvironment::eigenpairs</a></div><div class="ttdeci">std::vector&lt; Eigenpair&lt; double &gt; &gt; eigenpairs(const size_t number_of_requested_eigenpairs=1) const</div><div class="ttdef"><b>Definition:</b> EigenproblemEnvironment.hpp:120</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html">GQCP::QCMethod::CI</a></div><div class="ttdef"><b>Definition:</b> CI.hpp:40</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html_a50115359cec7203bb365c1da94b64934"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a50115359cec7203bb365c1da94b64934">GQCP::QCMethod::CI::optimize</a></div><div class="ttdeci">QCStructure&lt; LinearExpansion&lt; ONVBasis &gt; &gt; optimize(Solver &amp;solver, EigenproblemEnvironment &amp;environment) const</div><div class="ttdef"><b>Definition:</b> CI.hpp:77</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html_ab42eea3ca80147a47e984486a3c14ebe"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ab42eea3ca80147a47e984486a3c14ebe">GQCP::QCMethod::CI::CI</a></div><div class="ttdeci">CI(const ONVBasis &amp;onv_basis, const size_t number_of_states=1)</div><div class="ttdef"><b>Definition:</b> CI.hpp:60</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html_ad1b8066be10637f9fbbc55858692683a"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad1b8066be10637f9fbbc55858692683a">GQCP::QCMethod::CI::ONVBasis</a></div><div class="ttdeci">_ONVBasis ONVBasis</div><div class="ttdef"><b>Definition:</b> CI.hpp:43</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_eigenproblem_environment_html"><div class="ttname"><a href="class_g_q_c_p_1_1_eigenproblem_environment.html">GQCP::EigenproblemEnvironment</a></div><div class="ttdef"><b>Definition:</b> EigenproblemEnvironment.hpp:35</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_eigenproblem_environment_html_a95dc6b2615ff0a61db2bdc4372cdfcff"><div class="ttname"><a href="class_g_q_c_p_1_1_eigenproblem_environment.html#a95dc6b2615ff0a61db2bdc4372cdfcff">GQCP::EigenproblemEnvironment::eigenpairs</a></div><div class="ttdeci">std::vector&lt; Eigenpair&lt; double, Scalar &gt; &gt; eigenpairs(const size_t number_of_requested_eigenpairs=1) const</div><div class="ttdef"><b>Definition:</b> EigenproblemEnvironment.hpp:154</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html">GQCP::QCMethod::CI</a></div><div class="ttdef"><b>Definition:</b> CI.hpp:41</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html_a514afe3bb76b52cb7f3ff4622887b4f2"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#a514afe3bb76b52cb7f3ff4622887b4f2">GQCP::QCMethod::CI::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> CI.hpp:44</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html_ad383621a484f12272b556d222dd85309"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad383621a484f12272b556d222dd85309">GQCP::QCMethod::CI::ONVBasis</a></div><div class="ttdeci">_ONVBasis ONVBasis</div><div class="ttdef"><b>Definition:</b> CI.hpp:47</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html_ad729fb21bb5cc18d2960297c38dbbc2a"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ad729fb21bb5cc18d2960297c38dbbc2a">GQCP::QCMethod::CI::CI</a></div><div class="ttdeci">CI(const ONVBasis &amp;onv_basis, const size_t number_of_states=1)</div><div class="ttdef"><b>Definition:</b> CI.hpp:67</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_q_c_method_1_1_c_i_html_ae43caa91ffb9d61b93262ead734c7fa5"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_method_1_1_c_i.html#ae43caa91ffb9d61b93262ead734c7fa5">GQCP::QCMethod::CI::optimize</a></div><div class="ttdeci">QCStructure&lt; LinearExpansion&lt; Scalar, ONVBasis &gt;, Scalar &gt; optimize(Solver &amp;solver, EigenproblemEnvironment&lt; Scalar &gt; &amp;environment) const</div><div class="ttdef"><b>Definition:</b> CI.hpp:84</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_q_c_structure_html"><div class="ttname"><a href="class_g_q_c_p_1_1_q_c_structure.html">GQCP::QCStructure</a></div><div class="ttdef"><b>Definition:</b> QCStructure.hpp:36</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->

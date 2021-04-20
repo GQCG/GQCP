@@ -360,20 +360,6 @@
 <codeline><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Dense<sp/>generalized<sp/>operator<sp/>evaluations</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal">SquareMatrix&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorDense(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarGSQOneElectronOperator&lt;double&gt;&amp;<sp/>f)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f.numberOfOrbitals()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinUnresolvedONVBasis::evaluateOperatorDense(const<sp/>ScalarGSQOneElectronOperator&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>given<sp/>one-electron<sp/>operator<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>container<sp/>for<sp/>the<sp/>dense<sp/>matrix<sp/>representation,<sp/>and<sp/>fill<sp/>it<sp/>with<sp/>the<sp/>general<sp/>evaluation<sp/>function.</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>MatrixRepresentationEvaluationContainer&lt;SquareMatrix&lt;double&gt;&gt;<sp/>container<sp/>{this-&gt;dimension()};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;evaluate&lt;SquareMatrix&lt;double&gt;&gt;(f,<sp/>container);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>container.evaluation();</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">SquareMatrix&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorDense(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarGSQTwoElectronOperator&lt;double&gt;&amp;<sp/>g)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>In<sp/>order<sp/>to<sp/>avoid<sp/>duplicate<sp/>code,<sp/>we<sp/>choose<sp/>to<sp/>delegate<sp/>this<sp/>method<sp/>to<sp/>the<sp/>evaluation<sp/>of<sp/>a<sp/>`GSQHamiltonian`<sp/>that<sp/>contains<sp/>no<sp/>core<sp/>contributions.<sp/>This<sp/>does<sp/>not<sp/>affect<sp/>performance<sp/>significantly,<sp/>because<sp/>the<sp/>bottleneck<sp/>will<sp/>always<sp/>be<sp/>the<sp/>iteration<sp/>over<sp/>the<sp/>whole<sp/>ONV<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>

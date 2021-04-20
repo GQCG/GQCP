@@ -31,7 +31,7 @@ virtual \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a4a009
 \item 
 virtual double \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a3be4021a57bdf21adab08a5a4521eb0f}{overlap}} (const Spin\+Unresolved\+ONV \&onv) const =0
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ Seniority\+Zero\+ONVBasis $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a5ddef28dd52fb940f2826752d904cd88}{to\+Linear\+Expansion}} (const Seniority\+Zero\+ONVBasis \&onv\+\_\+basis) const
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ double, Seniority\+Zero\+ONVBasis $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a32797287bde862bf2559f3ac73bc56ec}{to\+Linear\+Expansion}} (const Seniority\+Zero\+ONVBasis \&onv\+\_\+basis) const
 \end{DoxyCompactItemize}
 
 
@@ -63,11 +63,11 @@ the overlap of the APIG-\/like wave function with the given ONV, i.\+e. the proj
 
 Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a57b4983a492bc6503a33c711b2174197}{GQCP\+::\+APIGGeminal\+Coefficients}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a6217bfe7a49d21e50507fb926208f975}{GQCP\+::\+AP1ro\+GGeminal\+Coefficients}}.
 
-\mbox{\Hypertarget{class_g_q_c_p_1_1_geminal_coefficients_interface_a5ddef28dd52fb940f2826752d904cd88}\label{class_g_q_c_p_1_1_geminal_coefficients_interface_a5ddef28dd52fb940f2826752d904cd88}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_geminal_coefficients_interface_a32797287bde862bf2559f3ac73bc56ec}\label{class_g_q_c_p_1_1_geminal_coefficients_interface_a32797287bde862bf2559f3ac73bc56ec}} 
 \index{GQCP::GeminalCoefficientsInterface@{GQCP::GeminalCoefficientsInterface}!toLinearExpansion@{toLinearExpansion}}
 \index{toLinearExpansion@{toLinearExpansion}!GQCP::GeminalCoefficientsInterface@{GQCP::GeminalCoefficientsInterface}}
 \doxysubsubsection{\texorpdfstring{toLinearExpansion()}{toLinearExpansion()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ Seniority\+Zero\+ONVBasis $>$ GQCP\+::\+Geminal\+Coefficients\+Interface\+::to\+Linear\+Expansion (\begin{DoxyParamCaption}\item[{const Seniority\+Zero\+ONVBasis \&}]{onv\+\_\+basis }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ double, Seniority\+Zero\+ONVBasis $>$ GQCP\+::\+Geminal\+Coefficients\+Interface\+::to\+Linear\+Expansion (\begin{DoxyParamCaption}\item[{const Seniority\+Zero\+ONVBasis \&}]{onv\+\_\+basis }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
@@ -75,7 +75,15 @@ Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the wave function expansion corresponding to the geminal coefficients 
+the wave function expansion corresponding to the geminal coefficients
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+basis} & the seniority-\/zero spin-\/resolved ONV basis the wave function should live in\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The wave function expansion corresponding to the geminal coefficients. 
 \end{DoxyReturn}
 
 

@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_subspace_update" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SubspaceUpdate</compoundname>
-    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment &gt;</basecompoundref>
+    <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; EigenproblemEnvironment&lt; double &gt; &gt;</basecompoundref>
     <includes refid="_subspace_update_8hpp" local="no">SubspaceUpdate.hpp</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="class_g_q_c_p_1_1_subspace_update_1a55be15122002ee2c8a60a698511e1ec6" prot="private" static="no" mutable="no">
@@ -91,14 +91,14 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="61" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="61" bodyend="63"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_update_1acf11b3134f5b1a2d059bfa2f3bcc5bf7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_subspace_update_1a36388c3c50344acbc36220c61d82a81a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
         <definition>void GQCP::SubspaceUpdate::execute</definition>
-        <argsstring>(EigenproblemEnvironment &amp;environment) override</argsstring>
+        <argsstring>(EigenproblemEnvironment&lt; double &gt; &amp;environment) override</argsstring>
         <name>execute</name>
         <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
         <param>
-          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref> &amp;</type>
+          <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; double &gt; &amp;</type>
           <declname>environment</declname>
         </param>
         <briefdescription>
@@ -127,34 +127,34 @@
 <para>A step that adds projected correction vectors to the subspace (if their norm is large enough) and collapses the subspace if it becomes too large. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment&lt; double &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
       <node id="1">
         <label>GQCP::SubspaceUpdate</label>
         <link refid="class_g_q_c_p_1_1_subspace_update"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Step&lt; EigenproblemEnvironment&lt; double &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
+      </node>
       <node id="1">
         <label>GQCP::SubspaceUpdate</label>
         <link refid="class_g_q_c_p_1_1_subspace_update"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::Step&lt; EigenproblemEnvironment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp" bodystart="32" bodyend="95"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_subspace_update_1a1af3f62a92fa892cb28acd7b2bbc0bb7" prot="public" virt="virtual"><scope>GQCP::SubspaceUpdate</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" prot="public" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>Environment</name></member>
-      <member refid="class_g_q_c_p_1_1_subspace_update_1acf11b3134f5b1a2d059bfa2f3bcc5bf7" prot="public" virt="virtual"><scope>GQCP::SubspaceUpdate</scope><name>execute</name></member>
+      <member refid="class_g_q_c_p_1_1_subspace_update_1a36388c3c50344acbc36220c61d82a81a" prot="public" virt="virtual"><scope>GQCP::SubspaceUpdate</scope><name>execute</name></member>
       <member refid="class_g_q_c_p_1_1_subspace_update_1a55be15122002ee2c8a60a698511e1ec6" prot="private" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>maximum_subspace_dimension</name></member>
       <member refid="class_g_q_c_p_1_1_subspace_update_1ae143e2928335bd1fa0c895fcad26f2f7" prot="public" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>SubspaceUpdate</name></member>
       <member refid="class_g_q_c_p_1_1_subspace_update_1adee02e55137028238eea07ca2524c9b1" prot="private" virt="non-virtual"><scope>GQCP::SubspaceUpdate</scope><name>threshold</name></member>
