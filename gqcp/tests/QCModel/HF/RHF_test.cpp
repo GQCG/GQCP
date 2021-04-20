@@ -240,7 +240,7 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_H2) {
 
     const auto y = environment_G.x;
 
-    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x,y,z) one.
+    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x, y, z) one.
     GQCP::MatrixX<GQCP::complex> y_reduced {1, 3};
     y_reduced.col(0) = 2 * y.col(3);  // x <--> yz
     y_reduced.col(1) = 2 * y.col(4);  // y <--> zx
@@ -314,7 +314,7 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_H2O) {
     const GQCP::QCModel::RHF<double> rhf_parameters {N_P, orbital_energies, C};
 
 
-    // Since we're going to work with complex operators, we have to let a complex spin-orbital basis do the quantization.
+    // Since we are going to work with complex operators, we have to let a complex spin-orbital basis do the quantization.
     GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> complex_spin_orbital_basis {molecule, basis_set};
     GQCP::RTransformation<GQCP::complex> C_complex {C_matrix.cast<GQCP::complex>()};
     complex_spin_orbital_basis.transform(C_complex);
@@ -377,7 +377,7 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_H2O) {
     const auto p = complex_spin_orbital_basis.quantize(GQCP::LinearMomentumOperator());
     const auto F_G = rhf_parameters.calculateGaugeOriginTranslationResponseForce(p);
 
-    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x,y,z) one.
+    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x, y, z) one.
     GQCP::MatrixX<GQCP::complex> F_G_reduced {10, 3};
     F_G_reduced.col(0) = 2 * F_G.col(3);  // x <--> yz
     F_G_reduced.col(1) = 2 * F_G.col(4);  // y <--> zx
@@ -399,7 +399,7 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_H2O) {
 
     const auto y = environment_G.x;
 
-    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x,y,z) one.
+    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x, y, z) one.
     GQCP::MatrixX<GQCP::complex> y_reduced {10, 3};
     y_reduced.col(0) = 2 * y.col(3);  // x <--> yz
     y_reduced.col(1) = 2 * y.col(4);  // y <--> zx
@@ -578,7 +578,7 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_CH4) {
 
     const auto y = environment_G.x;
 
-    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x,y,z) one.
+    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x, y, z) one.
     GQCP::MatrixX<GQCP::complex> y_reduced {20, 3};
     y_reduced.col(0) = 2 * y.col(3);  // x <--> yz
     y_reduced.col(1) = 2 * y.col(4);  // y <--> zx
@@ -760,7 +760,7 @@ BOOST_AUTO_TEST_CASE(ipsocentric_magnetic_inducibility_CO) {
 
     const auto y = environment_G.x;
 
-    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x,y,z) one.
+    // In order to check with the reference values, we have to convert our dyadic Cartesian (i.e. xy, xz, etc.) representation to a Cartesian (i.e. x, y, z) one.
     GQCP::MatrixX<GQCP::complex> y_reduced {21, 3};
     y_reduced.col(0) = 2 * y.col(3);  // x <--> yz
     y_reduced.col(1) = 2 * y.col(4);  // y <--> zx
