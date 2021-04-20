@@ -34,28 +34,35 @@ namespace QCMethod {
 /**
  *  The configuration interaction quantum chemical method.
  * 
- *  @tparam _ONVBasis           the type of ONV basis
+ *  @tparam _Scalar             The scalar type of the expansion coefficients: real or complex.
+ *  @tparam _ONVBasis           The type of ONV basis.
  */
-template <typename _ONVBasis>
+template <typename _Scalar, typename _ONVBasis>
 class CI {
-
 public:
+    // The scalar type of the expansion coefficients: real or complex.
+    using Scalar = _Scalar;
+
+    // The type of the ONV basis.
     using ONVBasis = _ONVBasis;
 
 
 private:
-    size_t number_of_states;  // the number of states that searched for (incuding the ground state)
+    // The number of states that are searched for (including the ground state).
+    size_t number_of_states;
+
+    // The ONV basis with respect to which the configuration interaction is expressed.
     ONVBasis onv_basis;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  @param onv_basis                        the ONV basis with respect to which the configuration interaction is expressed
-     *  @param number_of_states                 the number of states that searched for (including the ground state)
+     *  @param onv_basis                        The ONV basis with respect to which the configuration interaction is expressed.
+     *  @param number_of_states                 The number of states that searched for (including the ground state).
      */
     CI(const ONVBasis& onv_basis, const size_t number_of_states = 1) :
         onv_basis {onv_basis},
@@ -63,7 +70,7 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Optimization
      */
 
     /**
@@ -71,36 +78,33 @@ public:
      * 
      *  @tparam Solver              the type of the solver
      * 
-     *  @param solver               the solver that will try to optimize the parameters
+     *  @param solver               The solver that will try to optimize the parameters.
      */
     template <typename Solver>
-    QCStructure<LinearExpansion<ONVBasis>> optimize(Solver& solver, EigenproblemEnvironment& environment) const {
+    QCStructure<LinearExpansion<Scalar, ONVBasis>, Scalar> optimize(Solver& solver, EigenproblemEnvironment<Scalar>& environment) const {
 
         // The CI method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);
 
 
-        // Extract the requested number of eigenpairs from the environment and place them into the LinearExpansion wave function model. Consequently, check if the LinearExpansion fulfills the objective.
+        // Extract the requested number of eigenpairs from the environment and place them into the LinearExpansion wave function model.
         const auto eigenpairs = environment.eigenpairs(this->number_of_states);
 
-        std::vector<LinearExpansion<ONVBasis>> linear_expansions {};
+        std::vector<LinearExpansion<Scalar, ONVBasis>> linear_expansions {};
         linear_expansions.reserve(number_of_states);
 
-        std::vector<double> energies {};
+        std::vector<Scalar> energies {};
         energies.reserve(this->number_of_states);
 
         for (const auto& eigenpair : eigenpairs) {
             linear_expansions.emplace_back(onv_basis, eigenpair.eigenvector());
-
-            // TODO: We can't check for a 'NormedHamiltonianEigenvectorObjective' to be fulfilled, because there is no uniform way to let an SQHamiltonian act on a LinearExpansion.
-
             energies.push_back(eigenpair.eigenvalue());
         }
 
 
         // Wrap all the requested number of states into a QCStructure.
         // Since we have already created a list of LinearExpansions, we only have to create a list of the corresponding energies.
-        return QCStructure<LinearExpansion<ONVBasis>>(energies, linear_expansions);
+        return QCStructure<LinearExpansion<Scalar, ONVBasis>, Scalar>(energies, linear_expansions);
     }
 };
 

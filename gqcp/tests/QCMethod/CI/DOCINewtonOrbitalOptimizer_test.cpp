@@ -61,7 +61,7 @@
 //     const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
 //     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-//     auto solver = GQCP::EigenproblemSolver::Dense();
+//     auto solver = GQCP::EigenproblemSolver::Dense<double>();
 //     using EigenproblemSolver = decltype(solver);
 
 //     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
@@ -106,7 +106,7 @@
 //     // Do the DOCI orbital optimization: construct the orbital optimizer and let it do its work.
 //     const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
-//     const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
+//     const auto initial_guess = GQCP::LinearExpansion<double, GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
 //     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
 //     auto solver = GQCP::EigenproblemSolver::Davidson();
 //     using EigenproblemSolver = decltype(solver);

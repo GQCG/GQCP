@@ -37,11 +37,13 @@ namespace CIEnvironment {
  *  @return An `EigenproblemEnvironment` initialized suitable for solving dense CI eigenvalue problems for the given Hamiltonian and ONV basis.
  */
 template <typename Hamiltonian, typename ONVBasis>
-EigenproblemEnvironment Dense(const Hamiltonian& hamiltonian, const ONVBasis& onv_basis) {
+auto Dense(const Hamiltonian& hamiltonian, const ONVBasis& onv_basis) -> EigenproblemEnvironment<typename Hamiltonian::Scalar> {
+
+    using Scalar = typename Hamiltonian::Scalar;  // The scalar type of a Hamiltonian element.
 
     // Determine the dense matrix representation of the Hamiltonian in the given ONV basis, and supply it to an `EigenproblemEnvironment`.
     const auto H = onv_basis.evaluateOperatorDense(hamiltonian);
-    return EigenproblemEnvironment::Dense(H);
+    return EigenproblemEnvironment<Scalar>::Dense(H);
 }
 
 
@@ -58,13 +60,13 @@ EigenproblemEnvironment Dense(const Hamiltonian& hamiltonian, const ONVBasis& on
  *  @return An `EigenproblemEnvironment` initialized suitable for solving iterative CI eigenvalue problems for the given Hamiltonian and ONV basis.
  */
 template <typename Hamiltonian, typename ONVBasis>
-EigenproblemEnvironment Iterative(const Hamiltonian& hamiltonian, const ONVBasis& onv_basis, const MatrixX<double>& V) {
+EigenproblemEnvironment<double> Iterative(const Hamiltonian& hamiltonian, const ONVBasis& onv_basis, const MatrixX<double>& V) {
 
     // Determine the diagonal of the Hamiltonian matrix representation, and supply a matrix-vector product function to the `EigenproblemEnvironment`.
     const auto diagonal = onv_basis.evaluateOperatorDiagonal(hamiltonian);
     const auto matvec_function = [&hamiltonian, &onv_basis](const VectorX<double>& x) { return onv_basis.evaluateOperatorMatrixVectorProduct(hamiltonian, x); };
 
-    return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
+    return EigenproblemEnvironment<double>::Iterative(matvec_function, diagonal, V);
 }
 
 

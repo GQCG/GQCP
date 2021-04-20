@@ -28,12 +28,12 @@ namespace GQCP {
 /**
  *  @param onv_basis       the seniority-zero spin-resolved ONV basis the wave function should live in
  *
- *  @return the wave function expansion corresponding to the geminal coefficients
+ *  @return The wave function expansion corresponding to the geminal coefficients.
  */
-LinearExpansion<SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const {
+LinearExpansion<double, SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const {
 
     const auto dim = onv_basis.dimension();
-    VectorX<double> coefficients = VectorX<double>::Zero(dim);  // the expansion coefficient vector
+    VectorX<double> coefficients = VectorX<double>::Zero(dim);  // The expansion coefficient vector.
 
     const auto onv_basis_proxy = onv_basis.proxy();
     SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);  // start with address 0
@@ -46,7 +46,7 @@ LinearExpansion<SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExp
         }
     }
 
-    return LinearExpansion<SeniorityZeroONVBasis>(onv_basis, coefficients);
+    return LinearExpansion<double, SeniorityZeroONVBasis>(onv_basis, coefficients);
 }
 
 

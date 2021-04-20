@@ -65,7 +65,7 @@ void bindFunctionalStep(py::module& module, const std::string& suffix, const std
 
 void bindFunctionalSteps(py::module& module) {
 
-    bindFunctionalStep<EigenproblemEnvironment>(module, "EigenproblemEnvironment", "A functional step that uses an EigenproblemEnvironment.");
+    bindFunctionalStep<EigenproblemEnvironment<double>>(module, "EigenproblemEnvironment", "A functional step that uses an EigenproblemEnvironment.");
     bindFunctionalStep<NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "A functional step that uses a NonLinearEquationEnvironment.");
 
     bindFunctionalStep<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment_d", "A functional step that uses a real RHFSCFEnvironment.");

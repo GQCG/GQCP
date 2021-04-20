@@ -252,9 +252,24 @@ public:
      *
      *  @param f                A generalized one-electron operator expressed in an orthonormal orbital basis.
      *
+     *  @tparam Scalar          The scalar type of the one-electron integrals: real or complex.
+     * 
      *  @return A dense matrix represention of the one-electron operator.
      */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& f) const;
+    template <typename Scalar>
+    SquareMatrix<Scalar> evaluateOperatorDense(const ScalarGSQOneElectronOperator<Scalar>& f) const {
+
+        if (f.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>&): The number of orbitals of this ONV basis and the given one-electron operator are incompatible.");
+        }
+
+        // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
+        MatrixRepresentationEvaluationContainer<SquareMatrix<Scalar>> container {this->dimension()};
+        this->evaluate<SquareMatrix<Scalar>>(f, container);
+
+        return container.evaluation();
+    }
+
 
     /**
      *  Calculate the dense matrix representation of a generalized two-electron operator in this ONV basis.
@@ -428,52 +443,56 @@ public:
      *  Calculate the matrix representation of a generalized one-electron operator in this ONV basis and emplace it in the given container.
      * 
      *  @tparam Matrix                      The type of matrix used to store the evaluations.
-     *
+     *  @tparam Scalar                      The scalar representation of a one-electron parameter: real or complex.
+     * 
      *  @param f_op                         A generalized one-electron operator expressed in an orthonormal spinor basis.
      *  @param container                    A specialized container for emplacing evaluations/matrix elements.
      */
-    template <typename Matrix>
-    void evaluate(const ScalarGSQOneElectronOperator<double>& f_op, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
+    template <typename Matrix, typename Scalar>
+    void evaluate(const ScalarGSQOneElectronOperator<Scalar>& f_op, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
 
+        // Prepare some variables.
         const auto& f = f_op.parameters();
         const auto dim = this->dimension();
+        const auto N = this->numberOfElectrons();
 
-        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
+        // Iterate over all ONVs, start with ONV with address 0.
+        SpinUnresolvedONV onv = this->constructONVFromAddress(0);
+        for (; !container.isFinished(); container.increment()) {
+            for (size_t e = 0; e < N; e++) {  // Loop over all electrons that can be annihilated.
 
-        for (; !container.isFinished(); container.increment()) {  // loops over all possible ONVs
-            for (size_t e1 = 0; e1 < N; e1++) {                   // loop over electrons that can be annihilated
-
-                // Create an ONVPath for each new ONV.
-                ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
-
-                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
+                auto q = onv.occupationIndexOf(e);  // Retrieve the orbital index of the electron that will be annihilated.
 
                 // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
-                container.addRowwise(container.index, f(q, q));
+                container.addRowwise(container.index, f(q, q));  // F(I,I)
 
-                // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
-                onv_path.annihilate(q, e1);
 
-                // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
+                // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below. Initialize an ONVPath that corresponds to the current ONV.
+                ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
+                onv_path.annihilate(q, e);
+
+                // Stop the loop if:
+                //      - 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals)
+                //      - and 2) if the orbital index is out of bounds after left translation of a vertical arc.
                 while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
 
                     // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
                     onv_path.leftTranslateDiagonalArcUntilVerticalArc();
 
                     // Calculate the address of the path if we would close it right now.
-                    const size_t address = onv_path.addressAfterCreation();
-
-                    const double value = onv_path.sign() * f(onv_path.orbitalIndex(), q);
+                    const auto address = onv_path.addressAfterCreation();
+                    const auto value = static_cast<double>(onv_path.sign()) * f(onv_path.orbitalIndex(), q);
 
                     // Add the one-electron integral as matrix elements of a Hermitian matrix.
-                    container.addColumnwise(address, value);
-                    container.addRowwise(address, value);
+                    container.addColumnwise(address, value);           // F(I,J)
+                    container.addRowwise(address, GQCP::conj(value));  // F(J,I)
 
-                    // Move orbital index such that other unoccupied orbitals can be found within the loop.
+                    // Move the orbital index such that other unoccupied orbitals can be found within the loop.
                     onv_path.leftTranslateVerticalArc();
                 }
             }
-            // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
+
+            // Prevent the last ONV since there is no possibility for an electron to be annihilated anymore.
             if (container.index < dim - 1) {
                 this->transformONVToNextPermutation(onv);
             }

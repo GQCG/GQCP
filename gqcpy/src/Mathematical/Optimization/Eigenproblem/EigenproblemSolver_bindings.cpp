@@ -17,6 +17,7 @@
 
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+#include "Utilities/complex.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -33,9 +34,13 @@ void bindEigenproblemSolver(py::module& module) {
 
     auto module_eigenproblem_solver = module.def_submodule("EigenproblemSolver");
 
-    module_eigenproblem_solver.def("Dense",
-                                   &EigenproblemSolver::Dense,
-                                   "Return an algorithm that can diagonalize a dense matrix.");
+    module_eigenproblem_solver.def("Dense_d",
+                                   &EigenproblemSolver::Dense<double>,
+                                   "Return an algorithm that can diagonalize a real-valued dense matrix.");
+
+    module_eigenproblem_solver.def("Dense_cd",
+                                   &EigenproblemSolver::Dense<complex>,
+                                   "Return an algorithm that can diagonalize a complex-valued dense matrix.");
 
     module_eigenproblem_solver.def("Davidson",
                                    &EigenproblemSolver::Davidson,

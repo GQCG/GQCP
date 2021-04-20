@@ -19,6 +19,7 @@
 
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {
@@ -80,7 +81,8 @@ public:
      *
      *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
-    static DysonOrbital<Scalar> TransitionAmplitudes(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion_J, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion_I) {
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, double>::value, DysonOrbital<double>> TransitionAmplitudes(const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion_J, const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion_I) {
 
         const auto onv_basis_J = linear_expansion_J.onvBasis();
         const auto onv_basis_I = linear_expansion_I.onvBasis();
@@ -167,7 +169,8 @@ public:
      *
      *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
-    static DysonOrbital<Scalar> TransitionAmplitudes(const LinearExpansion<SpinUnresolvedONVBasis>& linear_expansion_J, const LinearExpansion<SpinUnresolvedONVBasis>& linear_expansion_I) {
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, double>::value, DysonOrbital<double>> TransitionAmplitudes(const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion_J, const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion_I) {
 
         // Initialize environment variables.
 

@@ -54,9 +54,9 @@ BOOST_AUTO_TEST_CASE(trace) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    const auto linear_expansion = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
     // Calculate the 2-DMs, calculate the traces and check if they match the expected result.
@@ -91,9 +91,9 @@ BOOST_AUTO_TEST_CASE(one_dm_from_two_dm) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    const auto linear_expansion = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
     // Calculate the (spin-summed) 1-DM and 2-DM and check if the 2-DM can be reduced to the 1-DM.
@@ -128,9 +128,9 @@ BOOST_AUTO_TEST_CASE(energy_expectation_value_Hamiltonian) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto qc_structure = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment);
+    const auto qc_structure = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment);
     const auto energy_as_eigenvalue = qc_structure.groundStateEnergy();
     const auto& linear_expansion = qc_structure.groundStateParameters();
 

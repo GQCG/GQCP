@@ -29,7 +29,7 @@ namespace GQCP {
  *  A step that adds projected correction vectors to the subspace (if their norm is large enough) and collapses the subspace if it becomes too large.
  */
 class SubspaceUpdate:
-    public Step<EigenproblemEnvironment> {
+    public Step<EigenproblemEnvironment<double>> {
 
 
 private:
@@ -68,7 +68,7 @@ public:
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
-    void execute(EigenproblemEnvironment& environment) override {
+    void execute(EigenproblemEnvironment<double>& environment) override {
 
         auto& V = environment.V;
         const auto& Delta = environment.Delta;

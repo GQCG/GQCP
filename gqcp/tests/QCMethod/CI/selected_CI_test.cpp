@@ -49,8 +49,8 @@ BOOST_AUTO_TEST_CASE(restricted_selected_FCI) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, selected_onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
@@ -83,8 +83,8 @@ BOOST_AUTO_TEST_CASE(unrestricted_selected_FCI) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, selected_onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();

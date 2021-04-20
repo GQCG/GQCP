@@ -23,6 +23,8 @@
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
+#include "DensityMatrix/G1DM.hpp"
+#include "DensityMatrix/G2DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
@@ -31,13 +33,12 @@
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/dynamic_bitset.hpp>
-#include <boost/range/adaptors.hpp>
-
-#include <type_traits>
 
 
 namespace GQCP {
@@ -46,21 +47,25 @@ namespace GQCP {
 /**
  *  A class that represents a linear expansion inside an ONV basis.
  * 
+ *  @tparam _Scalar             The scalar type of the expansion coefficients: real or complex.
  *  @tparam _ONVBasis           The type of ONV basis.
  */
-template <typename _ONVBasis>
+template <typename _Scalar, typename _ONVBasis>
 class LinearExpansion {
 public:
+    // The scalar type of the expansion coefficients: real or complex.
+    using Scalar = _Scalar;
+
     // The type of the ONV basis.
     using ONVBasis = _ONVBasis;
 
 
 private:
-    // The ONV basis with respect to which the coefficients are defined
+    // The ONV basis with respect to which the coefficients are defined.
     ONVBasis onv_basis;
 
     // The expansion coefficients.
-    VectorX<double> m_coefficients;
+    VectorX<Scalar> m_coefficients;
 
 
 public:
@@ -71,10 +76,10 @@ public:
     /**
      *  Construct a linear expansion inside the given ONV basis, with corresponding expansion coefficients.
      *
-     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
      *  @param coefficients         The expansion coefficients.
      */
-    LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coefficients) :
+    LinearExpansion(const ONVBasis& onv_basis, const VectorX<Scalar>& coefficients) :
         onv_basis {onv_basis},
         m_coefficients {coefficients} {}
 
@@ -92,16 +97,16 @@ public:
     /**
      *  Create a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).
      * 
-     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
      * 
      *  @return A constant LinearExpansion.
      */
-    static LinearExpansion<ONVBasis> Constant(const ONVBasis& onv_basis) {
+    static LinearExpansion<Scalar, ONVBasis> Constant(const ONVBasis& onv_basis) {
 
-        VectorX<double> coefficients = VectorX<double>::Ones(onv_basis.dimension());
+        VectorX<Scalar> coefficients = VectorX<Scalar>::Ones(onv_basis.dimension());
         coefficients.normalize();
 
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -112,11 +117,11 @@ public:
      * 
      *  @return a LinearExpansion
      */
-    static LinearExpansion<ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
+    static LinearExpansion<Scalar, ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
 
-        VectorX<double> coefficients = VectorX<double>::Unit(onv_basis.dimension(), 0);  // The first ONV in the ONV basis is expected to be the HF determinant.
+        VectorX<Scalar> coefficients = VectorX<Scalar>::Unit(onv_basis.dimension(), 0);  // The first ONV in the ONV basis is the HF determinant.
 
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -128,11 +133,11 @@ public:
      * 
      *  @return A normalized LinearExpansion.
      */
-    static LinearExpansion<ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<double>& coefficients) {
+    static LinearExpansion<Scalar, ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<Scalar>& coefficients) {
 
         // Normalize the coefficients if they aren't.
-        return LinearExpansion<ONVBasis>(onv_basis,
-                                         std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis,
+                                                 std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
     }
 
 
@@ -143,12 +148,12 @@ public:
      * 
      *  @return A random LinearExpansion.
      */
-    static LinearExpansion<ONVBasis> Random(const ONVBasis& onv_basis) {
+    static LinearExpansion<Scalar, ONVBasis> Random(const ONVBasis& onv_basis) {
 
-        VectorX<double> coefficients = VectorX<double>::Random(onv_basis.dimension());
+        VectorX<Scalar> coefficients = VectorX<Scalar>::Random(onv_basis.dimension());
         coefficients.normalize();
 
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<Scalar, ONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -157,10 +162,10 @@ public:
      * 
      *  @param GAMESSUS_filename      The name of the GAMESS-US file that contains the spin-resolved selected wave function expansion.
      * 
-     *  @return The corresponding spin-resolved selected linear expansion from a given GAMESS-US file
+     *  @return The corresponding spin-resolved selected linear expansion from a given GAMESS-US file.
      */
-    template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, LinearExpansion<Z>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, LinearExpansion<double, SpinResolvedSelectedONVBasis>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
 
         // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file.
         std::ifstream input_file_stream {GAMESSUS_filename};
@@ -260,9 +265,9 @@ public:
             coefficients(index_count) = std::stod(splitted_line[2]);
             onv_basis.expandWith(SpinResolvedONV::FromString(reversed_alpha, reversed_beta));
 
-        }  // while getline
+        }  // The `while getline` loop.
 
-        return LinearExpansion<SpinResolvedSelectedONVBasis>(onv_basis, coefficients);
+        return LinearExpansion<double, SpinResolvedSelectedONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -275,11 +280,11 @@ public:
      * 
      *  @return A linear expansion inside a spin-resolved ONV basis.
      */
-    template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, LinearExpansion<double, SpinResolvedONVBasis>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S_r = r_spinor_basis.overlap();                  // the overlap matrix of the restricted MOs/spin-orbitals
+        auto S_r = r_spinor_basis.overlap();                  // The overlap matrix of the restricted MOs/spin-orbitals.
         S_r.transform(r_spinor_basis.expansion().inverse());  // now in AO basis
 
         auto S_u = u_spinor_basis.overlap();                  // The overlap matrix of the unrestricted spin-orbitals.
@@ -315,7 +320,7 @@ public:
             coefficients(address) = coefficient;
         });
 
-        return LinearExpansion<Z>(onv_basis, coefficients);
+        return LinearExpansion<double, SpinResolvedONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -328,8 +333,8 @@ public:
      * 
      *  @return A linear expansion inside a spin-unresolved ONV basis.
      */
-    template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinUnresolvedONVBasis>::value, LinearExpansion<double, SpinUnresolvedONVBasis>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
         auto S_on = spinor_basis_on.overlap();
@@ -360,7 +365,7 @@ public:
             coefficients(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on.parameters());
         });
 
-        return LinearExpansion<Z>(onv_basis, coefficients);
+        return LinearExpansion<double, SpinUnresolvedONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -375,12 +380,12 @@ public:
      * 
      *  @return The i-th expansion coefficient.
      */
-    double coefficient(const size_t i) const { return this->m_coefficients(i); }
+    Scalar coefficient(const size_t i) const { return this->m_coefficients(i); }
 
     /**
      *  @return The expansion coefficients of this linear expansion wave function model.
      */
-    const VectorX<double>& coefficients() const { return this->m_coefficients; }
+    const VectorX<Scalar>& coefficients() const { return this->m_coefficients; }
 
     /**
      *  @return The ONV basis that is related to this linear expansion wave function model.
@@ -400,8 +405,8 @@ public:
      *  @note This method is only available for the full spin-resolved ONV basis.
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformation<double>& T) {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value> basisTransform(const RTransformation<double>& T) {
 
         const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
         if (K != T.numberOfOrbitals()) {
@@ -581,8 +586,8 @@ public:
      * 
      *  @return The generalized one-electron density matrix.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, G1DM<double>> calculate1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinUnresolvedONVBasis>::value, G1DM<double>> calculate1DM() const {
 
         // Prepare some variables.
         const auto M = this->onv_basis.numberOfOrbitals();
@@ -656,20 +661,20 @@ public:
      *  @note This method is only enabled for linear expansions related to spin-unresolved ONV bases.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, double> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, Scalar> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
 
         // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
         std::vector<size_t> ket_indices_reversed = ket_indices;
         std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
 
 
-        double value = 0.0;
+        Scalar value = 0.0;
         int sign_bra = 1;
         int sign_ket = 1;
-        const size_t dim = this->onv_basis.dimension();
+        const auto dim = this->onv_basis.dimension();
 
 
-        SpinUnresolvedONV bra = this->onv_basis.constructONVFromAddress(0);
+        auto bra = this->onv_basis.constructONVFromAddress(0);
         size_t I = 0;
         while (I < dim) {  // Loop over all bra addresses.
 
@@ -688,7 +693,7 @@ public:
             }
 
 
-            SpinUnresolvedONV ket = this->onv_basis.constructONVFromAddress(0);
+            auto ket = this->onv_basis.constructONVFromAddress(0);
             size_t J = 0;
             while (J < dim) {  // Loop over all ket indices.
 
@@ -706,7 +711,7 @@ public:
                 }
 
                 if (bra == ket) {
-                    value += sign_bra * sign_ket * this->coefficient(I) * this->coefficient(J);
+                    value += static_cast<double>(sign_bra * sign_ket) * GQCP::conj(this->coefficient(I)) * this->coefficient(J);
                 }
 
                 // Reset the previous ket annihilations and move to the next ket.
@@ -717,7 +722,7 @@ public:
                 this->onv_basis.transformONVToNextPermutation(ket);
                 sign_ket = 1;
                 J++;
-            }  // While J loop.
+            }  // Loop over all ket indices J.
 
             // Reset the previous bra annihilations and move to the next bra.
             if (I == dim - 1) {  // Prevent the last permutation from occurring.
@@ -727,7 +732,94 @@ public:
             this->onv_basis.transformONVToNextPermutation(bra);
             sign_bra = 1;
             I++;
-        }  // While I loop.
+        }  // Loop over all bra indices I.
+
+        return value;
+    }
+
+
+    /**
+     *  Calculate an element of the N-electron density matrix.
+     * 
+     *  @param bra_indices      The indices of the orbitals that should be annihilated on the left (on the bra).
+     *  @param ket_indices      The indices of the orbitals that should be annihilated on the right (on the ket).
+     *
+     *  @return An element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^\dagger_0 a^\dagger_1 a_2 a_1`.
+     * 
+     *  @note This method is only enabled for linear expansions related to spin-unresolved selected ONV bases.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedSelectedONVBasis>::value, Scalar> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+
+        // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
+        std::vector<size_t> ket_indices_reversed = ket_indices;
+        std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
+
+
+        Scalar value = 0.0;
+        int sign_bra = 1;
+        int sign_ket = 1;
+        const auto dim = this->onv_basis.dimension();
+
+
+        size_t I = 0;
+        auto bra = this->onv_basis.onvWithIndex(I);
+        while (I < dim) {  // Loop over all bra addresses.
+
+            // Annihilate the bra on the bra indices.
+            if (!bra.annihilateAll(bra_indices, sign_bra)) {  // If we can't annihilate, the bra doesn't change.
+
+                // Go to the beginning of the outer while loop with the next bra.
+                if (I < dim - 1) {  // Prevent the last permutation from occurring.
+                    I++;
+                    bra = this->onv_basis.onvWithIndex(I);
+                    sign_bra = 1;
+                    continue;
+                } else {
+                    break;  // We have to jump out if we have looped over the whole bra dimension.
+                }
+            }
+
+
+            size_t J = 0;
+            auto ket = this->onv_basis.onvWithIndex(J);
+            while (J < dim) {  // Loop over all ket indices.
+
+                // Annihilate the ket on the ket indices.
+                if (!ket.annihilateAll(ket_indices_reversed, sign_ket)) {  // If we can't annihilate, the ket doesn't change.
+                    // Go to the beginning of this (the inner) while loop with the next bra.
+                    if (J < dim - 1) {  // Prevent the last permutation from occurring.
+                        J++;
+                        ket = this->onv_basis.onvWithIndex(J);
+                        sign_ket = 1;
+                        continue;
+                    } else {
+                        break;  // We have to jump out if we have looped over the whole ket dimension.
+                    }
+                }
+
+                if (bra == ket) {
+                    value += static_cast<double>(sign_bra * sign_ket) * GQCP::conj(this->coefficient(I)) * this->coefficient(J);
+                }
+
+                // Reset the previous ket annihilations and move to the next ket.
+                if (J == dim - 1) {  // Prevent the last permutation from occurring.
+                    break;           // Out of the J-loop.
+                }
+                ket.createAll(ket_indices_reversed);
+                J++;
+                ket = this->onv_basis.onvWithIndex(J);
+                sign_ket = 1;
+            }  // Loop over all ket indices J.
+
+            // Reset the previous bra annihilations and move to the next bra.
+            if (I == dim - 1) {  // Prevent the last permutation from occurring.
+                break;           // Out of the I-loop.
+            }
+            I++;
+            bra = this->onv_basis.onvWithIndex(I);
+            sign_bra = 1;
+        }  // Loop over all bra indices I.
 
         return value;
     }
@@ -742,8 +834,8 @@ public:
      * 
      *  @return The spin-resolved 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices.
         size_t K = this->onv_basis.alpha().numberOfOrbitals();
@@ -862,8 +954,8 @@ public:
      * 
      *  @return The spin-resolved 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
@@ -1075,8 +1167,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 1-DM
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -1084,8 +1176,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /*
@@ -1097,8 +1189,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -1131,16 +1223,16 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
     /**
      *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
      * 
      *  @return The spin-resolved 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
 
 
     /**
@@ -1148,8 +1240,8 @@ public:
      * 
      *  @return The spin-resolved 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -1218,8 +1310,8 @@ public:
      * 
      *  @return The spin-resolved 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
@@ -1298,8 +1390,8 @@ public:
      * 
      *  @return The spin-resolved 2-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
@@ -1530,8 +1622,8 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 1-DM.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -1539,8 +1631,154 @@ public:
      * 
      *  @return The orbital (total, spin-summed) 2-DM.
      */
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+
+
+    /**
+     *  Calculate the generalized (G) one-electron density matrix for a spin-unresolved selected wave function expansion.
+     * 
+     *  @return The generalized (G) 1-DM.
+     */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+    enable_if_t<std::is_same<Z, SpinUnresolvedSelectedONVBasis>::value, G1DM<Scalar>> calculate1DM() const {
+
+        // Prepare some variables.
+        const auto M = this->onv_basis.numberOfOrbitals();
+        const auto dim = this->onv_basis.dimension();
+
+        SquareMatrix<Scalar> D = SquareMatrix<Scalar>::Zero(M);
+
+        for (size_t I = 0; I < dim; I++) {  // Loop over all bra addresses I.
+            const auto& onv_I = this->onv_basis.onvWithIndex(I);
+            const auto& c_I = this->coefficient(I);
+
+            // Calculate the diagonal elements of the 1-DM.
+            const auto& occupied_indices_I = onv_I.occupiedIndices();
+            for (const auto& p : occupied_indices_I) {
+                D(p, p) += GQCP::conj(c_I) * c_I;
+            }
+
+            for (size_t J = I + 1; J < dim; J++) {  // Loop over all other (J != I) ket addresses.
+
+                const auto& onv_J = this->onv_basis.onvWithIndex(J);
+                const auto& c_J = this->coefficient(J);
+
+                // We only have a contribution if I and J are exactly 1 excitation away.
+                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+                    const auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but unoccupied in J.
+                    const auto q = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but unoccupied in I.
+
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_J.operatorPhaseFactor(q));
+                    const auto value = sign * GQCP::conj(c_I) * c_J;
+
+                    D(p, q) += value;
+                    D(q, p) += GQCP::conj(value);
+                }
+
+            }  // Loop over ket addresses J > I.
+        }      // Loop over bra addresses I.
+
+        return G1DM<Scalar> {D};
+    }
+
+
+    /**
+     *  Calculate the generalized (G) two-electron density matrix (1-DM) for a spin-unresolved selected wave function expansion.
+     * 
+     *  @return The generalized (G) 2-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedSelectedONVBasis>::value, G2DM<Scalar>> calculate2DM() const {
+
+        // Prepare some variables.
+        const auto M = this->onv_basis.numberOfOrbitals();
+        const auto dim = this->onv_basis.dimension();
+
+        SquareRankFourTensor<Scalar> d = SquareRankFourTensor<Scalar>::Zero(M);
+
+
+        for (size_t I = 0; I < dim; I++) {  // Loop over all bra addresses I.
+            const auto& onv_I = this->onv_basis.onvWithIndex(I);
+            const auto& c_I = this->coefficient(I);
+
+            const auto& occupied_indices_I = onv_I.occupiedIndices();
+            for (const auto& p : occupied_indices_I) {
+                for (const auto& q : occupied_indices_I) {
+                    if (p != q) {  // We can't annihilate on the same orbital twice.
+                        const auto value = GQCP::conj(c_I) * c_I;
+                        d(p, p, q, q) += value;
+                        d(p, q, q, p) -= value;
+                    }
+                }
+            }
+
+
+            for (size_t J = I + 1; J < dim; J++) {  // Loop over all different (J != I) ket indices J.
+                const auto& onv_J = this->onv_basis.onvWithIndex(J);
+                const auto& c_J = this->coefficient(J);
+
+                // Calculate the contribution if I and J are 1 excitation away.
+                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+
+                    // Determine the orbital indices that match the excitation.
+                    const auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but unoccupied in J.
+                    const auto q = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but unoccupied in I.
+
+                    // Add the contribution from this excitation to all appropriate density matrix elements.
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_J.operatorPhaseFactor(q));
+
+                    for (size_t r = 0; r < M; r++) {
+                        if (onv_I.isOccupied(r) && onv_J.isOccupied(r)) {  // `r` must be occupied in the bra and in the ket.
+                            if ((p != r) && (q != r)) {                    // We can't annihilate on the same orbital twice.
+                                const auto value = sign * GQCP::conj(c_I) * c_J;
+
+                                d(p, q, r, r) += value;
+                                d(p, r, r, q) -= value;
+                                d(r, r, p, q) += value;
+                                d(r, q, p, r) -= value;
+
+                                d(q, p, r, r) += GQCP::conj(value);
+                                d(r, p, q, r) -= GQCP::conj(value);
+                                d(r, r, q, p) += GQCP::conj(value);
+                                d(q, r, r, p) -= GQCP::conj(value);
+                            }
+                        }
+                    }
+                }
+
+                // Calculate the contribution if I and J are 2 excitations away.
+                else if (onv_I.countNumberOfDifferences(onv_J) == 4) {
+
+                    // Determine the orbital indices that match the excitation.
+                    auto occupied_in_I = onv_I.findDifferentOccupations(onv_J);  // The orbitals that are occupied in J, but not in J.
+                    const auto p = occupied_in_I[0];
+                    const auto r = occupied_in_I[1];
+
+                    auto occupied_in_J = onv_J.findDifferentOccupations(onv_I);  // The orbitals that are occupied in I, but not in J.
+                    const auto q = occupied_in_J[0];
+                    const auto s = occupied_in_J[1];
+
+
+                    // Add the contribution from this excitation to all appropriate density matrix elements.
+                    const auto sign = static_cast<double>(onv_I.operatorPhaseFactor(p) * onv_I.operatorPhaseFactor(r) * onv_J.operatorPhaseFactor(q) * onv_J.operatorPhaseFactor(s));
+                    const auto value = sign * GQCP::conj(c_I) * c_J;
+
+                    d(p, q, r, s) += value;
+                    d(p, s, r, q) -= value;
+                    d(r, s, p, q) += value;
+                    d(r, q, p, s) -= value;
+
+                    d(q, p, s, r) += GQCP::conj(value);
+                    d(s, p, q, r) -= GQCP::conj(value);
+                    d(s, r, q, p) += GQCP::conj(value);
+                    d(q, r, s, p) -= GQCP::conj(value);
+                }
+            }  // Loop over all ket addresses J > I
+        }      // Loop over all bra addresses I.
+
+        return G2DM<Scalar> {d};
+    }
 
 
     /**
@@ -1550,7 +1788,8 @@ public:
     /**
      *  @return The Shannon entropy (information content) of the wave function.
      */
-    double calculateShannonEntropy() const {
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, double> calculateShannonEntropy() const {
 
         // Sum over the ONV basis dimension, and only include the term if |c_k|^2 != 0. This avoids any NaN errors.
         // We might as well replace all coefficients that are 0 by 1, since log(1) = 0, which would have no influence on the final entropy value.
@@ -1565,16 +1804,16 @@ public:
 
 
     /**
-     * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
+     *  Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
      * 
      *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
      *
-     * @return The single orbital entropy of the orbital at the specified index.
+     *  @return The single orbital entropy of the orbital at the specified index.
      * 
-     * @note This version of this method is used when the linear expansion is based on a spin-resolved ONV basis.
+     *  @note This version of this method is used when the linear expansion is based on a spin-resolved ONV basis.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, SpinResolvedONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
 
         // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
         if (orbital_index > this->onv_basis.numberOfOrbitals()) {
@@ -1622,8 +1861,8 @@ public:
      * 
      * @note This version of this method is used when the linear expansion is based on a seniority-zero ONV basis.
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
+    template <typename Z1 = Scalar, typename Z2 = ONVBasis>
+    enable_if_t<std::is_same<Z1, Scalar>::value && std::is_same<Z2, SeniorityZeroONVBasis>::value, double> calculateSingleOrbitalEntropy(const size_t orbital_index) const {
 
         // Check whether the given orbital index is smaller than or equal to the number of orbitals present in the system.
         if (orbital_index > this->onv_basis.numberOfSpatialOrbitals()) {
@@ -1668,7 +1907,7 @@ public:
      *  @param callback                 The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, void> forEach(const std::function<void(const double, const SpinResolvedONV)>& callback) const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, void> forEach(const std::function<void(const Scalar, const SpinResolvedONV)>& callback) const {
 
         // Iterate over all ONVs in this ONV basis, and look up the corresponding coefficient.
         const auto& onv_basis = this->onv_basis;
@@ -1688,12 +1927,12 @@ public:
      */
 
     /** 
-     *  @param other            wave function for the comparison
-     *  @param tolerance        tolerance for the comparison of coefficients
+     *  @param other            The other linear expansion for the comparison.
+     *  @param tolerance        The tolerance for the comparison of coefficients.
      * 
-     *  @return if two wave functions are equal within a given tolerance
+     *  @return If the two linear expansions are equal within a given tolerance.
      */
-    bool isApprox(const LinearExpansion<ONVBasis>& other, double tolerance = 1e-10) const {
+    bool isApprox(const LinearExpansion<Scalar, ONVBasis>& other, double tolerance = 1.0e-12) const {
 
         if (this->onv_basis.dimension() != other.onv_basis.dimension()) {
             return false;

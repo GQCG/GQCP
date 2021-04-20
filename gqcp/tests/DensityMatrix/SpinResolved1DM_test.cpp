@@ -54,9 +54,9 @@ BOOST_AUTO_TEST_CASE(trace) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    const auto linear_expansion = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
     // Calculate the 1-DMs, calculate the traces and check if they match the expected result.

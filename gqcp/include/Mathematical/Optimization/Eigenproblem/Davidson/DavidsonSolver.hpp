@@ -45,10 +45,10 @@ namespace EigenproblemSolver {
  * 
  *  @return an iterative algorithm that can find the lowest n eigenvectors of a matrix using Davidson's algorithm
  */
-IterativeAlgorithm<EigenproblemEnvironment> Davidson(const size_t number_of_requested_eigenpairs = 1, const size_t maximum_subspace_dimension = 15, const double convergence_threshold = 1.0e-08, double correction_threshold = 1.0e-12, const size_t maximum_number_of_iterations = 128, const double inclusion_threshold = 1.0e-03) {
+IterativeAlgorithm<EigenproblemEnvironment<double>> Davidson(const size_t number_of_requested_eigenpairs = 1, const size_t maximum_subspace_dimension = 15, const double convergence_threshold = 1.0e-08, double correction_threshold = 1.0e-12, const size_t maximum_number_of_iterations = 128, const double inclusion_threshold = 1.0e-03) {
 
     // Create the iteration cycle that effectively 'defines' our Davidson solver
-    StepCollection<EigenproblemEnvironment> davidson_cycle {};
+    StepCollection<EigenproblemEnvironment<double>> davidson_cycle {};
 
     davidson_cycle
         .add(MatrixVectorProductCalculation())
@@ -60,9 +60,9 @@ IterativeAlgorithm<EigenproblemEnvironment> Davidson(const size_t number_of_requ
         .add(SubspaceUpdate(maximum_subspace_dimension, inclusion_threshold));
 
     // Create a convergence criterion on the norm of the residual vectors
-    const ResidualVectorConvergence<EigenproblemEnvironment> convergence_criterion {convergence_threshold};
+    const ResidualVectorConvergence<EigenproblemEnvironment<double>> convergence_criterion {convergence_threshold};
 
-    return IterativeAlgorithm<EigenproblemEnvironment>(davidson_cycle, convergence_criterion, maximum_number_of_iterations);
+    return IterativeAlgorithm<EigenproblemEnvironment<double>>(davidson_cycle, convergence_criterion, maximum_number_of_iterations);
 }
 
 

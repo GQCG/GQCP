@@ -32,7 +32,7 @@ namespace GQCP {
  *  An iteration step that diagonalizes the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.
  */
 class SubspaceMatrixDiagonalization:
-    public Step<EigenproblemEnvironment> {
+    public Step<EigenproblemEnvironment<double>> {
 
 private:
     size_t number_of_requested_eigenpairs;
@@ -67,7 +67,7 @@ public:
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
-    void execute(EigenproblemEnvironment& environment) override {
+    void execute(EigenproblemEnvironment<double>& environment) override {
 
         // Diagonalize the subspace matrix and find the r (this->number_of_requested_eigenpairs) lowest eigenpairs
         // Lambda contains the requested number of eigenvalues, Z contains the corresponding eigenvectors
@@ -75,8 +75,8 @@ public:
 
         // Use our own dense diagonalization algorithm to find the number of requested eigenpairs
         const auto& S = environment.S;
-        auto dense_environment = EigenproblemEnvironment::Dense(S);
-        auto dense_diagonalizer = EigenproblemSolver::Dense();
+        auto dense_environment = EigenproblemEnvironment<double>::Dense(S);
+        auto dense_diagonalizer = EigenproblemSolver::Dense<double>();
         dense_diagonalizer.perform(dense_environment);
 
 

@@ -29,7 +29,7 @@ namespace GQCP {
  *  A step that calculates the residual vectors from the new guesses for the eigenvectors.
  */
 class ResidualVectorCalculation:
-    public Step<EigenproblemEnvironment> {
+    public Step<EigenproblemEnvironment<double>> {
 
 private:
     size_t number_of_requested_eigenpairs;
@@ -64,7 +64,7 @@ public:
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
-    void execute(EigenproblemEnvironment& environment) override {
+    void execute(EigenproblemEnvironment<double>& environment) override {
 
         const auto dim = environment.dimension;
 
