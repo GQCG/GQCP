@@ -21,6 +21,8 @@
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Transformations/transform.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 #include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Physical/units.hpp"
@@ -29,7 +31,6 @@
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
-
 
 /**
  *  Check the calculation of the CO dipole moment from a CCCBDB reference value.
