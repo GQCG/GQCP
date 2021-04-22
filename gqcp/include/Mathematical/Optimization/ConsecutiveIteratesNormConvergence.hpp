@@ -19,10 +19,11 @@
 
 
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
+#include "Utilities/complex.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <deque>
 #include <functional>
-#include <type_traits>
 
 
 namespace GQCP {
@@ -100,7 +101,7 @@ public:
         const auto& previous = *second_to_last_it;          // dereference the iterator
         const auto current = iterates.back();
 
-        return ((current - previous).norm() <= this->m_threshold);
+        return (std::real((current - previous).norm()) <= this->m_threshold);
     }
 
 

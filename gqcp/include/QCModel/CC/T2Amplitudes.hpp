@@ -96,7 +96,7 @@ public:
     static T2Amplitudes<Scalar> Perturbative(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const OrbitalSpace& orbital_space) {
 
         // Zero-initialize a tensor representation for the (occupied-occupied-virtual-virtual) T2-amplitudes t_{ij}^{ab}.
-        auto t2 = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual);
+        auto t2 = orbital_space.initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual);
 
 
         // Provide the perturbative T2-amplitudes, by setting the RHS amplitudes in Stanton1991, equation (2) to zero.
