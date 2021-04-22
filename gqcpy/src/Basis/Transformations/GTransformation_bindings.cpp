@@ -40,6 +40,20 @@ void bindGTransformations(py::module& module) {
     // Define the Python class for `GTransformation_d`.
     py::class_<GTransformation<double>> py_GTransformation_d {module, "GTransformation_d", "A (real) 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors."};
 
+    py_GTransformation_d
+
+        /*
+         *  MARK: Named constructors
+         */
+
+        .def_static(
+            "FromUnrestricted",
+            [](const UTransformation<double>& T) {
+                return GTransformation<double>::FromUnrestricted(T);
+            },
+            py::arg("T"),
+            "Create a generalized transformation from an unrestricted transformation.");
+
 
     // Expose the `SimpleTransformation` API to the Python class.
     bindSimpleTransformationInterface(py_GTransformation_d);
@@ -47,6 +61,20 @@ void bindGTransformations(py::module& module) {
 
     // Define the Python class for `GTransformation_cd`.
     py::class_<GTransformation<complex>> py_GTransformation_cd {module, "GTransformation_cd", "A (complex) 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors."};
+
+    py_GTransformation_cd
+
+        /*
+         *  MARK: Named constructors
+         */
+
+        .def_static(
+            "FromUnrestricted",
+            [](const UTransformation<complex>& T) {
+                return GTransformation<complex>::FromUnrestricted(T);
+            },
+            py::arg("T"),
+            "Create a generalized transformation from an unrestricted transformation.");
 
     // Expose the `SimpleTransformation` API to the Python class.
     bindSimpleTransformationInterface(py_GTransformation_cd);

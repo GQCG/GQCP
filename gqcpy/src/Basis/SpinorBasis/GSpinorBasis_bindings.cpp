@@ -146,9 +146,19 @@ void bindGSpinorBases(py::module& module) {
     bindGSpinorBasisInterface(py_GSpinorBasis_cd);
     bindGTOGSpinorBasisInterface(py_GSpinorBasis_cd);
 
+    py_GSpinorBasis_cd
+
+        .def(
+            "quantize",
+            [](const GSpinorBasis<complex, GTOShell>& spinor_basis, const ElectronicSpinOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the electronic spin operator expressed in this spinor basis.");
+
 
     // Define the Python class for `LondonGSpinorBasis`.
-    py::class_<GSpinorBasis<complex, LondonGTOShell>> py_LondonGSpinorBasis {module, "LondonGSpinorBasis", "A class that represents a complex, (generalized) spinor basis with underlying London GTO shells."};
+    py::class_<GSpinorBasis<complex, LondonGTOShell>>
+        py_LondonGSpinorBasis {module, "LondonGSpinorBasis", "A class that represents a complex, (generalized) spinor basis with underlying London GTO shells."};
 
     py_LondonGSpinorBasis
         .def(py::init<const Molecule&, const std::string&, const HomogeneousMagneticField&>(),

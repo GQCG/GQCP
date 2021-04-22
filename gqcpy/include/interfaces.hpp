@@ -591,8 +591,6 @@ void bindSimpleSQOneElectronOperatorInterface(Class& py_class) {
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
 
-    using OneDM = typename OperatorTraits<Type>::OneDM;
-
 
     py_class
 
@@ -629,6 +627,10 @@ void bindScalarSQOneElectronOperatorParameterInterface(Class& py_class) {
 
     py_class
 
+        /*
+         *  MARK: Constructors
+         */
+
         .def(py::init<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>())
 
 
@@ -658,6 +660,7 @@ void bindSQTwoElectronOperatorInterface(Class& py_class) {
 
 
     py_class
+
         /*
          *  MARK: Calculations
          */
@@ -688,8 +691,6 @@ void bindSimpleSQTwoElectronOperatorInterface(Class& py_class) {
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
 
-    using TwoDM = typename OperatorTraits<Type>::TwoDM;
-
 
     // Add some two-electron operator APIs.
     bindSQTwoElectronOperatorInterface(py_class);
@@ -712,7 +713,25 @@ void bindScalarSQTwoElectronOperatorParameterInterface(Class& py_class) {
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
 
+    using Scalar = typename Type::Scalar;
+
+
     py_class
+
+        /*
+         *  MARK: Constructors
+         */
+
+        .def(py::init<>([](const py::array_t<Scalar>& array) {
+                 return Type(SquareRankFourTensor<Scalar>(gqcpy::asEigenTensor(array)));
+             }),
+             py::arg("g"))
+
+
+        /*
+         *  MARK: Parameter access
+         */
+
         .def(
             "parameters",
             [](const Type& op) {

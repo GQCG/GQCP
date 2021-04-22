@@ -41,6 +41,21 @@ void bindUTransformation(py::module& module) {
     // Define the Python class for `UTransformation_d`.
     py::class_<UTransformation<double>> py_UTransformation_d {module, "UTransformation_d", "A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases."};
 
+    py_UTransformation_d
+
+        /*
+         *  MARK: Named constructors
+         */
+
+        .def_static(
+            "FromRestricted",
+            [](const RTransformation<double>& T) {
+                return UTransformation<double>::FromRestricted(T);
+            },
+            py::arg("T"),
+            "Create an unrestricted transformation from an restricted transformation.");
+
+
     // Expose the `SpinResolvedBase` API to Python.
     bindSpinResolvedBaseInterface(py_UTransformation_d);
 
@@ -52,6 +67,21 @@ void bindUTransformation(py::module& module) {
 
     // Define the Python class for `UTransformation_cd`.
     py::class_<UTransformation<complex>> py_UTransformation_cd {module, "UTransformation_cd", "A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases."};
+
+
+    py_UTransformation_cd
+
+        /*
+         *  MARK: Named constructors
+         */
+
+        .def_static(
+            "FromRestricted",
+            [](const RTransformation<complex>& T) {
+                return UTransformation<complex>::FromRestricted(T);
+            },
+            py::arg("T"),
+            "Create an unrestricted transformation from an restricted transformation.");
 
     // Expose the `SpinResolvedBase` API to Python.
     bindSpinResolvedBaseInterface(py_UTransformation_cd);

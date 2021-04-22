@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/G2DM.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -30,18 +31,24 @@ using namespace GQCP;
 
 
 /**
- *  Register `G2DM_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `G2DM_d` and `G2DM_cd` to the gqcpy module and expose a part of their C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `G2DM_d` should be registered.
+ *  @param module           The Pybind11 module in which `G2DM_d` and `G2DM_cd` should be registered.
  */
 void bindG2DM(py::module& module) {
 
     // Define the Python class for `G2DM`.
-    py::class_<G2DM<double>> py_G2DM_d {module, "G2DM_d", "A type used to represent a two-electron general(ized) density matrix, i.e. the full spinor two-component two-electron density matrix."};
-
+    py::class_<G2DM<double>> py_G2DM_d {module, "G2DM_d", "A type used to represent a real-valued two-electron general(ized) density matrix, i.e. the full spinor two-component two-electron density matrix."};
 
     // Expose the `Simple2DM` API to the Python class.
     bindSimple2DMInterface(py_G2DM_d);
+
+
+    // Define the Python class for `G2DM`.
+    py::class_<G2DM<complex>> py_G2DM_cd {module, "G2DM_cd", "A type used to represent a complex-valued two-electron general(ized) density matrix, i.e. the full spinor two-component two-electron density matrix."};
+
+    // Expose the `Simple2DM` API to the Python class.
+    bindSimple2DMInterface(py_G2DM_cd);
 }
 
 
