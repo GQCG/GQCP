@@ -77,6 +77,12 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
             "Iterate over all ONVs in this ONV basis and apply the given callback function.")
 
         .def(
+            "representationOf",
+            &SpinUnresolvedONVBasis::representationOf,
+            py::arg("address"),
+            "Calculate the unsigned representation of a spin-unresolved ONV that corresponds to the address/ordering number in this ONV basis.")
+
+        .def(
             "vertexWeight",
             [](const SpinUnresolvedONVBasis onv_basis, const size_t p, const size_t n) {
                 return onv_basis.vertexWeight(p, n);
