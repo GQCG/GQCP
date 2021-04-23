@@ -1242,7 +1242,7 @@ public:
                         }
                     }
 
-                    // If the overlap betwee the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
+                    // If the overlap between the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
                     if (bra_alpha == ket_alpha) {
 
                         double contribution = 0.0;
@@ -1325,7 +1325,7 @@ public:
                         }
                     }
 
-                    // If the overlap betwee the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
+                    // If the overlap between the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
                     if (bra_beta == ket_beta) {
 
                         double contribution = 0.0;
@@ -1474,7 +1474,7 @@ public:
                                 }
                             }
 
-                            // If the overlap betwee the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
+                            // If the overlap between the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
                             if (bra_alpha == ket_alpha && bra_beta == ket_beta) {
 
                                 double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // Alpha addresses are 'major'.
