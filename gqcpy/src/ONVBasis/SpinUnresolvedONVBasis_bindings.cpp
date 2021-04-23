@@ -52,27 +52,21 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
 
         .def(
             "arcWeight",
-            [](const SpinUnresolvedONVBasis& onv_basis, size_t p, const size_t n) {
-                return onv_basis.arcWeight(p, n);
-            },
+            &SpinUnresolvedONVBasis::arcWeight,
             py::arg("p"),
             py::arg("n"),
             "Return the arc weight of the arc starting at a vertex (p, n), with p the orbital index and n the electron index.")
 
-        .def(
+        .def_static(
             "calculateDimension",
-            [](const SpinUnresolvedONVBasis& onv_basis, size_t M, const size_t N) {
-                return onv_basis.calculateDimension(M, N);
-            },
+            &SpinUnresolvedONVBasis::calculateDimension,
             py::arg("M"),
             py::arg("N"),
             "Calculate the dimension of a spin-unresolved ONV with M spinors and N electrons.")
 
         .def(
             "forEach",
-            [](const SpinUnresolvedONVBasis& onv_basis, const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) {
-                return onv_basis.forEach(callback);
-            },
+            &SpinUnresolvedONVBasis::forEach,
             py::arg("callback"),
             "Iterate over all ONVs in this ONV basis and apply the given callback function.")
 
@@ -84,9 +78,7 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
 
         .def(
             "vertexWeight",
-            [](const SpinUnresolvedONVBasis onv_basis, const size_t p, const size_t n) {
-                return onv_basis.vertexWeight(p, n);
-            },
+            &SpinUnresolvedONVBasis::vertexWeight,
             py::arg("p"),
             py::arg("n"),
             "Return the vertex weight of vertex (p, n), with p the orbital index and n the electron index.");
