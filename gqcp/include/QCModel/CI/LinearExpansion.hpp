@@ -34,6 +34,7 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
+#include "QuantumChemical/Spin.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -1159,6 +1160,375 @@ public:
         }  // loop over I_beta.
 
         return SpinResolved2DM<double> {PureSpinResolved2DMComponent<double>(d_aaaa), MixedSpinResolved2DMComponent<double>(d_aabb), d_bbaa, PureSpinResolved2DMComponent<double>(d_bbbb)};
+    }
+
+
+    /**
+     *  Calculate an element of the N-electron spin resolved density matrix.
+     * 
+     *  @param bra_indices          The indices of the alpha orbitals that should be annihilated on the left (on the bra).
+     *  @param ket_indices          The indices of the alpha orbitals that should be annihilated on the right (on the ket).
+     *  @param spin_component       A vector of spins indicating the spin-component, e.g. {alpha, alpha} indicates the alpha alpha component of the spin resolved NDM for N = 2.
+     *
+     *  @return The element of the spin resolved N-DM, as specified by the given bra and ket indices, alongside a spin-component vector. `calculateNDMElement({0, 0}, {1, 1}, {alpha, beta})` would calculate an element of the spin resolved 2-NDM D^{(1)} (0, 1), (0, 1) corresponding the operator string: `a^\dagger_alpha_0 a^\dagger_beta_0 a_alpha_1 a_beta_1`.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Scalar> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const std::vector<GQCP::Spin>& spin_component) const {
+
+        // Check whether the indices are compatible with the given spin component.
+        if (bra_indices.size() != ket_indices.size() && bra_indices.size() != spin_component.size()) {
+            throw std::invalid_argument("LinearExpansion::calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const std::vector<GQCP::Spin>& spin_component): The given indices and spin component vector are incompatible.");
+        }
+
+        // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
+        std::vector<size_t> ket_indices_reversed = ket_indices;
+        std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
+
+        // Split the spin resolved ONV basis in its spin unresolved components.
+        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.alpha();
+        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.beta();
+
+        // Determine their dimensions for the respective loops.
+        auto dim_alpha = onv_basis_alpha.dimension();
+        auto dim_beta = onv_basis_beta.dimension();
+
+        double value = 0.0;
+
+        // If the spin-component vector contains only `alpha` we calculate the given NDM-element of the pure alpha spin component.
+        // We use std::all_of to check whether all elements of the spin-component vector fullfil the condition of being alpha spins.
+        if (std::all_of(spin_component.cbegin(), spin_component.cend(), [](Spin spin) { return spin == Spin::alpha; })) {
+
+            // Set up the parameters to calculate the phase factor.
+            int sign_bra = 1;
+            int sign_ket = 1;
+
+            // Set up the initial bra_alpha ONV.
+            auto bra_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+
+            size_t I_alpha = 0;
+            while (I_alpha < dim_alpha) {  // Loop over all bra addresses.
+
+                // Annihilate the bra on the bra indices.
+                if (!bra_alpha.annihilateAll(bra_indices, sign_bra)) {  // If we can't annihilate, the bra doesn't change.
+
+                    // Go to the beginning of the outer while loop with the next bra.
+                    if (I_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                        this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                        I_alpha++;
+                        sign_bra = 1;
+                        continue;
+                    } else {
+                        break;  // We have to jump out if we have looped over the whole bra dimension.
+                    }
+                }
+
+                // Set up the initial ket_alpha ONV.
+                auto ket_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+
+                size_t J_alpha = 0;
+                while (J_alpha < dim_alpha) {  // Loop over all ket indices.
+
+                    // Annihilate the ket on the ket indices.
+                    if (!ket_alpha.annihilateAll(ket_indices_reversed, sign_ket)) {  // If we can't annihilate, the ket doesn't change.
+
+                        // Go to the beginning of this (the inner) while loop with the next bra.
+                        if (J_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                            this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                            J_alpha++;
+                            sign_ket = 1;
+                            continue;
+                        } else {
+                            break;  // We have to jump out if we have looped over the whole ket dimension.
+                        }
+                    }
+
+                    // If the overlap betwee the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
+                    if (bra_alpha == ket_alpha) {
+
+                        double contribution = 0.0;
+
+                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                            double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // Alpha addresses are 'major'.
+                            double c_J_alpha_I_beta = this->coefficient(J_alpha * dim_beta + I_beta);
+                            contribution += c_I_alpha_I_beta * c_J_alpha_I_beta;
+                        }
+
+                        value += sign_bra * sign_ket * contribution;
+                    }
+
+                    // Reset the previous ket annihilations and move to the next ket.
+                    if (J_alpha == dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                        break;                       // Out of the J_alpha-loop.
+                    }
+                    ket_alpha.createAll(ket_indices_reversed);
+                    this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                    sign_ket = 1;
+                    J_alpha++;
+                }  // While J_alpha loop.
+
+                // Reset the previous bra annihilations and move to the next bra.
+                if (I_alpha == dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                    break;                       // Out of the I_alpha-loop.
+                }
+                bra_alpha.createAll(bra_indices);
+                this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                sign_bra = 1;
+                I_alpha++;
+            }  // While I_alpha loop.
+        }
+
+        // If the spin-component vector contains only `beta` we calculate the given NDM-element of the pure beta spin component.
+        // We use std::all_of to check whether all elements of the spin-component vector fullfil the condition of being beta spins.
+        else if (std::all_of(spin_component.cbegin(), spin_component.cend(), [](Spin spin) { return spin == Spin::beta; })) {
+
+            // Set up the parameters to calculate the phase factor.
+            int sign_bra = 1;
+            int sign_ket = 1;
+
+            // Set up the initial bra_beta ONV.
+            auto bra_beta = this->onv_basis_beta.constructONVFromAddress(0);
+
+            size_t I_beta = 0;
+            while (I_beta < dim_beta) {  // Loop over all bra addresses.
+
+                // Annihilate the bra on the bra indices.
+                if (!bra_beta.annihilateAll(bra_indices, sign_bra)) {  // If we can't annihilate, the bra doesn't change.
+
+                    // Go to the beginning of the outer while loop with the next bra.
+                    if (I_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
+                        this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                        I_beta++;
+                        sign_bra = 1;
+                        continue;
+                    } else {
+                        break;  // We have to jump out if we have looped over the whole bra dimension.
+                    }
+                }
+
+                // Set up the initial ket_beta ONV.
+                auto ket_beta = this->onv_basis_beta.constructONVFromAddress(0);
+
+                size_t J_beta = 0;
+                while (J_beta < dim_beta) {  // Loop over all ket indices.
+
+                    // Annihilate the ket on the ket indices.
+                    if (!ket_beta.annihilateAll(ket_indices_reversed, sign_ket)) {  // If we can't annihilate, the ket doesn't change.
+
+                        // Go to the beginning of this (the inner) while loop with the next bra.
+                        if (J_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
+                            this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                            J_beta++;
+                            sign_ket = 1;
+                            continue;
+                        } else {
+                            break;  // We have to jump out if we have looped over the whole ket dimension.
+                        }
+                    }
+
+                    // If the overlap betwee the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
+                    if (bra_beta == ket_beta) {
+
+                        double contribution = 0.0;
+
+                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                            double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // Alpha addresses are 'major'.
+                            double c_I_alpha_J_beta = this->coefficient(I_alpha * dim_beta + J_beta);
+                            contribution += c_I_alpha_I_beta * c_I_alpha_J_beta;
+                        }
+
+                        value += sign_bra * sign_ket * contribution;
+                    }
+
+                    // Reset the previous ket annihilations and move to the next ket.
+                    if (J_beta == dim_beta - 1) {  // Prevent the last permutation from occurring.
+                        break;                     // Out of the J_beta-loop.
+                    }
+                    ket_beta.createAll(ket_indices_reversed);
+                    this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                    sign_ket = 1;
+                    J_beta++;
+                }  // While J_beta loop.
+
+                // Reset the previous bra annihilations and move to the next bra.
+                if (I_beta == dim_beta - 1) {  // Prevent the last permutation from occurring.
+                    break;                     // Out of the I_beta-loop.
+                }
+                bra_beta.createAll(bra_indices);
+                this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                sign_bra = 1;
+                I_beta++;
+            }  // While I_beta loop.
+        }
+
+        // If the spin-component is neither pure alpha or pure beta, we are dealing with a mixed spin NDM-element.
+        else {
+
+            // Determine the alpha and beta indices for both the bra and the ket.
+            // First we initialize the necessary vectors.
+
+            std::vector<size_t> alpha_bra_indices;
+            std::vector<size_t> alpha_ket_indices;
+            std::vector<size_t> beta_bra_indices;
+            std::vector<size_t> beta_ket_indices;
+
+            // Then, we loop over the spin component vector, adding all elaments of `bra_indices` corresponding to an index with an alpha spin in the component vector to àlpha_nbra_indices`, and similarly for the ket and the beta vectors.
+
+            for (int i = 0; i < spin_component.size(); i++) {
+                if (spin_component[i] == Spin::alpha) {
+                    alpha_bra_indices.push_back(bra_indices[i]);
+                    alpha_ket_indices.push_back(ket_indices[i]);
+                }
+                if (spin_component[i] == Spin::beta) {
+                    beta_bra_indices.push_back(bra_indices[i]);
+                    beta_ket_indices.push_back(ket_indices[i]);
+                }
+            }
+
+            // The ket indices should be reversed because the annihilators on the ket should be applied from right to left.
+            std::reverse(alpha_ket_indices.begin(), alpha_ket_indices.end());
+            std::reverse(beta_ket_indices.begin(), beta_ket_indices.end());
+
+            // Set up the parameters to calculate the phase factor.
+            int sign_bra_alpha = 1;
+            int sign_ket_alpha = 1;
+            int sign_bra_beta = 1;
+            int sign_ket_beta = 1;
+
+            // Set up the initial bra_alpha ONV.
+            auto bra_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+
+            size_t I_alpha = 0;
+            while (I_alpha < dim_alpha) {  // Loop over all bra addresses.
+
+                // Annihilate the bra on the bra indices.
+                if (!bra_alpha.annihilateAll(alpha_bra_indices, sign_bra_alpha)) {  // If we can't annihilate, the bra doesn't change.
+
+                    // Go to the beginning of the outer while loop with the next bra.
+                    if (I_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                        this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                        I_alpha++;
+                        sign_bra_alpha = 1;
+                        continue;
+                    } else {
+                        break;  // We have to jump out if we have looped over the whole bra dimension.
+                    }
+                }
+
+                // Set up the initial ket_alpha ONV.
+                auto ket_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+
+                size_t J_alpha = 0;
+                while (J_alpha < dim_alpha) {  // Loop over all ket indices.
+
+                    // Annihilate the ket on the ket indices.
+                    if (!ket_alpha.annihilateAll(alpha_ket_indices, sign_ket_alpha)) {  // If we can't annihilate, the ket doesn't change.
+
+                        // Go to the beginning of this (the inner) while loop with the next bra.
+                        if (J_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                            this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                            J_alpha++;
+                            sign_ket_alpha = 1;
+                            continue;
+                        } else {
+                            break;  // We have to jump out if we have looped over the whole ket dimension.
+                        }
+                    }
+
+                    // Set up the initial bra_beta ONV.
+                    auto bra_beta = this->onv_basis_beta.constructONVFromAddress(0);
+
+                    size_t I_beta = 0;
+                    while (I_beta < dim_beta) {  // Loop over all bra addresses.
+
+                        // Annihilate the bra on the bra indices.
+                        if (!bra_beta.annihilateAll(bra_indices, sign_bra_beta)) {  // If we can't annihilate, the bra doesn't change.
+
+                            // Go to the beginning of the outer while loop with the next bra.
+                            if (I_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
+                                this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                                I_beta++;
+                                sign_bra_beta = 1;
+                                continue;
+                            } else {
+                                break;  // We have to jump out if we have looped over the whole bra dimension.
+                            }
+                        }
+
+                        // Set up the initial ket_beta ONV.
+                        auto ket_beta = this->onv_basis_beta.constructONVFromAddress(0);
+
+                        size_t J_beta = 0;
+                        while (J_beta < dim_beta) {  // Loop over all ket indices.
+
+                            // Annihilate the ket on the ket indices.
+                            if (!ket_beta.annihilateAll(ket_indices_reversed, sign_ket_beta)) {  // If we can't annihilate, the ket doesn't change.
+
+                                // Go to the beginning of this (the inner) while loop with the next bra.
+                                if (J_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
+                                    this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                                    J_beta++;
+                                    sign_ket_beta = 1;
+                                    continue;
+                                } else {
+                                    break;  // We have to jump out if we have looped over the whole ket dimension.
+                                }
+                            }
+
+                            // If the overlap betwee the bra- and ket-ONV equals 1, we calculate the correct contribution to the NDM-element.
+                            if (bra_alpha == ket_alpha && bra_beta == ket_beta) {
+
+                                double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // Alpha addresses are 'major'.
+                                double c_J_alpha_J_beta = this->coefficient(J_alpha * dim_beta + J_beta);
+
+                                double contribution = c_I_alpha_I_beta * c_J_alpha_J_beta;
+                                int sign_alpha = sign_bra_alpha * sign_ket_alpha;
+                                int sign_beta = sign_bra_beta * sign_ket_beta;
+
+                                value += sign_alpha * sign_beta * contribution;
+                            }
+
+                            // Reset the previous ket annihilations and move to the next ket.
+                            if (J_beta == dim_beta - 1) {  // Prevent the last permutation from occurring.
+                                break;                     // Out of the J_beta-loop.
+                            }
+                            ket_beta.createAll(beta_ket_indices);
+                            this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                            sign_ket_beta = 1;
+                            J_beta++;
+                        }  // While J_beta loop.
+
+                        // Reset the previous bra annihilations and move to the next bra.
+                        if (I_beta == dim_beta - 1) {  // Prevent the last permutation from occurring.
+                            break;                     // Out of the I_beta-loop.
+                        }
+                        bra_beta.createAll(beta_bra_indices);
+                        this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                        sign_bra_beta = 1;
+                        I_beta++;
+                    }  // While I_beta loop.
+
+                    // Reset the previous ket annihilations and move to the next ket.
+                    if (J_alpha == dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                        break;                       // Out of the J_alpha-loop.
+                    }
+                    ket_alpha.createAll(alpha_ket_indices);
+                    this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                    sign_ket_alpha = 1;
+                    J_alpha++;
+                }  // While J_alpha loop.
+
+                // Reset the previous bra annihilations and move to the next bra.
+                if (I_alpha == dim_alpha - 1) {  // Prevent the last permutation from occurring.
+                    break;                       // Out of the I_alpha-loop.
+                }
+                bra_alpha.createAll(alpha_bra_indices);
+                this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                sign_bra_alpha = 1;
+                I_alpha++;
+            }  // While I_alpha loop.
+        }
+
+        return value;
     }
 
 
