@@ -183,12 +183,15 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
             auto alpha_part = alpha_reference;
             auto beta_part = beta_reference;
 
+            alpha_part.annihilate(i_alpha);
+            beta_part.create(a_beta);
+
             onvs.emplace_back(alpha_part, beta_part);
         }
     }
 
 
-    // Generate the alpha-beta excitations.
+    // Generate the beta-alpha excitations.
     std::cout << "BA" << std::endl;
     for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
         std::cout << "i: " << i_beta << std::endl;
