@@ -1203,7 +1203,7 @@ public:
             int sign_ket = 1;
 
             // Set up the initial bra_alpha ONV.
-            auto bra_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+            auto bra_alpha = onv_basis_alpha.constructONVFromAddress(0);
 
             size_t I_alpha = 0;
             while (I_alpha < dim_alpha) {  // Loop over all bra addresses.
@@ -1213,7 +1213,7 @@ public:
 
                     // Go to the beginning of the outer while loop with the next bra.
                     if (I_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
-                        this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                        onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
                         I_alpha++;
                         sign_bra = 1;
                         continue;
@@ -1223,7 +1223,7 @@ public:
                 }
 
                 // Set up the initial ket_alpha ONV.
-                auto ket_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+                auto ket_alpha = onv_basis_alpha.constructONVFromAddress(0);
 
                 size_t J_alpha = 0;
                 while (J_alpha < dim_alpha) {  // Loop over all ket indices.
@@ -1233,7 +1233,7 @@ public:
 
                         // Go to the beginning of this (the inner) while loop with the next bra.
                         if (J_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
-                            this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                            onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
                             J_alpha++;
                             sign_ket = 1;
                             continue;
@@ -1261,7 +1261,7 @@ public:
                         break;                       // Out of the J_alpha-loop.
                     }
                     ket_alpha.createAll(ket_indices_reversed);
-                    this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                    onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
                     sign_ket = 1;
                     J_alpha++;
                 }  // While J_alpha loop.
@@ -1271,7 +1271,7 @@ public:
                     break;                       // Out of the I_alpha-loop.
                 }
                 bra_alpha.createAll(bra_indices);
-                this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
                 sign_bra = 1;
                 I_alpha++;
             }  // While I_alpha loop.
@@ -1286,7 +1286,7 @@ public:
             int sign_ket = 1;
 
             // Set up the initial bra_beta ONV.
-            auto bra_beta = this->onv_basis_beta.constructONVFromAddress(0);
+            auto bra_beta = onv_basis_beta.constructONVFromAddress(0);
 
             size_t I_beta = 0;
             while (I_beta < dim_beta) {  // Loop over all bra addresses.
@@ -1296,7 +1296,7 @@ public:
 
                     // Go to the beginning of the outer while loop with the next bra.
                     if (I_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
-                        this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                        onv_basis_beta.transformONVToNextPermutation(bra_beta);
                         I_beta++;
                         sign_bra = 1;
                         continue;
@@ -1306,7 +1306,7 @@ public:
                 }
 
                 // Set up the initial ket_beta ONV.
-                auto ket_beta = this->onv_basis_beta.constructONVFromAddress(0);
+                auto ket_beta = onv_basis_beta.constructONVFromAddress(0);
 
                 size_t J_beta = 0;
                 while (J_beta < dim_beta) {  // Loop over all ket indices.
@@ -1316,7 +1316,7 @@ public:
 
                         // Go to the beginning of this (the inner) while loop with the next bra.
                         if (J_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
-                            this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                            onv_basis_beta.transformONVToNextPermutation(ket_beta);
                             J_beta++;
                             sign_ket = 1;
                             continue;
@@ -1344,7 +1344,7 @@ public:
                         break;                     // Out of the J_beta-loop.
                     }
                     ket_beta.createAll(ket_indices_reversed);
-                    this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                    onv_basis_beta.transformONVToNextPermutation(ket_beta);
                     sign_ket = 1;
                     J_beta++;
                 }  // While J_beta loop.
@@ -1354,7 +1354,7 @@ public:
                     break;                     // Out of the I_beta-loop.
                 }
                 bra_beta.createAll(bra_indices);
-                this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                onv_basis_beta.transformONVToNextPermutation(bra_beta);
                 sign_bra = 1;
                 I_beta++;
             }  // While I_beta loop.
@@ -1395,7 +1395,7 @@ public:
             int sign_ket_beta = 1;
 
             // Set up the initial bra_alpha ONV.
-            auto bra_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+            auto bra_alpha = onv_basis_alpha.constructONVFromAddress(0);
 
             size_t I_alpha = 0;
             while (I_alpha < dim_alpha) {  // Loop over all bra addresses.
@@ -1405,7 +1405,7 @@ public:
 
                     // Go to the beginning of the outer while loop with the next bra.
                     if (I_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
-                        this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                        onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
                         I_alpha++;
                         sign_bra_alpha = 1;
                         continue;
@@ -1415,7 +1415,7 @@ public:
                 }
 
                 // Set up the initial ket_alpha ONV.
-                auto ket_alpha = this->onv_basis_alpha.constructONVFromAddress(0);
+                auto ket_alpha = onv_basis_alpha.constructONVFromAddress(0);
 
                 size_t J_alpha = 0;
                 while (J_alpha < dim_alpha) {  // Loop over all ket indices.
@@ -1425,7 +1425,7 @@ public:
 
                         // Go to the beginning of this (the inner) while loop with the next bra.
                         if (J_alpha < dim_alpha - 1) {  // Prevent the last permutation from occurring.
-                            this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                            onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
                             J_alpha++;
                             sign_ket_alpha = 1;
                             continue;
@@ -1435,7 +1435,7 @@ public:
                     }
 
                     // Set up the initial bra_beta ONV.
-                    auto bra_beta = this->onv_basis_beta.constructONVFromAddress(0);
+                    auto bra_beta = onv_basis_beta.constructONVFromAddress(0);
 
                     size_t I_beta = 0;
                     while (I_beta < dim_beta) {  // Loop over all bra addresses.
@@ -1445,7 +1445,7 @@ public:
 
                             // Go to the beginning of the outer while loop with the next bra.
                             if (I_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
-                                this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                                onv_basis_beta.transformONVToNextPermutation(bra_beta);
                                 I_beta++;
                                 sign_bra_beta = 1;
                                 continue;
@@ -1455,7 +1455,7 @@ public:
                         }
 
                         // Set up the initial ket_beta ONV.
-                        auto ket_beta = this->onv_basis_beta.constructONVFromAddress(0);
+                        auto ket_beta = onv_basis_beta.constructONVFromAddress(0);
 
                         size_t J_beta = 0;
                         while (J_beta < dim_beta) {  // Loop over all ket indices.
@@ -1465,7 +1465,7 @@ public:
 
                                 // Go to the beginning of this (the inner) while loop with the next bra.
                                 if (J_beta < dim_beta - 1) {  // Prevent the last permutation from occurring.
-                                    this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                                    onv_basis_beta.transformONVToNextPermutation(ket_beta);
                                     J_beta++;
                                     sign_ket_beta = 1;
                                     continue;
@@ -1492,7 +1492,7 @@ public:
                                 break;                     // Out of the J_beta-loop.
                             }
                             ket_beta.createAll(beta_ket_indices);
-                            this->onv_basis_beta.transformONVToNextPermutation(ket_beta);
+                            onv_basis_beta.transformONVToNextPermutation(ket_beta);
                             sign_ket_beta = 1;
                             J_beta++;
                         }  // While J_beta loop.
@@ -1502,7 +1502,7 @@ public:
                             break;                     // Out of the I_beta-loop.
                         }
                         bra_beta.createAll(beta_bra_indices);
-                        this->onv_basis_beta.transformONVToNextPermutation(bra_beta);
+                        onv_basis_beta.transformONVToNextPermutation(bra_beta);
                         sign_bra_beta = 1;
                         I_beta++;
                     }  // While I_beta loop.
@@ -1512,7 +1512,7 @@ public:
                         break;                       // Out of the J_alpha-loop.
                     }
                     ket_alpha.createAll(alpha_ket_indices);
-                    this->onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
+                    onv_basis_alpha.transformONVToNextPermutation(ket_alpha);
                     sign_ket_alpha = 1;
                     J_alpha++;
                 }  // While J_alpha loop.
@@ -1522,7 +1522,7 @@ public:
                     break;                       // Out of the I_alpha-loop.
                 }
                 bra_alpha.createAll(alpha_bra_indices);
-                this->onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
+                onv_basis_alpha.transformONVToNextPermutation(bra_alpha);
                 sign_bra_alpha = 1;
                 I_alpha++;
             }  // While I_alpha loop.
