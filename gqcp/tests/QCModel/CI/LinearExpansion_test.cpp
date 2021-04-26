@@ -32,6 +32,7 @@
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QuantumChemical/Spin.hpp"
 
+
 /**
  *  Test if a GAMESS-US expansion file is correctly read in.
  */
@@ -439,7 +440,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM_spinResolved_vs_spinUnresolved) {
 /**
  *  Check some spin resolved 2-DM values belonging to mixed spin components, calculated through the general function calculateNDMElement.
  */
-BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM_spinResolved_vs_complete_2DM) {
+BOOST_AUTO_TEST_CASE(calculateNDMElement_1DM_spinResolved_vs_complete_1DM) {
 
     // Set up an example linear expansion in a spin-unresolved ONV basis.
     const size_t M = 3;
@@ -449,32 +450,76 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM_spinResolved_vs_complete_2DM) {
     // Create an equivalent, spin-resolved linear expansion with som alpha and some beta electrons.
     const GQCP::SpinResolvedONVBasis onv_basis_resolved {M, N_a, N_b};
 
-    GQCP::VectorX<double> coefficients {onv_basis_resolved.dimension()};
-    coefficients << 1, 1, 1, 1, 1, 1, 1, 1, 1;
+    const auto linear_expansion_resolved = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis_resolved);
 
-    // const auto linear_expansion_resolved = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis_resolved);
-    const GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, coefficients};
+    // Calculate the complete spin resolved 1DM as a reference.
+    const auto D_resolved = linear_expansion_resolved.calculateSpinResolved1DM();
 
+    // Calculate and check some values of the alpha component.
+    const std::vector<GQCP::Spin> spin_component_1 {GQCP::Spin::alpha};
+    const auto D_01_a = linear_expansion_resolved.calculateNDMElement({0}, {1}, spin_component_1);
+    const auto D_10_a = linear_expansion_resolved.calculateNDMElement({1}, {0}, spin_component_1);
+    const auto D_00_a = linear_expansion_resolved.calculateNDMElement({0}, {0}, spin_component_1);
+    const auto D_12_a = linear_expansion_resolved.calculateNDMElement({1}, {2}, spin_component_1);
+
+
+    BOOST_CHECK(std::abs(D_resolved.alpha().matrix()(0, 1) - D_01_a) < 1.0e-12);
+    BOOST_CHECK(std::abs(D_resolved.alpha().matrix()(1, 0) - D_10_a) < 1.0e-12);
+    BOOST_CHECK(std::abs(D_resolved.alpha().matrix()(0, 0) - D_00_a) < 1.0e-12);
+    BOOST_CHECK(std::abs(D_resolved.alpha().matrix()(1, 2) - D_12_a) < 1.0e-12);
+
+    // Calculate and check some values of the beta component.
+    const std::vector<GQCP::Spin> spin_component_2 {GQCP::Spin::beta};
+    const auto D_01_b = linear_expansion_resolved.calculateNDMElement({0}, {1}, spin_component_2);
+    const auto D_10_b = linear_expansion_resolved.calculateNDMElement({1}, {0}, spin_component_2);
+    const auto D_00_b = linear_expansion_resolved.calculateNDMElement({0}, {0}, spin_component_2);
+    const auto D_12_b = linear_expansion_resolved.calculateNDMElement({1}, {2}, spin_component_2);
+
+    BOOST_CHECK(std::abs(D_resolved.beta().matrix()(0, 1) - D_01_b) < 1.0e-12);
+    BOOST_CHECK(std::abs(D_resolved.beta().matrix()(1, 0) - D_10_b) < 1.0e-12);
+    BOOST_CHECK(std::abs(D_resolved.beta().matrix()(0, 0) - D_00_b) < 1.0e-12);
+    BOOST_CHECK(std::abs(D_resolved.beta().matrix()(1, 2) - D_12_b) < 1.0e-12);
+}
+
+
+/**
+ *  Check some spin resolved 2-DM values belonging to mixed spin components, calculated through the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM_spinResolved_vs_complete_2DM) {
+
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N_a = 2;
+    const size_t N_b = 2;
+
+    // Create an equivalent, spin-resolved linear expansion with som alpha and some beta electrons.
+    const GQCP::SpinResolvedONVBasis onv_basis_resolved {M, N_a, N_b};
+
+    // GQCP::VectorX<double> coefficients {onv_basis_resolved.dimension()};
+    // coefficients << 1, 2, 3, 4, 5, 6, 7, 8, 9;
+
+    const auto linear_expansion_resolved = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis_resolved);
+    // const GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, coefficients};
+    std::cout << onv_basis_resolved.beta().dimension() << std::endl;
     // Calculate the complete spin resolved 2DM as a reference.
     const auto d_resolved = linear_expansion_resolved.calculateSpinResolved2DM();
 
     // Calculate and check some values of the alpha-beta component.
-    const std::vector<GQCP::Spin> spin_component_1 {GQCP::Spin::alpha, GQCP::Spin::alpha};
+    const std::vector<GQCP::Spin> spin_component_1 {GQCP::Spin::alpha, GQCP::Spin::beta};
     const auto d_0121_ab = linear_expansion_resolved.calculateNDMElement({0, 1}, {2, 1}, spin_component_1);
     const auto d_2101_ab = linear_expansion_resolved.calculateNDMElement({2, 1}, {0, 1}, spin_component_1);
     const auto d_0000_ab = linear_expansion_resolved.calculateNDMElement({0, 0}, {0, 0}, spin_component_1);
     const auto d_1212_ab = linear_expansion_resolved.calculateNDMElement({1, 2}, {1, 2}, spin_component_1);
-    std::cout << "==================================" << std::endl;
-    std::cout << d_resolved.alphaAlpha().tensor()(0, 1, 2, 1) << std::endl;
+    std::cout << d_resolved.alphaBeta().tensor()(0, 1, 2, 1) << std::endl;
     std::cout << d_0121_ab << std::endl;
     std::cout << "----------------------------------" << std::endl;
-    std::cout << d_resolved.alphaAlpha().tensor()(2, 1, 0, 1) << std::endl;
+    std::cout << d_resolved.alphaBeta().tensor()(2, 1, 0, 1) << std::endl;
     std::cout << d_2101_ab << std::endl;
     std::cout << "----------------------------------" << std::endl;
-    std::cout << d_resolved.alphaAlpha().tensor()(0, 0, 0, 0) << std::endl;
+    std::cout << d_resolved.alphaBeta().tensor()(0, 0, 0, 0) << std::endl;
     std::cout << d_0000_ab << std::endl;
     std::cout << "----------------------------------" << std::endl;
-    std::cout << d_resolved.alphaAlpha().tensor()(1, 2, 1, 2) << std::endl;
+    std::cout << d_resolved.alphaBeta().tensor()(1, 2, 1, 2) << std::endl;
     std::cout << d_1212_ab << std::endl;
     std::cout << "==================================" << std::endl;
 
@@ -484,22 +529,22 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM_spinResolved_vs_complete_2DM) {
     // BOOST_CHECK(std::abs(d_resolved.alphaBeta().tensor()(1, 2, 1, 2) - d_1212_ab) < 1.0e-12);
 
     // Calculate and check some values of the beta-alpha component.
-    const std::vector<GQCP::Spin> spin_component_2 {GQCP::Spin::beta, GQCP::Spin::beta};
+    const std::vector<GQCP::Spin> spin_component_2 {GQCP::Spin::beta, GQCP::Spin::alpha};
     const auto d_0121_ba = linear_expansion_resolved.calculateNDMElement({0, 1}, {2, 1}, spin_component_2);
     const auto d_2101_ba = linear_expansion_resolved.calculateNDMElement({2, 1}, {0, 1}, spin_component_2);
     const auto d_0000_ba = linear_expansion_resolved.calculateNDMElement({0, 0}, {0, 0}, spin_component_2);
     const auto d_1212_ba = linear_expansion_resolved.calculateNDMElement({1, 2}, {1, 2}, spin_component_2);
     std::cout << "==================================" << std::endl;
-    std::cout << d_resolved.betaBeta().tensor()(0, 1, 2, 1) << std::endl;
+    std::cout << d_resolved.betaAlpha().tensor()(0, 1, 2, 1) << std::endl;
     std::cout << d_0121_ba << std::endl;
     std::cout << "----------------------------------" << std::endl;
-    std::cout << d_resolved.betaBeta().tensor()(2, 1, 0, 1) << std::endl;
+    std::cout << d_resolved.betaAlpha().tensor()(2, 1, 0, 1) << std::endl;
     std::cout << d_2101_ba << std::endl;
     std::cout << "----------------------------------" << std::endl;
-    std::cout << d_resolved.betaBeta().tensor()(0, 0, 0, 0) << std::endl;
+    std::cout << d_resolved.betaAlpha().tensor()(0, 0, 0, 0) << std::endl;
     std::cout << d_0000_ba << std::endl;
     std::cout << "----------------------------------" << std::endl;
-    std::cout << d_resolved.betaBeta().tensor()(1, 2, 1, 2) << std::endl;
+    std::cout << d_resolved.betaAlpha().tensor()(1, 2, 1, 2) << std::endl;
     std::cout << d_1212_ba << std::endl;
     std::cout << "==================================" << std::endl;
 

@@ -1249,7 +1249,11 @@ public:
 
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // Alpha addresses are 'major'.
+                            std::cout << "***********" << std::endl;
+                            std::cout << c_I_alpha_I_beta << std::endl;
                             double c_J_alpha_I_beta = this->coefficient(J_alpha * dim_beta + I_beta);
+                            std::cout << c_J_alpha_I_beta << std::endl;
+                            std::cout << "***********" << std::endl;
                             contribution += c_I_alpha_I_beta * c_J_alpha_I_beta;
                         }
 
@@ -1527,7 +1531,7 @@ public:
                 I_alpha++;
             }  // While I_alpha loop.
         }
-
+        std::cout << "next calculation" << std::endl;
         return value;
     }
 
