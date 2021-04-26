@@ -131,7 +131,7 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
     SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
 
     std::vector<SpinResolvedONV> onvs;
-    onvs.reserve(dim_alpha * dim_beta);
+    onvs.reserve(dim_alpha * dim_beta + 1);
 
     auto reference = SpinResolvedONV::UHF(K, N_alpha, N_beta);
     auto alpha_reference = reference.onv(Spin::alpha);

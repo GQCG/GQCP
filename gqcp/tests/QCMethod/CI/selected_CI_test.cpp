@@ -126,12 +126,15 @@ BOOST_AUTO_TEST_CASE(H2O_CIS) {
 
     // Set up the full spin-resolved selected ONV basis.
     const auto onv_basis = GQCP::SpinResolvedSelectedONVBasis::CIS(7, 5, 5);
-
+    std::cout << "Gelukt" << std::endl;
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(hamiltonian, onv_basis);
+    std::cout << "Gelukt1" << std::endl;
     auto solver = GQCP::EigenproblemSolver::Dense();
+    std::cout << "Gelukt2" << std::endl;
     const auto ci_qc_structure = GQCP::QCMethod::CI<GQCP::SpinResolvedSelectedONVBasis>(onv_basis, onv_basis.dimension()).optimize(solver, environment);
+    std::cout << "Gelukt3" << std::endl;
 
     for (size_t i = 0; i < onv_basis.dimension(); i++) {
         std::cout << ci_qc_structure.energy(i) + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value() << std::endl;
