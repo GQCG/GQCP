@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/functional.h>
@@ -31,7 +32,10 @@ using namespace GQCP;
 
 
 void bindSpinResolvedONVBasis(py::module& module) {
-    py::class_<SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
+    py::class_<SpinResolvedONVBasis> py_SpinResolvedONVBasis {module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis."};
+
+
+    py_SpinResolvedONVBasis
 
         // CONSTRUCTORS
 
@@ -44,9 +48,7 @@ void bindSpinResolvedONVBasis(py::module& module) {
         // PUBLIC METHODS
         .def(
             "compoundAddress",
-            [](const SpinResolvedONVBasis& onv_basis, const size_t I_alpha, const size_t I_beta) {
-                return onv_basis.compoundAddress(I_alpha, I_beta);
-            },
+            &SpinResolvedONVBasis::compoundAddress,
             py::arg("I_alpha"),
             py::arg("I_beta"),
             "Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.")
@@ -56,11 +58,13 @@ void bindSpinResolvedONVBasis(py::module& module) {
 
         .def(
             "forEach",
-            [](const SpinResolvedONVBasis& onv_basis, const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) {
-                return onv_basis.forEach(callback);
-            },
+            &SpinResolvedONVBasis::forEach,
             py::arg("callback"),
             "Iterate over all ONVs, and apply the given callback function.");
+
+
+    // Expose the `SpinResolvedBase` interface to the Python class.
+    bindSpinResolvedBaseInterface(py_SpinResolvedONVBasis);
 }
 
 

@@ -50,6 +50,9 @@ public:
      *  MARK: Constructors
      */
 
+    // Inherit `SpinResolvedBase`'s constructors.
+    using SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis>::SpinResolvedBase;
+
     /**
      *  @param K            The number of alpha or beta spin-orbitals.
      *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
