@@ -335,12 +335,24 @@ double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, c
 
 
 /**
- *  @param other        the other ONV
+ *  @param other        The other ONV.
  *
- *  @return the number of different occupations between this ONV and the other, i.e. two times the number of electron excitations
+ *  @return The number of different occupations between this ONV and the other.
  */
 size_t SpinUnresolvedONV::countNumberOfDifferences(const SpinUnresolvedONV& other) const {
     return __builtin_popcountl(this->unsigned_representation ^ other.unsigned_representation);
+}
+
+
+/**
+ *  @param other        The other ONV.
+ *
+ *  @return The number of electron excitations between this ONV and the other.
+ */
+size_t SpinUnresolvedONV::countNumberOfExcitations(const SpinUnresolvedONV& other) const {
+
+    const auto differences = this->unsigned_representation ^ other.unsigned_representation;
+    return std::min(__builtin_popcountl(this->unsigned_representation & differences), __builtin_popcountl(other.unsigned_representation & differences));
 }
 
 

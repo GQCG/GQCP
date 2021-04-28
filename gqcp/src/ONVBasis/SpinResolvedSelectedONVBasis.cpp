@@ -144,12 +144,11 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
     // Generate the alpha-alpha-excitations.
     std::cout << "AA" << std::endl;
     for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
-        std::cout << "i: " << i_alpha << std::endl;
         for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
-            std::cout << "a: " << a_alpha << std::endl;
             auto alpha_part = alpha_reference;
             auto beta_part = beta_reference;
 
+            std::cout << "i: " << i_alpha << " - a: " << a_alpha << std::endl;
             alpha_part.annihilate(i_alpha);
             alpha_part.create(a_alpha);
 
@@ -160,12 +159,11 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
     // Generate the beta-beta-excitations.
     std::cout << "BB" << std::endl;
     for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
-        std::cout << "i: " << i_beta << std::endl;
         for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
-            std::cout << "a: " << a_beta << std::endl;
             auto alpha_part = alpha_reference;
             auto beta_part = beta_reference;
 
+            std::cout << "i: " << i_beta << " - a: " << a_beta << std::endl;
             beta_part.annihilate(i_beta);
             beta_part.create(a_beta);
 
@@ -177,14 +175,13 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
     // Generate the alpha-beta excitations.
     std::cout << "AB" << std::endl;
     for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
-        std::cout << "i: " << i_alpha << std::endl;
         for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
-            std::cout << "a: " << a_beta << std::endl;
             auto alpha_part = alpha_reference;
             auto beta_part = beta_reference;
 
-            alpha_part.annihilate(i_alpha);
+            std::cout << "i: " << i_alpha << " - a: " << a_beta << std::endl;
             beta_part.create(a_beta);
+            alpha_part.annihilate(i_alpha);
 
             onvs.emplace_back(alpha_part, beta_part);
         }
@@ -194,12 +191,11 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
     // Generate the beta-alpha excitations.
     std::cout << "BA" << std::endl;
     for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
-        std::cout << "i: " << i_beta << std::endl;
         for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
-            std::cout << "a: " << a_alpha << std::endl;
             auto alpha_part = alpha_reference;
             auto beta_part = beta_reference;
 
+            std::cout << "i: " << i_beta << " - a: " << a_alpha << std::endl;
             alpha_part.create(a_alpha);
             beta_part.annihilate(i_beta);
 

@@ -365,16 +365,14 @@ public:
      */
     template <typename Matrix>
     void evaluate(const ScalarUSQOneElectronOperator<double>& f, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
-        std::cout << "Lukt dit?" << std::endl;
+
         const auto dim = this->dimension();
         const auto& f_a = f.alpha().parameters();
         const auto& f_b = f.beta().parameters();
 
-        std::cout << "Code begint." << std::endl;
 
         for (; !container.isFinished(); container.increment()) {
             SpinResolvedONV onv_I = this->onvWithIndex(container.index);
-            std::cout << "ONV I: " << onv_I.asString() << std::endl;
             SpinUnresolvedONV alpha_I = onv_I.onv(Spin::alpha);
             SpinUnresolvedONV beta_I = onv_I.onv(Spin::beta);
 
@@ -393,7 +391,6 @@ public:
             for (size_t J = container.index + 1; J < dim; J++) {
 
                 SpinResolvedONV onv_J = this->onvWithIndex(J);
-                std::cout << "ONV J: " << onv_J.asString() << std::endl;
                 SpinUnresolvedONV alpha_J = onv_J.onv(Spin::alpha);
                 SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
 
@@ -504,7 +501,7 @@ public:
                 SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
 
                 // 1 excitation in the alpha part, 0 excitations in the beta part.
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 1) && (beta_I.countNumberOfExcitations(beta_J) == 0)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other.
                     size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
@@ -540,8 +537,7 @@ public:
                 }
 
                 // 0 excitations in the alpha part, 1 excitation in the beta part.
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
-
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 0) && (beta_I.countNumberOfExcitations(beta_J) == 1)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
@@ -577,15 +573,13 @@ public:
                 }
 
                 // 1 excititation in the alpha part, 1 excitation in the beta part.
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 1) && (beta_I.countNumberOfExcitations(beta_J) == 1)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
                     size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-
-                    size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                    size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-
+                    size_t r = beta_I.findDifferentOccupations(beta_J)[0];    // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t s = beta_J.findDifferentOccupations(beta_I)[0];    // we're sure that there is only 1 element in the std::vector<size_t>
                     int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
                     double value = 0.5 * 2 * g_ab(p, q, r, s);  // g_ab(pqrs) = g_ba(rspq)
 
@@ -594,7 +588,7 @@ public:
                 }
 
                 // 2 excitations in the alpha part, 0 excitations in the beta part.
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 2) && (beta_I.countNumberOfExcitations(beta_J) == 0)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
@@ -614,7 +608,7 @@ public:
                 }
 
                 // 0 excitations in the alpha part, 2 excitations in the beta part.
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 0) && (beta_I.countNumberOfExcitations(beta_J) == 2)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements

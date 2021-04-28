@@ -559,6 +559,24 @@ BOOST_AUTO_TEST_CASE(countNumberOfDifferences) {
 
 
 /**
+ *  Check if the `countNumberOfExcitations` method behaves correctly.
+ */
+BOOST_AUTO_TEST_CASE(countNumberOfExcitations) {
+
+    const GQCP::SpinUnresolvedONV onv1 {5, 3, 21};  // "10101" (21)
+    const GQCP::SpinUnresolvedONV onv2 {5, 3, 22};  // "10110" (22)
+    const GQCP::SpinUnresolvedONV onv3 {5, 3, 1};   // "00001" (1)
+
+    BOOST_CHECK_EQUAL(onv1.countNumberOfExcitations(onv1), 0);
+    BOOST_CHECK_EQUAL(onv2.countNumberOfExcitations(onv2), 0);
+    BOOST_CHECK_EQUAL(onv3.countNumberOfExcitations(onv3), 0);
+
+    BOOST_CHECK_EQUAL(onv1.countNumberOfExcitations(onv2), 1);
+    BOOST_CHECK_EQUAL(onv1.countNumberOfExcitations(onv3), 0);
+}
+
+
+/**
  *  Check if the `countNumberOfDifferences` method behaves correctly.
  */
 BOOST_AUTO_TEST_CASE(findDifferentOccupations) {
