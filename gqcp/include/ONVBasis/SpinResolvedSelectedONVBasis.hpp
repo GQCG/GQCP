@@ -395,7 +395,7 @@ public:
                 SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
 
                 // 1 excitation in the alpha part, 0 in the beta part.
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 1) && (beta_I.countNumberOfExcitations(beta_J) == 0)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other.
                     size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
@@ -410,7 +410,7 @@ public:
                 }
 
                 // 0 excitations in alpha part, 1 in the beta.
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 0) && (beta_I.countNumberOfExcitations(beta_J) == 1)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other.
                     size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.

@@ -1352,7 +1352,7 @@ public:
 
 
                 // 1 electron excitation in alpha (i.e. 2 differences), 0 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 1) && (beta_I.countNumberOfExcitations(beta_J) == 0)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
@@ -1366,7 +1366,7 @@ public:
 
 
                 // 1 electron excitation in beta, 0 in alpha
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 0) && (beta_I.countNumberOfExcitations(beta_J) == 1)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
@@ -1455,7 +1455,7 @@ public:
                 double c_J = this->coefficient(J);
 
                 // 1 electron excitation in alpha, 0 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 1) && (beta_I.countNumberOfExcitations(beta_J) == 0)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
@@ -1496,7 +1496,7 @@ public:
 
 
                 // 0 electron excitations in alpha, 1 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 0) && (beta_I.countNumberOfExcitations(beta_J) == 1)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
@@ -1537,7 +1537,7 @@ public:
 
 
                 // 1 electron excitation in alpha, 1 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 1) && (beta_I.countNumberOfExcitations(beta_J) == 1)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
@@ -1557,7 +1557,7 @@ public:
 
 
                 // 2 electron excitations in alpha, 0 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 2) && (beta_I.countNumberOfExcitations(beta_J) == 0)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
@@ -1584,7 +1584,7 @@ public:
 
 
                 // 0 electron excitations in alpha, 2 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
+                if ((alpha_I.countNumberOfExcitations(alpha_J) == 0) && (beta_I.countNumberOfExcitations(beta_J) == 2)) {
 
                     // Find the orbitals that are occupied in one string, and aren't in the other
                     std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
@@ -1665,7 +1665,7 @@ public:
                 const auto& c_J = this->coefficient(J);
 
                 // We only have a contribution if I and J are exactly 1 excitation away.
-                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+                if (onv_I.countNumberOfExcitations(onv_J) == 1) {
                     const auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but unoccupied in J.
                     const auto q = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but unoccupied in I.
 
@@ -1719,7 +1719,7 @@ public:
                 const auto& c_J = this->coefficient(J);
 
                 // Calculate the contribution if I and J are 1 excitation away.
-                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+                if (onv_I.countNumberOfExcitations(onv_J) == 1) {
 
                     // Determine the orbital indices that match the excitation.
                     const auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but unoccupied in J.
@@ -1748,7 +1748,7 @@ public:
                 }
 
                 // Calculate the contribution if I and J are 2 excitations away.
-                else if (onv_I.countNumberOfDifferences(onv_J) == 4) {
+                else if (onv_I.countNumberOfExcitations(onv_J) == 2) {
 
                     // Determine the orbital indices that match the excitation.
                     auto occupied_in_I = onv_I.findDifferentOccupations(onv_J);  // The orbitals that are occupied in J, but not in J.
