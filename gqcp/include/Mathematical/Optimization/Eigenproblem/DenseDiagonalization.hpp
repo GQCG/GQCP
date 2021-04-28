@@ -29,12 +29,15 @@ namespace GQCP {
 
 /**
  *  A step that performs a dense diagonalization.
+ * 
+ *  @tparam _Scalar         The scalar type of the matrix elements: real or complex.
  */
+template <typename _Scalar>
 class DenseDiagonalization:
-    public Step<EigenproblemEnvironment> {
-
-private:
-    size_t number_of_requested_eigenpairs;
+    public Step<EigenproblemEnvironment<_Scalar>> {
+public:
+    // The scalar type of the matrix elements: real or complex.
+    using Scalar = _Scalar;
 
 
 public:
@@ -55,12 +58,13 @@ public:
      * 
      *  @param environment              the environment that this step can read from and write to
      */
-    void execute(Environment& environment) override {
+    void execute(EigenproblemEnvironment<Scalar>& environment) override {
 
-        const auto& A = environment.A;                                  // a self-adjoint matrix
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver(A);  // this solves the eigenvalue problem
+        // Solve the eigenvalue problem using Eigen's routines.
+        const auto& A = environment.A;
+        Eigen::SelfAdjointEigenSolver<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> eigensolver {A};
 
-        // Write the eigenvalues and eigenvectors to the environment
+        // Write the eigenvalues and eigenvectors to the environment.
         environment.eigenvalues = eigensolver.eigenvalues();
         environment.eigenvectors = eigensolver.eigenvectors();
     }

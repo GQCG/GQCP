@@ -19,6 +19,7 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
@@ -107,19 +108,7 @@ void bindQCModelCILinearExpansionInterface(Class& py_class) {
 
         .def("onvBasis",
              &Type::onvBasis,
-             "Return the ONV basis that is related to this linear expansion wave function model.")
-
-
-        /*
-         * MARK: Entropy
-         */
-
-        .def(
-            "calculateShannonEntropy",
-            [](const Type& linear_expansion) {
-                return linear_expansion.calculateShannonEntropy();
-            },
-            "Return the Shannon entropy (information content) of the wave function.");
+             "Return the ONV basis that is related to this linear expansion wave function model.");
 }
 
 
@@ -181,18 +170,24 @@ void bindQCModelCILinearExpansionDensityMatrixInterface(Class& py_class) {
 void bindLinearExpansions(py::module& module) {
 
     // Define the python class related to a linear expansion of a Seniority Zero ONV basis and expose the necessary interfaces.
-    py::class_<LinearExpansion<SeniorityZeroONVBasis>> py_LinearExpansion_SeniorityZero {module, "LinearExpansion_SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis."};
+    py::class_<LinearExpansion<double, SeniorityZeroONVBasis>> py_LinearExpansion_SeniorityZero {module, "LinearExpansion_SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis."};
 
-    // Expose the bindings exclusive to this type of linear expansion
+    // Expose the bindings exclusive to this type of linear expansion.
     py_LinearExpansion_SeniorityZero
 
         /*
          * MARK: Entropy
          */
+        .def(
+            "calculateShannonEntropy",
+            [](const LinearExpansion<double, SeniorityZeroONVBasis>& linear_expansion) {
+                return linear_expansion.calculateShannonEntropy();
+            },
+            "Return the Shannon entropy (information content) of the wave function.")
 
         .def(
             "calculateSingleOrbitalEntropy",
-            [](const LinearExpansion<SeniorityZeroONVBasis>& linear_expansion, const size_t orbital_index) {
+            [](const LinearExpansion<double, SeniorityZeroONVBasis>& linear_expansion, const size_t orbital_index) {
                 return linear_expansion.calculateSingleOrbitalEntropy(orbital_index);
             },
             py::arg("orbital_index"),
@@ -205,9 +200,9 @@ void bindLinearExpansions(py::module& module) {
     bindQCModelCILinearExpansionDensityMatrixInterface(py_LinearExpansion_SeniorityZero);
 
     // Define the python class related to a linear expansion of a Spin Resolved ONV basis and expose the necessary interfaces.
-    py::class_<LinearExpansion<SpinResolvedONVBasis>> py_LinearExpansion_SpinResolved {module, "LinearExpansion_SpinResolved", "The linear expansion (configuration interaction) wave function model in a spin-resolved ONV basis."};
+    py::class_<LinearExpansion<double, SpinResolvedONVBasis>> py_LinearExpansion_SpinResolved {module, "LinearExpansion_SpinResolved", "The linear expansion (configuration interaction) wave function model in a spin-resolved ONV basis."};
 
-    // Expose the bindings exclusive to this type of linear expansion
+    // Expose the bindings exclusive to this type of linear expansion.
     py_LinearExpansion_SpinResolved
 
         /*
@@ -217,7 +212,7 @@ void bindLinearExpansions(py::module& module) {
         .def_static(
             "FromONVProjection",
             [](const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
-                return LinearExpansion<SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
+                return LinearExpansion<double, SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
             },
             py::arg("onv"),
             py::arg("r_spinor_basis"),
@@ -231,7 +226,7 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "basisTransform",
-            [](LinearExpansion<SpinResolvedONVBasis>& linear_expansion, const Eigen::MatrixXd& T) {
+            [](LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const Eigen::MatrixXd& T) {
                 return linear_expansion.basisTransform(RTransformation<double>(T));
             },
             py::arg("T"),
@@ -244,7 +239,7 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "forEach",
-            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion, const std::function<void(const double, const SpinResolvedONV)>& callback) {
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::function<void(const double, const SpinResolvedONV)>& callback) {
                 return linear_expansion.forEach(callback);
             },
             py::arg("callback"),
@@ -256,8 +251,15 @@ void bindLinearExpansions(py::module& module) {
          */
 
         .def(
+            "calculateShannonEntropy",
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateShannonEntropy();
+            },
+            "Return the Shannon entropy (information content) of the wave function.")
+
+        .def(
             "calculateSingleOrbitalEntropy",
-            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion, const size_t orbital_index) {
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const size_t orbital_index) {
                 return linear_expansion.calculateSingleOrbitalEntropy(orbital_index);
             },
             py::arg("orbital_index"),
@@ -270,7 +272,7 @@ void bindLinearExpansions(py::module& module) {
     bindQCModelCILinearExpansionDensityMatrixInterface(py_LinearExpansion_SpinResolved);
 
     // Define the python class related to a linear expansion of a Spin Resolved Selected ONV basis and expose the necessary interfaces.
-    py::class_<LinearExpansion<SpinResolvedSelectedONVBasis>> py_LinearExpansion_SpinResolvedSelected {module, "LinearExpansion_SpinResolvedSelected", "The linear expansion (configuration interaction) wave function model in a spin-resolved selected ONV basis."};
+    py::class_<LinearExpansion<double, SpinResolvedSelectedONVBasis>> py_LinearExpansion_SpinResolvedSelected {module, "LinearExpansion_SpinResolvedSelected", "The linear expansion (configuration interaction) wave function model in a spin-resolved selected ONV basis."};
 
     // Expose the bindings exclusive to this type of linear expansion
     py_LinearExpansion_SpinResolvedSelected
@@ -282,10 +284,22 @@ void bindLinearExpansions(py::module& module) {
         .def_static(
             "FromGAMESSUS",
             [](const std::string& GAMESSUS_filename) {
-                return LinearExpansion<SpinResolvedSelectedONVBasis>::FromGAMESSUS(GAMESSUS_filename);
+                return LinearExpansion<double, SpinResolvedSelectedONVBasis>::FromGAMESSUS(GAMESSUS_filename);
             },
             py::arg("GAMESSUS_filename"),
-            "Return the corresponding spin-resolved selected linear expansion from a given GAMESS-US file.");
+            "Return the corresponding spin-resolved selected linear expansion from a given GAMESS-US file.")
+
+        /*
+         *  MARK: Entropy
+         */
+
+        .def(
+            "calculateShannonEntropy",
+            [](const LinearExpansion<double, SpinResolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateShannonEntropy();
+            },
+            "Return the Shannon entropy (information content) of the wave function.");
+
 
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinResolvedSelected);
@@ -293,8 +307,9 @@ void bindLinearExpansions(py::module& module) {
     // Expose the linear expansion density matrix interface.
     bindQCModelCILinearExpansionDensityMatrixInterface(py_LinearExpansion_SpinResolvedSelected);
 
+
     // Define the python class related to a linear expansion of a Spin Unresolved ONV basis and expose the necessary interfaces.
-    py::class_<LinearExpansion<SpinUnresolvedONVBasis>> py_LinearExpansion_SpinUnresolved {module, "LinearExpansion_SpinUnresolved", "The linear expansion (configuration interaction) wave function model in a spin-unresolved ONV basis."};
+    py::class_<LinearExpansion<double, SpinUnresolvedONVBasis>> py_LinearExpansion_SpinUnresolved {module, "LinearExpansion_SpinUnresolved", "The linear expansion (configuration interaction) wave function model in a spin-unresolved ONV basis."};
 
     // Expose the bindings exclusive to this type of linear expansion
     py_LinearExpansion_SpinUnresolved
@@ -306,7 +321,7 @@ void bindLinearExpansions(py::module& module) {
         .def_static(
             "FromONVProjection",
             [](const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
-                return LinearExpansion<SpinUnresolvedONVBasis>::FromONVProjection(onv_of, spinor_basis_on, spinor_basis_of);
+                return LinearExpansion<double, SpinUnresolvedONVBasis>::FromONVProjection(onv_of, spinor_basis_on, spinor_basis_of);
             },
             py::arg("onv_of"),
             py::arg("spinor_basis_on"),
@@ -319,22 +334,114 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "calculate1DM",
-            [](const LinearExpansion<SpinUnresolvedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion) {
                 return linear_expansion.calculate1DM();
             },
             "Return the generalized one-electron density matrix.")
 
         .def(
             "calculateNDMElement",
-            [](const LinearExpansion<SpinUnresolvedONVBasis>& linear_expansion, const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) {
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) {
+                return linear_expansion.calculateNDMElement(bra_indices, ket_indices);
+            },
+            py::arg("bra_indices"),
+            py::arg("ket_indices"),
+            "Return an element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^dagger_0 a^dagger_1 a_2 a_1`.")
+
+        /*
+         *  MARK: Entropy
+         */
+
+        .def(
+            "calculateShannonEntropy",
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateShannonEntropy();
+            },
+            "Return the Shannon entropy (information content) of the wave function.");
+
+    // Expose the linear expansion interface.
+    bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinUnresolved);
+
+
+    // Define the python class related to a linear expansion of a spin unresolved selected ONV basis and expose the necessary interfaces.
+    py::class_<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>> py_LinearExpansion_SpinUnresolvedSelected_d {module, "LinearExpansion_SpinResolvedSelected_d", "The real-valued linear expansion (configuration interaction) wave function model in a spin-unresolved selected ONV basis."};
+
+    bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinUnresolvedSelected_d);
+
+    py_LinearExpansion_SpinUnresolvedSelected_d
+
+        /*
+         *  MARK: Density matrices
+         */
+
+        .def(
+            "calculate1DM",
+            [](const LinearExpansion<double, SpinUnresolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculate1DM();
+            },
+            "Return the generalized (G) 1-DM.")
+
+        .def(
+            "calculate2DM",
+            [](const LinearExpansion<double, SpinUnresolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculate2DM();
+            },
+            "Return the generalized (G) 2-DM.")
+
+        .def(
+            "calculateNDMElement",
+            [](const LinearExpansion<double, SpinUnresolvedSelectedONVBasis>& linear_expansion, const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) {
+                return linear_expansion.calculateNDMElement(bra_indices, ket_indices);
+            },
+            py::arg("bra_indices"),
+            py::arg("ket_indices"),
+            "Return an element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^dagger_0 a^dagger_1 a_2 a_1`.")
+
+        /*
+         *  MARK: Entropy
+         */
+
+        .def(
+            "calculateShannonEntropy",
+            [](const LinearExpansion<double, SpinUnresolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateShannonEntropy();
+            },
+            "Return the Shannon entropy (information content) of the wave function.");
+
+
+    // Define the python class related to a linear expansion of a spin unresolved selected ONV basis and expose the necessary interfaces.
+    py::class_<LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>> py_LinearExpansion_SpinUnresolvedSelected_cd {module, "LinearExpansion_SpinResolvedSelected_cd", "The complex-valued linear expansion (configuration interaction) wave function model in a spin-unresolved selected ONV basis."};
+
+    bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinUnresolvedSelected_cd);
+
+    py_LinearExpansion_SpinUnresolvedSelected_cd
+
+        /*
+         *  MARK: Density matrices
+         */
+
+        .def(
+            "calculate1DM",
+            [](const LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculate1DM();
+            },
+            "Return the generalized (G) 1-DM.")
+
+        .def(
+            "calculate2DM",
+            [](const LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculate2DM();
+            },
+            "Return the generalized (G) 2-DM.")
+
+        .def(
+            "calculateNDMElement",
+            [](const LinearExpansion<double, SpinUnresolvedSelectedONVBasis>& linear_expansion, const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) {
                 return linear_expansion.calculateNDMElement(bra_indices, ket_indices);
             },
             py::arg("bra_indices"),
             py::arg("ket_indices"),
             "Return an element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^dagger_0 a^dagger_1 a_2 a_1`.");
-
-    // Expose the linear expansion interface.
-    bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinUnresolved);
 }
 
 

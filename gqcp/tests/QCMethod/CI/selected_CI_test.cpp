@@ -55,8 +55,8 @@ BOOST_AUTO_TEST_CASE(restricted_selected_FCI) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, selected_onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
@@ -89,8 +89,8 @@ BOOST_AUTO_TEST_CASE(unrestricted_selected_FCI) {
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, selected_onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedSelectedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto electronic_energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
     // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
@@ -131,9 +131,9 @@ BOOST_AUTO_TEST_CASE(H2O_CIS) {
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(hamiltonian, onv_basis);
     std::cout << "Gelukt1" << std::endl;
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
     std::cout << "Gelukt2" << std::endl;
-    const auto ci_qc_structure = GQCP::QCMethod::CI<GQCP::SpinResolvedSelectedONVBasis>(onv_basis, onv_basis.dimension()).optimize(solver, environment);
+    const auto ci_qc_structure = GQCP::QCMethod::CI<double, GQCP::SpinResolvedSelectedONVBasis>(onv_basis, onv_basis.dimension()).optimize(solver, environment);
     std::cout << "Gelukt3" << std::endl;
 
     for (size_t i = 0; i < onv_basis.dimension(); i++) {

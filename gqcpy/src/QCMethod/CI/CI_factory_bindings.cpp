@@ -18,7 +18,9 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "QCMethod/CI/CI.hpp"
+#include "Utilities/complex.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -41,15 +43,16 @@ using namespace GQCP;
 /**
  *  Bind a factory-like method for a CI method.
  * 
- *  @tparam ONVBasis            the type of the ONV basis associated to the CI method
+ *  @tparam Scalar              The scalar type for a CI expansion coefficient: real or complex.
+ *  @tparam ONVBasis            The type of the ONV basis associated to the CI method.
  */
-template <typename ONVBasis>
+template <typename Scalar, typename ONVBasis>
 void bindCIFactoryMethod(py::module& module) {
 
     module.def(
         "CI",
         [](const ONVBasis& onv_basis, const size_t number_of_states = 1) {
-            return QCMethod::CI<ONVBasis>(onv_basis, number_of_states);
+            return QCMethod::CI<Scalar, ONVBasis>(onv_basis, number_of_states);
         },
         "Return an appropriate CI method.",
         py::arg("onv_basis"),
@@ -62,9 +65,23 @@ void bindCIFactoryMethod(py::module& module) {
  */
 void bindCIFactory(py::module& module) {
 
-    bindCIFactoryMethod<SeniorityZeroONVBasis>(module);
-    bindCIFactoryMethod<SpinResolvedONVBasis>(module);
-    bindCIFactoryMethod<SpinResolvedSelectedONVBasis>(module);
+    // Bind real-valued CI methods.
+    bindCIFactoryMethod<double, SeniorityZeroONVBasis>(module);
+    bindCIFactoryMethod<double, SpinResolvedONVBasis>(module);
+    bindCIFactoryMethod<double, SpinResolvedSelectedONVBasis>(module);
+
+    bindCIFactoryMethod<double, SpinUnresolvedSelectedONVBasis>(module);
+
+
+    // Bind complex-valued CI methods.
+    module.def(
+        "CI_cd",
+        [](const SpinUnresolvedSelectedONVBasis& onv_basis, const size_t number_of_states = 1) {
+            return QCMethod::CI<complex, SpinUnresolvedSelectedONVBasis>(onv_basis, number_of_states);
+        },
+        "Return an appropriate CI method.",
+        py::arg("onv_basis"),
+        py::arg("number_of_states") = 1);
 }
 
 

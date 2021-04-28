@@ -111,7 +111,7 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
 void bindIterativeAlgorithms(py::module& module) {
 
-    bindIterativeAlgorithm<EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that performs iterations using an EigenproblemEnvironment.");
+    bindIterativeAlgorithm<EigenproblemEnvironment<double>>(module, "EigenproblemEnvironment", "An algorithm that performs iterations using an EigenproblemEnvironment.");
     bindIterativeAlgorithm<NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An algorithm that performs iterations using a NonLinearEquationEnvironment.");
 
     bindIterativeAlgorithm<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");

@@ -16,9 +16,12 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
+#include "Utilities/complex.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -72,6 +75,28 @@ void bindCIEnvironments(py::module& module) {
     bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
     bindCIEnvironment<USQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
     bindCIEnvironment<HubbardHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving Hubbard problems.");
+
+    bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
+    bindCIEnvironment<USQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
+
+    // We haven't implemented matrix-vector products for `SpinUnresolvedSelectedONVBasis`, so we can't use the `Iterative` APIs.
+    submodule.def(
+        "Dense",
+        [](const GSQHamiltonian<double>& hamiltonian, const SpinUnresolvedSelectedONVBasis& onv_basis) {
+            return CIEnvironment::Dense(hamiltonian, onv_basis);
+        },
+        py::arg("hamiltonian"),
+        py::arg("onv_basis"),
+        "Return an environment suitable for solving spin-unresolved selected eigenvalue problems.");
+
+    submodule.def(
+        "Dense_cd",
+        [](const GSQHamiltonian<complex>& hamiltonian, const SpinUnresolvedSelectedONVBasis& onv_basis) {
+            return CIEnvironment::Dense(hamiltonian, onv_basis);
+        },
+        py::arg("hamiltonian"),
+        py::arg("onv_basis"),
+        "Return an environment suitable for solving spin-unresolved selected eigenvalue problems.");
 }
 
 

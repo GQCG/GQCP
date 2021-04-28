@@ -120,8 +120,10 @@ void bindONVPaths(py::module& module);
 void bindSeniorityZeroONVBasis(py::module& module);
 void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
+void bindSpinResolvedSelectedONVBasis(py::module& module);
 void bindSpinUnresolvedONV(py::module& module);
 void bindSpinUnresolvedONVBasis(py::module& module);
+void bindSpinUnresolvedSelectedONVBasis(py::module& module);
 
 
 // Operator - FirstQuantized
@@ -187,7 +189,7 @@ void bindCCSDSolver(py::module& module);
 // QCMethod - CI
 void bindCIEnvironments(py::module& module);
 void bindCIFactory(py::module& module);
-void bindQCMethodCIs(py::module& module);
+void bindQCMethodCI(py::module& module);
 
 
 // QCMethod - Geminals
@@ -360,8 +362,10 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSeniorityZeroONVBasis(module);
     gqcpy::bindSpinResolvedONV(module);
     gqcpy::bindSpinResolvedONVBasis(module);
+    gqcpy::bindSpinResolvedSelectedONVBasis(module);
     gqcpy::bindSpinUnresolvedONV(module);
     gqcpy::bindSpinUnresolvedONVBasis(module);
+    gqcpy::bindSpinUnresolvedSelectedONVBasis(module);
 
 
     // Operator - FirstQuantized
@@ -427,7 +431,7 @@ PYBIND11_MODULE(gqcpy, module) {
     // QCMethod - CI
     gqcpy::bindCIEnvironments(module);
     gqcpy::bindCIFactory(module);
-    gqcpy::bindQCMethodCIs(module);
+    gqcpy::bindQCMethodCI(module);
 
 
     // QCMethod - Geminals

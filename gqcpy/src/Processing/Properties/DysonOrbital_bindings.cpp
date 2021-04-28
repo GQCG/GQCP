@@ -35,7 +35,7 @@ void bindDysonOrbital(py::module& module) {
 
         .def_static(
             "TransitionAmplitudes",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion1, const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion2) {
+            [](const GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>& linear_expansion1, const GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>& linear_expansion2) {
                 return GQCP::DysonOrbital<double>::TransitionAmplitudes(linear_expansion1, linear_expansion2);
             },
             py::arg("linear_expansion1"),

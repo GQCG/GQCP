@@ -24,7 +24,7 @@ static void matvec(benchmark::State& state) {
     GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
     const auto f = GQCP::ScalarGSQOneElectronOperator<double>::Random(M);
-    const auto x = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis).coefficients();
+    const auto x = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis).coefficients();
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {

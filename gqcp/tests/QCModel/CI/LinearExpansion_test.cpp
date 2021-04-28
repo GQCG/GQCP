@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(reader_test) {
 
 
     // Read in the GAMESS-US file and check the results.
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::FromGAMESSUS("data/test_GAMESS_expansion");
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedSelectedONVBasis>::FromGAMESSUS("data/test_GAMESS_expansion");
 
     // Check if the expansion coefficients are correct.
     BOOST_CHECK(linear_expansion.coefficients().isApprox(ref_coefficients, 1.0e-08));
@@ -78,12 +78,12 @@ BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
 
     // Check the Shannon entropy of a Hartree-Fock expansion
-    const auto hartree_fock_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
+    const auto hartree_fock_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
     BOOST_CHECK(hartree_fock_expansion.calculateShannonEntropy() < 1.0e-12);  // Should be 0.
 
 
     // Check the maximal entropy, corresponding to a wave function with all equal coefficients different from zero.
-    const auto constant_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
+    const auto constant_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
     const double reference_entropy = std::log2(onv_basis.dimension());  // Manual derivation.
     BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
 
@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE(shannon_entropy) {
         x -= 1;
     }
 
-    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> negative_linear_expansion {onv_basis, coefficients};
+    const GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis> negative_linear_expansion {onv_basis, coefficients};
     BOOST_CHECK(std::abs(negative_linear_expansion.calculateShannonEntropy()) > 1.0e-12);  // Should be non-zero.
 }
 
@@ -123,9 +123,9 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
     const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 1};
 
     auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    auto linear_expansion = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
     // Check whether the method throws an exception if a non-existing orbital index is given.
     BOOST_CHECK_THROW(linear_expansion.calculateSingleOrbitalEntropy(4);, std::invalid_argument);  // Orbital index is larger than the amount of orbitals.
@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
 
     // Set up a Hubbard Hamiltonian.
     // First, set up an adjacency matrix.
-    const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(3);
+    const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(4);
 
     // Next, we use the adjacency matrix to create the Hopping Matrix.
     const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
@@ -148,20 +148,20 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
 
     // Next, densely solve the Hubbard CI problem to find the linear expansion.
-    const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 1};
+    const GQCP::SpinResolvedONVBasis onv_basis {4, 2, 2};
 
     auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    auto linear_expansion = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
     // Calculate the single orbital entropy of Hubbard site `0`.
     const auto S = linear_expansion.calculateSingleOrbitalEntropy(0);
 
     // Check the result against the python implementation from @lelemmen. (https://github.com/GQCG-res/constrained-entanglement/blob/develop/notebooks/Hubbard-Redistribution.ipynb)
-    const auto ref = 1.3368931003343159;  // From @lelemmen's python implementation.
+    const auto ref = 1.3158104686901617;  // From @lelemmen's python implementation.
 
-    BOOST_CHECK(std::abs(S - ref) < 1.0e-06);
+    BOOST_CHECK(std::abs(S - ref) < 1.0e-08);
 }
 
 
@@ -186,9 +186,9 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver_direct = GQCP::EigenproblemSolver::Dense();
+    auto solver_direct = GQCP::EigenproblemSolver::Dense<double>();
 
-    auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
+    auto linear_expansion_direct = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
     // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
@@ -200,9 +200,9 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
     GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver_indirect = GQCP::EigenproblemSolver::Dense();
+    auto solver_indirect = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion_indirect = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
+    const auto linear_expansion_indirect = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
     BOOST_CHECK(linear_expansion_direct.isApprox(linear_expansion_indirect, 1.0e-12));
 }
 
@@ -228,9 +228,9 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver_direct = GQCP::EigenproblemSolver::Dense();
+    auto solver_direct = GQCP::EigenproblemSolver::Dense<double>();
 
-    auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
+    auto linear_expansion_direct = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
     // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
@@ -242,9 +242,9 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
     GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver_indirect = GQCP::EigenproblemSolver::Dense();
+    auto solver_indirect = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion_indirect = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
+    const auto linear_expansion_indirect = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
     BOOST_CHECK(linear_expansion_direct.isApprox(linear_expansion_indirect, 1.0e-12));
 }
 
@@ -271,9 +271,9 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver_direct = GQCP::EigenproblemSolver::Dense();
+    auto solver_direct = GQCP::EigenproblemSolver::Dense<double>();
 
-    auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
+    auto linear_expansion_direct = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
     // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
@@ -285,9 +285,9 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
     GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver_indirect = GQCP::EigenproblemSolver::Dense();
+    auto solver_indirect = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion_indirect = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
+    const auto linear_expansion_indirect = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
     BOOST_CHECK(linear_expansion_direct.isApprox(linear_expansion_indirect, 1.0e-12));
 }
 
@@ -302,19 +302,19 @@ BOOST_AUTO_TEST_CASE(expansions) {
 
 
     // Check if ::Constant yields a normalized linear expansion.
-    const auto constant_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
-    BOOST_CHECK(std::abs(constant_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // check if the coefficient vector is normalized
+    const auto constant_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
+    BOOST_CHECK(std::abs(constant_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // Check if the coefficient vector is normalized.
 
 
     // Check if ::HartreeFock yields a normalized linear expansion.
-    const auto hartree_fock_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
-    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // check if the coefficient vector is normalized
-    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients()(0) - 1.0) < 1.0e-12);      // the Hartree-Fock determinant should be the first one
+    const auto hartree_fock_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
+    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // Check if the coefficient vector is normalized.
+    BOOST_CHECK(std::abs(hartree_fock_expansion.coefficients()(0) - 1.0) < 1.0e-12);      // The Hartree-Fock determinant should be the first one.
 
 
     // Check if ::Random yields a normalized linear expansion.
-    const auto random_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
-    BOOST_CHECK(std::abs(random_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // check if the coefficient vector is normalized
+    const auto random_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    BOOST_CHECK(std::abs(random_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // Check if the coefficient vector is normalized.
 }
 
 
@@ -331,7 +331,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_throws) {
     GQCP::VectorX<double> coefficients {onv_basis.dimension()};
     coefficients << 1, 2, -3;
 
-    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+    const GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
 
 
     // Check if calculateNDMElement throws as expected.
@@ -353,7 +353,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_1DM) {
     GQCP::VectorX<double> coefficients {onv_basis.dimension()};
     coefficients << 1, 2, -3;
 
-    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+    const GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
 
 
     // Check some 1-DM values.
@@ -376,7 +376,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM) {
     GQCP::VectorX<double> coefficients {onv_basis.dimension()};
     coefficients << 1, 2, -3;
 
-    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+    const GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
 
 
     // Check some 2-DM values.
@@ -400,7 +400,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_3DM) {
     GQCP::VectorX<double> coefficients {onv_basis.dimension()};
     coefficients << 1, 1, -2, 4, -5;
 
-    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+    const GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
 
 
     // Check some 3-DM values.
@@ -452,7 +452,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_3DM) {
 
 
 //     const auto uhf_onv = GQCP::SpinResolvedONV::UHF(4, 2, 2);
-//     const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::FromONVProjection(uhf_onv, r_spinor_basis, u_spinor_basis);
+//     const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::FromONVProjection(uhf_onv, r_spinor_basis, u_spinor_basis);
 
 //     std::cout << linear_expansion.coefficients() << std::endl;
 // }
@@ -481,14 +481,14 @@ BOOST_AUTO_TEST_CASE(spin_resolved_vs_spin_resolved_selected_DMs) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion_specialized = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    const auto linear_expansion_specialized = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
     // Convert the 'specialized' linear expansion into a 'selected' linear expansion.
     const GQCP::SpinResolvedSelectedONVBasis onv_basis_selected {onv_basis};
-    const auto linear_expansion_selected = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(onv_basis_selected, linear_expansion_specialized.coefficients());
+    const auto linear_expansion_selected = GQCP::LinearExpansion<double, GQCP::SpinResolvedSelectedONVBasis>(onv_basis_selected, linear_expansion_specialized.coefficients());
 
 
     // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
@@ -534,14 +534,14 @@ BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
     const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
 
-    const auto linear_expansion_specialized = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+    const auto linear_expansion_specialized = GQCP::QCMethod::CI<double, GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
     // Convert the 'specialized' linear expansion into a 'selected' linear expansion.
     const GQCP::SpinResolvedSelectedONVBasis onv_basis_selected {onv_basis};
-    const auto linear_expansion_selected = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(onv_basis_selected, linear_expansion_specialized.coefficients());
+    const auto linear_expansion_selected = GQCP::LinearExpansion<double, GQCP::SpinResolvedSelectedONVBasis>(onv_basis_selected, linear_expansion_specialized.coefficients());
 
 
     // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
@@ -575,7 +575,7 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_NDM) {
     const size_t N = 2;
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
-    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
 
 
     // Check some 1-DM values with calculateNDMElement().
@@ -597,17 +597,18 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_ref_SpinResolved) {
     const size_t N = 2;
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
-    const auto linear_expansion_unresolved = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion_unresolved = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
     const auto D_unresolved = linear_expansion_unresolved.calculate1DM();
 
 
     // Create an equivalent, spin-resolved linear expansion.
     const GQCP::SpinResolvedONVBasis onv_basis_resolved {M, N, 0};  // Only alpha electrons to mimic a spin-unresolved case.
-    const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, linear_expansion_unresolved.coefficients()};
+    const GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, linear_expansion_unresolved.coefficients()};
 
     const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions anyways.
     BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
 }
+
 
 /**
  *  Check some 1-DM values calculated for the SpinUnresolvedONVBasis by comparing them to an equivalent spin-resolved calculation.
@@ -619,14 +620,190 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_ref_SpinResolved_doubleCheck) {
     const size_t N = 3;
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
-    const auto linear_expansion_unresolved = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    const auto linear_expansion_unresolved = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
     const auto D_unresolved = linear_expansion_unresolved.calculate1DM();
 
 
     // Create an equivalent, spin-resolved linear expansion.
     const GQCP::SpinResolvedONVBasis onv_basis_resolved {M, N, 0};  // Only alpha electrons to mimic a spin-unresolved case.
-    const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, linear_expansion_unresolved.coefficients()};
+    const GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, linear_expansion_unresolved.coefficients()};
 
     const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions anyways.
     BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
+}
+
+
+/**
+ *  Check the real-valued `calculateNDMElement` implementation for the full spin-unresolved ONV basis and an equivalent selected spin-unresolved ONV basis.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_unresolved_vs_selected_real) {
+
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const auto linear_expansion = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+
+
+    // Create an equivalent spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedSelectedONVBasis onv_basis_selected {onv_basis};
+    const GQCP::LinearExpansion<double, GQCP::SpinUnresolvedSelectedONVBasis> linear_expansion_selected {onv_basis_selected, linear_expansion.coefficients()};
+
+
+    // Check some 1-DM values with calculateNDMElement().
+    GQCP::MatrixX<double> D_unresolved = GQCP::MatrixX<double>::Zero(M, M);
+    GQCP::MatrixX<double> D_unresolved_selected = GQCP::MatrixX<double>::Zero(M, M);
+    for (size_t p = 0; p < M; p++) {
+        for (size_t q = 0; q < M; q++) {
+            D_unresolved(p, q) = linear_expansion.calculateNDMElement({p}, {q});
+            D_unresolved_selected(p, q) = linear_expansion_selected.calculateNDMElement({p}, {q});
+        }
+    }
+
+    BOOST_CHECK(D_unresolved.isApprox(D_unresolved_selected, 1.0e-12));
+}
+
+
+/**
+ *  Check the `calculateNDMElement` implementation for the full spin-unresolved ONV basis and an equivalent selected spin-unresolved ONV basis.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_unresolved_vs_selected_complex) {
+
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const auto linear_expansion = GQCP::LinearExpansion<GQCP::complex, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+
+
+    // Create an equivalent spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedSelectedONVBasis onv_basis_selected {onv_basis};
+    const GQCP::LinearExpansion<GQCP::complex, GQCP::SpinUnresolvedSelectedONVBasis> linear_expansion_selected {onv_basis_selected, linear_expansion.coefficients()};
+
+
+    // Check some 1-DM values with calculateNDMElement().
+    GQCP::MatrixX<GQCP::complex> D_unresolved = GQCP::MatrixX<GQCP::complex>::Zero(M, M);
+    GQCP::MatrixX<GQCP::complex> D_unresolved_selected = GQCP::MatrixX<GQCP::complex>::Zero(M, M);
+    for (size_t p = 0; p < M; p++) {
+        for (size_t q = 0; q < M; q++) {
+            D_unresolved(p, q) = linear_expansion.calculateNDMElement({p}, {q});
+            D_unresolved_selected(p, q) = linear_expansion_selected.calculateNDMElement({p}, {q});
+        }
+    }
+
+    BOOST_CHECK(D_unresolved.isApprox(D_unresolved_selected, 1.0e-12));
+}
+
+
+/**
+ *  Check the 1-DM and 2-DM values calculated for the SpinUnresolvedONVBasis by comparing them to an equivalent spin-resolved calculation.
+ */
+BOOST_AUTO_TEST_CASE(SelectedSpinResolved_vs_SelectedSpinUnresolved_1DM_2DM) {
+
+    // Set up an example linear expansion in a spin-unresolved ONV basis.
+    const size_t M = 5;
+    const size_t N = 2;
+    const GQCP::SpinUnresolvedONVBasis onv_basis_unresolved {M, N};
+    const GQCP::SpinUnresolvedSelectedONVBasis onv_basis_unresolved_selected {onv_basis_unresolved};
+
+    const auto linear_expansion_unresolved = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedSelectedONVBasis>::Random(onv_basis_unresolved_selected);
+    const auto D_unresolved = linear_expansion_unresolved.calculate1DM();
+    const auto d_unresolved = linear_expansion_unresolved.calculate2DM();
+
+
+    // Create an equivalent, spin-resolved linear expansion.
+    const GQCP::SpinResolvedONVBasis onv_basis_resolved {M, N, 0};  // Only alpha electrons to mimic a spin-unresolved case.
+    const GQCP::SpinResolvedSelectedONVBasis onv_basis_resolved_selected {onv_basis_resolved};
+    const GQCP::LinearExpansion<double, GQCP::SpinResolvedSelectedONVBasis> linear_expansion_resolved {onv_basis_resolved_selected, linear_expansion_unresolved.coefficients()};
+
+    const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions.
+    const auto d_resolved = linear_expansion_resolved.calculate2DM();  // This is the orbital 1-DM, but there are no beta contributions.
+
+    BOOST_CHECK(D_unresolved.matrix().isApprox(D_resolved.matrix(), 1.0e-12));
+    BOOST_CHECK(d_unresolved.tensor().isApprox(d_resolved.tensor(), 1.0e-12));
+}
+
+
+/**
+ *  Check if, for a real wave function, the contraction of the density matrices for a spin-unresolved selected CI calculation yields the ground-state energy.
+ */
+BOOST_AUTO_TEST_CASE(SpinUnresolvedSelected_1DM_2DM_expectation_value_real) {
+
+    // Create the molecular Hamiltonian in the Löwdin basis, and use a random complex unitary rotation.
+    const auto molecule = GQCP::Molecule::HChain(4, 1.0);
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto M = spinor_basis.numberOfSpinors();
+    spinor_basis.lowdinOrthonormalize();
+    const auto U = GQCP::GTransformation<double>::RandomUnitary(M);
+    spinor_basis.transform(U);
+
+    const auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+
+    // Set up the full spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const GQCP::SpinUnresolvedSelectedONVBasis selected_onv_basis {onv_basis};
+
+
+    // Solve the CI problem by creating a dense solver and corresponding environment and putting them together in the QCMethod.
+    auto environment = GQCP::CIEnvironment::Dense(hamiltonian, selected_onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto qc_structure = GQCP::QCMethod::CI<double, GQCP::SpinUnresolvedSelectedONVBasis>(selected_onv_basis).optimize(solver, environment);
+
+    const auto energy = qc_structure.groundStateEnergy();
+
+
+    // Calculate the electronic energy using a contraction of the 1- and 2-DMs, and check if it is equal to the ground state eigenvalue.
+    const auto& linear_expansion = qc_structure.groundStateParameters();
+    const auto D = linear_expansion.calculate1DM();
+    const auto d = linear_expansion.calculate2DM();
+
+    const auto energy_by_contraction = hamiltonian.core().calculateExpectationValue(D)() + hamiltonian.twoElectron().calculateExpectationValue(d)();  // Access the 'scalar' component through an empty call.
+    BOOST_CHECK(std::abs(energy - energy_by_contraction) < 1.0e-12);
+}
+
+
+/**
+ *  Check if, for a complex wave function, the contraction of the density matrices for a spin-unresolved selected CI calculation yields the ground-state energy.
+ */
+BOOST_AUTO_TEST_CASE(SpinUnresolvedSelected_1DM_2DM_expectation_value_complex) {
+
+    // Create the molecular Hamiltonian in the Löwdin basis, and use a random complex unitary rotation.
+    const auto molecule = GQCP::Molecule::HChain(4, 1.0);
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto M = spinor_basis.numberOfSpinors();
+
+    spinor_basis.lowdinOrthonormalize();
+    const auto U = GQCP::GTransformation<GQCP::complex>::RandomUnitary(M);
+    spinor_basis.transform(U);
+
+    const auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+
+    // Set up the full spin-unresolved selected ONV basis.
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const GQCP::SpinUnresolvedSelectedONVBasis selected_onv_basis {onv_basis};
+
+
+    // Solve the complex CI problem by creating a dense solver and corresponding environment and putting them together in the QCMethod.
+    auto environment = GQCP::CIEnvironment::Dense(hamiltonian, selected_onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense<GQCP::complex>();
+    const auto qc_structure = GQCP::QCMethod::CI<GQCP::complex, GQCP::SpinUnresolvedSelectedONVBasis>(selected_onv_basis).optimize(solver, environment);
+
+    const auto energy = qc_structure.groundStateEnergy();
+
+
+    // Calculate the electronic energy using a contraction of the 1- and 2-DMs, and check if it is equal to the ground state eigenvalue.
+    const auto& linear_expansion = qc_structure.groundStateParameters();
+    const auto D = linear_expansion.calculate1DM();
+    const auto d = linear_expansion.calculate2DM();
+
+    const auto energy_by_contraction = hamiltonian.core().calculateExpectationValue(D)() + hamiltonian.twoElectron().calculateExpectationValue(d)();  // Access the 'scalar' component through an empty call.
+    BOOST_CHECK(std::abs(energy - energy_by_contraction) < 1.0e-12);
 }

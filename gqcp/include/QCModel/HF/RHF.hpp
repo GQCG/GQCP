@@ -931,6 +931,75 @@ public:
      */
 
     /**
+     *  Calculate the magnetic inducibility on the given point using the ipsocentric CSGT method.
+     *
+     *  @param r                        The point.
+     *  @param orbital_space            The RHF occupied-virtual separation.
+     *  @param x_B                      The RHF linear response with respect to the magnetic field perturbation.
+     *  @param x_G                      The RHF linear response with respect to the gauge origin translation perturbation.
+     *  @param j_op                     The second-quantized representation of the field-free current density operator in the RHF orbital basis.
+     *
+     *  @return The magnetic inducibility evaluated at the given point.
+     */
+    static Matrix<complex, 3, 3> calculateIpsocentricMagneticInducibility(const Vector<double, 3>& r, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 6>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<complex, CartesianGTO>>& j_op) {
+
+        using namespace GQCP::literals;
+
+        // Prepare some variables.
+        const auto& j = j_op.allParameters();
+        Matrix<complex, 3, 3> J = Matrix<complex, 3, 3>::Zero();
+
+        // Loop over both components of the magnetic inducibility.
+        for (size_t u = 0; u < 3; u++) {      // `u` loops over the component of the induced current.
+            for (size_t m = 0; m < 3; m++) {  // `m` loops over the component of the applied external magnetic field.
+
+                // Initialize a more useful matrix representation of the linear response coefficients related to the magnetic field perturbation.
+                auto x_m_matrix = MatrixX<complex>::FromColumnMajorVector(x_B.col(m), orbital_space.numberOfOrbitals(OccupationType::k_virtual), orbital_space.numberOfOrbitals(OccupationType::k_occupied));
+                auto x_m = orbital_space.createRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied, x_m_matrix);
+
+                for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+
+                        // Determine the left factor, i.e. the contribution from the field-free current density matrix elements.
+                        complex left_value = 2.0_ii * j[u](i, a)(r);
+
+                        // Determine the right factor, i.e. the contribution from the linear response coefficients.
+
+                        // 1. The linear response coefficient related to the magnetic field perturbation.
+                        complex right_value = -1.0_ii * x_m(a, i);
+
+                        // 2. The linear response coefficient related to the gauge origin translation perturbation.
+                        for (size_t n = 0; n < 3; n++) {
+
+                            // 'm' cannot be equal to 'n': there is no such linear response.
+                            if (n == m) {
+                                continue;
+                            }
+
+                            // Determine the compound index 'mn' of the dyadic Cartesian direction in the 6-column matrix representation.
+                            const auto row_major_index = 3 * m + n;
+                            const auto mn = row_major_index < 4 ? row_major_index - 1 : row_major_index - 2;
+
+                            // Initialize a more useful matrix representation of the linear response coefficients related to the gauge origin translation perturbation.
+                            auto epsilon_mn_matrix = MatrixX<complex>::FromColumnMajorVector(x_G.col(mn), orbital_space.numberOfOrbitals(OccupationType::k_virtual), orbital_space.numberOfOrbitals(OccupationType::k_occupied));
+                            auto epsilon_mn = orbital_space.createRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied, epsilon_mn_matrix);
+
+                            // Use the ipsocentric CSGT step, i.e. d = r - G_0 with G_0 the gauge origin (i.e. the origin).
+                            right_value += -1.0_ii * epsilon_mn(a, i) * r(n);
+                        }
+
+                        J(u, m) += 2_ii * left_value * right_value;
+                        assert(J(u, m).imag() < 1.0e-12);  // The magnetic inducibility should be a real-valued quantity.
+                    }
+                }
+            }
+        }
+
+        return J;
+    }
+
+
+    /**
      *  Calculate the magnetic inducibility on the given grid using the ipsocentric CSGT method.
      *
      *  @param grid                     The grid.
@@ -945,55 +1014,12 @@ public:
 
         using namespace GQCP::literals;
 
-        const auto& j = j_op.allParameters();
-
         // Evaluate the value of the magnetic inducibility for every point of the grid.
         std::vector<Matrix<complex, 3, 3>> J_field_values;
         J_field_values.reserve(grid.numberOfPoints());
 
-        grid.forEach([&orbital_space, &x_B, &x_G, &J_field_values, &j](const Vector<double, 3>& r) {
-            Matrix<complex, 3, 3> J = Matrix<complex, 3, 3>::Zero();
-
-            // Loop over both components of the magnetic inducibility.
-            for (size_t u = 0; u < 3; u++) {      // `u` loops over the component of the induced current.
-                for (size_t m = 0; m < 3; m++) {  // `m` loops over the component of the applied external magnetic field.
-
-                    // Initialize a more useful matrix representation of the linear response coefficients related to the magnetic field perturbation.
-                    auto x_m_matrix = MatrixX<complex>::FromColumnMajorVector(x_B.col(m), orbital_space.numberOfOrbitals(OccupationType::k_virtual), orbital_space.numberOfOrbitals(OccupationType::k_occupied));
-                    auto x_m = orbital_space.createRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied, x_m_matrix);
-
-                    for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-
-                            // Determine the left factor, i.e. the contribution from the field-free current density matrix elements.
-                            complex left_value = 2.0_ii * j[u](i, a)(r);
-
-                            // Determine the right factor, i.e. the contribution from the linear response coefficients.
-
-                            // 1. The linear response coefficient related to the magnetic field perturbation.
-                            complex right_value = -1.0_ii * x_m(a, i);
-
-                            // 2. The linear response coefficient related to the gauge origin translation perturbation.
-                            for (size_t n = 0; n != m; n++) {
-
-                                // Determine the compound index 'mn' of the dyadic Cartesian direction in the 6-column matrix representation.
-                                const auto row_major_index = 3 * m + n;
-                                const auto mn = row_major_index < 4 ? row_major_index - 1 : row_major_index - 2;
-
-                                // Initialize a more useful matrix representation of the linear response coefficients related to the gauge origin translation perturbation.
-                                auto epsilon_mn_matrix = MatrixX<complex>::FromColumnMajorVector(x_G.col(mn), orbital_space.numberOfOrbitals(OccupationType::k_virtual), orbital_space.numberOfOrbitals(OccupationType::k_occupied));
-                                auto epsilon_mn = orbital_space.createRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied, epsilon_mn_matrix);
-
-                                // Use the ipsocentric CSGT step, i.e. d = r - G_0 with G_0 the gauge origin (i.e. the origin).
-                                right_value += -1.0_ii * epsilon_mn(a, i) * r(n);
-                            }
-
-                            J(u, m) += 2_ii * left_value * right_value;
-                            assert(J(u, m).imag() < 1.0e-12);  // The magnetic inducibility should be a real-valued quantity.
-                        }
-                    }
-                }
-            }
+        grid.forEach([&orbital_space, &x_B, &x_G, &J_field_values, &j_op](const Vector<double, 3>& r) {
+            const auto J = RHF<complex>::calculateIpsocentricMagneticInducibility(r, orbital_space, x_B, x_G, j_op);
             J_field_values.push_back(J);
         });
 

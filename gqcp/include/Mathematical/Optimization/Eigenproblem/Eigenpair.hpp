@@ -26,25 +26,34 @@ namespace GQCP {
 
 /**
  *  A container class to store an eigenpair, i.e. an eigenvector with a corresponding eigenvalue.
+ * 
+ *  @tparam _EigenvalueScalar           The scalar type for the representation of an eigenvalue: real or complex.
+ *  @tparam _EigenvectorScalar          The scalar type for the representation of one of the coefficients of an eigenvector: real or complex;
  */
-template <typename _Scalar = double>
+template <typename _EigenvalueScalar, typename _EigenvectorScalar>
 class Eigenpair {
 public:
-    using Scalar = _Scalar;
+    // The scalar type for the representation of an eigenvalue: real or complex.
+    using EigenvalueScalar = _EigenvalueScalar;
+
+
+    // The scalar type for the representation of one of the coefficients of an eigenvector: real or complex.
+    using EigenvectorScalar = _EigenvectorScalar;
+
 
 private:
-    Scalar m_eigenvalue;
-    VectorX<Scalar> m_eigenvector;
+    EigenvalueScalar m_eigenvalue;
+    VectorX<EigenvectorScalar> m_eigenvector;
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param eigenvalue       The eigenvalue.
-     *  @param eigenvector      The eigenvector.
+     *  @param eigenvalue           The eigenvalue.
+     *  @param eigenvector          The eigenvector.
      */
-    Eigenpair(const Scalar eigenvalue, const VectorX<Scalar>& eigenvector) :
+    Eigenpair(const EigenvalueScalar eigenvalue, const VectorX<EigenvectorScalar>& eigenvector) :
         m_eigenvalue {eigenvalue},
         m_eigenvector {eigenvector} {}
 
@@ -54,7 +63,7 @@ public:
      *  @param dimension        The dimension of the eigenvector.
      */
     explicit Eigenpair(const size_t dimension = 1) :
-        Eigenpair(0.0, VectorX<double>::Zero(dimension)) {}
+        Eigenpair(0.0, VectorX<EigenvectorScalar>::Zero(dimension)) {}
 
 
     // PUBLIC METHODS
@@ -62,14 +71,14 @@ public:
     /**
      *  @return The eigenvalue associated to this eigenpair.
      */
-    Scalar eigenvalue() const { return this->m_eigenvalue; };
+    EigenvalueScalar eigenvalue() const { return this->m_eigenvalue; };
 
     /**
      * A function that returns the eigenvector associated to this eigenpair.
      * 
      *  @return the eigenvector associated to this eigenpair
      */
-    const VectorX<Scalar>& eigenvector() const { return this->m_eigenvector; };
+    const VectorX<EigenvectorScalar>& eigenvector() const { return this->m_eigenvector; };
 
     /**
      *  Check if this Eigenpair is equal to the other Eigenpair.

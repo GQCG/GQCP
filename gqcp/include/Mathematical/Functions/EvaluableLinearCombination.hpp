@@ -273,16 +273,28 @@ public:
      *
      *  @param coefficients         The coefficient that should be appended to this linear combination.
      *  @param functions            The function that should be appended to this linear combination.
+     */
+    void append(const Coefficient& coefficient, const FunctionType& function) {
+
+        this->m_coefficients.push_back(coefficient);
+        this->m_functions.push_back(function);
+    }
+
+
+    /**
+     *  Append the given coefficient and function to this linear combination, but only if the coefficients are larger than the given threshold.
+     * 
+     *  @param coefficients         The coefficient that should be appended to this linear combination.
+     *  @param functions            The function that should be appended to this linear combination.
      *  @param threshold            The threshold for the (absolute value of the) coefficient in order to be included in this linear combination.
      */
-    void append(const Coefficient& coefficient, const FunctionType& function, const double threshold = 1.0e-16) {
+    void appendWithThreshold(const Coefficient& coefficient, const FunctionType& function, const double threshold = 1.0e-16) {
 
         // Only enlarge the linear combination for sufficiently large coefficients.
         if (std::abs(coefficient) < threshold) {
             return;
         } else {
-            this->m_coefficients.push_back(coefficient);
-            this->m_functions.push_back(function);
+            this->append(coefficient, function);
         }
     }
 

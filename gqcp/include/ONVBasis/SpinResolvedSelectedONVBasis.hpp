@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A spin-resolved basis that is flexible in its compromising (spin-resolved) ONVs.
+ *  A spin-resolved ONV basis with a flexible number of (spin-resolved) ONVs.
  */
 class SpinResolvedSelectedONVBasis {
 private:

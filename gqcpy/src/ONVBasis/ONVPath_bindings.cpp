@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ONVBasis/ONVPath.hpp"
-#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
 #include <pybind11/eigen.h>
@@ -140,7 +139,6 @@ void bindONVPath(py::module& module, const std::string& suffix, const std::strin
 
 void bindONVPaths(py::module& module) {
 
-    // bindONVPath<SpinResolvedONVBasis>(module, "SpinResolved", "A path like representation of a spin resolved ONV.");
     bindONVPath<SpinUnresolvedONVBasis>(module, "SpinUnresolved", "A path like representation of a spin unresolved ONV.");
 }
 

@@ -53,10 +53,10 @@ auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecul
 // Do a dense FCI calculation.
 const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
-auto solver = GQCP::EigenproblemSolver::Dense();
+auto solver = GQCP::EigenproblemSolver::Dense<double>();
 auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
 
-const auto qc_structure = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment);
+const auto qc_structure = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment);
 const auto energy = qc_structure.groundStateEnergy()
 const auto linear_expansion = qc_structure.groundStateParameters();
 ```

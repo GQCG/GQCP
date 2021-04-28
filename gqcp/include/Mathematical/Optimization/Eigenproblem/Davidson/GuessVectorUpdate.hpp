@@ -29,7 +29,7 @@ namespace GQCP {
  *  A step that calculates new guesses for the eigenvectors from the diagonalized subspace matrix.
  */
 class GuessVectorUpdate:
-    public Step<EigenproblemEnvironment> {
+    public Step<EigenproblemEnvironment<double>> {
 
 public:
     /*
@@ -49,9 +49,9 @@ public:
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
-    void execute(EigenproblemEnvironment& environment) override {
+    void execute(EigenproblemEnvironment<double>& environment) override {
 
-        // X contains the new guesses for the eigenvectors, V is the subspace and Z are the eigenvectors of the subspace matrix
+        // X contains the new guesses for the eigenvectors, V is the subspace and Z are the eigenvectors of the subspace matrix.
         environment.X = environment.V * environment.Z;  // X is a linear combination of the current subspace vectors
         environment.eigenvectors = environment.X;
     }

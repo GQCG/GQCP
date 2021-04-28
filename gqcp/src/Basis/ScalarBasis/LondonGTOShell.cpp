@@ -64,7 +64,7 @@ std::vector<LondonGTOShell::BasisFunction> LondonGTOShell::basisFunctions() cons
             const auto& gto_primitive = gto_primitives[c];
 
             const LondonCartesianGTO london_primitive {this->magneticField(), gto_primitive};
-            london_basis_function.append({coefficient}, {london_primitive});
+            london_basis_function.append(coefficient, london_primitive);
         }
 
         london_basis_functions.push_back(london_basis_function);

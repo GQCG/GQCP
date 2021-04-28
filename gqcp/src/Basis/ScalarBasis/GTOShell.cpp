@@ -231,7 +231,7 @@ std::vector<GTOShell::BasisFunction> GTOShell::basisFunctions() const {
             auto coefficient = contraction_coefficients[d];
             const CartesianGTO function {gaussian_exponents[d], cartesian_exponents, this->nucleus().position()};
 
-            basis_function.append({coefficient}, {function});
+            basis_function.append(coefficient, function);
         }
 
         basis_functions.push_back(basis_function);
