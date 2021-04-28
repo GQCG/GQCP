@@ -558,6 +558,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const U
 
     // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container {this->dimension()};
+    std::cout << "Container maken lukt." << std::endl;
     this->evaluate<SquareMatrix<double>>(hamiltonian, container);
 
     return container.evaluation();

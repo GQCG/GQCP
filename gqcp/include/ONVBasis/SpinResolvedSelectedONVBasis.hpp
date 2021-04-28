@@ -365,13 +365,16 @@ public:
      */
     template <typename Matrix>
     void evaluate(const ScalarUSQOneElectronOperator<double>& f, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
-
+        std::cout << "Lukt dit?" << std::endl;
         const auto dim = this->dimension();
         const auto& f_a = f.alpha().parameters();
         const auto& f_b = f.beta().parameters();
 
+        std::cout << "Code begint." << std::endl;
+
         for (; !container.isFinished(); container.increment()) {
             SpinResolvedONV onv_I = this->onvWithIndex(container.index);
+            std::cout << "ONV I: " << onv_I.asString() << std::endl;
             SpinUnresolvedONV alpha_I = onv_I.onv(Spin::alpha);
             SpinUnresolvedONV beta_I = onv_I.onv(Spin::beta);
 
@@ -390,6 +393,7 @@ public:
             for (size_t J = container.index + 1; J < dim; J++) {
 
                 SpinResolvedONV onv_J = this->onvWithIndex(J);
+                std::cout << "ONV J: " << onv_J.asString() << std::endl;
                 SpinUnresolvedONV alpha_J = onv_J.onv(Spin::alpha);
                 SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
 
