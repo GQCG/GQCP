@@ -565,7 +565,7 @@ BOOST_AUTO_TEST_CASE(countNumberOfExcitations) {
 
     const GQCP::SpinUnresolvedONV onv1 {5, 3, 21};  // "10101" (21)
     const GQCP::SpinUnresolvedONV onv2 {5, 3, 22};  // "10110" (22)
-    const GQCP::SpinUnresolvedONV onv3 {5, 3, 1};   // "00001" (1)
+    const GQCP::SpinUnresolvedONV onv3 {5, 1, 1};   // "00001" (1)
 
     BOOST_CHECK_EQUAL(onv1.countNumberOfExcitations(onv1), 0);
     BOOST_CHECK_EQUAL(onv2.countNumberOfExcitations(onv2), 0);
