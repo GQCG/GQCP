@@ -107,6 +107,109 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 
 
 /*
+ *  MARK: Named constructors
+ */
+
+/**
+ *  Create a `SpinResolvedSelectedONVBasis` for a CI singles calculation, using the HF determinant as a reference.
+ * 
+ *  @param K            The number of spin-orbitals (equal for alpha and beta).
+ *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+ *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+ *  @param include_triplets     Indicates if triplet excitations should also be calculated
+ * 
+ *  @return A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
+ */
+SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, const size_t N_alpha, const size_t N_beta, bool include_triplets) {
+
+    const auto V_alpha = K - N_alpha;          // The number of alpha virtual orbitals.
+    const auto dim_alpha = N_alpha * V_alpha;  // The number of alpha excitations.
+
+    const auto V_beta = K - N_beta;         // The number of beta virtual orbitals.
+    const auto dim_beta = N_beta * V_beta;  // The number of beta excitations.
+
+
+    SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
+
+    std::vector<SpinResolvedONV> onvs;
+    if (include_triplets) {
+        onvs.reserve((N_alpha + N_beta) * (V_alpha + V_beta) + 1);
+    } else {
+        onvs.reserve(dim_alpha + dim_beta + 1);
+    }
+
+    auto reference = SpinResolvedONV::UHF(K, N_alpha, N_beta);
+    auto alpha_reference = reference.onv(Spin::alpha);
+    auto beta_reference = reference.onv(Spin::beta);
+
+    const auto alpha_orbital_space = alpha_reference.orbitalSpace();
+    const auto beta_orbital_space = beta_reference.orbitalSpace();
+
+    onvs.push_back(reference);
+
+    // Generate the alpha-alpha-excitations.
+    for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
+            auto alpha_part = alpha_reference;
+            auto beta_part = beta_reference;
+
+            alpha_part.annihilate(i_alpha);
+            alpha_part.create(a_alpha);
+
+            onvs.emplace_back(alpha_part, beta_part);
+        }
+    }
+
+    // Generate the beta-beta-excitations.
+    for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
+            auto alpha_part = alpha_reference;
+            auto beta_part = beta_reference;
+
+            beta_part.annihilate(i_beta);
+            beta_part.create(a_beta);
+
+            onvs.emplace_back(alpha_part, beta_part);
+        }
+    }
+
+    if (include_triplets) {
+        // Generate the alpha-beta excitations.
+        for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
+                auto alpha_part = alpha_reference;
+                auto beta_part = beta_reference;
+
+                beta_part.create(a_beta);
+                alpha_part.annihilate(i_alpha);
+
+                onvs.emplace_back(alpha_part, beta_part);
+            }
+        }
+
+
+        // Generate the beta-alpha excitations.
+        for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
+                auto alpha_part = alpha_reference;
+                auto beta_part = beta_reference;
+
+                alpha_part.create(a_alpha);
+                beta_part.annihilate(i_beta);
+
+                onvs.emplace_back(alpha_part, beta_part);
+            }
+        }
+    }
+
+
+    onv_basis.expandWith(onvs);
+
+    return onv_basis;
+}
+
+
+/*
  *  MARK: Modifying
  */
 

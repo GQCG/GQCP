@@ -204,11 +204,18 @@ public:
     double calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformation<double>& C_of, const GTransformation<double>& C_on, const SquareMatrix<double>& S) const;
 
     /**
-     *  @param other        the other spin-unresolved ONV
+     *  @param other        The other ONV.
      *
-     *  @return the number of different occupations between this spin-unresolved ONV and the other, i.e. two times the number of electron excitations
+     *  @return The number of different occupations between this ONV and the other.
      */
     size_t countNumberOfDifferences(const SpinUnresolvedONV& other) const;
+
+    /**
+     *  @param other        The other ONV.
+     *
+     *  @return The number of electron excitations between this ONV and the other.
+     */
+    size_t countNumberOfExcitations(const SpinUnresolvedONV& other) const;
 
     /**
      *  @param p            the 0-based spinor index, counted in this ONV from right to left

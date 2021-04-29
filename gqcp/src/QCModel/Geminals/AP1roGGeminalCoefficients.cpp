@@ -218,11 +218,11 @@ double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
     SpinUnresolvedONVBasis onv_basis {this->K, this->N_P};  // the doubly-occupied spin-resolved ONV basis
     SpinUnresolvedONV reference = onv_basis.constructONVFromAddress(0);
 
-    if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations
+    if (onv.countNumberOfExcitations(reference) == 0) {  // no excitations
         return 1.0;
     }
 
-    else if (onv.countNumberOfDifferences(reference) == 2) {  // one pair excitation
+    else if (onv.countNumberOfExcitations(reference) == 1) {  // one pair excitation
 
         size_t i = reference.findDifferentOccupations(onv)[0];
         size_t a = onv.findDifferentOccupations(reference)[0];
@@ -230,7 +230,7 @@ double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
         return this->operator()(i, a);
     }
 
-    else if (onv.countNumberOfDifferences(reference) == 4) {  // two pair excitations
+    else if (onv.countNumberOfExcitations(reference) == 2) {  // two pair excitations
 
         auto different_occupied = reference.findDifferentOccupations(onv);
         auto different_virtual = onv.findDifferentOccupations(reference);

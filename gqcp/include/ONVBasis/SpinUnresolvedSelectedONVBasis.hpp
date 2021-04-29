@@ -208,7 +208,7 @@ public:
                 auto onv_J = this->onvWithIndex(J);
 
                 // If I and J are only 1 excitation away, they can couple through the operator.
-                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+                if (onv_I.countNumberOfExcitations(onv_J) == 1) {
                     auto p = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but not in J.
                     auto q = onv_J.findDifferentOccupations(onv_I)[0];  // The orbital that is occupied in J, but not in I.
                     // We're sure that there is only 1 element in the vectors above.
@@ -267,7 +267,7 @@ public:
                 auto onv_J = this->onvWithIndex(J);
 
                 // If I and J are only 1 excitation away, they can couple through the Hamiltonian through both the one- and two-electron parts.
-                if (onv_I.countNumberOfDifferences(onv_J) == 2) {
+                if (onv_I.countNumberOfExcitations(onv_J) == 1) {
 
                     // The one-electron part.
                     auto w = onv_I.findDifferentOccupations(onv_J)[0];  // The orbital that is occupied in I, but not in J.
@@ -297,7 +297,7 @@ public:
                 }
 
                 // If I and J are 2 excitations away, they can couple through the Hamiltonian through the two-electron part.
-                else if (onv_I.countNumberOfDifferences(onv_J) == 4) {
+                else if (onv_I.countNumberOfExcitations(onv_J) == 2) {
 
                     auto occupied_in_I = onv_I.findDifferentOccupations(onv_J);  // The orbitals that are occupied in J, but not in J.
                     const auto w = occupied_in_I[0];

@@ -61,6 +61,16 @@ void bindSpinResolvedSelectedONVBasis(py::module& module) {
 
 
         /*
+         *  MARK: Named constructors
+         */
+
+        .def_static(
+            "CIS",
+            &SpinResolvedSelectedONVBasis::CIS,
+            "Return a CI singles-equivalent `SpinResolvedSelectedONVBasis`.")
+
+
+        /*
          *  MARK: General information
          */
 
