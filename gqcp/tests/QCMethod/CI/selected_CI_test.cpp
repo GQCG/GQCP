@@ -97,9 +97,10 @@ BOOST_AUTO_TEST_CASE(unrestricted_selected_FCI) {
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
 
-#include <iomanip>
-
 /**
+ *  Check if the full H2O spectrum using our restricted selected CIS routine matches Psi4's spectrum.
+ * 
+ *  The test system is H2O in an STO-3G basisset, which has a CIS dimension of 41.
  */
 BOOST_AUTO_TEST_CASE(H2O_CIS) {
 
