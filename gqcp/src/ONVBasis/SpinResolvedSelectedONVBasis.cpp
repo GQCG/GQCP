@@ -116,10 +116,11 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
  *  @param K            The number of spin-orbitals (equal for alpha and beta).
  *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
  *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+ *  @param include_triplets     Indicates if triplet excitations should also be calculated
  * 
- *  @returen A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
+ *  @return A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
  */
-SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, const size_t N_alpha, const size_t N_beta) {
+SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, const size_t N_alpha, const size_t N_beta, bool include_triplets) {
 
     const auto V_alpha = K - N_alpha;          // The number of alpha virtual orbitals.
     const auto dim_alpha = N_alpha * V_alpha;  // The number of alpha excitations.
@@ -131,7 +132,11 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
     SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
 
     std::vector<SpinResolvedONV> onvs;
-    onvs.reserve((N_alpha + N_beta) * (V_alpha + V_beta) + 1);
+    if (include_triplets) {
+        onvs.reserve((N_alpha + N_beta) * (V_alpha + V_beta) + 1);
+    } else {
+        onvs.reserve(dim_alpha + dim_beta + 1);
+    }
 
     auto reference = SpinResolvedONV::UHF(K, N_alpha, N_beta);
     auto alpha_reference = reference.onv(Spin::alpha);
@@ -171,46 +176,42 @@ SpinResolvedSelectedONVBasis SpinResolvedSelectedONVBasis::CIS(const size_t K, c
         }
     }
 
+    if (include_triplets) {
+        // Generate the alpha-beta excitations.
+        std::cout << "AB" << std::endl;
+        for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
+                auto alpha_part = alpha_reference;
+                auto beta_part = beta_reference;
 
-    // Generate the alpha-beta excitations.
-    std::cout << "AB" << std::endl;
-    for (const auto& i_alpha : alpha_orbital_space.indices(OccupationType::k_occupied)) {
-        for (const auto& a_beta : beta_orbital_space.indices(OccupationType::k_virtual)) {
-            auto alpha_part = alpha_reference;
-            auto beta_part = beta_reference;
+                std::cout << "i: " << i_alpha << " - a: " << a_beta << std::endl;
+                beta_part.create(a_beta);
+                alpha_part.annihilate(i_alpha);
 
-            std::cout << "i: " << i_alpha << " - a: " << a_beta << std::endl;
-            beta_part.create(a_beta);
-            alpha_part.annihilate(i_alpha);
-
-            onvs.emplace_back(alpha_part, beta_part);
+                onvs.emplace_back(alpha_part, beta_part);
+            }
         }
-    }
 
 
-    // Generate the beta-alpha excitations.
-    std::cout << "BA" << std::endl;
-    for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
-        for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
-            auto alpha_part = alpha_reference;
-            auto beta_part = beta_reference;
+        // Generate the beta-alpha excitations.
+        std::cout << "BA" << std::endl;
+        for (const auto& i_beta : beta_orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a_alpha : alpha_orbital_space.indices(OccupationType::k_virtual)) {
+                auto alpha_part = alpha_reference;
+                auto beta_part = beta_reference;
 
-            std::cout << "i: " << i_beta << " - a: " << a_alpha << std::endl;
-            alpha_part.create(a_alpha);
-            beta_part.annihilate(i_beta);
+                std::cout << "i: " << i_beta << " - a: " << a_alpha << std::endl;
+                alpha_part.create(a_alpha);
+                beta_part.annihilate(i_beta);
 
-            onvs.emplace_back(alpha_part, beta_part);
+                onvs.emplace_back(alpha_part, beta_part);
+            }
         }
     }
 
 
     onv_basis.expandWith(onvs);
     std::cout << "number of ONVS: " << onv_basis.dimension() << std::endl;
-
-    for (size_t i = 0; i < onv_basis.dimension(); i++) {
-        std::cout << onv_basis.onvWithIndex(i).asString() << std::endl;
-    }
-
 
     return onv_basis;
 }
@@ -554,7 +555,6 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const U
 
     // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container {this->dimension()};
-    std::cout << "Container maken lukt." << std::endl;
     this->evaluate<SquareMatrix<double>>(hamiltonian, container);
 
     return container.evaluation();

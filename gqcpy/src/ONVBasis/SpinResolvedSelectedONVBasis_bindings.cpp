@@ -42,8 +42,8 @@ void bindSpinResolvedSelectedONVBasis(py::module& module) {
     py_SpinResolvedSelectedONVBasis
 
         /*
-         *  MARK: Constructors
-         */
+          *  MARK: Constructors
+          */
 
         .def(py::init<const size_t, const size_t, const size_t>(),
              py::arg("K"),
@@ -61,8 +61,18 @@ void bindSpinResolvedSelectedONVBasis(py::module& module) {
 
 
         /*
-         *  MARK: General information
-         */
+          *  MARK: Named constructors
+          */
+
+        .def_static(
+            "CIS",
+            &SpinResolvedSelectedONVBasis::CIS,
+            "Return a CI singles-equivalent `SpinResolvedSelectedONVBasis`")
+
+
+        /*
+          *  MARK: General information
+          */
 
         .def("numberOfOrbitals",
              &SpinResolvedSelectedONVBasis::numberOfOrbitals,
@@ -82,8 +92,8 @@ void bindSpinResolvedSelectedONVBasis(py::module& module) {
 
 
         /*
-         *  MARK: Modifying
-         */
+          *  MARK: Modifying
+          */
 
         .def("expandWith",
              [](SpinResolvedSelectedONVBasis& onv_basis, const SpinResolvedONV& onv) {

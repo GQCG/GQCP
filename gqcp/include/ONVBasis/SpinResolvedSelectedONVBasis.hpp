@@ -91,9 +91,9 @@ public:
      *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
      *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      * 
-     *  @returen A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
+     *  @return A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
      */
-    static SpinResolvedSelectedONVBasis CIS(const size_t K, const size_t N_alpha, const size_t N_beta);
+    static SpinResolvedSelectedONVBasis CIS(const size_t K, const size_t N_alpha, const size_t N_beta, bool include_triplets = true);
 
 
     /*
