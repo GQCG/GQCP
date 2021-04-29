@@ -103,7 +103,28 @@ BOOST_AUTO_TEST_CASE(unrestricted_selected_FCI) {
  */
 BOOST_AUTO_TEST_CASE(H2O_CIS) {
 
-    std::cout << std::setprecision(15) << std::endl;
+    const std::vector<double> reference_energies = {
+        -74.942079898680959,
+        -74.654824456733309,
+        -74.597654978453789,
+        -74.585618201751686,
+        -74.576090971495915,
+        -74.547566183302649,
+        -74.526008227148452,
+        -74.436451668417106,
+        -74.427789974796895,
+        -74.386888089305614,
+        -74.379024223752538,
+        -74.286761526153413,
+        -74.031958283189851,
+        -73.833309015644829,
+        -73.741983861357141,
+        -73.641294789858790,
+        -73.616317921591587,
+        -54.983553526518087,
+        -54.931100523669279,
+        -54.930737857663736,
+        -54.891548004632547};
 
     // Create the molecular Hamiltonian in the Löwdin basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_cis.xyz");
@@ -118,7 +139,6 @@ BOOST_AUTO_TEST_CASE(H2O_CIS) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
-    std::cout << "SCF ENERGY: " << rhf_qc_structure.groundStateEnergy() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value() << std::endl;
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
     hamiltonian.transform(rhf_parameters.expansion());
@@ -132,11 +152,10 @@ BOOST_AUTO_TEST_CASE(H2O_CIS) {
     auto solver = GQCP::EigenproblemSolver::Dense<double>();
     const auto ci_qc_structure = GQCP::QCMethod::CI<double, GQCP::SpinResolvedSelectedONVBasis>(onv_basis, onv_basis.dimension()).optimize(solver, environment);
 
-    for (size_t i = 0; i < onv_basis.dimension(); i++) {
-        std::cout << ci_qc_structure.energy(i) + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value() << std::endl;
-    }
-
-
     // Check our result with the reference.
-    // BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
+    for (size_t i = 0; i < onv_basis.dimension(); i++) {
+
+        const auto energy = ci_qc_structure.energy(i) + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+        BOOST_CHECK(std::find_if(reference_energies.begin(), reference_energies.end(), [energy](double ref_energy) { return std::abs(energy - ref_energy) < 1e-08; }) != reference_energies.end());
+    }
 }
