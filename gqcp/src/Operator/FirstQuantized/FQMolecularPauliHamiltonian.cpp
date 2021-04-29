@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param V            The nuclear attraction operator.
  *  @param g            The two-electron repulsion operator.
  */
-FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g) :
+FQMolecularPauliHamiltonian::FQMolecularPauliHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g) :
     OZ {OZ},
     D {D},
     SZ {SZ},
@@ -41,13 +41,13 @@ FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const KineticOper
 
 
 /**
- *  Construct a `FQMolecularMagneticHamiltonian` from a molecule and underlying homogeneous magnetic field.
+ *  Construct a `FQMolecularPauliHamiltonian` from a molecule and underlying homogeneous magnetic field.
  * 
  *  @param molecule         The molecule.
  *  @param B                The external, homogeneous magnetic field.
  */
-FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B) :
-    FQMolecularMagneticHamiltonian(KineticOperator(), OrbitalZeemanOperator(B), DiamagneticOperator(B), SpinZeemanOperator(B), NuclearAttractionOperator(molecule.nuclearFramework()), CoulombRepulsionOperator()) {}
+FQMolecularPauliHamiltonian::FQMolecularPauliHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B) :
+    FQMolecularPauliHamiltonian(KineticOperator(), OrbitalZeemanOperator(B), DiamagneticOperator(B), SpinZeemanOperator(B), NuclearAttractionOperator(molecule.nuclearFramework()), CoulombRepulsionOperator()) {}
 
 
 }  // namespace GQCP

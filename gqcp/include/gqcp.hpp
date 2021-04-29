@@ -185,7 +185,7 @@
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
-#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"

@@ -33,7 +33,7 @@
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
-#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
@@ -693,14 +693,14 @@ public:
 
 
     /**
-     *  Quantize the molecular magnetic Hamiltonian.
+     *  Quantize the molecular Pauli Hamiltonian.
      * 
-     *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
+     *  @param fq_hamiltonian           The molecular Pauli Hamiltonian.
      * 
-     *  @return The second-quantized molecular magnetic Hamiltonian.
+     *  @return The second-quantized molecular Pauli Hamiltonian.
      */
     template <typename Z = Shell>
-    enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQHamiltonian<ExpansionScalar>> quantize(const FQMolecularMagneticHamiltonian& fq_hamiltonian) const {
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQHamiltonian<ExpansionScalar>> quantize(const FQMolecularPauliHamiltonian& fq_hamiltonian) const {
 
         const auto T = this->quantize(fq_hamiltonian.kinetic());
         const auto OZ = this->quantize(fq_hamiltonian.orbitalZeeman());

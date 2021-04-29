@@ -30,7 +30,7 @@ namespace GQCP {
 /**
  *  The first-quantized, molecular electronic Hamiltonian for systems in a magnetic field.
  */
-class FQMolecularMagneticHamiltonian:
+class FQMolecularPauliHamiltonian:
     public FQMolecularHamiltonian {
 private:
     // The orbital Zeeman operator.
@@ -56,16 +56,16 @@ public:
      *  @param V            The nuclear attraction operator.
      *  @param g            The two-electron repulsion operator.
      */
-    FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
+    FQMolecularPauliHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
 
 
     /**
-     *  Construct a `FQMolecularMagneticHamiltonian` from a molecule and underlying homogeneous magnetic field.
+     *  Construct a `FQMolecularPauliHamiltonian` from a molecule and underlying homogeneous magnetic field.
      * 
      *  @param molecule         The molecule.
      *  @param B                The external, homogeneous magnetic field.
      */
-    FQMolecularMagneticHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B);
+    FQMolecularPauliHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B);
 
 
     /*

@@ -203,10 +203,10 @@ void bindGSpinorBases(py::module& module) {
 
         .def(
             "quantize",
-            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const FQMolecularMagneticHamiltonian& op) {
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const FQMolecularPauliHamiltonian& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the molecular magnetic Hamiltonian expressed in this spinor basis.");
+            "Return the molecular Pauli Hamiltonian expressed in this spinor basis.");
 
     bindGSpinorBasisInterface(py_LondonGSpinorBasis);
 }

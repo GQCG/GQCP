@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(CCSD_vs_CI_complex) {
     GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis {molecule, "6-31G", B};
     const auto M = spinor_basis.numberOfSpinors();
     const auto S = spinor_basis.overlap();
-    auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularMagneticHamiltonian(molecule, B));  // Here, the magnetic Hamiltonian is expressed in the AO basis.
+    auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularPauliHamiltonian(molecule, B));  // Here, the magnetic Hamiltonian is expressed in the AO basis.
 
 
     // Solve the GHF SCF equations.
