@@ -28,6 +28,8 @@ namespace GQCP {
 
 /**
  *  The first-quantized, molecular electronic Hamiltonian for systems in a magnetic field.
+ * 
+ *  @note The molecular magnetic Hamiltonian is different from the molecular Pauli Hamiltonian: the Pauli Hamiltonian contains the additional paramagnetic spin Zeeman term.
  */
 class FQMolecularMagneticHamiltonian:
     public FQMolecularHamiltonian {

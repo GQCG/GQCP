@@ -174,10 +174,11 @@ public:
 
 
     /**
-     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).
+     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).
      *
      *  @param molecule                 The molecule containing the nuclei on which the shells should be centered.
      *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
+     *  @param B                        The homogeneous magnetic field.
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
@@ -689,6 +690,28 @@ public:
         ResultOperator g_op {g_par};  // 'op' for 'operator'.
         g_op.transform(this->expansion());
         return g_op;
+    }
+
+
+    /**
+     *  Quantize the molecular magnetic Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
+     * 
+     *  @return The second-quantized molecular magnetic Hamiltonian.
+     */
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, GSQHamiltonian<ExpansionScalar>> quantize(const FQMolecularMagneticHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto OZ = this->quantize(fq_hamiltonian.orbitalZeeman());
+        const auto D = this->quantize(fq_hamiltonian.diamagnetic());
+
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return GSQHamiltonian<ExpansionScalar> {{T, OZ, D, V}, {g}};
     }
 
 

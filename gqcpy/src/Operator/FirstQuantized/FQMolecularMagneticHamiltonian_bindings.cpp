@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -29,15 +29,15 @@ using namespace GQCP;
 
 
 /**
- *  Register `FQMolecularPauliHamiltonian` to the gqcpy module and expose parts of its C++ interface to Python.
+ *  Register `FQMolecularMagneticHamiltonian` to the gqcpy module and expose parts of its C++ interface to Python.
  * 
  *  @param module           The Pybind11 module in which the class should be registered.
  */
-void bindFQMolecularPauliHamiltonian(py::module& module) {
+void bindFQMolecularMagneticHamiltonian(py::module& module) {
 
-    py::class_<FQMolecularPauliHamiltonian> py_FQMolecularPauliHamiltonian {module, "FQMolecularPauliHamiltonian", "The first-quantized, molecular electronic Pauli Hamiltonian for systems in a magnetic field."};
+    py::class_<FQMolecularMagneticHamiltonian> py_FQMolecularMagneticHamiltonian {module, "FQMolecularMagneticHamiltonian", "The first-quantized, molecular electronic Hamiltonian for systems in a magnetic field."};
 
-    py_FQMolecularPauliHamiltonian
+    py_FQMolecularMagneticHamiltonian
 
         /*
          *  MARK: Constructors

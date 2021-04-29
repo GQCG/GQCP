@@ -30,12 +30,15 @@
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/CurrentDensityOperator.hpp"
+#include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -164,28 +167,27 @@ public:
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = RSQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Vectorizer>;
 
-        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());  // in AO/scalar basis
+        const auto g_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());  // In AO/scalar basis.
 
-        auto g_par = SquareRankFourTensor<ResultScalar>::Zero(one_op_par.dimension(0));  // 'par' for 'parameters'
-
-        for (size_t i = 0; i < one_op_par.dimension(0); i++) {
-            for (size_t j = 0; j < one_op_par.dimension(1); j++) {
-                for (size_t k = 0; k < one_op_par.dimension(2); k++) {
-                    for (size_t l = 0; l < one_op_par.dimension(3); l++) {
-                        g_par(i, j, k, l) = one_op_par(i, j, k, l);
+        auto g = SquareRankFourTensor<ResultScalar>::Zero(g_par.dimension(0));
+        for (size_t i = 0; i < g_par.dimension(0); i++) {
+            for (size_t j = 0; j < g_par.dimension(1); j++) {
+                for (size_t k = 0; k < g_par.dimension(2); k++) {
+                    for (size_t l = 0; l < g_par.dimension(3); l++) {
+                        g(i, j, k, l) = g_par(i, j, k, l);
                     }
                 }
             }
         }
 
-        ResultOperator op {g_par};        // op for 'operator'
-        op.transform(this->expansion());  // now in spatial/spin-orbital basis
+        ResultOperator op {g};            // 'op' for 'operator'.
+        op.transform(this->expansion());  // Now in spatial/spin-orbital basis.
         return op;
     }
 
 
     /*
-     *  MARK: Quantization of first-quantized operators
+     *  MARK: Quantization of first-quantized operators (GTOShell)
      */
 
     /**
@@ -298,6 +300,174 @@ public:
         return VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> {j_par_vector};
     }
 
+
+    /*
+     *  MARK: Quantization of first-quantized operators (LondonGTOShell)
+     */
+
+    /**
+     *  Quantize a spin-independent one-electron operator in this general spinor basis. Spin-independent one-electron operators are those whose two-component matrix operator form contains the same scalar operator in the top-left and bottom-right corner.
+     * 
+     *  @param fq_one_op            A spin-independent first-quantized operator.
+     * 
+     *  @return The second-quantized representation of the given operator.
+     */
+    template <typename FQOneElectronOperator, typename Z = Shell>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
+        using Vectorizer = typename FQOneElectronOperator::Vectorizer;
+
+        const auto N = FQOneElectronOperator::NumberOfComponents;
+        const auto& vectorizer = FQOneElectronOperator::vectorizer;
+
+
+        // The strategy for calculating the matrix representation of the one-electron operator in this spin-orbital basis is to:
+        //  1. Express the operator in the underlying scalar bases and;
+        //  2. Afterwards transform them using the current coefficient matrix.
+        const auto K = this->numberOfSpatialOrbitals();
+
+
+        // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
+        auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(fq_one_op);
+        const auto F = GQCP::IntegralCalculator::calculate(engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());
+
+
+        // For each of the components of the operator, place the scalar basis representations into the spinor basis representation.
+        std::array<SquareMatrix<ResultScalar>, N> fs;
+        for (size_t i = 0; i < N; i++) {
+            fs[i] = SquareMatrix<ResultScalar>(F[i]);
+        }
+
+
+        // 2. Transform using the current coefficient matrix.
+        StorageArray<SquareMatrix<ResultScalar>, Vectorizer> array {fs, vectorizer};
+        ResultOperator op {array};  // 'op' for 'operator'.
+        op.transform(this->expansion());
+        return op;
+    }
+
+
+    /**
+     *  Quantize the orbital Zeeman operator in this restricted spin-orbital basis.
+     * 
+     *  @param op               The (first-quantized) orbital Zeeman operator.
+     * 
+     *  @return The orbital Zeeman operator expressed in this restricted spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const OrbitalZeemanOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, RSQOneElectronOperator<product_t<OrbitalZeemanOperator::Scalar, ExpansionScalar>, OrbitalZeemanOperator::Vectorizer>> {
+
+        // Return the orbital Zeeman operator as a contraction beween the magnetic field and the angular momentum operator.
+        const auto L = this->quantize(op.angularMomentum());
+        const auto& B = op.magneticField().strength();
+        return 0.5 * L.dot(B);
+    }
+
+
+    /**
+     *  Quantize the diamagnetic operator in this restricted spin-orbital basis.
+     * 
+     *  @param op               The (first-quantized) diamagnetic operator.
+     * 
+     *  @return The diamagnetic operator expressed in this restricted spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const DiamagneticOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, RSQOneElectronOperator<product_t<DiamagneticOperator::Scalar, ExpansionScalar>, DiamagneticOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<DiamagneticOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, DiamagneticOperator::Vectorizer>;
+
+
+        // Return the diamagnetic operator as a contraction beween the magnetic field and the electronic quadrupole operator.
+        const auto Q = this->quantize(op.electronicQuadrupole()).allParameters();
+        const auto& B = op.magneticField().strength();
+
+        // Prepare some variables.
+        const auto& B_x = B(CartesianDirection::x);
+        const auto& B_y = B(CartesianDirection::y);
+        const auto& B_z = B(CartesianDirection::z);
+
+        const auto& Q_xx = Q[DyadicCartesianDirection::xx];
+        const auto& Q_xy = Q[DyadicCartesianDirection::xy];
+        const auto& Q_xz = Q[DyadicCartesianDirection::xz];
+        const auto& Q_yy = Q[DyadicCartesianDirection::yy];
+        const auto& Q_yz = Q[DyadicCartesianDirection::yz];
+        const auto& Q_zz = Q[DyadicCartesianDirection::zz];
+
+
+        SquareMatrix<ResultScalar> D_par = 0.125 * ((std::pow(B_y, 2) + std::pow(B_z, 2)) * Q_xx +
+                                                    (std::pow(B_x, 2) + std::pow(B_z, 2)) * Q_yy +
+                                                    (std::pow(B_x, 2) + std::pow(B_y, 2)) * Q_zz -
+                                                    2 * B_x * B_y * Q_xy -
+                                                    2 * B_x * B_z * Q_xz -
+                                                    2 * B_y * B_z * Q_yz);
+
+        return ResultOperator {D_par};
+    }
+
+
+    /**
+     *  Quantize the Coulomb operator in this restricted spin-orbital basis.
+     * 
+     *  @param fq_op                The first-quantized Coulomb operator.
+     * 
+     *  @return The second-quantized operator corresponding to the Coulomb operator.
+     */
+    template <typename Z = Shell>
+    auto quantize(const CoulombRepulsionOperator& fq_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, RSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Vectorizer>;
+
+
+        auto coulomb_engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(CoulombRepulsionOperator());
+        const auto g_par = GQCP::IntegralCalculator::calculate(coulomb_engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet())[0];  // In AO basis.
+
+        auto g = SquareRankFourTensor<ResultScalar>::Zero(g_par.dimension(0));
+
+        for (size_t i = 0; i < g_par.dimension(0); i++) {
+            for (size_t j = 0; j < g_par.dimension(1); j++) {
+                for (size_t k = 0; k < g_par.dimension(2); k++) {
+                    for (size_t l = 0; l < g_par.dimension(3); l++) {
+                        g(i, j, k, l) = g_par(i, j, k, l);
+                    }
+                }
+            }
+        }
+
+        ResultOperator op {g};            // 'op' for 'operator'.
+        op.transform(this->expansion());  // Now in spatial/spin-orbital basis.
+        return op;
+    }
+
+
+    /**
+     *  Quantize the molecular magnetic Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
+     * 
+     *  @return The second-quantized molecular magnetic Hamiltonian.
+     */
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, RSQHamiltonian<ExpansionScalar>> quantize(const FQMolecularMagneticHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto OZ = this->quantize(fq_hamiltonian.orbitalZeeman());
+        const auto D = this->quantize(fq_hamiltonian.diamagnetic());
+
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return RSQHamiltonian<ExpansionScalar> {{T, OZ, D, V}, {g}};
+    }
+
+
+    /*
+     *  MARK: Quantization of first-quantized operators
+     */
 
     /**
      *  Quantize the molecular Hamiltonian.

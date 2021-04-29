@@ -18,9 +18,7 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/DiamagneticOperator.hpp"
-#include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
-#include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
+#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
 #include "Operator/FirstQuantized/SpinZeemanOperator.hpp"
 
 
