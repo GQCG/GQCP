@@ -21,7 +21,6 @@
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
-#include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -86,17 +85,13 @@ void bindRSpinOrbitalBasisInterface(Class& py_class) {
     py_class
         .def(
             "numberOfSpatialOrbitals",
-            [](const RSpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis) {
-                return spin_orbital_basis.numberOfSpatialOrbitals();
-            },
+            &Type::numberOfSpatialOrbitals,
             "Return the number of different spatial orbitals that are used in this spinor basis.")
 
 
         .def(
             "scalarBasis",
-            [](const RSpinOrbitalBasis<Scalar, GTOShell>& spin_orbital_basis) {
-                return spin_orbital_basis.scalarBasis();
-            },
+            &Type::scalarBasis,
             "Return the underlying scalar basis with respect to which the basis coefficients are expressed.");
 
 

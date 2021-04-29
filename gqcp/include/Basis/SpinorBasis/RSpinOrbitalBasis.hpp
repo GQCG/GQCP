@@ -329,7 +329,7 @@ public:
         const auto K = this->numberOfSpatialOrbitals();
 
 
-        // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
+        // 1. Express the operator in the underlying scalar basis.
         auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(fq_one_op);
         const auto F = GQCP::IntegralCalculator::calculate(engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());
 

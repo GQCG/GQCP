@@ -107,6 +107,7 @@ public:
     SimpleSpinOrbitalBasis(const Molecule& molecule, const std::string& basisset_name) :
         SimpleSpinOrbitalBasis(molecule.nuclearFramework(), basisset_name) {}
 
+
     /**
      *  Construct a simple spin-orbital basis with an underlying scalar basis that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).
      *

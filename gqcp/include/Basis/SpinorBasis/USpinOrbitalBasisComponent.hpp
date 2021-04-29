@@ -19,10 +19,13 @@
 
 
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {
@@ -61,7 +64,7 @@ public:
 
 
     /*
-     *  MARK: Quantization of first-quantized operators
+     *  MARK: Quantization of first-quantized operators (GTOShell)
      */
 
     /**
@@ -73,8 +76,8 @@ public:
      * 
      *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> USQOneElectronOperatorComponent<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
+    template <typename FQOneElectronOperator, typename Z = Shell>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, USQOneElectronOperatorComponent<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
 
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
@@ -85,6 +88,115 @@ public:
         ResultOperator f {f_par};
         f.transform(this->expansion());  // Now, f is expressed in the spin-orbital basis.
         return f;
+    }
+
+
+    /*
+     *  MARK: Quantization of first-quantized operators (LondonGTOShell)
+     */
+
+    /**
+     *  Quantize a first-quantized one-electron operator.
+     * 
+     *  @param fq_one_op                            The first-quantized one-electron operator.
+     * 
+     *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
+     * 
+     *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
+     */
+    template <typename FQOneElectronOperator, typename Z = Shell>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, USQOneElectronOperatorComponent<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = USQOneElectronOperatorComponent<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
+        using Vectorizer = typename FQOneElectronOperator::Vectorizer;
+
+        const auto N = FQOneElectronOperator::NumberOfComponents;
+        const auto& vectorizer = FQOneElectronOperator::vectorizer;
+
+
+        // The strategy for calculating the matrix representation of the one-electron operator in this spin-orbital basis is to:
+        //  1. Express the operator in the underlying scalar bases and;
+        //  2. Afterwards transform them using the current coefficient matrix.
+        const auto K = this->scalarBasis().numberOfBasisFunctions();
+
+
+        // 1. Express the operator in the underlying scalar basis.
+        auto engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(fq_one_op);
+        const auto F = GQCP::IntegralCalculator::calculate(engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());
+
+
+        // For each of the components of the operator, place the scalar basis representations into the spinor basis representation.
+        std::array<SquareMatrix<ResultScalar>, N> fs;
+        for (size_t i = 0; i < N; i++) {
+            fs[i] = SquareMatrix<ResultScalar>(F[i]);
+        }
+
+
+        // 2. Transform using the current coefficient matrix.
+        StorageArray<SquareMatrix<ResultScalar>, Vectorizer> array {fs, vectorizer};
+        ResultOperator op {array};  // 'op' for 'operator'.
+        op.transform(this->expansion());
+        return op;
+    }
+
+
+    /**
+     *  Quantize the orbital Zeeman operator in this spin-orbital basis.
+     * 
+     *  @param op               The (first-quantized) orbital Zeeman operator.
+     * 
+     *  @return The orbital Zeeman operator expressed in this spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const OrbitalZeemanOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, USQOneElectronOperatorComponent<product_t<OrbitalZeemanOperator::Scalar, ExpansionScalar>, OrbitalZeemanOperator::Vectorizer>> {
+
+        // Return the orbital Zeeman operator as a contraction beween the magnetic field and the angular momentum operator.
+        const auto L = this->quantize(op.angularMomentum());
+        const auto& B = op.magneticField().strength();
+        return 0.5 * L.dot(B);
+    }
+
+
+    /**
+     *  Quantize the diamagnetic operator in this spin-orbital basis.
+     * 
+     *  @param op               The (first-quantized) diamagnetic operator.
+     * 
+     *  @return The diamagnetic operator expressed in this spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const DiamagneticOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, USQOneElectronOperatorComponent<product_t<DiamagneticOperator::Scalar, ExpansionScalar>, DiamagneticOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<DiamagneticOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = USQOneElectronOperatorComponent<ResultScalar, DiamagneticOperator::Vectorizer>;
+
+
+        // Return the diamagnetic operator as a contraction beween the magnetic field and the electronic quadrupole operator.
+        const auto Q = this->quantize(op.electronicQuadrupole()).allParameters();
+        const auto& B = op.magneticField().strength();
+
+        // Prepare some variables.
+        const auto& B_x = B(CartesianDirection::x);
+        const auto& B_y = B(CartesianDirection::y);
+        const auto& B_z = B(CartesianDirection::z);
+
+        const auto& Q_xx = Q[DyadicCartesianDirection::xx];
+        const auto& Q_xy = Q[DyadicCartesianDirection::xy];
+        const auto& Q_xz = Q[DyadicCartesianDirection::xz];
+        const auto& Q_yy = Q[DyadicCartesianDirection::yy];
+        const auto& Q_yz = Q[DyadicCartesianDirection::yz];
+        const auto& Q_zz = Q[DyadicCartesianDirection::zz];
+
+
+        SquareMatrix<ResultScalar> D_par = 0.125 * ((std::pow(B_y, 2) + std::pow(B_z, 2)) * Q_xx +
+                                                    (std::pow(B_x, 2) + std::pow(B_z, 2)) * Q_yy +
+                                                    (std::pow(B_x, 2) + std::pow(B_y, 2)) * Q_zz -
+                                                    2 * B_x * B_y * Q_xy -
+                                                    2 * B_x * B_z * Q_xz -
+                                                    2 * B_y * B_z * Q_yz);
+
+        return ResultOperator {D_par};
     }
 
 
