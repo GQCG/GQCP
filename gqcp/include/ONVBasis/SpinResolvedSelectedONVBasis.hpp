@@ -93,7 +93,7 @@ public:
      * 
      *  @return A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
      */
-    static SpinResolvedSelectedONVBasis CIS(const size_t K, const size_t N_alpha, const size_t N_beta, bool include_triplets = true);
+    static SpinResolvedSelectedONVBasis CIS(const size_t K, const size_t N_alpha, const size_t N_beta, const bool include_triplets = false);
 
 
     /*

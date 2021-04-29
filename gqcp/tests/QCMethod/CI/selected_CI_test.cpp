@@ -127,15 +127,13 @@ BOOST_AUTO_TEST_CASE(H2O_CIS) {
         -54.930737857663736,
         -54.891548004632547};
 
-    // Create the molecular Hamiltonian in the Löwdin basis.
+    // Create the molecular Hamiltonian in the RHF orbital basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_cis.xyz");
 
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
-    // spin_orbital_basis.lowdinOrthonormalize();
     auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
-    // const auto K = hamiltonian.numberOfOrbitals();
 
-    // Solve the RHF SCF equations to find an initial orthonormal basis.
+    // Solve the RHF SCF equations.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spin_orbital_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
@@ -145,7 +143,7 @@ BOOST_AUTO_TEST_CASE(H2O_CIS) {
     hamiltonian.transform(rhf_parameters.expansion());
 
 
-    // Set up the full spin-resolved selected ONV basis for CIS where triplet excitations are included.
+    // Set up the spin-resolved selected ONV basis for CIS where triplet excitations are included.
     const auto onv_basis = GQCP::SpinResolvedSelectedONVBasis::CIS(7, 5, 5, true);
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
