@@ -15,13 +15,13 @@
     - file: tutorial/use-cases
 
 - part: "Examples"
-  chapters:    
+  chapters:
     - file: examples/getting-started
     - file: examples/Spinor-bases
+    - file: examples/RHF-dipole-moments
     - file: examples/UHF-calculations
     - file: examples/Custom-algorithms-showcase-CUHF
     - file: examples/R-U-GHF-overlaps
-    - file: examples/RHF-dipole-moments
     - file: examples/HF-Stability
     - file: examples/ONVPath
     - file: examples/DOCI
@@ -30,6 +30,10 @@
     - file: examples/AP1roG-calculations
     - file: examples/CCSD
     - file: examples/Mulliken-population
+    - file: examples/Magnetic-inducibility
+    - file: examples/Integrals-over-GTOs
+    - file: examples/London-integrals
+    - file: examples/Mean-field-magnetic
 
 - part: "Developer documentation"
   chapters:
