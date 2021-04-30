@@ -84,27 +84,27 @@ void bindQCMethodRHFSCFEnvironmentInterface(Class& py_class) {
          */
 
         .def("replace_current_coefficient_matrix",
-             [](RHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_coefficient_matrix) {
+             [](RHFSCFEnvironment<Scalar>& environment, const RTransformation<Scalar>& new_coefficient_matrix) {
                  environment.coefficient_matrices.pop_back();
-                 environment.coefficient_matrices.push_back(SquareMatrix<Scalar>(new_coefficient_matrix));
+                 environment.coefficient_matrices.push_back(new_coefficient_matrix);
              })
 
         .def("replace_current_density_matrix",
-             [](RHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_density_matrix) {
+             [](RHFSCFEnvironment<Scalar>& environment, const Orbital1DM<Scalar>& new_density_matrix) {
                  environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(SquareMatrix<Scalar>(new_density_matrix));
+                 environment.density_matrices.push_back(new_density_matrix);
              })
 
         .def("replace_current_fock_matrix",
-             [](RHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_fock_matrix) {
+             [](RHFSCFEnvironment<Scalar>& environment, const ScalarRSQOneElectronOperator<Scalar>& new_fock_matrix) {
                  environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(SquareMatrix<Scalar>(new_fock_matrix));
+                 environment.fock_matrices.push_back(new_fock_matrix);
              })
 
         .def("replace_current_error_vectors",
              [](RHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_error_vectors) {
-                 environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(SquareMatrix<Scalar>(new_error_vectors));
+                 environment.error_vectors.pop_back();
+                 environment.error_vectors.push_back(VectorX<Scalar>(new_error_vectors));
              });
 }
 

@@ -92,27 +92,27 @@ void bindQCMethodGHFSCFEnvironmentInterface(Class& py_class) {
          */
 
         .def("replace_current_coefficient_matrix",
-             [](GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_coefficient_matrix) {
+             [](GHFSCFEnvironment<Scalar>& environment, const GTransformation<Scalar>& new_coefficient_matrix) {
                  environment.coefficient_matrices.pop_back();
-                 environment.coefficient_matrices.push_back(SquareMatrix<Scalar>(new_coefficient_matrix));
+                 environment.coefficient_matrices.push_back(new_coefficient_matrix);
              })
 
         .def("replace_current_density_matrix",
-             [](GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_density_matrix) {
+             [](GHFSCFEnvironment<Scalar>& environment, const G1DM<Scalar>& new_density_matrix) {
                  environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(SquareMatrix<Scalar>(new_density_matrix));
+                 environment.density_matrices.push_back(new_density_matrix);
              })
 
         .def("replace_current_fock_matrix",
-             [](GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_fock_matrix) {
+             [](GHFSCFEnvironment<Scalar>& environment, const ScalarGSQOneElectronOperator<Scalar>& new_fock_matrix) {
                  environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(SquareMatrix<Scalar>(new_fock_matrix));
+                 environment.fock_matrices.push_back(new_fock_matrix);
              })
 
         .def("replace_current_error_vectors",
              [](GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_error_vectors) {
-                 environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(SquareMatrix<Scalar>(new_error_vectors));
+                 environment.error_vectors.pop_back();
+                 environment.error_vectors.push_back(VectorX<Scalar>(new_error_vectors));
              });
 }
 
