@@ -102,19 +102,19 @@ void bindQCMethodUHFSCFEnvironmentInterface(Class& py_class) {
          *  MARK: Replacements specific to UHF
          */
 
-        .def("replace_current_coefficient_matrices",
+        .def("replace_current_coefficient_matrix",
              [](UHFSCFEnvironment<Scalar>& environment, const UTransformation<Scalar>& new_coefficient_matrices) {
                  environment.coefficient_matrices.pop_back();
                  environment.coefficient_matrices.push_back(new_coefficient_matrices);
              })
 
-        .def("replace_current_density_matrices",
+        .def("replace_current_density_matrix",
              [](UHFSCFEnvironment<Scalar>& environment, const SpinResolved1DM<Scalar>& new_density_matrices) {
                  environment.density_matrices.pop_back();
                  environment.density_matrices.push_back(new_density_matrices);
              })
 
-        .def("replace_current_fock_matrices",
+        .def("replace_current_fock_matrix",
              [](UHFSCFEnvironment<Scalar>& environment, const ScalarUSQOneElectronOperator<Scalar>& new_fock_matrices) {
                  environment.fock_matrices.pop_back();
                  environment.fock_matrices.push_back(new_fock_matrices);
