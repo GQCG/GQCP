@@ -98,7 +98,7 @@ public:
 
         // Get the two most recent density matrices and compare the norm of their difference
         const auto second_to_last_it = iterates.end() - 2;  // 'it' for 'iterator'
-        const auto& previous = *second_to_last_it;          // dereference the iterator
+        const auto& previous = *second_to_last_it;          // Dereference the iterator.
         const auto current = iterates.back();
 
         return (std::real((current - previous).norm()) <= this->m_threshold);
