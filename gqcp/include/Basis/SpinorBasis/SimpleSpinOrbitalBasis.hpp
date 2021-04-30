@@ -108,6 +108,21 @@ public:
         SimpleSpinOrbitalBasis(molecule.nuclearFramework(), basisset_name) {}
 
 
+    /**
+     *  Construct a simple spin-orbital basis with an underlying scalar basis that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).
+     *
+     *  @param molecule                 The molecule containing the nuclei on which the shells should be centered.
+     *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
+     *  @param B                        The homogeneous magnetic field.
+     *
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
+     */
+    template <typename Z = Shell>
+    SimpleSpinOrbitalBasis(const Molecule& molecule, const std::string& basisset_name, const HomogeneousMagneticField& B,
+                           typename std::enable_if<std::is_same<Z, LondonGTOShell>::value>::type* = 0) :
+        SimpleSpinOrbitalBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name, B)) {}
+
+
     /*
      *  MARK: Scalar basis
      */

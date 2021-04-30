@@ -15,7 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
+#include "Mathematical/Representation/Tensor.hpp"
+
+#include <pybind11/eigen.h>
+#include <pybind11/iostream.h>
 #include <pybind11/pybind11.h>
+
 
 namespace py = pybind11;
 
@@ -133,10 +138,12 @@ void bindCurrentDensityOperator(py::module& module);
 void bindDiamagneticOperator(py::module& module);
 void bindElectronicDensityOperator(py::module& module);
 void bindElectronicDipoleOperator(py::module& module);
+void bindElectronicSpin_zOperator(py::module& module);
 void bindElectronicQuadrupoleOperator(py::module& module);
 void bindElectronicSpinOperator(py::module& module);
 void bindFQMolecularHamiltonian(py::module& module);
 void bindFQMolecularMagneticHamiltonian(py::module& module);
+void bindFQMolecularPauliHamiltonian(py::module& module);
 void bindKineticOperator(py::module& module);
 void bindLinearMomentumOperator(py::module& module);
 void bindNuclearAttractionOperator(py::module& module);
@@ -376,11 +383,13 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindElectronicDensityOperator(module);
     gqcpy::bindElectronicDipoleOperator(module);
     gqcpy::bindElectronicQuadrupoleOperator(module);
+    gqcpy::bindElectronicSpin_zOperator(module);
     gqcpy::bindElectronicSpinOperator(module);
     gqcpy::bindKineticOperator(module);
     gqcpy::bindLinearMomentumOperator(module);
     gqcpy::bindFQMolecularHamiltonian(module);
     gqcpy::bindFQMolecularMagneticHamiltonian(module);
+    gqcpy::bindFQMolecularPauliHamiltonian(module);
     gqcpy::bindNuclearAttractionOperator(module);
     gqcpy::bindNuclearDipoleOperator(module);
     gqcpy::bindNuclearRepulsionOperator(module);

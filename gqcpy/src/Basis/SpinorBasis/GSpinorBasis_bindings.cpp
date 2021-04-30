@@ -146,23 +146,21 @@ void bindGSpinorBases(py::module& module) {
     bindGSpinorBasisInterface(py_GSpinorBasis_cd);
     bindGTOGSpinorBasisInterface(py_GSpinorBasis_cd);
 
-
-    // Define the Python class for `LondonGSpinorBasis`.
-    py::class_<GSpinorBasis<complex, LondonGTOShell>> py_LondonGSpinorBasis {module, "LondonGSpinorBasis", "A class that represents a complex, (generalized) spinor basis with underlying London GTO shells."};
-
-    py_LondonGSpinorBasis
-        .def(py::init<const Molecule&, const std::string&, const HomogeneousMagneticField&>(),
-             py::arg("molecule"),
-             py::arg("basisset_name"),
-             py::arg("B"))
+    py_GSpinorBasis_cd
 
         .def(
             "quantize",
-            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const AngularMomentumOperator& op) {
+            [](const GSpinorBasis<complex, GTOShell>& spinor_basis, const ElectronicSpinOperator& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the angular momentum operator expressed in this spinor basis.")
+            "Return the electronic spin operator expressed in this spinor basis.");
 
+
+    // Define the Python class for `LondonGSpinorBasis`.
+    py::class_<GSpinorBasis<complex, LondonGTOShell>>
+        py_LondonGSpinorBasis {module, "LondonGSpinorBasis", "A class that represents a complex, (generalized) spinor basis with underlying London GTO shells."};
+
+    py_LondonGSpinorBasis
         .def(
             "quantize",
             [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ElectronicSpinOperator& op) {
@@ -172,33 +170,13 @@ void bindGSpinorBases(py::module& module) {
 
         .def(
             "quantize",
-            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const ElectronicQuadrupoleOperator& op) {
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const FQMolecularPauliHamiltonian& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the electronic quadrupole operator expressed in this spinor basis.")
-
-        .def(
-            "quantize",
-            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const OrbitalZeemanOperator& op) {
-                return spinor_basis.quantize(op);
-            },
-            "Return the orbital Zeeman operator expressed in this spinor basis.")
-
-        .def(
-            "quantize",
-            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const DiamagneticOperator& op) {
-                return spinor_basis.quantize(op);
-            },
-            "Return the diamagnetic operator expressed in this spinor basis.")
-
-        .def(
-            "quantize",
-            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const FQMolecularMagneticHamiltonian& op) {
-                return spinor_basis.quantize(op);
-            },
-            "Return the molecular magnetic Hamiltonian expressed in this spinor basis.");
+            "Return the molecular Pauli Hamiltonian expressed in this spinor basis.");
 
     bindGSpinorBasisInterface(py_LondonGSpinorBasis);
+    bindLondonSpinorBasisQuantizationInterface(py_LondonGSpinorBasis);
 }
 
 

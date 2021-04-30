@@ -23,15 +23,23 @@
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/transform.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
+#include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CC/CCSD.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
 #include "QCMethod/CC/CCSDSolver.hpp"
+#include "QCMethod/CI/CI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
+#include "QCMethod/HF/GHF/GHF.hpp"
+#include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
+#include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "Utilities/complex.hpp"
 
 
 /**
@@ -95,4 +103,63 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
     const double ref_ccsd_correlation_energy = -0.070680088376;
     BOOST_CHECK(std::abs(ccsd_correlation_energy - ref_ccsd_correlation_energy) < 1.0e-08);
+}
+
+
+/**
+ *  Validate the correctness of complex-valued CCSD by checking it against the complex FCI results for H2.
+ * 
+ *  The calculations are performed in a 6-31G basis set, using London orbitals to describe the magnetic Hamiltonian.
+ */
+BOOST_AUTO_TEST_CASE(CCSD_vs_CI_complex) {
+
+    // Set up the magnetic Hamiltonian in the GHF canonical orbital basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const auto N = molecule.numberOfElectrons();
+    const auto nuclear_repulsion = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+
+    const GQCP::HomogeneousMagneticField B {{0, 0, 0.1}};
+
+
+    GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis {molecule, "6-31G", B};
+    const auto M = spinor_basis.numberOfSpinors();
+    const auto S = spinor_basis.overlap();
+    auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularPauliHamiltonian(molecule, B));  // Here, the magnetic Hamiltonian is expressed in the AO basis.
+
+
+    // Solve the GHF SCF equations.
+    auto ghf_environment = GQCP::GHFSCFEnvironment<GQCP::complex>::WithComplexlyTransformedCoreGuess(N, hamiltonian, S);
+    auto scf_solver = GQCP::GHFSCFSolver<GQCP::complex>::Plain();
+    const auto ghf_qc_structure = GQCP::QCMethod::GHF<GQCP::complex>().optimize(scf_solver, ghf_environment);
+    const auto& ghf_parameters = ghf_qc_structure.groundStateParameters();
+    const auto rhf_energy = ghf_qc_structure.groundStateEnergy();
+
+    const auto& C = ghf_parameters.expansion();
+    spinor_basis.transform(C);
+    hamiltonian.transform(C);
+
+
+    // Calculate the CCSD electronic energy.
+    const auto orbital_space = ghf_parameters.orbitalSpace();
+    auto ccsd_environment = GQCP::CCSDEnvironment<GQCP::complex>::PerturbativeCCSD(hamiltonian, orbital_space);
+
+
+    // Prepare the CCSD solver and optimize the CCSD model parameters.
+    auto ccsd_solver = GQCP::CCSDSolver<GQCP::complex>::Plain();
+    const auto ccsd_qc_structure = GQCP::QCMethod::CCSD<GQCP::complex>().optimize(ccsd_solver, ccsd_environment);
+    const auto ccsd_correlation_energy = ccsd_qc_structure.groundStateEnergy();
+    const auto ccsd_electronic_energy = ccsd_correlation_energy + rhf_energy;
+
+
+    // Calculate the FCI electronic energy and check if it matches the CCSD result.
+    const GQCP::SpinUnresolvedONVBasis full_onv_basis {M, N};
+    const GQCP::SpinUnresolvedSelectedONVBasis onv_basis {full_onv_basis};
+
+    auto fci_environment = GQCP::CIEnvironment::Dense(hamiltonian, onv_basis);
+    auto fci_solver = GQCP::EigenproblemSolver::Dense<GQCP::complex>();
+    auto fci_qc_structure = GQCP::QCMethod::CI<GQCP::complex, GQCP::SpinUnresolvedSelectedONVBasis>(onv_basis).optimize(fci_solver, fci_environment);
+
+    const auto fci_electronic_energy = fci_qc_structure.groundStateEnergy();
+
+    BOOST_CHECK(std::abs(ccsd_electronic_energy - fci_electronic_energy) < 1.0e-08);
 }

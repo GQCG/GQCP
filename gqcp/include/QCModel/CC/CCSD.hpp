@@ -79,7 +79,7 @@ public:
 
         // A KISS implementation of the CCSD energy correction.
         // The implementation is in line with Crawford2000 "Chapter 2: An Introduction to Coupled Cluster Theory for Computational Chemists", eq. [134].
-        double E = 0.0;
+        Scalar E {0.0};
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 E += f(i, a) * t1(i, a);

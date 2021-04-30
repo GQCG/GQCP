@@ -10,6 +10,7 @@ target_sources(gqcp
         ElectronicSpinOperator.cpp
         FQMolecularHamiltonian.cpp
         FQMolecularMagneticHamiltonian.cpp
+        FQMolecularPauliHamiltonian.cpp
         LinearMomentumOperator.cpp
         NuclearDipoleOperator.cpp
         NuclearRepulsionOperator.cpp

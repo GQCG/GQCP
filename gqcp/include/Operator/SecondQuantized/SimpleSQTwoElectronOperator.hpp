@@ -433,7 +433,7 @@ public:
             Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
 
             for (size_t i = 0; i < this->numberOfComponents(); i++) {
-                copy_parameters[i] = SquareRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
+                copy_parameters[i] = SquareRankFourTensor<Scalar>(parameters[i].shuffle(shuffle_indices));
             }
 
             copy.is_expressed_using_chemists_notation = true;
@@ -457,7 +457,7 @@ public:
             Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
 
             for (size_t i = 0; i < this->numberOfComponents(); i++) {
-                copy_parameters[i] = SquareRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
+                copy_parameters[i] = SquareRankFourTensor<Scalar>(parameters[i].shuffle(shuffle_indices));
             }
 
             copy.is_expressed_using_chemists_notation = false;

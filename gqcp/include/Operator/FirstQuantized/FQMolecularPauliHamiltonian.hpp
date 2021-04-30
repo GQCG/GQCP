@@ -18,27 +18,21 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/DiamagneticOperator.hpp"
-#include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
-#include "Operator/FirstQuantized/OrbitalZeemanOperator.hpp"
+#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
+#include "Operator/FirstQuantized/SpinZeemanOperator.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  The first-quantized, molecular electronic Hamiltonian for systems in a magnetic field.
- * 
- *  @note The molecular magnetic Hamiltonian is different from the molecular Pauli Hamiltonian: the Pauli Hamiltonian contains the additional paramagnetic spin Zeeman term.
+ *  The first-quantized, molecular electronic Pauli Hamiltonian for systems in a magnetic field.
  */
-class FQMolecularMagneticHamiltonian:
-    public FQMolecularHamiltonian {
+class FQMolecularPauliHamiltonian:
+    public FQMolecularMagneticHamiltonian {
 private:
-    // The orbital Zeeman operator.
-    OrbitalZeemanOperator OZ;
-
-    // The diamagnetic operator.
-    DiamagneticOperator D;
+    // The spin Zeeman operator.
+    SpinZeemanOperator SZ;
 
 
 public:
@@ -50,19 +44,20 @@ public:
      *  @param T            The kinetic energy operator.
      *  @param OZ           The orbital Zeeman operator.
      *  @param D            The diamagnetic operator.
+     *  @param SZ           The spin Zeeman operator.
      *  @param V            The nuclear attraction operator.
      *  @param g            The two-electron repulsion operator.
      */
-    FQMolecularMagneticHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
+    FQMolecularPauliHamiltonian(const KineticOperator& T, const OrbitalZeemanOperator& OZ, const DiamagneticOperator& D, const SpinZeemanOperator& SZ, const NuclearAttractionOperator& V, const CoulombRepulsionOperator& g);
 
 
     /**
-     *  Construct a `FQMolecularMagneticHamiltonian` from a molecule and underlying homogeneous magnetic field.
+     *  Construct a `FQMolecularPauliHamiltonian` from a molecule and underlying homogeneous magnetic field.
      * 
      *  @param molecule         The molecule.
      *  @param B                The external, homogeneous magnetic field.
      */
-    FQMolecularMagneticHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B);
+    FQMolecularPauliHamiltonian(const Molecule& molecule, const HomogeneousMagneticField& B);
 
 
     /*
@@ -70,14 +65,9 @@ public:
      */
 
     /**
-     *  @return The orbital Zeeman operator.
+     *  @return The spin Zeeman operator.
      */
-    const OrbitalZeemanOperator& orbitalZeeman() const { return this->OZ; }
-
-    /**
-     *  @return The diamagnetic operator.
-     */
-    const DiamagneticOperator& diamagnetic() const { return this->D; }
+    const SpinZeemanOperator& spinZeeman() const { return this->SZ; }
 };
 
 

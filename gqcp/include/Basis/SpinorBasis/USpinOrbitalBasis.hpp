@@ -189,6 +189,21 @@ public:
                           ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta)) {}
 
 
+    /**
+     *  Construct a unrestricted spin-orbital basis with an underlying scalar basis that is made by placing shells (equal for both the alpha and beta components) corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).
+     *
+     *  @param molecule                 The molecule containing the nuclei on which the shells should be centered.
+     *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
+     *  @param B                        The homogeneous magnetic field.
+     *
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
+     */
+    template <typename Z = Shell>
+    USpinOrbitalBasis(const Molecule& molecule, const std::string& basisset_name, const HomogeneousMagneticField& B,
+                      typename std::enable_if<std::is_same<Z, LondonGTOShell>::value>::type* = 0) :
+        USpinOrbitalBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name, B)) {}
+
+
     /*
      *  MARK: Named constructors
      */
@@ -279,29 +294,6 @@ public:
      */
 
     /**
-     *  Quantize a one-electron operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
-     * 
-     *  @param fq_op                                The first-quantized one-electron operator.
-     *
-     *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
-     * 
-     *  @return The second-quantized operator corresponding to the given first-quantized operator.
-     */
-    template <typename FQOneElectronOperator, typename Z = Shell>
-    auto quantize(const FQOneElectronOperator& fq_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, USQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer>> {
-
-        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = USQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
-
-        // Quantize the one-electron operator in the alpha- and beta- bases and return the wrapped result.
-        const auto f_a = this->alpha().quantize(fq_op);
-        const auto f_b = this->beta().quantize(fq_op);
-
-        return ResultOperator {f_a, f_b};
-    }
-
-
-    /**
      *  Quantize the z-component of the electronic spin operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
      * 
      *  @param fq_op                                The first-quantized one-electron operator.
@@ -381,8 +373,105 @@ public:
 
 
     /*
+     *  MARK: Quantization of first-quantized operators (LondonGTOShell)
+     */
+
+    /**
+     *  Quantize the Coulomb operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
+     * 
+     *  @param coulomb_op               The first-quantized Coulomb operator operator.
+     * 
+     *  @return The second-quantized Coulomb operator.
+     */
+    template <typename Z = Shell>
+    auto quantize(const CoulombRepulsionOperator& coulomb_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, ScalarUSQTwoElectronOperator<product_t<typename CoulombRepulsionOperator::Scalar, ExpansionScalar>>> {
+
+        using ResultScalar = product_t<typename CoulombRepulsionOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = ScalarUSQTwoElectronOperator<ResultScalar>;
+
+        // Determine the matrix representation of the four spin-components of the second-quantized Coulomb operator.
+        auto coulomb_engine = GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(CoulombRepulsionOperator());
+
+        const auto g_aa_par = GQCP::IntegralCalculator::calculate(coulomb_engine, this->alpha().scalarBasis().shellSet(), this->alpha().scalarBasis().shellSet())[0];  // In AO basis, 'par' for 'parameters'.
+        const auto g_ab_par = GQCP::IntegralCalculator::calculate(coulomb_engine, this->alpha().scalarBasis().shellSet(), this->beta().scalarBasis().shellSet())[0];   // In AO basis, 'par' for 'parameters'.
+        const auto g_ba_par = GQCP::IntegralCalculator::calculate(coulomb_engine, this->beta().scalarBasis().shellSet(), this->alpha().scalarBasis().shellSet())[0];   // In AO basis, 'par' for 'parameters'.
+        const auto g_bb_par = GQCP::IntegralCalculator::calculate(coulomb_engine, this->beta().scalarBasis().shellSet(), this->beta().scalarBasis().shellSet())[0];    // In AO basis, 'par' for 'parameters'.
+
+
+        auto g_aa = SquareRankFourTensor<ResultScalar>::Zero(g_aa_par.dimension(0));
+        auto g_ab = SquareRankFourTensor<ResultScalar>::Zero(g_ab_par.dimension(0));
+        auto g_ba = SquareRankFourTensor<ResultScalar>::Zero(g_ba_par.dimension(0));
+        auto g_bb = SquareRankFourTensor<ResultScalar>::Zero(g_bb_par.dimension(0));
+
+        for (size_t i = 0; i < g_aa_par.dimension(0); i++) {
+            for (size_t j = 0; j < g_aa_par.dimension(1); j++) {
+                for (size_t k = 0; k < g_aa_par.dimension(2); k++) {
+                    for (size_t l = 0; l < g_aa_par.dimension(3); l++) {
+                        g_aa(i, j, k, l) = g_aa_par(i, j, k, l);
+                        g_ab(i, j, k, l) = g_ab_par(i, j, k, l);
+                        g_ba(i, j, k, l) = g_ba_par(i, j, k, l);
+                        g_bb(i, j, k, l) = g_bb_par(i, j, k, l);
+                    }
+                }
+            }
+        }
+
+        // We have previously calculated the representations in the AO basis, so we'll still have to transform these representations to the current spin-orbitals.
+        ResultOperator g {g_aa, g_ab, g_ba, g_bb};
+        g.transform(this->expansion());  // Now, g is expressed in the current spin-orbital basis.
+
+        return g;
+    }
+
+
+    /**
+     *  Quantize the molecular magnetic Hamiltonian.
+     * 
+     *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
+     * 
+     *  @return The second-quantized molecular magnetic Hamiltonian.
+     */
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, USQHamiltonian<ExpansionScalar>> quantize(const FQMolecularMagneticHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto OZ = this->quantize(fq_hamiltonian.orbitalZeeman());
+        const auto D = this->quantize(fq_hamiltonian.diamagnetic());
+
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return USQHamiltonian<ExpansionScalar> {{T, OZ, D, V}, {g}};
+    }
+
+
+    /*
      *  MARK: Quantization of first-quantized operators
      */
+
+    /**
+     *  Quantize a one-electron operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
+     * 
+     *  @param fq_op                                The first-quantized one-electron operator.
+     *
+     *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
+     * 
+     *  @return The second-quantized operator corresponding to the given first-quantized operator.
+     */
+    template <typename FQOneElectronOperator>
+    auto quantize(const FQOneElectronOperator& fq_op) const -> USQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
+
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = USQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
+
+        // Quantize the one-electron operator in the alpha- and beta- bases and return the wrapped result.
+        const auto f_a = this->alpha().quantize(fq_op);
+        const auto f_b = this->beta().quantize(fq_op);
+
+        return ResultOperator {f_a, f_b};
+    }
+
 
     /**
      *  Quantize the molecular Hamiltonian.

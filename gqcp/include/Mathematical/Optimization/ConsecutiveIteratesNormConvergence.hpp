@@ -19,10 +19,11 @@
 
 
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
+#include "Utilities/complex.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <deque>
 #include <functional>
-#include <type_traits>
 
 
 namespace GQCP {
@@ -97,10 +98,10 @@ public:
 
         // Get the two most recent density matrices and compare the norm of their difference
         const auto second_to_last_it = iterates.end() - 2;  // 'it' for 'iterator'
-        const auto& previous = *second_to_last_it;          // dereference the iterator
+        const auto& previous = *second_to_last_it;          // Dereference the iterator.
         const auto current = iterates.back();
 
-        return ((current - previous).norm() <= this->m_threshold);
+        return (std::real((current - previous).norm()) <= this->m_threshold);
     }
 
 

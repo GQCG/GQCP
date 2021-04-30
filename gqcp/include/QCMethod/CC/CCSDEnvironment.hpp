@@ -43,7 +43,7 @@ public:
 
 
 public:
-    std::deque<double> correlation_energies;  // The electronic correlation energies.
+    std::deque<Scalar> correlation_energies;  // The electronic correlation energies.
 
     std::deque<T1Amplitudes<Scalar>> t1_amplitudes;
     std::deque<T2Amplitudes<Scalar>> t2_amplitudes;
