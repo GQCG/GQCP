@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="172" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="172" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="284" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="284" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -37,7 +37,7 @@
         <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_spin_orbital_basis_component_3_01___expansion_scalar_00_01___shell_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="169" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="169" bodyend="173"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="281" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="281" bodyend="285"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_spin_orbital_basis_component_3_01___expansion_scalar_00_01___shell_01_4_01_4_1aa239c44f83a259c4afaec0635dd333ef" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt; &gt;</scope><name>JacobiRotationType</name></member>
     </listofallmembers>

@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="139" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="139" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="251" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="251" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4_1a5e49c1476d9034c4693cd3416301a15d" prot="public" static="no">
         <type><ref refid="namespace_g_q_c_p_1ae63533275636c4067625f662a217726b" kindref="member">ScalarUSQOneElectronOperatorComponent</ref>&lt; ExpansionScalar &gt;</type>
@@ -36,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="142" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="142" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="254" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="254" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -50,7 +50,7 @@
         <link refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="136" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="136" bodyend="143"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="248" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="248" bodyend="255"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4_1a5e49c1476d9034c4693cd3416301a15d" prot="public" virt="non-virtual"><scope>GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</scope><name>SQOverlapOperator</name></member>
       <member refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_u_spin_orbital_basis_component_3_01_expansion_scalar_00_01_shell_01_4_01_4_1a3efe2ae5754c403013a9640adb6a145f" prot="public" virt="non-virtual"><scope>GQCP::SpinorBasisTraits&lt; USpinOrbitalBasisComponent&lt; ExpansionScalar, Shell &gt; &gt;</scope><name>Transformation</name></member>

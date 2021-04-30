@@ -24,9 +24,9 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1aef79bf3441544306172ef243a0a3d9a0" prot="public" static="no" mutable="no">
-        <type>std::deque&lt; double &gt;</type>
-        <definition>std::deque&lt;double&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::correlation_energies</definition>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_c_c_s_d_environment_1ab09723fa4037b1c6cc817da6b1f1706f" prot="public" static="no" mutable="no">
+        <type>std::deque&lt; <ref refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kindref="member">Scalar</ref> &gt;</type>
+        <definition>std::deque&lt;Scalar&gt; GQCP::CCSDEnvironment&lt; _Scalar &gt;::correlation_energies</definition>
         <argsstring></argsstring>
         <name>correlation_energies</name>
         <briefdescription>
@@ -505,7 +505,7 @@
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a8741859b3abcc2d830d340da3222d494" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>CCSDEnvironment</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a5d4c983ec466321e35d9f9a5171bec76" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>CCSDEnvironment</name></member>
-      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1aef79bf3441544306172ef243a0a3d9a0" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>correlation_energies</name></member>
+      <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1ab09723fa4037b1c6cc817da6b1f1706f" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>correlation_energies</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a96da3b098a302ff00696091b168cba8e" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>f</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a72da8af53a68fa131224b46dc95c6d38" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>F1</name></member>
       <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1abe71efd4652b9bd6c52bb8fbba7c5a8a" prot="public" virt="non-virtual"><scope>GQCP::CCSDEnvironment</scope><name>F2</name></member>

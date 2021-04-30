@@ -155,6 +155,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a61bed093085a840a1433f2f5c3a7ede4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8318cd22c98453bb9ace5196ae980f46"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a8318cd22c98453bb9ace5196ae980f46">USpinOrbitalBasis</a> (const <a class="el" href="class_g_q_c_p_1_1_molecule.html">Molecule</a> &amp;molecule, const std::string &amp;basisset_name_alpha, const std::string &amp;basisset_name_beta)</td></tr>
 <tr class="separator:a8318cd22c98453bb9ace5196ae980f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf902f4303cb96069d1d83ecccafd1e6"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:aaf902f4303cb96069d1d83ecccafd1e6"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#aaf902f4303cb96069d1d83ecccafd1e6">USpinOrbitalBasis</a> (const <a class="el" href="class_g_q_c_p_1_1_molecule.html">Molecule</a> &amp;molecule, const std::string &amp;basisset_name, const <a class="el" href="class_g_q_c_p_1_1_homogeneous_magnetic_field.html">HomogeneousMagneticField</a> &amp;B, typename std::enable_if&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value &gt;::type *=0)</td></tr>
+<tr class="separator:aaf902f4303cb96069d1d83ecccafd1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa769e1e7147f8f3aceb6a891dcf72b35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_u_transformation.html">UTransformation</a>&lt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#aa769e1e7147f8f3aceb6a891dcf72b35">expansion</a> () const</td></tr>
 <tr class="separator:aa769e1e7147f8f3aceb6a891dcf72b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d13ceda13422fdbdda0e2092faa90eb"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a4d13ceda13422fdbdda0e2092faa90eb">numberOfSpinors</a> () const</td></tr>
@@ -167,9 +170,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa1f9ed2ffe54b230fad07dced29aa215"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eb3449b97998a8f1aad758fc9add0a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a4eb3449b97998a8f1aad758fc9add0a3">lowdinOrthonormalize</a> ()</td></tr>
 <tr class="separator:a4eb3449b97998a8f1aad758fc9add0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf009d094b28d60bd34c4a6c54d49b32"><td class="memTemplParams" colspan="2">template&lt;typename FQOneElectronOperator , typename Z  = Shell&gt; </td></tr>
-<tr class="memitem:aaf009d094b28d60bd34c4a6c54d49b32"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#aaf009d094b28d60bd34c4a6c54d49b32">quantize</a> (const FQOneElectronOperator &amp;fq_op) const -&gt; <a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a> &gt;::value, <a class="el" href="class_g_q_c_p_1_1_u_s_q_one_electron_operator.html">USQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; typename FQOneElectronOperator::Scalar, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;, typename FQOneElectronOperator::Vectorizer &gt;&gt;</td></tr>
-<tr class="separator:aaf009d094b28d60bd34c4a6c54d49b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c2deafb1c7c5cbd1343c8495b2a8bbe"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
 <tr class="memitem:a3c2deafb1c7c5cbd1343c8495b2a8bbe"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a3c2deafb1c7c5cbd1343c8495b2a8bbe">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_electronic_spin__z_operator.html">ElectronicSpin_zOperator</a> &amp;fq_op) const -&gt; <a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a> &gt;::value, <a class="el" href="class_g_q_c_p_1_1_u_s_q_one_electron_operator.html">USQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">ElectronicSpin_zOperator::Scalar</a>, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;, <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#a3bf379636691d7d74ea96afc8f5049cf">ElectronicSpin_zOperator::Vectorizer</a> &gt;&gt;</td></tr>
 <tr class="separator:a3c2deafb1c7c5cbd1343c8495b2a8bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,6 +178,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afb495aa178b4039badd5236eefc6d027"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
 <tr class="memitem:afb495aa178b4039badd5236eefc6d027"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#afb495aa178b4039badd5236eefc6d027">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_coulomb_repulsion_operator.html">CoulombRepulsionOperator</a> &amp;coulomb_op) const -&gt; <a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a> &gt;::value, <a class="el" href="namespace_g_q_c_p.html#a917f77e00f808dfce7965011d7f9a824">ScalarUSQTwoElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; typename <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">CoulombRepulsionOperator::Scalar</a>, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;&gt;&gt;</td></tr>
 <tr class="separator:afb495aa178b4039badd5236eefc6d027"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af375e276f954de740a93f264047b2b22"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:af375e276f954de740a93f264047b2b22"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#af375e276f954de740a93f264047b2b22">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_coulomb_repulsion_operator.html">CoulombRepulsionOperator</a> &amp;coulomb_op) const -&gt; <a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value, <a class="el" href="namespace_g_q_c_p.html#a917f77e00f808dfce7965011d7f9a824">ScalarUSQTwoElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; typename <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">CoulombRepulsionOperator::Scalar</a>, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;&gt;&gt;</td></tr>
+<tr class="separator:af375e276f954de740a93f264047b2b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43f187483f1e671712e8015e38b154b4"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:a43f187483f1e671712e8015e38b154b4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value, <a class="el" href="namespace_g_q_c_p.html#a554adc2a4a187e4d73302a47e451a55d">USQHamiltonian</a>&lt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a43f187483f1e671712e8015e38b154b4">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian.html">FQMolecularMagneticHamiltonian</a> &amp;fq_hamiltonian) const</td></tr>
+<tr class="separator:a43f187483f1e671712e8015e38b154b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2200b24771de76df594a1971474ceeb7"><td class="memTemplParams" colspan="2">template&lt;typename FQOneElectronOperator &gt; </td></tr>
+<tr class="memitem:a2200b24771de76df594a1971474ceeb7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a2200b24771de76df594a1971474ceeb7">quantize</a> (const FQOneElectronOperator &amp;fq_op) const -&gt; <a class="el" href="class_g_q_c_p_1_1_u_s_q_one_electron_operator.html">USQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; typename FQOneElectronOperator::Scalar, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;, typename FQOneElectronOperator::Vectorizer &gt;</td></tr>
+<tr class="separator:a2200b24771de76df594a1971474ceeb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa06df84fc3d1d8d81b04642a6195f382"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a554adc2a4a187e4d73302a47e451a55d">USQHamiltonian</a>&lt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#aa06df84fc3d1d8d81b04642a6195f382">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_f_q_molecular_hamiltonian.html">FQMolecularHamiltonian</a> &amp;fq_hamiltonian) const</td></tr>
 <tr class="separator:aa06df84fc3d1d8d81b04642a6195f382"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfac25a81350065376e8951e605c84e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_u_mulliken_partitioning.html">UMullikenPartitioning</a>&lt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#adfac25a81350065376e8951e605c84e4">mullikenPartitioning</a> (const std::function&lt; bool(const <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a1b300eaa8d2637d545c0c6a1f8b4f2b9">BasisFunction</a> &amp;)&gt; &amp;selector) const</td></tr>
@@ -338,7 +347,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aee04c0bffc6f03cc458762e98d05162d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee04c0bffc6f03cc458762e98d05162d">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[1/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aee04c0bffc6f03cc458762e98d05162d">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[1/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -391,7 +400,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="a393e69a090834b0c40dd1f6256d6c020"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a393e69a090834b0c40dd1f6256d6c020">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[2/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a393e69a090834b0c40dd1f6256d6c020">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[2/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -437,7 +446,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="afe8f99e8ce84ac868aba2e9062917008"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe8f99e8ce84ac868aba2e9062917008">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[3/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afe8f99e8ce84ac868aba2e9062917008">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[3/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -483,7 +492,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="ace6431c7d2d00be53fb65e5f030c9483"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace6431c7d2d00be53fb65e5f030c9483">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[4/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6431c7d2d00be53fb65e5f030c9483">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[4/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -518,7 +527,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="a410b8d61448ae6dfd637ea986504629a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a410b8d61448ae6dfd637ea986504629a">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[5/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a410b8d61448ae6dfd637ea986504629a">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[5/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -565,7 +574,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="abb42b49627bca4d2ef2b0e823446d7de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb42b49627bca4d2ef2b0e823446d7de">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[6/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abb42b49627bca4d2ef2b0e823446d7de">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[6/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -612,7 +621,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="a61bed093085a840a1433f2f5c3a7ede4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61bed093085a840a1433f2f5c3a7ede4">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[7/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a61bed093085a840a1433f2f5c3a7ede4">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[7/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -666,7 +675,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="a8318cd22c98453bb9ace5196ae980f46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8318cd22c98453bb9ace5196ae980f46">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[8/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8318cd22c98453bb9ace5196ae980f46">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[8/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -712,6 +721,68 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
     <tr><td class="paramname">molecule</td><td>The molecule containing the nuclei on which the shells should be centered. </td></tr>
     <tr><td class="paramname">basisset_name_alpha</td><td>The name of the basisset, e.g. "STO-3G", used for the expansion of the alpha spin-orbitals. </td></tr>
     <tr><td class="paramname">basisset_name_beta</td><td>The name of the basisset, e.g. "STO-3G", used for the expansion of the beta spin-orbitals.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells. </dd></dl>
+
+</div>
+</div>
+<a id="aaf902f4303cb96069d1d83ecccafd1e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf902f4303cb96069d1d83ecccafd1e6">&#9670;&nbsp;</a></span>USpinOrbitalBasis() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Shell&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html">GQCP::USpinOrbitalBasis</a>&lt; _ExpansionScalar, _Shell &gt;::<a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html">USpinOrbitalBasis</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_molecule.html">Molecule</a> &amp;&#160;</td>
+          <td class="paramname"><em>molecule</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>basisset_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_homogeneous_magnetic_field.html">HomogeneousMagneticField</a> &amp;&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::enable_if&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value &gt;::type *&#160;</td>
+          <td class="paramname"> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Construct a unrestricted spin-orbital basis with an underlying scalar basis that is made by placing shells (equal for both the alpha and beta components) corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">molecule</td><td>The molecule containing the nuclei on which the shells should be centered. </td></tr>
+    <tr><td class="paramname">basisset_name</td><td>The name of the basisset, e.g. "STO-3G". </td></tr>
+    <tr><td class="paramname">B</td><td>The homogeneous magnetic field.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1034,7 +1105,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="afb495aa178b4039badd5236eefc6d027"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb495aa178b4039badd5236eefc6d027">&#9670;&nbsp;</a></span>quantize() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afb495aa178b4039badd5236eefc6d027">&#9670;&nbsp;</a></span>quantize() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1071,8 +1142,46 @@ template&lt;typename Z  = Shell&gt; </div>
 
 </div>
 </div>
+<a id="af375e276f954de740a93f264047b2b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af375e276f954de740a93f264047b2b22">&#9670;&nbsp;</a></span>quantize() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Shell&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html">GQCP::USpinOrbitalBasis</a>&lt; _ExpansionScalar, _Shell &gt;::quantize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_coulomb_repulsion_operator.html">CoulombRepulsionOperator</a> &amp;&#160;</td>
+          <td class="paramname"><em>coulomb_op</em></td><td>)</td>
+          <td> const -&gt; <a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a>&gt;::value, <a class="el" href="namespace_g_q_c_p.html#a917f77e00f808dfce7965011d7f9a824">ScalarUSQTwoElectronOperator</a>&lt;<a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt;typename <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">CoulombRepulsionOperator::Scalar</a>, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a>&gt;&gt;&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Quantize the Coulomb operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coulomb_op</td><td>The first-quantized Coulomb operator operator.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The second-quantized Coulomb operator. </dd></dl>
+
+</div>
+</div>
 <a id="a3c2deafb1c7c5cbd1343c8495b2a8bbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c2deafb1c7c5cbd1343c8495b2a8bbe">&#9670;&nbsp;</a></span>quantize() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2deafb1c7c5cbd1343c8495b2a8bbe">&#9670;&nbsp;</a></span>quantize() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1116,7 +1225,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="aa06df84fc3d1d8d81b04642a6195f382"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa06df84fc3d1d8d81b04642a6195f382">&#9670;&nbsp;</a></span>quantize() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa06df84fc3d1d8d81b04642a6195f382">&#9670;&nbsp;</a></span>quantize() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1151,15 +1260,53 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 
 </div>
 </div>
-<a id="aaf009d094b28d60bd34c4a6c54d49b32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf009d094b28d60bd34c4a6c54d49b32">&#9670;&nbsp;</a></span>quantize() <span class="overload">[4/4]</span></h2>
+<a id="a43f187483f1e671712e8015e38b154b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43f187483f1e671712e8015e38b154b4">&#9670;&nbsp;</a></span>quantize() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 <div class="memtemplate">
-template&lt;typename FQOneElectronOperator , typename Z  = Shell&gt; </div>
+template&lt;typename Z  = Shell&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a>&gt;::value, <a class="el" href="namespace_g_q_c_p.html#a554adc2a4a187e4d73302a47e451a55d">USQHamiltonian</a>&lt;<a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a>&gt; &gt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html">GQCP::USpinOrbitalBasis</a>&lt; _ExpansionScalar, _Shell &gt;::quantize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian.html">FQMolecularMagneticHamiltonian</a> &amp;&#160;</td>
+          <td class="paramname"><em>fq_hamiltonian</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Quantize the molecular magnetic Hamiltonian.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fq_hamiltonian</td><td>The molecular magnetic Hamiltonian.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The second-quantized molecular magnetic Hamiltonian. </dd></dl>
+
+</div>
+</div>
+<a id="a2200b24771de76df594a1971474ceeb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2200b24771de76df594a1971474ceeb7">&#9670;&nbsp;</a></span>quantize() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename FQOneElectronOperator &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1169,7 +1316,7 @@ template&lt;typename FQOneElectronOperator , typename Z  = Shell&gt; </div>
           <td>(</td>
           <td class="paramtype">const FQOneElectronOperator &amp;&#160;</td>
           <td class="paramname"><em>fq_op</em></td><td>)</td>
-          <td> const -&gt; <a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_g_t_o_shell.html">GTOShell</a>&gt;::value, <a class="el" href="class_g_q_c_p_1_1_u_s_q_one_electron_operator.html">USQOneElectronOperator</a>&lt;<a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt;typename FQOneElectronOperator::Scalar, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a>&gt;, typename FQOneElectronOperator::Vectorizer&gt;&gt; </td>
+          <td> const -&gt; <a class="el" href="class_g_q_c_p_1_1_u_s_q_one_electron_operator.html">USQOneElectronOperator</a>&lt;<a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt;typename FQOneElectronOperator::Scalar, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a>&gt;, typename FQOneElectronOperator::Vectorizer&gt; </td>
         </tr>
       </table>
   </td>

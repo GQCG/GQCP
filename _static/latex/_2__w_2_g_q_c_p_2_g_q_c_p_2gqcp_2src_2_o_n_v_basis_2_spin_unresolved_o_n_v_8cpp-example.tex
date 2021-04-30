@@ -244,6 +244,13 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} SpinUnresolvedONV::countNumberOfExcitations(\textcolor{keyword}{const} SpinUnresolvedONV\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} differences = this-\/>unsigned\_representation \string^ other.unsigned\_representation;}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} std::min(\_\_builtin\_popcountl(this-\/>unsigned\_representation \& differences), \_\_builtin\_popcountl(other.unsigned\_representation \& differences));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::create(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p) \{}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{if} (!this-\/>isOccupied(p)) \{}

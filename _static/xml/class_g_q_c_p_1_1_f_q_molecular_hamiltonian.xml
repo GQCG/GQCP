@@ -180,6 +180,12 @@
 <para>The first-quantized, molecular electronic Hamiltonian. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>GQCP::FQMolecularPauliHamiltonian</label>
+        <link refid="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="2">
         <label>GQCP::FQMolecularMagneticHamiltonian</label>
         <link refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian"/>

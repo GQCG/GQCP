@@ -1,4 +1,5 @@
 <map id="GQCP::FQMolecularHamiltonian" name="GQCP::FQMolecularHamiltonian">
 <area shape="rect" id="node1" title=" " alt="" coords="25,5,252,171"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian.html" title=" " alt="" coords="5,219,272,369"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian.html" title=" " alt="" coords="5,219,272,355"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian.html" title=" " alt="" coords="9,403,268,509"/>
 </map>

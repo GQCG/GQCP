@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="836" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="836" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="859" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="859" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -37,7 +37,7 @@
         <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="833" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="833" bodyend="837"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" line="856" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp" bodystart="856" bodyend="860"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a0d79f9c626c22e69eb8acee6c9c85ee9" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; GSpinorBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</scope><name>JacobiRotationType</name></member>
     </listofallmembers>

@@ -30,10 +30,14 @@
     <includedby refid="_a_p_i_g_geminal_coefficients_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp</includedby>
     <includedby refid="_geminal_coefficients_interface_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/GeminalCoefficientsInterface.hpp</includedby>
     <incdepgraph>
-      <node id="177">
+      <node id="180">
         <label>Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
         <link refid="_u_spin_orbital_basis_component_8hpp"/>
-        <childnode refid="145" relation="include">
+        <childnode refid="148" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="125" relation="include">
         </childnode>
@@ -41,37 +45,39 @@
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="144" relation="include">
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="143">
+      <node id="146">
         <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
         <link refid="_s_q_operator_storage_8hpp"/>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="136" relation="include">
+        <childnode refid="139" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="160">
+      <node id="163">
         <label>Operator/SecondQuantized/GSQOneElectronOperator.hpp</label>
         <link refid="_g_s_q_one_electron_operator_8hpp"/>
         <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
-        <childnode refid="162" relation="include">
+        <childnode refid="165" relation="include">
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="142" relation="include">
+        <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="144" relation="include">
+        <childnode refid="147" relation="include">
         </childnode>
-        <childnode refid="148" relation="include">
+        <childnode refid="151" relation="include">
         </childnode>
       </node>
       <node id="21">
@@ -161,18 +167,18 @@
         <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="138">
+      <node id="141">
         <label>Operator/SecondQuantized/OperatorTraits.hpp</label>
         <link refid="_operator_traits_8hpp"/>
       </node>
-      <node id="170">
+      <node id="173">
         <label>DensityMatrix/SpinDensity1DM.hpp</label>
         <link refid="_spin_density1_d_m_8hpp"/>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
-        <childnode refid="134" relation="include">
+        <childnode refid="137" relation="include">
         </childnode>
       </node>
       <node id="17">
@@ -240,7 +246,7 @@
         <childnode refid="105" relation="include">
         </childnode>
       </node>
-      <node id="169">
+      <node id="172">
         <label>DensityMatrix/SpinResolved1DM.hpp</label>
         <link refid="_spin_resolved1_d_m_8hpp"/>
         <childnode refid="46" relation="include">
@@ -249,13 +255,13 @@
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
-        <childnode refid="132" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="173" relation="include">
         </childnode>
-        <childnode refid="147" relation="include">
+        <childnode refid="150" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -268,16 +274,16 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="162">
+      <node id="165">
         <label>DensityMatrix/G2DM.hpp</label>
         <link refid="_g2_d_m_8hpp"/>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
-        <childnode refid="141" relation="include">
+        <childnode refid="144" relation="include">
         </childnode>
       </node>
       <node id="46">
@@ -304,7 +310,7 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="188">
+      <node id="189">
         <label>boost/dynamic_bitset.hpp</label>
       </node>
       <node id="3">
@@ -319,14 +325,14 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="164">
+      <node id="167">
         <label>Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp</label>
         <link refid="_hubbard_hamiltonian_8hpp"/>
-        <childnode refid="165" relation="include">
+        <childnode refid="168" relation="include">
         </childnode>
-        <childnode refid="139" relation="include">
+        <childnode refid="142" relation="include">
         </childnode>
-        <childnode refid="149" relation="include">
+        <childnode refid="152" relation="include">
         </childnode>
       </node>
       <node id="75">
@@ -368,7 +374,7 @@
         </childnode>
         <childnode refid="126" relation="include">
         </childnode>
-        <childnode refid="176" relation="include">
+        <childnode refid="179" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
@@ -376,33 +382,33 @@
         </childnode>
         <childnode refid="76" relation="include">
         </childnode>
-        <childnode refid="179" relation="include">
+        <childnode refid="129" relation="include">
         </childnode>
         <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="180" relation="include">
-        </childnode>
-        <childnode refid="178" relation="include">
-        </childnode>
-        <childnode refid="130" relation="include">
+        <childnode refid="182" relation="include">
         </childnode>
         <childnode refid="181" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="182" relation="include">
+        <childnode refid="133" relation="include">
         </childnode>
         <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="183" relation="include">
-        </childnode>
-        <childnode refid="160" relation="include">
+        <childnode refid="184" relation="include">
         </childnode>
         <childnode refid="163" relation="include">
         </childnode>
-        <childnode refid="154" relation="include">
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -428,11 +434,11 @@
       <node id="14">
         <label>boost/format.hpp</label>
       </node>
-      <node id="156">
+      <node id="159">
         <label>Basis/SpinorBasis/OccupationType.hpp</label>
         <link refid="_occupation_type_8hpp"/>
       </node>
-      <node id="178">
+      <node id="181">
         <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
         <link refid="_electronic_spin__z_operator_8hpp"/>
         <childnode refid="77" relation="include">
@@ -441,7 +447,7 @@
       <node id="113">
         <label>cmath</label>
       </node>
-      <node id="174">
+      <node id="177">
         <label>QuantumChemical/DoublySpinResolvedBase.hpp</label>
         <link refid="_doubly_spin_resolved_base_8hpp"/>
         <childnode refid="6" relation="include">
@@ -449,38 +455,38 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="152">
+      <node id="155">
         <label>Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp</label>
         <link refid="_pure_u_s_q_two_electron_operator_component_8hpp"/>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="146" relation="include">
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="156" relation="include">
         </childnode>
         <childnode refid="147" relation="include">
         </childnode>
-        <childnode refid="153" relation="include">
-        </childnode>
-        <childnode refid="144" relation="include">
-        </childnode>
       </node>
-      <node id="148">
+      <node id="151">
         <label>QuantumChemical/spinor_tags.hpp</label>
         <link refid="spinor__tags_8hpp"/>
       </node>
-      <node id="131">
+      <node id="134">
         <label>Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp</label>
         <link refid="_evaluable_r_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="132" relation="include">
-        </childnode>
         <childnode refid="135" relation="include">
         </childnode>
-        <childnode refid="139" relation="include">
+        <childnode refid="138" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
         </childnode>
       </node>
       <node id="34">
         <label>stdexcept</label>
       </node>
-      <node id="129">
+      <node id="130">
         <label>Operator/FirstQuantized/ElectronicDensityOperator.hpp</label>
         <link refid="_electronic_density_operator_8hpp"/>
         <childnode refid="77" relation="include">
@@ -509,18 +515,18 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="166">
+      <node id="169">
         <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
         <link refid="_adjacency_matrix_8hpp"/>
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="157">
+      <node id="160">
         <label>Mathematical/Representation/ImplicitMatrixSlice.hpp</label>
         <link refid="_implicit_matrix_slice_8hpp"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="158" relation="include">
+        <childnode refid="161" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -559,7 +565,7 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="153">
+      <node id="156">
         <label>Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp</label>
         <link refid="_simple_s_q_two_electron_operator_8hpp"/>
         <childnode refid="33" relation="include">
@@ -568,9 +574,9 @@
         </childnode>
         <childnode refid="122" relation="include">
         </childnode>
-        <childnode refid="137" relation="include">
+        <childnode refid="140" relation="include">
         </childnode>
-        <childnode refid="143" relation="include">
+        <childnode refid="146" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
@@ -592,73 +598,73 @@
         <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="175">
+      <node id="178">
         <label>Operator/SecondQuantized/USQTwoElectronOperator.hpp</label>
         <link refid="_u_s_q_two_electron_operator_8hpp"/>
-        <childnode refid="172" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="176" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="169" relation="include">
-        </childnode>
-        <childnode refid="171" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="150" relation="include">
-        </childnode>
-        <childnode refid="152" relation="include">
-        </childnode>
-        <childnode refid="149" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
         <childnode refid="174" relation="include">
         </childnode>
-        <childnode refid="148" relation="include">
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
         </childnode>
       </node>
-      <node id="149">
+      <node id="152">
         <label>Operator/SecondQuantized/RSQTwoElectronOperator.hpp</label>
         <link refid="_r_s_q_two_electron_operator_8hpp"/>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="132" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
-        <childnode refid="140" relation="include">
+        <childnode refid="143" relation="include">
         </childnode>
         <childnode refid="78" relation="include">
-        </childnode>
-        <childnode refid="150" relation="include">
-        </childnode>
-        <childnode refid="152" relation="include">
-        </childnode>
-        <childnode refid="139" relation="include">
         </childnode>
         <childnode refid="153" relation="include">
         </childnode>
-        <childnode refid="148" relation="include">
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
         </childnode>
       </node>
-      <node id="158">
+      <node id="161">
         <label>map</label>
       </node>
-      <node id="144">
+      <node id="147">
         <label>Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</label>
         <link refid="_u_s_q_one_electron_operator_component_8hpp"/>
-        <childnode refid="145" relation="include">
+        <childnode refid="148" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="146" relation="include">
+        <childnode refid="149" relation="include">
         </childnode>
-        <childnode refid="147" relation="include">
+        <childnode refid="150" relation="include">
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="142" relation="include">
+        <childnode refid="145" relation="include">
         </childnode>
       </node>
       <node id="51">
@@ -667,15 +673,23 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
+      <node id="183">
+        <label>Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</label>
+        <link refid="_f_q_molecular_pauli_hamiltonian_8hpp"/>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="184" relation="include">
+        </childnode>
+      </node>
       <node id="72">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
-      <node id="147">
+      <node id="150">
         <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
         <link refid="_spin_resolved1_d_m_component_8hpp"/>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="134" relation="include">
+        <childnode refid="137" relation="include">
         </childnode>
       </node>
       <node id="125">
@@ -756,12 +770,12 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="136">
+      <node id="139">
         <label>Operator/SecondQuantized/SQOperatorStorageBase.hpp</label>
         <link refid="_s_q_operator_storage_base_8hpp"/>
-        <childnode refid="137" relation="include">
+        <childnode refid="140" relation="include">
         </childnode>
-        <childnode refid="138" relation="include">
+        <childnode refid="141" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -778,14 +792,14 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="141">
+      <node id="144">
         <label>DensityMatrix/Simple2DM.hpp</label>
         <link refid="_simple2_d_m_8hpp"/>
         <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -809,7 +823,7 @@
       <node id="22">
         <label>fstream</label>
       </node>
-      <node id="133">
+      <node id="136">
         <label>DensityMatrix/DensityMatrixTraits.hpp</label>
         <link refid="_density_matrix_traits_8hpp"/>
       </node>
@@ -848,24 +862,24 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="163">
+      <node id="166">
         <label>Operator/SecondQuantized/GSQTwoElectronOperator.hpp</label>
         <link refid="_g_s_q_two_electron_operator_8hpp"/>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
-        <childnode refid="162" relation="include">
+        <childnode refid="165" relation="include">
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="160" relation="include">
+        <childnode refid="163" relation="include">
         </childnode>
-        <childnode refid="152" relation="include">
+        <childnode refid="155" relation="include">
         </childnode>
-        <childnode refid="153" relation="include">
+        <childnode refid="156" relation="include">
         </childnode>
-        <childnode refid="148" relation="include">
+        <childnode refid="151" relation="include">
         </childnode>
       </node>
       <node id="84">
@@ -892,7 +906,7 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="145">
+      <node id="148">
         <label>Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp</label>
         <link refid="_u_mulliken_partitioning_component_8hpp"/>
         <childnode refid="51" relation="include">
@@ -922,24 +936,24 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="171">
+      <node id="174">
         <label>DensityMatrix/SpinResolved2DM.hpp</label>
         <link refid="_spin_resolved2_d_m_8hpp"/>
-        <childnode refid="172" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="176" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="151" relation="include">
+        <childnode refid="154" relation="include">
         </childnode>
-        <childnode refid="140" relation="include">
+        <childnode refid="143" relation="include">
         </childnode>
-        <childnode refid="146" relation="include">
+        <childnode refid="149" relation="include">
         </childnode>
-        <childnode refid="174" relation="include">
+        <childnode refid="177" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -974,14 +988,14 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="161">
+      <node id="164">
         <label>DensityMatrix/G1DM.hpp</label>
         <link refid="_g1_d_m_8hpp"/>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
-        <childnode refid="134" relation="include">
+        <childnode refid="137" relation="include">
         </childnode>
       </node>
       <node id="101">
@@ -1014,18 +1028,18 @@
         <label>Utilities/CRTP.hpp</label>
         <link refid="_c_r_t_p_8hpp"/>
       </node>
-      <node id="155">
+      <node id="158">
         <label>Basis/SpinorBasis/OrbitalSpace.hpp</label>
         <link refid="_orbital_space_8hpp"/>
-        <childnode refid="156" relation="include">
-        </childnode>
-        <childnode refid="157" relation="include">
-        </childnode>
         <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="158" relation="include">
+        <childnode refid="161" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
@@ -1082,9 +1096,13 @@
         </childnode>
         <childnode refid="129" relation="include">
         </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
         <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="130" relation="include">
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
         </childnode>
@@ -1092,15 +1110,17 @@
         </childnode>
         <childnode refid="83" relation="include">
         </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
         <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="131" relation="include">
+        <childnode refid="134" relation="include">
         </childnode>
-        <childnode refid="139" relation="include">
+        <childnode refid="142" relation="include">
         </childnode>
-        <childnode refid="149" relation="include">
+        <childnode refid="152" relation="include">
         </childnode>
-        <childnode refid="154" relation="include">
+        <childnode refid="157" relation="include">
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
@@ -1113,7 +1133,7 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="180">
+      <node id="182">
         <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
         <link refid="_electronic_spin_operator_8hpp"/>
         <childnode refid="77" relation="include">
@@ -1246,10 +1266,10 @@
         <childnode refid="105" relation="include">
         </childnode>
       </node>
-      <node id="187">
+      <node id="188">
         <label>ONVBasis/SpinUnresolvedSelectedONVBasis.hpp</label>
       </node>
-      <node id="182">
+      <node id="133">
         <label>Operator/FirstQuantized/OrbitalZeemanOperator.hpp</label>
         <link refid="_orbital_zeeman_operator_8hpp"/>
         <childnode refid="108" relation="include">
@@ -1261,7 +1281,7 @@
         <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="179">
+      <node id="129">
         <label>Operator/FirstQuantized/DiamagneticOperator.hpp</label>
         <link refid="_diamagnetic_operator_8hpp"/>
         <childnode refid="77" relation="include">
@@ -1293,14 +1313,14 @@
         <label>QuantumChemical/Spin.hpp</label>
         <link refid="_spin_8hpp"/>
       </node>
-      <node id="146">
+      <node id="149">
         <label>DensityMatrix/PureSpinResolved2DMComponent.hpp</label>
         <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="141" relation="include">
+        <childnode refid="144" relation="include">
         </childnode>
-        <childnode refid="147" relation="include">
+        <childnode refid="150" relation="include">
         </childnode>
       </node>
       <node id="109">
@@ -1344,16 +1364,16 @@
         <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="140">
+      <node id="143">
         <label>DensityMatrix/Orbital2DM.hpp</label>
         <link refid="_orbital2_d_m_8hpp"/>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
-        <childnode refid="132" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
-        <childnode refid="141" relation="include">
+        <childnode refid="144" relation="include">
         </childnode>
       </node>
       <node id="94">
@@ -1419,25 +1439,23 @@
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="176" relation="include">
+        <childnode refid="179" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
-        <childnode refid="162" relation="include">
+        <childnode refid="165" relation="include">
         </childnode>
-        <childnode refid="132" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
-        <childnode refid="140" relation="include">
+        <childnode refid="143" relation="include">
         </childnode>
-        <childnode refid="169" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="184" relation="include">
         </childnode>
         <childnode refid="185" relation="include">
         </childnode>
@@ -1445,23 +1463,25 @@
         </childnode>
         <childnode refid="187" relation="include">
         </childnode>
+        <childnode refid="188" relation="include">
+        </childnode>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="188" relation="include">
+        <childnode refid="189" relation="include">
         </childnode>
       </node>
-      <node id="159">
+      <node id="162">
         <label>Mathematical/Representation/ImplicitRankFourTensorSlice.hpp</label>
         <link refid="_implicit_rank_four_tensor_slice_8hpp"/>
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="158" relation="include">
+        <childnode refid="161" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -1506,12 +1526,12 @@
         <childnode refid="68" relation="include">
         </childnode>
       </node>
-      <node id="165">
+      <node id="168">
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="166" relation="include">
+        <childnode refid="169" relation="include">
         </childnode>
       </node>
       <node id="13">
@@ -1540,7 +1560,7 @@
         <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="186">
+      <node id="187">
         <label>ONVBasis/SpinResolvedSelectedONVBasis.hpp</label>
       </node>
       <node id="87">
@@ -1549,13 +1569,13 @@
         <childnode refid="67" relation="include">
         </childnode>
       </node>
-      <node id="184">
+      <node id="185">
         <label>ONVBasis/SpinResolvedONV.hpp</label>
       </node>
       <node id="79">
         <label>cstddef</label>
       </node>
-      <node id="142">
+      <node id="145">
         <label>Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp</label>
         <link refid="_simple_s_q_one_electron_operator_8hpp"/>
         <childnode refid="33" relation="include">
@@ -1564,10 +1584,10 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="143" relation="include">
+        <childnode refid="146" relation="include">
         </childnode>
       </node>
-      <node id="172">
+      <node id="175">
         <label>Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp</label>
         <link refid="_doubly_spin_resolved_basis_transformable_8hpp"/>
         <childnode refid="33" relation="include">
@@ -1599,16 +1619,16 @@
       <node id="93">
         <label>libint2.hpp</label>
       </node>
-      <node id="176">
+      <node id="179">
         <label>Basis/SpinorBasis/USpinOrbitalBasis.hpp</label>
         <link refid="_u_spin_orbital_basis_8hpp"/>
-        <childnode refid="168" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="177" relation="include">
+        <childnode refid="180" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -1620,9 +1640,9 @@
         </childnode>
         <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="178" relation="include">
+        <childnode refid="181" relation="include">
         </childnode>
-        <childnode refid="130" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
         </childnode>
@@ -1630,11 +1650,11 @@
         </childnode>
         <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="154" relation="include">
+        <childnode refid="157" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
-        <childnode refid="175" relation="include">
+        <childnode refid="178" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -1651,7 +1671,7 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="183">
+      <node id="184">
         <label>Operator/FirstQuantized/SpinZeemanOperator.hpp</label>
         <link refid="_spin_zeeman_operator_8hpp"/>
         <childnode refid="77" relation="include">
@@ -1661,7 +1681,7 @@
         <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="135">
+      <node id="138">
         <label>Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp</label>
         <link refid="_evaluable_simple_s_q_one_electron_operator_8hpp"/>
         <childnode refid="8" relation="include">
@@ -1670,7 +1690,7 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="136" relation="include">
+        <childnode refid="139" relation="include">
         </childnode>
       </node>
       <node id="91">
@@ -1709,10 +1729,10 @@
         <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="167">
+      <node id="170">
         <label>Operator/SecondQuantized/USQOneElectronOperator.hpp</label>
         <link refid="_u_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="168" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -1720,42 +1740,42 @@
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="169" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="174" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="139" relation="include">
+        <childnode refid="142" relation="include">
         </childnode>
-        <childnode refid="144" relation="include">
+        <childnode refid="147" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="148" relation="include">
+        <childnode refid="151" relation="include">
         </childnode>
       </node>
-      <node id="139">
+      <node id="142">
         <label>Operator/SecondQuantized/RSQOneElectronOperator.hpp</label>
         <link refid="_r_s_q_one_electron_operator_8hpp"/>
         <childnode refid="123" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="132" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
-        <childnode refid="140" relation="include">
+        <childnode refid="143" relation="include">
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="142" relation="include">
+        <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="144" relation="include">
+        <childnode refid="147" relation="include">
         </childnode>
-        <childnode refid="148" relation="include">
+        <childnode refid="151" relation="include">
         </childnode>
       </node>
-      <node id="151">
+      <node id="154">
         <label>DensityMatrix/MixedSpinResolved2DMComponent.hpp</label>
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="51" relation="include">
@@ -1767,16 +1787,14 @@
         <childnode refid="50" relation="include">
         </childnode>
       </node>
-      <node id="181">
+      <node id="132">
         <label>Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp</label>
         <link refid="_f_q_molecular_magnetic_hamiltonian_8hpp"/>
-        <childnode refid="179" relation="include">
+        <childnode refid="129" relation="include">
         </childnode>
-        <childnode refid="130" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="182" relation="include">
-        </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="133" relation="include">
         </childnode>
       </node>
       <node id="12">
@@ -1818,7 +1836,7 @@
       <node id="40">
         <label>algorithm</label>
       </node>
-      <node id="185">
+      <node id="186">
         <label>ONVBasis/SpinResolvedONVBasis.hpp</label>
       </node>
       <node id="60">
@@ -1841,7 +1859,7 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="173">
+      <node id="176">
         <label>Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp</label>
         <link refid="_doubly_spin_resolved_jacobi_rotatable_8hpp"/>
         <childnode refid="35" relation="include">
@@ -1863,7 +1881,7 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="134">
+      <node id="137">
         <label>DensityMatrix/Simple1DM.hpp</label>
         <link refid="_simple1_d_m_8hpp"/>
         <childnode refid="33" relation="include">
@@ -1872,7 +1890,7 @@
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -1889,18 +1907,18 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="150">
+      <node id="153">
         <label>Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp</label>
         <link refid="_mixed_u_s_q_two_electron_operator_component_8hpp"/>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="151" relation="include">
+        <childnode refid="154" relation="include">
         </childnode>
-        <childnode refid="147" relation="include">
+        <childnode refid="150" relation="include">
         </childnode>
         <childnode refid="122" relation="include">
         </childnode>
-        <childnode refid="143" relation="include">
+        <childnode refid="146" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -1909,14 +1927,14 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="132">
+      <node id="135">
         <label>DensityMatrix/Orbital1DM.hpp</label>
         <link refid="_orbital1_d_m_8hpp"/>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
-        <childnode refid="134" relation="include">
+        <childnode refid="137" relation="include">
         </childnode>
       </node>
       <node id="71">
@@ -1937,7 +1955,7 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="130">
+      <node id="131">
         <label>Operator/FirstQuantized/FQMolecularHamiltonian.hpp</label>
         <link refid="_f_q_molecular_hamiltonian_8hpp"/>
         <childnode refid="61" relation="include">
@@ -1957,10 +1975,10 @@
         <childnode refid="79" relation="include">
         </childnode>
       </node>
-      <node id="168">
+      <node id="171">
         <label>Basis/MullikenPartitioning/UMullikenPartitioning.hpp</label>
         <link refid="_u_mulliken_partitioning_8hpp"/>
-        <childnode refid="145" relation="include">
+        <childnode refid="148" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
@@ -1981,7 +1999,7 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="137">
+      <node id="140">
         <label>Mathematical/Representation/StorageArray.hpp</label>
         <link refid="_storage_array_8hpp"/>
         <childnode refid="78" relation="include">
@@ -2015,30 +2033,30 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="154">
+      <node id="157">
         <label>Operator/SecondQuantized/SQHamiltonian.hpp</label>
         <link refid="_s_q_hamiltonian_8hpp"/>
-        <childnode refid="155" relation="include">
+        <childnode refid="158" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="160" relation="include">
-        </childnode>
         <childnode refid="163" relation="include">
         </childnode>
-        <childnode refid="164" relation="include">
-        </childnode>
-        <childnode refid="139" relation="include">
-        </childnode>
-        <childnode refid="149" relation="include">
+        <childnode refid="166" relation="include">
         </childnode>
         <childnode refid="167" relation="include">
         </childnode>
-        <childnode refid="175" relation="include">
+        <childnode refid="142" relation="include">
         </childnode>
-        <childnode refid="148" relation="include">
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="178" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -3458,7 +3476,7 @@
 <codeline lineno="1352"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1353"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1<sp/>electron<sp/>excitation<sp/>in<sp/>alpha<sp/>(i.e.<sp/>2<sp/>differences),<sp/>0<sp/>in<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfDifferences(alpha_J)<sp/>==<sp/>2)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfDifferences(beta_J)<sp/>==<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="1355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfExcitations(alpha_J)<sp/>==<sp/>1)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfExcitations(beta_J)<sp/>==<sp/>0))<sp/>{</highlight></codeline>
 <codeline lineno="1356"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>one<sp/>string,<sp/>and<sp/>aren&apos;t<sp/>in<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>alpha_I.findDifferentOccupations(alpha_J)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>we&apos;re<sp/>sure<sp/>that<sp/>there<sp/>is<sp/>only<sp/>1<sp/>element<sp/>in<sp/>the<sp/>std::vector&lt;size_t&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -3472,7 +3490,7 @@
 <codeline lineno="1366"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1367"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1<sp/>electron<sp/>excitation<sp/>in<sp/>beta,<sp/>0<sp/>in<sp/>alpha</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfDifferences(alpha_J)<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfDifferences(beta_J)<sp/>==<sp/>2))<sp/>{</highlight></codeline>
+<codeline lineno="1369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfExcitations(alpha_J)<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfExcitations(beta_J)<sp/>==<sp/>1))<sp/>{</highlight></codeline>
 <codeline lineno="1370"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>one<sp/>string,<sp/>and<sp/>aren&apos;t<sp/>in<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>beta_I.findDifferentOccupations(beta_J)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>we&apos;re<sp/>sure<sp/>that<sp/>there<sp/>is<sp/>only<sp/>1<sp/>element<sp/>in<sp/>the<sp/>std::vector&lt;size_t&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -3556,7 +3574,7 @@
 <codeline lineno="1455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>c_J<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" kindref="member">coefficient</ref>(J);</highlight></codeline>
 <codeline lineno="1456"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1457"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1<sp/>electron<sp/>excitation<sp/>in<sp/>alpha,<sp/>0<sp/>in<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfDifferences(alpha_J)<sp/>==<sp/>2)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfDifferences(beta_J)<sp/>==<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="1458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfExcitations(alpha_J)<sp/>==<sp/>1)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfExcitations(beta_J)<sp/>==<sp/>0))<sp/>{</highlight></codeline>
 <codeline lineno="1459"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1460"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>one<sp/>string,<sp/>and<sp/>aren&apos;t<sp/>in<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1461"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>alpha_I.findDifferentOccupations(alpha_J)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>we&apos;re<sp/>sure<sp/>that<sp/>there<sp/>is<sp/>only<sp/>1<sp/>element<sp/>in<sp/>the<sp/>std::vector&lt;size_t&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -3597,7 +3615,7 @@
 <codeline lineno="1496"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1497"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1498"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0<sp/>electron<sp/>excitations<sp/>in<sp/>alpha,<sp/>1<sp/>in<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1499"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfDifferences(alpha_J)<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfDifferences(beta_J)<sp/>==<sp/>2))<sp/>{</highlight></codeline>
+<codeline lineno="1499"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfExcitations(alpha_J)<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfExcitations(beta_J)<sp/>==<sp/>1))<sp/>{</highlight></codeline>
 <codeline lineno="1500"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1501"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>one<sp/>string,<sp/>and<sp/>aren&apos;t<sp/>in<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1502"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>beta_I.findDifferentOccupations(beta_J)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>we&apos;re<sp/>sure<sp/>that<sp/>there<sp/>is<sp/>only<sp/>1<sp/>element<sp/>in<sp/>the<sp/>std::vector&lt;size_t&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -3638,7 +3656,7 @@
 <codeline lineno="1537"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1538"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1539"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1<sp/>electron<sp/>excitation<sp/>in<sp/>alpha,<sp/>1<sp/>in<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfDifferences(alpha_J)<sp/>==<sp/>2)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfDifferences(beta_J)<sp/>==<sp/>2))<sp/>{</highlight></codeline>
+<codeline lineno="1540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfExcitations(alpha_J)<sp/>==<sp/>1)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfExcitations(beta_J)<sp/>==<sp/>1))<sp/>{</highlight></codeline>
 <codeline lineno="1541"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1542"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>one<sp/>string,<sp/>and<sp/>aren&apos;t<sp/>in<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1543"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>alpha_I.findDifferentOccupations(alpha_J)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>we&apos;re<sp/>sure<sp/>that<sp/>there<sp/>is<sp/>only<sp/>1<sp/>element<sp/>in<sp/>the<sp/>std::vector&lt;size_t&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -3658,7 +3676,7 @@
 <codeline lineno="1557"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1558"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1559"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2<sp/>electron<sp/>excitations<sp/>in<sp/>alpha,<sp/>0<sp/>in<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1560"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfDifferences(alpha_J)<sp/>==<sp/>4)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfDifferences(beta_J)<sp/>==<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="1560"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfExcitations(alpha_J)<sp/>==<sp/>2)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfExcitations(beta_J)<sp/>==<sp/>0))<sp/>{</highlight></codeline>
 <codeline lineno="1561"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1562"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>one<sp/>string,<sp/>and<sp/>aren&apos;t<sp/>in<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1563"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;size_t&gt;<sp/>occupied_indices_I<sp/>=<sp/>alpha_I.findDifferentOccupations(alpha_J);<sp/><sp/></highlight><highlight class="comment">//<sp/>we&apos;re<sp/>sure<sp/>this<sp/>has<sp/>two<sp/>elements</highlight><highlight class="normal"></highlight></codeline>
@@ -3685,7 +3703,7 @@
 <codeline lineno="1584"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1585"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0<sp/>electron<sp/>excitations<sp/>in<sp/>alpha,<sp/>2<sp/>in<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfDifferences(alpha_J)<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfDifferences(beta_J)<sp/>==<sp/>4))<sp/>{</highlight></codeline>
+<codeline lineno="1587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((alpha_I.countNumberOfExcitations(alpha_J)<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(beta_I.countNumberOfExcitations(beta_J)<sp/>==<sp/>2))<sp/>{</highlight></codeline>
 <codeline lineno="1588"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>one<sp/>string,<sp/>and<sp/>aren&apos;t<sp/>in<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1590"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;size_t&gt;<sp/>occupied_indices_I<sp/>=<sp/>beta_I.findDifferentOccupations(beta_J);<sp/><sp/></highlight><highlight class="comment">//<sp/>we&apos;re<sp/>sure<sp/>this<sp/>has<sp/>two<sp/>elements</highlight><highlight class="normal"></highlight></codeline>
@@ -3751,7 +3769,7 @@
 <codeline lineno="1665"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>c_J<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" kindref="member">coefficient</ref>(J);</highlight></codeline>
 <codeline lineno="1666"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1667"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>only<sp/>have<sp/>a<sp/>contribution<sp/>if<sp/>I<sp/>and<sp/>J<sp/>are<sp/>exactly<sp/>1<sp/>excitation<sp/>away.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1668"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(onv_I.countNumberOfDifferences(onv_J)<sp/>==<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="1668"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(onv_I.countNumberOfExcitations(onv_J)<sp/>==<sp/>1)<sp/>{</highlight></codeline>
 <codeline lineno="1669"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>onv_I.findDifferentOccupations(onv_J)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>orbital<sp/>that<sp/>is<sp/>occupied<sp/>in<sp/>I,<sp/>but<sp/>unoccupied<sp/>in<sp/>J.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1670"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>q<sp/>=<sp/>onv_J.findDifferentOccupations(onv_I)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>orbital<sp/>that<sp/>is<sp/>occupied<sp/>in<sp/>J,<sp/>but<sp/>unoccupied<sp/>in<sp/>I.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1671"><highlight class="normal"></highlight></codeline>
@@ -3800,7 +3818,7 @@
 <codeline lineno="1719"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>c_J<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" kindref="member">coefficient</ref>(J);</highlight></codeline>
 <codeline lineno="1720"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1721"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>contribution<sp/>if<sp/>I<sp/>and<sp/>J<sp/>are<sp/>1<sp/>excitation<sp/>away.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1722"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(onv_I.countNumberOfDifferences(onv_J)<sp/>==<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="1722"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(onv_I.countNumberOfExcitations(onv_J)<sp/>==<sp/>1)<sp/>{</highlight></codeline>
 <codeline lineno="1723"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1724"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>orbital<sp/>indices<sp/>that<sp/>match<sp/>the<sp/>excitation.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1725"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>onv_I.findDifferentOccupations(onv_J)[0];<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>orbital<sp/>that<sp/>is<sp/>occupied<sp/>in<sp/>I,<sp/>but<sp/>unoccupied<sp/>in<sp/>J.</highlight><highlight class="normal"></highlight></codeline>
@@ -3829,7 +3847,7 @@
 <codeline lineno="1748"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1749"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1750"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>contribution<sp/>if<sp/>I<sp/>and<sp/>J<sp/>are<sp/>2<sp/>excitations<sp/>away.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1751"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(onv_I.countNumberOfDifferences(onv_J)<sp/>==<sp/>4)<sp/>{</highlight></codeline>
+<codeline lineno="1751"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(onv_I.countNumberOfExcitations(onv_J)<sp/>==<sp/>2)<sp/>{</highlight></codeline>
 <codeline lineno="1752"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1753"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>orbital<sp/>indices<sp/>that<sp/>match<sp/>the<sp/>excitation.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1754"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>occupied_in_I<sp/>=<sp/>onv_I.findDifferentOccupations(onv_J);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>orbitals<sp/>that<sp/>are<sp/>occupied<sp/>in<sp/>J,<sp/>but<sp/>not<sp/>in<sp/>J.</highlight><highlight class="normal"></highlight></codeline>

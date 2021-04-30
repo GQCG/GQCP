@@ -419,7 +419,7 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d" kind="class"><name>GQCP::QCMethod::CCSD</name>
     <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a81686c654e5b6c77f15d53f453b8bdda" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a5da82dbf144ccbff2087029301ff07cf" kind="function"><name>optimize</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a4a3949dc9b8ed3d55e7b3ad578428895" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d" kind="class"><name>GQCP::QCModel::CCSD</name>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kind="typedef"><name>Scalar</name></member>
@@ -454,7 +454,7 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_c_c_s_d_environment" kind="class"><name>GQCP::CCSDEnvironment</name>
     <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a582210d8ce5f4eb3c4ad4ba0a37f6aab" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1aef79bf3441544306172ef243a0a3d9a0" kind="variable"><name>correlation_energies</name></member>
+    <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1ab09723fa4037b1c6cc817da6b1f1706f" kind="variable"><name>correlation_energies</name></member>
     <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1abdea2152c1643fb71b13cfd2383d92ee" kind="variable"><name>t1_amplitudes</name></member>
     <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a3a005b633746ec034014da148dfae1e5" kind="variable"><name>t2_amplitudes</name></member>
     <member refid="class_g_q_c_p_1_1_c_c_s_d_environment_1a85381ffcfad2dd470437720e85a84f22" kind="variable"><name>t1_amplitude_errors</name></member>
@@ -861,12 +861,16 @@
   <compound refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian" kind="class"><name>GQCP::FQMolecularMagneticHamiltonian</name>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a60d2157b7155e958f57efb2594ceeda4" kind="variable"><name>OZ</name></member>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ae7e6740db5cced2ba7a4d880155b4e6b" kind="variable"><name>D</name></member>
-    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ac6a92f6870d14ec8ff9860bd6d42ded5" kind="variable"><name>SZ</name></member>
-    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a7019c6d82f283a64ac5edd71c9191f9a" kind="function"><name>FQMolecularMagneticHamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a527be259f7275e305750693c6b6bf795" kind="function"><name>FQMolecularMagneticHamiltonian</name></member>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a437d23d3d0b4ae7cf9cc18d484275e86" kind="function"><name>FQMolecularMagneticHamiltonian</name></member>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a2d0224ce7f4de6170aad1cd1a07852ec" kind="function"><name>orbitalZeeman</name></member>
     <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a9ab6848d23b02227d9f3569ca59ade2d" kind="function"><name>diamagnetic</name></member>
-    <member refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1ac63c81e5ef3fbaf5a35958c2cb64a6f2" kind="function"><name>spinZeeman</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian" kind="class"><name>GQCP::FQMolecularPauliHamiltonian</name>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian_1a9ddbc05a60debaa34057bc3f07cf4eb8" kind="variable"><name>SZ</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian_1a3347f5f127447a5029bdefa01a31f364" kind="function"><name>FQMolecularPauliHamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian_1a23eb54d1bcafd5b4b75dcfbae1435b27" kind="function"><name>FQMolecularPauliHamiltonian</name></member>
+    <member refid="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian_1ab327e241c291d6b14de80bf76f397cef" kind="function"><name>spinZeeman</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_function" kind="class"><name>GQCP::Function</name>
     <member refid="class_g_q_c_p_1_1_function_1a2cbcbd73dd55c98bc28e7fadc549b171" kind="typedef"><name>OutputType</name></member>
@@ -1063,6 +1067,7 @@
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a95e2b2a85454a35f927b024ed840671e" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ae969fb4740de64aca01d5ad3a53a1e86" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a3ecd98f5670a469e7b6b96d932669454" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a5c563cb69664eb81c52c0ca8093c7d90" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aab715eecdc3a5b35ca8e0e6acff6c3cc" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a29e97fd11c496f40147b63fcbf42a623" kind="function"><name>scalarBases</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1adf4e812f8804c98d441cea5ad8985dca" kind="function"><name>mullikenPartitioning</name></member>
@@ -2312,6 +2317,11 @@
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a94bc23b54ee87f4615a1b1d4f366272f" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a5e0e40ee4ca8b38cb6d8a513c243e0a2" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a8f2c85f236e2a4d59e73cb1d5762f44a" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a42663c3c07a1cc4e56737a0990538e5c" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a02305fd09e0cd3118cb71507d7828cff" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1abee4ed43725a3c10067046c5c64fde23" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a30a63617ea0bc3541077abccffb6994b" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a9be1a4f917e9225932dfc29f2554dfb8" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a549e7755fca88107858a6b54bfbbf202" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1aa1c01d076a42f04ede664dfe6c901e33" kind="function"><name>spatialOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a3a943c3a88881540c16f505acf62cf5c" kind="function"><name>spatialOrbitalGradients</name></member>
@@ -2444,6 +2454,7 @@
     <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1af096f847c1c3c17d4c95c0bd7c0805c2" kind="function"><name>SimpleSpinOrbitalBasis</name></member>
     <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1aefeac1ce6c38d836ad6d8bd3fb11212d" kind="function"><name>SimpleSpinOrbitalBasis</name></member>
     <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a3048576f622f5afc8abe21ccb8c1f227" kind="function"><name>SimpleSpinOrbitalBasis</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1af84c29a6ca7888ce375dd1381c1e9bc3" kind="function"><name>SimpleSpinOrbitalBasis</name></member>
     <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a65c66682f4aa90cc4c7bf2cd3dfb3e43" kind="function"><name>scalarBasis</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator" kind="class"><name>GQCP::SimpleSQOneElectronOperator</name>
@@ -3017,16 +3028,19 @@
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1abb42b49627bca4d2ef2b0e823446d7de" kind="function"><name>USpinOrbitalBasis</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a61bed093085a840a1433f2f5c3a7ede4" kind="function"><name>USpinOrbitalBasis</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a8318cd22c98453bb9ace5196ae980f46" kind="function"><name>USpinOrbitalBasis</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aaf902f4303cb96069d1d83ecccafd1e6" kind="function"><name>USpinOrbitalBasis</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa769e1e7147f8f3aceb6a891dcf72b35" kind="function"><name>expansion</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a4d13ceda13422fdbdda0e2092faa90eb" kind="function"><name>numberOfSpinors</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a6e6f8f6f10158b22ed787fab7bcfa268" kind="function"><name>numberOfSpinOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ad6d69d1e1c6dbb2787f10e36555ba9c6" kind="function"><name>isOrthonormal</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa1f9ed2ffe54b230fad07dced29aa215" kind="function"><name>lowdinOrthonormalization</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a4eb3449b97998a8f1aad758fc9add0a3" kind="function"><name>lowdinOrthonormalize</name></member>
-    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aaf009d094b28d60bd34c4a6c54d49b32" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a3c2deafb1c7c5cbd1343c8495b2a8bbe" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ab8f9e7467685ee81d6cb0bb56f2fb88c" kind="function"><name>overlap</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1afb495aa178b4039badd5236eefc6d027" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1af375e276f954de740a93f264047b2b22" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a43f187483f1e671712e8015e38b154b4" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a2200b24771de76df594a1971474ceeb7" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa06df84fc3d1d8d81b04642a6195f382" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1adfac25a81350065376e8951e605c84e4" kind="function"><name>mullikenPartitioning</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a8e4ec2e18ade56c8188b1413474b3884" kind="function"><name>mullikenPartitioning</name></member>
@@ -3037,7 +3051,10 @@
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a58bc52d98579ab9fd20a3d91fe378d0a" kind="typedef"><name>Shell</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a1315d68af1b9070e681c9db115aa5f05" kind="typedef"><name>Primitive</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a18d47fd373ffc69e051330c4cea4932c" kind="typedef"><name>BasisFunction</name></member>
-    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1afd7f1a205bb2a86132f7a05be3bdc4e4" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a1f60a52617ba297c7dbc41882b01e838" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1ab476cd084fa821bb61d6e97e26230405" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a78a4b103d9bf7b2d896e96fc719c6a05" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a57579c162357d7324ef2f9fe3c261ef4" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1aac847d885bbbf1022ecfd180db378dee" kind="function"><name>mullikenPartitioning</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1afe68e72762a5b22ab6319679a62e506f" kind="function"><name>mullikenPartitioning</name></member>
   </compound>
@@ -3689,6 +3706,8 @@
   </compound>
   <compound refid="_f_q_molecular_magnetic_hamiltonian_8hpp" kind="file"><name>FQMolecularMagneticHamiltonian.hpp</name>
   </compound>
+  <compound refid="_f_q_molecular_pauli_hamiltonian_8hpp" kind="file"><name>FQMolecularPauliHamiltonian.hpp</name>
+  </compound>
   <compound refid="_kinetic_operator_8hpp" kind="file"><name>KineticOperator.hpp</name>
   </compound>
   <compound refid="_linear_momentum_operator_8hpp" kind="file"><name>LinearMomentumOperator.hpp</name>
@@ -4024,6 +4043,8 @@
   <compound refid="_f_q_molecular_hamiltonian_8cpp" kind="file"><name>FQMolecularHamiltonian.cpp</name>
   </compound>
   <compound refid="_f_q_molecular_magnetic_hamiltonian_8cpp" kind="file"><name>FQMolecularMagneticHamiltonian.cpp</name>
+  </compound>
+  <compound refid="_f_q_molecular_pauli_hamiltonian_8cpp" kind="file"><name>FQMolecularPauliHamiltonian.cpp</name>
   </compound>
   <compound refid="_linear_momentum_operator_8cpp" kind="file"><name>LinearMomentumOperator.cpp</name>
   </compound>

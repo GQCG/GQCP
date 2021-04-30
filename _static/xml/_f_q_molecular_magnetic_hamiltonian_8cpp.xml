@@ -231,16 +231,6 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="41">
-        <label>Operator/FirstQuantized/SpinZeemanOperator.hpp</label>
-        <link refid="_spin_zeeman_operator_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-      </node>
       <node id="2">
         <label>Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp</label>
         <link refid="_f_q_molecular_magnetic_hamiltonian_8hpp"/>
@@ -249,8 +239,6 @@
         <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="41" relation="include">
         </childnode>
       </node>
       <node id="16">
@@ -315,18 +303,17 @@
 <codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Constructors</highlight></codeline>
 <codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a7019c6d82f283a64ac5edd71c9191f9a" kindref="member">FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>KineticOperator&amp;<sp/>T,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OrbitalZeemanOperator&amp;<sp/>OZ,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DiamagneticOperator&amp;<sp/>D,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SpinZeemanOperator&amp;<sp/>SZ,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>V,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>g)<sp/>:</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>OZ<sp/>{OZ},</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>D<sp/>{D},</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>SZ<sp/>{SZ},</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>FQMolecularHamiltonian(T,<sp/>V,<sp/>g)<sp/>{}</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal">FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Molecule&amp;<sp/>molecule,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>HomogeneousMagneticField&amp;<sp/>B)<sp/>:</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>FQMolecularMagneticHamiltonian(KineticOperator(),<sp/>OrbitalZeemanOperator(B),<sp/>DiamagneticOperator(B),<sp/>SpinZeemanOperator(B),<sp/>NuclearAttractionOperator(molecule.nuclearFramework()),<sp/>CoulombRepulsionOperator())<sp/>{}</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_1a527be259f7275e305750693c6b6bf795" kindref="member">FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>KineticOperator&amp;<sp/>T,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OrbitalZeemanOperator&amp;<sp/>OZ,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DiamagneticOperator&amp;<sp/>D,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NuclearAttractionOperator&amp;<sp/>V,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoulombRepulsionOperator&amp;<sp/>g)<sp/>:</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>OZ<sp/>{OZ},</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>D<sp/>{D},</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>FQMolecularHamiltonian(T,<sp/>V,<sp/>g)<sp/>{}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">FQMolecularMagneticHamiltonian::FQMolecularMagneticHamiltonian(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Molecule&amp;<sp/>molecule,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>HomogeneousMagneticField&amp;<sp/>B)<sp/>:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>FQMolecularMagneticHamiltonian(KineticOperator(),<sp/>OrbitalZeemanOperator(B),<sp/>DiamagneticOperator(B),<sp/>NuclearAttractionOperator(molecule.nuclearFramework()),<sp/>CoulombRepulsionOperator())<sp/>{}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.cpp"/>
   </compounddef>

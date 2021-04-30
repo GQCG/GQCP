@@ -193,6 +193,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ecd98f5670a469e7b6b96d932669454"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
 <tr class="memitem:a3ecd98f5670a469e7b6b96d932669454"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value, <a class="el" href="namespace_g_q_c_p.html#a18949b2153b626c420238dab2a4e7185">GSQHamiltonian</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#ad1e7388d307f59370481718021fd8710">ExpansionScalar</a> &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#a3ecd98f5670a469e7b6b96d932669454">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian.html">FQMolecularMagneticHamiltonian</a> &amp;fq_hamiltonian) const</td></tr>
 <tr class="separator:a3ecd98f5670a469e7b6b96d932669454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c563cb69664eb81c52c0ca8093c7d90"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
+<tr class="memitem:a5c563cb69664eb81c52c0ca8093c7d90"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value, <a class="el" href="namespace_g_q_c_p.html#a18949b2153b626c420238dab2a4e7185">GSQHamiltonian</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#ad1e7388d307f59370481718021fd8710">ExpansionScalar</a> &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#a5c563cb69664eb81c52c0ca8093c7d90">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian.html">FQMolecularPauliHamiltonian</a> &amp;fq_hamiltonian) const</td></tr>
+<tr class="separator:a5c563cb69664eb81c52c0ca8093c7d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab715eecdc3a5b35ca8e0e6acff6c3cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a18949b2153b626c420238dab2a4e7185">GSQHamiltonian</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#ad1e7388d307f59370481718021fd8710">ExpansionScalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#aab715eecdc3a5b35ca8e0e6acff6c3cc">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_f_q_molecular_hamiltonian.html">FQMolecularHamiltonian</a> &amp;fq_hamiltonian) const</td></tr>
 <tr class="separator:aab715eecdc3a5b35ca8e0e6acff6c3cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29e97fd11c496f40147b63fcbf42a623"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_g_q_c_p_1_1_spin_resolved.html">SpinResolved</a>&lt; <a class="el" href="class_g_q_c_p_1_1_scalar_basis.html">ScalarBasis</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#a43378faf70d64f2caa796282bac433e8">Shell</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#a29e97fd11c496f40147b63fcbf42a623">scalarBases</a> () const</td></tr>
@@ -728,11 +731,12 @@ template&lt;typename Z  = Shell&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).</p>
+<p>Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">molecule</td><td>The molecule containing the nuclei on which the shells should be centered. </td></tr>
-    <tr><td class="paramname">basisset_name</td><td>The name of the basisset, e.g. "STO-3G".</td></tr>
+    <tr><td class="paramname">basisset_name</td><td>The name of the basisset, e.g. "STO-3G". </td></tr>
+    <tr><td class="paramname">B</td><td>The homogeneous magnetic field.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1060,7 +1064,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="a0bfd22005830bb1c5491de945dc31c0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bfd22005830bb1c5491de945dc31c0e">&#9670;&nbsp;</a></span>quantize() <span class="overload">[1/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bfd22005830bb1c5491de945dc31c0e">&#9670;&nbsp;</a></span>quantize() <span class="overload">[1/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1098,7 +1102,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="ae969fb4740de64aca01d5ad3a53a1e86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae969fb4740de64aca01d5ad3a53a1e86">&#9670;&nbsp;</a></span>quantize() <span class="overload">[2/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae969fb4740de64aca01d5ad3a53a1e86">&#9670;&nbsp;</a></span>quantize() <span class="overload">[2/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1137,7 +1141,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="aa88730bc1e90293e44b3da9227dcd2c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa88730bc1e90293e44b3da9227dcd2c1">&#9670;&nbsp;</a></span>quantize() <span class="overload">[3/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa88730bc1e90293e44b3da9227dcd2c1">&#9670;&nbsp;</a></span>quantize() <span class="overload">[3/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1175,7 +1179,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="a228ae81d20b107924d3e6f672064bb45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a228ae81d20b107924d3e6f672064bb45">&#9670;&nbsp;</a></span>quantize() <span class="overload">[4/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a228ae81d20b107924d3e6f672064bb45">&#9670;&nbsp;</a></span>quantize() <span class="overload">[4/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1213,7 +1217,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="a0696a794a88eb2169065aac73c853d13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0696a794a88eb2169065aac73c853d13">&#9670;&nbsp;</a></span>quantize() <span class="overload">[5/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0696a794a88eb2169065aac73c853d13">&#9670;&nbsp;</a></span>quantize() <span class="overload">[5/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1251,7 +1255,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="aab715eecdc3a5b35ca8e0e6acff6c3cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab715eecdc3a5b35ca8e0e6acff6c3cc">&#9670;&nbsp;</a></span>quantize() <span class="overload">[6/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aab715eecdc3a5b35ca8e0e6acff6c3cc">&#9670;&nbsp;</a></span>quantize() <span class="overload">[6/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1287,7 +1291,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="a3ecd98f5670a469e7b6b96d932669454"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ecd98f5670a469e7b6b96d932669454">&#9670;&nbsp;</a></span>quantize() <span class="overload">[7/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ecd98f5670a469e7b6b96d932669454">&#9670;&nbsp;</a></span>quantize() <span class="overload">[7/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1324,8 +1328,46 @@ template&lt;typename Z  = Shell&gt; </div>
 
 </div>
 </div>
+<a id="a5c563cb69664eb81c52c0ca8093c7d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c563cb69664eb81c52c0ca8093c7d90">&#9670;&nbsp;</a></span>quantize() <span class="overload">[8/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = Shell&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a>&gt;::value, <a class="el" href="namespace_g_q_c_p.html#a18949b2153b626c420238dab2a4e7185">GSQHamiltonian</a>&lt;<a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html#ad1e7388d307f59370481718021fd8710">ExpansionScalar</a>&gt; &gt; <a class="el" href="class_g_q_c_p_1_1_g_spinor_basis.html">GQCP::GSpinorBasis</a>&lt; _ExpansionScalar, _Shell &gt;::quantize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian.html">FQMolecularPauliHamiltonian</a> &amp;&#160;</td>
+          <td class="paramname"><em>fq_hamiltonian</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Quantize the molecular Pauli Hamiltonian.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fq_hamiltonian</td><td>The molecular Pauli Hamiltonian.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The second-quantized molecular Pauli Hamiltonian. </dd></dl>
+
+</div>
+</div>
 <a id="a1d0b17785f530791bcfdfa3c5e4648fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d0b17785f530791bcfdfa3c5e4648fd">&#9670;&nbsp;</a></span>quantize() <span class="overload">[8/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d0b17785f530791bcfdfa3c5e4648fd">&#9670;&nbsp;</a></span>quantize() <span class="overload">[9/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1363,7 +1405,7 @@ template&lt;typename FQOneElectronOperator , typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="ade836b6e136191e1f286a4d05421106a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade836b6e136191e1f286a4d05421106a">&#9670;&nbsp;</a></span>quantize() <span class="overload">[9/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ade836b6e136191e1f286a4d05421106a">&#9670;&nbsp;</a></span>quantize() <span class="overload">[10/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1401,7 +1443,7 @@ template&lt;typename FQOneElectronOperator , typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="a6711610480c8889228a49b81314c662b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6711610480c8889228a49b81314c662b">&#9670;&nbsp;</a></span>quantize() <span class="overload">[10/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6711610480c8889228a49b81314c662b">&#9670;&nbsp;</a></span>quantize() <span class="overload">[11/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1439,7 +1481,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="a95e2b2a85454a35f927b024ed840671e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95e2b2a85454a35f927b024ed840671e">&#9670;&nbsp;</a></span>quantize() <span class="overload">[11/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a95e2b2a85454a35f927b024ed840671e">&#9670;&nbsp;</a></span>quantize() <span class="overload">[12/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

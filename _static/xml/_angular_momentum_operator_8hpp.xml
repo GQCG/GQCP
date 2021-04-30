@@ -144,7 +144,7 @@
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
       <node id="44">
@@ -184,6 +184,16 @@
       <node id="39">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
         <link refid="_jacobi_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="49">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</label>
+        <link refid="_f_q_molecular_pauli_hamiltonian_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
       </node>
       <node id="43">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp</label>
@@ -276,12 +286,14 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="51">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.cpp</label>
         <link refid="_f_q_molecular_magnetic_hamiltonian_8cpp"/>
       </node>
@@ -343,7 +355,7 @@
         <childnode refid="30" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="52">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/OrbitalZeemanOperator.cpp</label>
         <link refid="_orbital_zeeman_operator_8cpp"/>
       </node>
@@ -446,12 +458,16 @@
       <node id="48">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp</label>
         <link refid="_f_q_molecular_magnetic_hamiltonian_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularPauliHamiltonian.cpp</label>
+        <link refid="_f_q_molecular_pauli_hamiltonian_8cpp"/>
       </node>
       <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp</label>
@@ -469,7 +485,7 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="53">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/AngularMomentumOperator.cpp</label>
         <link refid="_angular_momentum_operator_8cpp"/>
       </node>

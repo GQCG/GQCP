@@ -12,6 +12,7 @@
     <innerfile refid="_electronic_spin_operator_8cpp">ElectronicSpinOperator.cpp</innerfile>
     <innerfile refid="_f_q_molecular_hamiltonian_8cpp">FQMolecularHamiltonian.cpp</innerfile>
     <innerfile refid="_f_q_molecular_magnetic_hamiltonian_8cpp">FQMolecularMagneticHamiltonian.cpp</innerfile>
+    <innerfile refid="_f_q_molecular_pauli_hamiltonian_8cpp">FQMolecularPauliHamiltonian.cpp</innerfile>
     <innerfile refid="_linear_momentum_operator_8cpp">LinearMomentumOperator.cpp</innerfile>
     <innerfile refid="_nuclear_dipole_operator_8cpp">NuclearDipoleOperator.cpp</innerfile>
     <innerfile refid="_nuclear_repulsion_operator_8cpp">NuclearRepulsionOperator.cpp</innerfile>

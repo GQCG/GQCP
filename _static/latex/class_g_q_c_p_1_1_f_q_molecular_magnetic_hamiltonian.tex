@@ -27,28 +27,31 @@ Collaboration diagram for GQCP\+::FQMolecular\+Magnetic\+Hamiltonian\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a7019c6d82f283a64ac5edd71c9191f9a}{FQMolecular\+Magnetic\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_adf886236e764f18e51eaa36af2a08e07}{T}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator}{Orbital\+Zeeman\+Operator}} \&OZ, const \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}} \&D, const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_zeeman_operator}{Spin\+Zeeman\+Operator}} \&SZ, const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a55cf9cb8082e3af90aa36c8ec4d66d95}{V}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_add0865ddadc4bdba0ccad0e7188cb503}{g}})
+\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a527be259f7275e305750693c6b6bf795}{FQMolecular\+Magnetic\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_adf886236e764f18e51eaa36af2a08e07}{T}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator}{Orbital\+Zeeman\+Operator}} \&OZ, const \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}} \&D, const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a55cf9cb8082e3af90aa36c8ec4d66d95}{V}}, const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_add0865ddadc4bdba0ccad0e7188cb503}{g}})
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a437d23d3d0b4ae7cf9cc18d484275e86}{FQMolecular\+Magnetic\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule, const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B)
 \item 
 const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator}{Orbital\+Zeeman\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a2d0224ce7f4de6170aad1cd1a07852ec}{orbital\+Zeeman}} () const
 \item 
 const \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a9ab6848d23b02227d9f3569ca59ade2d}{diamagnetic}} () const
-\item 
-const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_zeeman_operator}{Spin\+Zeeman\+Operator}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_ac63c81e5ef3fbaf5a35958c2cb64a6f2}{spin\+Zeeman}} () const
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
-The first-\/quantized, molecular electronic Hamiltonian for systems in a magnetic field. 
+The first-\/quantized, molecular electronic Hamiltonian for systems in a magnetic field.
+
+\begin{DoxyNote}{Note}
+The molecular magnetic Hamiltonian is different from the molecular Pauli Hamiltonian\+: the Pauli Hamiltonian contains the additional paramagnetic spin Zeeman term. 
+\end{DoxyNote}
+
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a7019c6d82f283a64ac5edd71c9191f9a}\label{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a7019c6d82f283a64ac5edd71c9191f9a}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a527be259f7275e305750693c6b6bf795}\label{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a527be259f7275e305750693c6b6bf795}} 
 \index{GQCP::FQMolecularMagneticHamiltonian@{GQCP::FQMolecularMagneticHamiltonian}!FQMolecularMagneticHamiltonian@{FQMolecularMagneticHamiltonian}}
 \index{FQMolecularMagneticHamiltonian@{FQMolecularMagneticHamiltonian}!GQCP::FQMolecularMagneticHamiltonian@{GQCP::FQMolecularMagneticHamiltonian}}
 \doxysubsubsection{\texorpdfstring{FQMolecularMagneticHamiltonian()}{FQMolecularMagneticHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily GQCP\+::\+FQMolecular\+Magnetic\+Hamiltonian\+::\+FQMolecular\+Magnetic\+Hamiltonian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{T,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator}{Orbital\+Zeeman\+Operator}} \&}]{OZ,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}} \&}]{D,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_zeeman_operator}{Spin\+Zeeman\+Operator}} \&}]{SZ,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{V,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{g }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily GQCP\+::\+FQMolecular\+Magnetic\+Hamiltonian\+::\+FQMolecular\+Magnetic\+Hamiltonian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{Kinetic\+Operator}} \&}]{T,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator}{Orbital\+Zeeman\+Operator}} \&}]{OZ,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}} \&}]{D,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{Nuclear\+Attraction\+Operator}} \&}]{V,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{g }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -57,8 +60,6 @@ The first-\/quantized, molecular electronic Hamiltonian for systems in a magneti
 {\em OZ} & The orbital Zeeman operator. \\
 \hline
 {\em D} & The diamagnetic operator. \\
-\hline
-{\em SZ} & The spin Zeeman operator. \\
 \hline
 {\em V} & The nuclear attraction operator. \\
 \hline
@@ -100,15 +101,6 @@ The diamagnetic operator.
 
 \begin{DoxyReturn}{Returns}
 The orbital Zeeman operator. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_ac63c81e5ef3fbaf5a35958c2cb64a6f2}\label{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_ac63c81e5ef3fbaf5a35958c2cb64a6f2}} 
-\index{GQCP::FQMolecularMagneticHamiltonian@{GQCP::FQMolecularMagneticHamiltonian}!spinZeeman@{spinZeeman}}
-\index{spinZeeman@{spinZeeman}!GQCP::FQMolecularMagneticHamiltonian@{GQCP::FQMolecularMagneticHamiltonian}}
-\doxysubsubsection{\texorpdfstring{spinZeeman()}{spinZeeman()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_zeeman_operator}{Spin\+Zeeman\+Operator}}\& GQCP\+::\+FQMolecular\+Magnetic\+Hamiltonian\+::spin\+Zeeman (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-\begin{DoxyReturn}{Returns}
-The spin Zeeman operator. 
 \end{DoxyReturn}
 
 

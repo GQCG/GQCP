@@ -28,6 +28,7 @@
     <includedby refid="_g_spinor_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp</includedby>
     <includedby refid="_r_spin_orbital_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp</includedby>
     <includedby refid="_u_spin_orbital_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp</includedby>
+    <includedby refid="_u_spin_orbital_basis_component_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</includedby>
     <includedby refid="_linear_expansion_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp</includedby>
     <includedby refid="_q_c_model_2_h_f_2_r_h_f_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</includedby>
     <includedby refid="_g_t_o_shell_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOShell.cpp</includedby>
@@ -782,6 +783,8 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
         <childnode refid="74" relation="include">
         </childnode>
       </node>
@@ -1033,6 +1036,8 @@
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>

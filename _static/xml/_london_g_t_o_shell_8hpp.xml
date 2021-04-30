@@ -12,6 +12,7 @@
     <includedby refid="_scalar_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp</includedby>
     <includedby refid="_shell_set_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ShellSet.hpp</includedby>
     <includedby refid="_g_spinor_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp</includedby>
+    <includedby refid="_u_spin_orbital_basis_component_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</includedby>
     <includedby refid="_london_g_t_o_shell_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/LondonGTOShell.cpp</includedby>
     <incdepgraph>
       <node id="21">
@@ -586,6 +587,8 @@
         <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>

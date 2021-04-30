@@ -7,7 +7,7 @@
     <includes refid="complex_8hpp" local="yes">Utilities/complex.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_g_spinor_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp</includedby>
-    <includedby refid="_f_q_molecular_magnetic_hamiltonian_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp</includedby>
+    <includedby refid="_f_q_molecular_pauli_hamiltonian_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</includedby>
     <includedby refid="_spin_zeeman_operator_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/SpinZeemanOperator.cpp</includedby>
     <incdepgraph>
       <node id="16">
@@ -153,6 +153,16 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
+      <node id="28">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</label>
+        <link refid="_f_q_molecular_pauli_hamiltonian_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
       <node id="21">
         <label>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/vAP1roG.cpp</label>
         <link refid="v_a_p1ro_g_8cpp"/>
@@ -184,10 +194,6 @@
       <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="29">
-        <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.cpp</label>
-        <link refid="_f_q_molecular_magnetic_hamiltonian_8cpp"/>
       </node>
       <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</label>
@@ -319,15 +325,9 @@
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/properties.cpp</label>
         <link refid="properties_8cpp"/>
       </node>
-      <node id="28">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp</label>
-        <link refid="_f_q_molecular_magnetic_hamiltonian_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
+      <node id="29">
+        <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularPauliHamiltonian.cpp</label>
+        <link refid="_f_q_molecular_pauli_hamiltonian_8cpp"/>
       </node>
       <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roGGeminalCoefficients.hpp</label>

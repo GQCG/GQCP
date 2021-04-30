@@ -447,6 +447,70 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="187" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="187" bodyend="189"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1aaf902f4303cb96069d1d83ecccafd1e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a359a0209c9e89ac045fece42ba6ad1c6" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>GQCP::USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::USpinOrbitalBasis</definition>
+        <argsstring>(const Molecule &amp;molecule, const std::string &amp;basisset_name, const HomogeneousMagneticField &amp;B, typename std::enable_if&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value &gt;::type *=0)</argsstring>
+        <name>USpinOrbitalBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value &gt;::type *</type>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a unrestricted spin-orbital basis with an underlying scalar basis that is made by placing shells (equal for both the alpha and beta components) corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule containing the nuclei on which the shells should be centered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The homogeneous magnetic field.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="202" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="202" bodyend="204"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa769e1e7147f8f3aceb6a891dcf72b35" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
         <definition>UTransformation&lt;ExpansionScalar&gt; GQCP::USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::expansion</definition>
@@ -461,7 +525,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="219" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="219" bodyend="221"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="234" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="234" bodyend="236"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a4d13ceda13422fdbdda0e2092faa90eb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -477,7 +541,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="227" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="227" bodyend="233"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="242" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="242" bodyend="248"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a6e6f8f6f10158b22ed787fab7bcfa268" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -493,7 +557,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="239" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="239" bodyend="239"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="254" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="254" bodyend="254"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1ad6d69d1e1c6dbb2787f10e36555ba9c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -524,7 +588,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="253" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="253" bodyend="253"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="268" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="268" bodyend="268"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa1f9ed2ffe54b230fad07dced29aa215" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -540,7 +604,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="259" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="259" bodyend="265"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="274" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="274" bodyend="280"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a4eb3449b97998a8f1aad758fc9add0a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -554,55 +618,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="271" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="271" bodyend="274"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1aaf009d094b28d60bd34c4a6c54d49b32" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename FQOneElectronOperator</type>
-          </param>
-          <param>
-            <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a359a0209c9e89ac045fece42ba6ad1c6" kindref="member">Shell</ref></defval>
-          </param>
-        </templateparamlist>
-        <type>auto</type>
-        <definition>auto GQCP::USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
-        <argsstring>(const FQOneElectronOperator &amp;fq_op) const -&gt; enable_if_t&lt; std::is_same&lt; Z, GTOShell &gt;::value, USQOneElectronOperator&lt; product_t&lt; typename FQOneElectronOperator::Scalar, ExpansionScalar &gt;, typename FQOneElectronOperator::Vectorizer &gt;&gt;</argsstring>
-        <name>quantize</name>
-        <param>
-          <type>const FQOneElectronOperator &amp;</type>
-          <declname>fq_op</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Quantize a one-electron operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>fq_op</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The first-quantized one-electron operator.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>FQOneElectronOperator</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of the first-quantized one-electron operator.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The second-quantized operator corresponding to the given first-quantized operator. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="291" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="291" bodyend="301"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="286" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="286" bodyend="289"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a3c2deafb1c7c5cbd1343c8495b2a8bbe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -647,7 +663,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="314" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="314" bodyend="327"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="306" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="306" bodyend="319"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1ab8f9e7467685ee81d6cb0bb56f2fb88c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a0f84799c58b7a75a614bc2de9deb9dda" kindref="member">ScalarUSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -664,7 +680,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="335" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="335" bodyend="335"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="327" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="327" bodyend="327"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1afb495aa178b4039badd5236eefc6d027" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -700,7 +716,123 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="346" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="346" bodyend="380"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="338" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="338" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1af375e276f954de740a93f264047b2b22" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a359a0209c9e89ac045fece42ba6ad1c6" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto GQCP::USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
+        <argsstring>(const CoulombRepulsionOperator &amp;coulomb_op) const -&gt; enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, ScalarUSQTwoElectronOperator&lt; product_t&lt; typename CoulombRepulsionOperator::Scalar, ExpansionScalar &gt;&gt;&gt;</argsstring>
+        <name>quantize</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
+          <declname>coulomb_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the Coulomb operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coulomb_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first-quantized Coulomb operator operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The second-quantized Coulomb operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="387" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="387" bodyend="424"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a43f187483f1e671712e8015e38b154b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a359a0209c9e89ac045fece42ba6ad1c6" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, USQHamiltonian&lt;ExpansionScalar&gt; &gt; GQCP::USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
+        <argsstring>(const FQMolecularMagneticHamiltonian &amp;fq_hamiltonian) const</argsstring>
+        <name>quantize</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian" kindref="compound">FQMolecularMagneticHamiltonian</ref> &amp;</type>
+          <declname>fq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize the molecular magnetic Hamiltonian.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecular magnetic Hamiltonian.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The second-quantized molecular magnetic Hamiltonian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="435" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="435" bodyend="446"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a2200b24771de76df594a1971474ceeb7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FQOneElectronOperator</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto GQCP::USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::quantize</definition>
+        <argsstring>(const FQOneElectronOperator &amp;fq_op) const -&gt; USQOneElectronOperator&lt; product_t&lt; typename FQOneElectronOperator::Scalar, ExpansionScalar &gt;, typename FQOneElectronOperator::Vectorizer &gt;</argsstring>
+        <name>quantize</name>
+        <param>
+          <type>const FQOneElectronOperator &amp;</type>
+          <declname>fq_op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Quantize a one-electron operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fq_op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first-quantized one-electron operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>FQOneElectronOperator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the first-quantized one-electron operator.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The second-quantized operator corresponding to the given first-quantized operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="463" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="463" bodyend="473"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa06df84fc3d1d8d81b04642a6195f382" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a554adc2a4a187e4d73302a47e451a55d" kindref="member">USQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -730,7 +862,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="394" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="394" bodyend="402"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="483" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="483" bodyend="491"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1adfac25a81350065376e8951e605c84e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning" kindref="compound">UMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -760,7 +892,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="416" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="416" bodyend="419"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="505" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="505" bodyend="508"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_1a8e4ec2e18ade56c8188b1413474b3884" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning" kindref="compound">UMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kindref="member">ExpansionScalar</ref> &gt;</type>
@@ -790,7 +922,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="429" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="429" bodyend="432"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="518" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="518" bodyend="521"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -822,7 +954,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="203" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="203" bodyend="209"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="218" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="218" bodyend="224"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -906,7 +1038,7 @@
         <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="53" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="56" bodyend="452"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="53" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="56" bodyend="541"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>alpha</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>alpha</name></member>
@@ -932,9 +1064,11 @@
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>Of</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ab8f9e7467685ee81d6cb0bb56f2fb88c" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>overlap</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a28ee9b8176eb78f5b0af328a0291ba0c" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>Primitive</name></member>
-      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aaf009d094b28d60bd34c4a6c54d49b32" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a3c2deafb1c7c5cbd1343c8495b2a8bbe" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1afb495aa178b4039badd5236eefc6d027" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1af375e276f954de740a93f264047b2b22" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a43f187483f1e671712e8015e38b154b4" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>quantize</name></member>
+      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a2200b24771de76df594a1971474ceeb7" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa06df84fc3d1d8d81b04642a6195f382" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>quantize</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="SpinResolvedBasisTransformable&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::USpinOrbitalBasis</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="SpinResolvedJacobiRotatable&lt; USpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::"><scope>GQCP::USpinOrbitalBasis</scope><name>rotate</name></member>
@@ -957,6 +1091,7 @@
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1abb42b49627bca4d2ef2b0e823446d7de" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>USpinOrbitalBasis</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a61bed093085a840a1433f2f5c3a7ede4" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>USpinOrbitalBasis</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a8318cd22c98453bb9ace5196ae980f46" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>USpinOrbitalBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aaf902f4303cb96069d1d83ecccafd1e6" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasis</scope><name>USpinOrbitalBasis</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

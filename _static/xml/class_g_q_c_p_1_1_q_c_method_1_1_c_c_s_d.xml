@@ -24,14 +24,14 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a5da82dbf144ccbff2087029301ff07cf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a4a3949dc9b8ed3d55e7b3ad578428895" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Solver</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d" kindref="compound">GQCP::QCModel::CCSD</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a81686c654e5b6c77f15d53f453b8bdda" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>QCStructure&lt;GQCP::QCModel::CCSD&lt;Scalar&gt; &gt; GQCP::QCMethod::CCSD&lt; _Scalar &gt;::optimize</definition>
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d" kindref="compound">GQCP::QCModel::CCSD</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a81686c654e5b6c77f15d53f453b8bdda" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a81686c654e5b6c77f15d53f453b8bdda" kindref="member">Scalar</ref> &gt;</type>
+        <definition>QCStructure&lt;GQCP::QCModel::CCSD&lt;Scalar&gt;, Scalar&gt; GQCP::QCMethod::CCSD&lt; _Scalar &gt;::optimize</definition>
         <argsstring>(Solver &amp;solver, CCSDEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
         <param>
@@ -102,7 +102,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSD.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSD.hpp" bodystart="36" bodyend="69"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a5da82dbf144ccbff2087029301ff07cf" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCSD</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a4a3949dc9b8ed3d55e7b3ad578428895" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCSD</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_s_d_1a81686c654e5b6c77f15d53f453b8bdda" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCSD</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

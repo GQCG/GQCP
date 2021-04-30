@@ -24,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a467bffa868b422a79cb56d6d3c0180c1" prot="public" static="no">
         <type>typename Iterate::Scalar</type>
@@ -37,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" prot="public" static="no">
         <type>_Environment</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="44" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="49" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="50" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ae8414a5c66a420443f81b2e134c8a2a4" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -78,7 +78,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="51" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="52" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a02c85f52343be514fc9effbbed153507" prot="private" static="no" mutable="no">
         <type>std::function&lt; std::deque&lt; <ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a89ec3d0f315128d7abb0d7a39a6b2f1e" kindref="member">Iterate</ref> &gt;const <ref refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ad92e2a91dcc2370791b40284ed3d30e5" kindref="member">Environment</ref> &amp;)&gt;</type>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="53" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="53" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="54" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="66" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="66" bodyend="70"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="67" bodyend="71"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
@@ -164,7 +164,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="80" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="80" bodyend="82"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="81" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="81" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a0be253e3c3a65055a4e2bdba68c34e54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
@@ -194,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="90" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="90" bodyend="104"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="91" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="91" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1affe980b772bae2019d82987d5c04487d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="110" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="110" bodyend="110"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="111" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="111" bodyend="111"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -260,7 +260,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="39" bodyend="111"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp" bodystart="40" bodyend="112"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a9d2d34a40f6f284a9f0b91c068e499db" prot="public" virt="non-virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>ConsecutiveIteratesNormConvergence</name></member>
       <member refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9" prot="public" virt="virtual"><scope>GQCP::ConsecutiveIteratesNormConvergence</scope><name>description</name></member>

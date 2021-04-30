@@ -1266,7 +1266,7 @@ $(function() {
 <div class="line"><a name="l01352"></a><span class="lineno"> 1352</span>&#160; </div>
 <div class="line"><a name="l01353"></a><span class="lineno"> 1353</span>&#160; </div>
 <div class="line"><a name="l01354"></a><span class="lineno"> 1354</span>&#160;                <span class="comment">// 1 electron excitation in alpha (i.e. 2 differences), 0 in beta</span></div>
-<div class="line"><a name="l01355"></a><span class="lineno"> 1355</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfDifferences(alpha_J) == 2) &amp;&amp; (beta_I.countNumberOfDifferences(beta_J) == 0)) {</div>
+<div class="line"><a name="l01355"></a><span class="lineno"> 1355</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfExcitations(alpha_J) == 1) &amp;&amp; (beta_I.countNumberOfExcitations(beta_J) == 0)) {</div>
 <div class="line"><a name="l01356"></a><span class="lineno"> 1356</span>&#160; </div>
 <div class="line"><a name="l01357"></a><span class="lineno"> 1357</span>&#160;                    <span class="comment">// Find the orbitals that are occupied in one string, and aren&#39;t in the other</span></div>
 <div class="line"><a name="l01358"></a><span class="lineno"> 1358</span>&#160;                    <span class="keywordtype">size_t</span> p = alpha_I.findDifferentOccupations(alpha_J)[0];  <span class="comment">// we&#39;re sure that there is only 1 element in the std::vector&lt;size_t&gt;</span></div>
@@ -1280,7 +1280,7 @@ $(function() {
 <div class="line"><a name="l01366"></a><span class="lineno"> 1366</span>&#160; </div>
 <div class="line"><a name="l01367"></a><span class="lineno"> 1367</span>&#160; </div>
 <div class="line"><a name="l01368"></a><span class="lineno"> 1368</span>&#160;                <span class="comment">// 1 electron excitation in beta, 0 in alpha</span></div>
-<div class="line"><a name="l01369"></a><span class="lineno"> 1369</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfDifferences(alpha_J) == 0) &amp;&amp; (beta_I.countNumberOfDifferences(beta_J) == 2)) {</div>
+<div class="line"><a name="l01369"></a><span class="lineno"> 1369</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfExcitations(alpha_J) == 0) &amp;&amp; (beta_I.countNumberOfExcitations(beta_J) == 1)) {</div>
 <div class="line"><a name="l01370"></a><span class="lineno"> 1370</span>&#160; </div>
 <div class="line"><a name="l01371"></a><span class="lineno"> 1371</span>&#160;                    <span class="comment">// Find the orbitals that are occupied in one string, and aren&#39;t in the other</span></div>
 <div class="line"><a name="l01372"></a><span class="lineno"> 1372</span>&#160;                    <span class="keywordtype">size_t</span> p = beta_I.findDifferentOccupations(beta_J)[0];  <span class="comment">// we&#39;re sure that there is only 1 element in the std::vector&lt;size_t&gt;</span></div>
@@ -1364,7 +1364,7 @@ $(function() {
 <div class="line"><a name="l01455"></a><span class="lineno"> 1455</span>&#160;                <span class="keywordtype">double</span> c_J = this-&gt;<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a60c63293906daaea5dcce4aea644c74d">coefficient</a>(J);</div>
 <div class="line"><a name="l01456"></a><span class="lineno"> 1456</span>&#160; </div>
 <div class="line"><a name="l01457"></a><span class="lineno"> 1457</span>&#160;                <span class="comment">// 1 electron excitation in alpha, 0 in beta</span></div>
-<div class="line"><a name="l01458"></a><span class="lineno"> 1458</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfDifferences(alpha_J) == 2) &amp;&amp; (beta_I.countNumberOfDifferences(beta_J) == 0)) {</div>
+<div class="line"><a name="l01458"></a><span class="lineno"> 1458</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfExcitations(alpha_J) == 1) &amp;&amp; (beta_I.countNumberOfExcitations(beta_J) == 0)) {</div>
 <div class="line"><a name="l01459"></a><span class="lineno"> 1459</span>&#160; </div>
 <div class="line"><a name="l01460"></a><span class="lineno"> 1460</span>&#160;                    <span class="comment">// Find the orbitals that are occupied in one string, and aren&#39;t in the other</span></div>
 <div class="line"><a name="l01461"></a><span class="lineno"> 1461</span>&#160;                    <span class="keywordtype">size_t</span> p = alpha_I.findDifferentOccupations(alpha_J)[0];  <span class="comment">// we&#39;re sure that there is only 1 element in the std::vector&lt;size_t&gt;</span></div>
@@ -1405,7 +1405,7 @@ $(function() {
 <div class="line"><a name="l01496"></a><span class="lineno"> 1496</span>&#160; </div>
 <div class="line"><a name="l01497"></a><span class="lineno"> 1497</span>&#160; </div>
 <div class="line"><a name="l01498"></a><span class="lineno"> 1498</span>&#160;                <span class="comment">// 0 electron excitations in alpha, 1 in beta</span></div>
-<div class="line"><a name="l01499"></a><span class="lineno"> 1499</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfDifferences(alpha_J) == 0) &amp;&amp; (beta_I.countNumberOfDifferences(beta_J) == 2)) {</div>
+<div class="line"><a name="l01499"></a><span class="lineno"> 1499</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfExcitations(alpha_J) == 0) &amp;&amp; (beta_I.countNumberOfExcitations(beta_J) == 1)) {</div>
 <div class="line"><a name="l01500"></a><span class="lineno"> 1500</span>&#160; </div>
 <div class="line"><a name="l01501"></a><span class="lineno"> 1501</span>&#160;                    <span class="comment">// Find the orbitals that are occupied in one string, and aren&#39;t in the other</span></div>
 <div class="line"><a name="l01502"></a><span class="lineno"> 1502</span>&#160;                    <span class="keywordtype">size_t</span> p = beta_I.findDifferentOccupations(beta_J)[0];  <span class="comment">// we&#39;re sure that there is only 1 element in the std::vector&lt;size_t&gt;</span></div>
@@ -1446,7 +1446,7 @@ $(function() {
 <div class="line"><a name="l01537"></a><span class="lineno"> 1537</span>&#160; </div>
 <div class="line"><a name="l01538"></a><span class="lineno"> 1538</span>&#160; </div>
 <div class="line"><a name="l01539"></a><span class="lineno"> 1539</span>&#160;                <span class="comment">// 1 electron excitation in alpha, 1 in beta</span></div>
-<div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfDifferences(alpha_J) == 2) &amp;&amp; (beta_I.countNumberOfDifferences(beta_J) == 2)) {</div>
+<div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfExcitations(alpha_J) == 1) &amp;&amp; (beta_I.countNumberOfExcitations(beta_J) == 1)) {</div>
 <div class="line"><a name="l01541"></a><span class="lineno"> 1541</span>&#160; </div>
 <div class="line"><a name="l01542"></a><span class="lineno"> 1542</span>&#160;                    <span class="comment">// Find the orbitals that are occupied in one string, and aren&#39;t in the other</span></div>
 <div class="line"><a name="l01543"></a><span class="lineno"> 1543</span>&#160;                    <span class="keywordtype">size_t</span> p = alpha_I.findDifferentOccupations(alpha_J)[0];  <span class="comment">// we&#39;re sure that there is only 1 element in the std::vector&lt;size_t&gt;</span></div>
@@ -1466,7 +1466,7 @@ $(function() {
 <div class="line"><a name="l01557"></a><span class="lineno"> 1557</span>&#160; </div>
 <div class="line"><a name="l01558"></a><span class="lineno"> 1558</span>&#160; </div>
 <div class="line"><a name="l01559"></a><span class="lineno"> 1559</span>&#160;                <span class="comment">// 2 electron excitations in alpha, 0 in beta</span></div>
-<div class="line"><a name="l01560"></a><span class="lineno"> 1560</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfDifferences(alpha_J) == 4) &amp;&amp; (beta_I.countNumberOfDifferences(beta_J) == 0)) {</div>
+<div class="line"><a name="l01560"></a><span class="lineno"> 1560</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfExcitations(alpha_J) == 2) &amp;&amp; (beta_I.countNumberOfExcitations(beta_J) == 0)) {</div>
 <div class="line"><a name="l01561"></a><span class="lineno"> 1561</span>&#160; </div>
 <div class="line"><a name="l01562"></a><span class="lineno"> 1562</span>&#160;                    <span class="comment">// Find the orbitals that are occupied in one string, and aren&#39;t in the other</span></div>
 <div class="line"><a name="l01563"></a><span class="lineno"> 1563</span>&#160;                    std::vector&lt;size_t&gt; occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  <span class="comment">// we&#39;re sure this has two elements</span></div>
@@ -1493,7 +1493,7 @@ $(function() {
 <div class="line"><a name="l01584"></a><span class="lineno"> 1584</span>&#160; </div>
 <div class="line"><a name="l01585"></a><span class="lineno"> 1585</span>&#160; </div>
 <div class="line"><a name="l01586"></a><span class="lineno"> 1586</span>&#160;                <span class="comment">// 0 electron excitations in alpha, 2 in beta</span></div>
-<div class="line"><a name="l01587"></a><span class="lineno"> 1587</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfDifferences(alpha_J) == 0) &amp;&amp; (beta_I.countNumberOfDifferences(beta_J) == 4)) {</div>
+<div class="line"><a name="l01587"></a><span class="lineno"> 1587</span>&#160;                <span class="keywordflow">if</span> ((alpha_I.countNumberOfExcitations(alpha_J) == 0) &amp;&amp; (beta_I.countNumberOfExcitations(beta_J) == 2)) {</div>
 <div class="line"><a name="l01588"></a><span class="lineno"> 1588</span>&#160; </div>
 <div class="line"><a name="l01589"></a><span class="lineno"> 1589</span>&#160;                    <span class="comment">// Find the orbitals that are occupied in one string, and aren&#39;t in the other</span></div>
 <div class="line"><a name="l01590"></a><span class="lineno"> 1590</span>&#160;                    std::vector&lt;size_t&gt; occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  <span class="comment">// we&#39;re sure this has two elements</span></div>
@@ -1559,7 +1559,7 @@ $(function() {
 <div class="line"><a name="l01665"></a><span class="lineno"> 1665</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; c_J = this-&gt;<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a60c63293906daaea5dcce4aea644c74d">coefficient</a>(J);</div>
 <div class="line"><a name="l01666"></a><span class="lineno"> 1666</span>&#160; </div>
 <div class="line"><a name="l01667"></a><span class="lineno"> 1667</span>&#160;                <span class="comment">// We only have a contribution if I and J are exactly 1 excitation away.</span></div>
-<div class="line"><a name="l01668"></a><span class="lineno"> 1668</span>&#160;                <span class="keywordflow">if</span> (onv_I.countNumberOfDifferences(onv_J) == 2) {</div>
+<div class="line"><a name="l01668"></a><span class="lineno"> 1668</span>&#160;                <span class="keywordflow">if</span> (onv_I.countNumberOfExcitations(onv_J) == 1) {</div>
 <div class="line"><a name="l01669"></a><span class="lineno"> 1669</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> p = onv_I.findDifferentOccupations(onv_J)[0];  <span class="comment">// The orbital that is occupied in I, but unoccupied in J.</span></div>
 <div class="line"><a name="l01670"></a><span class="lineno"> 1670</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> q = onv_J.findDifferentOccupations(onv_I)[0];  <span class="comment">// The orbital that is occupied in J, but unoccupied in I.</span></div>
 <div class="line"><a name="l01671"></a><span class="lineno"> 1671</span>&#160; </div>
@@ -1608,7 +1608,7 @@ $(function() {
 <div class="line"><a name="l01719"></a><span class="lineno"> 1719</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; c_J = this-&gt;<a class="code" href="class_g_q_c_p_1_1_linear_expansion.html#a60c63293906daaea5dcce4aea644c74d">coefficient</a>(J);</div>
 <div class="line"><a name="l01720"></a><span class="lineno"> 1720</span>&#160; </div>
 <div class="line"><a name="l01721"></a><span class="lineno"> 1721</span>&#160;                <span class="comment">// Calculate the contribution if I and J are 1 excitation away.</span></div>
-<div class="line"><a name="l01722"></a><span class="lineno"> 1722</span>&#160;                <span class="keywordflow">if</span> (onv_I.countNumberOfDifferences(onv_J) == 2) {</div>
+<div class="line"><a name="l01722"></a><span class="lineno"> 1722</span>&#160;                <span class="keywordflow">if</span> (onv_I.countNumberOfExcitations(onv_J) == 1) {</div>
 <div class="line"><a name="l01723"></a><span class="lineno"> 1723</span>&#160; </div>
 <div class="line"><a name="l01724"></a><span class="lineno"> 1724</span>&#160;                    <span class="comment">// Determine the orbital indices that match the excitation.</span></div>
 <div class="line"><a name="l01725"></a><span class="lineno"> 1725</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> p = onv_I.findDifferentOccupations(onv_J)[0];  <span class="comment">// The orbital that is occupied in I, but unoccupied in J.</span></div>
@@ -1637,7 +1637,7 @@ $(function() {
 <div class="line"><a name="l01748"></a><span class="lineno"> 1748</span>&#160;                }</div>
 <div class="line"><a name="l01749"></a><span class="lineno"> 1749</span>&#160; </div>
 <div class="line"><a name="l01750"></a><span class="lineno"> 1750</span>&#160;                <span class="comment">// Calculate the contribution if I and J are 2 excitations away.</span></div>
-<div class="line"><a name="l01751"></a><span class="lineno"> 1751</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (onv_I.countNumberOfDifferences(onv_J) == 4) {</div>
+<div class="line"><a name="l01751"></a><span class="lineno"> 1751</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (onv_I.countNumberOfExcitations(onv_J) == 2) {</div>
 <div class="line"><a name="l01752"></a><span class="lineno"> 1752</span>&#160; </div>
 <div class="line"><a name="l01753"></a><span class="lineno"> 1753</span>&#160;                    <span class="comment">// Determine the orbital indices that match the excitation.</span></div>
 <div class="line"><a name="l01754"></a><span class="lineno"> 1754</span>&#160;                    <span class="keyword">auto</span> occupied_in_I = onv_I.findDifferentOccupations(onv_J);  <span class="comment">// The orbitals that are occupied in J, but not in J.</span></div>
@@ -1856,7 +1856,7 @@ $(function() {
 <div class="ttc" id="aclass_g_q_c_p_1_1_orbital1_d_m_html"><div class="ttname"><a href="class_g_q_c_p_1_1_orbital1_d_m.html">GQCP::Orbital1DM&lt; double &gt;</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_orbital2_d_m_html"><div class="ttname"><a href="class_g_q_c_p_1_1_orbital2_d_m.html">GQCP::Orbital2DM&lt; double &gt;</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_pure_spin_resolved2_d_m_component_html"><div class="ttname"><a href="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component.html">GQCP::PureSpinResolved2DMComponent</a></div><div class="ttdef"><b>Definition:</b> PureSpinResolved2DMComponent.hpp:36</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_r_spin_orbital_basis_html"><div class="ttname"><a href="class_g_q_c_p_1_1_r_spin_orbital_basis.html">GQCP::RSpinOrbitalBasis</a></div><div class="ttdef"><b>Definition:</b> RSpinOrbitalBasis.hpp:59</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_r_spin_orbital_basis_html"><div class="ttname"><a href="class_g_q_c_p_1_1_r_spin_orbital_basis.html">GQCP::RSpinOrbitalBasis</a></div><div class="ttdef"><b>Definition:</b> RSpinOrbitalBasis.hpp:62</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_r_transformation_html"><div class="ttname"><a href="class_g_q_c_p_1_1_r_transformation.html">GQCP::RTransformation</a></div><div class="ttdef"><b>Definition:</b> RTransformation.hpp:40</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_simple_spinor_basis_html_a42b2813a11f43e74c7fa60ee90a5ae0e"><div class="ttname"><a href="class_g_q_c_p_1_1_simple_spinor_basis.html#a42b2813a11f43e74c7fa60ee90a5ae0e">GQCP::SimpleSpinorBasis::overlap</a></div><div class="ttdeci">SQOverlapOperator overlap() const</div><div class="ttdef"><b>Definition:</b> SimpleSpinorBasis.hpp:118</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_simple_spinor_basis_html_ad150aa71df288eda895400a1970976d2"><div class="ttname"><a href="class_g_q_c_p_1_1_simple_spinor_basis.html#ad150aa71df288eda895400a1970976d2">GQCP::SimpleSpinorBasis::expansion</a></div><div class="ttdeci">const Transformation &amp; expansion() const</div><div class="ttdef"><b>Definition:</b> SimpleSpinorBasis.hpp:98</div></div>
@@ -1875,8 +1875,8 @@ $(function() {
 <div class="ttc" id="aclass_g_q_c_p_1_1_square_rank_four_tensor_html_ac8d9dac01c85a4f11aa67c7efa877e04"><div class="ttname"><a href="class_g_q_c_p_1_1_square_rank_four_tensor.html#ac8d9dac01c85a4f11aa67c7efa877e04">GQCP::SquareRankFourTensor::Zero</a></div><div class="ttdeci">static Self Zero(const size_t dim)</div><div class="ttdef"><b>Definition:</b> SquareRankFourTensor.hpp:147</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_tensor_html_a0c215565584084203d6dfe127388627a"><div class="ttname"><a href="class_g_q_c_p_1_1_tensor.html#a0c215565584084203d6dfe127388627a">GQCP::Tensor::Eigen</a></div><div class="ttdeci">const Base &amp; Eigen() const</div><div class="ttdef"><b>Definition:</b> Tensor.hpp:116</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_u_spin_orbital_basis_html"><div class="ttname"><a href="class_g_q_c_p_1_1_u_spin_orbital_basis.html">GQCP::USpinOrbitalBasis</a></div><div class="ttdef"><b>Definition:</b> USpinOrbitalBasis.hpp:56</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_u_spin_orbital_basis_html_aa769e1e7147f8f3aceb6a891dcf72b35"><div class="ttname"><a href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#aa769e1e7147f8f3aceb6a891dcf72b35">GQCP::USpinOrbitalBasis::expansion</a></div><div class="ttdeci">UTransformation&lt; ExpansionScalar &gt; expansion() const</div><div class="ttdef"><b>Definition:</b> USpinOrbitalBasis.hpp:219</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_u_spin_orbital_basis_html_ab8f9e7467685ee81d6cb0bb56f2fb88c"><div class="ttname"><a href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ab8f9e7467685ee81d6cb0bb56f2fb88c">GQCP::USpinOrbitalBasis::overlap</a></div><div class="ttdeci">ScalarUSQOneElectronOperator&lt; ExpansionScalar &gt; overlap() const</div><div class="ttdef"><b>Definition:</b> USpinOrbitalBasis.hpp:335</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_u_spin_orbital_basis_html_aa769e1e7147f8f3aceb6a891dcf72b35"><div class="ttname"><a href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#aa769e1e7147f8f3aceb6a891dcf72b35">GQCP::USpinOrbitalBasis::expansion</a></div><div class="ttdeci">UTransformation&lt; ExpansionScalar &gt; expansion() const</div><div class="ttdef"><b>Definition:</b> USpinOrbitalBasis.hpp:234</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_u_spin_orbital_basis_html_ab8f9e7467685ee81d6cb0bb56f2fb88c"><div class="ttname"><a href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ab8f9e7467685ee81d6cb0bb56f2fb88c">GQCP::USpinOrbitalBasis::overlap</a></div><div class="ttdeci">ScalarUSQOneElectronOperator&lt; ExpansionScalar &gt; overlap() const</div><div class="ttdef"><b>Definition:</b> USpinOrbitalBasis.hpp:327</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html_a006e5cafd5827d2685c9e0bb7e01cfa2"><div class="ttname"><a href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">GQCP::enable_if_t</a></div><div class="ttdeci">typename std::enable_if&lt; B, T &gt;::type enable_if_t</div><div class="ttdef"><b>Definition:</b> type_traits.hpp:37</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html_aad915236270363d34c81fd1b896fa934"><div class="ttname"><a href="namespace_g_q_c_p.html#aad915236270363d34c81fd1b896fa934">GQCP::conj</a></div><div class="ttdeci">complex conj(const complex &amp;c)</div><div class="ttdef"><b>Definition:</b> complex.cpp:31</div></div>

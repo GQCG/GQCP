@@ -305,6 +305,13 @@ $(function() {
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"> </div>
+<div class="line"><span class="keywordtype">size_t</span> SpinUnresolvedONV::countNumberOfExcitations(<span class="keyword">const</span> SpinUnresolvedONV&amp; other)<span class="keyword"> const </span>{</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span> differences = this-&gt;unsigned_representation ^ other.unsigned_representation;</div>
+<div class="line">    <span class="keywordflow">return</span> std::min(__builtin_popcountl(this-&gt;unsigned_representation &amp; differences), __builtin_popcountl(other.unsigned_representation &amp; differences));</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> SpinUnresolvedONV::create(<span class="keyword">const</span> <span class="keywordtype">size_t</span> p) {</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (!this-&gt;isOccupied(p)) {</div>

@@ -250,6 +250,70 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" line="107" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" bodystart="107" bodyend="108"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spin_orbital_basis_1af84c29a6ca7888ce375dd1381c1e9bc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a461d84956dd760d5f7be2d4c715de2ae" kindref="member">Shell</ref></defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>GQCP::SimpleSpinOrbitalBasis&lt; _ExpansionScalar, _Shell, _DerivedSpinOrbitalBasis &gt;::SimpleSpinOrbitalBasis</definition>
+        <argsstring>(const Molecule &amp;molecule, const std::string &amp;basisset_name, const HomogeneousMagneticField &amp;B, typename std::enable_if&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value &gt;::type *=0)</argsstring>
+        <name>SimpleSpinOrbitalBasis</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
+          <declname>molecule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>basisset_name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value &gt;::type *</type>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a simple spin-orbital basis with an underlying scalar basis that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal London atomic spinors (AOs).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>molecule</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The molecule containing the nuclei on which the shells should be centered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>basisset_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the basisset, e.g. &quot;STO-3G&quot;. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The homogeneous magnetic field.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" line="121" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" bodystart="121" bodyend="123"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a65c66682f4aa90cc4c7bf2cd3dfb3e43" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_scalar_basis" kindref="compound">ScalarBasis</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a461d84956dd760d5f7be2d4c715de2ae" kindref="member">Shell</ref> &gt; &amp;</type>
         <definition>const ScalarBasis&lt;Shell&gt;&amp; GQCP::SimpleSpinOrbitalBasis&lt; _ExpansionScalar, _Shell, _DerivedSpinOrbitalBasis &gt;::scalarBasis</definition>
@@ -264,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" line="118" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" bodystart="118" bodyend="118"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" line="133" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" bodystart="133" bodyend="133"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -365,7 +429,7 @@
         <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" bodystart="39" bodyend="119"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp" bodystart="39" bodyend="134"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1abc259871107d62ac95ced183c272baa0" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>BaseSpinorBasis</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a9abca647ddeb9772b5c58fe7366204ac" prot="protected" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>C</name></member>
@@ -394,6 +458,7 @@
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1af096f847c1c3c17d4c95c0bd7c0805c2" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>SimpleSpinOrbitalBasis</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1aefeac1ce6c38d836ad6d8bd3fb11212d" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>SimpleSpinOrbitalBasis</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a3048576f622f5afc8abe21ccb8c1f227" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>SimpleSpinOrbitalBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1af84c29a6ca7888ce375dd1381c1e9bc3" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>SimpleSpinOrbitalBasis</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a62e6854ce1fb8ab009b0479586337f8e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>SQOverlapOperator</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>transform</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1ac3b0da5ca443326d3a8829702b504d8a" prot="public" virt="non-virtual"><scope>GQCP::SimpleSpinOrbitalBasis</scope><name>Transformation</name></member>
