@@ -24,6 +24,7 @@
     - file: examples/R-U-GHF-overlaps
     - file: examples/HF-Stability
     - file: examples/ONVPath
+    - file: examples/CIS with CUHF reference
     - file: examples/DOCI
     - file: examples/FCI
     - file: examples/Hubbard
