@@ -8,6 +8,7 @@ list(APPEND python_bindings_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/ElectronicQuadrupoleOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ElectronicSpin_zOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ElectronicSpinOperator_bindings.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElectronicSpinSquaredOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/FQMolecularHamiltonian_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/FQMolecularMagneticHamiltonian_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/FQMolecularPauliHamiltonian_bindings.cpp

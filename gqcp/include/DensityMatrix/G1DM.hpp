@@ -21,6 +21,7 @@
 #include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 
 
 namespace GQCP {
@@ -49,6 +50,31 @@ public:
 
     // Inherit `Simple1DM`'s constructors.
     using Simple1DM<Scalar, G1DM<Scalar>>::Simple1DM;
+
+
+    /**
+     *  Create a `G1DM` from a `SpinResolved1DM`.
+     * 
+     *  @param D            The spin-resolved 1-DM.
+     * 
+     *  @return A `G1DM` created from a `SpinResolved1DM`.
+     */
+    static G1DM<Scalar> FromSpinResolved(const SpinResolved1DM<Scalar>& D) {
+
+        // The goal in this named constructor is to build up the general density matrix (2K x 2K) from the spin-resolved (K_sigma x K_sigma) ones.
+        const auto K_alpha = D.alpha().numberOfOrbitals();
+        const auto K_beta = D.beta().numberOfOrbitals();
+        const auto M = K_alpha + K_beta;
+
+        SquareMatrix<Scalar> D_general = SquareMatrix<Scalar>::Zero(M);
+
+        //      alpha |  0
+        //        0   | beta
+        D_general.topLeftCorner(K_alpha, K_alpha) = D.alpha().matrix();
+        D_general.bottomRightCorner(K_beta, K_beta) = D.beta().matrix();
+
+        return G1DM<Scalar> {D_general};
+    }
 };
 
 

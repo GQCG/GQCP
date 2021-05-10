@@ -31,6 +31,7 @@
 #include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp"
@@ -758,6 +759,31 @@ public:
         const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
 
         return GSQHamiltonian<ExpansionScalar> {T + V, g};
+    }
+
+
+    /**
+     *  Quantize the electronic S^2 operator in this spinor basis.
+     * 
+     *  @param fq_S2_op             The first-quantized electronic S^2 operator.
+     * 
+     *  @return The second-quantized representation of the electronic S^2 operator in this spinor basis.
+     */
+    ScalarGSQOneElectronOperatorProduct<ExpansionScalar> quantize(const ElectronicSpinSquaredOperator& fq_S2_op) const {
+
+        // Prepare the 3 vector components of the electronic spin operator S = (S_x, S_y, S_z).
+        const auto S_op = this->quantize(ElectronicSpinOperator());
+        const auto& S_x_op = S_op(CartesianDirection::x);
+        const auto& S_y_op = S_op(CartesianDirection::y);
+        const auto& S_z_op = S_op(CartesianDirection::z);
+
+
+        // Calculate S^2 = S_x^2 + S_y^2 + S_z^2.
+        const auto S_x_2 = S_x_op * S_x_op;
+        const auto S_y_2 = S_y_op * S_y_op;
+        const auto S_z_2 = S_z_op * S_z_op;
+
+        return S_x_2 + S_y_2 + S_z_2;
     }
 
 

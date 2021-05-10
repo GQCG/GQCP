@@ -22,6 +22,7 @@
 #include "DensityMatrix/G1DM.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/HF/StabilityMatrices/GHFStabilityMatrices.hpp"
 #include "Utilities/complex.hpp"
@@ -351,6 +352,57 @@ public:
 
 
     /**
+     *  @param spin_op                      The electronic spin squared operator.
+     *  @param S                            The (spin-blocked) overlap matrix of the underlying AO bases.
+     * 
+     *  @return The expectation value of the electronic spin squared operator.
+     */
+    complex calculateExpectationValueOf(const ElectronicSpinSquaredOperator& spin_op, const ScalarGSQOneElectronOperator<Scalar>& S) const {
+
+        // Prepare some variables.
+        const auto M = this->numberOfSpinors();
+        const auto C_alpha = this->expansion().alpha();
+        const auto C_beta = this->expansion().beta();
+        const SquareMatrix<complex> S_AO = S.parameters().topLeftCorner(M / 2, M / 2);  // Assume equal for alpha and beta.
+
+        // Calculate overlaps between the alpha- and beta-spinors.
+        const MatrixX<complex> overlap_aa = C_alpha.adjoint() * S_AO * C_alpha;
+        const MatrixX<complex> overlap_ab = C_alpha.adjoint() * S_AO * C_beta;
+        const MatrixX<complex> overlap_ba = overlap_ab.adjoint();
+        const MatrixX<complex> overlap_bb = C_beta.adjoint() * S_AO * C_beta;
+
+        // Create the orbital space for the GHF wavefunction model.
+        const GQCP::OrbitalSpace orbital_space = this->orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons());
+
+        // A KISS implementation of the expectation value of S, from knowdes. (https://gqcg-res.github.io/knowdes/spin-expectation-values-for-ghf.html)
+        complex s_z {0.0};
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // Loop over the occupied spinors.
+            s_z += 0.5 * (overlap_aa(I, I) - overlap_bb(I, I));
+        }
+
+
+        complex s2 = s_z * (s_z + 1.0);
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {
+            // Add the contribution from the second term.
+            s2 += 0.25 * (overlap_aa(I, I) + overlap_bb(I, I));
+
+            // Add the contribution from the fourth term.
+            s2 += overlap_bb(I, I);
+
+            for (const auto& J : orbital_space.indices(OccupationType::k_occupied)) {
+                // Add the contribution from the third term.
+                s2 -= 0.25 * std::norm(overlap_aa(I, J) - overlap_bb(I, J));  // `std::norm` is actually the squared norm.
+
+                // Add the contribution from the fifth term.
+                s2 += overlap_ba(I, I) * overlap_ab(J, J) - overlap_ba(I, J) * overlap_ab(J, I);
+            }
+        }
+
+        return s2;
+    }
+
+
+    /**
      *  @return A matrix containing all the possible excitation energies of the wavefunction model. 
      * 
      *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
@@ -595,6 +647,7 @@ public:
         return mo_energies_virtual;
     }
 };
+
 
 }  // namespace QCModel
 }  // namespace GQCP

@@ -93,7 +93,30 @@ public:
      * 
      *  @note We cannot implement this as a named constructor on `G1DM` because we require `norm` to be implemented on `SpinResolved1DM` and that internally uses a `G1DM`, hence we have to avoid the circular dependency.
      */
-    G1DM<Scalar> generalized() const {
+    // G1DM<Scalar> generalized() const {
+
+    //     // Determine the dimensions of the generalized, spin-blocked 1-DM.
+    //     const auto K_alpha = this->alpha().numberOfOrbitals();
+    //     const auto K_beta = this->beta().numberOfOrbitals();
+    //     const auto M = K_alpha + K_beta;
+
+    //     // The generalized 1-DM contains the alpha part in the top-left corner, and the beta part in the bottom right corner.
+    //     SquareMatrix<Scalar> D_generalized = SquareMatrix<Scalar>::Zero(M);
+    //     D_generalized.topLeftCorner(K_alpha, K_alpha) = this->alpha().matrix();
+    //     D_generalized.bottomRightCorner(K_beta, K_beta) = this->beta().matrix();
+
+    //     return G1DM<Scalar> {D_generalized};
+    // }
+
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     * @return The Frobenius norm of this spin-resolved 1-DM.
+     */
+    double norm() const {
 
         // Determine the dimensions of the generalized, spin-blocked 1-DM.
         const auto K_alpha = this->alpha().numberOfOrbitals();
@@ -105,18 +128,8 @@ public:
         D_generalized.topLeftCorner(K_alpha, K_alpha) = this->alpha().matrix();
         D_generalized.bottomRightCorner(K_beta, K_beta) = this->beta().matrix();
 
-        return G1DM<Scalar> {D_generalized};
+        return D_generalized.norm();
     }
-
-
-    /*
-     *  MARK: General information
-     */
-
-    /**
-     * @return The Frobenius norm of this spin-resolved 1-DM.
-     */
-    double norm() const { return this->generalized().norm(); }
 
     /**
      *  @param sigma            Alpha or beta.

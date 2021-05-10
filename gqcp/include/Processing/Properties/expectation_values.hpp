@@ -41,7 +41,7 @@ double calculateSpinSquared(const SpinResolved1DM<Scalar>& one_DMs, const SpinRe
 
     double sz = calculateSpinZ(one_DMs);
     double s_squared = -sz;
-    const size_t K = one_DMs.numberOfOrbitals();
+    const size_t K = one_DMs.alpha().numberOfOrbitals();
     for (size_t p = 0; p < K; p++) {
         s_squared += one_DMs.alpha().matrix()(p, p);                                        // One-electron partition of S+S_
         s_squared += (one_DMs.alpha().matrix()(p, p) + one_DMs.beta().matrix()(p, p)) / 4;  // One-electron partition of S^2

@@ -19,6 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "Basis/Transformations/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
@@ -26,12 +28,14 @@
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "Utilities/complex.hpp"
 
 
 /**
@@ -391,4 +395,79 @@ BOOST_AUTO_TEST_CASE(naturals) {
     const auto D_after = linear_expansion_after.calculate1DM();
 
     BOOST_CHECK(D_after.matrix().diagonal().isApprox(diagonalizer.eigenvalues(), 1.0e-12));
+}
+
+
+/*
+ *  Check spin values for O2 for a FCI calculation.
+ */
+BOOST_AUTO_TEST_CASE(spin_values_O2) {
+
+    // Initialize the molecular Hamiltonian for neutral O2 in the Löwdin basis.
+    // GQCP::Molecule molecule {{{8, 0.0, 0.0, 0.0},
+    //                           {8, 0.0, 0.0, 2}},
+    //                          0};
+
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    spin_orbital_basis.lowdinOrthonormalize();
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the Löwdin basis.
+
+
+    // Do a FCI calculation.
+    size_t K = spin_orbital_basis.numberOfSpatialOrbitals();
+    size_t N = molecule.numberOfElectrons();
+
+    GQCP::SpinResolvedONVBasis onv_basis {K, N / 2, N / 2};
+
+    auto environment = GQCP::CIEnvironment::Dense(hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    const auto qc_structure = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment);
+    const auto& linear_expansion = qc_structure.groundStateParameters();
+    const auto energy = qc_structure.groundStateEnergy();
+
+    // std::cout << "energy (R): " << energy << std::endl;
+
+
+    const auto D_resolved = linear_expansion.calculateSpinResolved1DM();
+    const auto d_resolved = linear_expansion.calculateSpinResolved2DM();
+
+    const auto D_generalized_real = GQCP::G1DM<double>::FromSpinResolved(D_resolved);
+    const auto d_generalized_real = GQCP::G2DM<double>::FromSpinResolved(d_resolved);
+
+
+    // Set up an equivalent, complex generalized spinor basis so we can quantize S^2.
+    GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    spinor_basis.lowdinOrthonormalize();
+    const auto C = spinor_basis.expansion();
+    const auto S2_op_MO = spinor_basis.quantize(GQCP::ElectronicSpinSquaredOperator());
+
+    const GQCP::G1DM<GQCP::complex> D_MO {D_generalized_real.matrix().cast<GQCP::complex>()};
+    const GQCP::G2DM<GQCP::complex> d_MO {d_generalized_real.tensor().cast<GQCP::complex>()};
+
+    std::cout << "d_MO: " << std::endl;
+    d_MO.tensor().print();
+
+
+    const auto s2_MO = S2_op_MO.calculateExpectationValue(D_MO, d_MO);
+    std::cout << "S2 (two-electron operator part)" << std::endl;
+    S2_op_MO.twoElectron().parameters().print();
+    std::cout << "S2 exp val (MO): " << s2_MO << std::endl;
+
+
+    const auto D_AO = D_MO.transformed(C.inverse());
+    const auto d_AO = d_MO.transformed(C.inverse());
+    const auto S2_op_AO = S2_op_MO.transformed(C.inverse());
+    const auto s2_AO = S2_op_AO.calculateExpectationValue(D_AO, d_AO);
+    std::cout << "S2 exp val (AO): " << s2_AO << std::endl;
+
+
+    // <S^2> should be 2 (S=1) because the ground state for O2 is a biradical triplet.
+    // BOOST_CHECK(std::abs(s2 - 2.0) < 1.0e-06);
+    // In the restricted SpinUnresolvedONV basis, alpha = beta, hence the expectation value of the z-component of the spin operator should be zero
+    // BOOST_CHECK(std::abs(s_z - 0) < 1.0e-06);
+    // const auto S_z_op = spinor_basis.quantize(GQCP::ElectronicSpinOperator())(GQCP::CartesianDirection::x);
+    // std::cout << "S_z exp val: " << S_z_op.calculateExpectationValue(D)() << std::endl;
+    std::cout << "S2 exp val (Tobias): " << calculateSpinSquared(D_resolved, d_resolved) << std::endl;
 }
