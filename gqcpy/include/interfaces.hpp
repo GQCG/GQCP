@@ -995,6 +995,13 @@ void bindQCModelHartreeFockInterface(Class& py_class) {
 
     py_class
         .def(
+            "orbitalSpace",
+            [](const Type& parameters) {
+                return parameters.orbitalSpace();
+            },
+            "Return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these RHF model parameters.")
+
+        .def(
             "calculateOrthonormalBasis1DM",
             [](const Type& parameters) {
                 return parameters.calculateOrthonormalBasis1DM();

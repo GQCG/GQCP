@@ -79,13 +79,6 @@ void bindQCModelRHF(py::module& module) {
     bindQCModelRHFInterface(py_QCModel_RHF_d);
 
     py_QCModel_RHF_d
-        .def(
-            "orbitalSpace",
-            [](const QCModel::RHF<double>& rhf_parameters) {
-                return rhf_parameters.orbitalSpace();
-            },
-            "Return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these RHF model parameters.")
-
         .def_static(
             "calculateOrbitalHessianForImaginaryResponse",
             [](const RSQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {

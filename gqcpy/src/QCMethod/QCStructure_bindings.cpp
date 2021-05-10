@@ -97,26 +97,30 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
 
 void bindQCStructures(py::module& module) {
 
-    bindQCStructure<LinearExpansion<double, SeniorityZeroONVBasis>>(module, "LinearExpansion_SeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
-    bindQCStructure<LinearExpansion<double, SpinResolvedONVBasis>>(module, "LinearExpansion_SpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
-    bindQCStructure<LinearExpansion<double, SpinResolvedSelectedONVBasis>>(module, "LinearExpansion_SpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
-    bindQCStructure<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>>(module, "LinearExpansion_SpinUnresolvedSelected", "A quantum chemical structure for linear expansions in a spin-unresolved selected ONV basis.");
-    bindQCStructure<LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>, complex>(module, "LinearExpansion_SpinUnresolvedSelected_cd", "A quantum chemical structure for linear expansions in a spin-unresolved selected ONV basis.");
+    bindQCStructure<LinearExpansion<double, SeniorityZeroONVBasis>>(module, "LinearExpansion_SeniorityZero", "A quantum chemical structure for real-valued linear expansions in a seniority-zero ONV basis.");
+    bindQCStructure<LinearExpansion<double, SpinResolvedONVBasis>>(module, "LinearExpansion_SpinResolved", "A quantum chemical structure for real-valued linear expansions in a spin-resolved ONV basis.");
+    bindQCStructure<LinearExpansion<double, SpinResolvedSelectedONVBasis>>(module, "LinearExpansion_SpinResolvedSelected", "A quantum chemical structure for real-valued linear expansions in a spin-resolved selected ONV basis.");
 
-    bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
-    bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
+    bindQCStructure<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>>(module, "LinearExpansion_SpinUnresolvedSelected_d", "A quantum chemical structure for real-valued linear expansions in a spin-unresolved selected ONV basis.");
+    bindQCStructure<LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>, complex>(module, "LinearExpansion_SpinUnresolvedSelected_cd", "A quantum chemical structure for complex-valued linear expansions in a spin-unresolved selected ONV basis.");
 
-    bindQCStructure<QCModel::GHF<double>>(module, "GHF_d", "A quantum chemical structure for real GHF parameters.");
-    bindQCStructure<QCModel::GHF<complex>, complex>(module, "GHF_cd", "A quantum chemical structure for complex GHF parameters.");
+    bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for real-valued AP1roG parameters.");
+    bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for real-valued vAP1roG parameters.");
 
-    bindQCStructure<QCModel::RHF<double>>(module, "RHF_d", "A quantum chemical structure for real RHF parameters.");
-    bindQCStructure<QCModel::RHF<complex>, complex>(module, "RHF_cd", "A quantum chemical structure for complex RHF parameters.");
+    bindQCStructure<QCModel::GHF<double>>(module, "GHF_d", "A quantum chemical structure for real-valued GHF parameters.");
+    bindQCStructure<QCModel::GHF<complex>, complex>(module, "GHF_cd", "A quantum chemical structure for complex-valued GHF parameters.");
 
-    bindQCStructure<QCModel::UHF<double>>(module, "UHF_d", "A quantum chemical structure for real UHF parameters.");
-    bindQCStructure<QCModel::UHF<complex>, complex>(module, "UHF_cd", "A quantum chemical structure for complex UHF parameters.");
+    bindQCStructure<QCModel::RHF<double>>(module, "RHF_d", "A quantum chemical structure for real-valued RHF parameters.");
+    bindQCStructure<QCModel::RHF<complex>, complex>(module, "RHF_cd", "A quantum chemical structure for complex-valued RHF parameters.");
 
-    bindQCStructure<QCModel::CCSD<double>>(module, "CCSD", "A quantum chemical structure for CCSD parameters.");
-    bindQCStructure<QCModel::CCD<double>>(module, "CCD", "A quantum chemical structure for CCD parameters.");
+    bindQCStructure<QCModel::UHF<double>>(module, "UHF_d", "A quantum chemical structure for real-valued UHF parameters.");
+    bindQCStructure<QCModel::UHF<complex>, complex>(module, "UHF_cd", "A quantum chemical structure for complex-valued UHF parameters.");
+
+    bindQCStructure<QCModel::CCSD<double>>(module, "CCSD_d", "A quantum chemical structure for real-valued CCSD parameters.");
+    bindQCStructure<QCModel::CCD<double>>(module, "CCD_d", "A quantum chemical structure for real-valued CCD parameters.");
+
+    bindQCStructure<QCModel::CCSD<complex>, complex>(module, "CCSD_cd", "A quantum chemical structure for complex-valued CCSD parameters.");
+    bindQCStructure<QCModel::CCD<complex>, complex>(module, "CCD_cd", "A quantum chemical structure for complex-valued CCD parameters.");
 }
 
 

@@ -123,7 +123,8 @@ void bindIterativeAlgorithms(py::module& module) {
     bindIterativeAlgorithm<GHFSCFEnvironment<double>>(module, "GHFSCFEnvironment_d", "An algorithm that performs iterations using a real GHFSCFEnvironment.");
     bindIterativeAlgorithm<GHFSCFEnvironment<complex>>(module, "GHFSCFEnvironment_cd", "An algorithm that performs iterations using a complex GHFSCFEnvironment.");
 
-    bindIterativeAlgorithm<CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithm that performs iterations using a CCSDEnvironment.");
+    bindIterativeAlgorithm<CCSDEnvironment<double>>(module, "CCSDEnvironment_d", "An algorithm that performs iterations using a real CCSDEnvironment.");
+    bindIterativeAlgorithm<CCSDEnvironment<complex>>(module, "CCSDEnvironment_cd", "An algorithm that performs iterations using a complex CCSDEnvironment.");
 }
 
 
