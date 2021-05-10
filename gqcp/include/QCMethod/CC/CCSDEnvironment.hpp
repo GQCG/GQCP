@@ -101,6 +101,10 @@ public:
         V_A {V_A} {}
 
 
+    /*
+     *  MARK: Named constructors
+     */
+
     /**
      *  Initialize a CCSD algorithmic environment with initial guesses for the T1- and T2-amplitudes based on perturbation theory.
      * 

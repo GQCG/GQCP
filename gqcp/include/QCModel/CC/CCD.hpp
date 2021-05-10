@@ -75,7 +75,7 @@ public:
 
         // A KISS implementation of the CCD energy correction.
         // The implementation is in line with Crawford2000 "Chapter 2: An Introduction to Coupled Cluster Theory for Computational Chemists", eq. [134].
-        double E = 0.0;
+        Scalar E {};  // Default initialization to 0.
 
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
