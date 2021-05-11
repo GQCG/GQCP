@@ -27,21 +27,21 @@ namespace GQCP {
 
 
 /**
- *  Calculate the expectation value of the square of the spin angular momentum operator
+ *  Calculate the expectation value of the square of the spin angular momentum operator.
  * 
- *  @tparam Scalar         the scalar type of the density matrices
+ *  @tparam Scalar        The scalar type of the density matrices.
  * 
- *  @param one_DMs        all the one-electron density matrices
- *  @param two_DMs        all the two-electron density matrices
+ *  @param one_DMs        The one-electron density matrix.
+ *  @param two_DMs        The two-electron density matrix.
  *
- *  @return the expectation value of the square of the spin angular momentum operator
+ *  @return The expectation value of the square of the spin angular momentum operator.
  */
 template <typename Scalar>
 double calculateSpinSquared(const SpinResolved1DM<Scalar>& one_DMs, const SpinResolved2DM<Scalar>& two_DMs) {
 
     double sz = calculateSpinZ(one_DMs);
     double s_squared = -sz;
-    const size_t K = one_DMs.numberOfOrbitals();
+    const size_t K = one_DMs.alpha().numberOfOrbitals();
     for (size_t p = 0; p < K; p++) {
         s_squared += one_DMs.alpha().matrix()(p, p);                                        // One-electron partition of S+S_
         s_squared += (one_DMs.alpha().matrix()(p, p) + one_DMs.beta().matrix()(p, p)) / 4;  // One-electron partition of S^2
@@ -55,13 +55,13 @@ double calculateSpinSquared(const SpinResolved1DM<Scalar>& one_DMs, const SpinRe
 
 
 /**
- *  Calculate the expectation value of the z-component of the spin angular momentum operator
+ *  Calculate the expectation value of the z-component of the spin angular momentum operator.
  * 
- *  @tparam Scalar          the scalar type
+ *  @tparam Scalar         The scalar type of the density matrix.
  * 
- *  @param one_DMs         all the one-electron density matrices
+ *  @param one_DMs         The one-electron density matrix.
  *
- *  @return expectation value of spin in the z direction
+ *  @return The expectation value of spin in the z-direction.
  */
 template <typename Scalar>
 double calculateSpinZ(const SpinResolved1DM<Scalar>& one_DMs) {
