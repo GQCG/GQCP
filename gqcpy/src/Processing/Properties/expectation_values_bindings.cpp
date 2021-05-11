@@ -34,7 +34,8 @@ void bindExpectationValues(py::module& module) {
         "calculateSpinSquared",
         &GQCP::calculateSpinSquared<double>,
         py::arg("1-DM"),
-        py::arg("2-DM"));
+        py::arg("2-DM"),
+        "The expectation value of the square of the spin angular momentum operator.");
 }
 
 
