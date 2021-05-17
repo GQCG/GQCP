@@ -20,6 +20,7 @@
 
 #include "Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "Utilities/complex.hpp"
 
@@ -38,7 +39,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class UOrbitalRotationGenerators:
-    public SpinResolvedBase<UOrbitalRotationGeneratorsComponent<_Scalar>, UTOrbitalRotationGenerators<_Scalar>> {
+    public SpinResolvedBase<UOrbitalRotationGeneratorsComponent<_Scalar>, UOrbitalRotationGenerators<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
@@ -89,7 +90,7 @@ public:
         const auto& alpha_component = this->alpha();
         const auto& beta_component = this->beta();
 
-        return SpinResolved<VectorX<Scalar>> { alpha_component.asVector(), beta_component.asVector() }
+        return SpinResolved<VectorX<Scalar>> {alpha_component.asVector(), beta_component.asVector()};
     }
 
 
@@ -101,7 +102,7 @@ public:
         const auto& alpha_component = this->alpha();
         const auto& beta_component = this->beta();
 
-        return SpinResolved<size_t> { alpha_component.numberOfSpatialOrbitals(), beta_component.numberOfSpatialOrbitals() }
+        return SpinResolved<size_t> {alpha_component.numberOfSpatialOrbitals(), beta_component.numberOfSpatialOrbitals()};
     }
 };
 
