@@ -88,6 +88,8 @@
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UJacobiRotation.hpp"
+#include "Basis/Transformations/UOrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Basis/Transformations/transform.hpp"

@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/Transformations/ROrbitalRotationGenerators.hpp"
 #include "Basis/Transformations/SimpleTransformation.hpp"
+#include "Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp"
 
 
 namespace GQCP {
@@ -95,7 +95,7 @@ template <typename Scalar>
 struct OrbitalRotationGeneratorTraits<UTransformationComponent<Scalar>> {
 
     // The type of orbital rotation generators associated with an `UTransformationComponent`.
-    using OrbitalRotationGenerators = ROrbitalRotationGenerators<Scalar>;
+    using OrbitalRotationGenerators = UOrbitalRotationGeneratorsComponent<Scalar>;
 };
 
 
