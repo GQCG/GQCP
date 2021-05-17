@@ -19,22 +19,23 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/Transformations/OrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/GOrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/ROrbitalRotationGenerators.hpp"
 
 
 /**
- *  Check the OrbitalRotationGenerators constructor.
+ *  Check the ROrbitalRotationGenerators constructor.
  */
 BOOST_AUTO_TEST_CASE(constructor) {
 
     // Check if the constructor throws upon receiving an argument of wrong dimensions.
     const GQCP::VectorX<double> kappa {4};  // '4' is not a triangular number.
-    BOOST_CHECK_THROW(GQCP::OrbitalRotationGenerators generators {kappa}, std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ROrbitalRotationGenerators<double> generators {kappa}, std::invalid_argument);
 }
 
 
 /**
- *  Check if the `asMatrix` API correctly converts OrbitalRotationGenerators to their matrix representation.
+ *  Check if the `asMatrix` API correctly converts ROrbitalRotationGenerators to their matrix representation.
  */
 BOOST_AUTO_TEST_CASE(asMatrix) {
 
@@ -51,7 +52,7 @@ BOOST_AUTO_TEST_CASE(asMatrix) {
 
 
     // Check if the wrapper object behaves correctly.
-    const GQCP::OrbitalRotationGenerators generators {kappa};
+    const GQCP::ROrbitalRotationGenerators<double> generators {kappa};
     BOOST_CHECK(generators.asMatrix().isApprox(kappa_matrix));
 }
 
@@ -64,10 +65,10 @@ BOOST_AUTO_TEST_CASE(FromOccOcc) {
     // Initialize a test set of orbital rotation generators for an occupied-occupied orbital space.
     GQCP::VectorX<double> kappa {3};
     kappa << 1, 2, 3;
-    const GQCP::OrbitalRotationGenerators occ_occ_generators {kappa};  // 3 (doubly-)occupied spatial orbitals.
+    const GQCP::ROrbitalRotationGenerators<double> occ_occ_generators {kappa};  // 3 (doubly-)occupied spatial orbitals.
 
     // Construct the total generators in a larger orbital space.
-    const auto full_generators = GQCP::OrbitalRotationGenerators::FromOccOcc(occ_occ_generators, 4);  // 4 total spatial orbitals.
+    const auto full_generators = GQCP::ROrbitalRotationGenerators<double>::FromOccOcc(occ_occ_generators, 4);  // 4 total spatial orbitals.
 
     GQCP::SquareMatrix<double> full_kappa_matrix {4};
     // clang-format off

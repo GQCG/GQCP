@@ -108,7 +108,7 @@ Orbital2DM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2DM() const 
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const {
+ROrbitalRotationGenerators<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const {
     return this->calculateNewFreeOrbitalGenerators(sq_hamiltonian);  // no extra step necessary
 }
 

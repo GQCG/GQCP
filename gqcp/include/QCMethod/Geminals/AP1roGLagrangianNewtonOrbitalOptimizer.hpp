@@ -91,7 +91,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const override;
+    ROrbitalRotationGenerators<double> calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
 
     // PUBLIC METHODS

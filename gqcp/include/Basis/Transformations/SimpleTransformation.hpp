@@ -20,7 +20,10 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
+#include "Basis/Transformations/OrbitalRotationGeneratorTraits.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+
+#include <unsupported/Eigen/MatrixFunctions>
 
 
 namespace GQCP {
@@ -57,6 +60,9 @@ public:
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;
+
+    // The type of the orbital rotation generators that is naturally associated with the derived transformation.
+    using OrbitalRotationGeneratorType = typename OrbitalRotationGeneratorTraits<DerivedTransformation>::OrbitalRotationGenerators;
 
 
 protected:
@@ -98,6 +104,17 @@ public:
         return J.rotated(jacobi_rotation);
     }
 
+
+    /**
+     *  Create a general transformation from a kappa matrix.
+     * 
+     *  @param orbital_rotation_generators                      The orbital rotation generators from which a rotation matrix is created.
+     *
+     *  @return The general transformation that corresponds to the given orbital rotation generators.
+     */
+    static DerivedTransformation FromKappa(const OrbitalRotationGeneratorType& orbital_rotation_generators) {
+        return DerivedTransformation {(-orbital_rotation_generators.asMatrix()).exp()};
+    }
 
     /**
      *  Create an identity transformation between two orbital bases.
