@@ -25,12 +25,12 @@ namespace GQCP {
 
 
 /**
- *  MARK: ROrbitalRotationGenerators implementation
+ *  MARK: UOrbitalRotationGeneratorsComponent implementation
  */
 
 
 /**
- *  A type used to represent a restricted set of orbital rotation generators.
+ *  A type used to represent a component of an unrestricted set of orbital rotation generators.
  * 
  *  @tparam _Scalar                 The scalar type used for a orbital rotation generator vector: real or complex.
  */
