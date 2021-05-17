@@ -56,7 +56,7 @@ public:
      */
 
     // Inherit `SpinResolvedBase`'s constructors.
-    using SpinResolvedBase<UUOrbitalRotationGeneratorsComponent<Scalar>, UTOrbitalRotationGenerators<Scalar>>::SpinResolvedBase;
+    using SpinResolvedBase<UOrbitalRotationGeneratorsComponent<Scalar>, UOrbitalRotationGenerators<Scalar>>::SpinResolvedBase;
 
 
     /*
