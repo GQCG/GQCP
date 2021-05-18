@@ -21,6 +21,7 @@
 #include "Basis/Transformations/RTransformation.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
+#include "Basis/Transformations/UOrbitalRotationGenerators.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "Utilities/complex.hpp"
