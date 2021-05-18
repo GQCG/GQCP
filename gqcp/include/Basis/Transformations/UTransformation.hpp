@@ -221,4 +221,19 @@ struct JacobiRotatableTraits<UTransformation<Scalar>> {
 };
 
 
+/*
+ *  MARK: OrbitalRotationGeneratorTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `OrbitalRotationGenerators`.
+ */
+template <typename Scalar>
+struct OrbitalRotationGeneratorTraits<UTransformation<Scalar>> {
+
+    // The type of orbital rotation generators associated with an `UTransformation`.
+    using OrbitalRotationGenerators = UOrbitalRotationGenerators<Scalar>;
+};
+
+
 }  // namespace GQCP
