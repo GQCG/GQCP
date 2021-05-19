@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/OccupationType.hpp"
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -95,6 +97,36 @@ public:
         SquareMatrix<Scalar> kappa_full_matrix = SquareMatrix<Scalar>::Zero(K);
 
         kappa_full_matrix.topLeftCorner(occ_occ_generators.numberOfOrbitals(), occ_occ_generators.numberOfOrbitals()) = occ_occ_generators.asMatrix();
+        return DerivedOrbitalRotationGenerators(kappa_full_matrix);
+    }
+
+
+    /**
+     *  Construct orbital rotation generators by adding redundant (i.e. 0) generators to the given occupation_type - occupation_type generators.
+     * 
+     *  @param generators                           The orbital rotation generators of the specified ocupation types.
+     *  @param row_occupation_type                  The occupation type of the rows of the orbital rotation generator kappa matrix.
+     *  @param column_occupation_type               The occupation type of the column of the orbital rotation generator kappa matrix.
+     *  @param orbital_space                        The total orbital space in which the orbitals are rotated.
+     * 
+     *  @return The 'full' orbital rotation generators from the given row_occupation_type - column_occupation_type generators.
+     */
+    static DerivedOrbitalRotationGenerators FromOccupationTypes(const DerivedOrbitalRotationGenerators& generators, const OccupationType row_occupation_type, const OccupationType column_occupation_type, const OrbitalSpace& orbital_space) {
+
+        // Use the orbital space to determine the size of the full kappa matrix.
+        SquareMatrix<Scalar> kappa_full_matrix = SquareMatrix<Scalar>::Zero(orbital_space.numberOfOrbitals());
+
+        // Depending on the row and column occupation types, we fill in the correct block of the total kappa matrix and leave the rest to be zero.
+        if (row_occupation_type == OccupationType::k_occupied && column_occupation_type == OccupationType::k_occupied) {
+            kappa_full_matrix.topLeftCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
+        } else if (row_occupation_type == OccupationType::k_occupied && column_occupation_type == OccupationType::k_virtual) {
+            kappa_full_matrix.topRightCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
+        } else if (row_occupation_type == OccupationType::k_virtual && column_occupation_type == OccupationType::k_occupied) {
+            kappa_full_matrix.BottomLeftCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
+        } else {
+            kappa_full_matrix.BottomRightCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
+        }
+
         return DerivedOrbitalRotationGenerators(kappa_full_matrix);
     }
 
