@@ -84,6 +84,15 @@ public:
         T {T} {}
 
 
+    /**
+     *  Construct a `SimpleTransformation` from the transformation matrix (associated with a set of orbital rotation generators) that it encapsulates.
+     * 
+     *  @param orbital_rotation_generators                The orbital rotation generators from which a transformation so-called `kappa matrix` is constructed.
+     */
+    SimpleTransformation(const OrbitalRotationGeneratorType& orbital_rotation_generators) :
+        T {(-orbital_rotation_generators.asMatrix()).exp()} {}
+
+
     /*
      *  MARK: Named constructors
      */
@@ -104,17 +113,6 @@ public:
         return J.rotated(jacobi_rotation);
     }
 
-
-    /**
-     *  Create a general transformation from a kappa matrix.
-     * 
-     *  @param orbital_rotation_generators                      The orbital rotation generators from which a rotation matrix is created.
-     *
-     *  @return The general transformation that corresponds to the given orbital rotation generators.
-     */
-    static DerivedTransformation FromKappa(const OrbitalRotationGeneratorType& orbital_rotation_generators) {
-        return DerivedTransformation {(-orbital_rotation_generators.asMatrix()).exp()};
-    }
 
     /**
      *  Create an identity transformation between two orbital bases.

@@ -35,13 +35,13 @@ namespace GQCP {
 /**
  *  A type that encapsulates orbital rotation generators for the alpha- and beta-parts separately.
  * 
- *  @tparam _Scalar         The scalar type used for a transformation coefficient: real or complex.
+ *  @tparam _Scalar         The scalar type used for a orbital rotation generator: real or complex.
  */
 template <typename _Scalar>
 class UOrbitalRotationGenerators:
     public SpinResolvedBase<UOrbitalRotationGeneratorsComponent<_Scalar>, UOrbitalRotationGenerators<_Scalar>> {
 public:
-    // The scalar type used for a transformation coefficient: real or complex.
+    // The scalar type used for a orbital rotation generator: real or complex.
     using Scalar = _Scalar;
 
     // The type of 'this'.
@@ -65,25 +65,15 @@ public:
      */
 
     /**
-     *  @return The antisymmetric orbital rotation generator spin resolved matrix kappa.
+     *  @return The anti-Hermitian orbital rotation generator spin resolved matrix kappa.
      */
     const SpinResolved<SquareMatrix<Scalar>> asMatrix() const {
 
-        const auto& alpha_component = this->alpha();
-        const auto& beta_component = this->beta();
-
-        const auto kappa_matrix_alpha = SquareMatrix<Scalar>::FromStrictTriangle(alpha_component.asVector());  // Lower triangle only.
-        const auto kappa_matrix_beta = SquareMatrix<Scalar>::FromStrictTriangle(beta_component.asVector());    // Lower triangle only.
-
-        const SquareMatrix<Scalar> kappa_matrix_alpha_transpose = kappa_matrix_alpha.transpose();
-        const SquareMatrix<Scalar> kappa_matrix_beta_transpose = kappa_matrix_beta.transpose();
-
-        // Add the antisymmetric component and return the matrix representation.
-        return SpinResolved<SquareMatrix<Scalar>> {(kappa_matrix_alpha - kappa_matrix_alpha_transpose), (kappa_matrix_beta - kappa_matrix_beta_transpose)};
+        return SpinResolved<SquareMatrix<Scalar>> {this->alpha().asMatrix(), this->beta().asMatrix()};
     }
 
     /**
-     *  @return The orbital rotation generators as the strict upper/lower triangle of the spin resolved kappa matrix.
+     *  @return The orbital rotation generators as the strict lower triangle of the spin resolved kappa matrix.
      */
     const SpinResolved<VectorX<Scalar>>& asVector() const {
 
@@ -94,12 +84,9 @@ public:
     /**
      *  @return The number of alpha and beta spatial orbitals that can be rotated using these orbital rotation generators.
      */
-    SpinResolved<size_t> numberOfSpatialOrbitals() const {
+    SpinResolved<size_t> numberOfOrbitals() const {
 
-        const auto& alpha_component = this->alpha();
-        const auto& beta_component = this->beta();
-
-        return SpinResolved<size_t> {alpha_component.numberOfSpatialOrbitals(), beta_component.numberOfSpatialOrbitals()};
+        return SpinResolved<size_t> {this->alpha().numberOfOrbitals(), this->beta().numberOfOrbitals()};
     }
 };
 

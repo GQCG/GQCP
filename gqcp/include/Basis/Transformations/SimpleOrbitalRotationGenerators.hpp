@@ -34,22 +34,22 @@ namespace GQCP {
  *   
  *  This class is used as a base class for `ROrbitalRotationGenerator` and `GOrbitalRotationGenerator`, since they are both expressed using a single vector, as opposed to `UOrbitalRotationGenerator`, which uses separate kappa vectors for alpha- and beta- generators. The word 'simple' is used here as an antonym for 'compound'.
  * 
- *  @tparam _Scalar                                           The scalar type used for a orbital rotation generator vector: real or complex.
+ *  @tparam _Scalar                                           The scalar type used for a orbital rotation generator: real or complex.
  *  @tparam _DerivedOrbitalRotationGenerator                  The type of the orbital rotation generator that derives from this class, enabling CRTP and compile-time polymorphism.
  */
 template <typename _Scalar, typename _DerivedOrbitalRotationGenerators>
 class SimpleOrbitalRotationGenerators {
 
 public:
-    // The scalar type used for a orbital rotation generator vector: real or complex.
+    // The scalar type used for a orbital rotation generator: real or complex.
     using Scalar = _Scalar;
 
     // The type of the orbital rotation generator that derives from this class, enabling CRTP and compile-time polymorphism.
     using DerivedOrbitalRotationGenerators = _DerivedOrbitalRotationGenerators;
 
 private:
-    // The number of spatial orbitals that can be rotated using these orbital rotation generators.
-    size_t number_of_spatial_orbitals;
+    // The number of orbitals (spinors for the general(ized) case, spin orbitals for the restricted and unrestricted case) that can be rotated using these orbital rotation generators.
+    size_t number_of_orbitals;
 
     // The strict lower triangle of the kappa matrix.
     VectorX<Scalar> v;
@@ -61,19 +61,19 @@ public:
      */
 
     /**
-     *  Create a `SimpleOrbitalRotationGenerator' from a given kappa vector.
+     *  Create a `SimpleOrbitalRotationGenerator' from a given vector containing orbital rotation generators kappa_PQ with P>Q.
      * 
-     *  @param  kappa_vector        The orbital rotation generators represented as a vector that corresponds to the strict upper/lower triangle of the kappa matrix.
+     *  @param  v        The orbital rotation generators represented as a vector that corresponds to the strict lower triangle of the kappa matrix (kappa_PQ with P>Q).
      */
-    SimpleOrbitalRotationGenerators(const VectorX<Scalar>& kappa_vector) :
-        kappa_vector {kappa_vector},
-        number_of_spatial_orbitals {strictTriangularRootOf(kappa_vector.size())} {}
+    SimpleOrbitalRotationGenerators(const VectorX<Scalar>& v) :
+        v {v},
+        number_of_orbitals {strictTriangularRootOf(v.size())} {}
 
 
     /**
      *  Create a `SimpleOrbitalRotationGenerator' from a given kappa matrix.
      * 
-     *  @param  kappa_matrix        The orbital rotation generators represented as a vector that corresponds to the full antisymmetric the kappa matrix.
+     *  @param  kappa_matrix        The orbital rotation generators represented as a vector that corresponds to the full anti-Hermitian the kappa matrix.
      */
     SimpleOrbitalRotationGenerators(const SquareMatrix<Scalar>& kappa_matrix) :
         SimpleOrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduced()) {}
@@ -87,14 +87,14 @@ public:
      *  Construct orbital rotation generators by adding redundant (i.e. 0) occupied-virtual and virtual-virtual generators to the given occupied-occupied generators.
      * 
      *  @param occ_occ_generators       The occupied-occupied orbital rotation generators.
-     *  @param K                    The total number of spatial orbitals.
+     *  @param K                        The total number of spatial orbitals.
      * 
      *  @return The 'full' orbital rotation generators from the given occupied-occupied generators.
      */
-    static DerivedOrbitalRotationGenerators FromOccOcc(const DerivedOrbitalRotationGenerators& o_o_generators, const size_t K) {
+    static DerivedOrbitalRotationGenerators FromOccOcc(const DerivedOrbitalRotationGenerators& occ_occ_generators, const size_t K) {
         SquareMatrix<Scalar> kappa_full_matrix = SquareMatrix<Scalar>::Zero(K);
 
-        kappa_full_matrix.topLeftCorner(o_o_generators.numberOfSpatialOrbitals(), o_o_generators.numberOfSpatialOrbitals()) = o_o_generators.asMatrix();
+        kappa_full_matrix.topLeftCorner(occ_occ_generators.numberOfOrbitals(), occ_occ_generators.numberOfOrbitals()) = occ_occ_generators.asMatrix();
         return DerivedOrbitalRotationGenerators(kappa_full_matrix);
     }
 
@@ -104,27 +104,27 @@ public:
      */
 
     /**
-     *  @return The antisymmetric orbital rotation generator matrix kappa.
+     *  @return The anti-Hermitian orbital rotation generator matrix kappa.
      */
     const SquareMatrix<Scalar> asMatrix() const {
 
-        const auto kappa_matrix = SquareMatrix<Scalar>::FromStrictTriangle(this->kappa_vector);  // Lower triangle only.
+        const auto kappa_matrix = SquareMatrix<Scalar>::FromStrictTriangle(this->v);  // Lower triangle only.
         const SquareMatrix<Scalar> kappa_matrix_transpose = kappa_matrix.transpose();
 
-        // Add the antisymmetric component and return the matrix representation.
+        // Add the anti-Hermitian component and return the matrix representation.
         return kappa_matrix - kappa_matrix_transpose;
     }
 
     /**
-     *  @return The orbital rotation generators as the strict upper/lower triangle of the kappa matrix.
+     *  @return The orbital rotation generators as the strict lower triangle of the kappa matrix.
      */
-    const VectorX<Scalar>& asVector() const { return this->kappa_vector; }
+    const VectorX<Scalar>& asVector() const { return this->v; }
 
 
     /**
-     *  @return The number of spatial orbitals that can be rotated using these orbital rotation generators.
+     *  @return The number of spin-orbitals that can be rotated using these orbital rotation generators.
      */
-    size_t numberOfSpatialOrbitals() const { return this->number_of_spatial_orbitals; }
+    size_t numberOfOrbitals() const { return this->number_of_orbitals; }
 };
 
 
