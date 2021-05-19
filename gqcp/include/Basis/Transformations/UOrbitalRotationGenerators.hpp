@@ -82,7 +82,7 @@ public:
 
 
     /**
-     *  @return The number of alpha and beta spatial orbitals that can be rotated using these orbital rotation generators.
+     *  @return The number of alpha and beta spin-orbitals that can be rotated using these orbital rotation generators.
      */
     SpinResolved<size_t> numberOfOrbitals() const {
 

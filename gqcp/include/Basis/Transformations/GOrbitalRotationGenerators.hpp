@@ -38,7 +38,7 @@ template <typename _Scalar>
 class GOrbitalRotationGenerators:
     public SimpleOrbitalRotationGenerators<_Scalar, GOrbitalRotationGenerators<_Scalar>> {
 public:
-    // The scalar type used for a orbital rotation generator vector: real or complex.
+    // The scalar type used for a orbital rotation generator: real or complex.
     using Scalar = _Scalar;
 
 public:
