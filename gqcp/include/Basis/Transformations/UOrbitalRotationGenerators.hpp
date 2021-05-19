@@ -87,10 +87,7 @@ public:
      */
     const SpinResolved<VectorX<Scalar>>& asVector() const {
 
-        const auto& alpha_component = this->alpha();
-        const auto& beta_component = this->beta();
-
-        return SpinResolved<VectorX<Scalar>> {alpha_component.asVector(), beta_component.asVector()};
+        return SpinResolved<VectorX<Scalar>> {this->alpha().asVector(), this->beta().asVector()};
     }
 
 

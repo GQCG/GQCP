@@ -192,7 +192,7 @@ struct JacobiRotatableTraits<GTransformation<Scalar>> {
  */
 
 /**
- *  A type that provides compile-time information related to the abstract interface `OrbitalRotationGenerators`.
+ *  A type that provides compile-time information on orbital rotation generators that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
 struct OrbitalRotationGeneratorTraits<GTransformation<Scalar>> {
