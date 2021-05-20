@@ -20,6 +20,8 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/Transformations/ROrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/UOrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp"
 
 
 /**
@@ -57,9 +59,9 @@ BOOST_AUTO_TEST_CASE(asMatrix) {
 
 
 /**
- *  Check if the `FromOccOcc` named constructor behaves correctly for the restricted case.
+ *  Check if the `FromOccupationType` named constructor behaves correctly for the restricted case.
  */
-BOOST_AUTO_TEST_CASE(FromOccOcc) {
+BOOST_AUTO_TEST_CASE(FromOccupationType) {
 
     // Initialize a test set of orbital rotation generators for an occupied-occupied orbital space.
     GQCP::VectorX<double> kappa {3};
@@ -67,7 +69,7 @@ BOOST_AUTO_TEST_CASE(FromOccOcc) {
     const GQCP::ROrbitalRotationGenerators<double> occ_occ_generators {kappa};  // 3 (doubly-)occupied spatial orbitals.
 
     // Construct the total generators in a larger orbital space.
-    const auto full_generators = GQCP::ROrbitalRotationGenerators<double>::FromOccOcc(occ_occ_generators, 4);  // 4 total spatial orbitals.
+    const auto full_generators = GQCP::ROrbitalRotationGenerators<double>::FromOccupationTypes(occ_occ_generators, GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_occupied, 4);  // 4 total spatial orbitals.
 
     GQCP::SquareMatrix<double> full_kappa_matrix {4};
     // clang-format off
@@ -77,4 +79,33 @@ BOOST_AUTO_TEST_CASE(FromOccOcc) {
                          0,  0,  0, 0;
     // clang-format on
     BOOST_CHECK(full_generators.asMatrix().isApprox(full_kappa_matrix));
+}
+
+
+/**
+ *  Check if the `FromOccupationType` named constructor behaves correctly for the unrestricted case.
+ */
+BOOST_AUTO_TEST_CASE(FromOccupationTypeUnrestricted) {
+
+    // Initialize a test set of orbital rotation generators for an occupied-occupied orbital space.
+    GQCP::VectorX<double> kappa {3};
+    kappa << 1, 2, 3;
+
+    const GQCP::UOrbitalRotationGeneratorsComponent<double> occ_occ_generators_alpha {kappa};  // 3 (doubly-)occupied spin-orbitals.
+    const GQCP::UOrbitalRotationGeneratorsComponent<double> occ_occ_generators_beta {kappa};   // 3 (doubly-)occupied spin-orbitals.
+
+    const GQCP::UOrbitalRotationGenerators<double> occ_occ_generators {occ_occ_generators_alpha, occ_occ_generators_beta};
+
+    // Construct the total generators in a larger orbital space.
+    const auto full_generators = GQCP::UOrbitalRotationGenerators<double>::FromOccupationTypes(occ_occ_generators, GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_occupied, 4);  // 4 total spin-orbitals.
+
+    GQCP::SquareMatrix<double> full_kappa_matrix {4};
+    // clang-format off
+    full_kappa_matrix << 0, -1, -2, 0,
+                         1,  0, -3, 0,
+                         2,  3,  0, 0,
+                         0,  0,  0, 0;
+    // clang-format on
+    BOOST_CHECK(full_generators.alpha().asMatrix().isApprox(full_kappa_matrix));
+    BOOST_CHECK(full_generators.beta().asMatrix().isApprox(full_kappa_matrix));
 }

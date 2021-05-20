@@ -96,7 +96,7 @@ SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const RSQ
 ROrbitalRotationGenerators<double> ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     const auto kappa_free = this->calculateNewFreeOrbitalGenerators(sq_hamiltonian);  // only occupied-occupied
-    const auto kappa_full = ROrbitalRotationGenerators<double>::FromOccOcc(kappa_free, sq_hamiltonian.numberOfOrbitals());
+    const auto kappa_full = ROrbitalRotationGenerators<double>::FromOccupationTypes(kappa_free, OccupationType::k_occupied, OccupationType::k_occupied, sq_hamiltonian.numberOfOrbitals());
 
     return kappa_full;
 }
