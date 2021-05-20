@@ -124,7 +124,7 @@ public:
     const SquareMatrix<Scalar> asMatrix() const {
 
         const auto kappa_matrix = SquareMatrix<Scalar>::FromStrictTriangle(this->v);  // Lower triangle only.
-        const SquareMatrix<Scalar> kappa_matrix_transpose = kappa_matrix.transpose();
+        const SquareMatrix<Scalar> kappa_matrix_transpose = kappa_matrix.transpose().conjugate();
 
         // Add the anti-Hermitian component and return the matrix representation.
         return kappa_matrix - kappa_matrix_transpose;
