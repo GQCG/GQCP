@@ -30,11 +30,10 @@ namespace GQCP {
  *  MARK: SimpleOrbitalRotationGenerator implementation
  */
 
-
 /**
  *  A set of orbital rotation generators that can be represented by a single vector.
  *   
- *  This class is used as a base class for `ROrbitalRotationGenerator` and `GOrbitalRotationGenerator`, since they are both expressed using a single vector, as opposed to `UOrbitalRotationGenerator`, which uses separate kappa vectors for alpha- and beta- generators. The word 'simple' is used here as an antonym for 'compound'.
+ *  This class is used as a base class for `ROrbitalRotationGenerator` and `GOrbitalRotationGenerator`, since they are both expressed using a single vector of kappa_PQ values, as opposed to `UOrbitalRotationGenerator`, which uses separate vectors for alpha- and beta- generators. The word 'simple' is used here as an antonym for 'compound'.
  * 
  *  @tparam _Scalar                                           The scalar type used for a orbital rotation generator: real or complex.
  *  @tparam _DerivedOrbitalRotationGenerator                  The type of the orbital rotation generator that derives from this class, enabling CRTP and compile-time polymorphism.
@@ -50,7 +49,7 @@ public:
     using DerivedOrbitalRotationGenerators = _DerivedOrbitalRotationGenerators;
 
 private:
-    // The number of orbitals (spinors for the general(ized) case, spin orbitals for the restricted and unrestricted case) that can be rotated using these orbital rotation generators.
+    // The number of orbitals (spinors for the general(ized) case, spin-orbitals for the restricted and unrestricted case) that can be rotated using these orbital rotation generators.
     size_t number_of_orbitals;
 
     // The strict lower triangle of the kappa matrix.

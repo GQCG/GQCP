@@ -28,7 +28,6 @@ namespace GQCP {
  *  MARK: ROrbitalRotationGenerators implementation
  */
 
-
 /**
  *  A type used to represent a restricted set of orbital rotation generators.
  * 

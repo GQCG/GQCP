@@ -65,14 +65,14 @@ public:
      */
 
     /**
-     *  Construct orbital rotation generators by adding redundant (i.e. 0) generators to the given occupation_type - occupation_type generators.
+     *  Construct orbital rotation generators by adding redundant (i.e. 0) generators to the given occupation_type - occupation_type generators. This is done for the alpha and beta component separately.
      * 
      *  @param generators                           The orbital rotation generators of the specified ocupation types.
      *  @param row_occupation_type                  The occupation type of the rows of the orbital rotation generator kappa matrix.
      *  @param column_occupation_type               The occupation type of the column of the orbital rotation generator kappa matrix.
      *  @param K                                    The total number of orbitals. In unrestricted and unrestricted these will be spin-orbitals.
      * 
-     *  @return The 'full' orbital rotation generators from the given row_occupation_type - column_occupation_type generators.
+     *  @return The 'full' orbital rotation generators from the given row_occupation_type - column_occupation_type generators, separately constructed for the alpha and beta component.
      */
     static UOrbitalRotationGenerators<Scalar> FromOccupationTypes(const UOrbitalRotationGenerators& generators, const OccupationType row_occupation_type, const OccupationType column_occupation_type, const size_t K) {
 
