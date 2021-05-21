@@ -32,13 +32,13 @@ namespace GQCP {
 /**
  *  A type used to represent a component of an unrestricted set of orbital rotation generators.
  * 
- *  @tparam _Scalar                 The scalar type used for a orbital rotation generator: real or complex.
+ *  @tparam _Scalar                 The scalar type used for an orbital rotation generator: real or complex.
  */
 template <typename _Scalar>
 class UOrbitalRotationGeneratorsComponent:
     public SimpleOrbitalRotationGenerators<_Scalar, UOrbitalRotationGeneratorsComponent<_Scalar>> {
 public:
-    // The scalar type used for a orbital rotation generator: real or complex.
+    // The scalar type used for an orbital rotation generator: real or complex.
     using Scalar = _Scalar;
 
 public:

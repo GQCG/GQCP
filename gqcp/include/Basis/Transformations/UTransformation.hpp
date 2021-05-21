@@ -232,7 +232,7 @@ struct JacobiRotatableTraits<UTransformation<Scalar>> {
 template <typename Scalar>
 struct OrbitalRotationGeneratorTraits<UTransformation<Scalar>> {
 
-    // The type of orbital rotation generators associated with an `UTransformation`.
+    // The type of orbital rotation generators associated with a `UTransformation`.
     using OrbitalRotationGenerators = UOrbitalRotationGenerators<Scalar>;
 };
 

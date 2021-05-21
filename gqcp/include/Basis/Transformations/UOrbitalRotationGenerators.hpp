@@ -35,13 +35,13 @@ namespace GQCP {
 /**
  *  A type that encapsulates orbital rotation generators for the alpha- and beta-parts separately.
  * 
- *  @tparam _Scalar         The scalar type used for a orbital rotation generator: real or complex.
+ *  @tparam _Scalar         The scalar type used for an orbital rotation generator: real or complex.
  */
 template <typename _Scalar>
 class UOrbitalRotationGenerators:
     public SpinResolvedBase<UOrbitalRotationGeneratorsComponent<_Scalar>, UOrbitalRotationGenerators<_Scalar>> {
 public:
-    // The scalar type used for a orbital rotation generator: real or complex.
+    // The scalar type used for an orbital rotation generator: real or complex.
     using Scalar = _Scalar;
 
     // The type of 'this'.
@@ -104,7 +104,7 @@ public:
      */
 
     /**
-     *  @return The anti-Hermitian orbital rotation generator spin resolved matrix kappa.
+     *  @return These orbital rotation generators as spin-resolved anti-Hermitian matrices.
      */
     const SpinResolved<SquareMatrix<Scalar>> asMatrix() const {
 
@@ -114,7 +114,7 @@ public:
     /**
      *  @return The orbital rotation generators as the strict lower triangle of the spin resolved kappa matrix.
      */
-    const SpinResolved<VectorX<Scalar>>& asVector() const {
+    SpinResolved<VectorX<Scalar>> asVector() const {
 
         return SpinResolved<VectorX<Scalar>> {this->alpha().asVector(), this->beta().asVector()};
     }
