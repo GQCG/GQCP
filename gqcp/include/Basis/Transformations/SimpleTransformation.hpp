@@ -87,10 +87,10 @@ public:
     /**
      *  Construct a `SimpleTransformation` from a set of orbital rotation generators.
      * 
-     *  @param orbital_rotation_generators                The orbital rotation generators from which a transformation so-called `kappa matrix` is constructed.
+     *  @param kappa                The orbital rotation generators from which a transformation so-called `kappa matrix` is constructed.
      */
     SimpleTransformation(const OrbitalRotationGeneratorType& kappa) :
-        T {(-orbital_rotation_generators.asMatrix()).exp()} {}
+        T {(-kappa.asMatrix()).exp()} {}
 
 
     /*

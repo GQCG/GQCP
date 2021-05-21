@@ -74,10 +74,15 @@ public:
     /**
      *  Create a `SimpleOrbitalRotationGenerator' from a given kappa matrix.
      * 
-     *  @param  kappa_matrix        The orbital rotation generators represented as a square matrix that corresponds to the full anti-Hermitian the kappa matrix.
+     *  @param  kappa        The orbital rotation generators represented as a square matrix that corresponds to the full anti-Hermitian kappa matrix.
      */
     SimpleOrbitalRotationGenerators(const SquareMatrix<Scalar>& kappa) :
-        SimpleOrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduced()) {}
+
+        SimpleOrbitalRotationGenerators(kappa.pairWiseStrictReduced()) {
+            if (!kappa.isAntiHermitian()) {
+                throw std::invalid_argument("SimpleOrbitalRotationGenerators(const SquareMatrix<Scalar>& kappa): The given kappa matrix is not anti-Hermitian.");
+            }
+        }
 
 
     /**

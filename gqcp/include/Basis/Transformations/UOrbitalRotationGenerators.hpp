@@ -76,26 +76,7 @@ public:
      */
     static UOrbitalRotationGenerators<Scalar> FromOccupationTypes(const UOrbitalRotationGenerators& generators, const OccupationType row_occupation_type, const OccupationType column_occupation_type, const size_t K) {
 
-        // The total number of orbitals determines the size of the total kappa matrix. The alpha and beta component are created separately.
-        SquareMatrix<Scalar> kappa_alpha_full_matrix = SquareMatrix<Scalar>::Zero(K);
-        SquareMatrix<Scalar> kappa_beta_full_matrix = SquareMatrix<Scalar>::Zero(K);
-
-        // Depending on the row and column occupation types, we fill in the correct block of the total kappa matrix and leave the rest to be zero.
-        if (row_occupation_type == OccupationType::k_occupied && column_occupation_type == OccupationType::k_occupied) {
-            kappa_alpha_full_matrix.topLeftCorner(generators.alpha().numberOfOrbitals(), generators.alpha().numberOfOrbitals()) = generators.alpha().asMatrix();
-            kappa_beta_full_matrix.topLeftCorner(generators.beta().numberOfOrbitals(), generators.beta().numberOfOrbitals()) = generators.beta().asMatrix();
-        } else if (row_occupation_type == OccupationType::k_occupied && column_occupation_type == OccupationType::k_virtual) {
-            kappa_alpha_full_matrix.topRightCorner(generators.alpha().numberOfOrbitals(), generators.alpha().numberOfOrbitals()) = generators.alpha().asMatrix();
-            kappa_beta_full_matrix.topRightCorner(generators.beta().numberOfOrbitals(), generators.beta().numberOfOrbitals()) = generators.beta().asMatrix();
-        } else if (row_occupation_type == OccupationType::k_virtual && column_occupation_type == OccupationType::k_occupied) {
-            kappa_alpha_full_matrix.bottomLeftCorner(generators.alpha().numberOfOrbitals(), generators.alpha().numberOfOrbitals()) = generators.alpha().asMatrix();
-            kappa_beta_full_matrix.bottomLeftCorner(generators.beta().numberOfOrbitals(), generators.beta().numberOfOrbitals()) = generators.beta().asMatrix();
-        } else {
-            kappa_alpha_full_matrix.bottomRightCorner(generators.alpha().numberOfOrbitals(), generators.alpha().numberOfOrbitals()) = generators.alpha().asMatrix();
-            kappa_beta_full_matrix.bottomRightCorner(generators.beta().numberOfOrbitals(), generators.beta().numberOfOrbitals()) = generators.beta().asMatrix();
-        }
-
-        return UOrbitalRotationGenerators<Scalar> {UOrbitalRotationGeneratorsComponent<Scalar> {kappa_alpha_full_matrix}, UOrbitalRotationGeneratorsComponent<Scalar> {kappa_beta_full_matrix}};
+        return UOrbitalRotationGenerators<Scalar> {UOrbitalRotationGeneratorsComponent<Scalar>::FromOccupationTypes(generators.alpha(), row_occupation_type, column_occupation_type, K), UOrbitalRotationGeneratorsComponent<Scalar>::FromOccupationTypes(generators.beta(), row_occupation_type, column_occupation_type, K)};
     }
 
 
