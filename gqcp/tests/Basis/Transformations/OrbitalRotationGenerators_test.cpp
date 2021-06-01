@@ -100,26 +100,17 @@ BOOST_AUTO_TEST_CASE(FromOccupationType) {
 /**
  *  Check if the `FromOccupationType` named constructor behaves correctly for the restricted case.
  */
-// BOOST_AUTO_TEST_CASE(FromOccupationTypeOccupiedVirtual) {
+BOOST_AUTO_TEST_CASE(FromOccupationTypeOccupiedVirtual) {
 
-//     // Initialize a test set of orbital rotation generators for an occupied-occupied orbital space.
-//     GQCP::VectorX<double> kappa {3};
-//     kappa << 1, 2, 3;
-//     const GQCP::ROrbitalRotationGenerators<double> occ_vir_generators {kappa};  // 3 (doubly-)occupied spatial orbitals.
+    // Initialize a test set of orbital rotation generators for an occupied-occupied orbital space.
+    GQCP::VectorX<double> kappa {3};
+    kappa << 1, 2, 3;
+    const GQCP::ROrbitalRotationGenerators<double> occ_vir_generators {kappa};  // 3 (doubly-)occupied spatial orbitals.
 
-//     // Construct the total generators in a larger orbital space.
-//     const auto full_generators = GQCP::ROrbitalRotationGenerators<double>::FromOccupationTypes(occ_vir_generators, GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual, 5);  // 5 total spatial orbitals.
-
-//     GQCP::SquareMatrix<double> full_kappa_matrix {5};
-//     // clang-format off
-//     full_kappa_matrix << 0, 0, 0, -1, -2,
-//                          0, 0, 1,  0, -3,
-//                          0, 0, 2,  3,  0,
-//                          0, 0, 0,  0,  0,
-//                          0, 0, 0,  0,  0;
-//     // clang-format on
-//     BOOST_CHECK(full_generators.asMatrix().isApprox(full_kappa_matrix));
-// }
+    // Construct the total generators in a larger orbital space. Mixed occupied/virtual rotations are currently disabled, so the API should throw an error when this is requested.
+    BOOST_CHECK_THROW(GQCP::ROrbitalRotationGenerators<double>::FromOccupationTypes(occ_vir_generators, GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual, 5), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ROrbitalRotationGenerators<double>::FromOccupationTypes(occ_vir_generators, GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied, 5), std::invalid_argument);
+}
 
 
 /**

@@ -79,10 +79,10 @@ public:
     SimpleOrbitalRotationGenerators(const SquareMatrix<Scalar>& kappa) :
 
         SimpleOrbitalRotationGenerators(kappa.pairWiseStrictReduced()) {
-            if (!kappa.isAntiHermitian()) {
-                throw std::invalid_argument("SimpleOrbitalRotationGenerators(const SquareMatrix<Scalar>& kappa): The given kappa matrix is not anti-Hermitian.");
-            }
+        if (!kappa.isAntiHermitian()) {
+            throw std::invalid_argument("SimpleOrbitalRotationGenerators(const SquareMatrix<Scalar>& kappa): The given kappa matrix is not anti-Hermitian.");
         }
+    }
 
 
     /**
@@ -100,6 +100,9 @@ public:
      *  @return The 'full' orbital rotation generators from the given row_occupation_type - column_occupation_type generators.
      */
     static DerivedOrbitalRotationGenerators FromOccupationTypes(const DerivedOrbitalRotationGenerators& generators, const OccupationType row_occupation_type, const OccupationType column_occupation_type, const size_t K) {
+        if (row_occupation_type != column_occupation_type) {
+            throw std::invalid_argument("SimpleOrbitalRotationGenerators::FromOccupationTypes(const DerivedOrbitalRotationGenerators& generators, const OccupationType row_occupation_type, const OccupationType column_occupation_type, const size_t K): Occupied/virtual and virtual/occupied rotations are currently disabled. The row and column occupation types should be the same.");
+        }
 
         // The total number of orbitals determines the size of the total kappa matrix.
         SquareMatrix<Scalar> kappa = SquareMatrix<Scalar>::Zero(K);
@@ -107,10 +110,6 @@ public:
         // Depending on the row and column occupation types, we fill in the correct block of the total kappa matrix and leave the rest to be zero.
         if (row_occupation_type == OccupationType::k_occupied && column_occupation_type == OccupationType::k_occupied) {
             kappa.topLeftCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
-        } else if (row_occupation_type == OccupationType::k_occupied && column_occupation_type == OccupationType::k_virtual) {
-            kappa.topRightCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
-        } else if (row_occupation_type == OccupationType::k_virtual && column_occupation_type == OccupationType::k_occupied) {
-            kappa.bottomLeftCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
         } else {
             kappa.bottomRightCorner(generators.numberOfOrbitals(), generators.numberOfOrbitals()) = generators.asMatrix();
         }
@@ -129,7 +128,7 @@ public:
     const SquareMatrix<Scalar> asMatrix() const {
 
         const auto kappa = SquareMatrix<Scalar>::FromStrictTriangle(this->v);  // Lower triangle only.
-        
+
         return kappa - kappa.adjoint();
     }
 
