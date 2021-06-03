@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Transformations/ROrbitalRotationGenerators.hpp"
 #include "Basis/Transformations/SimpleTransformation.hpp"
 
 
@@ -79,6 +80,21 @@ struct JacobiRotatableTraits<RTransformation<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;
+};
+
+
+/*
+ *  MARK: OrbitalRotationGeneratorTraits
+ */
+
+/**
+ *  A type that provides compile-time information on orbital rotation generators that is otherwise not accessible through a public class alias.
+ */
+template <typename Scalar>
+struct OrbitalRotationGeneratorTraits<RTransformation<Scalar>> {
+
+    // The type of orbital rotation generators associated with an `RTransformation`.
+    using OrbitalRotationGenerators = ROrbitalRotationGenerators<Scalar>;
 };
 
 

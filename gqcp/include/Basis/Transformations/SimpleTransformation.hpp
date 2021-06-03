@@ -20,7 +20,10 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
+#include "Basis/Transformations/OrbitalRotationGeneratorTraits.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+
+#include <unsupported/Eigen/MatrixFunctions>
 
 
 namespace GQCP {
@@ -58,6 +61,9 @@ public:
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;
 
+    // The type of the orbital rotation generators that is naturally associated with the derived transformation.
+    using OrbitalRotationGeneratorType = typename OrbitalRotationGeneratorTraits<DerivedTransformation>::OrbitalRotationGenerators;
+
 
 protected:
     // The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.
@@ -76,6 +82,15 @@ public:
      */
     SimpleTransformation(const SquareMatrix<Scalar>& T) :
         T {T} {}
+
+
+    /**
+     *  Construct a `SimpleTransformation` from a set of orbital rotation generators.
+     * 
+     *  @param kappa                The orbital rotation generators from which a transformation so-called `kappa matrix` is constructed.
+     */
+    SimpleTransformation(const OrbitalRotationGeneratorType& kappa) :
+        T {(-kappa.asMatrix()).exp()} {}
 
 
     /*

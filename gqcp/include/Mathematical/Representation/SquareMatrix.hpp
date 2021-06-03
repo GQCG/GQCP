@@ -285,6 +285,12 @@ public:
 
 
     /**
+     *  @return If this square matrix is anti-Hermitian.
+     */
+    bool isAntiHermitian(const double threshold = 1.0e-08) const { return (*this).adjoint().isApprox(-*this, threshold); }
+
+
+    /**
      *  @return If this square matrix is symmetric.
      */
     bool isSymmetric(const double threshold = 1.0e-08) const { return (*this).transpose().isApprox(*this, threshold); }

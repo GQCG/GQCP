@@ -68,7 +68,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const override;
+    ROrbitalRotationGenerators<double> calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence

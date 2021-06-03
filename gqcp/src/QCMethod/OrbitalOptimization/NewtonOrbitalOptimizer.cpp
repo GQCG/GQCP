@@ -62,7 +62,7 @@ RTransformation<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const
 
     const auto full_kappa = this->calculateNewFullOrbitalGenerators(sq_hamiltonian);  // should internally calculate the free orbital rotation generators
 
-    return full_kappa.rotation();  // matrix exponential
+    return RTransformation<double> {full_kappa};  // matrix exponential
 }
 
 
@@ -137,7 +137,7 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const RSQHam
  * 
  *  @return the new free orbital generators
  */
-OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const {
+ROrbitalRotationGenerators<double> NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     // If the norm hasn't converged, use the Newton step
     if (this->gradient.norm() > this->convergence_threshold) {
@@ -151,12 +151,12 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
         }
         const MatrixFunction<double> hessian_function = [&modified_hessian](const VectorX<double>& x) { return modified_hessian; };
 
-        return OrbitalRotationGenerators(newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function));  // with only the free parameters
+        return ROrbitalRotationGenerators<double>(newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function));  // with only the free parameters
     }
 
     else {  // the gradient has converged but the Hessian is indefinite, so we have to 'push the algorithm over'
         // We're sure that if the program reaches this step, the Newton step is ill-defined
-        return OrbitalRotationGenerators(this->directionFromIndefiniteHessian());
+        return ROrbitalRotationGenerators<double>(this->directionFromIndefiniteHessian());
     }
 }
 

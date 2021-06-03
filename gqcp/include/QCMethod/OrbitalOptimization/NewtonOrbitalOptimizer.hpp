@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/OrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/ROrbitalRotationGenerators.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
@@ -84,7 +84,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual ROrbitalRotationGenerators<double> calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian
@@ -146,7 +146,7 @@ public:
      * 
      *  @return the new free orbital generators
      */
-    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const;
+    ROrbitalRotationGenerators<double> calculateNewFreeOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian

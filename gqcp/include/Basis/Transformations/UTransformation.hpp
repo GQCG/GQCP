@@ -21,6 +21,7 @@
 #include "Basis/Transformations/RTransformation.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
+#include "Basis/Transformations/UOrbitalRotationGenerators.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "Utilities/complex.hpp"
@@ -218,6 +219,21 @@ struct JacobiRotatableTraits<UTransformation<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = UJacobiRotation;
+};
+
+
+/*
+ *  MARK: OrbitalRotationGeneratorTraits
+ */
+
+/**
+ *  A type that provides compile-time information on orbital rotation generators that is otherwise not accessible through a public class alias.
+ */
+template <typename Scalar>
+struct OrbitalRotationGeneratorTraits<UTransformation<Scalar>> {
+
+    // The type of orbital rotation generators associated with a `UTransformation`.
+    using OrbitalRotationGenerators = UOrbitalRotationGenerators<Scalar>;
 };
 
 
