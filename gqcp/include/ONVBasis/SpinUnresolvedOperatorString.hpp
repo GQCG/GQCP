@@ -36,7 +36,7 @@ namespace GQCP {
 class SpinUnresolvedOperatorString {
 private:
     // The vector representing the indices of the annihilation or creation operators in the operator string.
-    std::vector<size_t> operator_indices;
+    std::vector<size_t> indices;
 
 public:
     /*
@@ -44,12 +44,31 @@ public:
      */
 
     /**
-     *  Construct a `SpinUnresolvedOperatorStrring` from the vector of indices that it encapsulates.
+     *  Construct a `SpinUnresolvedOperatorString` from the vector of indices that it encapsulates.
      * 
      *  @param index_vector                The vector containing the operator indices.
      */
     SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector) :
-        operator_indices {index_vector} {};
+        indices {index_vector} {};
+
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  Retrieve the operator indices from the `SpinUnresolvedOPeratorString`.
+     */
+    std::vector<size_t> operatorIndices() const { return this->indices; }
+
+    /**
+     * Check whether the operator string in question will result in zero when applied to the wave function.
+     * 
+     * Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
+     */
+    bool isZero() const {
+        return false;
+    }
 };
 
 
