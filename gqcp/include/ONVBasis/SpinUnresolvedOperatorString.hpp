@@ -68,14 +68,16 @@ public:
      */
     bool isZero() const {
 
+        // Initialize a parameter to be updated.
+        auto is_zero = false;
+
         // Check if adjacent index pairs in the operator string are the same. If there are identical adjacent pairs, the operator stringg will always result in zero due to the fermion anti-commutation rules.
-        for (auto left = indices.begin(), right = left + 1, last = indices.end(); right != last; ++left, ++right) {
+        for (auto left = this->indices.begin(), right = left + 1, last = this->indices.end(); right != last; ++left, ++right) {
             if (*left == *right) {
-                return true;
-            } else {
-                return false;
+                is_zero = true;
             }
         }
+        return is_zero;
     }
 };
 

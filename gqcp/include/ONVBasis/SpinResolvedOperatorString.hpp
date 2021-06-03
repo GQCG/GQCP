@@ -65,13 +65,47 @@ public:
         auto pair_vector = std::vector<std::pair<size_t, GQCP::Spin>> {};
 
         // Create the pairs and fill the pair vector.
-        for (int i = 1; i < index_vector.size(); i++) {
+        for (int i = 0; i < index_vector.size(); i++) {
             auto pair = std::pair<size_t, GQCP::Spin> {index_vector[i], spin_vector[i]};
             pair_vector.push_back(pair);
         }
 
         this->index_spin_pairs = pair_vector;
     };
+
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  Retrieve the operator indices from the `SpinUnresolvedOPeratorString`.
+     */
+    std::vector<size_t> operatorIndices() const {
+        // for each pair in the operator string, save the index and return the vector containing them.
+        auto index_vector = std::vector<size_t> {};
+
+        for (int i = 0; i < this->index_spin_pairs.size(); i++) {
+            index_vector.push_back(this->index_spin_pairs[i].first);
+        }
+
+        return index_vector;
+    }
+
+
+    /**
+     *  Retrieve the operator indices from the `SpinUnresolvedOPeratorString`.
+     */
+    std::vector<GQCP::Spin> operatorSpins() const {
+        // for each pair in the operator string, save the index and return the vector containing them.
+        auto spin_vector = std::vector<GQCP::Spin> {};
+
+        for (int i = 0; i < this->index_spin_pairs.size(); i++) {
+            spin_vector.push_back(this->index_spin_pairs[i].second);
+        }
+
+        return spin_vector;
+    }
 };
 
 
