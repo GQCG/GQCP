@@ -6,6 +6,7 @@ list(APPEND test_target_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/SpinResolvedSelectedONVBasis_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SpinUnresolvedONV_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SpinUnresolvedONVBasis_test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SpinUnresolvedOperatorString_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SpinUnresolvedSelectedONVBasis_test.cpp
 )
 

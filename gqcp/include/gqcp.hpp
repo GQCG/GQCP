@@ -172,6 +172,7 @@
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedOperatorString.hpp"
 #include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/BaseFQOperator.hpp"
