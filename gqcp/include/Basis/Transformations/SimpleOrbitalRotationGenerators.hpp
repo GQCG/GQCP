@@ -52,7 +52,7 @@ private:
     // The number of orbitals (spinors for the general(ized) case, spin-orbitals for the restricted and unrestricted case) that can be rotated using these orbital rotation generators.
     size_t number_of_orbitals;
 
-    // The strict lower triangle of the kappa matrix.
+    // The strict lower triangle of the kappa matrix. The entries of the matrix are stored in a `column major`format in this vector.
     VectorX<Scalar> v;
 
 
@@ -64,7 +64,7 @@ public:
     /**
      *  Create a `SimpleOrbitalRotationGenerator' from a given vector containing orbital rotation generators kappa_PQ with P>Q.
      * 
-     *  @param  v        The orbital rotation generators represented as a vector that corresponds to the strict lower triangle of the kappa matrix (kappa_PQ with P>Q).
+     *  @param  v        The orbital rotation generators represented as a vector that corresponds to the strict lower triangle of the kappa matrix (kappa_PQ with P>Q). The entries of the matrix are stored in a `column major`format in this vector.
      */
     SimpleOrbitalRotationGenerators(const VectorX<Scalar>& v) :
         v {v},
