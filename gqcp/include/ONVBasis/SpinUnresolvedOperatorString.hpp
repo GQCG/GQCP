@@ -67,7 +67,15 @@ public:
      * Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
      */
     bool isZero() const {
-        return false;
+
+        // Check if adjacent index pairs in the operator string are the same. If there are identical adjacent pairs, the operator stringg will always result in zero due to the fermion anti-commutation rules.
+        for (auto left = indices.begin(), right = left + 1, last = indices.end(); right != last; ++left, ++right) {
+            if (*left == *right) {
+                return true;
+            }
+        }
+
+        //
     }
 };
 
