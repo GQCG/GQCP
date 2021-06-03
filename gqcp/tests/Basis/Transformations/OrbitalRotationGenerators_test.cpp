@@ -34,6 +34,7 @@ BOOST_AUTO_TEST_CASE(constructorVector) {
     BOOST_CHECK_THROW(GQCP::ROrbitalRotationGenerators<double> generators {kappa}, std::invalid_argument);
 }
 
+
 /**
  *  Check the SimpleOrbitalRotationGenerators constructor from a kappa matrix by using the ROrbitalRotationGenerators constructor.
  */
