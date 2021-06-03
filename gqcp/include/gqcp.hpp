@@ -169,6 +169,7 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedOperatorString.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"

@@ -63,7 +63,7 @@ public:
 
     /**
      * Check whether the operator string in question will result in zero when applied to the wave function.
-     * 
+     *
      * Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
      */
     bool isZero() const {
@@ -72,10 +72,10 @@ public:
         for (auto left = indices.begin(), right = left + 1, last = indices.end(); right != last; ++left, ++right) {
             if (*left == *right) {
                 return true;
+            } else {
+                return false;
             }
         }
-
-        //
     }
 };
 

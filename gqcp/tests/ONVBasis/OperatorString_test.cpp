@@ -19,17 +19,38 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "ONVBasis/SpinResolvedOperatorString.hpp"
 #include "ONVBasis/SpinUnresolvedOperatorString.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 /**
  *  Check whether the SpinUnresolvedOperatorString constructor works.
  */
-BOOST_AUTO_TEST_CASE(test_constructor) {
+BOOST_AUTO_TEST_CASE(test_unresolved_constructor) {
 
     // Initialize the vector which we want to use for our operator string.
     std::vector<size_t> indices = {1, 4, 7, 8};
 
     // Check the constructor.
     BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedOperatorString operator_string {indices});
+}
+
+/**
+ *  Check whether the SpinResolvedOperatorString constructor works.
+ */
+BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
+
+    // Initialize the vector which we want to use for our operator string indices.
+    std::vector<size_t> indices = {1, 4, 7, 8};
+
+    // Initialize the vector which we want to use for our operator string indices.
+    std::vector<size_t> indices_wrong = {4, 7, 8};
+
+    // Initialize the vector which we want to use for our operator string indices.
+    std::vector<GQCP::Spin> spins = {GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta};
+
+    // Check the constructor.
+    BOOST_CHECK_THROW(GQCP::SpinResolvedOperatorString operator_string_wrong(indices_wrong, spins), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedOperatorString operator_string_correct(indices, spins));
 }
