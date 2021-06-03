@@ -5,16 +5,21 @@
     <innerfile refid="_basis_transformable_8hpp">BasisTransformable.hpp</innerfile>
     <innerfile refid="_doubly_spin_resolved_basis_transformable_8hpp">DoublySpinResolvedBasisTransformable.hpp</innerfile>
     <innerfile refid="_doubly_spin_resolved_jacobi_rotatable_8hpp">DoublySpinResolvedJacobiRotatable.hpp</innerfile>
+    <innerfile refid="_g_orbital_rotation_generators_8hpp">GOrbitalRotationGenerators.hpp</innerfile>
     <innerfile refid="_g_transformation_8hpp">GTransformation.hpp</innerfile>
     <innerfile refid="_jacobi_rotatable_8hpp">JacobiRotatable.hpp</innerfile>
     <innerfile refid="_jacobi_rotation_8hpp">JacobiRotation.hpp</innerfile>
-    <innerfile refid="_orbital_rotation_generators_8hpp">OrbitalRotationGenerators.hpp</innerfile>
+    <innerfile refid="_orbital_rotation_generator_traits_8hpp">OrbitalRotationGeneratorTraits.hpp</innerfile>
+    <innerfile refid="_r_orbital_rotation_generators_8hpp">ROrbitalRotationGenerators.hpp</innerfile>
     <innerfile refid="_r_transformation_8hpp">RTransformation.hpp</innerfile>
+    <innerfile refid="_simple_orbital_rotation_generators_8hpp">SimpleOrbitalRotationGenerators.hpp</innerfile>
     <innerfile refid="_simple_transformation_8hpp">SimpleTransformation.hpp</innerfile>
     <innerfile refid="_spin_resolved_basis_transformable_8hpp">SpinResolvedBasisTransformable.hpp</innerfile>
     <innerfile refid="_spin_resolved_jacobi_rotatable_8hpp">SpinResolvedJacobiRotatable.hpp</innerfile>
     <innerfile refid="transform_8hpp">transform.hpp</innerfile>
     <innerfile refid="_u_jacobi_rotation_8hpp">UJacobiRotation.hpp</innerfile>
+    <innerfile refid="_u_orbital_rotation_generators_8hpp">UOrbitalRotationGenerators.hpp</innerfile>
+    <innerfile refid="_u_orbital_rotation_generators_component_8hpp">UOrbitalRotationGeneratorsComponent.hpp</innerfile>
     <innerfile refid="_u_transformation_8hpp">UTransformation.hpp</innerfile>
     <innerfile refid="_u_transformation_component_8hpp">UTransformationComponent.hpp</innerfile>
     <briefdescription>

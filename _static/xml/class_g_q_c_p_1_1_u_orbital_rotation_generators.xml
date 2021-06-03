@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_u_orbital_rotation_generators" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::UOrbitalRotationGenerators</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt;, UOrbitalRotationGenerators&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_u_orbital_rotation_generators_8hpp" local="no">UOrbitalRotationGenerators.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a1a0ee383941c69a8e28e090908373cd5" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators" kindref="compound">UOrbitalRotationGenerators</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" kindref="member">Scalar</ref> &gt;</type>
+        <definition>using GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;::Self =  UOrbitalRotationGenerators&lt;Scalar&gt;</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a75a806fd67d9774cda8a1ead17149b64" prot="public" static="no">
+        <type>typename <ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_component" kindref="compound">UOrbitalRotationGeneratorsComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a1a0ee383941c69a8e28e090908373cd5" kindref="member">Self</ref> &gt;::<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
+        <definition>using GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;::ComponentType =  typename SpinResolvedBase&lt;UOrbitalRotationGeneratorsComponent&lt;Scalar&gt;, Self&gt;::Of</definition>
+        <argsstring></argsstring>
+        <name>ComponentType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="51" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a3154918f4b541ba98bdc00086fd25198" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators" kindref="compound">UOrbitalRotationGenerators</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static UOrbitalRotationGenerators&lt;Scalar&gt; GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;::FromOccupationTypes</definition>
+        <argsstring>(const UOrbitalRotationGenerators &amp;generators, const OccupationType row_occupation_type, const OccupationType column_occupation_type, const size_t K)</argsstring>
+        <name>FromOccupationTypes</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators" kindref="compound">UOrbitalRotationGenerators</ref> &amp;</type>
+          <declname>generators</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>row_occupation_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
+          <declname>column_occupation_type</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct orbital rotation generators by adding redundant (i.e. 0) generators to the given occupation_type - occupation_type generators. This is done for the alpha and beta component separately.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>generators</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The orbital rotation generators of the specified ocupation types. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>row_occupation_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The occupation type of the rows of the orbital rotation generator kappa matrix. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>column_occupation_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The occupation type of the column of the orbital rotation generator kappa matrix. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total number of orbitals. In unrestricted and unrestricted these will be spin-orbitals.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The &apos;full&apos; orbital rotation generators from the given row_occupation_type - column_occupation_type generators, separately constructed for the alpha and beta component. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="77" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_orbital_rotation_generators_1adc588d691bc11ee924248076d08dacbd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>const SpinResolved&lt;SquareMatrix&lt;Scalar&gt; &gt; GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;::asMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>asMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>These orbital rotation generators as spin-resolved anti-Hermitian matrices. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="90" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a83cf54b49a1d1464e1638493d9cc77a5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>SpinResolved&lt;VectorX&lt;Scalar&gt; &gt; GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;::asVector</definition>
+        <argsstring>() const</argsstring>
+        <name>asVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The orbital rotation generators as the strict lower triangle of the spin resolved kappa matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="98" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="98" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a0eac3c2bc1333393cd8b9d1873d057bd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; size_t &gt;</type>
+        <definition>SpinResolved&lt;size_t&gt; GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;::numberOfOrbitals</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfOrbitals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of alpha and beta spin-orbitals that can be rotated using these orbital rotation generators. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="107" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="107" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that encapsulates orbital rotation generators for the alpha- and beta-parts separately.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for an orbital rotation generator: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt;, UOrbitalRotationGenerators&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_orbital_rotation_generators"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt;, UOrbitalRotationGenerators&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="1">
+        <label>GQCP::UOrbitalRotationGenerators&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_orbital_rotation_generators"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp" bodystart="42" bodyend="111"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1adc588d691bc11ee924248076d08dacbd" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a83cf54b49a1d1464e1638493d9cc77a5" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a75a806fd67d9774cda8a1ead17149b64" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>ComponentType</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>Derived</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>FromEqual</name></member>
+      <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a3154918f4b541ba98bdc00086fd25198" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>FromOccupationTypes</name></member>
+      <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a0eac3c2bc1333393cd8b9d1873d057bd" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>Of</name></member>
+      <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a1a0ee383941c69a8e28e090908373cd5" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>Self</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>SpinResolvedBase</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGenerators</scope><name>SpinResolvedBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

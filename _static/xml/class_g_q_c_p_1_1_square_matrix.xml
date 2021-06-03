@@ -233,6 +233,27 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="284" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="284" bodyend="284"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1afeb6926506aceed33af8ad57560bd67d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GQCP::SquareMatrix&lt; _Scalar &gt;::isAntiHermitian</definition>
+        <argsstring>(const double threshold=1.0e-08) const</argsstring>
+        <name>isAntiHermitian</name>
+        <param>
+          <type>const double</type>
+          <declname>threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>If this square matrix is anti-Hermitian. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="290" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="290" bodyend="290"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a323cfd30a36adbf412f6f02d8a009cd3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool GQCP::SquareMatrix&lt; _Scalar &gt;::isSymmetric</definition>
@@ -252,7 +273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="290" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="290" bodyend="290"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="296" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="296" bodyend="296"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a41e7131c842e8e9cea385be462d8d309" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_matrix_1a6d1e1e6a379620ae791c3ab385580e40" kindref="member">Self</ref>, 2 &gt;</type>
@@ -270,7 +291,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="302" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="302" bodyend="352"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="308" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="308" bodyend="358"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a8e16efb3d9cb08a8ba04db0abc88c66a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_matrix_1a820960c1c3ad2c124d6be1ccd0eec021" kindref="member">Scalar</ref> &gt;</type>
@@ -290,7 +311,7 @@ in which m is calculated from i and j in a column-major way, with the restrictio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="368" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="368" bodyend="383"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="374" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="374" bodyend="389"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1ad2771d96e3cff714f68dbdb5c7420021" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -306,7 +327,7 @@ in which m is calculated from i and j in a column-major way, with the restrictio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="393" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="393" bodyend="407"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="399" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="399" bodyend="413"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1af4bae3858d82278f0a0ada4382b8c9f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -322,7 +343,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="415" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="415" bodyend="449"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="421" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="421" bodyend="455"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -678,7 +699,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="39" bodyend="450"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="39" bodyend="456"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_matrix_1a931ab808381a0ad8eedbc5f2f123651d" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>areEqualEigenvaluesAs</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1aee293d22d945960b87ac42b0b36fe9ec" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>Base</name></member>
@@ -696,6 +717,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
       <member refid="class_g_q_c_p_1_1_square_matrix_1af916a1d7dab54e720134c9445f32b2ea" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>FromStrictTriangle</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1a576cfb262eb965a0b49f4e679cf076c3" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>hasEqualSetsOfEigenvectorsAs</name></member>
       <member refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>Identity</name></member>
+      <member refid="class_g_q_c_p_1_1_square_matrix_1afeb6926506aceed33af8ad57560bd67d" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isAntiHermitian</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1a5611f1d276314cdc5ba20df00a01dfe9" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isEqualEigenvectorAs</name></member>
       <member refid="class_g_q_c_p_1_1_square_matrix_1a957455e43a3f0991500024376713cfec" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isHermitian</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1a643652b7fcd93870c6eeee96b106a7bc" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>isPositiveSemiDefinite</name></member>

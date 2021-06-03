@@ -90,67 +90,83 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_simple_transformation_8hpp.html">Basis/Transformations/SimpleTransformation.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_u_orbital_rotation_generators_component_8hpp.html">Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_g_q_c_p.html">GQCP</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_g_q_c_p.html">GQCP</a> {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> *  MARK: UTransformationComponent implementation</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar&gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_u_transformation_component.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent</a>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">public</span> <a class="code" href="class_g_q_c_p_1_1_simple_transformation.html">SimpleTransformation</a>&lt;_Scalar, UTransformationComponent&lt;_Scalar&gt;&gt; {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// The scalar type used for a transformation coefficient: real or complex.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_u_transformation_component.html#acd11a67d9ae1fb88b980cb91f668a57e">   43</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html#acd11a67d9ae1fb88b980cb91f668a57e">Scalar</a> = _Scalar;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> *  MARK: UTransformationComponent implementation</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar&gt;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_u_transformation_component.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent</a>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">public</span> <a class="code" href="class_g_q_c_p_1_1_simple_transformation.html">SimpleTransformation</a>&lt;_Scalar, UTransformationComponent&lt;_Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// The scalar type used for a transformation coefficient: real or complex.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_u_transformation_component.html#acd11a67d9ae1fb88b980cb91f668a57e">   44</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html#acd11a67d9ae1fb88b980cb91f668a57e">Scalar</a> = _Scalar;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">     *  MARK: Constructors</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Inherit SimpleTransformation&#39; constructors.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_simple_transformation.html">SimpleTransformation&lt;Scalar, UTransformationComponent&lt;Scalar&gt;</a>&gt;<a class="code" href="class_g_q_c_p_1_1_simple_transformation.html#a5ecd32337e09da059a91ba0a9a5da30e">::SimpleTransformation</a>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     *  MARK: Constructors</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Inherit SimpleTransformation&#39; constructors.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_simple_transformation.html">SimpleTransformation&lt;Scalar, UTransformationComponent&lt;Scalar&gt;</a>&gt;<a class="code" href="class_g_q_c_p_1_1_simple_transformation.html#a5ecd32337e09da059a91ba0a9a5da30e">::SimpleTransformation</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> *  MARK: BasisTransformableTraits</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html">   64</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_basis_transformable_traits.html">BasisTransformableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent</a>&lt;Scalar&gt;&gt; {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// The type of the transformation for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html#a4eb0914e4da609c47ac2a523c8cb11c0">   67</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">Transformation</a> = <a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent&lt;Scalar&gt;</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> *  MARK: BasisTransformableTraits</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html">   65</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_basis_transformable_traits.html">BasisTransformableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// The type of the transformation for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html#a4eb0914e4da609c47ac2a523c8cb11c0">   68</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">Transformation</a> = <a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent&lt;Scalar&gt;</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> *  MARK: JacobiRotatableTraits</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html">   79</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits.html">JacobiRotatableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent</a>&lt;Scalar&gt;&gt; {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// The type of Jacobi rotation for which the Jacobi rotation should be defined.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html#a2374b68ba2ad8c5dee826b2f540f2c06">   82</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotationType</a> = <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotation</a>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> *  MARK: JacobiRotatableTraits</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html">   80</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits.html">JacobiRotatableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">// The type of Jacobi rotation for which the Jacobi rotation should be defined.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html#a2374b68ba2ad8c5dee826b2f540f2c06">   83</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotationType</a> = <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotation</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> *  MARK: OrbitalRotationGeneratorTraits</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html">   95</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_orbital_rotation_generator_traits.html">OrbitalRotationGeneratorTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_u_transformation_component.html">UTransformationComponent</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// The type of orbital rotation generators associated with an `UTransformationComponent`.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4.html#a839f26373b0bdbdf0950c3c5af2ae1db">   98</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_u_orbital_rotation_generators_component.html">OrbitalRotationGenerators</a> = <a class="code" href="class_g_q_c_p_1_1_u_orbital_rotation_generators_component.html">UOrbitalRotationGeneratorsComponent&lt;Scalar&gt;</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 <div class="ttc" id="a_simple_transformation_8hpp_html"><div class="ttname"><a href="_simple_transformation_8hpp.html">SimpleTransformation.hpp</a></div></div>
+<div class="ttc" id="a_u_orbital_rotation_generators_component_8hpp_html"><div class="ttname"><a href="_u_orbital_rotation_generators_component_8hpp.html">UOrbitalRotationGeneratorsComponent.hpp</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_jacobi_rotation_html"><div class="ttname"><a href="class_g_q_c_p_1_1_jacobi_rotation.html">GQCP::JacobiRotation</a></div><div class="ttdef"><b>Definition:</b> JacobiRotation.hpp:33</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_simple_transformation_html"><div class="ttname"><a href="class_g_q_c_p_1_1_simple_transformation.html">GQCP::SimpleTransformation</a></div><div class="ttdef"><b>Definition:</b> SimpleTransformation.hpp:46</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_simple_transformation_html_a5ecd32337e09da059a91ba0a9a5da30e"><div class="ttname"><a href="class_g_q_c_p_1_1_simple_transformation.html#a5ecd32337e09da059a91ba0a9a5da30e">GQCP::SimpleTransformation&lt; _Scalar, UTransformationComponent&lt; _Scalar &gt; &gt;::SimpleTransformation</a></div><div class="ttdeci">SimpleTransformation(const SquareMatrix&lt; Scalar &gt; &amp;T)</div><div class="ttdef"><b>Definition:</b> SimpleTransformation.hpp:77</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_u_transformation_component_html"><div class="ttname"><a href="class_g_q_c_p_1_1_u_transformation_component.html">GQCP::UTransformationComponent</a></div><div class="ttdef"><b>Definition:</b> UTransformationComponent.hpp:40</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_u_transformation_component_html_acd11a67d9ae1fb88b980cb91f668a57e"><div class="ttname"><a href="class_g_q_c_p_1_1_u_transformation_component.html#acd11a67d9ae1fb88b980cb91f668a57e">GQCP::UTransformationComponent::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> UTransformationComponent.hpp:43</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_simple_transformation_html"><div class="ttname"><a href="class_g_q_c_p_1_1_simple_transformation.html">GQCP::SimpleTransformation</a></div><div class="ttdef"><b>Definition:</b> SimpleTransformation.hpp:49</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_simple_transformation_html_a5ecd32337e09da059a91ba0a9a5da30e"><div class="ttname"><a href="class_g_q_c_p_1_1_simple_transformation.html#a5ecd32337e09da059a91ba0a9a5da30e">GQCP::SimpleTransformation&lt; _Scalar, UTransformationComponent&lt; _Scalar &gt; &gt;::SimpleTransformation</a></div><div class="ttdeci">SimpleTransformation(const SquareMatrix&lt; Scalar &gt; &amp;T)</div><div class="ttdef"><b>Definition:</b> SimpleTransformation.hpp:83</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_u_orbital_rotation_generators_component_html"><div class="ttname"><a href="class_g_q_c_p_1_1_u_orbital_rotation_generators_component.html">GQCP::UOrbitalRotationGeneratorsComponent</a></div><div class="ttdef"><b>Definition:</b> UOrbitalRotationGeneratorsComponent.hpp:39</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_u_transformation_component_html"><div class="ttname"><a href="class_g_q_c_p_1_1_u_transformation_component.html">GQCP::UTransformationComponent</a></div><div class="ttdef"><b>Definition:</b> UTransformationComponent.hpp:41</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_u_transformation_component_html_acd11a67d9ae1fb88b980cb91f668a57e"><div class="ttname"><a href="class_g_q_c_p_1_1_u_transformation_component.html#acd11a67d9ae1fb88b980cb91f668a57e">GQCP::UTransformationComponent::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> UTransformationComponent.hpp:44</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
 <div class="ttc" id="astruct_g_q_c_p_1_1_basis_transformable_traits_html"><div class="ttname"><a href="struct_g_q_c_p_1_1_basis_transformable_traits.html">GQCP::BasisTransformableTraits</a></div><div class="ttdef"><b>Definition:</b> BasisTransformable.hpp:37</div></div>
 <div class="ttc" id="astruct_g_q_c_p_1_1_jacobi_rotatable_traits_html"><div class="ttname"><a href="struct_g_q_c_p_1_1_jacobi_rotatable_traits.html">GQCP::JacobiRotatableTraits</a></div><div class="ttdef"><b>Definition:</b> JacobiRotatable.hpp:37</div></div>
+<div class="ttc" id="astruct_g_q_c_p_1_1_orbital_rotation_generator_traits_html"><div class="ttname"><a href="struct_g_q_c_p_1_1_orbital_rotation_generator_traits.html">GQCP::OrbitalRotationGeneratorTraits</a></div><div class="ttdef"><b>Definition:</b> OrbitalRotationGeneratorTraits.hpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

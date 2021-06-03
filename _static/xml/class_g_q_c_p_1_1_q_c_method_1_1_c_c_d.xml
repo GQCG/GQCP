@@ -24,14 +24,14 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a59581e9b5145aa42e5e049ab260bb1bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a81f0c9fa4dcf80caa6d3b3d0cb000cf5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Solver</type>
           </param>
         </templateparamlist>
-        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">GQCP::QCModel::CCD</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>QCStructure&lt;GQCP::QCModel::CCD&lt;Scalar&gt; &gt; GQCP::QCMethod::CCD&lt; _Scalar &gt;::optimize</definition>
+        <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kindref="compound">GQCP::QCModel::CCD</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" kindref="member">Scalar</ref> &gt;</type>
+        <definition>QCStructure&lt;GQCP::QCModel::CCD&lt;Scalar&gt;, Scalar&gt; GQCP::QCMethod::CCD&lt; _Scalar &gt;::optimize</definition>
         <argsstring>(Solver &amp;solver, CCSDEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
         <param>
@@ -102,7 +102,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCD.hpp" bodystart="36" bodyend="68"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a59581e9b5145aa42e5e049ab260bb1bf" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCD</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a81f0c9fa4dcf80caa6d3b3d0cb000cf5" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCD</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::CCD</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

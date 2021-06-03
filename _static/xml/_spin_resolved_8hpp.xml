@@ -7,6 +7,7 @@
     <includedby refid="_g_mulliken_partitioning_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/GMullikenPartitioning.hpp</includedby>
     <includedby refid="_u_mulliken_partitioning_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioning.hpp</includedby>
     <includedby refid="_g_transformation_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp</includedby>
+    <includedby refid="_u_orbital_rotation_generators_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp</includedby>
     <includedby refid="_spin_resolved1_d_m_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp</includedby>
     <incdepgraph>
       <node id="1">
@@ -154,6 +155,8 @@
         </childnode>
         <childnode refid="106" relation="include">
         </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
         <childnode refid="109" relation="include">
         </childnode>
       </node>
@@ -251,6 +254,14 @@
         <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="111">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp</label>
+        <link refid="_u_orbital_rotation_generators_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
         </childnode>
       </node>
       <node id="79">
@@ -411,6 +422,22 @@
         <childnode refid="74" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp</label>
+        <link refid="_spin_resolved2_d_m_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
         </childnode>
       </node>
       <node id="107">
@@ -673,6 +700,30 @@
         <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="112">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp</label>
+        <link refid="_u_transformation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
         </childnode>
       </node>
       <node id="38">

@@ -3,7 +3,6 @@
   <compounddef id="dir_f7f17ba6af08d25acbe1f49d3f108ba3" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Basis/Transformations</compoundname>
     <innerfile refid="_jacobi_rotation_8cpp">JacobiRotation.cpp</innerfile>
-    <innerfile refid="_orbital_rotation_generators_8cpp">OrbitalRotationGenerators.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

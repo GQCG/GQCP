@@ -132,7 +132,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="124">
+      <node id="125">
         <label>/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolved.hpp</label>
         <link refid="_spin_resolved_8hpp"/>
         <childnode refid="2" relation="include">
@@ -142,6 +142,8 @@
         <childnode refid="109" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
         </childnode>
         <childnode refid="123" relation="include">
         </childnode>
@@ -258,6 +260,14 @@
         <childnode refid="35" relation="include">
         </childnode>
       </node>
+      <node id="124">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp</label>
+        <link refid="_u_orbital_rotation_generators_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
       <node id="106">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQTwoElectronOperator.hpp</label>
         <link refid="_r_s_q_two_electron_operator_8hpp"/>
@@ -311,13 +321,15 @@
         </childnode>
         <childnode refid="112" relation="include">
         </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
         <childnode refid="115" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="124" relation="include">
+        <childnode refid="125" relation="include">
         </childnode>
       </node>
       <node id="100">

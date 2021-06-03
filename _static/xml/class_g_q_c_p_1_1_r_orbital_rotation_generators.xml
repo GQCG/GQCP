@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_r_orbital_rotation_generators" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::ROrbitalRotationGenerators</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators" prot="public" virt="non-virtual">GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, ROrbitalRotationGenerators&lt; _Scalar &gt; &gt;</basecompoundref>
+    <includes refid="_r_orbital_rotation_generators_8hpp" local="no">ROrbitalRotationGenerators.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_r_orbital_rotation_generators_1a1f06c3d182daaf538a2c313718c7ac3b" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::ROrbitalRotationGenerators&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/ROrbitalRotationGenerators.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/ROrbitalRotationGenerators.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>MARK: <ref refid="class_g_q_c_p_1_1_r_orbital_rotation_generators" kindref="compound">ROrbitalRotationGenerators</ref> implementation A type used to represent a restricted set of orbital rotation generators.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type used for an orbital rotation generator: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::ROrbitalRotationGenerators&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_orbital_rotation_generators"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, ROrbitalRotationGenerators&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::ROrbitalRotationGenerators&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_orbital_rotation_generators"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, ROrbitalRotationGenerators&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/ROrbitalRotationGenerators.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/ROrbitalRotationGenerators.hpp" bodystart="38" bodyend="50"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a35873aaca35f5f4fc1f40d63557fab6e" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a0dc21c5af16e41317a390c43155c4ae1" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a41f858a7486ce4755ec7db4c2f039119" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>DerivedOrbitalRotationGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a7e00234875bc9a932f341f0b0f935a96" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>FromOccupationTypes</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a6de01ae1ba7fe5820fbd29e6629685f0" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_r_orbital_rotation_generators_1a1f06c3d182daaf538a2c313718c7ac3b" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ab48bcc5fd37420de2ac9e7c94235903b" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>SimpleOrbitalRotationGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ac4fe3eb410b6388209d8d3501968936e" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>SimpleOrbitalRotationGenerators</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

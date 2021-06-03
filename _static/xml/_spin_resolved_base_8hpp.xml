@@ -11,6 +11,7 @@
     <includedby refid="_spin_resolved_orbital_space_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp</includedby>
     <includedby refid="_u_spin_orbital_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp</includedby>
     <includedby refid="_u_jacobi_rotation_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UJacobiRotation.hpp</includedby>
+    <includedby refid="_u_orbital_rotation_generators_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp</includedby>
     <includedby refid="_u_transformation_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp</includedby>
     <includedby refid="_evaluable_u_s_q_one_electron_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp</includedby>
     <includedby refid="_u_s_q_one_electron_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQOneElectronOperator.hpp</includedby>
@@ -158,7 +159,7 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="118">
+      <node id="119">
         <label>/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolved.hpp</label>
         <link refid="_spin_resolved_8hpp"/>
         <childnode refid="2" relation="include">
@@ -168,6 +169,8 @@
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
         </childnode>
         <childnode refid="117" relation="include">
         </childnode>
@@ -276,6 +279,14 @@
         <childnode refid="34" relation="include">
         </childnode>
       </node>
+      <node id="118">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGenerators.hpp</label>
+        <link refid="_u_orbital_rotation_generators_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+      </node>
       <node id="78">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
         <link refid="_r_h_f_density_matrix_damper_8hpp"/>
@@ -315,13 +326,15 @@
         </childnode>
         <childnode refid="104" relation="include">
         </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
         <childnode refid="109" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="118" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
       </node>
       <node id="99">

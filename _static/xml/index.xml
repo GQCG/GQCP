@@ -109,7 +109,7 @@
     <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5c8c974c787553a88daeaf850210229f" kind="function"><name>prepareDMCalculation</name></member>
     <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1afdaf6eb8496913f79d26692f65d07317" kind="function"><name>calculate1DM</name></member>
     <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a1931e33efbb95070899b100d8db336a2" kind="function"><name>calculate2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a42d0ec0da1507f51c81086668c18696e" kind="function"><name>calculateNewFullOrbitalGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a61ef08393d6a025ffaf3e12a93902511" kind="function"><name>calculateNewFullOrbitalGenerators</name></member>
     <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a69ab60b9b58343f58660e2bfe8576920" kind="function"><name>electronicEnergy</name></member>
     <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a2c0effa80f9ae7eb102ba37f7b710dee" kind="function"><name>geminalCoefficients</name></member>
     <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5f5453dc98e1d3926721c7f7c7654521" kind="function"><name>multipliers</name></member>
@@ -379,7 +379,7 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d" kind="class"><name>GQCP::QCMethod::CCD</name>
     <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a50ecdf75cfbd8d7cd12bd0a029e3eeaf" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a59581e9b5145aa42e5e049ab260bb1bf" kind="function"><name>optimize</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_method_1_1_c_c_d_1a81f0c9fa4dcf80caa6d3b3d0cb000cf5" kind="function"><name>optimize</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d" kind="class"><name>GQCP::QCModel::CCD</name>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_1a40e79b329b95219182ed146ec3a13ea9" kind="typedef"><name>Scalar</name></member>
@@ -768,7 +768,7 @@
     <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a59125505e5873464449527cc1e8f47d0" kind="function"><name>ERNewtonLocalizer</name></member>
     <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a2a512ac9d603955917c5fffcf2929e3e" kind="function"><name>calculateGradientMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ab95ca42113e2e839113f61349a7ba5af" kind="function"><name>calculateHessianTensor</name></member>
-    <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1acfbbaaa60d27d064ae23539c8996f2ca" kind="function"><name>calculateNewFullOrbitalGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a1d304d9d97be250b0bf544dd7a1240c1" kind="function"><name>calculateNewFullOrbitalGenerators</name></member>
     <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ac736fd3da99a293e336f759704944413" kind="function"><name>prepareOrbitalDerivativesCalculation</name></member>
     <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1ae17466a9719678c3263edf19f2c93872" kind="function"><name>calculateGradientMatrixElement</name></member>
     <member refid="class_g_q_c_p_1_1_e_r_newton_localizer_1aa4868063120b4fb560a3d84b476ff3da" kind="function"><name>calculateHessianTensorElement</name></member>
@@ -1036,6 +1036,9 @@
     <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a39cc51cdff13c828efdb83423ab93ca8" kind="function"><name>numberOfOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a4e4cc46f23ad9e668a66bd9568579375" kind="function"><name>partitionMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a894ef25f195dbb217041eccf7c76bf92" kind="function"><name>projectionMatrix</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_g_orbital_rotation_generators" kind="class"><name>GQCP::GOrbitalRotationGenerators</name>
+    <member refid="class_g_q_c_p_1_1_g_orbital_rotation_generators_1a88c39705cd0e6eb914076570b895c214" kind="typedef"><name>Scalar</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_g_spinor_basis" kind="class"><name>GQCP::GSpinorBasis</name>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ad1e7388d307f59370481718021fd8710" kind="typedef"><name>ExpansionScalar</name></member>
@@ -1743,14 +1746,14 @@
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac524dbf48349206dcc68774489d30a6d" kind="function"><name>~NewtonOrbitalOptimizer</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a91fddcff45c5d1298e9a6e5676ce4cb9" kind="function"><name>calculateGradientMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd" kind="function"><name>calculateHessianTensor</name></member>
-    <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a917e48231bf397dcdc210590451113e5" kind="function"><name>calculateNewFullOrbitalGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1af83988926d235cfc1bce813c7f621225" kind="function"><name>calculateNewFullOrbitalGenerators</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a5726b8a9e0b7477cd9ed7c7faa282018" kind="function"><name>prepareOrbitalDerivativesCalculation</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac7e61168011a697ef30a239b899e06c5" kind="function"><name>calculateNewRotationMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ab0623fc9be4cf9c68821c2ea6d012acd" kind="function"><name>checkForConvergence</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b" kind="function"><name>prepareConvergenceChecking</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1afdf8b122a17957cf67dcf4d7ad0df726" kind="function"><name>calculateGradientVector</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a3c677c380a02d6ed3bccc718a704b8f8" kind="function"><name>calculateHessianMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1aa7bc61e43d13cc7c1c2905110738918c" kind="function"><name>calculateNewFreeOrbitalGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad865f9103556c7a422b221dada86d53b" kind="function"><name>calculateNewFreeOrbitalGenerators</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a9b786e21bc708e260f84322ed239ff40" kind="function"><name>directionFromIndefiniteHessian</name></member>
     <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad3464e1f18027d579598c62ef854fff6" kind="function"><name>newtonStepIsWellDefined</name></member>
   </compound>
@@ -1981,16 +1984,19 @@
   <compound refid="class_g_q_c_p_1_1_orbital2_d_m" kind="class"><name>GQCP::Orbital2DM</name>
     <member refid="class_g_q_c_p_1_1_orbital2_d_m_1a6489bb6cefe21dd2292e7c859e8f6cc4" kind="typedef"><name>Scalar</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_orbital_rotation_generators" kind="class"><name>GQCP::OrbitalRotationGenerators</name>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a6d68f99363edf5204fd081e2bd284c46" kind="variable"><name>number_of_spatial_orbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1afc865624029988628c792d44a3b9a4ca" kind="variable"><name>kappa_vector</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1ac1acbcaa8a7d1d9d13e8adea6622f0c2" kind="function"><name>OrbitalRotationGenerators</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a3202721effa4b5079b9defafd0caf039" kind="function"><name>OrbitalRotationGenerators</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a05e28b5a48166bcae75fc9a99cad8430" kind="function"><name>asMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1aee0ac01294b848cbe49b4ea29e99d8d9" kind="function"><name>asVector</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a3fd8a7162bed8e4b33863ec8429db5c2" kind="function"><name>rotation</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a4e0cbcad858140e1fe49d40da3d57372" kind="function"><name>numberOfSpatialOrbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_orbital_rotation_generators_1a349b4e62d2f1b8a6f2a3f82bc377dc57" kind="function"><name>FromOccOcc</name></member>
+  <compound refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits" kind="struct"><name>GQCP::OrbitalRotationGeneratorTraits</name>
+  </compound>
+  <compound refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::OrbitalRotationGeneratorTraits&lt; GTransformation&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1ac69bcfa8f2a5e8ada18ef7958617f0d1" kind="typedef"><name>OrbitalRotationGenerators</name></member>
+  </compound>
+  <compound refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::OrbitalRotationGeneratorTraits&lt; RTransformation&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_r_transformation_3_01_scalar_01_4_01_4_1a8c47966cadce396313c5318db620beff" kind="typedef"><name>OrbitalRotationGenerators</name></member>
+  </compound>
+  <compound refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::OrbitalRotationGeneratorTraits&lt; UTransformation&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_3_01_scalar_01_4_01_4_1a5c1ca6f4dc31770f2430a5658c3b307e" kind="typedef"><name>OrbitalRotationGenerators</name></member>
+  </compound>
+  <compound refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::OrbitalRotationGeneratorTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4_1a839f26373b0bdbdf0950c3c5af2ae1db" kind="typedef"><name>OrbitalRotationGenerators</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_orbital_space" kind="class"><name>GQCP::OrbitalSpace</name>
     <member refid="class_g_q_c_p_1_1_orbital_space_1a7ea9e492d3dadecbbac9e37cb602f47a" kind="variable"><name>occupied_indices</name></member>
@@ -2295,6 +2301,9 @@
     <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1a5d1211c20ef5124b72cb1ea5eb817262" kind="function"><name>partitionMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1a3e62e414ddbbc62d6dcbbca8f97e026b" kind="function"><name>projectionMatrix</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_r_orbital_rotation_generators" kind="class"><name>GQCP::ROrbitalRotationGenerators</name>
+    <member refid="class_g_q_c_p_1_1_r_orbital_rotation_generators_1a1f06c3d182daaf538a2c313718c7ac3b" kind="typedef"><name>Scalar</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_r_spin_orbital_basis" kind="class"><name>GQCP::RSpinOrbitalBasis</name>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a80cd4ad6ae5cbc165404fc7cb09e3ffe" kind="typedef"><name>ExpansionScalar</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a5cc5b25be3944ebe7140b30a14dedbce" kind="typedef"><name>Shell</name></member>
@@ -2426,6 +2435,18 @@
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc" kind="function"><name>transformed</name></member>
     <member refid="class_g_q_c_p_1_1_simple2_d_m_1afa2372a0996cdbb192187d0ab8f72866" kind="function"><name>rotated</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators" kind="class"><name>GQCP::SimpleOrbitalRotationGenerators</name>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a08409bc973314549c81df7c8558729fb" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a41f858a7486ce4755ec7db4c2f039119" kind="typedef"><name>DerivedOrbitalRotationGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a9abcf0d35957ae90bc13aed325dfcf7e" kind="variable"><name>number_of_orbitals</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a7f350e8b2ceaa2f4ed9b535c7322978e" kind="variable"><name>v</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ab48bcc5fd37420de2ac9e7c94235903b" kind="function"><name>SimpleOrbitalRotationGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ac4fe3eb410b6388209d8d3501968936e" kind="function"><name>SimpleOrbitalRotationGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a35873aaca35f5f4fc1f40d63557fab6e" kind="function"><name>asMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a0dc21c5af16e41317a390c43155c4ae1" kind="function"><name>asVector</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a6de01ae1ba7fe5820fbd29e6629685f0" kind="function"><name>numberOfOrbitals</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a7e00234875bc9a932f341f0b0f935a96" kind="function"><name>FromOccupationTypes</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_simple_spinor_basis" kind="class"><name>GQCP::SimpleSpinorBasis</name>
     <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1acccd2faf9d3407fcf35fc71ee4629ceb" kind="typedef"><name>ExpansionScalar</name></member>
     <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" kind="typedef"><name>FinalSpinorBasis</name></member>
@@ -2509,8 +2530,10 @@
     <member refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kind="typedef"><name>DerivedTransformation</name></member>
     <member refid="class_g_q_c_p_1_1_simple_transformation_1ada44eeef314de5b5ad79587480745505" kind="typedef"><name>Self</name></member>
     <member refid="class_g_q_c_p_1_1_simple_transformation_1a30b9d326d44957602bc7081c692fc719" kind="typedef"><name>JacobiRotationType</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_transformation_1a2cb26d3ddc4f033220363ed7ddb78765" kind="typedef"><name>OrbitalRotationGeneratorType</name></member>
     <member refid="class_g_q_c_p_1_1_simple_transformation_1ac262d8b59931978058481f1b6bea735e" kind="variable"><name>T</name></member>
     <member refid="class_g_q_c_p_1_1_simple_transformation_1a5ecd32337e09da059a91ba0a9a5da30e" kind="function"><name>SimpleTransformation</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_transformation_1a9f001d7c8fcad16e9002485b9c982189" kind="function"><name>SimpleTransformation</name></member>
     <member refid="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" kind="function"><name>numberOfOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_simple_transformation_1a639513b3b77cdce79434a46e81c4cd0d" kind="function"><name>dimension</name></member>
     <member refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" kind="function"><name>matrix</name></member>
@@ -2712,6 +2735,7 @@
     <member refid="class_g_q_c_p_1_1_square_matrix_1a37d881f47fe4a016e5549e3ac22e7aea" kind="function"><name>dimension</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a0b63025d8fd5ed7c7cfdb6da82a1f68d" kind="function"><name>isSelfAdjoint</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a957455e43a3f0991500024376713cfec" kind="function"><name>isHermitian</name></member>
+    <member refid="class_g_q_c_p_1_1_square_matrix_1afeb6926506aceed33af8ad57560bd67d" kind="function"><name>isAntiHermitian</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a323cfd30a36adbf412f6f02d8a009cd3" kind="function"><name>isSymmetric</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a41e7131c842e8e9cea385be462d8d309" kind="function"><name>noPivotLUDecompose</name></member>
     <member refid="class_g_q_c_p_1_1_square_matrix_1a8e16efb3d9cb08a8ba04db0abc88c66a" kind="function"><name>pairWiseStrictReduced</name></member>
@@ -3012,6 +3036,18 @@
     <member refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a81003869b0163039fea7cfe80c89ebb3" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_unrestricted_spinor_tag" kind="class"><name>GQCP::UnrestrictedSpinorTag</name>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_u_orbital_rotation_generators" kind="class"><name>GQCP::UOrbitalRotationGenerators</name>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1aa0ceec6176a029dc093961b7842e7eb1" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a1a0ee383941c69a8e28e090908373cd5" kind="typedef"><name>Self</name></member>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a75a806fd67d9774cda8a1ead17149b64" kind="typedef"><name>ComponentType</name></member>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a3154918f4b541ba98bdc00086fd25198" kind="function"><name>FromOccupationTypes</name></member>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1adc588d691bc11ee924248076d08dacbd" kind="function"><name>asMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a83cf54b49a1d1464e1638493d9cc77a5" kind="function"><name>asVector</name></member>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_1a0eac3c2bc1333393cd8b9d1873d057bd" kind="function"><name>numberOfOrbitals</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_component" kind="class"><name>GQCP::UOrbitalRotationGeneratorsComponent</name>
+    <member refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_component_1a85b34b8272f4166723020c15379e2119" kind="typedef"><name>Scalar</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_u_spin_orbital_basis" kind="class"><name>GQCP::USpinOrbitalBasis</name>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae20445a1b3cf603f62e96ed8840e4d81" kind="typedef"><name>ExpansionScalar</name></member>
@@ -3504,15 +3540,21 @@
   </compound>
   <compound refid="_doubly_spin_resolved_jacobi_rotatable_8hpp" kind="file"><name>DoublySpinResolvedJacobiRotatable.hpp</name>
   </compound>
+  <compound refid="_g_orbital_rotation_generators_8hpp" kind="file"><name>GOrbitalRotationGenerators.hpp</name>
+  </compound>
   <compound refid="_g_transformation_8hpp" kind="file"><name>GTransformation.hpp</name>
   </compound>
   <compound refid="_jacobi_rotatable_8hpp" kind="file"><name>JacobiRotatable.hpp</name>
   </compound>
   <compound refid="_jacobi_rotation_8hpp" kind="file"><name>JacobiRotation.hpp</name>
   </compound>
-  <compound refid="_orbital_rotation_generators_8hpp" kind="file"><name>OrbitalRotationGenerators.hpp</name>
+  <compound refid="_orbital_rotation_generator_traits_8hpp" kind="file"><name>OrbitalRotationGeneratorTraits.hpp</name>
+  </compound>
+  <compound refid="_r_orbital_rotation_generators_8hpp" kind="file"><name>ROrbitalRotationGenerators.hpp</name>
   </compound>
   <compound refid="_r_transformation_8hpp" kind="file"><name>RTransformation.hpp</name>
+  </compound>
+  <compound refid="_simple_orbital_rotation_generators_8hpp" kind="file"><name>SimpleOrbitalRotationGenerators.hpp</name>
   </compound>
   <compound refid="_simple_transformation_8hpp" kind="file"><name>SimpleTransformation.hpp</name>
   </compound>
@@ -3523,6 +3565,10 @@
   <compound refid="transform_8hpp" kind="file"><name>transform.hpp</name>
   </compound>
   <compound refid="_u_jacobi_rotation_8hpp" kind="file"><name>UJacobiRotation.hpp</name>
+  </compound>
+  <compound refid="_u_orbital_rotation_generators_8hpp" kind="file"><name>UOrbitalRotationGenerators.hpp</name>
+  </compound>
+  <compound refid="_u_orbital_rotation_generators_component_8hpp" kind="file"><name>UOrbitalRotationGeneratorsComponent.hpp</name>
   </compound>
   <compound refid="_u_transformation_8hpp" kind="file"><name>UTransformation.hpp</name>
   </compound>
@@ -3983,8 +4029,6 @@
   <compound refid="_orbital_space_8cpp" kind="file"><name>OrbitalSpace.cpp</name>
   </compound>
   <compound refid="_jacobi_rotation_8cpp" kind="file"><name>JacobiRotation.cpp</name>
-  </compound>
-  <compound refid="_orbital_rotation_generators_8cpp" kind="file"><name>OrbitalRotationGenerators.cpp</name>
   </compound>
   <compound refid="_boys_function_8cpp" kind="file"><name>BoysFunction.cpp</name>
   </compound>

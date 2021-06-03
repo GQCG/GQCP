@@ -37,7 +37,7 @@ void \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optim
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a1931e33efbb95070899b100d8db336a2}{calculate2\+DM}} () const override
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a42d0ec0da1507f51c81086668c18696e}{calculate\+New\+Full\+Orbital\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbital\+Rotation\+Generators}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a61ef08393d6a025ffaf3e12a93902511}{calculate\+New\+Full\+Orbital\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
 \item 
 double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a69ab60b9b58343f58660e2bfe8576920}{electronic\+Energy}} () const
 \item 
@@ -122,11 +122,11 @@ the current 2-\/DM
 
 Implements \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_a16c4c030ecb92d0b5122c05c3e8fa832}{GQCP\+::\+QCMethod\+Newton\+Orbital\+Optimizer}}.
 
-\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a42d0ec0da1507f51c81086668c18696e}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a42d0ec0da1507f51c81086668c18696e}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a61ef08393d6a025ffaf3e12a93902511}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a61ef08393d6a025ffaf3e12a93902511}} 
 \index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}}
 \index{calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}!GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}}
 \doxysubsubsection{\texorpdfstring{calculateNewFullOrbitalGenerators()}{calculateNewFullOrbitalGenerators()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} GQCP\+::\+AP1ro\+GLagrangian\+Newton\+Orbital\+Optimizer\+::calculate\+New\+Full\+Orbital\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbital\+Rotation\+Generators}}$<$ double $>$ GQCP\+::\+AP1ro\+GLagrangian\+Newton\+Orbital\+Optimizer\+::calculate\+New\+Full\+Orbital\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Use gradient and Hessian information to determine a new direction for the \textquotesingle{}full\textquotesingle{} orbital rotation generators kappa. Note that a distinction is made between \textquotesingle{}free\textquotesingle{} generators, i.\+e. those that are calculated from the gradient and Hessian information and the \textquotesingle{}full\textquotesingle{} generators, which also include the redundant parameters (that can be set to zero). The \textquotesingle{}full\textquotesingle{} generators are used to calculate the total rotation matrix using the matrix exponential
 
@@ -140,7 +140,7 @@ the new full set orbital generators, including the redundant parameters
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a917e48231bf397dcdc210590451113e5}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_af83988926d235cfc1bce813c7f621225}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a69ab60b9b58343f58660e2bfe8576920}\label{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a69ab60b9b58343f58660e2bfe8576920}} 
 \index{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer@{GQCP::AP1roGLagrangianNewtonOrbitalOptimizer}!electronicEnergy@{electronicEnergy}}

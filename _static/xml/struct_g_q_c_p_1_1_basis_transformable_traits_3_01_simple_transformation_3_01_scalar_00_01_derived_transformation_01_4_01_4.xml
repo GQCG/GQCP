@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="241" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="241" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="256" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="256" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -37,7 +37,7 @@
         <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="238" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="238" bodyend="242"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="253" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="253" bodyend="257"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4_1ad06face564fd610b0f58ca3ea8d960a8" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</scope><name>Transformation</name></member>
     </listofallmembers>

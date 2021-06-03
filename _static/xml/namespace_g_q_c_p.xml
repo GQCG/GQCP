@@ -74,28 +74,37 @@
     <innerclass refid="class_g_q_c_p_1_1_basis_transformable" prot="public">GQCP::BasisTransformable</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable" prot="public">GQCP::DoublySpinResolvedBasisTransformable</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable" prot="public">GQCP::DoublySpinResolvedJacobiRotatable</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_orbital_rotation_generators" prot="public">GQCP::GOrbitalRotationGenerators</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_transformation" prot="public">GQCP::GTransformation</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::OrbitalRotationGeneratorTraits&lt; GTransformation&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" prot="public">GQCP::JacobiRotatableTraits</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public">GQCP::JacobiRotatable</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_jacobi_rotation" prot="public">GQCP::JacobiRotation</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_orbital_rotation_generators" prot="public">GQCP::OrbitalRotationGenerators</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits" prot="public">GQCP::OrbitalRotationGeneratorTraits</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_orbital_rotation_generators" prot="public">GQCP::ROrbitalRotationGenerators</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_r_transformation" prot="public">GQCP::RTransformation</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::OrbitalRotationGeneratorTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators" prot="public">GQCP::SimpleOrbitalRotationGenerators</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_simple_transformation" prot="public">GQCP::SimpleTransformation</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable" prot="public">GQCP::SpinResolvedBasisTransformable</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable" prot="public">GQCP::SpinResolvedJacobiRotatable</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_jacobi_rotation" prot="public">GQCP::UJacobiRotation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_orbital_rotation_generators" prot="public">GQCP::UOrbitalRotationGenerators</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_component" prot="public">GQCP::UOrbitalRotationGeneratorsComponent</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_transformation" prot="public">GQCP::UTransformation</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; UTransformation&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; UTransformation&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::OrbitalRotationGeneratorTraits&lt; UTransformation&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_u_transformation_component" prot="public">GQCP::UTransformationComponent</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_u_transformation_component_3_01_scalar_01_4_01_4" prot="public">GQCP::OrbitalRotationGeneratorTraits&lt; UTransformationComponent&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_density_matrix_traits" prot="public">GQCP::DensityMatrixTraits</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g1_d_m" prot="public">GQCP::G1DM</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; G1DM&lt; Scalar &gt; &gt;</innerclass>
@@ -2704,13 +2713,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculate the expectation value of the square of the spin angular momentum operator</para>
+<para>Calculate the expectation value of the square of the spin angular momentum operator.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar type of the density matrices</para>
+<para>The scalar type of the density matrices.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -2719,7 +2728,7 @@
 <parametername>one_DMs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>all the one-electron density matrices </para>
+<para>The one-electron density matrix. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2727,11 +2736,11 @@
 <parametername>two_DMs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>all the two-electron density matrices</para>
+<para>The two-electron density matrix.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the expectation value of the square of the spin angular momentum operator </para>
+<simplesect kind="return"><para>The expectation value of the square of the spin angular momentum operator. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -2756,13 +2765,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculate the expectation value of the z-component of the spin angular momentum operator</para>
+<para>Calculate the expectation value of the z-component of the spin angular momentum operator.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>Scalar</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the scalar type</para>
+<para>The scalar type of the density matrix.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -2771,11 +2780,11 @@
 <parametername>one_DMs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>all the one-electron density matrices</para>
+<para>The one-electron density matrix.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>expectation value of spin in the z direction </para>
+<simplesect kind="return"><para>The expectation value of spin in the z-direction. </para>
 </simplesect>
 </para>
         </detaileddescription>

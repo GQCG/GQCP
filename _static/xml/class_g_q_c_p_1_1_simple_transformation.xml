@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="50" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" prot="public" static="no">
         <type>_DerivedTransformation</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="53" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_transformation_1ada44eeef314de5b5ad79587480745505" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation" kindref="compound">SimpleTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_transformation_1a37046a0b41af3f45a28b326c427f2ee5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref> &gt;</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="56" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_transformation_1a30b9d326d44957602bc7081c692fc719" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref></type>
@@ -67,7 +67,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="59" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_transformation_1a2cb26d3ddc4f033220363ed7ddb78765" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits" kindref="compound">OrbitalRotationGeneratorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref> &gt;::OrbitalRotationGenerators</type>
+        <definition>using GQCP::SimpleTransformation&lt; _Scalar, _DerivedTransformation &gt;::OrbitalRotationGeneratorType =  typename OrbitalRotationGeneratorTraits&lt;DerivedTransformation&gt;::OrbitalRotationGenerators</definition>
+        <argsstring></argsstring>
+        <name>OrbitalRotationGeneratorType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-attrib">
@@ -82,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="64" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="64" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="70" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -112,7 +125,35 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="77" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="77" bodyend="78"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="83" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="83" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a9f001d7c8fcad16e9002485b9c982189" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::SimpleTransformation&lt; _Scalar, _DerivedTransformation &gt;::SimpleTransformation</definition>
+        <argsstring>(const OrbitalRotationGeneratorType &amp;kappa)</argsstring>
+        <name>SimpleTransformation</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_transformation_1a2cb26d3ddc4f033220363ed7ddb78765" kindref="member">OrbitalRotationGeneratorType</ref> &amp;</type>
+          <declname>kappa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a <computeroutput><ref refid="class_g_q_c_p_1_1_simple_transformation" kindref="compound">SimpleTransformation</ref></computeroutput> from a set of orbital rotation generators.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kappa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The orbital rotation generators from which a transformation so-called <computeroutput>kappa matrix</computeroutput> is constructed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="92" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="92" bodyend="93"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -128,7 +169,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="138" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="138" bodyend="138"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="153" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="153" bodyend="153"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a639513b3b77cdce79434a46e81c4cd0d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -144,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="143" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="143" bodyend="143"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="158" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="158" bodyend="158"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_transformation_1a37046a0b41af3f45a28b326c427f2ee5" kindref="member">Scalar</ref> &gt; &amp;</type>
@@ -160,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="153" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="153" bodyend="153"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="168" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="168" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a1c0f14136382fc6d98f006013eb87c15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -176,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="163" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="163" bodyend="163"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="178" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="178" bodyend="178"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a5f36fc890460cc7c7a64eee376261c54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -192,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="168" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="168" bodyend="168"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="183" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="183" bodyend="183"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a69eb192652259a3c7894b873aba818a1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -223,7 +264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="177" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="177" bodyend="177"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="192" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="192" bodyend="192"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a93317a9a6e9f48a371a422c76b117054" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -253,7 +294,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="191" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="191" bodyend="191"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="206" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="206" bodyend="206"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -283,7 +324,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="211" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="211" bodyend="223"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="226" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="226" bodyend="238"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -327,7 +368,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="93" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="93" bodyend="99"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="108" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="108" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1af9eb142b5ae58396440fbb408d029d4c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -355,7 +396,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="107" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="107" bodyend="107"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="122" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="122" bodyend="122"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1a66165a4d5eb2217a80196d6d34a27023" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -383,7 +424,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="114" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="114" bodyend="114"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="129" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="129" bodyend="129"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1af94648942e1be2a5929462fd48daea27" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -411,7 +452,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="121" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="121" bodyend="121"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="136" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="136" bodyend="136"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_simple_transformation_1ad41c1f7a3627227e1bfc475596e78b39" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" kindref="member">DerivedTransformation</ref></type>
@@ -439,7 +480,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="128" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="128" bodyend="128"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="143" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="143" bodyend="143"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -539,7 +580,7 @@
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="46" bodyend="227"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" line="47" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleTransformation.hpp" bodystart="49" bodyend="242"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a1c0f14136382fc6d98f006013eb87c15" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>adjoint</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>DerivedTransformation</name></member>
@@ -551,6 +592,7 @@
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a30b9d326d44957602bc7081c692fc719" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>matrix</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>numberOfOrbitals</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_transformation_1a2cb26d3ddc4f033220363ed7ddb78765" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>OrbitalRotationGeneratorType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a66165a4d5eb2217a80196d6d34a27023" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1af94648942e1be2a5929462fd48daea27" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>RandomUnitary</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; _DerivedTransformation &gt;::"><scope>GQCP::SimpleTransformation</scope><name>rotate</name></member>
@@ -561,6 +603,7 @@
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a37046a0b41af3f45a28b326c427f2ee5" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1ada44eeef314de5b5ad79587480745505" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a5ecd32337e09da059a91ba0a9a5da30e" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>SimpleTransformation</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_transformation_1a9f001d7c8fcad16e9002485b9c982189" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>SimpleTransformation</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1ac262d8b59931978058481f1b6bea735e" prot="protected" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>T</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SimpleTransformation</scope><name>transform</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" prot="public" virt="non-virtual"><scope>GQCP::SimpleTransformation</scope><name>Transformation</name></member>

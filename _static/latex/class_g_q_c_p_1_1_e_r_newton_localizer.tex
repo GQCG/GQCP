@@ -33,7 +33,7 @@ Collaboration diagram for GQCP\+::ERNewton\+Localizer\+:
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Square\+Rank\+Four\+Tensor}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ab95ca42113e2e839113f61349a7ba5af}{calculate\+Hessian\+Tensor}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_acfbbaaa60d27d064ae23539c8996f2ca}{calculate\+New\+Full\+Orbital\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbital\+Rotation\+Generators}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_a1d304d9d97be250b0bf544dd7a1240c1}{calculate\+New\+Full\+Orbital\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ac736fd3da99a293e336f759704944413}{prepare\+Orbital\+Derivatives\+Calculation}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) override
 \item 
@@ -144,11 +144,11 @@ Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a602cde8c
 \begin{DoxyReturn}{Returns}
 the element (i,j,k,l) of the Edmiston-\/\+Ruedenberg localization index Hessian 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_acfbbaaa60d27d064ae23539c8996f2ca}\label{class_g_q_c_p_1_1_e_r_newton_localizer_acfbbaaa60d27d064ae23539c8996f2ca}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_a1d304d9d97be250b0bf544dd7a1240c1}\label{class_g_q_c_p_1_1_e_r_newton_localizer_a1d304d9d97be250b0bf544dd7a1240c1}} 
 \index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}}
 \index{calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}!GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}}
 \doxysubsubsection{\texorpdfstring{calculateNewFullOrbitalGenerators()}{calculateNewFullOrbitalGenerators()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_rotation_generators}{Orbital\+Rotation\+Generators}} GQCP\+::\+ERNewton\+Localizer\+::calculate\+New\+Full\+Orbital\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbital\+Rotation\+Generators}}$<$ double $>$ GQCP\+::\+ERNewton\+Localizer\+::calculate\+New\+Full\+Orbital\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Use gradient and Hessian information to determine a new direction for the \textquotesingle{}full\textquotesingle{} orbital rotation generators kappa. Note that a distinction is made between \textquotesingle{}free\textquotesingle{} generators, i.\+e. those that are calculated from the gradient and Hessian information and the \textquotesingle{}full\textquotesingle{} generators, which also include the redundant parameters (that can be set to zero). The \textquotesingle{}full\textquotesingle{} generators are used to calculate the total rotation matrix using the matrix exponential
 
@@ -162,7 +162,7 @@ the new full set orbital generators, including the redundant parameters
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a917e48231bf397dcdc210590451113e5}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_af83988926d235cfc1bce813c7f621225}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_e_r_newton_localizer_ac736fd3da99a293e336f759704944413}\label{class_g_q_c_p_1_1_e_r_newton_localizer_ac736fd3da99a293e336f759704944413}} 
 \index{GQCP::ERNewtonLocalizer@{GQCP::ERNewtonLocalizer}!prepareOrbitalDerivativesCalculation@{prepareOrbitalDerivativesCalculation}}
