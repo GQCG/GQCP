@@ -38,6 +38,9 @@ private:
     // The vector representing the indices of the annihilation or creation operators in the operator string.
     std::vector<size_t> indices;
 
+    // The phase factor associated with this string of annihilation/creation operators.
+    int p;
+
 public:
     /*
      * MARK: Constructors
@@ -49,7 +52,8 @@ public:
      *  @param index_vector                The vector containing the operator indices.
      */
     SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector) :
-        indices {index_vector} {};
+        indices {index_vector},
+        p {1} {};
 
 
     /*
@@ -60,6 +64,11 @@ public:
      *  Retrieve the operator indices from the `SpinUnresolvedOPeratorString`.
      */
     std::vector<size_t> operatorIndices() const { return this->indices; }
+
+    /**
+     *  Retrieve the phase factor corresponding to the `SpinUnresolvedOPeratorString`.
+     */
+    int phaseFactor() const { return this->p; }
 
     /**
      * Check whether the operator string in question will result in zero when applied to the wave function.
@@ -79,6 +88,16 @@ public:
         }
         return is_zero;
     }
+
+
+    /*
+     *  MARK: Update operator string
+     */
+
+    /**
+     * Update the phase factor of the operator string.
+     */
+    void updatePhaseFactor(int& new_phase_factor) { this->p = new_phase_factor; }
 };
 
 

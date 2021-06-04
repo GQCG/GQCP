@@ -18,7 +18,9 @@
 #pragma once
 
 
+#include "ONVBasis/SpinUnresolvedOperatorString.hpp"
 #include "QuantumChemical/Spin.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 
 
 namespace GQCP {
@@ -105,6 +107,30 @@ public:
         }
 
         return spin_vector;
+    }
+
+
+    /*
+     *  MARK: Component acces
+     */
+
+    /**
+     * Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators.
+     */
+    SpinResolved<SpinUnresolvedOperatorString> SpinResolve() const {
+        // Split the pairs in two separate spinUnresolvedOPeratorStrings
+        auto alpha_index_vector = std::vector<size_t> {};
+        auto beta_index_vector = std::vector<size_t> {};
+
+        for (int i = 0; i < this->index_spin_pairs.size(); i++) {
+            if (this->index_spin_pairs[i].second == GQCP::Spin::alpha) {
+                alpha_index_vector.push_back(index_spin_pairs[i].first);
+            } else {
+                beta_index_vector.push_back(index_spin_pairs[i].first);
+            }
+        }
+
+        // Determine the phase factor needed to correspond with the fermion anti-commutation rules.
     }
 };
 
