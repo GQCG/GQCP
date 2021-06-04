@@ -56,6 +56,17 @@ public:
         p {1} {};
 
 
+    /**
+     *  Construct a `SpinUnresolvedOperatorString` from the vector of indices that it encapsulates and a specified phase factor.
+     * 
+     *  @param index_vector                The vector containing the operator indices.
+     *  @param phase_factor                The phase factor associated with the operator string, in case fermion anti-commutation rules have been used to modify the operator string. 
+     */
+    SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector, int& phase_factor) :
+        indices {index_vector},
+        p {phase_factor} {};
+
+
     /*
      *  MARK: General information
      */
@@ -88,16 +99,6 @@ public:
         }
         return is_zero;
     }
-
-
-    /*
-     *  MARK: Update operator string
-     */
-
-    /**
-     * Update the phase factor of the operator string.
-     */
-    void updatePhaseFactor(int& new_phase_factor) { this->p = new_phase_factor; }
 };
 
 

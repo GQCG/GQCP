@@ -118,7 +118,7 @@ public:
      * Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators.
      */
     SpinResolved<SpinUnresolvedOperatorString> SpinResolve() const {
-        // Split the pairs in two separate spinUnresolvedOPeratorStrings
+        // Split pairs in two separate spinUnresolvedOPeratorStrings
         auto alpha_index_vector = std::vector<size_t> {};
         auto beta_index_vector = std::vector<size_t> {};
 
@@ -131,6 +131,32 @@ public:
         }
 
         // Determine the phase factor needed to correspond with the fermion anti-commutation rules.
+        // We will define an intermediate phase factor, which is updated throughout the procedure.
+        int intermediate_phase_factor = 1;
+
+        // First, we loop the spin string to check whether an element has alpha spin.
+        for (int i = 0; i < this->operatorSpins().size(); i++) {
+
+            // If it does, we continue, if it doesn't, we move on to the next pair in the vector.
+            if (this->operatorSpins()[i] == GQCP::Spin::alpha) {
+
+                // We check all elements left of our found alpha element, to see whether or not a beta element is found.
+                for (int j = i; j >= 0; j--) {
+
+                    // If we find a beta element left of the alpha element, we must swap the two elements in the vector and update the phase factor by multiplying it by -1.
+                    // We don't physically swap the elements in the vector, but by simply checking the number of beta's left of the alpha in question, we mimic the swap.
+                    if (this->operatorSpins()[j] == GQCP::Spin::beta) {
+                        intermediate_phase_factor *= -1;
+                    }
+                }
+            }
+        }
+
+        // The phase factor has been updated in the loops, in order to correspond to a modified operator string with the order of all alpha operators first, followed by all beta operators.
+        // Now we have to apply the fermion anti-commutation rules for eacht time we move |vac_alpha> over a beta operator. This results in p^N_beta.
+        int final_phase_factor = pow(intermediate_phase_factor, beta_index_vector.size());
+
+        return SpinResolved<SpinUnresolvedOperatorString> {SpinUnresolvedOperatorString(alpha_index_vector, final_phase_factor), SpinUnresolvedOperatorString {beta_index_vector}};
     }
 };
 

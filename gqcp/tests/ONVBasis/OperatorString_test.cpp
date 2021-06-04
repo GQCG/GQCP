@@ -95,3 +95,53 @@ BOOST_AUTO_TEST_CASE(test_resolved_indices_spins) {
     BOOST_CHECK_EQUAL_COLLECTIONS(indices.begin(), indices.end(), operator_string_indices.begin(), operator_string_indices.end());
     BOOST_CHECK_EQUAL_COLLECTIONS(spins.begin(), spins.end(), operator_string_spins.begin(), operator_string_spins.end());
 }
+
+/**
+ *  Check whether the SpinResolvedOperatorString stores its information correctly.
+ */
+BOOST_AUTO_TEST_CASE(test_spin_resolve) {
+
+    // Initialize the vector which we want to use for our operator string.
+    std::vector<size_t> indices = {0, 1, 2, 3, 4};
+
+    // Initialize the vector which we want to use for our operator string indices.
+    std::vector<GQCP::Spin> spins = {GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha};
+
+    // initialize the SpinUnresolvedOperatorString.
+    const auto operator_string = GQCP::SpinResolvedOperatorString(indices, spins);
+
+    // `Spin resolve` the operator string, meaning we split it in it's alpha and beta components, with the appropriate phase factor.
+    const auto spin_resolved_operator_string = operator_string.SpinResolve();
+
+    // Get the indices and from each new operator string.
+    const auto alpha_operator_string_indices = spin_resolved_operator_string.alpha().operatorIndices();
+    const auto beta_operator_string_indices = spin_resolved_operator_string.beta().operatorIndices();
+
+    // Define references to check the results.
+    // The phase factor of the alpha string should be -1:
+    //
+    //      a_a a_b a_a a_b a_a (initial string) & p = 1 (initial phase factor)
+    //      => a_a a_a a_b a_b a_a (first swap) & p = -1 (phase factor after swap 1)
+    //      => a_a a_a a_b a_a a_b (second swap) & p = 1 (phase factor after swap 2)
+    //      => a_a a_a a_a a_b a_b (third swap) & p = -1 (phase factor after swap 3)
+    //
+    // Now we have:
+    //
+    //      (-1) a_a a_a a_a a_b a_b |vac_a> |vac_b>
+    //
+    // We move the alpha vacuum over the beta operators, which equals two swaps:
+    //
+    //      (-1)^2 a_a a_a a_a a_b a_b |vac_a> |vac_b>
+    //      => (1) a_a a_a a_a a_b a_b |vac_a> |vac_b>
+
+    const auto reference_phase_factor = 1;
+
+    // The alpha and beta indices respectively can easily be seen from the initial pairs.
+    std::vector<size_t> alpha_indices = {0, 2, 4};
+    std::vector<size_t> beta_indices = {1, 3};
+
+    // Test the calculated values against the reference values.
+    BOOST_CHECK_EQUAL_COLLECTIONS(alpha_indices.begin(), alpha_indices.end(), alpha_operator_string_indices.begin(), alpha_operator_string_indices.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(beta_indices.begin(), beta_indices.end(), beta_operator_string_indices.begin(), beta_operator_string_indices.end());
+    BOOST_CHECK_EQUAL(reference_phase_factor, spin_resolved_operator_string.alpha().phaseFactor());
+}
