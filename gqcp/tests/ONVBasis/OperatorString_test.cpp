@@ -80,6 +80,30 @@ BOOST_AUTO_TEST_CASE(test_unresolved_indices) {
 }
 
 /**
+ *  Check whether the SpinUnresolvedOperatorString`s `isZero()` check correctly checks whether the operator string will inherently equal zero when applied to any ONV.
+ */
+BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
+
+    // Initialize the vector containing the indices we want to use for our operator string.
+    // One vector does contain duplicate indices, one does not.
+    std::vector<size_t> indices_1 = {1, 4, 7, 8};
+    std::vector<size_t> indices_2 = {1, 4, 7, 1};
+
+
+    // Initialize the SpinUnresolvedOperatorStrings corresponding to the indices.
+    const auto operator_string_1 = GQCP::SpinUnresolvedOperatorString {indices_1};
+    const auto operator_string_2 = GQCP::SpinUnresolvedOperatorString {indices_2};
+
+    // Use the `isZero()` API to check whether the operator string will always result in a zero value.
+    const auto operator_string_1_zero_check = operator_string_1.isZero();
+    const auto operator_string_2_zero_check = operator_string_2.isZero();
+
+    // Compare the result of the `isZero()` check with the expected boolean value (false for the operator string without duplicate indices, true for the one with duplicate indices).
+    BOOST_CHECK_EQUAL(operator_string_1_zero_check, false);
+    BOOST_CHECK_EQUAL(operator_string_2_zero_check, true);
+}
+
+/**
  *  Check whether the SpinResolvedOperatorString stores its information correctly.
  */
 BOOST_AUTO_TEST_CASE(test_resolved_indices_spins) {
