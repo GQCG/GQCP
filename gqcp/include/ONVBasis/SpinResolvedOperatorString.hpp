@@ -32,12 +32,12 @@ namespace GQCP {
  *  A spin resolved operator string.
 
  *  An spin resolved operator string represents a string of either annihilation or creation operators by its indices. The indices can belong to either alpha or beta operators.
- *  For example, an operator string represented by indices <1a, 1b, 2a, 3b> represents either:
+ *  For example, an operator string represented by index-spin pairs <1a, 1b, 2a, 3b> represents either:
  *      a_1_alpha^\dagger a_1_beta^\dagger a_2_alpha^\dagger a_3_beta^\dagger
  *  or
  *      a_1_alpha a_1_beta a_2_alpha a_3_beta.
  *  
- *  An operator string is always represented by pairs, containing the indices of the operators on the one hand and the spin (alpha or beta) on the other. Whether it denotes annihilation or creation operators depends on the context in which an operator string is used.
+ *  An operator string is always represented by pairs, containing the indices of the operators on the one hand and the spin (alpha or beta) of the operator on the other. Whether it denotes annihilation or creation operators depends on the context in which an operator string is used.
  *  The operator strings are different from ONV's. Instead of representing the way orbitals are occupied, they purely represent the order of certain operators.
  */
 class SpinResolvedOperatorString {
@@ -60,7 +60,7 @@ public:
      */
     SpinResolvedOperatorString(const std::vector<size_t>& index_vector, const std::vector<GQCP::Spin>& spin_vector) {
 
-        // Throw an exceptioon if the vector dimensions don't match.
+        // Throw an exception if the vector dimensions don't match.
         if (index_vector.size() != spin_vector.size()) {
             throw std::invalid_argument("SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector, const std::vector<GQCP::Spin>& spin_vector): The dimensions of the argument vectors don't match. They should be the same.");
         }
@@ -83,10 +83,10 @@ public:
      */
 
     /**
-     *  Retrieve the operator indices from the `SpinUnresolvedOperatorString`.
+     *  Retrieve the operator indices from the `SpinResolvedOperatorString`.
      */
     std::vector<size_t> operatorIndices() const {
-        // for each pair in the operator string, save the index and return the vector containing them.
+        // For each pair in the operator string, save the index and return the vector containing them.
         auto index_vector = std::vector<size_t> {};
 
         for (int i = 0; i < this->index_spin_pairs.size(); i++) {
@@ -98,7 +98,7 @@ public:
 
 
     /**
-     *  Retrieve the operator spins from the `SpinUnresolvedOperatorString`.
+     *  Retrieve the operator spins from the `SpinResolvedOperatorString`.
      */
     std::vector<GQCP::Spin> operatorSpins() const {
         // For each pair in the operator string, save the spin and return the vector containing them.
