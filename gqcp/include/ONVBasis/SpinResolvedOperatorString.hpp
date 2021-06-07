@@ -22,6 +22,8 @@
 #include "QuantumChemical/Spin.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 
+#include <math.h>
+
 
 namespace GQCP {
 
