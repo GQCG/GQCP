@@ -29,7 +29,7 @@
  */
 BOOST_AUTO_TEST_CASE(test_unresolved_constructor) {
 
-    // Initialize the vector which we want to use for our operator string.
+    // Initialize the vector containing the indices we want to use for our operator string.
     std::vector<size_t> indices = {1, 4, 7, 8};
 
     // Check the constructor.
@@ -41,17 +41,23 @@ BOOST_AUTO_TEST_CASE(test_unresolved_constructor) {
  */
 BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
 
-    // Initialize the vector which we want to use for our operator string indices.
+    // Initialize the vector containing the indices we want to use for our operator string.
     std::vector<size_t> indices = {1, 4, 7, 8};
 
-    // Initialize the vector which we want to use for our operator string indices.
+    // Initialize the vector containing the indices we want to use for our operator string.
+    // However, the dimension of this index vector doesn't match the spin vector dimension and should result in an exception being thrown.
     std::vector<size_t> indices_wrong = {4, 7, 8};
 
-    // Initialize the vector which we want to use for our operator string indices.
+    // Initialize the vector containing the spin components we want to use for our operator string indices.
     std::vector<GQCP::Spin> spins = {GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta};
+
+    // Initialize the vector containing the spin components we want to use for our operator string indices.
+    // However, the dimension of this spin vector doesn't match the index vector dimension and should result in an exception being thrown.
+    std::vector<GQCP::Spin> spins_wrong = {GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha};
 
     // Check the constructor.
     BOOST_CHECK_THROW(GQCP::SpinResolvedOperatorString operator_string_wrong(indices_wrong, spins), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::SpinResolvedOperatorString operator_string_wrong_2(indices, spins_wrong), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::SpinResolvedOperatorString operator_string_correct(indices, spins));
 }
 
@@ -60,10 +66,10 @@ BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
  */
 BOOST_AUTO_TEST_CASE(test_unresolved_indices) {
 
-    // Initialize the vector which we want to use for our operator string.
+    // Initialize the vector containing the indices we want to use for our operator string.
     std::vector<size_t> indices = {1, 4, 7, 8};
 
-    // initialize the SpinUnresolvedOperatorString.
+    // Initialize the SpinUnresolvedOperatorString.
     const auto operator_string = GQCP::SpinUnresolvedOperatorString {indices};
 
     // Get the indices from the operator string.
@@ -78,42 +84,42 @@ BOOST_AUTO_TEST_CASE(test_unresolved_indices) {
  */
 BOOST_AUTO_TEST_CASE(test_resolved_indices_spins) {
 
-    // Initialize the vector which we want to use for our operator string.
+    // Initialize the vector containing the indices we want to use for our operator string.
     std::vector<size_t> indices = {1, 4, 7, 8};
 
-    // Initialize the vector which we want to use for our operator string indices.
+    // Initialize the vector containing the spin components we want to use for our operator string indices.
     std::vector<GQCP::Spin> spins = {GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta};
 
-    // initialize the SpinUnresolvedOperatorString.
+    // Initialize the SpinUnresolvedOperatorString.
     const auto operator_string = GQCP::SpinResolvedOperatorString(indices, spins);
 
     // Get the indices and spins from the operator string.
     const auto operator_string_indices = operator_string.operatorIndices();
     const auto operator_string_spins = operator_string.operatorSpins();
 
-    // Check whether the indices are stored correctly.
+    // Check whether the indices and spins are stored correctly.
     BOOST_CHECK_EQUAL_COLLECTIONS(indices.begin(), indices.end(), operator_string_indices.begin(), operator_string_indices.end());
     BOOST_CHECK_EQUAL_COLLECTIONS(spins.begin(), spins.end(), operator_string_spins.begin(), operator_string_spins.end());
 }
 
 /**
- *  Check whether the SpinResolvedOperatorString stores its information correctly.
+ *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.
  */
 BOOST_AUTO_TEST_CASE(test_spin_resolve) {
 
-    // Initialize the vector which we want to use for our operator string.
+    // Initialize the vector containing the indices we want to use for our operator string.
     std::vector<size_t> indices = {0, 1, 2, 3, 4};
 
-    // Initialize the vector which we want to use for our operator string indices.
+    // Initialize the vector containing the spin components we want to use for our operator string indices.
     std::vector<GQCP::Spin> spins = {GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha};
 
-    // initialize the SpinUnresolvedOperatorString.
+    // Initialize the SpinUnresolvedOperatorString.
     const auto operator_string = GQCP::SpinResolvedOperatorString(indices, spins);
 
-    // `Spin resolve` the operator string, meaning we split it in it's alpha and beta components, with the appropriate phase factor.
+    // `Spin resolve` the operator string, meaning we split it in it's alpha and beta components, with the appropriate phase factors.
     const auto spin_resolved_operator_string = operator_string.SpinResolve();
 
-    // Get the indices and from each new operator string.
+    // Get the indices from each new operator string.
     const auto alpha_operator_string_indices = spin_resolved_operator_string.alpha().operatorIndices();
     const auto beta_operator_string_indices = spin_resolved_operator_string.beta().operatorIndices();
 
@@ -131,8 +137,8 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve) {
     //
     // We move the alpha vacuum over the beta operators, which equals two swaps:
     //
-    //      (-1)^2 a_a a_a a_a a_b a_b |vac_a> |vac_b>
-    //      => (1) a_a a_a a_a a_b a_b |vac_a> |vac_b>
+    //      (-1)^2 a_a a_a a_a |vac_a> a_b a_b |vac_b>
+    //      => (1) a_a a_a a_a |vac_a> a_b a_b |vac_b>
 
     const auto reference_phase_factor = 1;
 

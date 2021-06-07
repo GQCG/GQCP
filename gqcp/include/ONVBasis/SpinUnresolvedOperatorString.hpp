@@ -22,13 +22,13 @@ namespace GQCP {
 
 
 /**
- *  A spin-unresolved operator string.
+ *  A spin unresolved operator string.
 
- *  An spin-unresolved operator string represents a string of either annihilation or creation operators by its indices.
+ *  An spin unresolved operator string represents a string of either annihilation or creation operators by its indices and a corresponding phase factor p.
  *  For example, an operator string represented by indices <1, 2, 3> represents either:
- *      a_1^\dagger a_2^\dagger a_3^\dagger
+ *       p * a_1^\dagger a_2^\dagger a_3^\dagger
  *  or
- *      a_1 a_2 a_3.
+ *      p * a_1 a_2 a_3.
  *  
  *  An operator string is always represented by the indices of the operators. Whether it denotes annihilation or creation operators depends on the context in which an operator string is used.
  *  The operator strings are different from ONV's. Instead of representing the way orbitals are occupied, they purely represent the order of certain operators.
@@ -38,7 +38,7 @@ private:
     // The vector representing the indices of the annihilation or creation operators in the operator string.
     std::vector<size_t> indices;
 
-    // The phase factor associated with this string of annihilation/creation operators.
+    // The phase factor associated with this string of annihilation or creation operators.
     int p;
 
 public:
@@ -72,12 +72,12 @@ public:
      */
 
     /**
-     *  Retrieve the operator indices from the `SpinUnresolvedOPeratorString`.
+     *  Retrieve the operator indices from the `SpinUnresolvedOperatorString`.
      */
     std::vector<size_t> operatorIndices() const { return this->indices; }
 
     /**
-     *  Retrieve the phase factor corresponding to the `SpinUnresolvedOPeratorString`.
+     *  Retrieve the phase factor corresponding to the `SpinUnresolvedOperatorString`.
      */
     int phaseFactor() const { return this->p; }
 
