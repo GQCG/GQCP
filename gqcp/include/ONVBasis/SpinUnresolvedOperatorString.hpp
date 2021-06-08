@@ -24,11 +24,11 @@ namespace GQCP {
 /**
  *  A spin unresolved operator string.
 
- *  An spin unresolved operator string represents a string of either annihilation or creation operators by its indices and a corresponding phase factor p.
+ *  A spin unresolved operator string represents a string of either annihilation or creation operators by its indices and a corresponding phase factor p.
  *  For example, an operator string represented by indices <1, 2, 3> represents either:
  *       p * a_1^\dagger a_2^\dagger a_3^\dagger
  *  or
- *      p * a_1 a_2 a_3.
+ *       p * a_1 a_2 a_3.
  *  
  *  An operator string is always represented by the indices of the operators. Whether it denotes annihilation or creation operators depends on the context in which an operator string is used.
  *  The operator strings are different from ONV's. Instead of representing the way orbitals are occupied, they purely represent the order of certain operators.
@@ -62,7 +62,7 @@ public:
      *  @param index_vector                The vector containing the operator indices.
      *  @param phase_factor                The phase factor associated with the operator string, in case fermion anti-commutation rules have been used to modify the operator string. 
      */
-    SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector, int& phase_factor) :
+    SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector, const int phase_factor) :
         indices {index_vector},
         p {phase_factor} {};
 
@@ -74,7 +74,7 @@ public:
     /**
      *  Retrieve the operator indices from the `SpinUnresolvedOperatorString`.
      */
-    std::vector<size_t> operatorIndices() const { return this->indices; }
+    const std::vector<size_t>& operatorIndices() const { return this->indices; }
 
     /**
      *  Retrieve the phase factor corresponding to the `SpinUnresolvedOperatorString`.
@@ -82,18 +82,18 @@ public:
     int phaseFactor() const { return this->p; }
 
     /**
-     * Check whether the operator string in question will result in zero when applied to the wave function.
+     *  Check whether the operator string in question will result in zero when applied to the wave function.
      *
-     * Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
+     *  Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
      */
     bool isZero() const {
 
         // Check if the same index appears more than once in the operator string.
         // Start by initializing a copy of the index vector associated with the operator string.
-        auto index_vector = this->operatorIndices();
+        const auto& index_vector = this->operatorIndices();
 
-        // Since the operator string represents either only annihilation or creation operators, repitition of an index means that that index will be annihilated or created twice in any ONV following the operator string, which will automatically result in zero.
-        // We will use the std::unique function to check this condition. `std::unique` needs a sorted vector and removes all but the first instance of any unique group of elements. It then returns a sequance that's not necessarily equal to the original vector, as duplicate values are removed. Full explanation can be found here: https://stackoverflow.com/questions/46477764/check-stdvector-has-duplicates/46477901.
+        // Since the operator string represents either only annihilation or creation operators, repetition of an index means that that index will be annihilated or created twice in any ONV following the operator string, which will automatically result in zero.
+        // We will use the std::unique function to check this condition. `std::unique` needs a sorted vector and removes all but the first instance of any unique group of elements. It then returns a sequence that's not necessarily equal to the original vector, as duplicate values are removed. Full explanation can be found here: https://stackoverflow.com/questions/46477764/check-stdvector-has-duplicates/46477901.
         sort(index_vector.begin(), index_vector.end());
         auto iterator = std::unique(index_vector.begin(), index_vector.end());
 

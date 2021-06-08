@@ -22,7 +22,7 @@
 #include "QuantumChemical/Spin.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 
-#include <math.h>
+#include <cmath>
 
 
 namespace GQCP {
@@ -30,8 +30,8 @@ namespace GQCP {
 
 /**
  *  A spin resolved operator string.
-
- *  An spin resolved operator string represents a string of either annihilation or creation operators by its indices. The indices can belong to either alpha or beta operators.
+  *
+ *  A spin resolved operator string represents a string of either annihilation or creation operators by their orbital indices. The indices can belong to either alpha or beta operators.
  *  For example, an operator string represented by index-spin pairs <1a, 1b, 2a, 3b> represents either:
  *      a_1_alpha^\dagger a_1_beta^\dagger a_2_alpha^\dagger a_3_beta^\dagger
  *  or
@@ -117,9 +117,9 @@ public:
      */
 
     /**
-     * Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators.
+     *  Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators.
      */
-    SpinResolved<SpinUnresolvedOperatorString> SpinResolve() const {
+    SpinResolved<SpinUnresolvedOperatorString> spinResolve() const {
         // Split pairs in two separate spinUnresolvedOPeratorStrings.
         // Define a separate vector for the alpha and beta components.
         auto alpha_index_vector = std::vector<size_t> {};
@@ -134,7 +134,7 @@ public:
             }
         }
 
-        // Determine the phase factor needed to make the splitting of the original operator string in its spin components correspond with the fermion anti-commutation rules.
+        // Determine the phase factor needed to make the splitting of the original operator string in its spin components correspond with the fermion anti-commutation rules. In essence, we're counting the number of beta operators that appear in front of every alpha operator.
         // We will define an intermediate phase factor, which is updated throughout the procedure.
         int intermediate_phase_factor = 1;
 
