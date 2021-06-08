@@ -186,7 +186,7 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve_2) {
     //      => a_4a has three betas in front of it, p = (-1)^3
     //      => a_5a has three betas in front of it, p = (-1)^3
     //
-    // As a total phase factor we now have p = (-1)^9 = -1
+    // As a total phase factor for the alpha string we now have p = (-1)^9 = -1
 
     const auto reference_phase_factor = -1;
 
@@ -230,7 +230,7 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve_3) {
     //      => a_2a has two betas in front of it, p = (-1)^2
     //      => a_3a has three betas in front of it, p = (-1)^3
     //
-    // As a total phase factor we now have p = (-1)^6 = 1
+    // As a total phase factor for the alpha string we now have p = (-1)^6 = 1
 
     const auto reference_phase_factor = 1;
 
