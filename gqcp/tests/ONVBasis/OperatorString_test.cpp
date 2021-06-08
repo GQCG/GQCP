@@ -25,19 +25,6 @@
 
 
 /**
- *  Check whether the SpinUnresolvedOperatorString constructor works.
- */
-BOOST_AUTO_TEST_CASE(test_unresolved_constructor) {
-
-    // Initialize the vector containing the indices we want to use for our operator string.
-    std::vector<size_t> indices = {1, 4, 7, 8};
-
-    // Check the constructor.
-    BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedOperatorString operator_string {indices});
-}
-
-
-/**
  *  Check whether the SpinResolvedOperatorString constructor works.
  */
 BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
@@ -98,7 +85,7 @@ BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
     const GQCP::SpinUnresolvedOperatorString operator_string_2 {indices_2};
 
     // Compare the result of the `isZero()` check with the expected boolean value (false for the operator string without duplicate indices, true for the one with duplicate indices).
-    BOOST_CHECK_EQUAL( operator_string_1.isZero(), false);
+    BOOST_CHECK_EQUAL(operator_string_1.isZero(), false);
     BOOST_CHECK_EQUAL(operator_string_2.isZero(), true);
 }
 
@@ -140,7 +127,7 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve) {
     const auto operator_string = GQCP::SpinResolvedOperatorString(indices, spins);
 
     // `Spin resolve` the operator string, meaning we split it in it's alpha and beta components, with the appropriate phase factors.
-    const auto spin_resolved_operator_string = operator_string.SpinResolve();
+    const auto spin_resolved_operator_string = operator_string.spinResolve();
 
     // Get the indices from each new operator string.
     const auto alpha_operator_string_indices = spin_resolved_operator_string.alpha().operatorIndices();
@@ -157,17 +144,99 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve) {
     // Now we have:
     //
     //      (-1) a_a a_a a_a a_b a_b |vac_a> |vac_b>
-    //
-    // We move the alpha vacuum over the beta operators, which equals two swaps:
-    //
-    //      (-1)^2 a_a a_a a_a |vac_a> a_b a_b |vac_b>
-    //      => (1) a_a a_a a_a |vac_a> a_b a_b |vac_b>
 
-    const auto reference_phase_factor = 1;
+    const auto reference_phase_factor = -1;
 
     // The alpha and beta indices respectively can easily be seen from the initial pairs.
     std::vector<size_t> alpha_indices = {0, 2, 4};
     std::vector<size_t> beta_indices = {1, 3};
+
+    // Test the calculated values against the reference values.
+    BOOST_CHECK_EQUAL_COLLECTIONS(alpha_indices.begin(), alpha_indices.end(), alpha_operator_string_indices.begin(), alpha_operator_string_indices.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(beta_indices.begin(), beta_indices.end(), beta_operator_string_indices.begin(), beta_operator_string_indices.end());
+    BOOST_CHECK_EQUAL(reference_phase_factor, spin_resolved_operator_string.alpha().phaseFactor());
+}
+
+/**
+ *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.
+ */
+BOOST_AUTO_TEST_CASE(test_spin_resolve_2) {
+
+    // Initialize the vector containing the indices we want to use for our operator string.
+    std::vector<size_t> indices = {0, 1, 2, 3, 4, 5};
+
+    // Initialize the vector containing the spin components we want to use for our operator string indices.
+    std::vector<GQCP::Spin> spins = {GQCP::Spin::beta, GQCP::Spin::beta, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::alpha, GQCP::Spin::alpha};
+
+    // Initialize the SpinUnresolvedOperatorString.
+    const auto operator_string = GQCP::SpinResolvedOperatorString(indices, spins);
+
+    // `Spin resolve` the operator string, meaning we split it in it's alpha and beta components, with the appropriate phase factors.
+    const auto spin_resolved_operator_string = operator_string.spinResolve();
+
+    // Get the indices from each new operator string.
+    const auto alpha_operator_string_indices = spin_resolved_operator_string.alpha().operatorIndices();
+    const auto beta_operator_string_indices = spin_resolved_operator_string.beta().operatorIndices();
+
+    // Define references to check the results.
+    // The phase factor of the alpha string should be -1:
+    //
+    //      a_b a_b a_b a_a a_a a_a (initial string) & p = 1 (initial phase factor)
+    //      => a_3a has three betas in front of it, p = (-1)^3
+    //      => a_4a has three betas in front of it, p = (-1)^3
+    //      => a_5a has three betas in front of it, p = (-1)^3
+    //
+    // As a total phase factor we now have p = (-1)^9 = -1
+
+    const auto reference_phase_factor = -1;
+
+    // The alpha and beta indices respectively can easily be seen from the initial pairs.
+    std::vector<size_t> alpha_indices = {3, 4, 5};
+    std::vector<size_t> beta_indices = {0, 1, 2};
+
+    // Test the calculated values against the reference values.
+    BOOST_CHECK_EQUAL_COLLECTIONS(alpha_indices.begin(), alpha_indices.end(), alpha_operator_string_indices.begin(), alpha_operator_string_indices.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(beta_indices.begin(), beta_indices.end(), beta_operator_string_indices.begin(), beta_operator_string_indices.end());
+    BOOST_CHECK_EQUAL(reference_phase_factor, spin_resolved_operator_string.alpha().phaseFactor());
+}
+
+/**
+ *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.
+ */
+BOOST_AUTO_TEST_CASE(test_spin_resolve_3) {
+
+    // Initialize the vector containing the indices we want to use for our operator string.
+    std::vector<size_t> indices = {7, 8, 4, 1, 2, 4, 3, 7};
+
+    // Initialize the vector containing the spin components we want to use for our operator string indices.
+    std::vector<GQCP::Spin> spins = {GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::alpha, GQCP::Spin::beta};
+
+    // Initialize the SpinUnresolvedOperatorString.
+    const auto operator_string = GQCP::SpinResolvedOperatorString(indices, spins);
+
+    // `Spin resolve` the operator string, meaning we split it in it's alpha and beta components, with the appropriate phase factors.
+    const auto spin_resolved_operator_string = operator_string.spinResolve();
+
+    // Get the indices from each new operator string.
+    const auto alpha_operator_string_indices = spin_resolved_operator_string.alpha().operatorIndices();
+    const auto beta_operator_string_indices = spin_resolved_operator_string.beta().operatorIndices();
+
+    // Define references to check the results.
+    // The phase factor of the alpha string should be 1:
+    //
+    //      a_a a_b a_a a_b a_a a_b a_a a_b (initial string) & p = 1 (initial phase factor)
+    //      => a_7a has zero betas in front of it, p = 1
+    //      => a_4a has one beta in front of it, p = -1
+    //      => a_2a has two betas in front of it, p = (-1)^2
+    //      => a_3a has three betas in front of it, p = (-1)^3
+    //
+    // As a total phase factor we now have p = (-1)^6 = 1
+
+    const auto reference_phase_factor = 1;
+
+    // The alpha and beta indices respectively can easily be seen from the initial pairs.
+    std::vector<size_t> alpha_indices = {7, 4, 2, 3};
+    std::vector<size_t> beta_indices = {8, 1, 4, 7};
 
     // Test the calculated values against the reference values.
     BOOST_CHECK_EQUAL_COLLECTIONS(alpha_indices.begin(), alpha_indices.end(), alpha_operator_string_indices.begin(), alpha_operator_string_indices.end());

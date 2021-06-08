@@ -22,7 +22,7 @@
 #include "QuantumChemical/Spin.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 
-#include <cmath>
+#include <vector>
 
 
 namespace GQCP {
@@ -117,10 +117,10 @@ public:
      */
 
     /**
-     *  Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators.
+     *  Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor assiciated with this action, the phase factor of the beta string will be one.
      */
     SpinResolved<SpinUnresolvedOperatorString> spinResolve() const {
-        // Split pairs in two separate spinUnresolvedOPeratorStrings.
+        // Split pairs in two separate spinUnresolvedOperatorStrings.
         // Define a separate vector for the alpha and beta components.
         auto alpha_index_vector = std::vector<size_t> {};
         auto beta_index_vector = std::vector<size_t> {};
@@ -136,7 +136,7 @@ public:
 
         // Determine the phase factor needed to make the splitting of the original operator string in its spin components correspond with the fermion anti-commutation rules. In essence, we're counting the number of beta operators that appear in front of every alpha operator.
         // We will define an intermediate phase factor, which is updated throughout the procedure.
-        int intermediate_phase_factor = 1;
+        int phase_factor = 1;
 
         // First, we loop the spin string to check whether an element has alpha spin.
         for (int i = 0; i < this->operatorSpins().size(); i++) {
@@ -150,18 +150,13 @@ public:
                     // If we find a beta element left of the alpha element, we must swap the two elements in the vector and update the phase factor by multiplying it by -1, due to the anti-commutation rules.
                     // We don't physically swap the elements in the vector, but by simply checking the number of beta's left of the alpha in question, we mimic the swap.
                     if (this->operatorSpins()[j] == GQCP::Spin::beta) {
-                        intermediate_phase_factor *= -1;
+                        phase_factor *= -1;
                     }
                 }
             }
         }
 
-        // The phase factor has been updated in the loops, in order to correspond to a modified operator string with all alpha operators first, followed by all beta operators.
-        // The total operator string is applied on |vac_a>|vac_b>, e.g.: a_a a_a a_b a_b|vac_a>|vac_b>. But we want a_a a_a |vac_a> a_b a_b|vac_b>.
-        // Now we have to apply the fermion anti-commutation rules for eacht time we move |vac_alpha> over a beta operator. This results in p^N_beta.
-        int final_phase_factor = pow(intermediate_phase_factor, beta_index_vector.size());
-
-        return SpinResolved<SpinUnresolvedOperatorString> {SpinUnresolvedOperatorString(alpha_index_vector, final_phase_factor), SpinUnresolvedOperatorString {beta_index_vector}};
+        return SpinResolved<SpinUnresolvedOperatorString> {SpinUnresolvedOperatorString(alpha_index_vector, phase_factor), SpinUnresolvedOperatorString {beta_index_vector}};
     }
 };
 

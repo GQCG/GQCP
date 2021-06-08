@@ -18,6 +18,10 @@
 #pragma once
 
 
+#include <iterator>
+#include <vector>
+
+
 namespace GQCP {
 
 
@@ -90,7 +94,7 @@ public:
 
         // Check if the same index appears more than once in the operator string.
         // Start by initializing a copy of the index vector associated with the operator string.
-        const auto& index_vector = this->operatorIndices();
+        auto index_vector = this->operatorIndices();
 
         // Since the operator string represents either only annihilation or creation operators, repetition of an index means that that index will be annihilated or created twice in any ONV following the operator string, which will automatically result in zero.
         // We will use the std::unique function to check this condition. `std::unique` needs a sorted vector and removes all but the first instance of any unique group of elements. It then returns a sequence that's not necessarily equal to the original vector, as duplicate values are removed. Full explanation can be found here: https://stackoverflow.com/questions/46477764/check-stdvector-has-duplicates/46477901.
