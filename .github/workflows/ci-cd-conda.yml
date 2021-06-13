@@ -65,3 +65,4 @@ jobs:
           source activate packaging
           conda config --set anaconda_upload yes
           conda-build -c gqcg -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [${{ matrix.py }}] }"
+
