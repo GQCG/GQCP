@@ -1,0 +1,78 @@
+// This file is part of GQCG-gqcp.
+//
+// Copyright (C) 2017-2019  the GQCG developers
+//
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+//
+#pragma once
+
+
+#include <cstddef>
+#include <string>
+
+
+// clang-format off
+namespace ${PROJECT_NAME} {
+
+
+/**
+ *  A class that holds version-related info: the version numbers and the corresponding git SHA1.
+ */
+struct Version {
+private:
+    // The GQCP major version.
+    static constexpr size_t major_version = ${${PROJECT_NAME}_VERSION_MAJOR};
+
+    // The GQCP minor version.
+    static constexpr size_t minor_version = ${${PROJECT_NAME}_VERSION_MINOR};
+
+    // The GQCP patch version.
+    static constexpr size_t patch_version = ${${PROJECT_NAME}_VERSION_PATCH};
+
+    // The full GQCP version.
+    static constexpr auto full_version = "${${PROJECT_NAME}_VERSION}";
+
+    // The current GQCP commit SHA1.
+    static constexpr auto git_SHA1 = "${GIT_SHA1}";
+
+public:
+    /**
+     *  @return The GQCP major version.
+     */
+    static size_t majorVersion();
+
+    /**
+     *  @return The GQCP minor version.
+     */
+    static size_t minorVersion();
+
+    /**
+     *  @return The GQCP patch version.
+     */
+    static size_t patchVersion();
+
+    /**
+     *  @return The full GQCP version.
+     */
+    static std::string fullVersion();
+
+    /**
+     *  @return The current GQCP commit SHA1.
+     */
+    static std::string gitSHA1();
+};
+
+
+}  // namespace ${PROJECT_NAME}
+// clang-format on

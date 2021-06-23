@@ -1,0 +1,9 @@
+add_subdirectory(Applications)
+add_subdirectory(CC)
+add_subdirectory(CI)
+add_subdirectory(Geminals)
+add_subdirectory(HF)
+add_subdirectory(OrbitalOptimization)
+add_subdirectory(RMP2)
+
+set(test_target_sources ${test_target_sources} PARENT_SCOPE)

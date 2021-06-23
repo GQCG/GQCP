@@ -1,0 +1,5 @@
+add_subdirectory(SeniorityZeroONVBasis)
+add_subdirectory(SpinResolvedONVBasis)
+add_subdirectory(SpinUnresolvedONVBasis)
+
+set(benchmark_target_sources ${benchmark_target_sources} PARENT_SCOPE)

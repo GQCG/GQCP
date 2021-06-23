@@ -1,0 +1,2 @@
+add_subdirectory(FirstQuantized)
+add_subdirectory(SecondQuantized)

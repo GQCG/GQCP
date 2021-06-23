@@ -1,0 +1,19 @@
+target_sources(gqcp
+    PRIVATE
+        AngularMomentumOperator.cpp
+        BaseNuclearOperator.cpp
+        BaseReferenceDependentOperator.cpp
+        CurrentDensityOperator.cpp
+        DiamagneticOperator.cpp
+        ElectronicDipoleOperator.cpp
+        ElectronicQuadrupoleOperator.cpp
+        ElectronicSpinOperator.cpp
+        FQMolecularHamiltonian.cpp
+        FQMolecularMagneticHamiltonian.cpp
+        FQMolecularPauliHamiltonian.cpp
+        LinearMomentumOperator.cpp
+        NuclearDipoleOperator.cpp
+        NuclearRepulsionOperator.cpp
+        OrbitalZeemanOperator.cpp
+        SpinZeemanOperator.cpp
+)

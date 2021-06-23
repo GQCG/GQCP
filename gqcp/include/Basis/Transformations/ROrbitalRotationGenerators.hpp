@@ -1,0 +1,53 @@
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
+#pragma once
+
+
+#include "Basis/Transformations/SimpleOrbitalRotationGenerators.hpp"
+
+
+namespace GQCP {
+
+
+/**
+ *  MARK: ROrbitalRotationGenerators implementation
+ */
+
+/**
+ *  A type used to represent a restricted set of orbital rotation generators.
+ * 
+ *  @tparam _Scalar                 The scalar type used for an orbital rotation generator: real or complex.
+ */
+template <typename _Scalar>
+class ROrbitalRotationGenerators:
+    public SimpleOrbitalRotationGenerators<_Scalar, ROrbitalRotationGenerators<_Scalar>> {
+public:
+    // The scalar type used for an orbital rotation generator: real or complex.
+    using Scalar = _Scalar;
+
+public:
+    /**
+     *  MARK: Constructors
+     */
+
+    // Inherit `SimpleOrbitalRotationGenerators`'s constructors.
+    using SimpleOrbitalRotationGenerators<Scalar, ROrbitalRotationGenerators<Scalar>>::SimpleOrbitalRotationGenerators;
+};
+
+
+}  // namespace GQCP
