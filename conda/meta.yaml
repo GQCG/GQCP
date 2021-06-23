@@ -1,5 +1,5 @@
 {% set name = "GQCP" %}
-{% set version = "0.0.1" %}
+{% set version = "0.1.0" %}
 
 package:
     name: {{ name|lower }}
@@ -26,9 +26,9 @@ requirements:
       - numpy
       - libint
       - llvm-openmp               # [osx]
-      - numpy 
+      - numpy
       - openmp                    # [linux]
-      - pybind11 
+      - pybind11
       - python
     run:
       - blas

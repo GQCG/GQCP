@@ -7,7 +7,7 @@
 #   - the gqcpy Python bindings to the C++ library (optional)
 
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
-project(GQCP VERSION 0.0.1 LANGUAGES CXX)
+project(GQCP VERSION 0.1.0 LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
 # Look for the dependencies
@@ -27,7 +27,7 @@ execute_process(
 )
 
 
-# Add the versioning as a separate library. Whenever the version changes, only the version.cpp source file will be recompiled 
+# Add the versioning as a separate library. Whenever the version changes, only the version.cpp source file will be recompiled
 # and only gqcp needs to be relinked. This way, gqcp does not need to be recompiled if the version should be modified.
 # Add configuration file containing version of current library.
 configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in gqcp/version/version.hpp)
