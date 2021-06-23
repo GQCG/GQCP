@@ -33,7 +33,7 @@ int main(int argc, char * argv [] ) {
 
 ### Hello GQCP: build stage
 
-We have packaged `GQCP` into its own CMake modules, such that it can be easily found 
+We have packaged `GQCP` into its own CMake modules, such that it can be easily found
 
 ```bash
 find_package(gqcp REQUIRED)
@@ -48,7 +48,7 @@ Given the `driver.cpp` source file detailed above, the following `CMakeLists.txt
 
 ```bash
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
-project(driver VERSION 0.0.1 LANGUAGES CXX)
+project(driver VERSION 0.1.0 LANGUAGES CXX)
 
 find_package(gqcp REQUIRED)
 
