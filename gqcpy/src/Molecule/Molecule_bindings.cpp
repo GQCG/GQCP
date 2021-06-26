@@ -95,6 +95,18 @@ void bindMolecule(py::module& module) {
                  return molecule.description();
              })
 
+        .def("charge",
+             &Molecule::charge,
+             "Return the charge of the molecule.")
+
+        .def("totalNucleicCharge",
+             &Molecule::totalNucleicCharge,
+             "Return the sum of all charges of the nuclei.")
+
+        .def("numberOfAtoms",
+             &Molecule::numberOfAtoms,
+             "Return the number of atoms in the molecule.")
+
         .def("numberOfElectrons",
              &Molecule::numberOfElectrons,
              "Return the number of electrons in the molecule.")
