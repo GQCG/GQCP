@@ -32,7 +32,7 @@
 
 /**
  *  Check if the plain GHF SCF solver finds a correct solution.
- * 
+ *
  *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done by @xdvriend.
  */
 BOOST_AUTO_TEST_CASE(H3_test_1) {
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
 
 /**
  *  Check if the plain GHF SCF solver finds a correct solution.
- * 
+ *
  *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done by @xdvriend.
  */
 BOOST_AUTO_TEST_CASE(H3_test_2) {
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
 /**
  *  Check if the DIIS GHF SCF solver finds a correct solution.
- * 
+ *
  *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done by @xdvriend.
  */
 BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
@@ -308,12 +308,13 @@ BOOST_AUTO_TEST_CASE(GHF_spin_expectation_values) {
     BOOST_CHECK(std::abs(s2_specialized - s2_general_MO) < 1.0e-08);
 
 
-    // Calculate <S^2> through a general expectation value, in AO basis. This requires the quantization of the S^2 operator, through some complex intermediates.
-    auto D_AO = D_MO.transformed(C.inverse());
-    auto d_AO = d_MO.transformed(C.inverse());
+    // Calculate <S^2> through a general expectation value, in AO basis.
+    // Note that the correct procedure to obtain S^2 in AO basis is to quantize S^2 in an orthonormal basis, and then back-transform it into AO basis.
+    const auto D_AO = D_MO.transformed(C.inverse());
+    const auto d_AO = d_MO.transformed(C.inverse());
 
-    spinor_basis.transform(C.inverse());
-    const auto S2_AO = spinor_basis.quantize(GQCP::ElectronicSpinSquaredOperator());  // S^2 expressed in the AO basis.
+    const auto S2_AO = S2_MO.transformed(C.inverse());
 
     const auto s2_general_AO = S2_AO.calculateExpectationValue(D_AO, d_AO);
+    BOOST_CHECK(std::abs(s2_specialized - s2_general_AO) < 1.0e-08);
 }

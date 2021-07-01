@@ -34,7 +34,7 @@ namespace GQCP {
 
 /**
  *  A general(ized) two-electron operator, which is suited for expressing spin-dependent two-electron operators.
- * 
+ *
  *  @tparam _Scalar                 The scalar type used for a single parameter/matrix element: real or complex.
  *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from SimpleSQOneElectronOperator.
  */
@@ -67,7 +67,7 @@ public:
 
     /**
      *  Construct a `GSQTwoElectronOperator` from a `PureUSQTwoElectronOperatorComponent`.
-     * 
+     *
      *  @param g_component          The pure component of an unrestricted two-electron operator that should be converted.
      */
     static GSQTwoElectronOperator<Scalar, Vectorizer> FromUnrestrictedComponent(const PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>& g_component) {
@@ -106,7 +106,7 @@ using TensorGSQTwoElectronOperator = GSQTwoElectronOperator<Scalar, TensorVector
 
 /**
  *  A type that provides compile-time information (traits) on `GSQTwoElectronOperator` that is otherwise not accessible through a public class alias.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter/matrix element: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from SimpleSQOneElectronOperator.
  */
@@ -136,7 +136,7 @@ struct OperatorTraits<GSQTwoElectronOperator<Scalar, Vectorizer>> {
 
 /**
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter/matrix element: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from SimpleSQOneElectronOperator.
  */
@@ -169,7 +169,7 @@ struct JacobiRotatableTraits<GSQTwoElectronOperator<Scalar, Vectorizer>> {
 
 /**
  *  A type that encapsulates the matrix elements of the product of two scalar, generalized one-electron operators.
- * 
+ *
  *  @tparam _Scalar         The scalar type of one of the matrix elements: real or complex.
  */
 template <typename _Scalar>
@@ -200,7 +200,7 @@ public:
 
     /**
      *  Create the representation of the product of two scalar, generalized one-electron operators by its one- and two-electron constituents.
-     * 
+     *
      *  @param o            The one-electron part of the product.
      *  @param t            The two-electron part of the product. Since it is expressed as a `SQTwoElectronOperator`, it implicitly assumes the incorporation of a factor 2.
      */
@@ -270,9 +270,9 @@ public:
 
     /**
      *  Apply the basis transformation and return the resulting Hamiltonian.
-     * 
+     *
      *  @param T            The basis transformation.
-     * 
+     *
      *  @return The basis-transformed Hamiltonian.
      */
     Self transformed(const GTransformation<Scalar>& T) const override {
@@ -300,9 +300,9 @@ public:
 
     /**
      *  Apply the Jacobi rotation and return the result.
-     * 
+     *
      *  @param jacobi_rotation          The Jacobi rotation.
-     * 
+     *
      *  @return The Jacobi-rotated object.
      */
     Self rotated(const JacobiRotation& jacobi_rotation) const override {
@@ -326,10 +326,10 @@ public:
 
     /**
      *  Calculate the expectation value of this one-electron operator product.
-     * 
+     *
      *  @param D            The 1-DM.
      *  @param d            The 2-DM.
-     * 
+     *
      *  @return The expectation value of this one-electron operator product.
      */
     Scalar calculateExpectationValue(const G1DM<Scalar>& D, const G2DM<Scalar>& d) const {
@@ -346,7 +346,7 @@ public:
 
 /**
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
- * 
+ *
  *  @tparam Scalar          The scalar type of one of the matrix elements: real or complex.
  */
 template <typename Scalar>
@@ -363,7 +363,7 @@ struct BasisTransformableTraits<ScalarGSQOneElectronOperatorProduct<Scalar>> {
 
 /**
  *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
- * 
+ *
  *  @tparam Scalar           The scalar type of one of the matrix elements: real or complex.
  */
 template <typename Scalar>
@@ -376,10 +376,10 @@ struct JacobiRotatableTraits<ScalarGSQOneElectronOperatorProduct<Scalar>> {
 
 /**
  *  Multiply one scalar, generalized one-electron operator by another.
- * 
+ *
  *  @tparam Scalar           The scalar type of one of the matrix elements: real or complex.
- * 
- *  @note This function is only enabled for actual functions, i.e. functions that derive from `Function`.
+ *
+ *  @note This function assumes that
  */
 template <typename Scalar>
 ScalarGSQOneElectronOperatorProduct<Scalar> operator*(const ScalarGSQOneElectronOperator<Scalar>& lhs, const ScalarGSQOneElectronOperator<Scalar>& rhs) {

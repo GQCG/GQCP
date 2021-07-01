@@ -51,10 +51,10 @@ namespace GQCP {
 
 /**
  *  A general spinor basis, i.e. a spinor basis without any restrictions on the expansion of the alpha and beta components of the spinors in terms of the underlying (possibly different) scalar bases.
- * 
+ *
  *  @tparam _ExpansionScalar        The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
  *  @tparam _Shell                  The type of shell the underlying scalar bases contain.
- * 
+ *
  *  @note The individual columns of the coefficient matrix represent the spinors of this basis; they are not ordered by increasing single-particle energy.
  */
 template <typename _ExpansionScalar, typename _Shell>
@@ -92,7 +92,7 @@ public:
 
     /**
      *  Create a `GSpinorBasis` from scalar bases that are not necessarily equal.
-     * 
+     *
      *  @param scalar_bases                 The scalar bases for the alpha and beta components of the spinors.
      *  @param C                            The transformation that relates the current set of spinors with the atomic spinors.
      */
@@ -111,7 +111,7 @@ public:
 
     /**
      *  Create a `GSpinorBasis` from scalar bases that are not necessarily equal.
-     * 
+     *
      *  @param alpha_scalar_basis           The scalar basis in which the alpha components of the spinors are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta components of the spinors are expanded.
      *  @param C                            The transformation that relates the current set of spinors with the atomic spinors.
@@ -132,7 +132,7 @@ public:
 
     /**
      *  Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (AOs).
-     * 
+     *
      *  @param alpha_scalar_basis           The scalar basis in which the alpha components of the spinors are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta components of the spinors are expanded.
      */
@@ -143,7 +143,7 @@ public:
 
     /**
      *  Construct a generalized spinor basis in which both underlying scalar bases are equal, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (AOs).
-     * 
+     *
      *  @param scalar_basis             The scalar basis in which both the alpha and beta components are expanded.
      */
     GSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
@@ -223,9 +223,9 @@ public:
 
     /**
      *  Convert a restricted spin-orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
-     * 
+     *
      *  @param r_spinor_basis           The restricted spinor basis.
-     * 
+     *
      *  @return The restricted spinor basis as a generalized one.
      */
     static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinOrbitalBasis<ExpansionScalar, Shell>& r_spinor_basis) {
@@ -239,11 +239,11 @@ public:
 
     /**
      *  Convert an unrestricted spin-orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
-     * 
+     *
      *  @param u_spinor_basis           The unrestricted spinor basis.
-     * 
+     *
      *  @return The generalized spinor basis corresponding to the unrestricted spin-orbital basis.
-     * 
+     *
      *  @note We assume that the unrestricted spin-orbital basis has equal underlying scalar bases for the alpha- and beta-spin-orbitals.
      */
     static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinOrbitalBasis<ExpansionScalar, Shell>& u_spinor_basis) {
@@ -260,7 +260,7 @@ public:
 
     /**
      *  @param sigma        Alpha or beta.
-     * 
+     *
     *  @return The number of coefficients that are used for the expansion of the requested spin-component of a spinor.
      */
     size_t numberOfCoefficients(const Spin& sigma) const { return this->scalarBases().component(sigma).numberOfBasisFunctions(); }
@@ -288,9 +288,9 @@ public:
 
     /**
      *  Quantize a scalar spin-independent one-electron operator in this general spinor basis. Spin-independent one-electron operators are those whose two-component matrix operator form contains the same scalar operator in the top-left and bottom-right corner.
-     * 
+     *
      *  @param fq_one_op            A spin-independent first-quantized operator.
-     * 
+     *
      *  @return The second-quantized representation of the given operator.
      */
     template <typename FQOneElectronOperator, typename Z = Shell>
@@ -324,9 +324,9 @@ public:
 
     /**
      *  Quantize the electronic spin operator in this general spinor basis.
-     * 
+     *
      *  @param fq_one_op        The (first-quantized) electronic spin operator.
-     * 
+     *
      *  @return The electronic spin operator expressed in this spinor basis.
      */
     template <typename Z = Shell>
@@ -377,9 +377,9 @@ public:
 
     /**
      *  Quantize the Coulomb operator in this general spinor basis.
-     * 
+     *
      *  @param coulomb_op           The first-quantized Coulomb operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the Coulomb operator.
      */
     template <typename Z = Shell>
@@ -448,9 +448,9 @@ public:
 
     /**
      *  Quantize a spin-independent one-electron operator in this general spinor basis. Spin-independent one-electron operators are those whose two-component matrix operator form contains the same scalar operator in the top-left and bottom-right corner.
-     * 
+     *
      *  @param fq_one_op            A spin-independent first-quantized operator.
-     * 
+     *
      *  @return The second-quantized representation of the given operator.
      */
     template <typename FQOneElectronOperator, typename Z = Shell>
@@ -499,9 +499,9 @@ public:
 
     /**
      *  Quantize the electronic spin operator in this general spinor basis.
-     * 
+     *
      *  @param fq_one_op        The (first-quantized) electronic spin operator.
-     * 
+     *
      *  @return The electronic spin operator expressed in this spinor basis.
      */
     template <typename Z = Shell>
@@ -553,9 +553,9 @@ public:
 
     /**
      *  Quantize the orbital Zeeman operator in this general spinor basis.
-     * 
+     *
      *  @param op               The (first-quantized) orbital Zeeman operator.
-     * 
+     *
      *  @return The orbital Zeeman operator expressed in this spinor basis.
      */
     template <typename Z = Shell>
@@ -570,9 +570,9 @@ public:
 
     /**
      *  Quantize the diamagnetic operator in this general spinor basis.
-     * 
+     *
      *  @param op               The (first-quantized) diamagnetic operator.
-     * 
+     *
      *  @return The diamagnetic operator expressed in this spinor basis.
      */
     template <typename Z = Shell>
@@ -612,9 +612,9 @@ public:
 
     /**
      *  Quantize the spin Zeeman operator in this general spinor basis.
-     * 
+     *
      *  @param op               The (first-quantized) spin Zeeman  operator.
-     * 
+     *
      *  @return The diamagnetic operator expressed in this spinor basis.
      */
     template <typename Z = Shell>
@@ -629,11 +629,11 @@ public:
 
     /**
      *  Quantize the Coulomb operator in this general spinor basis.
-     * 
+     *
      *  @param coulomb_op           The first-quantized Coulomb operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the Coulomb operator.
-     * 
+     *
      *  @note For efficiency reasons (two-electron integrals over London orbitals are particularly slow to calculate), we assume that the alpha and beta scalar bases are equal.
      */
     template <typename Z = Shell>
@@ -696,9 +696,9 @@ public:
 
     /**
      *  Quantize the molecular magnetic Hamiltonian.
-     * 
+     *
      *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
-     * 
+     *
      *  @return The second-quantized molecular magnetic Hamiltonian.
      */
     template <typename Z = Shell>
@@ -718,9 +718,9 @@ public:
 
     /**
      *  Quantize the molecular Pauli Hamiltonian.
-     * 
+     *
      *  @param fq_hamiltonian           The molecular Pauli Hamiltonian.
-     * 
+     *
      *  @return The second-quantized molecular Pauli Hamiltonian.
      */
     template <typename Z = Shell>
@@ -746,9 +746,9 @@ public:
 
     /**
      *  Quantize the molecular Hamiltonian.
-     * 
+     *
      *  @param fq_hamiltonian           The molecular Hamiltonian.
-     * 
+     *
      *  @return The second-quantized molecular Hamiltonian.
      */
     GSQHamiltonian<ExpansionScalar> quantize(const FQMolecularHamiltonian& fq_hamiltonian) const {
@@ -764,10 +764,12 @@ public:
 
     /**
      *  Quantize the electronic S^2 operator in this spinor basis.
-     * 
+     *
      *  @param fq_S2_op             The first-quantized electronic S^2 operator.
-     * 
+     *
      *  @return The second-quantized representation of the electronic S^2 operator in this spinor basis.
+     *
+     *  @note Due to the way one-electron products are implemented, this quantization will only provide the correct result if the spinor basis is orthonormal.
      */
     ScalarGSQOneElectronOperatorProduct<ExpansionScalar> quantize(const ElectronicSpinSquaredOperator& fq_S2_op) const {
 
@@ -803,11 +805,11 @@ public:
 
     /**
      *  Partition this set of generalized spinors according to the Mulliken partitioning scheme.
-     * 
+     *
      *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
-     * 
+     *
      *  @return A `GMullikenPartitioning` for the AOs selected by the supplied selector function.
-     * 
+     *
      *  @note The underlying scalar bases are assumed to be equal.
      */
     GMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
@@ -820,11 +822,11 @@ public:
 
     /**
      *  Partition this set of generalized spinors according to the Mulliken partitioning scheme.
-     * 
+     *
      *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
-     * 
+     *
      *  @return A `GMullikenPartitioning` for the AOs selected by the supplied selector function.
-     * 
+     *
      *  @note The underlying scalar bases are assumed to be equal.
      */
     GMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {

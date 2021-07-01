@@ -33,7 +33,7 @@ namespace GQCP {
 
 /**
  *  A type used to represent a one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix.
- * 
+ *
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
 template <typename _Scalar>
@@ -54,9 +54,9 @@ public:
 
     /**
      *  Create a `G1DM` from a `SpinResolved1DM`.
-     * 
+     *
      *  @param D            The spin-resolved 1-DM.
-     * 
+     *
      *  @return A `G1DM` created from a `SpinResolved1DM`.
      */
     static G1DM<Scalar> FromSpinResolved(const SpinResolved1DM<Scalar>& D) {
