@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
@@ -33,7 +34,7 @@ using namespace GQCP;
 
 /**
  *  Register multiple variants of `GSQOneElectronOperator` to the gqcpy module and expose a part of its C++ interface to Python.
- * 
+ *
  *  @param module           The Pybind11 module in which the `GSQOneElectronOperator`s should be registered.
  */
 void bindGSQOneElectronOperator(py::module& module) {
