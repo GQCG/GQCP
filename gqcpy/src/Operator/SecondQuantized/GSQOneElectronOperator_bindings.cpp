@@ -16,9 +16,11 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
+#include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 
 
@@ -32,29 +34,38 @@ using namespace GQCP;
 
 /**
  *  Register multiple variants of `GSQOneElectronOperator` to the gqcpy module and expose a part of its C++ interface to Python.
- * 
+ *
  *  @param module           The Pybind11 module in which the `GSQOneElectronOperator`s should be registered.
  */
 void bindGSQOneElectronOperator(py::module& module) {
 
-    // Define Python classes related to `GSQOneElectronOperator` and expose their interfaces.
+    // Scalar one-electron operators (real).
     py::class_<ScalarGSQOneElectronOperator<double>> py_ScalarGSQOneElectronOperator_d {module, "ScalarGSQOneElectronOperator_d", "A (real) general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators."};
 
     bindSimpleSQOneElectronOperatorInterface(py_ScalarGSQOneElectronOperator_d);
     bindScalarSQOneElectronOperatorParameterInterface(py_ScalarGSQOneElectronOperator_d);
 
+    py_ScalarGSQOneElectronOperator_d
+        .def(py::self * py::self);
 
+
+    // Scalar one-electron operators (complex).
     py::class_<ScalarGSQOneElectronOperator<complex>> py_ScalarGSQOneElectronOperator_cd {module, "ScalarGSQOneElectronOperator_cd", "A (complex) general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators."};
 
     bindSimpleSQOneElectronOperatorInterface(py_ScalarGSQOneElectronOperator_cd);
     bindScalarSQOneElectronOperatorParameterInterface(py_ScalarGSQOneElectronOperator_cd);
 
+    py_ScalarGSQOneElectronOperator_cd
+        .def(py::self * py::self);
 
+
+    // Vector one-electron operators (real).
     py::class_<VectorGSQOneElectronOperator<double>> py_VectorGSQOneElectronOperator_d {module, "VectorGSQOneElectronOperator_d", "A (real) general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators."};
 
     bindSimpleSQOneElectronOperatorInterface(py_VectorGSQOneElectronOperator_d);
 
 
+    // Vector one-electron operators (complex).
     py::class_<VectorGSQOneElectronOperator<complex>> py_VectorGSQOneElectronOperator_cd {module, "VectorGSQOneElectronOperator_cd", "A (complex) general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators."};
 
     bindSimpleSQOneElectronOperatorInterface(py_VectorGSQOneElectronOperator_cd);

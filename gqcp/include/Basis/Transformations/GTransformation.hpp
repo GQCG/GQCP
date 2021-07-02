@@ -88,6 +88,20 @@ public:
      */
 
     /**
+     *  Convert an `RTransformation` into its generalized counterpart.
+     * 
+     *  @param r_transformation             The restricted transformation.
+     * 
+     *  @return The `GTransformation` that corresponds to the `RTransformation`.
+     */
+    static GTransformation<Scalar> FromRestricted(const RTransformation<Scalar>& r_transformation) {
+
+        const auto u_transformation = GQCP::UTransformation<Scalar>::FromRestricted(r_transformation);
+        return GTransformation<Scalar>::FromUnrestricted(u_transformation);
+    }
+
+
+    /**
      *  Convert an `UTransformation` into its generalized counterpart.
      * 
      *  @param u_transformation             The unrestricted transformation.

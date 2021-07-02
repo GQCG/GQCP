@@ -21,7 +21,6 @@
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
-#include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/SpinDensity1DM.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
@@ -72,9 +71,9 @@ public:
 
     /**
      *  Create a spin-resolved 1-DM from an `Orbital1DM`, attributing half of the orbital 1-DM to each of the spin components.
-     * 
+     *
      *  @param D            The orbital 1-DM.
-     * 
+     *
      *  @return A spin-resolved 1-DM.
      */
     static SpinResolved1DM<Scalar> FromOrbital1DM(const Orbital1DM<Scalar>& D) {
@@ -85,15 +84,13 @@ public:
 
 
     /*
-     *  MARK: Conversions
+     *  MARK: General information
      */
 
     /**
-     *  @return This spin-resolved 1-DM as a generalized 1-DM (`G1DM`).
-     * 
-     *  @note We cannot implement this as a named constructor on `G1DM` because we require `norm` to be implemented on `SpinResolved1DM` and that internally uses a `G1DM`, hence we have to avoid the circular dependency.
+     * @return The Frobenius norm of this spin-resolved 1-DM.
      */
-    G1DM<Scalar> generalized() const {
+    double norm() const {
 
         // Determine the dimensions of the generalized, spin-blocked 1-DM.
         const auto K_alpha = this->alpha().numberOfOrbitals();
@@ -105,22 +102,12 @@ public:
         D_generalized.topLeftCorner(K_alpha, K_alpha) = this->alpha().matrix();
         D_generalized.bottomRightCorner(K_beta, K_beta) = this->beta().matrix();
 
-        return G1DM<Scalar> {D_generalized};
+        return D_generalized.norm();
     }
-
-
-    /*
-     *  MARK: General information
-     */
-
-    /**
-     * @return The Frobenius norm of this spin-resolved 1-DM.
-     */
-    double norm() const { return this->generalized().norm(); }
 
     /**
      *  @param sigma            Alpha or beta.
-     * 
+     *
      *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin.
      */
     size_t numberOfOrbitals(const Spin sigma) const { return this->component(sigma).numberOfOrbitals(); }

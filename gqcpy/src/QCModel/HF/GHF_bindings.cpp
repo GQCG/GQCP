@@ -44,8 +44,18 @@ void bindQCModelGHF(py::module& module) {
 
     py_QCModelGHF_cd
         .def("calculateExpectationValueOf",
-             &QCModel::GHF<complex>::calculateExpectationValueOf,
+             [](const QCModel::GHF<complex>& ghf_parameters, const ElectronicSpinOperator& spin_op, const ScalarGSQOneElectronOperator<complex>& S) {
+                 return ghf_parameters.calculateExpectationValueOf(spin_op, S);
+             },
              "Return the expectation value of the electronic spin operator.");
+
+    py_QCModelGHF_cd
+    .def("calculateExpectationValueOf",
+            [](const QCModel::GHF<complex>& ghf_parameters, const ElectronicSpinSquaredOperator& spin_op, const ScalarGSQOneElectronOperator<complex>& S) {
+                return ghf_parameters.calculateExpectationValueOf(spin_op, S);
+            },
+            "Return the expectation value of the electronic spin squared operator.");
+
 
     // Expose the `HartreeFock` interface.
     bindQCModelHartreeFockInterface(py_QCModelGHF_cd);

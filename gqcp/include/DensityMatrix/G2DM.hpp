@@ -22,6 +22,7 @@
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Simple2DM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 
 
 namespace GQCP {
@@ -50,6 +51,57 @@ public:
 
     // Inherit `Simple2DM`'s constructors.
     using Simple2DM<Scalar, G2DM<Scalar>>::Simple2DM;
+
+
+    /**
+     *  Create a `G2DM` from a `SpinResolved2DM`.
+     * 
+     *  @param d            The spin-resolved 2-DM.
+     * 
+     *  @return A `G2DM` created from a `SpinResolved2DM`.
+     */
+    static G2DM<Scalar> FromSpinResolved(const SpinResolved2DM<Scalar>& d) {
+
+        // Prepare some variables.
+        const auto& d_aaaa = d.alphaAlpha().tensor();
+        const auto& d_aabb = d.alphaBeta().tensor();
+        const auto& d_bbaa = d.betaAlpha().tensor();
+        const auto& d_bbbb = d.betaBeta().tensor();
+
+        // The goal in this named constructor is to build up the general density matrix from the spin-resolved ones.
+        const auto K = d_aaaa.dimension();  // Assume that aaaa, aabb, bbaa and bbbb have the same number of orbitals.
+        const auto M = 2 * K;
+        SquareRankFourTensor<Scalar> d_generalized = SquareRankFourTensor<Scalar>::Zero(M);
+
+        // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
+        for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'
+            const size_t mu = mu_ % K;
+
+            for (size_t nu_ = 0; nu_ < M; nu_++) {  // nu 'prime'
+                const size_t nu = nu_ % K;
+
+                for (size_t rho_ = 0; rho_ < M; rho_++) {  // rho 'prime'
+                    const size_t rho = rho_ % K;
+
+                    for (size_t lambda_ = 0; lambda_ < M; lambda_++) {  // lambda 'prime'
+                        const size_t lambda = lambda_ % K;
+
+                        if ((mu_ < K) && (nu_ < K) && (rho_ < K) && (lambda_ < K)) {
+                            d_generalized(mu_, nu_, rho_, lambda_) = d_aaaa(mu, nu, rho, lambda);
+                        } else if ((mu_ < K) && (nu_ < K) && (rho_ >= K) && (lambda_ >= K)) {
+                            d_generalized(mu_, nu_, rho_, lambda_) = d_aabb(mu, nu, rho, lambda);
+                        } else if ((mu_ >= K) && (nu_ >= K) && (rho_ < K) && (lambda_ < K)) {
+                            d_generalized(mu_, nu_, rho_, lambda_) = d_bbaa(mu, nu, rho, lambda);
+                        } else if ((mu_ >= K) && (nu_ >= K) && (rho_ >= K) && (lambda_ >= K)) {
+                            d_generalized(mu_, nu_, rho_, lambda_) = d_bbbb(mu, nu, rho, lambda);
+                        }
+                    }
+                }
+            }
+        }
+
+        return G2DM<Scalar> {d_generalized};
+    }
 };
 
 
